@@ -47,14 +47,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bornfire.xbrl.entities.AccessAndRoles;
 import com.bornfire.xbrl.entities.AccessandRolesRepository;
 
-import com.bornfire.xbrl.entities.RT_BankNameMaster;
-import com.bornfire.xbrl.entities.RT_BankNameMasterRepository;
-import com.bornfire.xbrl.entities.RT_CountryRiskDropdown;
-import com.bornfire.xbrl.entities.RT_CountryRiskDropdownRepo;
 import com.bornfire.xbrl.entities.RT_DataControl;
 import com.bornfire.xbrl.entities.RT_DatacontrolRepository;
-import com.bornfire.xbrl.entities.RT_FxRiskDataRepository;
-import com.bornfire.xbrl.entities.RT_Fxriskdata;
+
 import com.bornfire.xbrl.entities.RT_MmData;
 import com.bornfire.xbrl.entities.RT_MmDataRepository;
 import com.bornfire.xbrl.entities.RT_NostroAccBalData;
@@ -63,41 +58,18 @@ import com.bornfire.xbrl.entities.RT_NostroAccBalDataRepository;
 import com.bornfire.xbrl.entities.RT_RepoDataTemplate;
 import com.bornfire.xbrl.entities.RT_RepoDataTemplateRepository;
 import com.bornfire.xbrl.entities.RT_DataControl;
-import com.bornfire.xbrl.entities.RT_Fxriskdata;
 import com.bornfire.xbrl.entities.UserProfile;
 import com.bornfire.xbrl.entities.UserProfileRep;
-import com.bornfire.xbrl.entities.ASL_BANKMASTER_ENTITY;
-import com.bornfire.xbrl.entities.ASL_BANKMASTER_REPO;
-import com.bornfire.xbrl.entities.ASL_Report_Entity;
-import com.bornfire.xbrl.entities.ASL_Report_Rep;
-import com.bornfire.xbrl.entities.BRF095AServiceRepo;
-import com.bornfire.xbrl.entities.BRF39_ENTITYREP;
-import com.bornfire.xbrl.entities.BRF40_Entity1;
-import com.bornfire.xbrl.entities.BRF40_Entity2;
-import com.bornfire.xbrl.entities.BRF40_Rep1;
-import com.bornfire.xbrl.entities.BRF40_Rep2;
-import com.bornfire.xbrl.entities.BRF_095_A_REPORT_ENTITY;
-import com.bornfire.xbrl.entities.BankLimit_Entity;
-import com.bornfire.xbrl.entities.BankLimit_Rep;
 import com.bornfire.xbrl.entities.Counterparty_Entity;
 import com.bornfire.xbrl.entities.Counterparty_Rep;
-import com.bornfire.xbrl.entities.MIS_SETTLEMENT_ENTITY;
-import com.bornfire.xbrl.entities.MIS_SETTLEMENT_ENTITY_REP;
-import com.bornfire.xbrl.entities.MIS_TREASURY_LIMITS_ENTITY;
-import com.bornfire.xbrl.entities.MIS_TREASURY_LIMITS_ENTITY_REP;
-import com.bornfire.xbrl.entities.MIS_TREASURY_PLACEMENT_ENTITY;
-import com.bornfire.xbrl.entities.RT_Investment_Risk_Data_Dashboard_TemplateRepository;
-import com.bornfire.xbrl.entities.TreasuryPlacementRep;
-import com.bornfire.xbrl.services.ASL_Excel_Services;
-import com.bornfire.xbrl.services.Excel_Services;
-import com.bornfire.xbrl.services.counter_services;
+import com.bornfire.xbrl.entities.RT_BankNameMaster;
+import com.bornfire.xbrl.entities.RT_BankNameMasterRepository;
+import com.bornfire.xbrl.entities.RT_CountryRiskDropdown;
+import com.bornfire.xbrl.entities.RT_CountryRiskDropdownRepo;
 import com.bornfire.xbrl.services.AccessAndRolesServices;
-import com.bornfire.xbrl.services.BCBUAE_NostroExcelDownload;
 import com.bornfire.xbrl.services.LoginServices;
 import com.bornfire.xbrl.services.NostroAccBalDataService;
 import com.bornfire.xbrl.services.RT_DataControlService;
-import com.bornfire.xbrl.services.RT_FxriskdataService;
-import com.bornfire.xbrl.services.RT_MmdataService;
 import com.bornfire.xbrl.services.RT_RepoService;
 
 
@@ -113,42 +85,14 @@ public class XBRLNavigationController {
 	
 	@Autowired
 	UserProfileRep UserProfileReps;
-		@Autowired
-		private BRF40_Rep1 brf40aRepository;
-		@Autowired
-		MIS_TREASURY_LIMITS_ENTITY_REP MIS_TREASURY_LIMITS_ENTITY_REPs;
-		@Autowired
-		private BRF40_Rep2 brf40bRepository;
-		@Autowired
-		BRF095AServiceRepo BRF095AServiceRepos;
-		@Autowired
-		BankLimit_Rep banklimit_rep;
 
-		@Autowired
-		MIS_SETTLEMENT_ENTITY_REP MIS_SETTLEMENT_ENTITY_REPs;
-		@Autowired
-		private ASL_BANKMASTER_REPO ASL_BANKMASTER_REPO;
-		@Autowired
-		private BRF39_ENTITYREP brf39_entityrep;
-		@Autowired
-		TreasuryPlacementRep TreasuryPlacementReps;
-		@Autowired
-		ASL_Excel_Services ASL_Excel_Servicess;
-		@Autowired
-		ASL_Report_Rep ASL_Report_Reps;
-		@Autowired
-		Excel_Services Excel_Servicess;
-		@Autowired
+				@Autowired
 		Counterparty_Rep Counterparty_Reps;
-		@Autowired
-		counter_services counter_servicess;
 		@Autowired
 		LoginServices loginServices;
 		@Autowired
 		SessionFactory sessionFactory;
 
-	@Autowired
-	private RT_FxriskdataService fxriskdataService;
 
 
 	@Autowired
@@ -162,18 +106,12 @@ public class XBRLNavigationController {
 
 	@Autowired
 	NostroAccBalDataService nostroService;
-
-	@Autowired
-	BCBUAE_NostroExcelDownload bcbuaeNostroExcelDownload;
-
+	
 	@Autowired
 	RT_DataControlService RT_DataControlService;
 
 	@Autowired
 	RT_DatacontrolRepository RT_DatacontrolRepository;
-
-	@Autowired
-	RT_FxRiskDataRepository friskdataRepo;
 
 	@Autowired
 	RT_BankNameMasterRepository bankRepo;
@@ -184,8 +122,7 @@ public class XBRLNavigationController {
 	@Autowired
 	RT_MmDataRepository mmdataRepo;
 
-	@Autowired
-	private RT_MmdataService mmdataService;
+	
 
 	@Autowired
 	RT_RepoDataTemplateRepository repoRepo;
