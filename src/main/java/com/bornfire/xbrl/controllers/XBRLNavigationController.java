@@ -1,6 +1,7 @@
 package com.bornfire.xbrl.controllers;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -50,18 +51,12 @@ import com.bornfire.xbrl.entities.AccessandRolesRepository;
 import com.bornfire.xbrl.entities.RT_DataControl;
 import com.bornfire.xbrl.entities.RT_DatacontrolRepository;
 
-import com.bornfire.xbrl.entities.RT_MmData;
-import com.bornfire.xbrl.entities.RT_MmDataRepository;
 import com.bornfire.xbrl.entities.RT_NostroAccBalData;
 import com.bornfire.xbrl.entities.RT_NostroAccBalDataRepository;
 
-import com.bornfire.xbrl.entities.RT_RepoDataTemplate;
-import com.bornfire.xbrl.entities.RT_RepoDataTemplateRepository;
 import com.bornfire.xbrl.entities.RT_DataControl;
 import com.bornfire.xbrl.entities.UserProfile;
 import com.bornfire.xbrl.entities.UserProfileRep;
-import com.bornfire.xbrl.entities.Counterparty_Entity;
-import com.bornfire.xbrl.entities.Counterparty_Rep;
 import com.bornfire.xbrl.entities.RT_BankNameMaster;
 import com.bornfire.xbrl.entities.RT_BankNameMasterRepository;
 import com.bornfire.xbrl.entities.RT_CountryRiskDropdown;
@@ -70,7 +65,6 @@ import com.bornfire.xbrl.services.AccessAndRolesServices;
 import com.bornfire.xbrl.services.LoginServices;
 import com.bornfire.xbrl.services.NostroAccBalDataService;
 import com.bornfire.xbrl.services.RT_DataControlService;
-import com.bornfire.xbrl.services.RT_RepoService;
 
 
 @Controller
@@ -86,8 +80,6 @@ public class XBRLNavigationController {
 	@Autowired
 	UserProfileRep UserProfileReps;
 
-				@Autowired
-		Counterparty_Rep Counterparty_Reps;
 		@Autowired
 		LoginServices loginServices;
 		@Autowired
@@ -119,16 +111,6 @@ public class XBRLNavigationController {
 	@Autowired
 	RT_CountryRiskDropdownRepo countryRepo;
 
-	@Autowired
-	RT_MmDataRepository mmdataRepo;
-
-	
-
-	@Autowired
-	RT_RepoDataTemplateRepository repoRepo;
-	
-	@Autowired
-	RT_RepoService repoService;
 
 	private String pagesize;
 
