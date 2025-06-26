@@ -19,7 +19,7 @@ public class XbrlWebApp implements WebMvcConfigurer {
 
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("XBRLStart");
+        registry.addViewController("/login").setViewName("Start");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 	

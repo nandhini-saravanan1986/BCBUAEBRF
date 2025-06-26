@@ -69,16 +69,14 @@ import com.bornfire.xbrl.services.RT_DataControlService;
 
 @Controller
 @ConfigurationProperties("default")
-public class XBRLNavigationController {
+public class NavigationController {
 
-	private static final Logger logger = LoggerFactory.getLogger(XBRLNavigationController.class);
+	private static final Logger logger = LoggerFactory.getLogger(NavigationController.class);
 	/*
 	 * @PersistenceContext private EntityManager entityManager;
 	 */
 	
-	
-	@Autowired
-	UserProfileRep UserProfileReps;
+		UserProfileRep UserProfileReps;
 
 		@Autowired
 		LoginServices loginServices;
@@ -137,7 +135,7 @@ public class XBRLNavigationController {
 		md.addAttribute("completed", completed);
 		md.addAttribute("uncompleted", uncompleted);
 		md.addAttribute("menu", "Dashboard");
-		return "XBRLDashboard";
+		return "Dashboard";
 	}
 
 	@RequestMapping(value = "AccessandRoles", method = { RequestMethod.GET, RequestMethod.POST })
@@ -255,7 +253,7 @@ public class XBRLNavigationController {
 
 		}
 
-		return "XBRLUserprofile";
+		return "Userprofile";
 	}
 
 	@GetMapping("/getRoleDetails")

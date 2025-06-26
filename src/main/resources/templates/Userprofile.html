@@ -39,6 +39,7 @@
 <script
 	src="/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js"
 	th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
 
 <style>
 
@@ -54,7 +55,7 @@ font-family: verdana;
     margin-right: auto;
     margin-left: auto;
 }
-.btns {
+.custom-tab-btns {
 	float: right;
 	margin: 5px;
 }
@@ -81,13 +82,13 @@ font-family: verdana;
 	padding-bottom: 15px;
 }
 
-.btn-primary {
+.custom-tab-btn-primary {
 	background-color: #E77400;
 	border-color: #0c0c0c;
 }
 
-.btn-primary:not (:disabled ):not (.disabled ).active, .btn-primary:not
-	 (:disabled ):not (.disabled ):active, .show>.btn-primary.dropdown-toggle
+.custom-tab-btn-primary:not (:disabled ):not (.disabled ).active, .custom-tab-btn-primary:not
+	 (:disabled ):not (.disabled ):active, .show>.custom-tab-btn-primary.dropdown-toggle
 	{
 	color: #fff;
 	background-color: #cc000000;
@@ -107,52 +108,7 @@ font-family: verdana;
         .invalids { color: red; }
     </style>
 <script th:inline="javascript">
-	/*<![CDATA[*/
 
-/*	$(function() {
-
-		var finusers = /*[[${FinUserProfiles}]]*/null;
-
-	/*	console.log(finusers);
-
-	
-
-		$("#expiryDate,#disableDate,#disableTilDate,#passExDate,#effectiveTill")
-				.datepicker({
-					minDate : new Date(),
-					changeMonth : true,
-					changeYear : true,
-					dateFormat : "dd-mm-yy"
-				});
-
-	});
-	
-	$(document).ready(function() {
-	    $('#usertable').DataTable({
-	        "destroy": true,
-	        "scrollY": 480,
-	        "scrollCollapse": true,
-	        "paging": true,
-	        "autoWidth": false,
-	        "ordering": true,
-	        "oLanguage": {
-	            "sSearch": "",
-	            "sSearchPlaceholder": "Search Here"
-	        },
-	        "searching": true,
-	        "pageLength": 100,
-	        "lengthChange": false,
-	        initComplete: function() {
-	            let searchContainer = $('.dataTables_filter');
-	            searchContainer.css({
-	                'text-align': 'left', // Align search to the right
-	                'margin-bottom': '-10px','margin-right': '25px'// Add spacing if needed
-	            });
-	        }
-	    });
-	});*/
-
-		
 	
 	function getUserlist(mode, num, maxpage) {
 
@@ -231,7 +187,7 @@ font-family: verdana;
 		if(WORKCLASS != "C" ){
 			alert('You do not have Modification access.');
 		}else{
-			location.href = 'Userprofile?formmode=edit&userid=' + userid
+			location.href = 'UserProfile?formmode=edit&userid=' + userid
 		}
 	}
 	
@@ -243,19 +199,19 @@ font-family: verdana;
 		if(WORKCLASS != "C" ){
 			alert('You do not have verification access.');
 		}else{
-			location.href = 'Userprofile?formmode=verify&userid=' + userid
+			location.href = 'UserProfile?formmode=verify&userid=' + userid
 		}
 	}
 
 	function adduser() {
 		
 		
-		location.href = 'Userprofile?formmode=add';
+		location.href = 'UserProfile?formmode=add';
 		
 	}
 
 	function list() {
-		location.href = 'Userprofile?formmode=list';
+		location.href = 'UserProfile?formmode=list';
 	}
 
 	function verify(a) {
@@ -285,7 +241,7 @@ font-family: verdana;
 	    $.ajax({
 	        url: './verifyUser',
 	        type: 'POST',
-	        data: $('#Userprofile').serialize(), // serialize form data
+	        data: $('#userProfile').serialize(), // serialize form data
 	        success: function(response) {
 	            $('#loader1').modal("hide");
 	            $("#alertmsg").text(response);
@@ -308,7 +264,7 @@ font-family: verdana;
 
 	        // Prepare data
 	        var url = './defaultpasswordReset';
-	        var formData = $('#Userprofile').serialize(); // Serialize form fields
+	        var formData = $('#userProfile').serialize(); // Serialize form fields
 
 	        // Send AJAX request
 	        $.ajax({
@@ -332,34 +288,38 @@ font-family: verdana;
 
 
 	function roledesc() {
+	    var roleId = $("#roleId").val();
+	    
 
-		var roleid = $("#roleId").find(':selected').val();
+	    if (roleId) {
+	        $.ajax({
+	            url: "/BCDRS/getRoleDetails",
+	            type: "GET",
+	            data: { roleId: roleId },
+	            success: function(data) {
+	                if (data) {
+	                    $("#roleDesc").val(data.role_desc || "");
+	                    $("#workClass").val(data.work_class || "");
+	                    $("#domainId").val(data.menulist || ""); // assuming you're using menulist as domain info
 
-		if (roleid == 'ADM') {
-			$("#roleDesc").val("Admin");
-		} else if (roleid == 'ADT') {
-			$("#roleDesc").val("Audit");
-		} else if (roleid == 'GEN') {
-			$("#roleDesc").val("General User");
-		} else if (roleid == 'RECONADM') {
-			$("#roleDesc").val("Admin");
-		} else if (roleid == 'RECONGEN') {
-			$("#roleDesc").val("General User");
-		}else if (roleid == 'RBR') {
-			$("#roleDesc").val("RBR ADMIN ACCESS");
-		}else if (roleid == 'RBR_BRANCH') {
-			$("#roleDesc").val("RBR BRANCH ACCESS");
-		}else if (roleid == 'BRC') {
-			$("#roleDesc").val("BRECON");
-		}else if (roleid == 'DCD_BRANCH') {
-			$("#roleDesc").val("Due Dilligience Branch");
-		}else if (roleid == 'DCD_ADM') {
-			$("#roleDesc").val("Due Dilligience Admin");
-		}
-		
-		$(this).find(':selected').text();
+	                    // Check if menulist includes 'BRF_Reports'
+	                    if ((data.menulist || "").includes("BRF_Reports")) {
+	                        $("#acctAccessContainer").show();
+	                    } else {
+	                        $("#acctAccessContainer").hide();
+	                    }
 
+	                    $("#permission").val(data.permissions || "");
+	                }
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("Error fetching role details:", error);
+	            }
+	        });
+	    }
 	}
+
+	
 	function Branchcodeval() {
 
 		
@@ -391,45 +351,44 @@ font-family: verdana;
 
 	
 	function submitform() {
-        var formmode = /*[[${formmode}]]*/ null; // Make sure this is replaced server-side or set properly
-		//alert(formmode)
-        var userid = $('#userId').val();
+	    // Get the formmode from the Submit button's data attribute
+	    var formmode = $('#btnSubmit').data('formmode');
+	    //alert("Form mode is: " + formmode); // Alert the formmode
 
-		  if (!userid) {
-		    alert("Please Provide User Id");
-		    $('#userid').focus();
-		    return false; // stop submission
-		  }
+	    var userid = $('#userId').val();
 
-		  // Show loader (assuming #loader1 is a modal)
-		  $("#loader1").modal("toggle");
+	    if (!userid) {
+	        alert("Please Provide User Id");
+	        $('#userId').focus();
+	        return false;
+	    }
 
-		  // Prepare form data for AJAX submit
-		  var formmode = 'add'; // or get dynamically
-		  var url = "./createUser?formmode=" + formmode;
+	    $("#loader1").modal("toggle");
 
-		  // Use jQuery AJAX instead of ajaxSubmit
-		  $.ajax({
-		    url: url,
-		    type: 'POST',
-		    data: $("#Userprofile").serialize(),
-		    success: function(response) {
-		      $("#loader1").modal("hide");
-		      $("#alertmsg").text(response);
-		      $('#alert').modal("toggle");
-		    },
-		    error: function() {
-		      $("#loader1").modal("hide");
-		      alert('Error submitting form');
-		    }
-		  });
-		}
+	    var url = "./createUser?formmode=" + formmode;
 
+	    $.ajax({
+	        url: url,
+	        type: 'POST',
+	        data: $("#userProfile").serialize(),
+	        success: function(response) {
+	            $("#loader1").modal("hide");
+	            $("#alertmsg").text(response);
+	            $('#alert').modal("toggle");
+	        },
+	        error: function() {
+	            $("#loader1").modal("hide");
+	            alert('Error submitting form');
+	        }
+	    });
+	}
+
+	
 	/*]]>*/
 </script>
 <script>
 	function submitdata() {
-		var domainids = [];
+		var domainids = []; 
 		$.each($("input[name='dom']:checked"), function() {
 			domainids.push($(this).val());
 		});
@@ -585,23 +544,23 @@ function cancelpop() {
 </script>
 
 </head>
-<title>MIS</title>
+<title>BCDRS</title>
 <body>
 	<div class="container-fluid">
 		<div class="row">
-	<div th:insert="XBRLHeaderMenu :: header"></div>
+	<div th:insert="HeaderMenu :: header"></div>
 			<div  class="col-sm-12">
 		<div  style="padding-right: 0px;padding-left: 0px;" th:if="${formmode}=='list'">
 
 			<div class="card" >
-				<div class="card-header" style="background-color: #376275;">
+				<div class="card-header">
 					<div class="float-left" style="color: white;">
 						<h5 th:text="${menu}"
-							style="font-family: verdana; font-size: 30px; font-weight: bold; padding-top: 10px; "></h5>
+							style="font-family: verdana; margin-left:20px; font-size: 20px; font-weight: bold; padding-top: 10px; "></h5>
 					</div>
-					<div class="btn-group nav-buttons float-right">
-						<button type="button" class="btn btn-xs btn-primary btns"
-							th:if="${WORKCLASSAC}=='M' OR ${ROLEIDAC}=='ADM'" id="btnAdd"
+					<div class="custom-tab-btn-group nav-buttons float-right">
+						<button type="button" class="custom-tab-btn"
+							th:if="${WORKCLASSAC}=='M' OR ${ROLEIDAC}=='ADM'" id="custom-tab-btnAdd"
 							onclick="adduser();">Create User</button>
 
 					</div>
@@ -649,14 +608,12 @@ function cancelpop() {
 						</table>
 					</div>
 				<div class="card-footer text-center" style="background-color: white;">
-  <button type="button" class="btn btn-xs" 
-          style="background-color: white; border-radius: 15px; border: 2px solid rgb(0,164,166);" 
-          id="btnHome" onclick="home();">
+  <button type="button" class="custom-tab-btn custom-tab-btn-xs" 
+          id="custom-tab-btnHome" onclick="home();">
     Home
   </button>
-  <button type="button" class="btn btn-xs" 
-          style="background-color: white; border-radius: 15px; border: 2px solid rgb(0,164,166);" 
-          id="btnBack" onclick="back();">
+  <button type="button" class="custom-tab-btn custom-tab-btn-xs" 
+          id="custom-tab-btnBack" onclick="back();">
     Back
   </button>
 </div>
@@ -666,23 +623,23 @@ function cancelpop() {
 			</div>
 		</div>
 		
-	<div th:if="${formmode}=='edit' OR ${formmode}=='add'" >
+		<div style="padding-right: 0px;padding-left: 0px; margin-left:35px;" th:if="${formmode}=='edit' OR ${formmode}=='add'" >
 		<div class="row">
 			<div class="col-sm-12 finuserapply" >
 				<form action="#" th:object="${userProfile}" method="post"
 					autocomplete="off" id="userProfile" th:fragment="finuserapply">
-					<div class="card" style="width: 1433px; margin-left: -26px;">
+					<div class="card" style="margin-left: -26px;">
 						<div class="card-header"style="background-color: #376275;">
 							<div class="float-left">
-								<h3 th:if="${formmode}=='add'" style="font-family: verdana;color: white; font-size: 30px; font-weight: bold; padding-top: 10px;">USER PROFILE - ADD</h3>
-								<h3 th:if="${formmode}=='edit'" style="font-family: verdana;color: white; font-size: 30px; font-weight: bold; padding-top: 10px;">USER PROFILE</h3>
+								<h3 th:if="${formmode}=='add'" style="font-family: verdana; margin-left:20px; font-size: 20px; color:white !important; font-weight: bold; padding-top: 10px; ">USER PROFILE - ADD</h3>
+								<h3 th:if="${formmode}=='edit'" style="font-family: verdana; margin-left:20px; font-size: 20px; color:white !important; font-weight: bold; padding-top: 10px; ">USER PROFILE - EDIT</h3>
 							</div>
 							<div class="btn-group nav-buttons float-right">
-								<button type="button" class="btn btn-xs btn-primary btns"
+								<button type="button" class="custom-tab-btn"
 									id="btnInq" onclick="list();">List</button>
 							</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body" style="max-height: 500px; overflow-y: auto; padding-right: 15px;">
 
 							<input autocomplete="false" name="hidden" type="text"
 								style="display: none;">
@@ -834,65 +791,6 @@ function cancelpop() {
 
 
 
-<!-- 								<div class="row formline">
-
-
-									<label class="col-sm-2">Login Low <b style="color:red;">*</b></label>
-									<div class="col-sm-3" th:if="${formmode}=='edit'">
-										<input  type="time" th:field="*{login_low}"
-											th:value="${login_low}" id="loginLow" 
-											class="form-control form-control-sm" autocomplete="off"
-											required />
-									</div>
-									
-									<div class="col-sm-3"  th:if="${formmode}=='add'">
-										<input type="time" th:field="*{login_low}"
-											 id="loginLow" value="09:00"
-											class="form-control form-control-sm" autocomplete="off"
-											required />
-									</div>
-
-									<div class="col-sm-1"></div>
-
-									<label class="col-sm-2">Login High<b style="color:red;">*</b></label>
-									<div class="col-sm-3"  th:if="${formmode}=='edit'">
-										<input type="time" th:field="*{login_high}"
-											th:value="${login_high}" id="loginHigh"
-											class="form-control form-control-sm" required />
-									</div>
-									
-									<div class="col-sm-3"  th:if="${formmode}=='add'">
-										<input type="time" th:field="*{login_high}"
-											id="loginHigh" value="19:00"
-											class="form-control form-control-sm" required />
-									</div>
-									<div class="col-sm-1"></div>
-								</div> -->
-
-
-								<!-- <div class="row formline">
-
-
-									<label class="col-sm-2">User Disable Start Date<b style="color:red;">*</b></label>
-									<div class="col-sm-3">
-										<input type="text" th:field="*{disable_start_date}"
-											th:value="${disable_start_date}" id="disableDate" value=""
-											style="background-color: White;" class="form-control form-control-sm"
-											autocomplete="off" required />
-									</div>
-									<div class="col-sm-1"></div>
-
-
-									<label class="col-sm-2">User Disable End Date<b style="color:red;">*</b></label>
-									<div class="col-sm-3">
-										<input type="text" th:field="*{disable_end_date}"
-											th:value="${disable_end_date}" name="disable_end_date"
-											style="background-color: White;" readonly='true'
-											id="disableTilDate" value=""
-											class="form-control form-control-sm" required />
-									</div>
-									<div class="col-sm-1"></div>
-								</div> -->
 
 
 								<div class="row formline">
@@ -900,16 +798,15 @@ function cancelpop() {
 
 									<label class="col-sm-2">Password <b style="color:red;">*</b></label>
 									<div class="col-sm-3" th:if="${formmode}=='add'">
-										<input type="password"
-												id="pass" value="" name="password" oninput="validatePassword()"
-												class="form-control form-control-sm" autocomplete="off"
-												required />
-												<span id="feedback"></span>
-									</div>
+    <input type="password"
+            id="password" name="password" oninput="validatePassword()"
+            class="form-control form-control-sm" autocomplete="off"
+            required />
+    <span id="feedback"></span>
+</div>
 									
 									<div class="col-sm-3" th:if="${formmode}=='edit'">
-										<input type="text" value = "**********"
-												id="password"  name="password" readonly="readonly"
+										<input type="text" placeholder="********" id="password"  name="password" readonly='readonly'
 												class="form-control form-control-sm" autocomplete="new-password"
 												required />
 												
@@ -983,7 +880,7 @@ function cancelpop() {
 
 								
 								<div class="row"
-										style="background-color: #376275; color: white; height: 44px; border-radius: .20rem; padding: 11px 10px; top: 10px;">
+										style="background-color: #6B7A8F; color: white; height: 44px; border-radius: .20rem; padding: 11px 10px; top: 10px;">
 										<h4 style="color: white;">Role and Rights</h4>
 									</div>
 									<br>
@@ -1078,7 +975,7 @@ function cancelpop() {
 
     <!-- HIDDEN BY DEFAULT: Acct Access Code Section -->
     <div class="col-sm-5" id="acctAccessContainer" style="display: none;">
-        <div class="row">
+        <!-- <div class="row">
             <label class="col-sm-5" style="white-space: nowrap;">Acct Access Code <br><b style="color:red;">Only For BRF181</b></label>
             <div class="col-sm-7">
                 <select th:field="*{acct_access_code}"
@@ -1098,37 +995,38 @@ function cancelpop() {
                     <option value="AML">AML</option>
                 </select>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="col-sm-1"></div>
-</div>
+</div></div></div>
 
-						<div class="card-footer text-center"style="background-color: #376275;">
-									<button type="button" class="btn btn-xs btn-primary"
+						<div class="card-footer text-center">
+									<button type="button" class="custom-tab-btn"
 										id="btnHome" onclick="home();">Home</button>
 									<button type="button" th:if="${formmode}=='edit'"
-										class="btn btn-xs btn-primary" onclick="deleteuser();"
+										class="custom-tab-btn" onclick="deleteuser();"
 										th:attr="data-userid=${userProfile.userid},data-entry_user=${userProfile.entry_user},
 										data-modify_user=${userProfile.modify_user},data-userid=${userProfile.userid}"
 										id="delete">Delete User</button>
 									<button
 										th:if="${formmode}=='edit' AND ${userProfile.entity_flg}=='Y'"
-										type="button" class="btn btn-xs btn-primary" id="btnpassrst"
+										type="button" class="custom-tab-btn" id="btnpassrst"
 										onclick="passwordReset();">PasswordReset</button>
 								<!-- th:if="${userProfile.entity_flg}!='N' OR ${userProfile.entity_flg}==null" -->	
 								<button
-										type="button" class="btn btn-xs btn-primary"
+										type="button" class="custom-tab-btn"
 										form="userProfile" id="btnSubmit" onclick="submitform();"
 										th:attr="data-formmode=${formmode},data-entity=${entity_flg}">Submit</button>
 
-									<button type="button" class="btn btn-xs btn-primary"
+									<button type="button" class="custom-tab-btn"
 										id="btnBack" onclick="back();">Back</button>
 
-								</div>
+								
 					</div>
 					</div>
 				</form>
+
 
 			</div>
 		</div>
@@ -1137,22 +1035,23 @@ function cancelpop() {
 	
 	<!-- *************************************************Verify User***************************************************** -->
 	
-	<div th:if="${formmode}=='verify'">
-		<div class="row">
-			<div class="col-sm-12 finuserapply">
+	
+	<div th:if="${formmode}=='verify'" style="margin-left:26px;">
+	<div class="row">
+			<div class="col-sm-12 finuserapply" >
 				<form action="#" th:object="${userProfile}" method="post"
 					autocomplete="off" id="userProfile" th:fragment="finuserapply">
-					<div class="card" style="width: 1433px; margin-left: -26px;">
-						<div class="card-header" style="background-color: #376275;">
+					<div class="card" style="margin-left: -26px;">
+						<div class="card-header"style="background-color: #376275;">
 					<div class="float-left">
-								<h3 style="font-family: verdana;color: white; font-size: 30px; font-weight: bold; padding-top: 10px;">USER PROFILE - VERIFY</h3>
+								<h3 style="font-family: verdana; margin-left:20px; font-size: 20px; color:white !important; font-weight: bold; padding-top: 10px; ">USER PROFILE - VERIFY</h3>
 							</div>
-							<div class="btn-group nav-buttons float-right">
-								<button type="button" class="btn btn-xs btn-primary btns"
-									id="btnInq" onclick="list();">List</button>
+							<div class="custom-tab-btn-group nav-buttons float-right">
+								<button type="button" class="custom-tab-btn"
+									id="custom-tab-btnInq" onclick="list();">List</button>
 							</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body" style="max-height: 500px; overflow-y: auto; padding-right: 15px;">
 
 							<input autocomplete="false" name="hidden" type="text"
 								style="display: none;">
@@ -1455,27 +1354,27 @@ function cancelpop() {
 
 
 						</div>
-				
-						<div class="card-footer text-center" style="background-color: #376275;">
-						<button type="button" class="btn btn-xs btn-primary" id="btnHome"
+				</div>
+						<div class="card-footer text-center">
+						<button type="button" class="custom-tab-btn" id="Home"
 								onclick="home();">Home</button>
 							<button  th:if="${formmode == 'verify' and userProfile.entity_flg == 'N'}"  type="button"
-								class="btn btn-xs btn-primary"
+								class="custom-tab-btn"
 								th:attr="data-userid=${userProfile.userid},
 								data-entry_user=${userProfile.entry_user},data-modify_user=${userProfile.modify_user}"
-								onclick="verify(this);" id="btnModify">Verify</button>
+								onclick="verify(this);" id="custom-tab-btnModify">Verify</button>
 
 							<!-- <button  th:if="${formmode == 'verify' and userProfile.entity_flg == 'N'}"  type="button"
-								class="btn btn-xs btn-primary" onclick="deleteuser();"
+								class="custom-tab-btn custom-tab-btn-xs custom-tab-btn-primary" onclick="deleteuser();"
 									th:attr="data-userid=${userProfile.userid},data-entry_user=${userProfile.entry_user},
 									data-modify_user=${userProfile.modify_user},
 									data-userid=${userProfile.userid}"
 								id="delete">Delete User</button> -->
-							<button type="button" class="btn btn-xs btn-primary" id="btnBack"
+							<button type="button" class="custom-tab-btn" id="custom-tab-btnBack"
 								onclick="back();">Back</button>
 
 						</div>
-					</div>
+					
 					</div>
 				</form>
 
@@ -1500,8 +1399,8 @@ function cancelpop() {
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background-color:darkorange" onclick="submitdata();">Submit</button>
-                <button type="button" class="btn" style="background-color:darkorange" data-dismiss="modal" onclick="cancelpop()">Cancel</button>
+                <button type="button" class="custom-tab-btn" style="background-color:darkorange" onclick="submitdata();">Submit</button>
+                <button type="button" class="custom-tab-btn" style="background-color:darkorange" data-dismiss="modal" onclick="cancelpop()">Cancel</button>
             </div>
         </div>
     </div>
@@ -1518,7 +1417,7 @@ function cancelpop() {
 				</div>
 				<div class="modal-body" style="text-align: center">
 					<p id="alertmsg"></p>
-					<button type="button" class="btn "style="background-color:darkorange" onclick="list()"
+					<button type="button" class="custom-tab-btn "style="background-color:darkorange" onclick="list()"
 						data-dismiss="modal">Close</button>
 				</div>
 			</div>
