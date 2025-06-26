@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function hideMenu(menu) {
         menuTimeout = setTimeout(() => {
             menu.style.display = "none";
-        }, 3000); // 200ms delay
+        }, 200); // 200ms delay
     }
 
     // Handle main dropdown menu hover 
@@ -557,13 +557,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			display: none;
 		}
 
-		.dropdown-menu .nav-link:hover {
+		 .dropdown-menu .nav-link:hover {
 			background: linear-gradient(145deg, rgb(107, 122, 143), rgb(87, 102, 123));
 			color: white;
 			border-color: rgb(107, 122, 143);
-			
+			width:auto;
 			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-		}
+		} 
 
 		/* Active Dropdown Menu Item */
 		.dropdown-menu .nav-link.active {
