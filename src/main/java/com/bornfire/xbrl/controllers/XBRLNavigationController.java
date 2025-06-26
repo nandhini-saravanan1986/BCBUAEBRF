@@ -404,6 +404,60 @@ public class XBRLNavigationController {
 			return ResponseEntity.ok().headers(headersResponse).body(excelData);
 		}
 
+		@RequestMapping(value = "Monthly-1", method = { RequestMethod.GET, RequestMethod.POST })
+		public String userprofile1(@RequestParam(required = false) String formmode,
+				@RequestParam(required = false) String userid,
+				@RequestParam(value = "page", required = false) Optional<Integer> page,
+				@RequestParam(value = "size", required = false) Optional<Integer> size, Model md, HttpServletRequest req) {
 
+			int currentPage = page.orElse(0);
+			int pageSize = size.orElse(Integer.parseInt(pagesize));
+
+			String loginuserid = (String) req.getSession().getAttribute("USERID");
+			String WORKCLASSAC = (String) req.getSession().getAttribute("WORKCLASS");
+			String ROLEIDAC = (String) req.getSession().getAttribute("ROLEID");
+			md.addAttribute("RuleIDType", accessandrolesrepository.roleidtype());
+
+			System.out.println("work class is : " + WORKCLASSAC);
+			// Logging Navigation
+			loginServices.SessionLogging("USERPROFILE", "M2", req.getSession().getId(), loginuserid, req.getRemoteAddr(),
+					"ACTIVE");
+			Session hs1 = sessionFactory.getCurrentSession();
+			md.addAttribute("menu", "USER PROFILE"); // To highlight the menu
+
+			if (formmode == null || formmode.equals("list")) {
+
+				md.addAttribute("formmode", "list");// to set which form - valid values are "edit" , "add" & "list"
+				md.addAttribute("WORKCLASSAC", WORKCLASSAC);
+				md.addAttribute("ROLEIDAC", ROLEIDAC);
+				md.addAttribute("loginuserid", loginuserid);
+
+				Iterable<UserProfile> user = loginServices.getUsersList();
+
+				md.addAttribute("userProfiles", user);
+
+			} else if (formmode.equals("edit")) {
+
+				md.addAttribute("formmode", formmode);
+				md.addAttribute("userProfile", loginServices.getUser(userid));
+
+			} else if (formmode.equals("add")) {
+				md.addAttribute("formmode", formmode);
+				md.addAttribute("userProfile", loginServices.getUser(""));
+			} else if (formmode.equals("verify")) {
+
+				md.addAttribute("formmode", formmode);
+				md.addAttribute("userProfile", loginServices.getUser(userid));
+
+			} else {
+
+				md.addAttribute("formmode", formmode);
+				md.addAttribute("FinUserProfiles", loginServices.getFinUsersList());
+				md.addAttribute("userProfile", loginServices.getUser(""));
+
+			}
+
+			return "XBRLUserprofile";
+		}
 
 }
