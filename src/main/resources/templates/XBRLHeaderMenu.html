@@ -568,6 +568,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		/* Active Dropdown Menu Item */
 		.dropdown-menu .nav-link.active {
 			background: linear-gradient(145deg, rgb(107, 122, 143), rgb(87, 102, 123));
+			width:auto;
 			color: white !important;
 		border-color: rgb(107, 122, 143);
 			text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -667,8 +668,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const formMode = urlParams.get('formmode');
     const navLinks = document.querySelectorAll(".nav-link");
-
+	
     function activateParentDropdowns(activeLink) {
+		
         let parentMenu = activeLink.closest('.dropdown-menu');
         while (parentMenu) {
             const parentItem = parentMenu.closest('.dropdown-submenu, .nav-item.dropdown');
@@ -685,12 +687,14 @@ document.addEventListener("DOMContentLoaded", function () {
     navLinks.forEach(link => {
         const href = link.getAttribute("href");
         if (!href || href === "#") return;
-
+		
         const linkUrl = new URL(href, window.location.origin); // ✅ Resolve to full URL
         const linkPath = linkUrl.pathname;
-        const linkFormMode = linkUrl.searchParams.get('formmode') || link.getAttribute("data-formmode");
+        //const linkFormMode = linkUrl.searchParams.get('formmode') || link.getAttribute("data-formmode");
+       const linkFormMode = urlParams.get('formmode');
 
         if (currentPath === linkPath) {
+        	
             if (formMode || linkFormMode) {
                 if (formMode === linkFormMode) {
                     link.classList.add("active");
