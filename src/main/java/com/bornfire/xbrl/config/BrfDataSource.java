@@ -21,7 +21,7 @@ import oracle.jdbc.pool.OracleDataSource;
 @EnableTransactionManagement
 @ConfigurationProperties("datasrc")
 @EnableJpaRepositories(basePackages = "com.bornfire.xbrl.entities", entityManagerFactoryRef = "datasrc", transactionManagerRef = "datasrcTransactionManager")
-public class XbrlDataSource {
+public class BrfDataSource {
 
 	@NotNull
 	private String username;

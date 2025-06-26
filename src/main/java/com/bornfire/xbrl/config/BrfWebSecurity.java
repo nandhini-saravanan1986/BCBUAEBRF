@@ -48,7 +48,7 @@ import com.bornfire.xbrl.services.LoginServices;
 
 @Configuration
 @EnableWebSecurity
-public class XBRLWebSecurity extends WebSecurityConfigurerAdapter {
+public class BrfWebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserProfileRep userProfileRep;
