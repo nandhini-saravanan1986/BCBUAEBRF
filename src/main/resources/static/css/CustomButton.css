@@ -21,13 +21,15 @@
   .custom-tab-btn:hover {
     background-color: #6B7A8F;
     color: white;
-    border: 2px solid #6B7A8F;
-  }
+    border: 2px solid white;
+}
 
-  .custom-tab-btn.active {
+.custom-tab-btn.active {
     background-color: #6B7A8F;
     color: white;
-  }
+    border: 2px solid white;
+}
+  
   .modal-title{
   background-color: #6B7A8F;
   }

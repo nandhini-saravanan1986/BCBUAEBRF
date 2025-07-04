@@ -30,6 +30,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bornfire.brf.entities.AccessAndRoles;
 import com.bornfire.brf.entities.AccessandRolesRepository;
+import com.bornfire.brf.entities.RRReport;
 import com.bornfire.brf.entities.RT_BankNameMaster;
 import com.bornfire.brf.entities.RT_BankNameMasterRepository;
 import com.bornfire.brf.entities.RT_CountryRiskDropdown;
@@ -57,11 +59,14 @@ import com.bornfire.brf.entities.RT_NostroAccBalData;
 import com.bornfire.brf.entities.RT_NostroAccBalDataRepository;
 import com.bornfire.brf.entities.UserProfile;
 import com.bornfire.brf.entities.UserProfileRep;
+import com.bornfire.brf.entities.RRReportRepo;
+import com.bornfire.brf.entities.CBUAE_BRFValidationsRepo;
+
+
 import com.bornfire.brf.services.AccessAndRolesServices;
 import com.bornfire.brf.services.LoginServices;
 import com.bornfire.brf.services.NostroAccBalDataService;
 import com.bornfire.brf.services.RT_DataControlService;
-
 
 @Controller
 @ConfigurationProperties("default")
@@ -71,15 +76,18 @@ public class NavigationController {
 	/*
 	 * @PersistenceContext private EntityManager entityManager;
 	 */
+
+	UserProfileRep UserProfileReps;
 	
-		UserProfileRep UserProfileReps;
+	@Autowired
+	CBUAE_BRFValidationsRepo cbuae_brfvalidationsRepo;
+	@Autowired
+	RRReportRepo rrReportlist;
 
-		@Autowired
-		LoginServices loginServices;
-		@Autowired
-		SessionFactory sessionFactory;
-
-
+	@Autowired
+	LoginServices loginServices;
+	@Autowired
+	SessionFactory sessionFactory;
 
 	@Autowired
 	AccessAndRolesServices AccessRoleService;
@@ -92,7 +100,7 @@ public class NavigationController {
 
 	@Autowired
 	NostroAccBalDataService nostroService;
-	
+
 	@Autowired
 	RT_DataControlService RT_DataControlService;
 
@@ -104,7 +112,6 @@ public class NavigationController {
 
 	@Autowired
 	RT_CountryRiskDropdownRepo countryRepo;
-
 
 	private String pagesize;
 
@@ -249,33 +256,30 @@ public class NavigationController {
 
 		}
 
-		return "Userprofile";
+		return "BRF/CBUAE_BRF1_1";
 	}
 
 	@GetMapping("/getRoleDetails")
 	@ResponseBody
 	public AccessAndRoles getRoleDetails(@RequestParam String roleId) {
-		System.out.println("role id for fetching is : "+roleId);
-	    return accessandrolesrepository.findById(roleId).orElse(null);
+		System.out.println("role id for fetching is : " + roleId);
+		return accessandrolesrepository.findById(roleId).orElse(null);
 	}
-	
+
 	@RequestMapping(value = "createUser", method = RequestMethod.POST)
 	@ResponseBody
-	public String createUser(@RequestParam("formmode") String formmode,
-	                         @ModelAttribute UserProfile userprofile,
-	                         Model md, HttpServletRequest rq) {
+	public String createUser(@RequestParam("formmode") String formmode, @ModelAttribute UserProfile userprofile,
+			Model md, HttpServletRequest rq) {
 
-	    String mob = (String) rq.getSession().getAttribute("MOBILENUMBER");
-	    String role = (String) rq.getSession().getAttribute("ROLEDESC");
-	    String userId = (String) rq.getSession().getAttribute("USERID");
-	    String userName = (String) rq.getSession().getAttribute("USERNAME");
-	    String msg = loginServices.addUser(userprofile, formmode, userId, userName, mob, role);
+		String mob = (String) rq.getSession().getAttribute("MOBILENUMBER");
+		String role = (String) rq.getSession().getAttribute("ROLEDESC");
+		String userId = (String) rq.getSession().getAttribute("USERID");
+		String userName = (String) rq.getSession().getAttribute("USERNAME");
+		String msg = loginServices.addUser(userprofile, formmode, userId, userName, mob, role);
 
-	    return msg;
+		return msg;
 	}
 
-
-	
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteuser(@RequestParam("formmode") String userid, Model md, HttpServletRequest rq) {
@@ -285,54 +289,55 @@ public class NavigationController {
 		return msg;
 
 	}
-	//In Reports
-	//In Modify section If we select the Bank name other details are fetching code
-		@RequestMapping(value = "getBankDetails", method = RequestMethod.GET)
-		public ResponseEntity<Map<String, String>> getBankDetails(@RequestParam String bankName) {
 
-			RT_BankNameMaster bank = bankRepo.findByBankName(bankName);
-			System.out.println("came to controller with bank name ");
-			if (bank == null) {
-				return ResponseEntity.notFound().build();
-			}
+	// In Reports
+	// In Modify section If we select the Bank name other details are fetching code
+	@RequestMapping(value = "getBankDetails", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, String>> getBankDetails(@RequestParam String bankName) {
 
-			Map<String, String> bankDetails = new HashMap<>();
-			bankDetails.put("bankSymbol", bank.getBankSymbol());
-			bankDetails.put("conventionalIslamic", bank.getConventionalIslamic());
-			bankDetails.put("localForeign", bank.getLocalForeign());
-			bankDetails.put("cbuaeTiering", bank.getCbuaeTiering());
-
-			return ResponseEntity.ok(bankDetails);
+		RT_BankNameMaster bank = bankRepo.findByBankName(bankName);
+		System.out.println("came to controller with bank name ");
+		if (bank == null) {
+			return ResponseEntity.notFound().build();
 		}
 
-	//In Modify section If we select the Country of Risk, cbuaeGeographicalZone fetching code
-		@RequestMapping(value = "getCountryDetails", method = RequestMethod.GET)
-		public ResponseEntity<Map<String, String>> getCountryDetails(@RequestParam String countryName) {
-			RT_CountryRiskDropdown country = countryRepo.findByCountryOfRisk(countryName);
-			System.out.println("Fetched country details for: " + countryName);
+		Map<String, String> bankDetails = new HashMap<>();
+		bankDetails.put("bankSymbol", bank.getBankSymbol());
+		bankDetails.put("conventionalIslamic", bank.getConventionalIslamic());
+		bankDetails.put("localForeign", bank.getLocalForeign());
+		bankDetails.put("cbuaeTiering", bank.getCbuaeTiering());
 
-			if (country == null) {
-				return ResponseEntity.notFound().build();
-			}
+		return ResponseEntity.ok(bankDetails);
+	}
 
-			Map<String, String> response = new HashMap<>();
-			response.put("cbuaeGeographicalZone", country.getCbuaeGeographicalZone());
+	// In Modify section If we select the Country of Risk, cbuaeGeographicalZone
+	// fetching code
+	@RequestMapping(value = "getCountryDetails", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, String>> getCountryDetails(@RequestParam String countryName) {
+		RT_CountryRiskDropdown country = countryRepo.findByCountryOfRisk(countryName);
+		System.out.println("Fetched country details for: " + countryName);
 
-			return ResponseEntity.ok(response);
+		if (country == null) {
+			return ResponseEntity.notFound().build();
 		}
 
-	//Creating Data Control
-		@PostMapping("/createDataControl")
-		@ResponseBody
-		public String createDataControl(
-				@RequestParam(name = "formmode", required = false, defaultValue = "add") String formmode,
-				@RequestParam(name = "report_name", required = false, defaultValue = "add") String report_name,
-				@ModelAttribute RT_DataControl dto) {
-			System.out.println("Controller: createOrUpdateNostro() called");
-			System.out.println("report name is: " + report_name);
-			return RT_DataControlService.createOrUpdate(dto, formmode, report_name);
-		}
+		Map<String, String> response = new HashMap<>();
+		response.put("cbuaeGeographicalZone", country.getCbuaeGeographicalZone());
 
+		return ResponseEntity.ok(response);
+	}
+
+	// Creating Data Control
+	@PostMapping("/createDataControl")
+	@ResponseBody
+	public String createDataControl(
+			@RequestParam(name = "formmode", required = false, defaultValue = "add") String formmode,
+			@RequestParam(name = "report_name", required = false, defaultValue = "add") String report_name,
+			@ModelAttribute RT_DataControl dto) {
+		System.out.println("Controller: createOrUpdateNostro() called");
+		System.out.println("report name is: " + report_name);
+		return RT_DataControlService.createOrUpdate(dto, formmode, report_name);
+	}
 
 	// Nostro Report Codes Given Below
 	@RequestMapping(value = "Nostro_Account_Bal", method = RequestMethod.GET)
@@ -353,13 +358,12 @@ public class NavigationController {
 			md.addAttribute("formmode", "null");
 		}
 
-
 		List<RT_BankNameMaster> bankList = bankRepo.findAllByOrderByBankNameAsc();
 		List<RT_CountryRiskDropdown> countryList = countryRepo.findAllByOrderByCountryOfRiskAsc();
 
-	    md.addAttribute("bankList", bankList);
-	    md.addAttribute("countryList", countryList);
-	    
+		md.addAttribute("bankList", bankList);
+		md.addAttribute("countryList", countryList);
+
 		return "RT/Nostro_Account_Bal";
 	}
 
@@ -381,77 +385,72 @@ public class NavigationController {
 
 	}
 
-	
 	// For download excel for downloadNostroExcel
 
-		@RequestMapping(value = "downloadNostroExcel", method = RequestMethod.GET)
-		public ResponseEntity<byte[]> downloadNostroExcel() throws IOException {
-			System.out.println("Entered controller downloadNostroExcel");
+	@RequestMapping(value = "downloadNostroExcel", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> downloadNostroExcel() throws IOException {
+		System.out.println("Entered controller downloadNostroExcel");
 
-			File excelFile = nostroService.generateNostroExcel();
-			byte[] excelData = java.nio.file.Files.readAllBytes(excelFile.toPath());
+		File excelFile = nostroService.generateNostroExcel();
+		byte[] excelData = java.nio.file.Files.readAllBytes(excelFile.toPath());
 
-			HttpHeaders headersResponse = new HttpHeaders();
-			headersResponse.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-			headersResponse.setContentDispositionFormData("attachment", "NostroAccBalance.xls");
+		HttpHeaders headersResponse = new HttpHeaders();
+		headersResponse.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		headersResponse.setContentDispositionFormData("attachment", "NostroAccBalance.xls");
 
-			return ResponseEntity.ok().headers(headersResponse).body(excelData);
-		}
+		return ResponseEntity.ok().headers(headersResponse).body(excelData);
+	}
 
-		@RequestMapping(value = "Monthly-1", method = { RequestMethod.GET, RequestMethod.POST })
-		public String userprofile1(@RequestParam(required = false) String formmode,
-				@RequestParam(required = false) String userid,
-				@RequestParam(value = "page", required = false) Optional<Integer> page,
-				@RequestParam(value = "size", required = false) Optional<Integer> size, Model md, HttpServletRequest req) {
 
-			int currentPage = page.orElse(0);
-			int pageSize = size.orElse(Integer.parseInt(pagesize));
+	@GetMapping("/checkDomainFlag")
+	@ResponseBody
+	public ResponseEntity<String> checkDomainFlag(@RequestParam String rptcode) {
+		Optional<RRReport> report = rrReportlist.getParticularReport3(rptcode);
 
-			String loginuserid = (String) req.getSession().getAttribute("USERID");
-			String WORKCLASSAC = (String) req.getSession().getAttribute("WORKCLASS");
-			String ROLEIDAC = (String) req.getSession().getAttribute("ROLEID");
-			md.addAttribute("RuleIDType", accessandrolesrepository.roleidtype());
-
-			System.out.println("work class is : " + WORKCLASSAC);
-			// Logging Navigation
-			loginServices.SessionLogging("USERPROFILE", "M2", req.getSession().getId(), loginuserid, req.getRemoteAddr(),
-					"ACTIVE");
-			Session hs1 = sessionFactory.getCurrentSession();
-			md.addAttribute("menu", "USER PROFILE"); // To highlight the menu
-
-			if (formmode == null || formmode.equals("list")) {
-
-				md.addAttribute("formmode", "list");// to set which form - valid values are "edit" , "add" & "list"
-				md.addAttribute("WORKCLASSAC", WORKCLASSAC);
-				md.addAttribute("ROLEIDAC", ROLEIDAC);
-				md.addAttribute("loginuserid", loginuserid);
-
-				Iterable<UserProfile> user = loginServices.getUsersList();
-
-				md.addAttribute("userProfiles", user);
-
-			} else if (formmode.equals("edit")) {
-
-				md.addAttribute("formmode", formmode);
-				md.addAttribute("userProfile", loginServices.getUser(userid));
-
-			} else if (formmode.equals("add")) {
-				md.addAttribute("formmode", formmode);
-				md.addAttribute("userProfile", loginServices.getUser(""));
-			} else if (formmode.equals("verify")) {
-
-				md.addAttribute("formmode", formmode);
-				md.addAttribute("userProfile", loginServices.getUser(userid));
-
+		if (report.isPresent()) {
+			String domain = report.get().getDomain(); // Add getter in entity if not already
+			if ("Y".equalsIgnoreCase(domain)) {
+				return ResponseEntity.ok("ENABLED");
 			} else {
-
-				md.addAttribute("formmode", formmode);
-				md.addAttribute("FinUserProfiles", loginServices.getFinUsersList());
-				md.addAttribute("userProfile", loginServices.getUser(""));
-
+				return ResponseEntity.ok("DISABLED");
 			}
-
-			return "XBRLUserprofile";
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND");
 		}
+	}
+	
+	  @RequestMapping(value = "Monthly-1", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String monthly1(Model md, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+	 // md.addAttribute("menu", "Monthly 1 - BRF Report");
+	System.out.println("count"+rrReportlist.getReportListmonthly1().size());
+	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
+	  
+	  return "BRF/RRReports";
+	  
+	  }
+	 
+
+	@RequestMapping(value = "BRFValidations", method = { RequestMethod.GET, RequestMethod.POST })
+	public String BRFValidations(Model md, @RequestParam(value = "rptcode", required = false) String rptcode,
+			@RequestParam(value = "todate", required = false) String todate, HttpServletRequest req) {
+		String roleId = (String) req.getSession().getAttribute("ROLEID");
+
+		// md.addAttribute("reportvalue", "RBS Reports");
+		// md.addAttribute("reportid", "RBSReports");
+
+		String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		// md.addAttribute("reportsflag", "reportsflag");
+		// md.addAttribute("menu", "RBS Data Maintenance");
+
+		md.addAttribute("reportlist", cbuae_brfvalidationsRepo.getValidationList(rptcode));
+		md.addAttribute("reportlist1", rrReportlist.getReportbyrptcode(rptcode));
+		md.addAttribute("RoleId", roleId);
+
+		// md.addAttribute("rpt_date", todate);
+		return "BRFValidations";
+	}
 
 }
