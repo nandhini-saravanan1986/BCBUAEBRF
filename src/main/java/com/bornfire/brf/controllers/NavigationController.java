@@ -424,7 +424,7 @@ public class NavigationController {
 	  {
 	//String roleId = (String) req.getSession().getAttribute("ROLEID");
 	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	 // md.addAttribute("menu", "Monthly 1 - BRF Report");
+	  md.addAttribute("menu", "Monthly 1 - BRF Report");
 	System.out.println("count"+rrReportlist.getReportListmonthly1().size());
 	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
 	  
@@ -433,6 +433,18 @@ public class NavigationController {
 	  }
 	 
 
+	  @RequestMapping(value = "fort", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String fort(Model md, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+	 md.addAttribute("menu", "Fortnightly - BRF Report");
+	System.out.println("count"+rrReportlist.getReportListFORTNIGHTLY().size());
+	  md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
+	  
+	  return "BRF/RRReports";
+	  
+	  }
 	@RequestMapping(value = "BRFValidations", method = { RequestMethod.GET, RequestMethod.POST })
 	public String BRFValidations(Model md, @RequestParam(value = "rptcode", required = false) String rptcode,
 			@RequestParam(value = "todate", required = false) String todate, HttpServletRequest req) {

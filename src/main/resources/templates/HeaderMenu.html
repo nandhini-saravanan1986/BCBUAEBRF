@@ -298,64 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
 
-<!-- <script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function () {
-    let menuTimeout;
-
-    function showMenu(menu) {
-        clearTimeout(menuTimeout);
-        // Close other open dropdowns
-        document.querySelectorAll('.dropdown-menu').forEach(m => {
-            if (m !== menu) {
-                m.style.display = "none";
-            }
-        });
-        menu.style.display = "block";
-    }
-
-    function hideMenu(menu) {
-        menuTimeout = setTimeout(() => {
-            menu.style.display = "none";
-        }, 200);
-    }
-
-    // Handle main dropdowns
-    document.querySelectorAll('.nav-item.dropdown').forEach(menu => {
-        const dropdownMenu = menu.querySelector(".dropdown-menu");
-
-        menu.addEventListener("mouseenter", () => {
-            if (dropdownMenu) showMenu(dropdownMenu);
-        });
-
-        menu.addEventListener("mouseleave", () => {
-            if (dropdownMenu) hideMenu(dropdownMenu);
-        });
-    });
-
-    // Handle nested dropdowns (submenus)
-    document.querySelectorAll('.dropdown-submenu').forEach(submenu => {
-        const subMenuElement = submenu.querySelector(".dropdown-menu");
-
-        submenu.addEventListener("mouseenter", () => {
-            if (subMenuElement) showMenu(subMenuElement);
-        });
-
-        submenu.addEventListener("mouseleave", () => {
-            if (subMenuElement) hideMenu(subMenuElement);
-        });
-    });
-
-    // Close all menus on outside click
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest(".dropdown")) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.style.display = "none";
-            });
-        }
-    });
-});
-</script> -->
-
 
 	<style>
 		body {
@@ -607,61 +549,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	</style>
 
-	<!-- <script>
-	document.addEventListener("DOMContentLoaded", function () {
-	    const currentPath = window.location.pathname;
-	    const navLinks = document.querySelectorAll(".nav-link");
-	    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-	    const urlParams = new URLSearchParams(window.location.search);
-	    const formMode = urlParams.get('formmode');
-
-	    // First, handle direct nav links (e.g., Home, and actual sub-menu items)
-	    navLinks.forEach(link => {
-	        const linkPath = link.getAttribute("href");
-	        const linkFormMode = link.getAttribute("data-formmode") || 
-	                           (linkPath.includes('?') ? 
-	                            new URLSearchParams(linkPath.split('?')[1]).get('formmode') : 
-	                            null);
-
-	        // Check for exact match including formmode parameter
-	        if (linkPath) {
-	            const cleanLinkPath = linkPath.split('?')[0];
-	            const cleanCurrentPath = currentPath.split('?')[0];
-	            
-	            if (cleanCurrentPath === cleanLinkPath) {
-	                // If formmode parameter exists in URL, match it with the link's formmode
-	                if (formMode || linkFormMode) {
-	                    if (formMode === linkFormMode) {
-	                        link.classList.add("active");
-	                    }
-	                } else {
-	                    // No formmode parameter, just match the path
-	                    link.classList.add("active");
-	                }
-	            }
-	        }
-	    });
-
-	    // Handle dropdown toggles based on whether any of their children are active
-	    dropdownToggles.forEach(toggle => {
-	        const dropdownMenu = toggle.nextElementSibling;
-	        if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
-	            const childLinks = dropdownMenu.querySelectorAll('.nav-link');
-	            let hasActiveChild = false;
-
-	            childLinks.forEach(childLink => {
-	                if (childLink.classList.contains('active')) {
-	                    hasActiveChild = true;
-	                }
-	            });
-
-	            if (hasActiveChild) {
-	                toggle.classList.add("active");
-	            }
-	        }
-	    });
-	});
-	</script> -->
+	
 	<script>
 document.addEventListener("DOMContentLoaded", function () {
     const currentPath = window.location.pathname;
@@ -1014,9 +902,11 @@ color:white;
 								
 								<ul class="dropdown-menu">
 								
-									<li><a href="#" class="nav-link">Fortnightly</a></li>
-									<li><a href="#" class="nav-link" th:href="@{/Monthly-1}">Monthly-1</a></li>
-								
+									<li><a href="#" class="nav-link"   id="fort"
+										onclick="contentLoad(this)">Fortnightly </a></li>
+							<li><a href="#" class="nav-link" id="Monthly-1" onclick="contentLoad(this)">Monthly-1</a></li>
+  
+									
 								</ul>
 								
 								
@@ -1146,6 +1036,40 @@ color:white;
       clearTimeout(autoCloseTimeout);
     });
   });
+</script>
+<script>
+// Called when user clicks on a menu item
+function contentLoad(a) {
+    // Store ID of clicked element in localStorage
+    localStorage.setItem("activeMenuId", a.id);
+
+    // Navigate to the page using the element ID
+    location.href = "/BCDRS/" + a.id;
+}
+</script>
+
+<script>
+// This runs on every page load
+document.addEventListener("DOMContentLoaded", function () {
+    const activeId = localStorage.getItem("activeMenuId");
+
+    // Remove all existing active classes
+    document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
+
+    if (activeId) {
+        const activeLink = document.getElementById(activeId);
+        if (activeLink) {
+            activeLink.classList.add("active");
+
+            // Also highlight parent .dropdown-toggle
+            const dropdown = activeLink.closest(".nav-item.dropdown");
+            if (dropdown) {
+                const toggle = dropdown.querySelector(".dropdown-toggle");
+                if (toggle) toggle.classList.add("active");
+            }
+        }
+    }
+});
 </script>
 
 
