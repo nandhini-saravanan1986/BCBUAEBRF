@@ -58,5 +58,28 @@ public class RegulatoryReportServices {
 		
 		return repdetail;
 	}
+	
+	public byte[] getDownloadFile(String reportId,String filename, String asondate, String fromdate, String todate, String currency,
+			String subreportid, String secid, String dtltype, String reportingTime, 
+			String instancecode, String filter)  {
+
+		byte[] repfile = null;
+		
+		
+
+		switch (reportId) {
+		
+			case "BRF001":
+				try {
+					repfile = cbuae_brf1_1_reportservice.getBRF1_1Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		
+		return repfile;
+	}
 
 }

@@ -95,6 +95,10 @@ PURPOSE		: BRFREPORT
  
  
  <style>
+ 	div span {
+    font-weight: bold;
+    color: white !important;
+	}
   .card {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
@@ -254,10 +258,58 @@ label.error {
     color: #08a6f1;
     cursor: pointer;
 }
+.left-arrow-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.left-arrow-circle i {
+    color: rgb(107, 122, 143);
+}
+
+.left-arrow-circle:hover {
+    background-color: rgb(107, 122, 143);
+    cursor: pointer;
+    transform: scale(1.05);
+    border: 2px solid white;
+}
+
+.left-arrow-circle:hover i {
+    color: white;
+}
+
+.white-text span {
+	color: white !important;
+}
+
+
 </style>
     
 
 <script th:inline="javascript">
+
+$(document).ready(function() {
+    // hide loader on normal load
+    $('#loader').modal('hide');
+});
+
+$(window).on('pageshow', function() {
+    // hide loader on back/forward nav
+    $('#loader').modal('hide');
+});
+
+$(window).on('beforeunload', function() {
+    // hide loader on leaving page
+    $('#loader').modal('hide');
+});
+
 	
 
 	function home() {
@@ -303,9 +355,7 @@ label.error {
 	
 	function showsummary() {
 		$('#loader').modal('show');
-		var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
-
-								
+		var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;								
 		location.href = Callurl;
 
 	}
@@ -339,6 +389,69 @@ window.onload = function() {
 };
 
 
+function downloadfile(button) {
+	var reportid = button.getAttribute('data-reportid');
+	var asondate = button.getAttribute('data-asondate');
+	var fromdate = button.getAttribute('data-fromdate');
+	var todate = button.getAttribute('data-todate');
+	var currency = button.getAttribute('data-currency');
+	var subreportid = button.getAttribute('data-subreportid');
+	var secid = button.getAttribute('data-secid');
+	var dtltype = button.getAttribute('data-dtltype');
+	var filename = button.getAttribute('data-filename');
+
+	$('#loader').modal('show');
+
+	$.ajax({
+		url: './downloadExcel?reportid=' + reportid +
+			'&fromdate=' + fromdate +
+			'&asondate=' + asondate +
+			'&todate=' + todate +
+			'&currency=' + currency +
+			'&subreportid=' + subreportid +
+			'&secid=' + secid +
+			'&filename=' + filename,
+		type: 'GET',
+		xhrFields: {
+			responseType: 'blob'
+		},
+		success: function (data) {
+			$('#loader').modal('hide');
+
+			if (data && data.size > 100) {
+				const blob = new Blob([data], { type: 'application/vnd.ms-excel' });
+				const url = window.URL.createObjectURL(blob);
+				const a = document.createElement('a');
+				a.style.display = 'none';
+				a.href = url;
+				a.download = 'BRF1_1.xls';
+				document.body.appendChild(a);
+				a.click();
+				window.URL.revokeObjectURL(url);
+				document.body.removeChild(a);
+
+				showResultModal('Success', 'The file has been downloaded successfully.');
+			} else {
+				showResultModal('Information', 'No data was available to create a download.');
+			}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			$('#loader').modal('hide');
+			console.error("Download failed:", textStatus, errorThrown);
+			showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+		}
+	});
+}
+
+function editRecord(){
+	$('#alert').modal('show');
+	
+}
+function closemodel(){
+	$('#alert').modal('hide');
+	
+}
+
 </script>  
  
 
@@ -356,19 +469,43 @@ window.onload = function() {
 			<div th:insert="HeaderMenu :: header"></div>
 
 			<div class="card"  >
-				<div class="card-header" style="background-color: rgb(107, 122, 143) ; ">
-						<div class="float-left">
-							<h5 style="font-family: verdana; margin-left:20px; font-size: 20px; font-weight: bold; padding-top: 10px; ">BRF 1.1 - BANKING AND MONETARY
-								STATISTICS - ASSETS</h5>
-						</div>	
-						<div class="custom-tab-btn-group nav-buttons float-right">
-						<input type="hidden" id="selectedTab" th:value="${displaymode}">
-						<button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();">Summary</button>
-						<button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();">Details</button>
-						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" onclick="adduser();">Download</button>
+				<div class="card-header" style="background-color: rgb(107, 122, 143); display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center;" onclick="back();">
+        <!-- ⬅️ Left circular arrow -->
+        <div class="left-arrow-circle">
+    		<i class="fa fa-arrow-left"></i>
+		</div>
 
-					</div>				
-				</div>
+        <!-- Title -->
+        <h5 style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
+            ASSETS- BRF 1.1 (AED 000)											
+        </h5>
+    </div>
+
+    <div class="custom-tab-btn-group nav-buttons" style="display: flex; color: white; align-items: center;">
+        <!-- 📅 Date -->
+        <span class="white-text" style="color:white !important; font-size: 16px; margin-right: 20px;">Report Date:
+            <span th:text="${asondate}">2025-07-04</span>
+        </span>
+
+        <!-- Buttons -->
+        <input type="hidden" id="selectedTab" th:value="${displaymode}">
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();" th:if="${displaymode == 'Details'}">Summary</button>
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();" th:if="${displaymode == 'summary'}">Details</button>
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+            th:attr="data-reportid=${reportid}, 
+                     data-asondate=${asondate}, 
+                     data-fromdate=${fromdate}, 
+                     data-todate=${todate}, 
+                     data-currency=${currency},  
+                     data-dtltype=${dtltype}, 
+                     data-filename='brf1'"
+            onclick="downloadfile(this);">
+            <i class="fa fa-download"></i>
+        </button>
+    </div>
+</div>
+				
 			
 			<div th:if="${displaymode == 'summary'}">
 			<div class="row" >
@@ -380,8 +517,7 @@ window.onload = function() {
 										<th rowspan="5" style="text-align: center; background-color: #b3b6b9">ROW</th>
 										<th rowspan="5" style="text-align: center; background-color: #b3b6b9">ID</th>
 										<th rowspan="5" style="text-align: center; background-color: #b3b6b9">Assets</th>
-										<th colspan="12" style="text-align: center">UAE Operation</th>
-										
+										<th colspan="12" style="text-align: center">UAE Operation</th>										
 
 									</tr>
 									<tr style="background-color: #b3b6b9">
@@ -429,20 +565,21 @@ window.onload = function() {
 							<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
 								
 								<tr style="background-color: #b3b6b9">
-							    <td>0010</td>
-							    <td>1.0</td>
+							    <td style="text-align: center; background-color: #b3b6b9" >0010</td>
+							    <td style="text-align: right; background-color: #b3b6b9" >1.0</td>
 							    <th th:text="${report.R0010_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0010_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0010_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0010_TOTAL_AMOUNT}"></td>
-							</tr>
-							
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0010_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								
 							
 							<tr style="background-color: #b3b6b9">
 							    <td>0020</td>
@@ -1891,10 +2028,7 @@ window.onload = function() {
 							</tbody>
 						</table>
 					</div>
-					<div class="card-footer text-center" style="background-color: white;">
-						  <button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnHome" onclick="home();">Home</button>
-						  <button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnBack" onclick="back();">Back</button>
-					</div>
+					
 
 				</div>
 			</div>
@@ -1939,10 +2073,7 @@ window.onload = function() {
 							</tbody>
 							</table>
 							</div>
-							<div class="card-footer text-center" style="background-color: white;">
-						  		<button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnHome" onclick="home();">Home</button>
-						  		<button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnBack" onclick="back();">Back</button>
-							</div>
+							
 							
 							</div>
 							</div>
@@ -1978,7 +2109,23 @@ window.onload = function() {
 		</div>
 
 	
-
+				<div class=" modal fade" id="alert">
+					<div
+						class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+						<div class="modal-content">
+							<div class="menu-title-header">
+								<div class="modal-title" id="exampleModalLabel"
+									style="text-align: center; color: rgb(0, 0, 0);"></div>
+							</div>
+							<div class="modal-body"
+								style="text-align: center; background-color: #c6ccd2">
+								<p id="alertmsg"> Development in progress</p>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal" onclick="closemodel()">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
 	
 		
 </body>
@@ -2015,7 +2162,7 @@ window.onload = function() {
 /* Your existing CSS - this is the correct approach */
 .scrollable-table-container {
     /* This is the key: it creates the scroll context */
-    max-height: 540px; /* Or a suitable height like 80vh for responsive design */
+    max-height: 620px; /* Or a suitable height like 80vh for responsive design */
     overflow-y: auto;
     border: 1px solid #ccc;
 }
@@ -2025,14 +2172,14 @@ window.onload = function() {
     position: sticky;
     top: 0;
     background-color: #b3b6b9;
-    z-index: 4;
+    z-index: 5;
 }
 
 .scrollable-table-container thead tr:nth-child(2) {
     position: sticky;
     top: 36px; /* adjust based on row height */
     background-color: #b3b6b9;
-    z-index: 3;
+    z-index: 4;
 }
 
 
@@ -2041,28 +2188,75 @@ window.onload = function() {
     position: sticky;
     top: 72px; /* Adjust based on row height */
     background-color: #b3b6b9;
-    z-index: 2;
+    z-index: 3;
 }
 
 .scrollable-table-container thead tr:nth-child(4) {
     position: sticky;
-    top: 108px; /* Adjust based on row height */
+    top: 100px; /* Adjust based on row height */
     background-color: #b3b6b9;
-    z-index: 1;
+    z-index: 2;
 }
 
 .scrollable-table-container thead tr:nth-child(5) {
     position: sticky;
-    top: 133px; /* adjust based on row height (here: 36px * 4) */
+    top: 135px; /* Adjust based on row height */
     background-color: #b3b6b9;
-    z-index: 0;
+    z-index: 1;
 }
-
-
 
 
 </style>
 
 
+<style>
+.inner {
+    max-height: 600px; /* Adjust height as needed */
+    overflow: auto;
+    border: 1px solid #dee2e6;
+}
+
+/* Sticky thead */
+#reports thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* Match Bootstrap thead-light */
+    z-index: 2;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    text-align: right !important;
+    float: right !important;
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
+div.dataTables_wrapper div.dataTables_info {
+    float: left !important;
+    margin-top: 10px;
+}
+.pagination {
+    margin: 0;
+}
+
+.page-item.active .page-link {
+    background-color: #386276;
+    border-color: #386276;
+}
+
+.page-link {
+    color: #386276;
+}
+
+.page-link:hover {
+    color: #2a4a5c;
+}
+
+.form-select {
+    display: inline-block;
+    width: auto;
+}
+</style>
 
 </html>

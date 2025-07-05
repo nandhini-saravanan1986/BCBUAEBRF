@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
@@ -42,10 +44,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.bornfire.brf.services.RegulatoryReportServices;
 
+
 @Controller
 @ConfigurationProperties("default")
 @RequestMapping(value = "Reports")
 public class CBUAE_BRF_ReportsController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF_ReportsController.class);
 		@Autowired
 		RegulatoryReportServices regreportServices;
 	
@@ -81,13 +86,7 @@ public class CBUAE_BRF_ReportsController {
 			
 
 			
-			try {
-				asondate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(asondate));
-				fromdate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(fromdate));
-				todate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(todate));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			
 
 			int currentPage = page.orElse(0);
 			int pageSize = size.orElse(Integer.parseInt(pagesize));
@@ -105,6 +104,14 @@ public class CBUAE_BRF_ReportsController {
 			md.addAttribute("type", type);
 			md.addAttribute("reportingTime", reportingTime);
 			//md.addAttribute("reportTitle", reportServices.getReportName(reportid));
+			
+			try {
+				asondate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(asondate));
+				fromdate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(fromdate));
+				todate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(todate));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		
 			ModelAndView mv = new ModelAndView();
 
@@ -145,6 +152,13 @@ public class CBUAE_BRF_ReportsController {
 
 			int currentPage = page.orElse(0);
 			int pageSize = size.orElse(Integer.parseInt(pagesize));
+			try {
+				asondate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(asondate));
+				fromdate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(fromdate));
+				todate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(todate));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 
 			//logger.info("Getting ModelandView :" + reportid);
 			ModelAndView mv = regreportServices.getReportDetails(reportid, instancecode, asondate, fromdate, todate,
@@ -153,5 +167,58 @@ public class CBUAE_BRF_ReportsController {
 			return mv;
 		}
 		
+		@RequestMapping(value = "downloadExcel", method = { RequestMethod.GET, RequestMethod.POST })
+		@ResponseBody
+		public ResponseEntity<ByteArrayResource> BRFDownload(HttpServletResponse response,
+		        @RequestParam("reportid") String reportid,
+		        @RequestParam("asondate") String asondate,
+		        @RequestParam("fromdate") String fromdate,
+		        @RequestParam("todate") String todate,
+		        @RequestParam("currency") String currency,
+		        @RequestParam(value = "subreportid", required = false) String subreportid,
+		        @RequestParam(value = "secid", required = false) String secid,
+		        @RequestParam(value = "dtltype", required = false) String dtltype,
+		        @RequestParam(value = "reportingTime", required = false) String reportingTime,
+		        @RequestParam(value = "filename", required = false) String filename,
+		        @RequestParam(value = "instancecode", required = false) String instancecode,
+		        @RequestParam(value = "filter", required = false) String filter)
+		        throws SQLException, FileNotFoundException {
+		    
+		    response.setContentType("application/octet-stream");
+		    try {
+				asondate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(asondate));
+				fromdate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(fromdate));
+				todate = dateFormat.format(new SimpleDateFormat("dd/MM/yyyy").parse(todate));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		    try {
+		        byte[] excelData = regreportServices.getDownloadFile(reportid, filename, asondate, fromdate, todate, currency,
+		                subreportid, secid, dtltype, reportingTime, instancecode, filter);
+
+		        if (excelData.length == 0) {
+		            logger.warn("Controller: Service returned no data. Responding with 204 No Content.");
+		            return ResponseEntity.noContent().build();
+		        }
+
+		        ByteArrayResource resource = new ByteArrayResource(excelData);
+
+		        HttpHeaders headers = new HttpHeaders();
+		        filename = filename + ".xls";
+		        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename);
+
+		        logger.info("Controller: Sending file '{}' to client ({} bytes).", filename, excelData.length);
+		        return ResponseEntity.ok()
+		                .headers(headers)
+		                .contentLength(excelData.length)
+		                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+		                .body(resource);
+
+		    } catch (Exception e) {
+		        logger.error("Controller ERROR: A critical error occurred during file generation.", e);
+		        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		    }
+		}
+
 		
 }

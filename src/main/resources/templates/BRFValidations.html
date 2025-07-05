@@ -246,6 +246,15 @@ label.error {
     
 
 <script th:inline="javascript">
+
+		$(document).ready(function() {
+		    $('#loader').modal('hide');
+		});
+		
+		$(window).on("pageshow", function(event) {
+		    $('#loader').modal('hide');
+		});
+
 	
 
 	function home() {
@@ -263,7 +272,7 @@ label.error {
 
 	function getReport(a) {
 	    // Show loader
-	    $('#loader').modal('show');
+	    //$('#loader').modal('show');
 
 	    // Retrieve data attributes
 	    var fromdate = a.getAttribute("data-fromdate");
@@ -289,18 +298,26 @@ label.error {
 	            if (confirm("Do you want to open report?")) {
 	                $('#loader').modal('show'); // Show again before submission
 	                const type = 'RBS';
+	                $('#loader').modal('hide');
 	                location.href = "Reports/"+reportid+"?dtltype=report&fromdate="+fromdate+"&todate="+todate+"&type="+type+"&asondate="+asondate;
 	            }
+	            else{
+			    	$('#loader').modal('hide');
+			    }
 	        });
 	    } else {
-	    	$('#loader').modal('hide');
-		    if (confirm("Do you want to open report?")) {
+	    	
+		    if (confirm("Do you want to open reports?")) {
 	            const type = 'RBS';
+	            $('#loader').modal('show');
 	            location.href = "Reports/"+reportid+"?dtltype=report&fromdate="+fromdate+"&todate="+todate+"&type="+type+"&asondate="+asondate;
 	            
 	            //$("#reportform").attr('action', `Reports/${reportid}?dtltype=report&fromdate=${fromdate}&todate=${todate}&type=${type}&asondate=${asondate}`);
 	            //form.submit();
 	        }
+		    else{
+		    	$('#loader').modal('hide');
+		    }
 	    }
 	    
 	    
