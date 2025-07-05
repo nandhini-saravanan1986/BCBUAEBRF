@@ -49,14 +49,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bornfire.brf.entities.AccessAndRoles;
 import com.bornfire.brf.entities.AccessandRolesRepository;
 import com.bornfire.brf.entities.RRReport;
-import com.bornfire.brf.entities.RT_BankNameMaster;
-import com.bornfire.brf.entities.RT_BankNameMasterRepository;
-import com.bornfire.brf.entities.RT_CountryRiskDropdown;
-import com.bornfire.brf.entities.RT_CountryRiskDropdownRepo;
-import com.bornfire.brf.entities.RT_DataControl;
-import com.bornfire.brf.entities.RT_DatacontrolRepository;
-import com.bornfire.brf.entities.RT_NostroAccBalData;
-import com.bornfire.brf.entities.RT_NostroAccBalDataRepository;
+
 import com.bornfire.brf.entities.UserProfile;
 import com.bornfire.brf.entities.UserProfileRep;
 import com.bornfire.brf.entities.RRReportRepo;
@@ -65,8 +58,7 @@ import com.bornfire.brf.entities.CBUAE_BRFValidationsRepo;
 
 import com.bornfire.brf.services.AccessAndRolesServices;
 import com.bornfire.brf.services.LoginServices;
-import com.bornfire.brf.services.NostroAccBalDataService;
-import com.bornfire.brf.services.RT_DataControlService;
+
 
 @Controller
 @ConfigurationProperties("default")
@@ -95,23 +87,8 @@ public class NavigationController {
 	@Autowired
 	AccessandRolesRepository accessandrolesrepository;
 
-	@Autowired
-	RT_NostroAccBalDataRepository nostroAccBalRepo;
 
-	@Autowired
-	NostroAccBalDataService nostroService;
-
-	@Autowired
-	RT_DataControlService RT_DataControlService;
-
-	@Autowired
-	RT_DatacontrolRepository RT_DatacontrolRepository;
-
-	@Autowired
-	RT_BankNameMasterRepository bankRepo;
-
-	@Autowired
-	RT_CountryRiskDropdownRepo countryRepo;
+	
 
 	private String pagesize;
 
@@ -290,116 +267,6 @@ public class NavigationController {
 
 	}
 
-	// In Reports
-	// In Modify section If we select the Bank name other details are fetching code
-	@RequestMapping(value = "getBankDetails", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, String>> getBankDetails(@RequestParam String bankName) {
-
-		RT_BankNameMaster bank = bankRepo.findByBankName(bankName);
-		System.out.println("came to controller with bank name ");
-		if (bank == null) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Map<String, String> bankDetails = new HashMap<>();
-		bankDetails.put("bankSymbol", bank.getBankSymbol());
-		bankDetails.put("conventionalIslamic", bank.getConventionalIslamic());
-		bankDetails.put("localForeign", bank.getLocalForeign());
-		bankDetails.put("cbuaeTiering", bank.getCbuaeTiering());
-
-		return ResponseEntity.ok(bankDetails);
-	}
-
-	// In Modify section If we select the Country of Risk, cbuaeGeographicalZone
-	// fetching code
-	@RequestMapping(value = "getCountryDetails", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, String>> getCountryDetails(@RequestParam String countryName) {
-		RT_CountryRiskDropdown country = countryRepo.findByCountryOfRisk(countryName);
-		System.out.println("Fetched country details for: " + countryName);
-
-		if (country == null) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Map<String, String> response = new HashMap<>();
-		response.put("cbuaeGeographicalZone", country.getCbuaeGeographicalZone());
-
-		return ResponseEntity.ok(response);
-	}
-
-	// Creating Data Control
-	@PostMapping("/createDataControl")
-	@ResponseBody
-	public String createDataControl(
-			@RequestParam(name = "formmode", required = false, defaultValue = "add") String formmode,
-			@RequestParam(name = "report_name", required = false, defaultValue = "add") String report_name,
-			@ModelAttribute RT_DataControl dto) {
-		System.out.println("Controller: createOrUpdateNostro() called");
-		System.out.println("report name is: " + report_name);
-		return RT_DataControlService.createOrUpdate(dto, formmode, report_name);
-	}
-
-	// Nostro Report Codes Given Below
-	@RequestMapping(value = "Nostro_Account_Bal", method = RequestMethod.GET)
-	public String NostroAccountBal(@RequestParam(required = false) String formmode,
-			@RequestParam(required = false) String accountNo, Model md, HttpServletRequest req) {
-
-		if ("edit".equalsIgnoreCase(formmode) && accountNo != null && !accountNo.isEmpty()) {
-			RT_NostroAccBalData data = nostroAccBalRepo.findById(accountNo).orElse(null);
-			md.addAttribute("nostroData", data);
-			System.out.println("edit is formmode");
-			md.addAttribute("formmode", "edit");
-		} else if ("list".equalsIgnoreCase(formmode)) {
-			md.addAttribute("branchList", nostroAccBalRepo.getlist());
-			System.out.println("list is formmode");
-			md.addAttribute("formmode", "list");
-		} else {
-			md.addAttribute("formmode", "add");
-			md.addAttribute("formmode", "null");
-		}
-
-		List<RT_BankNameMaster> bankList = bankRepo.findAllByOrderByBankNameAsc();
-		List<RT_CountryRiskDropdown> countryList = countryRepo.findAllByOrderByCountryOfRiskAsc();
-
-		md.addAttribute("bankList", bankList);
-		md.addAttribute("countryList", countryList);
-
-		return "RT/Nostro_Account_Bal";
-	}
-
-	// Update Submit code in nostro
-	@RequestMapping("/updateNostro")
-	@ResponseBody
-	public String updateNostro(@ModelAttribute RT_NostroAccBalData nostroData, HttpServletRequest req) {
-
-		boolean updated = nostroService.updateNostro(nostroData);
-		System.out.println("msg is : " + updated);
-
-		if (updated) {
-			System.out.println("Update successful");
-			return "Updated successful";
-		} else {
-			System.out.println("Update Record not found for update");
-			return "Record not found for update";
-		}
-
-	}
-
-	// For download excel for downloadNostroExcel
-
-	@RequestMapping(value = "downloadNostroExcel", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> downloadNostroExcel() throws IOException {
-		System.out.println("Entered controller downloadNostroExcel");
-
-		File excelFile = nostroService.generateNostroExcel();
-		byte[] excelData = java.nio.file.Files.readAllBytes(excelFile.toPath());
-
-		HttpHeaders headersResponse = new HttpHeaders();
-		headersResponse.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		headersResponse.setContentDispositionFormData("attachment", "NostroAccBalance.xls");
-
-		return ResponseEntity.ok().headers(headersResponse).body(excelData);
-	}
 
 
 	@GetMapping("/checkDomainFlag")
@@ -462,7 +329,7 @@ public class NavigationController {
 		md.addAttribute("RoleId", roleId);
 
 		// md.addAttribute("rpt_date", todate);
-		return "BRFValidations";
+		return "BRF/BRFValidations";
 	}
 
 }

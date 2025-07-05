@@ -64,7 +64,7 @@ public class CBUAE_BRF1_1_ReportService {
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 	public ModelAndView getBRF1_1View(String reportId, String fromdate, String todate, String currency, String dtltype,
 			Pageable pageable) {
-
+		System.out.println("getBRF1_1View");
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
 		int pageSize = pageable.getPageSize();
@@ -202,7 +202,7 @@ public class CBUAE_BRF1_1_ReportService {
 			numberStyle.setFont(font);
 			// --- End of Style Definitions ---
 
-			int startRow = 14;
+			int startRow = 12;
 
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
@@ -214,8 +214,8 @@ public class CBUAE_BRF1_1_ReportService {
 					}
 
 		
-										//row15
-										// Column 5: Date
+										//row13
+										// Column 5: 
 										Cell cell5 = row.createCell(5);
 										if (record.getR0020_AMOUNT_AED_RESIDENT() != null) {
 											cell5.setCellValue(record.getR0020_AMOUNT_AED_RESIDENT().doubleValue());
@@ -257,8 +257,8 @@ public class CBUAE_BRF1_1_ReportService {
 					
 					
 					
-						//row16
-						row = sheet.getRow(15);
+						//row14
+						row = sheet.getRow(13);
 						// Column 5: Date
 						 cell5 = row.createCell(5);
 						if (record.getR0030_AMOUNT_AED_RESIDENT() != null) {
@@ -300,8 +300,8 @@ public class CBUAE_BRF1_1_ReportService {
 						}
 
 					
-					//row17
-					row = sheet.getRow(16);
+					//row15
+					row = sheet.getRow(14);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0040_AMOUNT_AED_RESIDENT() != null) {
@@ -344,8 +344,8 @@ public class CBUAE_BRF1_1_ReportService {
 					
 					
 					
-					//row18
-					row = sheet.getRow(17);
+					//row16
+					row = sheet.getRow(15);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0050_AMOUNT_AED_RESIDENT() != null) {
@@ -386,8 +386,8 @@ public class CBUAE_BRF1_1_ReportService {
 						cell11.setCellStyle(textStyle);
 					}
 					
-					//row19
-					row = sheet.getRow(18);
+					//row17
+					row = sheet.getRow(16);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0060_AMOUNT_AED_RESIDENT() != null) {
@@ -429,8 +429,8 @@ public class CBUAE_BRF1_1_ReportService {
 					}
 					
 					
-					//row20
-					row = sheet.getRow(19);
+					//row18
+					row = sheet.getRow(17);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0070_AMOUNT_AED_RESIDENT() != null) {
@@ -471,8 +471,8 @@ public class CBUAE_BRF1_1_ReportService {
 						cell11.setCellStyle(textStyle);
 					}
 					
-					//row21
-					row = sheet.getRow(20);
+					//row19
+					row = sheet.getRow(18);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0080_AMOUNT_AED_RESIDENT() != null) {
@@ -514,8 +514,8 @@ public class CBUAE_BRF1_1_ReportService {
 					}
 					
 					
-					//row23
-					row = sheet.getRow(22);
+					//row21
+					row = sheet.getRow(20);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0100_AMOUNT_AED_RESIDENT() != null) {
@@ -557,8 +557,8 @@ public class CBUAE_BRF1_1_ReportService {
 					}
 					
 					
-					//row24
-					row = sheet.getRow(23);
+					//row22
+					row = sheet.getRow(21);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0110_AMOUNT_AED_RESIDENT() != null) {
@@ -600,8 +600,8 @@ public class CBUAE_BRF1_1_ReportService {
 					}
 
 					
-					//row25
-					row = sheet.getRow(24);
+					//row23
+					row = sheet.getRow(22);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0120_AMOUNT_AED_RESIDENT() != null) {
@@ -644,8 +644,8 @@ public class CBUAE_BRF1_1_ReportService {
 					
 					
 					
-					//row27
-					row = sheet.getRow(26);
+					//row25
+					row = sheet.getRow(24);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0140_AMOUNT_AED_RESIDENT() != null) {
@@ -687,8 +687,8 @@ public class CBUAE_BRF1_1_ReportService {
 					}
 					
 					
-					//row28
-					row = sheet.getRow(27);
+					//row26
+					row = sheet.getRow(25);
 					// Column 5: Date
 					 cell5 = row.createCell(5);
 					if (record.getR0150_AMOUNT_AED_RESIDENT() != null) {
@@ -723,6 +723,3385 @@ public class CBUAE_BRF1_1_ReportService {
 					cell11 = row.createCell(11);
 					if (record.getR0150_AMOUNT_FCY_NON_RESIDENT()!= null) {
 						cell11.setCellValue(record.getR0150_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row27
+					row = sheet.getRow(26);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0160_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0160_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0160_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0160_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0160_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0160_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0160_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0160_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row28
+					row = sheet.getRow(27);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0170_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0170_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0170_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0170_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0170_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0170_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0170_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0170_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row29
+					row = sheet.getRow(28);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0180_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0180_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0180_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0180_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0180_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0180_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0180_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0180_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row30
+					row = sheet.getRow(29);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0190_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0190_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0190_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0190_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0190_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0190_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0190_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0190_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row32
+					row = sheet.getRow(31);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0210_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0210_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0210_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0210_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0210_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0210_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0210_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0210_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row33
+					row = sheet.getRow(32);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0220_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0220_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0220_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0220_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0220_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0220_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0220_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0220_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row34
+					row = sheet.getRow(33);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0230_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0230_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0230_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0230_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0230_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0230_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0230_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0230_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row37
+					row = sheet.getRow(36);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0260_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0260_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0260_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0260_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0260_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0260_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0260_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0260_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row38
+					row = sheet.getRow(37);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0270_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0270_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0270_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0270_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0270_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0270_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0270_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0270_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row39
+					row = sheet.getRow(38);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0280_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0280_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0280_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0280_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0280_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0280_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0280_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0280_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row42
+					row = sheet.getRow(41);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0310_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0310_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0310_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0310_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0310_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0310_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0310_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0310_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row43
+					row = sheet.getRow(42);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0320_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0320_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0320_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0320_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0320_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0320_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0320_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0320_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row44
+					row = sheet.getRow(43);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0330_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0330_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0330_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0330_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0330_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0330_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0330_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0330_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row46
+					row = sheet.getRow(45);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0350_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0350_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0350_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0350_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0350_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0350_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0350_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0350_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row47
+					row = sheet.getRow(46);
+					// Column 5: Date
+					 cell5 = row.createCell(5);
+					if (record.getR0360_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0360_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 7: Date
+					cell7 = row.createCell(7);
+					if (record.getR0360_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0360_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 9: Date
+					 cell9 = row.createCell(9);
+					if (record.getR0360_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0360_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 11: Date
+					cell11 = row.createCell(11);
+					if (record.getR0360_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0360_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row50
+					row = sheet.getRow(49);
+					
+					// Column 4
+					 Cell cell4 = row.createCell(4);
+					if (record.getR0390_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0390_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0390_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0390_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 Cell cell6 = row.createCell(6);
+					if (record.getR0390_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0390_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0390_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0390_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 Cell cell8 = row.createCell(8);
+					if (record.getR0390_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0390_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0390_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0390_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 Cell cell10 = row.createCell(10);
+					if (record.getR0390_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0390_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0390_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0390_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row51
+					row = sheet.getRow(50);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0400_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0400_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0390_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0390_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0390_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0390_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0390_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0390_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0390_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0390_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0390_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0390_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0390_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0390_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0390_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0390_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row51
+					row = sheet.getRow(50);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0400_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0400_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0400_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0400_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0400_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0400_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0400_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0400_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0400_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0400_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0400_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0400_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0400_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0400_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0400_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0400_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+
+
+					//row53
+					row = sheet.getRow(52);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0420_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0420_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0420_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0420_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0420_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0420_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0420_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0420_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0420_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0420_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0420_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0420_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0420_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0420_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0420_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0420_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row54
+					row = sheet.getRow(53);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0430_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0430_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0430_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0430_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0430_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0430_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0430_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0430_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0430_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0430_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0430_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0430_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0430_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0430_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0430_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0430_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row56
+					row = sheet.getRow(55);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0450_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0450_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0450_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0450_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0450_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0450_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0450_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0450_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0450_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0450_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0450_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0450_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0450_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0450_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0450_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0450_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row57
+					row = sheet.getRow(56);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0460_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0460_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0460_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0460_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0460_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0460_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0460_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0460_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0460_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0460_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0460_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0460_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0460_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0460_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0460_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0460_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row59
+					row = sheet.getRow(58);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0480_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0480_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0480_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0480_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0480_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0480_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0480_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0480_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0480_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0480_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0480_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0480_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0480_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0480_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0480_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0480_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row60
+					row = sheet.getRow(59);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0490_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0490_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0490_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0490_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0490_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0490_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0490_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0490_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0490_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0490_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0490_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0490_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0490_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0490_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0490_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0490_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row63
+					row = sheet.getRow(62);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0520_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0520_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0520_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0520_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0520_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0520_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0520_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0520_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0520_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0520_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0520_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0520_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0520_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0520_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0520_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0520_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row64
+					row = sheet.getRow(63);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0530_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0530_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0530_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0530_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0530_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0530_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0530_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0530_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0530_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0530_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0530_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0530_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0530_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0530_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0530_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0530_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row65
+					row = sheet.getRow(64);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0540_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0540_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0540_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0540_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0540_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0540_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0540_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0540_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0540_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0540_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0540_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0540_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0540_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0540_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0540_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0540_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row66
+					row = sheet.getRow(65);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0550_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0550_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0550_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0550_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0550_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0550_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0550_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0550_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0550_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0550_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0550_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0550_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0550_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0550_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0550_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0550_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row67
+					row = sheet.getRow(66);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0560_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0560_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0560_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0560_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0560_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0560_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0560_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0560_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0560_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0560_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0560_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0560_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0560_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0560_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0560_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0560_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+
+					//row69
+					row = sheet.getRow(68);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0580_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0580_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0580_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0580_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0580_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0580_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0580_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0580_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0580_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0580_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0580_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0580_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0580_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0580_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0580_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0580_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row70
+					row = sheet.getRow(69);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0590_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0590_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0590_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0590_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0590_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0590_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0590_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0590_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0590_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0590_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0590_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0590_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0590_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0590_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0590_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0590_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row71
+					row = sheet.getRow(70);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0600_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0600_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0600_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0600_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0600_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0600_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0600_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0600_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0600_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0600_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0600_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0600_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0600_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0600_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0600_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0600_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row72
+					row = sheet.getRow(71);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0610_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0610_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0610_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0610_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0610_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0610_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0610_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0610_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0610_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0610_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0610_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0610_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0610_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0610_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0610_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0610_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row73
+					row = sheet.getRow(72);
+					
+					// Column 4
+					 cell4 = row.createCell(4);
+					if (record.getR0620_NO_ACCT_AED_RESIDENT() != null) {
+						cell4.setCellValue(record.getR0620_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0620_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0620_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					// Column 6
+					 cell6 = row.createCell(6);
+					if (record.getR0620_NO_ACCT_FCY_RESIDENT() != null) {
+						cell6.setCellValue(record.getR0620_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0620_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0620_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					// Column 8
+					 cell8 = row.createCell(8);
+					if (record.getR0620_NO_ACCT_AED_NON_RESIDENT()!= null) {
+						cell8.setCellValue(record.getR0620_NO_ACCT_AED_NON_RESIDENT().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0620_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0620_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 10
+					 cell10 = row.createCell(10);
+					if (record.getR0620_NO_ACCT_FCY_NON_RESIDENT() != null) {
+						cell10.setCellValue(record.getR0620_NO_ACCT_FCY_NON_RESIDENT().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0620_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0620_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row75
+					row = sheet.getRow(74);					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0640_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0640_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0640_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0640_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0640_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0640_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0640_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0640_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row76
+					row = sheet.getRow(75);
+			
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0650_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0650_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0650_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0650_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0650_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0650_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+	
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0650_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0650_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row77
+					row = sheet.getRow(76);					
+			
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0660_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0660_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0660_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0660_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0660_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0660_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0660_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0660_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row78
+					row = sheet.getRow(77);					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0670_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0670_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0670_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0670_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+										
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0670_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0670_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0670_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0670_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row79
+					row = sheet.getRow(78);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0680_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0680_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0680_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0680_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0680_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0680_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0680_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0680_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row80
+					row = sheet.getRow(79);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0690_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0690_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0690_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0690_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0690_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0690_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0690_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0690_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row82
+					row = sheet.getRow(81);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0710_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0710_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0710_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0710_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0710_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0710_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0710_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0710_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row83
+					row = sheet.getRow(82);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0720_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0720_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0720_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0720_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0720_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0720_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0720_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0720_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row84
+					row = sheet.getRow(83);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0730_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0730_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0730_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0730_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0730_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0730_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0730_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0730_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					//row85
+					row = sheet.getRow(84);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0740_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0740_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0740_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0740_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0740_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0740_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0740_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0740_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row86
+					row = sheet.getRow(85);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0750_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0750_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0750_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0750_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0750_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0750_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0750_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0750_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+
+
+					//row87
+					row = sheet.getRow(86);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0760_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0760_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0760_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0760_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0760_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0760_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0760_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0760_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+
+
+					//row88
+					row = sheet.getRow(87);					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0770_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0770_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0770_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0770_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0770_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0770_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0770_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0770_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row89
+					row = sheet.getRow(88);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0780_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0780_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0780_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0780_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0780_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0780_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0780_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0780_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row91
+					row = sheet.getRow(90);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0800_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0800_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0800_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0800_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0800_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0800_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0800_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0800_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row92
+					row = sheet.getRow(91);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0810_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0810_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0810_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0810_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0810_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0810_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0810_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0810_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row93
+					row = sheet.getRow(92);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0820_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0820_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0820_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0820_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0820_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0820_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0820_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0820_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row95
+					row = sheet.getRow(94);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0840_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0840_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0840_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0840_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0840_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0840_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0840_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0840_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row96
+					row = sheet.getRow(95);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0850_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0850_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0850_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0850_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0850_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0850_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0850_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0850_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row97
+					row = sheet.getRow(96);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0860_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0860_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0860_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0860_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0860_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0860_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0860_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0860_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					//row98
+					row = sheet.getRow(97);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0870_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0870_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0870_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0870_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0870_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0870_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0870_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0870_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+
+					
+					//row99
+					row = sheet.getRow(98);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0880_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0880_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0880_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0880_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0880_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0880_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0880_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0880_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row100
+					row = sheet.getRow(99);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0890_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0890_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0890_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0890_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0890_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0890_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0890_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0890_AMOUNT_FCY_NON_RESIDENT().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					//row101
+					row = sheet.getRow(100);
+					
+					
+					// Column 5
+					 cell5 = row.createCell(5);
+					if (record.getR0900_AMOUNT_AED_RESIDENT() != null) {
+						cell5.setCellValue(record.getR0900_AMOUNT_AED_RESIDENT().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 7
+					cell7 = row.createCell(7);
+					if (record.getR0900_AMOUNT_FCY_RESIDENT() != null) {
+						cell7.setCellValue(record.getR0900_AMOUNT_FCY_RESIDENT().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column 9
+					 cell9 = row.createCell(9);
+					if (record.getR0900_AMOUNT_AED_NON_RESIDENT() != null) {
+						cell9.setCellValue(record.getR0900_AMOUNT_AED_NON_RESIDENT().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+										
+					// Column 11
+					cell11 = row.createCell(11);
+					if (record.getR0900_AMOUNT_FCY_NON_RESIDENT()!= null) {
+						cell11.setCellValue(record.getR0900_AMOUNT_FCY_NON_RESIDENT().doubleValue());
 						cell11.setCellStyle(numberStyle);
 					} else {
 						cell11.setCellValue("");

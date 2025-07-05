@@ -444,12 +444,22 @@ function downloadfile(button) {
 }
 
 function editRecord(){
-	$('#alert').modal('show');
+	showResultModal('Alert', 'Development in progress');
 	
 }
 function closemodel(){
 	$('#alert').modal('hide');
+	$('#resultModal').modal('hide');
 	
+}
+
+function showResultModal(title, message) {
+	// Set the text for the modal elements
+	$('#resultModalLabel').text(title);
+	$('#resultModalBody').text(message);
+
+	// Show the modal
+	$('#resultModal').modal('show');
 }
 
 </script>  
@@ -492,7 +502,7 @@ function closemodel(){
         <input type="hidden" id="selectedTab" th:value="${displaymode}">
         <button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();" th:if="${displaymode == 'Details'}">Summary</button>
         <button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();" th:if="${displaymode == 'summary'}">Details</button>
-        <button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" th:if="${displaymode == 'summary'}"
             th:attr="data-reportid=${reportid}, 
                      data-asondate=${asondate}, 
                      data-fromdate=${fromdate}, 
@@ -501,6 +511,17 @@ function closemodel(){
                      data-dtltype=${dtltype}, 
                      data-filename='brf1'"
             onclick="downloadfile(this);">
+            <i class="fa fa-download"></i>
+        </button>
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" th:if="${displaymode == 'Details'}"
+            th:attr="data-reportid=${reportid}, 
+                     data-asondate=${asondate}, 
+                     data-fromdate=${fromdate}, 
+                     data-todate=${todate}, 
+                     data-currency=${currency},  
+                     data-dtltype=${dtltype}, 
+                     data-filename='brf1'"
+            onclick="editRecord();">
             <i class="fa fa-download"></i>
         </button>
     </div>
@@ -564,1462 +585,1372 @@ function closemodel(){
 							
 							<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
 								
+								
 								<tr style="background-color: #b3b6b9">
-							    <td style="text-align: center; background-color: #b3b6b9" >0010</td>
-							    <td style="text-align: right; background-color: #b3b6b9" >1.0</td>
-							    <th th:text="${report.R0010_PRODUCT}"></th>
-							    <td style="background-color: #b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_RESIDENT}"></td>
-							    <td style="background-color: #b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_FCY_RESIDENT}"></td>
-							    <td style="background-color: #b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td style="background-color:#b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0010_TOTAL_AMOUNT}"></td>
+								    <td style="text-align: center; background-color: #b3b6b9">0010</td>
+								    <th style="text-align: right; background-color: #b3b6b9">1.0</th>
+								    <th th:text="${report.R0010_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0010_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0010_TOTAL_AMOUNT}"></td>
 								</tr>
 								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0020</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">1.1</td>
+								    <td th:text="${report.R0020_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0020_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0020_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0020_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0020_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0020_TOTAL_AMOUNT}"></td>
+								</tr>
 								
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0020</td>
-							    <td>2.0</td>
-							    <th th:text="${report.R0020_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0020_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0020_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0020_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0020_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0020_TOTAL_AMOUNT}"></td>
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0030</td>
+								    <td style="text-align: right; background-color: #b3b6b9">1.2</td>
+								    <td th:text="${report.R0030_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0030_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0030_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0030_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0040</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">1.3</td>
+								    <td th:text="${report.R0040_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0040_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0040_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0040_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0050</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">1.4</td>
+								    <td th:text="${report.R0050_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0050_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0050_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0050_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0060</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">1.5</td>
+								    <td th:text="${report.R0060_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0060_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0060_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0060_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0070</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">1.5.1</td>
+								    <td th:text="${report.R0070_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0070_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0080</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">1.5.2</td>
+								    <td th:text="${report.R0080_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0080_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0090</td>
+								    <th style="text-align: right;background-color: #b3b6b9;">2</th>
+								    <th th:text="${report.R0090_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0090_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0090_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0090_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0090_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0090_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0100</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">2.1</td>
+								    <td th:text="${report.R0100_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0100_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0110</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">2.2</td>
+								    <td th:text="${report.R0110_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0110_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0120</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">2.3</td>
+								    <td th:text="${report.R0120_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0120_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0130</td>
+								    <th style="text-align: right;background-color: #b3b6b9;">3</th>
+								    <th th:text="${report.R0130_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0130_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0130_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0130_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0130_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0130_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0140</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">3.1</td>
+								    <td th:text="${report.R0140_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0140_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0150</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">3.2</td>
+								    <td th:text="${report.R0150_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0150_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0160</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">3.3</td>
+								    <td th:text="${report.R0160_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0160_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0170</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">3.4</td>
+								    <td th:text="${report.R0170_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0170_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9">0180</td>
+								    <td style="text-align: right;background-color: #b3b6b9">3.5</td>
+								    <td th:text="${report.R0180_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0180_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0190</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">3.6</td>
+								    <td th:text="${report.R0190_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0190_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0200</td>
+								    <th style="text-align: right; background-color: #b3b6b9;">4</th>
+								    <th th:text="${report.R0200_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0200_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0200_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0200_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0200_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0200_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0210</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">4.1</td>
+								    <td th:text="${report.R0210_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0210_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0220</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">4.2</td>
+								    <td th:text="${report.R0220_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0220_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0230</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">4.3</td>
+								    <td th:text="${report.R0230_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0230_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0240</td>
+								    <th style="text-align: right; background-color: #b3b6b9;">5</th>
+								    <th th:text="${report.R0240_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0240_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0240_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0240_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0240_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0240_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0250</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">5.1</td>
+								    <td th:text="${report.R0250_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0250_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0250_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0250_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0250_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0250_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9">0260</td>
+								    <td style="text-align: right; background-color: #b3b6b9">5.1.1</td>
+								    <td th:text="${report.R0260_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0260_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center; background-color: #b3b6b9;">0270</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">5.1.2</td>
+								    <td th:text="${report.R0270_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0270_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0280</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">5.1.3</td>
+								    <td th:text="${report.R0280_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0280_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0290</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">5.2</td>
+								    <td th:text="${report.R0290_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0290_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0290_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0290_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0290_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0290_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0300</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">5.2.1</td>
+								    <td th:text="${report.R0300_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0300_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0300_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0300_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0300_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0300_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0310</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">5.2.1.1</td>
+								    <td th:text="${report.R0310_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0310_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0320</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">5.2.1.2</td>
+								    <td th:text="${report.R0320_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0320_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0330</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">5.2.2</td>
+								    <td th:text="${report.R0330_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0330_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9">0340</td>
+								    <th style="text-align: right;background-color: #b3b6b9">6</th>
+								    <th th:text="${report.R0340_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0340_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0340_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0340_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0340_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0340_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0350</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">6.1</td>
+								    <td th:text="${report.R0350_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0350_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0360</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">6.2</td>
+								    <td th:text="${report.R0360_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0360_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0370</td>
+								    <th style="text-align: right;background-color: #b3b6b9;">7</th>
+								    <th th:text="${report.R0370_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0370_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0370_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0370_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0370_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0370_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0380</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">7.1</td>
+								    <td th:text="${report.R0380_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0380_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0380_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0380_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0380_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0380_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0390</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">7.1.1</td>
+								    <td th:text="${report.R0390_PRODUCT}"></td>
+								    <td style="text-align: right;"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0390_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0400</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.1.2</td>
+							    <td th:text="${report.R0400_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0400_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0400_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0030</td>
-							    <td>3.0</td>
-							    <th th:text="${report.R0030_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0030_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0030_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0030_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0410</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.2</td>
+							    <td th:text="${report.R0410_PRODUCT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0410_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0040</td>
-							    <td>4.0</td>
-							    <th th:text="${report.R0040_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0040_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0040_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0040_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0420</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.2.1</td>
+							    <td th:text="${report.R0420_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0420_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0420_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0050</td>
-							    <td>5.0</td>
-							    <th th:text="${report.R0050_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0050_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0050_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0050_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0430</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.2.2</td>
+							    <td th:text="${report.R0430_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0430_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0430_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0060</td>
-							    <td>6.0</td>
-							    <th th:text="${report.R0060_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0060_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0060_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0060_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0440</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.3</td>
+							    <td th:text="${report.R0440_PRODUCT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0440_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0440_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0070</td>
-							    <td>7.0</td>
-							    <th th:text="${report.R0070_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0070_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0070_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0070_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0450</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.3.1</td>
+							    <td th:text="${report.R0450_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0450_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0450_TOTAL_AMOUNT}"></td>
+							</tr>
+
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0460</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.3.2</td>
+							    <td th:text="${report.R0460_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0460_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0460_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0080</td>
-							    <td>8.0</td>
-							    <th th:text="${report.R0080_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0080_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0080_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0080_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0090</td>
-							    <td>9.0</td>
-							    <th th:text="${report.R0090_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0090_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0090_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0090_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0090_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0090_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0100</td>
-							    <td>10.0</td>
-							    <th th:text="${report.R0100_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0100_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0100_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0100_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0110</td>
-							    <td>11.0</td>
-							    <th th:text="${report.R0110_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0110_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0110_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0110_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0120</td>
-							    <td>12.0</td>
-							    <th th:text="${report.R0120_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0120_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0120_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0120_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0130</td>
-							    <td>13.0</td>
-							    <th th:text="${report.R0130_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0130_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0130_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0130_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0130_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0130_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0140</td>
-							    <td>14.0</td>
-							    <th th:text="${report.R0140_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0140_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0140_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0140_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0150</td>
-							    <td>15.0</td>
-							    <th th:text="${report.R0150_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0150_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0150_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0150_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0160</td>
-							    <td>16.0</td>
-							    <th th:text="${report.R0160_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0160_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0160_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0160_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0170</td>
-							    <td>17.0</td>
-							    <th th:text="${report.R0170_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0170_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0170_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0170_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0180</td>
-							    <td>18.0</td>
-							    <th th:text="${report.R0180_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0180_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0180_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0180_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0190</td>
-							    <td>19.0</td>
-							    <th th:text="${report.R0190_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0190_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0190_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0190_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0200</td>
-							    <td>20.0</td>
-							    <th th:text="${report.R0200_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0200_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0200_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0200_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0200_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0200_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0210</td>
-							    <td>21.0</td>
-							    <th th:text="${report.R0210_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0210_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0210_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0210_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0220</td>
-							    <td>22.0</td>
-							    <th th:text="${report.R0220_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0220_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0220_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0220_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0230</td>
-							    <td>23.0</td>
-							    <th th:text="${report.R0230_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0230_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0230_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0230_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0240</td>
-							    <td>24.0</td>
-							    <th th:text="${report.R0240_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0240_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0240_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0240_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0240_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0240_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0250</td>
-							    <td>25.0</td>
-							    <th th:text="${report.R0250_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0250_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0250_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0250_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0250_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0250_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0260</td>
-							    <td>26.0</td>
-							    <th th:text="${report.R0260_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0260_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0260_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0260_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0270</td>
-							    <td>27.0</td>
-							    <th th:text="${report.R0270_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0270_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0270_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0270_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0280</td>
-							    <td>28.0</td>
-							    <th th:text="${report.R0280_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0280_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0280_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0280_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0290</td>
-							    <td>29.0</td>
-							    <th th:text="${report.R0290_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0290_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0290_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0290_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0290_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0290_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0300</td>
-							    <td>30.0</td>
-							    <th th:text="${report.R0300_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0300_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0300_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0300_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0300_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0300_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0310</td>
-							    <td>31.0</td>
-							    <th th:text="${report.R0310_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0310_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0310_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0310_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0320</td>
-							    <td>32.0</td>
-							    <th th:text="${report.R0320_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0320_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0320_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0320_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0330</td>
-							    <td>33.0</td>
-							    <th th:text="${report.R0330_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0330_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0330_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0330_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0340</td>
-							    <td>34.0</td>
-							    <th th:text="${report.R0340_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0340_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0340_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0340_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0340_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0340_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0350</td>
-							    <td>35.0</td>
-							    <th th:text="${report.R0350_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0350_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0350_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0350_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0360</td>
-							    <td>36.0</td>
-							    <th th:text="${report.R0360_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0360_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0360_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0360_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0370</td>
-							    <td>37.0</td>
-							    <th th:text="${report.R0370_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0370_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0370_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0370_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0370_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0370_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0380</td>
-							    <td>38.0</td>
-							    <th th:text="${report.R0380_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0380_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0380_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0380_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0380_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0380_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0390</td>
-							    <td>39.0</td>
-							    <th th:text="${report.R0390_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0390_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0390_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0390_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0400</td>
-							    <td>40.0</td>
-							    <th th:text="${report.R0400_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0400_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0400_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0400_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0400_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0400_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0410</td>
-							    <td>41.0</td>
-							    <th th:text="${report.R0410_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0410_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0410_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0410_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0410_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0410_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0420</td>
-							    <td>42.0</td>
-							    <th th:text="${report.R0420_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0420_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0420_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0420_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0420_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0420_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0430</td>
-							    <td>43.0</td>
-							    <th th:text="${report.R0430_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0430_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0430_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0430_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0430_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0430_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0440</td>
-							    <td>44.0</td>
-							    <th th:text="${report.R0440_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0440_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0440_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0440_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0440_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0440_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0450</td>
-							    <td>45.0</td>
-							    <th th:text="${report.R0450_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0450_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0450_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0450_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0450_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0450_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0460</td>
-							    <td>46.0</td>
-							    <th th:text="${report.R0460_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0460_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0460_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0460_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0460_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0460_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0470</td>
-							    <td>47.0</td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0470</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">7.4</th>
 							    <th th:text="${report.R0470_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0470_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0470_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0470_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0470_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0470_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0470_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0480</td>
-							    <td>48.0</td>
-							    <th th:text="${report.R0480_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0480_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0480_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0480_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0480_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0480_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0480</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.4.1</td>
+							    <td th:text="${report.R0480_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0480_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0480_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0490</td>
-							    <td>49.0</td>
-							    <th th:text="${report.R0490_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0490_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0490_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0490_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0490_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0490_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0490</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">7.4.2</td>
+							    <td th:text="${report.R0490_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0490_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0490_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0500</td>
-							    <td>50.0</td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0500</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">8</th>
 							    <th th:text="${report.R0500_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0500_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0500_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0500_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0500_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0500_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0500_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0500_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
+
+								
+								
 							<tr style="background-color: #b3b6b9">
-							    <td>0510</td>
-							    <td>51.0</td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0510</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">8.1</th>
 							    <th th:text="${report.R0510_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0510_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0510_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0510_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0510_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0510_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0510_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0510_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0520</td>
-							    <td>52.0</td>
-							    <th th:text="${report.R0520_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0520_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0520_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0520_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0520_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0520_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0520</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.1.1</td>
+							    <td th:text="${report.R0520_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0520_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0520_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0530</td>
-							    <td>53.0</td>
-							    <th th:text="${report.R0530_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0530_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0530_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0530_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0530_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0530_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0530</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.1.2</td>
+							    <td th:text="${report.R0530_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0530_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0530_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0540</td>
-							    <td>54.0</td>
-							    <th th:text="${report.R0540_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0540_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0540_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0540_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0540_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0540_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0540</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.1.3</td>
+							    <td th:text="${report.R0540_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0540_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0540_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0550</td>
-							    <td>55.0</td>
-							    <th th:text="${report.R0550_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0550_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0550_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0550_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0550_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0550_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0550</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.1.4</td>
+							    <td th:text="${report.R0550_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0550_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0550_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0560</td>
-							    <td>56.0</td>
-							    <th th:text="${report.R0560_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0560_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0560_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0560_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0560_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0560_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0560</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.1.5</td>
+							    <td th:text="${report.R0560_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0560_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0560_TOTAL_AMOUNT}"></td>
 							</tr>
-							
-							
+															
+								
 							<tr style="background-color: #b3b6b9">
-							    <td>0570</td>
-							    <td>57.0</td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0570</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">8.2</th>
 							    <th th:text="${report.R0570_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0570_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0570_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0570_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0570_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0570_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0570_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0570_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0580</td>
-							    <td>58.0</td>
-							    <th th:text="${report.R0580_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0580_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0580_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0580_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0580_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0580_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0580</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.2.1</td>
+							    <td th:text="${report.R0580_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0580_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0580_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0590</td>
-							    <td>59.0</td>
-							    <th th:text="${report.R0590_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0590_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0590_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0590_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0590_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0590_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0590</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.2.2</td>
+							    <td th:text="${report.R0590_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0590_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0590_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0600</td>
-							    <td>60.0</td>
-							    <th th:text="${report.R0600_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0600_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0600_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0600_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0600_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0600_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0600</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.2.3</td>
+							    <td th:text="${report.R0600_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0600_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0600_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0610</td>
-							    <td>61.0</td>
-							    <th th:text="${report.R0610_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0610_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0610_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0610_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0610_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0610_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0610</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.2.4</td>
+							    <td th:text="${report.R0610_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0610_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0610_TOTAL_AMOUNT}"></td>
 							</tr>
 							
-							
 							<tr style="background-color: #b3b6b9">
-							    <td>0620</td>
-							    <td>62.0</td>
-							    <th th:text="${report.R0620_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0620_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0620_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0620_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0620_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0620_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0630</td>
-							    <td>63.0</td>
-							    <th th:text="${report.R0630_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0630_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0630_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0630_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0630_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0630_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0640</td>
-							    <td>64.0</td>
-							    <th th:text="${report.R0640_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0640_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0640_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0640_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0640_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0640_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0650</td>
-							    <td>65.0</td>
-							    <th th:text="${report.R0650_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0650_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0650_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0650_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0650_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0650_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0660</td>
-							    <td>66.0</td>
-							    <th th:text="${report.R0660_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0660_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0660_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0660_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0660_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0660_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0670</td>
-							    <td>67.0</td>
-							    <th th:text="${report.R0670_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0670_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0670_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0670_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0670_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0670_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0680</td>
-							    <td>68.0</td>
-							    <th th:text="${report.R0680_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0680_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0680_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0680_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0680_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0680_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0690</td>
-							    <td>69.0</td>
-							    <th th:text="${report.R0690_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0690_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0690_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0690_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0690_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0690_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0700</td>
-							    <td>70.0</td>
-							    <th th:text="${report.R0700_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0700_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0700_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0700_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0700_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0700_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0710</td>
-							    <td>71.0</td>
-							    <th th:text="${report.R0710_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0710_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0710_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0710_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0710_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0710_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0720</td>
-							    <td>72.0</td>
-							    <th th:text="${report.R0720_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0720_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0720_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0720_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0720_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0720_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0730</td>
-							    <td>73.0</td>
-							    <th th:text="${report.R0730_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0730_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0730_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0730_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0730_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0730_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0740</td>
-							    <td>74.0</td>
-							    <th th:text="${report.R0740_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0740_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0740_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0740_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0740_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0740_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0750</td>
-							    <td>75.0</td>
-							    <th th:text="${report.R0750_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0750_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0750_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0750_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0750_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0750_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0760</td>
-							    <td>76.0</td>
-							    <th th:text="${report.R0760_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0760_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0760_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0760_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0760_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0760_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0770</td>
-							    <td>77.0</td>
-							    <th th:text="${report.R0770_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0770_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0770_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0770_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0770_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0770_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0780</td>
-							    <td>78.0</td>
-							    <th th:text="${report.R0780_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0780_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0780_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0780_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0780_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0780_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0790</td>
-							    <td>79.0</td>
-							    <th th:text="${report.R0790_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0790_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0790_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0790_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0790_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0790_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0800</td>
-							    <td>80.0</td>
-							    <th th:text="${report.R0800_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0800_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0800_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0800_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0800_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0800_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0810</td>
-							    <td>81.0</td>
-							    <th th:text="${report.R0810_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0810_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0810_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0810_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0810_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0810_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0820</td>
-							    <td>82.0</td>
-							    <th th:text="${report.R0820_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0820_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0820_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0820_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0820_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0820_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0830</td>
-							    <td>83.0</td>
-							    <th th:text="${report.R0830_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0830_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0830_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0830_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0830_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0830_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0840</td>
-							    <td>84.0</td>
-							    <th th:text="${report.R0840_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0840_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0840_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0840_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0840_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0840_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0850</td>
-							    <td>85.0</td>
-							    <th th:text="${report.R0850_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0850_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0850_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0850_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0850_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0850_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0860</td>
-							    <td>86.0</td>
-							    <th th:text="${report.R0860_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0860_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0860_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0860_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0860_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0860_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0870</td>
-							    <td>87.0</td>
-							    <th th:text="${report.R0870_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0870_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0870_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0870_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0870_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0870_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0880</td>
-							    <td>88.0</td>
-							    <th th:text="${report.R0880_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0880_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0880_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0880_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0880_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0880_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0890</td>
-							    <td>89.0</td>
-							    <th th:text="${report.R0890_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0890_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0890_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0890_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0890_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0890_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0900</td>
-							    <td>90.0</td>
-							    <th th:text="${report.R0900_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0900_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0900_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0900_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0900_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0900_TOTAL_AMOUNT}"></td>
-							</tr>
-							
-							
-							<tr style="background-color: #b3b6b9">
-							    <td>0910</td>
-							    <td>91.0</td>
-							    <th th:text="${report.R0910_PRODUCT}"></th>
-							    <td></td>
-							    <td th:text="${report.R0910_AMOUNT_AED_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0910_AMOUNT_FCY_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0910_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td></td>
-							    <td th:text="${report.R0910_AMOUNT_AED_NON_RESIDENT}"></td>
-							    <td th:text="${report.R0910_TOTAL_AMOUNT}"></td>
+							    <td style="text-align: center;background-color: #b3b6b9;">0620</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">8.3</td>
+							    <td th:text="${report.R0620_PRODUCT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_NO_ACCT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_NO_ACCT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_NO_ACCT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_NO_ACCT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right;" th:text="${report.R0620_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0620_TOTAL_AMOUNT}"></td>
 							</tr>
 								
+								<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0630</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">9</th>
+							    <th th:text="${report.R0630_PRODUCT}"></th>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0630_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0640</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">9.1</td>
+							    <td th:text="${report.R0640_PRODUCT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0640_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0640_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0640_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0640_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0640_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0650</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">9.2</td>
+							    <td th:text="${report.R0650_PRODUCT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0650_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0650_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0650_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0650_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0650_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0660</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">9.3</td>
+							    <td th:text="${report.R0660_PRODUCT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0660_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0660_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0660_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0660_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0660_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0670</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">9.4</td>
+							    <td th:text="${report.R0670_PRODUCT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0670_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0670_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0670_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0670_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0670_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0680</td>
+							    <td style="text-align: right;background-color: #b3b6b9;">9.5</td>
+							    <td th:text="${report.R0680_PRODUCT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0680_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0680_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0680_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0680_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0680_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0690</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">10</th>
+							    <th th:text="${report.R0690_PRODUCT}"></th>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0690_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0690_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0690_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;" th:text="${report.R0690_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0690_TOTAL_AMOUNT}"></td>
+							</tr>
+							<tr style="background-color: #b3b6b9">
+							    <td style="text-align: center;background-color: #b3b6b9;">0700</td>
+							    <th style="text-align: right;background-color: #b3b6b9;">11</th>
+							    <th th:text="${report.R0700_PRODUCT}"></th>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0700_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0700_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="background-color: #b3b6b9"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0700_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="background-color:#b3b6b9"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0700_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0700_TOTAL_AMOUNT}"></td>
+							</tr>
+																				
+															
+								
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0710</td>
+								    <td style="text-align: right; background-color: #b3b6b9;">11.1</td>
+								    <td th:text="${report.R0710_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0710_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0710_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0710_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0710_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0710_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0720</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.2</td>
+								    <td th:text="${report.R0720_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0720_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0720_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0720_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0720_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0720_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0730</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.3</td>
+								    <td th:text="${report.R0730_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0730_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0730_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0730_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0730_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0730_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0740</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.4</td>
+								    <td th:text="${report.R0740_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0740_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0740_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0740_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0740_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0740_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0750</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.5</td>
+								    <td th:text="${report.R0750_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0750_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0750_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0750_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0750_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0750_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0760</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.6</td>
+								    <td th:text="${report.R0760_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0760_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0760_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0760_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0760_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0760_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0770</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.7</td>
+								    <td th:text="${report.R0770_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0770_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0770_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0770_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0770_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0770_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0780</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.8</td>
+								    <td th:text="${report.R0780_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0780_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0780_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0780_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0780_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0780_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0790</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.9</td>
+								    <td th:text="${report.R0790_PRODUCT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0790_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0790_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0790_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0790_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0790_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0800</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.9.1</td>
+								    <td th:text="${report.R0800_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0800_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0800_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0800_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0800_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0800_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0810</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.9.2</td>
+								    <td th:text="${report.R0810_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0810_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0810_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0810_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0810_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0810_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0820</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">11.10</td>
+								    <td th:text="${report.R0820_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0820_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0820_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0820_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0820_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0820_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0830</td>
+								    <th style="text-align: right;background-color: #b3b6b9;">12</th>
+								    <th th:text="${report.R0830_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0830_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0830_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0830_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0830_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0830_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0840</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.1</td>
+								    <td th:text="${report.R0840_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0840_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0840_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0840_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0840_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0840_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0850</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.2</td>
+								    <td th:text="${report.R0850_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0850_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0850_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0850_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0850_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0850_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0860</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.3</td>
+								    <td th:text="${report.R0860_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0860_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0860_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0860_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0860_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0860_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0870</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.4</td>
+								    <td th:text="${report.R0870_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0870_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0870_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0870_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0870_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0870_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0880</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.5</td>
+								    <td th:text="${report.R0880_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0880_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0880_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0880_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0880_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0880_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0890</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.6</td>
+								    <td th:text="${report.R0890_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0890_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0890_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0890_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0890_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0890_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0900</td>
+								    <td style="text-align: right;background-color: #b3b6b9;">12.7</td>
+								    <td th:text="${report.R0900_PRODUCT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0900_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0900_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0900_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;" th:text="${report.R0900_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0900_TOTAL_AMOUNT}"></td>
+								</tr>
+								
+								<tr style="background-color: #b3b6b9">
+								    <td style="text-align: center;background-color: #b3b6b9;">0910</td>
+								    <th style="text-align: right;background-color: #b3b6b9;">91.0</th>
+								    <th th:text="${report.R0910_PRODUCT}"></th>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0910_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0910_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="background-color: #b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0910_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="background-color:#b3b6b9"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0910_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0910_TOTAL_AMOUNT}"></td>
+								</tr>
+																
 								
 								
 								
@@ -2109,23 +2040,25 @@ function closemodel(){
 		</div>
 
 	
-				<div class=" modal fade" id="alert">
-					<div
-						class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-						<div class="modal-content">
-							<div class="menu-title-header">
-								<div class="modal-title" id="exampleModalLabel"
-									style="text-align: center; color: rgb(0, 0, 0);"></div>
-							</div>
-							<div class="modal-body"
-								style="text-align: center; background-color: #c6ccd2">
-								<p id="alertmsg"> Development in progress</p>
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal" onclick="closemodel()">Close</button>
-							</div>
-						</div>
+				
+		<!-- Custom Alert/Result Modal (Matches your existing style) -->
+	<div class="modal fade" id="resultModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- Your custom styled header -->
+				<div class="menu-title-header">
+					<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
+						<!-- Title will be set by JavaScript -->
 					</div>
 				</div>
+				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+					<p id="resultModalBody"></p>
+					<!-- Your custom styled button -->
+					<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>		
 	
 		
 </body>

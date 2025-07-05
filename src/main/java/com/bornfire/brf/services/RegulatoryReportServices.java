@@ -43,7 +43,7 @@ public class RegulatoryReportServices {
 		logger.info("Getting View for the Report :" + reportId);
 		switch (reportId) {
 
-		case "BRF001":
+		case "BRF1_1":
 			repsummary = cbuae_brf1_1_reportservice.getBRF1_1View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
 
@@ -68,7 +68,7 @@ public class RegulatoryReportServices {
 
 		switch (reportId) {
 
-		case "BRF001":
+		case "BRF1_1":
 			repdetail = cbuae_brf1_1_reportservice.getBRF1_1currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
@@ -103,7 +103,7 @@ public class RegulatoryReportServices {
 
 		switch (reportId) {
 		
-			case "BRF001":
+			case "BRF1_1":
 				try {
 					repfile = cbuae_brf1_1_reportservice.getBRF1_1Excel(filename, reportId, fromdate, todate, currency, dtltype);
 				} catch (Exception e) {
