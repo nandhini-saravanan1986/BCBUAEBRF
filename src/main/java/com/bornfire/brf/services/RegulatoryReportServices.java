@@ -21,6 +21,11 @@ public class RegulatoryReportServices {
 	
 	@Autowired
 	CBUAE_BRF1_1_ReportService cbuae_brf1_1_reportservice;
+	
+	@Autowired
+	CBUAE_BRF1_12_ReportService cbuae_brf1_12_reportservice;
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(RegulatoryReportServices.class);
 	
 	public ModelAndView getReportView(String reportId, String reportDate, String fromdate, String todate,
@@ -35,7 +40,9 @@ public class RegulatoryReportServices {
 		case "BRF001":
 			repsummary = cbuae_brf1_1_reportservice.getBRF1_1View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
-		
+		case "BRF1_12":
+			repsummary = cbuae_brf1_12_reportservice.getBRF1_12View(reportId, fromdate, todate, currency, dtltype, pageable);
+			break;
 			
 		}
 		return repsummary;
@@ -54,8 +61,14 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf1_1_reportservice.getBRF1_1currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
-		}
 		
+		case "BRF1_12":
+			repdetail = cbuae_brf1_12_reportservice.getBRF1_12currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			}
+			
+	
 		return repdetail;
 	}
 	

@@ -1,0 +1,787 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<!-- 
+CREATED BY	: VINOTH KUMAR S 
+CREATED ON	: 02.07.2025
+PURPOSE		: BRFREPORT
+-->
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
+	<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+
+	<!-- JavaScript -->
+	<!-- jQuery core (required first) -->
+	
+
+	<!-- ✅ Your manually placed jQuery validation
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	 <script th:src="/jquery/jquery.validate.min.js"></script>
+	 -->
+	
+	<!-- jQuery (required first) -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!-- ✅ jQuery Validation -->
+<script src="/webjars/jquery-validation/1.19.0/jquery.validate.min.js"
+	th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
+	
+	<!-- Bootstrap + Others -->
+	<script th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:src="@{/webjars/jquery-form/4.2.2/jquery.form.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
+
+
+
+<style>
+.btns {
+	float: right;
+	margin: 5px;
+}
+
+.col-sm-5 {
+	padding-bottom: 15px;
+}
+
+.list-body {
+	padding: 0px;
+}
+
+.error {
+	color: red;
+	padding-left: 10px;
+}
+
+.formline {
+	padding-bottom: 15px;
+}
+
+.btn-primary {
+	background-color: #E77400;
+	border-color: #0c0c0c;
+}
+
+.btn-primary:not (:disabled ):not (.disabled ).active, .btn-primary:not
+	 (:disabled ):not (.disabled ):active, .show>.btn-primary.dropdown-toggle
+	{
+	color: #fff;
+	background-color: #cc000000;
+	border-color: #161617;
+}
+
+#finusertb {
+	width: 460px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	padding: 0px;
+}
+</style>
+ 
+  
+ 
+ 
+ <style>
+  .card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+
+  .card-header h5 {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .nav-tabs .nav-link {
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    background-color: #f1f1f1;
+    margin-right: 5px;
+  }
+
+  .nav-tabs .nav-link.active {
+    background-color: #ffffff;
+    border-color: #dee2e6 #dee2e6 #ffffff;
+  }
+
+  .table-responsive {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f3f6f9;
+  }
+
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #e9ecf0;
+    z-index: 1;
+  }
+  
+.table td{
+	background-color: #FFFFFF;
+
+}
+  
+  
+
+  .card-footer {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+  }
+
+  .btn-xs {
+    padding: 4px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+
+  #BRFvalidation th, #usertable td {
+    vertical-align: middle;
+    text-align: left;
+    font-size: 16px;
+    font-family: Arial;
+  }
+
+  .fa-edit:hover {
+    color: #28a745;
+    transform: scale(1.1);
+  }
+
+
+
+td {
+  border: 1px solid rgb(0,164,166);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.right-align {
+    text-align: right;
+}
+
+</style>
+ 
+
+<style>
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            background: transparent;
+            transition: border-color 0.3s ease, padding-top 0.3s ease;
+        }
+        .error {
+    		color: red;
+    		padding-top: 15px;
+			}
+        
+        
+
+        .form-control:focus {
+            border-color: #007bff;
+        }
+
+        .form-legend {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #aaa;
+            background: white;
+            padding: 0 5px;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        /* When input or select is focused or has a value, move the label up */
+        .form-control:focus ~ .form-legend,
+        .form-control:not(:placeholder-shown) ~ .form-legend {
+            top: -8px;
+            font-size: 1rem;
+            color: #007bff;
+        }
+
+        /* Hover effect when the input/select is focused */
+        .form-control:focus:hover ~ .form-legend {
+            color: #0056b3; /* Darker shade of blue on hover */
+        }
+
+        /* Ensure the label returns to the normal color after focus or hover is removed */
+        .form-control:not(:focus) ~ .form-legend {
+            color: #aaa; /* Normal label color */
+        }
+    </style>
+   
+    <style>
+/* Red border for invalid inputs */
+input.error, select.error {
+  border: 2px solid red !important;
+}
+
+/* Error message style */
+label.error {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 5px;
+  display: block;
+}
+.underline {
+    text-decoration: underline;
+    color: #08a6f1;
+    cursor: pointer;
+}
+</style>
+    
+
+<script th:inline="javascript">
+	
+
+	function home() {
+        $("#loader").modal("toggle");
+		location.href = 'Dashboard'
+	}
+
+	function back() {
+        $("#loader").modal("toggle");
+
+		window.history.back();
+	}
+	
+	//to fetch summary from the database - called from the summary button
+	function showdetails() {
+    
+    var Callurl;
+    	$('#loader').modal('show');
+        Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/ 
+        location.href = Callurl;
+        	console.log(Callurl);
+   /*  $.ajax({
+        type: 'get',
+        url: Callurl,
+        beforeSend: function () {
+            $('#loader').modal('show'); // 🔄 Show loader
+        },
+        success: function (data) {
+            $('.content').html(data);
+            //$("#detailsbtn").addClass("active");
+            //tablepagination();
+        },
+        complete: function () {
+            $('#loader').modal('hide'); 
+        },
+        error: function () {
+        	  $('#loader').modal('hide');
+            alert("Something went wrongss. Please try again.");
+          
+        }
+    }); */
+}
+	
+	function showsummary() {
+		$('#loader').modal('show');
+		var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
+
+								
+		location.href = Callurl;
+
+	}
+    </script>
+  
+<script>
+
+function activateTab(tabName) {
+    // Remove 'active' from all buttons
+    document.querySelectorAll('.custom-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Add 'active' to selected button
+    if (tabName === 'summary') {
+        document.getElementById('custom-tab-btnSummary').classList.add('active');
+    } else if (tabName === 'Details') {
+        document.getElementById('custom-tab-btnDetails').classList.add('active');
+    }
+}
+
+window.onload = function() {
+    /* setTimeout(function() {
+        var selectedTab = document.getElementById("selectedTab").value;
+        alert(selectedTab);
+        activateTab(selectedTab);
+    }, 10000); */ // 10,000 milliseconds = 10 seconds
+    
+	var selectedTab = document.getElementById("selectedTab").value;
+    activateTab(selectedTab);
+};
+
+
+</script>  
+ 
+
+
+  
+</head>
+
+ 
+     
+<title>BRF</title>
+<body> 
+<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+		<div class="row">
+		
+			<div th:insert="HeaderMenu :: header"></div>
+
+			<div class="card"  >
+				<div class="card-header" style="background-color: rgb(107, 122, 143) ; ">
+						<div class="float-left">
+							<h5 style="font-family: verdana; margin-left:20px; font-size: 20px; font-weight: bold; padding-top: 10px; ">BRF 1.1 - BANKING AND MONETARY
+								STATISTICS - ASSETS</h5>
+						</div>	
+						<div class="custom-tab-btn-group nav-buttons float-right">
+						<input type="hidden" id="selectedTab" th:value="${displaymode}">
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();">Summary</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();">Details</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" onclick="adduser();">Download</button>
+
+					</div>				
+				</div>
+			
+			<div th:if="${displaymode == 'summary'}">
+			<div class="row" >
+				<div class="col-sm-12">
+					<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
+    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+							<thead class="thead-light">
+  									
+  									
+  									<tr style="background-color: #b3b6b9">
+										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ROW</th>
+										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ID</th>
+										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">Details</th>
+										
+								
+								
+									
+									<th style="text-align: center;"> Average Qualifying Liabilities for the RCP</th>
+									<th style="text-align: center;"> Reserve Requirement Ratios</th>
+									<th style="text-align: center;"> Reserve Requirements to be Applied to the Corresponding RMP</th>
+									</tr>
+									
+									
+									<tr style="background-color: #b3b6b9">
+									
+										<th style="text-align: center; background-color: #b3b6b9">0010</th>
+										<th style="text-align: center; background-color: #b3b6b9">0020</th>
+										<th style="text-align: center; background-color: #b3b6b9">0030</th>
+										
+									</tr>
+
+								</thead>
+							
+							<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
+							<tr style="background-color: #b3b6b9">
+    <td>0010</td><td>1</td>
+    <td th:text="${report.r0010Product}"></td>
+    <td th:text="${report.r0010AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0010RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0010RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0020</td><td>1.1</td>
+    <td th:text="${report.r0020Product}"></td>
+    <td th:text="${report.r0020AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0020RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0020RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0030</td><td>1.2</td>
+    <td th:text="${report.r0030Product}"></td>
+    <td th:text="${report.r0030AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0030RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0030RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0040</td><td>1.3</td>
+    <td th:text="${report.r0040Product}"></td>
+    <td th:text="${report.r0040AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0040RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0040RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0050</td><td>1.4</td>
+    <td th:text="${report.r0050Product}"></td>
+    <td th:text="${report.r0050AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0050RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0050RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0060</td><td>1.5</td>
+    <td th:text="${report.r0060Product}"></td>
+    <td th:text="${report.r0060AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0060RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0060RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0070</td><td>2</td>
+    <td th:text="${report.r0070Product}"></td>
+    <td th:text="${report.r0070AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0070RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0070RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0080</td><td>2.1</td>
+    <td th:text="${report.r0080Product}"></td>
+    <td th:text="${report.r0080AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0080RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0080RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0090</td><td>2.2</td>
+    <td th:text="${report.r0090Product}"></td>
+    <td th:text="${report.r0090AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0090RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0090RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0100</td><td>2.3</td>
+    <td th:text="${report.r0100Product}"></td>
+    <td th:text="${report.r0100AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0100RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0100RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0110</td><td>2.4</td>
+    <td th:text="${report.r0110Product}"></td>
+    <td th:text="${report.r0110AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0110RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0110RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0120</td><td>2.5</td>
+    <td th:text="${report.r0120Product}"></td>
+    <td th:text="${report.r0120AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0120RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0120RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0130</td><td>3</td>
+    <td th:text="${report.r0130Product}"></td>
+    <td th:text="${report.r0130AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0130RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0130RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0140</td><td>3.1</td>
+    <td th:text="${report.r0140Product}"></td>
+    <td th:text="${report.r0140AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0140RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0140RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0150</td><td>3.2</td>
+    <td th:text="${report.r0150Product}"></td>
+    <td th:text="${report.r0150AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0150RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0150RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0160</td><td>3.3</td>
+    <td th:text="${report.r0160Product}"></td>
+    <td th:text="${report.r0160AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0160RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0160RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0170</td><td>3.4</td>
+    <td th:text="${report.r0170Product}"></td>
+    <td th:text="${report.r0170AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0170RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0170RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0180</td><td>3.5</td>
+    <td th:text="${report.r0180Product}"></td>
+    <td th:text="${report.r0180AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0180RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0180RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0190</td><td>4</td>
+    <td th:text="${report.r0190Product}"></td>
+    <td th:text="${report.r0190AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0190RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0190RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0200</td><td>4.1</td>
+    <td th:text="${report.r0200Product}"></td>
+    <td th:text="${report.r0200AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0200RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0200RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0210</td><td>4.2</td>
+    <td th:text="${report.r0210Product}"></td>
+    <td th:text="${report.r0210AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0210RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0210RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0220</td><td>4.3</td>
+    <td th:text="${report.r0220Product}"></td>
+    <td th:text="${report.r0220AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0220RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0220RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0230</td><td>4.4</td>
+    <td th:text="${report.r0230Product}"></td>
+    <td th:text="${report.r0230AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0230RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0230RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0240</td><td>4.5</td>
+    <td th:text="${report.r0240Product}"></td>
+    <td th:text="${report.r0240AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0240RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0240RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0250</td><td>5</td>
+    <td th:text="${report.r0250Product}"></td>
+    <td th:text="${report.r0250AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0250RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0250RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0260</td><td>5.1</td>
+    <td th:text="${report.r0260Product}"></td>
+    <td th:text="${report.r0260AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0260RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0260RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0270</td><td>5.2</td>
+    <td th:text="${report.r0270Product}"></td>
+    <td th:text="${report.r0270AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0270RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0270RequirementApplied}" class="right-align"></td>
+</tr>
+<tr style="background-color: #b3b6b9">
+    <td>0280</td><td>6</td>
+    <td th:text="${report.r0280Product}"></td>
+    <td th:text="${report.r0280AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0280RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0280RequirementApplied}" class="right-align"></td>
+</tr>
+
+								
+								
+								
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer text-center" style="background-color: white;">
+						  <button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnHome" onclick="home();">Home</button>
+						  <button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnBack" onclick="back();">Back</button>
+					</div>
+
+				</div>
+			</div>
+			</div>
+			
+			<div th:if="${displaymode == 'Details'}">
+			<div class="row" >
+				<div class="col-sm-12">
+					<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
+    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+							<thead class="thead-light">
+									<tr>
+				                    <th></th>
+				                    <th>CUST ID</th>
+				                    <th>ACCT NO</th>
+				                    <th>ACCT NAME</th>
+				                    <th>ACCT BALANCE</th>
+				                    <th>ROWID</th>
+				                    <th>COLUMNID</th>
+				                    <th>REPORT_DATE</th>
+				                	</tr>
+
+								</thead>
+							
+							<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
+							<tr>
+								<td>
+		                        <a data-toggle="tooltip" class="editrec" title="Click to Edit this Record">
+		                            <i class="fas fa-edit"
+		                               onclick="editRecord(this)"></i>
+		                        </a>
+		                    	</td>
+		                    	<td th:text="${report.custId}"></td>
+		                    	<td th:text="${report.acctNumber}"></td>
+		                    	<td th:text="${report.acctName}"></td>
+		                    	<td th:text="${report.acctBalanceInAed}"></td>
+		                    	<td th:text="${report.rowId}"></td>
+		                    	<td th:text="${report.columnId}"></td>
+		                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+		                    
+		                   </tr> 
+							</tbody>
+							</table>
+							</div>
+							<div class="card-footer text-center" style="background-color: white;">
+						  		<button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnHome" onclick="home();">Home</button>
+						  		<button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnBack" onclick="back();">Back</button>
+							</div>
+							
+							</div>
+							</div>
+							</div>
+			
+			</div>
+			
+
+
+	</div>
+			
+			
+		
+</div>
+	
+
+	
+<div class="modal fade" id="loader" data-backdrop="static"
+			data-keyboard="false">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content" style="background: transparent;">
+					<div class="modal-body" style="text-align: center">
+						<div>
+							<img th:src=@{/images/loader.gif} id="bfirelogo"
+								style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
+								border-color: transparent;"
+								alt="Bornfire">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+
+	
+		
+</body>
+<!-- <script>
+  $(document).ready(function () {
+    $('#BRFvalidation').DataTable({
+      "paging": true,
+      "pageLength": 10,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "autoWidth": false,
+      "language": {
+        "search": "Search:"
+      }
+    });
+  });
+</script> -->
+<!-- <script>
+  $(document).ready(function () {
+    $('#BRFvalidation').DataTable({
+      "paging": true,
+      "info": false,       // turn off "Showing x of y"
+      "searching": false,  // turn off search
+      "ordering": false,   // turn off ordering
+      "lengthChange": false // hide "Show x entries"
+    });
+  });
+</script> -->
+
+
+
+<style>
+/* Your existing CSS - this is the correct approach */
+.scrollable-table-container {
+    /* This is the key: it creates the scroll context */
+    max-height: 540px; /* Or a suitable height like 80vh for responsive design */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+/* Your existing sticky header CSS, targeting the tr elements within the thead */
+.scrollable-table-container thead tr:nth-child(1) {
+    position: sticky;
+    top: 0;
+    background-color: #b3b6b9;
+    z-index: 4;
+}
+
+.scrollable-table-container thead tr:nth-child(2) {
+    position: sticky;
+    top: 36px; /* adjust based on row height */
+    background-color: #b3b6b9;
+    z-index: 3;
+}
+
+
+
+.scrollable-table-container thead tr:nth-child(3) {
+    position: sticky;
+    top: 72px; /* Adjust based on row height */
+    background-color: #b3b6b9;
+    z-index: 2;
+}
+
+.scrollable-table-container thead tr:nth-child(4) {
+    position: sticky;
+    top: 108px; /* Adjust based on row height */
+    background-color: #b3b6b9;
+    z-index: 1;
+}
+
+.scrollable-table-container thead tr:nth-child(5) {
+    position: sticky;
+    top: 133px; /* adjust based on row height (here: 36px * 4) */
+    background-color: #b3b6b9;
+    z-index: 0;
+}
+
+
+
+
+</style>
+
+
+
+</html>

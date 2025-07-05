@@ -889,14 +889,18 @@ color:white;
 							th:href="@{/Dashboard}"
 							style=" text-align: center; color: black;">Home</a>
 						</li>
-						<li class="nav-item dropdown"><a href="#"
-							class="dropdown-toggle" style=" text-align: center;">Admin</a>
-							<ul class="dropdown-menu">
-								<li><a class="nav-link" th:href="@{/UserProfile}">User
-										Profile</a></li>
-								<li><a class="nav-link" th:href="@{/AccessandRoles}">Access
-										And Roles</a></li>
-							</ul></li>
+						<li class="nav-item dropdown" style="text-align: center;">
+    <a href="#" class="dropdown-toggle">Admin</a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="#" class="nav-link" id="UserProfile" onclick="contentLoad(this)">User Profile</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link" id="AccessandRoles" onclick="contentLoad(this)">Access And Roles</a>
+        </li>
+    </ul>
+</li>
+
 						<li class="nav-item dropdown" style=" text-align: center;">
 							<a href="#" class="dropdown-toggle">BRF Reports</a>
 								
@@ -988,6 +992,23 @@ color:white;
       </div>
     </div>
   </nav>
+  
+  <div class="modal fade" id="loader" data-backdrop="static"
+			data-keyboard="false">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content" style="background: transparent;">
+					<div class="modal-body" style="text-align: center">
+						<div>
+							<img th:src=@{/images/loader.gif} id="bfirelogo"
+								style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
+								border-color: transparent;"
+								alt="Bornfire">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 
 <style>
@@ -1043,9 +1064,15 @@ function contentLoad(a) {
     // Store ID of clicked element in localStorage
     localStorage.setItem("activeMenuId", a.id);
 
-    // Navigate to the page using the element ID
-    location.href = "/BCDRS/" + a.id;
+    // Show loader modal
+    $('#loader').modal('show');
+
+    // Delay navigation slightly so the loader is visible
+    setTimeout(function () {
+        location.href = "/BCDRS/" + a.id;
+    }, 300); // You can increase this delay if needed
 }
+
 </script>
 
 <script>
