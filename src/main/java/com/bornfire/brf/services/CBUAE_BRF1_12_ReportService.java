@@ -22,8 +22,6 @@ import com.bornfire.brf.entities.CBUAE_BRF1_12SummaryEntitiy;
 import com.bornfire.brf.entities.CBUAE_BRF1_12SummaryRepo;
 import com.bornfire.brf.entities.CBUAE_BRF1_12_DETAIL_ENTITY;
 import com.bornfire.brf.entities.CBUAE_BRF1_12_DETAIL_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_1REPORT_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF1_1REPORT_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_DETAIL_ENTITY;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_DETAIL_Repo;
 
