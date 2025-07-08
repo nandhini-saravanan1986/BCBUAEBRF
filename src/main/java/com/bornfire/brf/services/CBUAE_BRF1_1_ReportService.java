@@ -87,7 +87,7 @@ public class CBUAE_BRF1_1_ReportService {
 
 		// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
-		mv.setViewName("BRF/CBUAE_BRF1_1");
+		mv.setViewName("BRF/BRF1_1");
 		
 		mv.addObject("reportsummary", T1Master);
 		//mv.addObject("reportmaster", T1Master);
@@ -124,7 +124,7 @@ public class CBUAE_BRF1_1_ReportService {
 		}
 		
 		//Page<Object> T1Dt1Page = new PageImpl<Object>(pagedlist, PageRequest.of(currentPage, pageSize), T1Dt1.size());
-		mv.setViewName("BRF/CBUAE_BRF1_1");
+		mv.setViewName("BRF/BRF1_1");
 		mv.addObject("displaymode", "Details");
 		//mv.addObject("reportdetails", T1Dt1Page.getContent());
 		mv.addObject("reportdetails",T1Dt1 );
