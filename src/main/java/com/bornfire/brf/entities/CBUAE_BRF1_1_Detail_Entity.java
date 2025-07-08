@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF1_12_DETAILTABLE", schema = "CXBRL")
-public class CBUAE_BRF1_12_DETAIL_ENTITY {
+@Table(name = "CBUAE_BRF1_1_DETAILTABLE", schema = "CXBRL")
+public class CBUAE_BRF1_1_Detail_Entity {
 	 	
 	    @Column(name = "ROW_ID", length = 100)
 	    private String rowId;
@@ -250,7 +250,7 @@ public class CBUAE_BRF1_12_DETAIL_ENTITY {
 			this.delFlg = delFlg;
 		}
 
-		public CBUAE_BRF1_12_DETAIL_ENTITY() {
+		public CBUAE_BRF1_1_Detail_Entity() {
 			super();
 			// TODO Auto-generated constructor stub
 		}

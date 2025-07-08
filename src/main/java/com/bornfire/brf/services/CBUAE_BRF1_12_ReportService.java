@@ -37,13 +37,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.bornfire.brf.entities.CBUAE_BRF1_12SummaryEntitiy;
-import com.bornfire.brf.entities.CBUAE_BRF1_12SummaryRepo;
-import com.bornfire.brf.entities.CBUAE_BRF1_12_DETAIL_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF1_12_DETAIL_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_1Summary_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_DETAIL_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_DETAIL_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF1_12_Summary_Entitiy;
+import com.bornfire.brf.entities.CBUAE_BRF1_12_Summary_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Repo;
 
 @Component
 @Service
@@ -58,10 +58,10 @@ public class CBUAE_BRF1_12_ReportService {
 	SessionFactory sessionFactory;
 	
 	@Autowired
-	CBUAE_BRF1_12_DETAIL_Repo BRF1_12_DETAIL_Repo;
+	CBUAE_BRF1_12_Detail_Repo BRF1_12_DETAIL_Repo;
 	
 	@Autowired
-	CBUAE_BRF1_12SummaryRepo BRF1_12Summary_Repo;
+	CBUAE_BRF1_12_Summary_Repo BRF1_12Summary_Repo;
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 	public ModelAndView getBRF1_12View(String reportId, String fromdate, String todate, String currency, String dtltype,
@@ -73,7 +73,7 @@ public class CBUAE_BRF1_12_ReportService {
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;	
 
-		List<CBUAE_BRF1_12SummaryEntitiy> T1Master = new ArrayList<CBUAE_BRF1_12SummaryEntitiy>();
+		List<CBUAE_BRF1_12_Summary_Entitiy> T1Master = new ArrayList<CBUAE_BRF1_12_Summary_Entitiy>();
 		try {
 			Date d1 = dateformat.parse(todate);
 			// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
@@ -112,7 +112,7 @@ public class CBUAE_BRF1_12_ReportService {
 		ModelAndView mv = new ModelAndView();
 
 		Session hs = sessionFactory.getCurrentSession();
-		List<CBUAE_BRF1_12_DETAIL_ENTITY> T1Dt1 = new ArrayList<CBUAE_BRF1_12_DETAIL_ENTITY>();
+		List<CBUAE_BRF1_12_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF1_12_Detail_Entity>();
 		
 		try {
 			Date d1 = dateformat.parse(todate);
@@ -142,9 +142,9 @@ public class CBUAE_BRF1_12_ReportService {
 	public byte[] getBRF1_12Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 		
-		List<CBUAE_BRF1_12SummaryEntitiy> T1Master = new ArrayList<CBUAE_BRF1_12SummaryEntitiy>();
+		List<CBUAE_BRF1_12_Summary_Entitiy> T1Master = new ArrayList<CBUAE_BRF1_12_Summary_Entitiy>();
 
-		List<CBUAE_BRF1_12SummaryEntitiy> dataList =BRF1_12Summary_Repo.getdatabydateList(dateformat.parse(todate)) ;
+		List<CBUAE_BRF1_12_Summary_Entitiy> dataList =BRF1_12Summary_Repo.getdatabydateList(dateformat.parse(todate)) ;
 
 		if (dataList.isEmpty()) {
 			logger.warn("Service: No data found for Trade Market Risk report. Returning empty result.");
@@ -211,7 +211,7 @@ public class CBUAE_BRF1_12_ReportService {
 
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
-					CBUAE_BRF1_12SummaryEntitiy record = dataList.get(i);
+					CBUAE_BRF1_12_Summary_Entitiy record = dataList.get(i);
 					System.out.println("rownumber="+startRow + i);
 					Row row = sheet.getRow(startRow + i);
 					if (row == null) {

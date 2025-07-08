@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "CBUAE_BRF1_12_SUMMARYTABLE")
-public class CBUAE_BRF1_12SummaryEntitiy {
+public class CBUAE_BRF1_12_Summary_Entitiy {
 
 	@Column(name = "R0010_PRODUCT") private String r0010Product;
 	@Column(name = "R0010_AVERAGE_QUALIFY") private BigDecimal r0010AverageQualify;
@@ -173,7 +173,7 @@ public class CBUAE_BRF1_12SummaryEntitiy {
 	
 	
 	//Constructors
-	public CBUAE_BRF1_12SummaryEntitiy(String r0010Product, BigDecimal r0010AverageQualify,
+	public CBUAE_BRF1_12_Summary_Entitiy(String r0010Product, BigDecimal r0010AverageQualify,
 			BigDecimal r0010RequirementRatios, BigDecimal r0010RequirementApplied, String r0020Product,
 			BigDecimal r0020AverageQualify, BigDecimal r0020RequirementRatios, BigDecimal r0020RequirementApplied,
 			String r0030Product, BigDecimal r0030AverageQualify, BigDecimal r0030RequirementRatios,
@@ -1033,7 +1033,7 @@ public class CBUAE_BRF1_12SummaryEntitiy {
 	public void setReportDesc(String reportDesc) {
 		this.reportDesc = reportDesc;
 	}
-	public CBUAE_BRF1_12SummaryEntitiy() {
+	public CBUAE_BRF1_12_Summary_Entitiy() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
