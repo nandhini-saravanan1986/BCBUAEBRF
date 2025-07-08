@@ -29,7 +29,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +41,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.bornfire.brf.controllers.CBUAE_BRF_ReportsController;
+
 
 import com.bornfire.brf.entities.CBUAE_BRF1_2_DETAIL_ENTITY;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_DETAIL_REPO;
@@ -57,12 +57,13 @@ import com.bornfire.brf.entities.CBUAE_BRF1_2_SUMMARY_ENTITY2;
 
 public class CBUAE_BRF1_2_ReportService {
 	
-private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_ReportService.class);
-	
-	@Autowired
-	private Environment env;	
 	
 
+	
+	private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_1_ReportService.class);
+	
+	@Autowired
+	private Environment env;
 	
 	@Autowired
 	SessionFactory sessionFactory;
@@ -92,12 +93,8 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 		try {
 			Date d1 = dateformat.parse(todate);
 			
+		 
 
-			 T1Master=CBUAE_BRF1_2_REPORT_REPO1.getdatabydateList(dateformat.parse(todate));
-			 T1Master1=CBUAE_BRF1_2_REPORT_REPO2.getdatabydateList(dateformat.parse(todate));
-
-			 
-		
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -148,16 +145,19 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 		return mv;
 	}
 
-	
+
 	public byte[] getBRF1_2Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 
 		List<CBUAE_BRF1_2_SUMMARY_ENTITY1> dataList = CBUAE_BRF1_2_REPORT_REPO1.getdatabydateList(dateformat.parse(todate)) ;
 
+	
 		if (dataList.isEmpty()) {
 			logger.warn("Service: No data found for Trade Market Risk report. Returning empty result.");
 			return new byte[0];
 		}
+
+	
 
 		String templateDir = env.getProperty("output.exportpathtemp");
 		String templateFileName = filename;
@@ -166,6 +166,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 		System.out.println(templatePath);
 		
 		
+
+		
+
 		logger.info("Service: Attempting to load template from path: {}", templatePath.toAbsolutePath());
 
 		if (!Files.exists(templatePath)) {
@@ -220,9 +223,11 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
+
 					CBUAE_BRF1_2_SUMMARY_ENTITY1 record = dataList.get(i);
 
 					
+
 					System.out.println("rownumber="+startRow + i);
 					Row row = sheet.getRow(startRow + i);
 					if (row == null) {
@@ -252,6 +257,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 											cell5.setCellValue("");
 											cell5.setCellStyle(textStyle);
 										}
+
 
 										
 										//row13
@@ -1532,9 +1538,5 @@ R13cell11.setCellStyle(textStyle);
 			return out.toByteArray();
 		}
 	}
+
 }
-
-
-
-
-			

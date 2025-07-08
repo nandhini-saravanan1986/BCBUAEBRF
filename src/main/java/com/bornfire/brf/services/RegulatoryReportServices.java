@@ -37,13 +37,14 @@ public class RegulatoryReportServices {
    	CBUAE_BRF2_2_ReportService cbuae_brf2_2_reportservice;
 
 
+
     @Autowired
    	CBUAE_BRF2_4_ReportService cbuae_brf2_4_reportservice;
     
     @Autowired
    	CBUAE_BRF2_6_ReportService cbuae_brf2_6_reportservice;
 
-    
+
     @Autowired
    	CBUAE_BRF2_3_ReportService cbuae_brf2_3_reportservice;
     
@@ -80,6 +81,7 @@ public class RegulatoryReportServices {
 			repsummary = cbuae_brf2_2_reportservice.getBRF2_2View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
 			
+
 
 		case "BRF2_4":
 			repsummary = cbuae_brf2_4_reportservice.getBRF2_4View(reportId, fromdate, todate, currency, dtltype, pageable);
@@ -129,6 +131,7 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf2_2_reportservice.getBRF2_2currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
+
 
 		case "BRF2_4":
 			repdetail = cbuae_brf2_4_reportservice.getBRF2_4currentDtl(reportId, fromdate, todate, currency, dtltype,
