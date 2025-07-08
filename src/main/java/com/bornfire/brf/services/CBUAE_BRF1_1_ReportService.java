@@ -142,12 +142,12 @@ public class CBUAE_BRF1_1_ReportService {
 		List<CBUAE_BRF1_1_Summary_Entity> dataList =BRF1_1REPORT_Repo.getdatabydateList(dateformat.parse(todate)) ;
 
 		if (dataList.isEmpty()) {
-			logger.warn("Service: No data found for Trade Market Risk report. Returning empty result.");
+			logger.warn("Service: No data found for BRF1.1 report. Returning empty result.");
 			return new byte[0];
 		}
 
 		String templateDir = env.getProperty("output.exportpathtemp");
-		String templateFileName = filename+".xls";
+		String templateFileName = filename;
 		System.out.println(filename);
 		Path templatePath = Paths.get(templateDir, templateFileName);
 		System.out.println(templatePath);
@@ -4114,7 +4114,7 @@ public class CBUAE_BRF1_1_ReportService {
 
 				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 			} else {
-				System.out.println("No Trade Market Risk data found to generate the Excel file.");
+				
 			}
 
 			// Write the final workbook content to the in-memory stream.

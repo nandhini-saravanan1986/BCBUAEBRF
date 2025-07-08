@@ -152,7 +152,7 @@ public class CBUAE_BRF1_12_ReportService {
 		}
 
 		String templateDir = env.getProperty("output.exportpathtemp");
-		String templateFileName = filename+".xls";
+		String templateFileName = filename;
 		System.out.println(filename);
 		Path templatePath = Paths.get(templateDir, templateFileName);
 		System.out.println(templatePath);
