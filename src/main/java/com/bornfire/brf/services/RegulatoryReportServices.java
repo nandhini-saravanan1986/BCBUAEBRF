@@ -34,6 +34,12 @@ public class RegulatoryReportServices {
 
     @Autowired
    	CBUAE_BRF2_2_ReportService cbuae_brf2_2_reportservice;
+
+    @Autowired
+   	CBUAE_BRF2_4_ReportService cbuae_brf2_4_reportservice;
+    
+    @Autowired
+   	CBUAE_BRF2_6_ReportService cbuae_brf2_6_reportservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegulatoryReportServices.class);
 	
@@ -64,6 +70,14 @@ public class RegulatoryReportServices {
 			
 		case "BRF2_2":
 			repsummary = cbuae_brf2_2_reportservice.getBRF2_2View(reportId, fromdate, todate, currency, dtltype, pageable);
+			break;
+			
+		case "BRF2_4":
+			repsummary = cbuae_brf2_4_reportservice.getBRF2_4View(reportId, fromdate, todate, currency, dtltype, pageable);
+			break;
+			
+		case "BRF2_6":
+			repsummary = cbuae_brf2_6_reportservice.getBRF2_6View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
 			
 		}
@@ -108,6 +122,16 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf2_2_reportservice.getBRF2_2currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
+			
+		case "BRF2_4":
+			repdetail = cbuae_brf2_4_reportservice.getBRF2_4currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			
+		case "BRF2_6":
+			repdetail = cbuae_brf2_6_reportservice.getBRF2_6currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
 			}
 			
 	
@@ -136,6 +160,15 @@ public class RegulatoryReportServices {
 			case "BRF1_12":
 				try {
 					repfile = cbuae_brf1_12_reportservice.getBRF1_12Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;	
+				
+			case "BRF1_2":
+				try {
+					repfile = cbuae_brf1_2_reportservice.getBRF1_2Excel(filename, reportId, fromdate, todate, currency, dtltype);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

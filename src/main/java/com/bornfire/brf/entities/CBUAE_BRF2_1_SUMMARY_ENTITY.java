@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "CBUAE_BRF2_1_SUMMARYTABLE")
 
-public class CBUAE_BRF2_1_REPORT_ENTITY {
+public class CBUAE_BRF2_1_SUMMARY_ENTITY {
 
 	private String r0010_product;
 	private String r0020_product;
@@ -514,7 +514,7 @@ public class CBUAE_BRF2_1_REPORT_ENTITY {
 	
 	
 	
-	public CBUAE_BRF2_1_REPORT_ENTITY() {
+	public CBUAE_BRF2_1_SUMMARY_ENTITY() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

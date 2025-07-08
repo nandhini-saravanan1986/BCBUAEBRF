@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bornfire.brf.entities.CBUAE_BRF2_2_DETAIL_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_2_DETAIL_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF2_2_REPORT_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_2_REPORT_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF2_2_DETAIL_REPO;
+import com.bornfire.brf.entities.CBUAE_BRF2_2_SUMMARY_ENTITY;
+import com.bornfire.brf.entities.CBUAE_BRF2_2_SUMMARY_REPO;
 
 
 @Component
@@ -30,10 +30,10 @@ public class CBUAE_BRF2_2_ReportService {
 	SessionFactory sessionFactory;
 	
 	@Autowired
-	CBUAE_BRF2_2_DETAIL_Repo BRF2_2_DETAIL_Repo;
+	CBUAE_BRF2_2_DETAIL_REPO BRF2_2_DETAIL_Repo;
 	
 	@Autowired
-	CBUAE_BRF2_2_REPORT_Repo BRF2_2_REPORT_Repo;
+	CBUAE_BRF2_2_SUMMARY_REPO BRF2_2_REPORT_Repo;
 	
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -46,7 +46,7 @@ public class CBUAE_BRF2_2_ReportService {
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;	
 
-		List<CBUAE_BRF2_2_REPORT_ENTITY> T1Master = new ArrayList<CBUAE_BRF2_2_REPORT_ENTITY>();
+		List<CBUAE_BRF2_2_SUMMARY_ENTITY> T1Master = new ArrayList<CBUAE_BRF2_2_SUMMARY_ENTITY>();
 		try {
 			Date d1 = dateformat.parse(todate);
 			// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);

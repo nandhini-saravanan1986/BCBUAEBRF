@@ -1,6 +1,7 @@
 package com.bornfire.brf.entities;
 
 import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "CBUAE_BRF1_2_SUMMARYTABLE2")
 
-public class CBUAE_BRF1_2_REPORT_ENTITY2 {
+public class CBUAE_BRF1_2_SUMMARY_ENTITY2 {
 	private String	r0910_product;
 	private BigDecimal	r0910_no_acct_aed_resident;
 	private BigDecimal	r0910_amount_aed_resident;
@@ -164,6 +165,7 @@ public class CBUAE_BRF1_2_REPORT_ENTITY2 {
 	private BigDecimal	r1020_legacy_interest;
 	private BigDecimal	r1020_provision;
 	private BigDecimal	r1020_total;
+	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Id
@@ -1105,7 +1107,7 @@ public class CBUAE_BRF1_2_REPORT_ENTITY2 {
 	public void setDel_flg(String del_flg) {
 		this.del_flg = del_flg;
 	}
-	public CBUAE_BRF1_2_REPORT_ENTITY2() {
+	public CBUAE_BRF1_2_SUMMARY_ENTITY2() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

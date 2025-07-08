@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "CBUAE_BRF1_2_SUMMARYTABLE1")
 
-public class CBUAE_BRF1_2_REPORT_ENTITY1 {
+public class CBUAE_BRF1_2_SUMMARY_ENTITY1 {
 
 	private String	r0010_product;
 	private BigDecimal	r0010_no_acct_aed_resident;
@@ -6378,7 +6378,7 @@ public class CBUAE_BRF1_2_REPORT_ENTITY1 {
 	public void setDel_flg(String del_flg) {
 		this.del_flg = del_flg;
 	}
-	public CBUAE_BRF1_2_REPORT_ENTITY1() {
+	public CBUAE_BRF1_2_SUMMARY_ENTITY1() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

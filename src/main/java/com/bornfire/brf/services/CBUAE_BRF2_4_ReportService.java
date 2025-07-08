@@ -15,29 +15,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.bornfire.brf.entities.CBUAE_BRF2_1_DETAIL_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_1_DETAIL_REPO;
-import com.bornfire.brf.entities.CBUAE_BRF2_1_SUMMARY_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_1_SUMMARY_REPO;
-
+import com.bornfire.brf.entities.CBUAE_BRF2_4_DETAIL_ENTITY;
+import com.bornfire.brf.entities.CBUAE_BRF2_4_DETAIL_REPO;
+import com.bornfire.brf.entities.CBUAE_BRF2_4_SUMMARY_ENTITY;
+import com.bornfire.brf.entities.CBUAE_BRF2_4_SUMMARY_REPO;
 
 @Component
 @Service
 
-public class CBUAE_BRF2_1_ReportService {
+public class CBUAE_BRF2_4_ReportService {
+	
 	
 	@Autowired
 	SessionFactory sessionFactory;
 	
 	@Autowired
-	CBUAE_BRF2_1_DETAIL_REPO BRF2_1_DETAIL_Repo;
+	CBUAE_BRF2_4_DETAIL_REPO BRF2_4_DETAIL_Repo;
 	
 	@Autowired
-	CBUAE_BRF2_1_SUMMARY_REPO BRF2_1_REPORT_Repo;
+	CBUAE_BRF2_4_SUMMARY_REPO BRF2_4_REPORT_Repo;
 	
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
-	public ModelAndView getBRF2_1View(String reportId, String fromdate, String todate, String currency, String dtltype,
+	public ModelAndView getBRF2_4View(String reportId, String fromdate, String todate, String currency, String dtltype,
 			Pageable pageable) {
 
 		ModelAndView mv = new ModelAndView();
@@ -46,14 +46,14 @@ public class CBUAE_BRF2_1_ReportService {
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;	
 
-		List<CBUAE_BRF2_1_SUMMARY_ENTITY> T1Master = new ArrayList<CBUAE_BRF2_1_SUMMARY_ENTITY>();
+		List<CBUAE_BRF2_4_SUMMARY_ENTITY> T1Master = new ArrayList<CBUAE_BRF2_4_SUMMARY_ENTITY>();
 		try {
 			Date d1 = dateformat.parse(todate);
 			// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
 			//T1Master = hs.createQuery("from  BRF1_REPORT_ENTITY a where a.report_date = ?1 ", BRF1_REPORT_ENTITY.class)
 				//	.setParameter(1, df.parse(todate)).getResultList();
-			 T1Master=BRF2_1_REPORT_Repo.getdatabydateList(dateformat.parse(todate));
+			 T1Master=BRF2_4_REPORT_Repo.getdatabydateList(dateformat.parse(todate));
 		
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class CBUAE_BRF2_1_ReportService {
 
 		// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
-		mv.setViewName("BRF/BRF2_1");
+		mv.setViewName("BRF/BRF2_4");
 		
 		mv.addObject("reportsummary", T1Master);
 		//mv.addObject("reportmaster", T1Master);
@@ -75,7 +75,7 @@ public class CBUAE_BRF2_1_ReportService {
 	}
 	
 	
-	public ModelAndView getBRF2_1currentDtl(String reportId, String fromdate, String todate, String currency,
+	public ModelAndView getBRF2_4currentDtl(String reportId, String fromdate, String todate, String currency,
 			String dtltype, Pageable pageable, String filter) {
 
 		int pageSize = pageable.getPageSize();
@@ -85,12 +85,12 @@ public class CBUAE_BRF2_1_ReportService {
 		ModelAndView mv = new ModelAndView();
 
 		Session hs = sessionFactory.getCurrentSession();
-		List<CBUAE_BRF2_1_DETAIL_ENTITY> T1Dt1 = new ArrayList<CBUAE_BRF2_1_DETAIL_ENTITY>();
+		List<CBUAE_BRF2_4_DETAIL_ENTITY> T1Dt1 = new ArrayList<CBUAE_BRF2_4_DETAIL_ENTITY>();
 		
 		try {
 			Date d1 = dateformat.parse(todate);
 			
-			T1Dt1=BRF2_1_DETAIL_Repo.getdatabydateList(dateformat.parse(todate));
+			T1Dt1=BRF2_4_DETAIL_Repo.getdatabydateList(dateformat.parse(todate));
 			System.out.println("LISTCOUNT"+T1Dt1.size());
 		
 		} catch (ParseException e) {
@@ -100,7 +100,7 @@ public class CBUAE_BRF2_1_ReportService {
 
 		//Page<Object> T1Dt1Page = new PageImpl<Object>(pagedlist, PageRequest.of(currentPage, pageSize), T1Dt1.size());
 
-		mv.setViewName("BRF/BRF2_1");
+		mv.setViewName("BRF/BRF2_4");
 		mv.addObject("displaymode", "Details");
 		//mv.addObject("reportdetails", T1Dt1Page.getContent());
 		mv.addObject("reportdetails",T1Dt1 );
