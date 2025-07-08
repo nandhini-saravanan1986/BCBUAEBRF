@@ -139,7 +139,6 @@ public class CBUAE_BRF1_1_ReportService {
 	public byte[] getBRF1_1Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 
-		//List<RT_TradeMarketRiskData> dataList = tradeMarketRiskDataRepo.getlist();
 		List<CBUAE_BRF1_1Summary_ENTITY> dataList =BRF1_1REPORT_Repo.getdatabydateList(dateformat.parse(todate)) ;
 
 		if (dataList.isEmpty()) {
