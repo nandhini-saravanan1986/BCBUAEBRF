@@ -38,6 +38,7 @@ public class RegulatoryReportServices {
 
 
 
+
     @Autowired
    	CBUAE_BRF2_4_ReportService cbuae_brf2_4_reportservice;
     
@@ -48,6 +49,7 @@ public class RegulatoryReportServices {
     @Autowired
    	CBUAE_BRF2_3_ReportService cbuae_brf2_3_reportservice;
     
+
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegulatoryReportServices.class);
@@ -83,12 +85,14 @@ public class RegulatoryReportServices {
 			
 
 
+
 		case "BRF2_4":
 			repsummary = cbuae_brf2_4_reportservice.getBRF2_4View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
 			
 		case "BRF2_6":
 			repsummary = cbuae_brf2_6_reportservice.getBRF2_6View(reportId, fromdate, todate, currency, dtltype, pageable);
+
 
 		case "BRF2_3":
 			repsummary = cbuae_brf2_3_reportservice.getBRF2_3View(reportId, fromdate, todate, currency, dtltype, pageable);
@@ -131,6 +135,7 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf2_2_reportservice.getBRF2_2currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
+
 
 
 		case "BRF2_4":
