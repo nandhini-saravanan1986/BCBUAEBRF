@@ -1,0 +1,1873 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<!-- 
+CREATED BY	:nishanthini
+CREATED ON	: 05.07.2025
+PURPOSE		: BRFREPORT
+-->
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
+	<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+
+	<!-- JavaScript -->
+	<!-- jQuery core (required first) -->
+	
+
+	<!-- ✅ Your manually placed jQuery validation
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	 <script th:src="/jquery/jquery.validate.min.js"></script>
+	 -->
+	
+	<!-- jQuery (required first) -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!-- ✅ jQuery Validation -->
+<script src="/webjars/jquery-validation/1.19.0/jquery.validate.min.js"
+	th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
+	
+	<!-- Bootstrap + Others -->
+	<script th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:src="@{/webjars/jquery-form/4.2.2/jquery.form.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
+
+
+
+<style>
+.btns {
+	float: right;
+	margin: 5px;
+}
+
+.col-sm-5 {
+	padding-bottom: 15px;
+}
+
+.list-body {
+	padding: 0px;
+}
+
+.error {
+	color: red;
+	padding-left: 10px;
+}
+
+.formline {
+	padding-bottom: 15px;
+}
+
+.btn-primary {
+	background-color: #E77400;
+	border-color: #0c0c0c;
+}
+
+.btn-primary:not (:disabled ):not (.disabled ).active, .btn-primary:not
+	 (:disabled ):not (.disabled ):active, .show>.btn-primary.dropdown-toggle
+	{
+	color: #fff;
+	background-color: #cc000000;
+	border-color: #161617;
+}
+
+#finusertb {
+	width: 460px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	padding: 0px;
+}
+</style>
+ 
+  
+ 
+ 
+ <style>
+  .card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+
+  .card-header h5 {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .nav-tabs .nav-link {
+    font-weight: 500;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    background-color: #f1f1f1;
+    margin-right: 5px;
+  }
+
+  .nav-tabs .nav-link.active {
+    background-color: #ffffff;
+    border-color: #dee2e6 #dee2e6 #ffffff;
+  }
+
+  .table-responsive {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f3f6f9;
+  }
+
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #e9ecf0;
+    z-index: 1;
+  }
+  
+.table td{
+	background-color: #FFFFFF;
+
+}
+  
+  
+
+  .card-footer {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+  }
+
+  .btn-xs {
+    padding: 4px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+
+  #BRFvalidation th, #usertable td {
+    vertical-align: middle;
+    text-align: left;
+    font-size: 16px;
+    font-family: Arial;
+  }
+
+  .fa-edit:hover {
+    color: #28a745;
+    transform: scale(1.1);
+  }
+
+
+
+td {
+  border: 1px solid rgb(0,164,166);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+</style>
+ 
+
+<style>
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            background: transparent;
+            transition: border-color 0.3s ease, padding-top 0.3s ease;
+        }
+        .error {
+    		color: red;
+    		padding-top: 15px;
+			}
+        
+        
+
+        .form-control:focus {
+            border-color: #007bff;
+        }
+
+        .form-legend {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #aaa;
+            background: white;
+            padding: 0 5px;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        /* When input or select is focused or has a value, move the label up */
+        .form-control:focus ~ .form-legend,
+        .form-control:not(:placeholder-shown) ~ .form-legend {
+            top: -8px;
+            font-size: 1rem;
+            color: #007bff;
+        }
+
+        /* Hover effect when the input/select is focused */
+        .form-control:focus:hover ~ .form-legend {
+            color: #0056b3; /* Darker shade of blue on hover */
+        }
+
+        /* Ensure the label returns to the normal color after focus or hover is removed */
+        .form-control:not(:focus) ~ .form-legend {
+            color: #aaa; /* Normal label color */
+        }
+    </style>
+   
+    <style>
+/* Red border for invalid inputs */
+input.error, select.error {
+  border: 2px solid red !important;
+}
+
+/* Error message style */
+label.error {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 5px;
+  display: block;
+}
+.underline {
+    text-decoration: underline;
+    color: #08a6f1;
+    cursor: pointer;
+}
+
+</style>
+    
+
+<script th:inline="javascript">
+	
+
+	function home() {
+        $("#loader").modal("toggle");
+		location.href = 'Dashboard'
+	}
+
+	function back() {
+        $("#loader").modal("toggle");
+
+		window.history.back();
+	}
+	
+	//to fetch summary from the database - called from the summary button
+	function showdetails() {
+    
+    var Callurl;
+    	$('#loader').modal('show');
+        Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/ 
+        location.href = Callurl;
+        	console.log(Callurl);
+   /*  $.ajax({
+        type: 'get',
+        url: Callurl,
+        beforeSend: function () {
+            $('#loader').modal('show'); // 🔄 Show loader
+        },
+        success: function (data) {
+            $('.content').html(data);
+            //$("#detailsbtn").addClass("active");
+            //tablepagination();
+        },
+        complete: function () {
+            $('#loader').modal('hide'); 
+        },
+        error: function () {
+        	  $('#loader').modal('hide');
+            alert("Something went wrongss. Please try again.");
+          
+        }
+    }); */
+}
+	
+	function showsummary() {
+		$('#loader').modal('show');
+		var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
+
+								
+		location.href = Callurl;
+
+	}
+    </script>
+  
+<script>
+
+function activateTab(tabName) {
+    // Remove 'active' from all buttons
+    document.querySelectorAll('.custom-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Add 'active' to selected button
+    if (tabName === 'summary') {
+        document.getElementById('custom-tab-btnSummary').classList.add('active');
+    } else if (tabName === 'Details') {
+        document.getElementById('custom-tab-btnDetails').classList.add('active');
+    }
+}
+
+window.onload = function() {
+    /* setTimeout(function() {
+        var selectedTab = document.getElementById("selectedTab").value;
+        alert(selectedTab);
+        activateTab(selectedTab);
+    }, 10000); */ // 10,000 milliseconds = 10 seconds
+    
+	var selectedTab = document.getElementById("selectedTab").value;
+    activateTab(selectedTab);
+};
+
+
+</script>  
+ 
+
+
+  
+</head>
+
+ 
+     
+<title>BRF</title>
+<body> 
+<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+		<div class="row">
+		
+			<div th:insert="HeaderMenu :: header"></div>
+
+			<div class="card"  >
+				<div class="card-header" style="background-color: rgb(107, 122, 143) ; ">
+						<div class="float-left">
+							<h5 style="font-family: verdana; margin-left:20px; font-size: 20px; font-weight: bold; padding-top: 10px; ">CLASSIFICATION OF ASSETS & LIABILITIES- MATURITY-WISE- BRF 2.3 (AED 000)</h5>
+						</div>	
+						<div class="custom-tab-btn-group nav-buttons float-right">
+						<input type="hidden" id="selectedTab" th:value="${displaymode}">
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();">Summary</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();">Details</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" onclick="adduser();">Download</button>
+
+					</div>				
+				</div>
+			
+			<div th:if="${displaymode == 'summary'}">
+			<div class="row" >
+				<div class="col-sm-12">
+					<div class="table-wrapper table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
+    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+							<thead class="thead-light">
+							  									<tr style="background-color: #b3b6b9">
+																	<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ROW</th>
+																	<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ID</th>
+																	<th rowspan="2" style="text-align: center; background-color: #b3b6b9">Item</th>
+																	<th style="text-align: center">Overdue </th>		
+																	<th style="text-align: center">Overdraft </th>	
+																	<th style="text-align: center">0 - 7 days</th>	
+																	<th style="text-align: center">8-14 days </th>	
+																	<th style="text-align: center">15 days - 1 month </th>	
+																	<th style="text-align: center">1 - 2 months </th>	
+																	<th style="text-align: center">2 - 3 months </th>	
+																	<th style="text-align: center">3 -  6 months</th>	
+																	<th style="text-align: center">6 -12 months </th>	
+																	<th style="text-align: center">1 - 3 years </th>	
+																	<th style="text-align: center">3-5 years</th>	
+																	<th style="text-align: center">>5 years</th>	
+																	<th style="text-align: center">Total </th>									
+
+																
+																
+																
+																
+																<tr style="background-color: #b3b6b9">
+																	
+																	<th style="text-align: center; background-color: #b3b6b9">0010</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0020</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0030</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0040</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0050</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0060</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0070</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0080</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0090</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0100</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0110</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0120</th>
+																	<th style="text-align: center; background-color: #b3b6b9">0130</th>
+																</tr>
+
+															</thead>
+														
+														<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
+															
+															<tr style="background-color: #b3b6b9">
+															 <td style="text-align: center; background-color: #b3b6b9" >0010</td>
+															 <td style="text-align: right; background-color: #b3b6b9" >1</td>
+															 <th th:text="${report.r0010_product}"></th>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_overdue}"></td>
+															 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0010_overdraft}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_0_7days}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_8_14days}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_15days_1months}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_1_2months}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_2_3months}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_3_6months}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0010_6_12months}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_1_3years}"></td>
+															 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0010_3_5years}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0010_5years}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0010_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0020</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.1</td>
+														 <td th:text="${report.r0020_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0020_overdue}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_overdraft}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_0_7days}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_8_14days}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_15days_1months}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_1_2months}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_2_3months}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_3_6months}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_6_12months}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_1_3years}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_3_5years}"></td>
+														 <td style="text-align: right" th:text="${report.r0020_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0020_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0030</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.1.1</td>
+														 <td th:text="${report.r0030_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0030_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0030_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0040</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.1.2</td>
+														 <td th:text="${report.r0040_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0040_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0040_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0040_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0050</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.1.3</td>
+														 <td th:text="${report.r0050_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0050_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0050_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0060</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.2</td>
+														 <th th:text="${report.r0060_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0060_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0060_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0060_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0060_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0060_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0070</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.2.1</td>
+														 <td th:text="${report.r0070_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_overdue}"></td>
+														 <td style="text-align: right" th:text="${report.r0070_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0070_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0070_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0080</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.2.2</td>
+														 <td th:text="${report.r0080_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0080_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0080_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0090</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.2.3</td>
+														 <td th:text="${report.r0090_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0090_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0090_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0100</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3</td>
+														 <th th:text="${report.r0100_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0100_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0100_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0100_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0100_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0100_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0110</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.1</td>
+														 <td th:text="${report.r0110_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0110_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0110_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0120</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.2</td>
+														 <td th:text="${report.r0120_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0120_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0120_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0130</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.3</td>
+														 <td th:text="${report.r0130_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0130_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0130_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0130_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0140</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.4</td>
+														 <td th:text="${report.r0140_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0140_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0140_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0150</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.5</td>
+														 <td th:text="${report.r0150_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_1_2months}"></td>
+														 <td style="text-align: right" th:text="${report.r0150_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0150_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0150_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0160</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.6</td>
+														 <td th:text="${report.r0160_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0160_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0160_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0170</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.7</td>
+														 <td th:text="${report.r0170_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0170_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0170_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0180</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.8</td>
+														 <td th:text="${report.r0180_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0180_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0180_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0190</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.9</td>
+														 <td th:text="${report.r0190_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0190_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0190_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0200</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.3.10</td>
+														 <td th:text="${report.r0200_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0200_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0200_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0200_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0210</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4</td>
+														 <th th:text="${report.r0210_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0210_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0210_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0210_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0210_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0210_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0220</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4.1</td>
+														 <td th:text="${report.r0220_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0220_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0220_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0230</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4.2</td>
+														 <td th:text="${report.r0230_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0230_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0230_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0230_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0230_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0240</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4.3</td>
+														 <td th:text="${report.r0240_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0240_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0240_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0240_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0250</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4.4</td>
+														 <td th:text="${report.r0250_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0250_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0250_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0250_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0250_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0260</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4.5</td>
+														 <td th:text="${report.r0260_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0260_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0260_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0270</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.4.6</td>
+														 <td th:text="${report.r0270_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0270_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0270_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0280</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5</td>
+														 <th th:text="${report.r0280_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0280_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0280_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0280_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0280_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0280_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0290</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.1</td>
+														 <td th:text="${report.r0290_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0290_5years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0290_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0300</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.2</td>
+														 <td th:text="${report.r0300_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0300_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0300_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0300_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0310</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.3</td>
+														 <td th:text="${report.r0310_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0310_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0310_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0320</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.4</td>
+														 <td th:text="${report.r0320_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0320_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0320_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0320_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0330</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.5</td>
+														 <td th:text="${report.r0330_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0330_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0330_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0330_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0340</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.6</td>
+														 <td th:text="${report.r0340_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0340_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0340_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0350</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.7</td>
+														 <td th:text="${report.r0350_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0350_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0350_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0350_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0350_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0360</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.8</td>
+														 <td th:text="${report.r0360_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0360_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0360_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0370</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.9</td>
+														 <td th:text="${report.r0370_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0370_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0370_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0380</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.10</td>
+														 <td th:text="${report.r0380_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0380_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0380_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0380_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0390</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.10.1</td>
+														 <th th:text="${report.r0390_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0390_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0390_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0390_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0390_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0390_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0400</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.10.1.1</td>
+														 <td th:text="${report.r0400_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0400_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0400_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0400_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0410</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.10.1.2</td>
+														 <th th:text="${report.r0410_product}"></th>
+														 <td style="text-align: right;" th:text="${report.r0410_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0410_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0410_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0410_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0410_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0420</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.10.1.3</td>
+														 <th th:text="${report.r0420_product}"></th>
+														 <td style="text-align: right;" th:text="${report.r0420_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0420_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0420_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0420_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0420_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0430</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.5.10.2</td>
+														 <th th:text="${report.r0430_product}"></th>
+														 <td style="text-align: right;" th:text="${report.r0430_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0430_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0430_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0430_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0430_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0440</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >1.6</td>
+														 <th th:text="${report.r0440_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0440_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0440_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0440_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0440_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0440_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0450</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2</td>
+														 <th colspan="14" style=" background-color: #b3b6b9" th:text="${report.r0450_product}"></th>
+														  
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0460</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.1</td>
+														 <th th:text="${report.r0460_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0460_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0460_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0470</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.1.1</td>
+														 <td th:text="${report.r0470_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0470_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0470_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0470_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0480</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.1.2</td>
+														 <td th:text="${report.r0480_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0480_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0480_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0480_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0480_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0490</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.1.3</td>
+														 <td th:text="${report.r0490_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0490_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0490_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0490_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0490_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0500</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.1.4</td>
+														 <td th:text="${report.r0500_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0500_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0500_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0510</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.1.5</td>
+														 <td th:text="${report.r0510_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0510_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0510_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0510_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0510_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0520</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2</td>
+														 <th th:text="${report.r0520_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0520_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0520_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0520_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0520_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0520_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0530</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2.1</td>
+														 <td th:text="${report.r0530_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0530_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0530_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0530_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0530_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0540</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2.2</td>
+														 <td th:text="${report.r0540_product}"></td>
+														 <td style="text-align: right" th:text="${report.r0540_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0540_5years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0540_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0550</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2.3</td>
+														 <td th:text="${report.r0550_product}"></td>
+														 <td style="text-align: right;9" th:text="${report.r0550_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0550_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0550_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0550_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0550_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0560</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2.4</td>
+														 <td th:text="${report.r0560_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0560_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0560_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0570</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2.5</td>
+														 <td th:text="${report.r0570_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0570_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0570_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0570_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0580</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.2.6</td>
+														 <td th:text="${report.r0580_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0580_3_5years}"></td>
+														 <td style="text-align: right; " th:text="${report.r0580_5years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0580_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0590</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.3</td>
+														 <th th:text="${report.r0590_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0590_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0590_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0600</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.3.1</td>
+														 <td th:text="${report.r0600_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0600_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0600_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0610</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.3.2</td>
+														 <td th:text="${report.r0610_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_3_6months}"></td>
+														 <td style="text-align: right; " th:text="${report.r0610_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0610_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0610_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0620</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.3.2.1</td>
+														 <td th:text="${report.r0620_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0620_5years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0620_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0630</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.3.3</td>
+														 <td th:text="${report.r0630_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0630_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0630_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0640</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.3.4</td>
+														 <td th:text="${report.r0640_product}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_overdue}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_overdraft}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_0_7days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_8_14days}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_15days_1months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_1_2months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_2_3months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_3_6months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_6_12months}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_1_3years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_3_5years}"></td>
+														 <td style="text-align: right;" th:text="${report.r0640_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0640_total}"></td>	 
+														 </tr>
+														 
+														 <tr style="background-color: #b3b6b9">
+														 <td style="text-align: center; background-color: #b3b6b9" >0650</td>
+														 <td style="text-align: right; background-color: #b3b6b9" >2.4</td>
+														 <th th:text="${report.r0650_product}"></th>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_overdue}"></td>
+														 <td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0650_overdraft}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_0_7days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_8_14days}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_15days_1months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_1_2months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_2_3months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_3_6months}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0650_6_12months}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_1_3years}"></td>
+														 <td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0650_3_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0650_5years}"></td>
+														 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0650_total}"></td>	 
+														 </tr>
+															
+															 
+														</tbody>
+
+			              </table>
+					</div>
+					<div class="card-footer text-center" style="background-color: white;">
+						  <button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnHome" onclick="home();">Home</button>
+						  <button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnBack" onclick="back();">Back</button>
+					</div>
+
+				</div>
+			</div>
+			</div>
+			
+			<div th:if="${displaymode == 'Details'}">
+			<div class="row" >
+				<div class="col-sm-12">
+					<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
+    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+							<thead class="thead-light">
+									<tr>
+				                    <th></th>
+				                    <th>CUST ID</th>
+				                    <th>ACCT NO</th>
+				                    <th>ACCT NAME</th>
+				                    <th>ACCT BALANCE</th>
+				                    <th>ROWID</th>
+				                    <th>COLUMNID</th>
+				                    <th>REPORT_DATE</th>
+				                	</tr>
+
+								</thead>
+							
+							<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
+							<tr>
+								<td>
+		                        <a data-toggle="tooltip" class="editrec" title="Click to Edit this Record">
+		                            <i class="fas fa-edit"
+		                               onclick="editRecord(this)"></i>
+		                        </a>
+		                    	</td>
+		                    	<td th:text="${report.custId}"></td>
+		                    	<td th:text="${report.acctNumber}"></td>
+		                    	<td th:text="${report.acctName}"></td>
+		                    	<td th:text="${report.acctBalanceAmount}"></td>
+		                    	<td th:text="${report.rowId}"></td>
+		                    	<td th:text="${report.columnId}"></td>
+		                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+		                    
+		                   </tr> 
+							</tbody>
+							</table>
+							</div>
+							<div class="card-footer text-center" style="background-color: white;">
+						  		<button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnHome" onclick="home();">Home</button>
+						  		<button type="button" class="custom-tab-btn custom-tab-btn-xs" id="custom-tab-btnBack" onclick="back();">Back</button>
+							</div>
+							
+							</div>
+							</div>
+							</div>
+			
+			</div>
+			
+
+
+	</div>
+			
+			
+		
+</div>
+	
+
+	
+<div class="modal fade" id="loader" data-backdrop="static"
+			data-keyboard="false">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content" style="background: transparent;">
+					<div class="modal-body" style="text-align: center">
+						<div>
+							<img th:src=@{/images/loader.gif} id="bfirelogo"
+								style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
+								border-color: transparent;"
+								alt="Bornfire">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+
+	
+		
+</body>
+<!-- <script>
+  $(document).ready(function () {
+    $('#BRFvalidation').DataTable({
+      "paging": true,
+      "pageLength": 10,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "autoWidth": false,
+      "language": {
+        "search": "Search:"
+      }
+    });
+  });
+</script> -->
+<!-- <script>
+  $(document).ready(function () {
+    $('#BRFvalidation').DataTable({
+      "paging": true,
+      "info": false,       // turn off "Showing x of y"
+      "searching": false,  // turn off search
+      "ordering": false,   // turn off ordering
+      "lengthChange": false // hide "Show x entries"
+    });
+  });
+</script> -->
+
+
+
+<style>
+/* Your existing CSS - this is the correct approach */
+.scrollable-table-container {
+    /* This is the key: it creates the scroll context */
+    max-height: 720px; /* Or a suitable height like 80vh for responsive design */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+/* Your existing sticky header CSS, targeting the tr elements within the thead */
+.scrollable-table-container thead tr:nth-child(1) {
+    position: sticky;
+    top: 0;
+    background-color: #b3b6b9;
+    z-index: 4;
+}
+
+.scrollable-table-container thead tr:nth-child(2) {
+    position: sticky;
+    top: 36px; /* adjust based on row height */
+    background-color: #b3b6b9;
+    z-index: 3;
+}
+
+
+
+.scrollable-table-container thead tr:nth-child(3) {
+    position: sticky;
+    top: 72px; /* Adjust based on row height */
+    background-color: #b3b6b9;
+    z-index: 2;
+}
+
+.scrollable-table-container thead tr:nth-child(4) {
+    position: sticky;
+    top: 108px; /* Adjust based on row height */
+    background-color: #b3b6b9;
+    z-index: 1;
+}
+
+.scrollable-table-container thead tr:nth-child(5) {
+    position: sticky;
+    top: 144px; /* adjust based on row height (here: 36px * 4) */
+    background-color: #b3b6b9;
+    z-index: 0;
+}
+
+
+
+
+</style>
+
+<style>
+.inner {
+    max-height: 600px; /* Adjust height as needed */
+    overflow: auto;
+    border: 1px solid #dee2e6;
+}
+
+/* Sticky thead */
+#reports thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* Match Bootstrap thead-light */
+    z-index: 2;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    text-align: right !important;
+    float: right !important;
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
+div.dataTables_wrapper div.dataTables_info {
+    float: left !important;
+    margin-top: 10px;
+}
+.pagination {
+    margin: 0;
+}
+
+.page-item.active .page-link {
+    background-color: #386276;
+    border-color: #386276;
+}
+
+.page-link {
+    color: #386276;
+}
+
+.page-link:hover {
+    color: #2a4a5c;
+}
+
+.form-select {
+    display: inline-block;
+    width: auto;
+}
+</style>
+
+
+</html>

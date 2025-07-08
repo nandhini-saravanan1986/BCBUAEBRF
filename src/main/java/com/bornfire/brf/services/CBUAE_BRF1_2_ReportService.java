@@ -1,5 +1,9 @@
 package com.bornfire.brf.services;
 
+
+import org.springframework.web.servlet.ModelAndView;
+
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -23,15 +27,22 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.controllers.CBUAE_BRF_ReportsController;
+import com.bornfire.brf.entities.CBUAE_BRF1_2REPORT_REPO;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_DETAIL_ENTITY;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_DETAIL_REPO;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_SUMMARY_REPO1;
@@ -50,6 +61,11 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 	
 	@Autowired
 	private Environment env;	
+	
+	private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_1_ReportService.class);
+	
+	@Autowired
+	private Environment env;
 	
 	@Autowired
 	SessionFactory sessionFactory;
@@ -79,8 +95,13 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 		try {
 			Date d1 = dateformat.parse(todate);
 			
+
 			 T1Master=CBUAE_BRF1_2_REPORT_REPO1.getdatabydateList(dateformat.parse(todate));
 			 T1Master1=CBUAE_BRF1_2_REPORT_REPO2.getdatabydateList(dateformat.parse(todate));
+
+			 T1Master=CBUAE_BRF1_2_REPORT_REPO.getdatabydateList(dateformat.parse(todate));
+			 T1Master1=CBUAE_BRF1_2_REPORT_REPO.getdatabydateList1(dateformat.parse(todate));
+
 		
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -144,7 +165,11 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 		}
 
 		String templateDir = env.getProperty("output.exportpathtemp");
+
 		String templateFileName = filename;
+
+		String templateFileName = filename+".xls";
+
 		System.out.println(filename);
 		Path templatePath = Paths.get(templateDir, templateFileName);
 		System.out.println(templatePath);
@@ -204,11 +229,14 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
 					CBUAE_BRF1_2_SUMMARY_ENTITY1 record = dataList.get(i);
+
+					
 					System.out.println("rownumber="+startRow + i);
 					Row row = sheet.getRow(startRow + i);
 					if (row == null) {
 						row = sheet.createRow(startRow + i);
 					}
+
 
 		/////ROW13///////////
 										//row13
@@ -227,11 +255,20 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_2_Report
 										Cell cell5 = row.createCell(5);
 										if (record.getR0020_amount_aed_resident() != null) {
 											cell5.setCellValue(record.getR0020_amount_aed_resident().doubleValue());
+
+		
+										//row13
+										// Column 5: 
+										Cell cell5 = row.createCell(5);
+										if (record.getR0010_no_acct_aed_resident() != null) {
+											cell5.setCellValue(record.getR0010_no_acct_aed_resident().doubleValue());
+
 											cell5.setCellStyle(numberStyle);
 										} else {
 											cell5.setCellValue("");
 											cell5.setCellStyle(textStyle);
 										}
+
 										
 										//row13
 										// Column G: 
@@ -1513,5 +1550,25 @@ R13cell11.setCellStyle(textStyle);
 	}
 }
 
+
+
+
+									
+				}
+
+				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
+			} else {
+				System.out.println("No Trade Market Risk data found to generate the Excel file.");
+			}
+
+			// Write the final workbook content to the in-memory stream.
+			workbook.write(out);
+
+			logger.info("Service: Excel data successfully written to memory buffer ({} bytes).", out.size());
+
+			return out.toByteArray();
+		}
+	}
+}
 
 

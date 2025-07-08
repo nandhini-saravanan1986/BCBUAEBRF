@@ -1,8 +1,13 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <!-- 
+
 CREATED BY	: VINOTH KUMAR S 
 CREATED ON	: 02.07.2025
+
+CREATED BY	: nishanthini
+CREATED ON	: 05.07.2025
+
 PURPOSE		: BRFREPORT
 -->
 
@@ -799,7 +804,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0150</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.1.3</td>
-															 <th th:text="${report.r0150_product}"></th>
+															 <td th:text="${report.r0150_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0150_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0150_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0150_no_acct_fcy_resident}"></td>
@@ -814,7 +819,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0160</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.1.4</td>
-															 <th th:text="${report.r0160_product}"></th>
+															 <td th:text="${report.r0160_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0160_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0160_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0160_no_acct_fcy_resident}"></td>
@@ -829,22 +834,22 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0170</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.2</td>
-															 <th th:text="${report.r0170_product}"></th>
-															 <td style="text-align: right;" th:text="${report.r0170_no_acct_aed_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_amount_aed_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_no_acct_fcy_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_amount_fcy_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_no_acct_aed_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_amount_aed_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_no_acct_fcy_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0170_amount_fcy_non_resident}"></td>
+															 <td th:text="${report.r0170_product}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_no_acct_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_no_acct_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_no_acct_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_no_acct_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0170_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0180</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.2.1</td>
-															 <th th:text="${report.r0180_product}"></th>
+															 <td th:text="${report.r0180_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0180_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0180_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0180_no_acct_fcy_resident}"></td>
@@ -859,7 +864,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0190</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.2.2</td>
-															 <th th:text="${report.r0190_product}"></th>
+															 <td th:text="${report.r0190_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0190_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0190_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0190_no_acct_fcy_resident}"></td>
@@ -874,7 +879,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0200</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.2.3</td>
-															 <th th:text="${report.r0200_product}"></th>
+															 <td th:text="${report.r0200_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0200_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0200_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0200_no_acct_fcy_resident}"></td>
@@ -889,7 +894,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0210</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >3.2.4</td>
-															 <th th:text="${report.r0210_product}"></th>
+															 <td th:text="${report.r0210_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0210_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0210_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0210_no_acct_fcy_resident}"></td>
@@ -905,21 +910,21 @@ function showResultModal(title, message) {
 															 <td style="text-align: center; background-color: #b3b6b9" >0220</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >4</td>
 															 <th th:text="${report.r0220_product}"></th>
-															 <td style="text-align: right;" th:text="${report.r0220_no_acct_aed_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_amount_aed_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_no_acct_fcy_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_amount_fcy_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_no_acct_aed_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_amount_aed_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_no_acct_fcy_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0220_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_no_acct_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_no_acct_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_no_acct_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_no_acct_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0220_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0230</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >4.1</td>
-															 <th th:text="${report.r0230_product}"></th>
+															 <td th:text="${report.r0230_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0230_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0230_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0230_no_acct_fcy_resident}"></td>
@@ -934,7 +939,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0240</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >4.2</td>
-															 <th th:text="${report.r0240_product}"></th>
+															 <td th:text="${report.r0240_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0240_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0240_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0240_no_acct_fcy_resident}"></td>
@@ -949,7 +954,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0250</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >4.3</td>
-															 <th th:text="${report.r0250_product}"></th>
+															 <td th:text="${report.r0250_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0250_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0250_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0250_no_acct_fcy_resident}"></td>
@@ -964,7 +969,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0260</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >4.4</td>
-															 <th th:text="${report.r0260_product}"></th>
+															 <td th:text="${report.r0260_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0260_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0260_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0260_no_acct_fcy_resident}"></td>
@@ -980,21 +985,21 @@ function showResultModal(title, message) {
 															 <td style="text-align: center; background-color: #b3b6b9" >0270</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >5</td>
 															 <th th:text="${report.r0270_product}"></th>
-															 <td style="text-align: right;" th:text="${report.r0270_no_acct_aed_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_amount_aed_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_no_acct_fcy_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_amount_fcy_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_no_acct_aed_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_amount_aed_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_no_acct_fcy_non_resident}"></td>
-															 <td style="text-align: right;" th:text="${report.r0270_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_no_acct_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_no_acct_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_no_acct_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_no_acct_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0270_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0280</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >5.1</td>
-															 <th th:text="${report.r0280_product}"></th>
+															 <td th:text="${report.r0280_product}"></td>
 															 <td style="text-align: right;" th:text="${report.r0280_no_acct_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0280_amount_aed_resident}"></td>
 															 <td style="text-align: right;" th:text="${report.r0280_no_acct_fcy_resident}"></td>
@@ -1009,7 +1014,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0290</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >6</td>
-															 <th th:text="${report.r0290_product}"></th>
+															 <td th:text="${report.r0290_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0290_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1026,20 +1031,20 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >7</td>
 															 <th th:text="${report.r0300_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0300_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0300_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0300_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0300_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0300_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0300_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0300_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0300_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0300_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0310</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >7.1</td>
-															 <th th:text="${report.r0310_product}"></th>
+															 <td th:text="${report.r0310_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0310_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1054,7 +1059,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0320</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >7.2</td>
-															 <th th:text="${report.r0320_product}"></th>
+															 <td th:text="${report.r0320_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0320_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1070,7 +1075,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0330</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >7.3</td>
-															 <th th:text="${report.r0330_product}"></th>
+															 <td th:text="${report.r0330_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0330_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1087,13 +1092,13 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >8</td>
 															 <th th:text="${report.r0340_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0340_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0340_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0340_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0340_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0340_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0340_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0340_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0340_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0340_total_amount}"></td>
 															 </tr>
 
@@ -1103,13 +1108,13 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >8.1</td>
 															 <th th:text="${report.r0350_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0350_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0350_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0350_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0350_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0350_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0350_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0350_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0350_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0350_total_amount}"></td>
 															 </tr>
 
@@ -1119,13 +1124,13 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >8.2</td>
 															 <th th:text="${report.r0360_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0360_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0360_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0360_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0360_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0360_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0360_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0360_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0360_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0360_total_amount}"></td>
 															 </tr>
 															 
@@ -1134,20 +1139,20 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >9</td>
 															 <th th:text="${report.r0370_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0370_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0370_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0370_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0370_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0370_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0370_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0370_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0370_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0370_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0380</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >9.1</td>
-															 <th th:text="${report.r0380_product}"></th>
+															 <td th:text="${report.r0380_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0380_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1162,7 +1167,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0390</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >9.2</td>
-															 <th th:text="${report.r0390_product}"></th>
+															 <td th:text="${report.r0390_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0390_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1177,7 +1182,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0400</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >9.3</td>
-															 <th th:text="${report.r0400_product}"></th>
+															 <td th:text="${report.r0400_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0400_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1192,7 +1197,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0410</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >9.4</td>
-															 <th th:text="${report.r0410_product}"></th>
+															 <td th:text="${report.r0410_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0410_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1209,20 +1214,20 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >10</td>
 															 <th th:text="${report.r0420_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0420_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0420_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0420_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0420_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0420_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0420_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0420_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0420_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0420_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0430</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >10.1</td>
-															 <th th:text="${report.r0430_product}"></th>
+															 <td th:text="${report.r0430_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0430_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1237,7 +1242,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0440</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >10.2</td>
-															 <th th:text="${report.r0440_product}"></th>
+															 <td th:text="${report.r0440_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0440_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1269,20 +1274,20 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >12</td>
 															 <th th:text="${report.r0460_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0460_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0460_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0460_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0460_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0460_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0470</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.1</td>
-															 <th th:text="${report.r0470_product}"></th>
+															 <td th:text="${report.r0470_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0470_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1297,7 +1302,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0480</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.2</td>
-															 <th th:text="${report.r0480_product}"></th>
+															 <td th:text="${report.r0480_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0480_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1312,7 +1317,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0490</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.3</td>
-															 <th th:text="${report.r0490_product}"></th>
+															 <td th:text="${report.r0490_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0490_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1327,7 +1332,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0500</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.4</td>
-															 <th th:text="${report.r0500_product}"></th>
+															 <td th:text="${report.r0500_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0500_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1342,7 +1347,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0510</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.5</td>
-															 <th th:text="${report.r0510_product}"></th>
+															 <td th:text="${report.r0510_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0510_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1357,7 +1362,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0520</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.6</td>
-															 <th th:text="${report.r0520_product}"></th>
+															 <td th:text="${report.r0520_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0520_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1372,7 +1377,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0530</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.7</td>
-															 <th th:text="${report.r0530_product}"></th>
+															 <td th:text="${report.r0530_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0530_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1387,7 +1392,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0540</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.8</td>
-															 <th th:text="${report.r0540_product}"></th>
+															 <td th:text="${report.r0540_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0540_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1402,7 +1407,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0550</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.9</td>
-															 <th th:text="${report.r0550_product}"></th>
+															 <td th:text="${report.r0550_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0550_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1417,7 +1422,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0560</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.10</td>
-															 <th th:text="${report.r0560_product}"></th>
+															 <td th:text="${report.r0560_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0560_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1432,7 +1437,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0570</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.11</td>
-															 <th th:text="${report.r0570_product}"></th>
+															 <td th:text="${report.r0570_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0570_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1447,7 +1452,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0580</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >12.12</td>
-															 <th th:text="${report.r0580_product}"></th>
+															 <td th:text="${report.r0580_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0580_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1464,20 +1469,20 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >13</td>
 															 <th th:text="${report.r0590_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0590_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0590_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0590_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0590_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0590_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0600</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.1</td>
-															 <th th:text="${report.r0600_product}"></th>
+															 <td th:text="${report.r0600_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0600_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1492,7 +1497,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0610</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.2</td>
-															 <th th:text="${report.r0610_product}"></th>
+															 <td th:text="${report.r0610_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0610_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1507,7 +1512,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0620</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.2.1</td>
-															 <th th:text="${report.r0620_product}"></th>
+															 <td th:text="${report.r0620_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0620_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1522,7 +1527,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0630</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.2.2</td>
-															 <th th:text="${report.r0630_product}"></th>
+															 <td th:text="${report.r0630_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0630_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1537,7 +1542,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0640</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.3</td>
-															 <th th:text="${report.r0640_product}"></th>
+															 <td th:text="${report.r0640_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0640_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1552,7 +1557,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0650</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.4</td>
-															 <th th:text="${report.r0650_product}"></th>
+															 <td th:text="${report.r0650_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0650_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1567,7 +1572,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0660</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.5</td>
-															 <th th:text="${report.r0660_product}"></th>
+															 <td th:text="${report.r0660_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0660_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1582,7 +1587,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0670</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.6</td>
-															 <th th:text="${report.r0670_product}"></th>
+															 <td th:text="${report.r0670_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0670_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1597,7 +1602,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0680</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.7</td>
-															 <th th:text="${report.r0680_product}"></th>
+															 <td th:text="${report.r0680_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0680_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1612,7 +1617,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0690</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.8</td>
-															 <th th:text="${report.r0690_product}"></th>
+															 <td th:text="${report.r0690_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0690_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1627,7 +1632,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0700</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.9</td>
-															 <th th:text="${report.r0700_product}"></th>
+															 <td th:text="${report.r0700_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0700_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1642,7 +1647,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0710</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >13.10</td>
-															 <th th:text="${report.r0710_product}"></th>
+															 <td th:text="${report.r0710_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0710_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1659,20 +1664,20 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >14</td>
 															 <th th:text="${report.r0720_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0720_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0720_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0720_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0720_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0720_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0720_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0720_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0720_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0720_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0730</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.1</td>
-															 <th th:text="${report.r0730_product}"></th>
+															 <td th:text="${report.r0730_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0730_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1687,7 +1692,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0740</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.2</td>
-															 <th th:text="${report.r0740_product}"></th>
+															 <td th:text="${report.r0740_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0740_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1702,7 +1707,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0750</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.3</td>
-															 <th th:text="${report.r0750_product}"></th>
+															 <td th:text="${report.r0750_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0750_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1717,7 +1722,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0760</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.4</td>
-															 <th th:text="${report.r0760_product}"></th>
+															 <td th:text="${report.r0760_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0760_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1732,7 +1737,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0770</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.5</td>
-															 <th th:text="${report.r0770_product}"></th>
+															 <td th:text="${report.r0770_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0770_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1747,7 +1752,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0780</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.6</td>
-															 <th th:text="${report.r0780_product}"></th>
+															 <td th:text="${report.r0780_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0780_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1762,7 +1767,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0790</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >14.7</td>
-															 <th th:text="${report.r0790_product}"></th>
+															 <td th:text="${report.r0790_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0790_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1779,35 +1784,35 @@ function showResultModal(title, message) {
 															 <td style="text-align: right; background-color: #b3b6b9" >15</td>
 															 <th th:text="${report.r0800_product}"></th>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0800_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0800_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0800_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0800_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0800_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0800_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0800_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0800_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0800_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0810</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.1</td>
-															 <th th:text="${report.r0810_product}"></th>
+															 <td th:text="${report.r0810_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0810_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0810_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0810_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0810_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0810_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0810_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0810_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0810_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0810_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0820</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.1.1</td>
-															 <th th:text="${report.r0820_product}"></th>
+															 <td th:text="${report.r0820_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0820_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1822,7 +1827,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0830</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.1.2</td>
-															 <th th:text="${report.r0830_product}"></th>
+															 <td th:text="${report.r0830_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0830_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1837,7 +1842,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0840</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.1.3</td>
-															 <th th:text="${report.r0840_product}"></th>
+															 <td th:text="${report.r0840_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0840_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1852,22 +1857,22 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0850</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.2</td>
-															 <th th:text="${report.r0850_product}"></th>
+															 <td th:text="${report.r0850_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0850_amount_aed_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0850_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0850_amount_fcy_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0850_amount_fcy_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0850_amount_aed_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0850_amount_aed_non_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
-															 <td style="text-align: right;" th:text="${report.r0850_amount_fcy_non_resident}"></td>
+															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0850_amount_fcy_non_resident}"></td>
 															 <td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0850_total_amount}"></td>
 															 </tr>
 
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0860</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.2.1</td>
-															 <th th:text="${report.r0860_product}"></th>
+															 <td th:text="${report.r0860_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0860_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1882,7 +1887,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0870</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.2.2</td>
-															 <th th:text="${report.r0870_product}"></th>
+															 <td th:text="${report.r0870_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0870_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1897,7 +1902,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0880</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.2.3</td>
-															 <th th:text="${report.r0880_product}"></th>
+															 <td th:text="${report.r0880_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0880_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1912,7 +1917,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0890</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.2.4</td>
-															 <th th:text="${report.r0890_product}"></th>
+															 <td th:text="${report.r0890_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0890_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1927,7 +1932,7 @@ function showResultModal(title, message) {
 															 <tr style="background-color: #b3b6b9">
 															 <td style="text-align: center; background-color: #b3b6b9" >0900</td>
 															 <td style="text-align: right; background-color: #b3b6b9" >15.2.5</td>
-															 <th th:text="${report.r0900_product}"></th>
+															 <td th:text="${report.r0900_product}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
 															 <td style="text-align: right;" th:text="${report.r0900_amount_aed_resident}"></td>
 															 <td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1946,7 +1951,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0910</td>
 																<td style="text-align: right; background-color: #b3b6b9" >15.2.6</td>
-																<th th:text="${report1.r0910_product}"></th>
+																<td th:text="${report1.r0910_product}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
 																<td style="text-align: right;" th:text="${report1.r0910_amount_aed_resident}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1961,7 +1966,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0920</td>
 																<td style="text-align: right; background-color: #b3b6b9" >15.3</td>
-																<th th:text="${report1.r0920_product}"></th>
+																<td th:text="${report1.r0920_product}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
 																<td style="text-align: right;" th:text="${report1.r0920_amount_aed_resident}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
@@ -1976,15 +1981,15 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0930</td>
 																<td style="text-align: right; background-color: #b3b6b9" >16</td>
-																<th th:text="${report1.r0930_product}"></th>
+																<td th:text="${report1.r0930_product}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
-																<td style="text-align: right;" th:text="${report1.r0930_amount_aed_resident}"></td>
+																<td style="text-align: right; background-color: #b3b6b9" th:text="${report1.r0930_amount_aed_resident}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
-																<td style="text-align: right;" th:text="${report1.r0930_amount_fcy_resident}"></td>
+																<td style="text-align: right; background-color: #b3b6b9" th:text="${report1.r0930_amount_fcy_resident}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
-																<td style="text-align: right;" th:text="${report1.r0930_amount_aed_non_resident}"></td>
+																<td style="text-align: right; background-color: #b3b6b9" th:text="${report1.r0930_amount_aed_non_resident}"></td>
 																<td style="text-align: center; background-color: #b3b6b9"></td>
-																<td style="text-align: right;" th:text="${report1.r0930_amount_fcy_non_resident}"></td>
+																<td style="text-align: right; background-color: #b3b6b9" th:text="${report1.r0930_amount_fcy_non_resident}"></td>
 																<td style="text-align: right; background-color: #b3b6b9" th:text="${report1.r0930_total_amount}"></td>
 																</tr>
 
@@ -2003,7 +2008,7 @@ function showResultModal(title, message) {
 																<th colspan="11" style="text-align: center">UAE Operation</th>										
                                                                 </tr>
 																																
-																<tr style="background-color: #b3b6b9">
+																<tr>
 																<th  style="text-align: center">Stage 1 for Loans and Advances</th>
 																<th  style="text-align: center">Stage 1 for Investments</th>
                                                                 <th  style="text-align: center">Stage 1 for all other assets</th>
@@ -2045,7 +2050,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0950</td>
 																<td style="text-align: right; background-color: #b3b6b9" >17.1</td>
-																<th th:text="${report1.r0950_product}"></th>
+																<td th:text="${report1.r0950_product}"></td>
 																<td style="text-align: right;" th:text="${report1.r0950_stage1_loans}"></td>
 																<td style="text-align: right;" th:text="${report1.r0950_stage1_investments}"></td>
 																<td style="text-align: right;" th:text="${report1.r0950_stage1_all_others}"></td>
@@ -2063,7 +2068,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0960</td>
 																<td style="text-align: right; background-color: #b3b6b9" >17.2</td>
-																<th th:text="${report1.r0960_product}"></th>
+																<td th:text="${report1.r0960_product}"></td>
 																<td style="text-align: right;" th:text="${report1.r0960_stage1_loans}"></td>
 																<td style="text-align: right;" th:text="${report1.r0960_stage1_investments}"></td>
 																<td style="text-align: right;" th:text="${report1.r0960_stage1_all_others}"></td>
@@ -2081,7 +2086,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0970</td>
 																<td style="text-align: right; background-color: #b3b6b9" >17.3</td>
-																<th th:text="${report1.r0970_product}"></th>
+																<td th:text="${report1.r0970_product}"></td>
 																<td style="text-align: right;" th:text="${report1.r0970_stage1_loans}"></td>
 																<td style="text-align: right;" th:text="${report1.r0970_stage1_investments}"></td>
 																<td style="text-align: right;" th:text="${report1.r0970_stage1_all_others}"></td>
@@ -2099,7 +2104,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0980</td>
 																<td style="text-align: right; background-color: #b3b6b9" >17.4</td>
-																<th th:text="${report1.r0980_product}"></th>
+																<td th:text="${report1.r0980_product}"></td>
 																<td style="text-align: right;" th:text="${report1.r0980_stage1_loans}"></td>
 																<td style="text-align: right;" th:text="${report1.r0980_stage1_investments}"></td>
 																<td style="text-align: right;" th:text="${report1.r0980_stage1_all_others}"></td>
@@ -2117,7 +2122,7 @@ function showResultModal(title, message) {
 																<tr style="background-color: #b3b6b9">
 																<td style="text-align: center; background-color: #b3b6b9" >0990</td>
 																<td style="text-align: right; background-color: #b3b6b9" >17.5</td>
-																<th th:text="${report1.r0990_product}"></th>
+																<td th:text="${report1.r0990_product}"></td>
 																<td style="text-align: right;" th:text="${report1.r0990_stage1_loans}"></td>
 																<td style="text-align: right;" th:text="${report1.r0990_stage1_investments}"></td>
 																<td style="text-align: right;" th:text="${report1.r0990_stage1_all_others}"></td>
@@ -2141,6 +2146,7 @@ function showResultModal(title, message) {
 																<tr>
 																<td style="text-align: center; background-color: #b3b6b9" >1010</td>
 																<td style="text-align: right; background-color: #b3b6b9" >18.1</td>
+
 																<th th:text="${report1.r1010_product}"></th>
 																<td></td>
 																<td></td>
@@ -2171,6 +2177,38 @@ function showResultModal(title, message) {
 																<td></td>
 																<td></td>
 																<td></td>
+
+																<th th:text="${report1.r101_product}"></th>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																</tr>
+															
+																<tr>
+																<td style="text-align: center; background-color: #b3b6b9" >1010</td>
+																<td style="text-align: right; background-color: #b3b6b9" >18.1</td>
+																<th th:text="${report1.r101_product}"></th>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+																<td style=" background-color: #b3b6b9" ></td>
+
 																</tr>
 																
 																						</tbody>
