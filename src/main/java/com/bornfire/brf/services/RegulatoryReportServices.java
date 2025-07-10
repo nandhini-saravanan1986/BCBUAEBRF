@@ -36,19 +36,17 @@ public class RegulatoryReportServices {
     @Autowired
    	CBUAE_BRF2_2_ReportService cbuae_brf2_2_reportservice;
 
-
-
-
     @Autowired
    	CBUAE_BRF2_4_ReportService cbuae_brf2_4_reportservice;
     
     @Autowired
    	CBUAE_BRF2_6_ReportService cbuae_brf2_6_reportservice;
 
-
     @Autowired
    	CBUAE_BRF2_3_ReportService cbuae_brf2_3_reportservice;
     
+    @Autowired
+   	CBUAE_BRF2_7_ReportService cbuae_brf2_7_reportservice;
 
 
 	
@@ -82,9 +80,6 @@ public class RegulatoryReportServices {
 		case "BRF2_2":
 			repsummary = cbuae_brf2_2_reportservice.getBRF2_2View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
-			
-
-
 
 		case "BRF2_4":
 			repsummary = cbuae_brf2_4_reportservice.getBRF2_4View(reportId, fromdate, todate, currency, dtltype, pageable);
@@ -96,6 +91,10 @@ public class RegulatoryReportServices {
 
 		case "BRF2_3":
 			repsummary = cbuae_brf2_3_reportservice.getBRF2_3View(reportId, fromdate, todate, currency, dtltype, pageable);
+			break;
+			
+		case "BRF2_7":
+			repsummary = cbuae_brf2_7_reportservice.getBRF2_7View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
 			
 		}
@@ -153,6 +152,11 @@ public class RegulatoryReportServices {
 					pageable, Filter);
 			break;
 			
+		case "BRF2_7":
+			repdetail = cbuae_brf2_7_reportservice.getBRF2_7currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			
 
 			}
 			
@@ -196,7 +200,25 @@ public class RegulatoryReportServices {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				break;	
+				break;
+				
+			case "BRF2_3":
+				try {
+					repfile = cbuae_brf2_3_reportservice.getBRF2_3Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+				
+			case "BRF2_7":
+				try {
+					repfile = cbuae_brf2_7_reportservice.getBRF2_7Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
 			}
 		
 		return repfile;
