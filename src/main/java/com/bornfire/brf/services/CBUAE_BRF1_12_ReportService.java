@@ -102,42 +102,52 @@ public class CBUAE_BRF1_12_ReportService {
 	}
 	
 	
-	public ModelAndView getBRF1_12currentDtl(String reportId, String fromdate, String todate, String currency,
-			String dtltype, Pageable pageable, String filter) {
+	public ModelAndView getBRF1_12currentDtl(
+	        String reportId, String fromdate, String todate, String currency,
+	        String dtltype, Pageable pageable, String filter) {
 
-		int pageSize = pageable.getPageSize();
-		int currentPage = pageable.getPageNumber();
-		int startItem = currentPage * pageSize;
+	    int pageSize = pageable.getPageSize();
+	    int currentPage = pageable.getPageNumber();
 
-		ModelAndView mv = new ModelAndView();
+	    ModelAndView mv = new ModelAndView();
+	    List<CBUAE_BRF1_12_Detail_Entity> T1Dt1 = new ArrayList<>();
 
-		Session hs = sessionFactory.getCurrentSession();
-		List<CBUAE_BRF1_12_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF1_12_Detail_Entity>();
-		
-		try {
-			Date d1 = dateformat.parse(todate);
-			
-			T1Dt1=BRF1_12_DETAIL_Repo.getdatabydateList(dateformat.parse(todate));
-			System.out.println("LISTCOUNT"+T1Dt1.size());
-		
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
+	    try {
+	        Date d1 = dateformat.parse(todate);
 
-		//Page<Object> T1Dt1Page = new PageImpl<Object>(pagedlist, PageRequest.of(currentPage, pageSize), T1Dt1.size());
+	        String rowId = null;
+	        String columnId = null;
 
-		mv.setViewName("BRF/CBUAE_BRF1_12");
-		mv.addObject("displaymode", "Details");
-		//mv.addObject("reportdetails", T1Dt1Page.getContent());
-		mv.addObject("reportdetails",T1Dt1 );
-		mv.addObject("reportmaster12", T1Dt1);
-		//mv.addObject("reportmaster1", qr);
-		//mv.addObject("singledetail", new T1CurProdDetail());
-		mv.addObject("reportsflag", "reportsflag");
-		mv.addObject("menu", reportId);
-		return mv;
+	        // ✅ Split the filter string here
+	        if (filter != null && filter.contains(",")) {
+	            String[] parts = filter.split(",");
+	            if (parts.length >= 2) {
+	                rowId = parts[0];
+	                columnId = parts[1];
+	            }
+	        }
+
+	        if (rowId != null && columnId != null) {
+	            T1Dt1 = BRF1_12_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+	        } else {
+	            T1Dt1 = BRF1_12_DETAIL_Repo.getdatabydateList(d1);
+	        }
+
+	        System.out.println("LISTCOUNT: " + T1Dt1.size());
+
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+
+	    mv.setViewName("BRF/CBUAE_BRF1_12");
+	    mv.addObject("displaymode", "Details");
+	    mv.addObject("reportdetails", T1Dt1);
+	    mv.addObject("reportmaster12", T1Dt1);
+	    mv.addObject("reportsflag", "reportsflag");
+	    mv.addObject("menu", reportId);
+	    return mv;
 	}
+
 	
 	public byte[] getBRF1_12Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");

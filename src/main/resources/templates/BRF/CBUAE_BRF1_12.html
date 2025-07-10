@@ -290,6 +290,13 @@ label.error {
 
 
 </style>
+    <style>
+  /* Apply pointer cursor on hover for ONLY the 3rd td in tbody of #reports */
+  #reports tbody tr td:nth-child(4):hover {
+    cursor: pointer;
+    background-color: #d6d8db; /* Optional: subtle hover effect */
+  }
+</style>
     
 <style>
 .right-align{
@@ -347,6 +354,29 @@ TEXT-ALIGN:RIGHT;
     }); */
 }
 	
+	function showdetailsbyRowAndColumn(a) { 
+	    var rowId = a.getAttribute('RowId');
+	    var columnId = a.getAttribute('ColumnId');
+	    var cellValue = a.textContent || a.innerText;
+
+	    if (cellValue !== '0') {
+	        if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
+	            $('#loader').modal('show');
+
+	            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+
+	            Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+
+	            location.href = Callurl;
+
+	            console.log(Callurl);
+	        }
+	    } else {
+	        alert("No Records available for this selected cell.");
+	    }
+	}
+
+		
 	function showsummary() {
 		$('#loader').modal('show');
 		var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
@@ -471,7 +501,7 @@ function downloadfile(button) {
      
 <title>BRF</title>
 <body> 
-<<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
 		<div class="row">
 		
 			<div th:insert="HeaderMenu :: header"></div>
@@ -562,42 +592,52 @@ function downloadfile(button) {
 							<tr style="background-color: #b3b6b9">
     <td>0010</td><td>1</td>
     <td th:text="${report.r0010Product}"></td>
-    <td th:text="${report.r0010AverageQualify}" class="right-align"></td>
+    <td style="background-color: #b3b6b9" th:text="${report.r0010AverageQualify}" class="right-align"></td>
     <td style="background-color:#8f9193" th:text="${report.r0010RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0010RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0020</td><td>1.1</td>
     <td th:text="${report.r0020Product}"></td>
-    <td th:text="${report.r0020AverageQualify}" class="right-align"></td>
-    <td th:text="${report.r0020RequirementRatios}" class="right-align"></td>
+     <td th:text="${report.r0020AverageQualify}" 
+      th:attr="RowId='R0020', ColumnId='C0010'" 
+      onclick="showdetailsbyRowAndColumn(this)" 
+      class="right-align"></td>
+      <td th:text="${report.r0020RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0020RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0030</td><td>1.2</td>
     <td th:text="${report.r0030Product}"></td>
-    <td th:text="${report.r0030AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0030AverageQualify}" 
+    th:attr="RowId='R0030', ColumnId='C0010'"  
+    onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
     <td th:text="${report.r0030RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0030RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0040</td><td>1.3</td>
     <td th:text="${report.r0040Product}"></td>
-    <td th:text="${report.r0040AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0040AverageQualify}" th:attr="RowId='R0040', ColumnId='C0010'" 
+      onclick="showdetailsbyRowAndColumn(this)"  class="right-align"></td>
     <td th:text="${report.r0040RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0040RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0050</td><td>1.4</td>
     <td th:text="${report.r0050Product}"></td>
-    <td th:text="${report.r0050AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0050AverageQualify}"
+    th:attr="RowId='R0050', ColumnId='C0010'" 
+      onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
     <td th:text="${report.r0050RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0050RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0060</td><td>1.5</td>
     <td th:text="${report.r0060Product}"></td>
-    <td th:text="${report.r0060AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0060AverageQualify}" 
+    th:attr="RowId='R0060', ColumnId='C0010'" 
+      onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
     <td th:text="${report.r0060RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0060RequirementApplied}" class="right-align"></td>
 </tr>
@@ -611,35 +651,36 @@ function downloadfile(button) {
 <tr style="background-color: #b3b6b9">
     <td>0080</td><td>2.1</td>
     <td th:text="${report.r0080Product}"></td>
-    <td th:text="${report.r0080AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0080AverageQualify}" th:attr="RowId='R0080', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
     <td th:text="${report.r0080RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0080RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0090</td><td>2.2</td>
     <td th:text="${report.r0090Product}"></td>
-    <td th:text="${report.r0090AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0090AverageQualify}" th:attr="RowId='R0090', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
     <td th:text="${report.r0090RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0090RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0100</td><td>2.3</td>
     <td th:text="${report.r0100Product}"></td>
-    <td th:text="${report.r0100AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0100AverageQualify}" th:attr="RowId='R0100', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
     <td th:text="${report.r0100RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0100RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0110</td><td>2.4</td>
     <td th:text="${report.r0110Product}"></td>
-    <td th:text="${report.r0110AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0110AverageQualify}" th:attr="RowId='R0110', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
     <td th:text="${report.r0110RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0110RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0120</td><td>2.5</td>
     <td th:text="${report.r0120Product}"></td>
-    <td th:text="${report.r0120AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0120AverageQualify}" 
+    th:attr="RowId='R0120', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
     <td th:text="${report.r0120RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0120RequirementApplied}" class="right-align"></td>
 </tr>
@@ -653,35 +694,45 @@ function downloadfile(button) {
 <tr style="background-color: #b3b6b9">
     <td>0140</td><td>3.1</td>
     <td th:text="${report.r0140Product}"></td>
-    <td th:text="${report.r0140AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0140AverageQualify}" 
+    th:attr="RowId='R0140', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0140RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0140RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0150</td><td>3.2</td>
     <td th:text="${report.r0150Product}"></td>
-    <td th:text="${report.r0150AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0150AverageQualify}" 
+    th:attr="RowId='R0150', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0150RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0150RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0160</td><td>3.3</td>
     <td th:text="${report.r0160Product}"></td>
-    <td th:text="${report.r0160AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0160AverageQualify}"
+    th:attr="RowId='R0160', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0160RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0160RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0170</td><td>3.4</td>
     <td th:text="${report.r0170Product}"></td>
-    <td th:text="${report.r0170AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0170AverageQualify}" 
+    th:attr="RowId='R0170', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0170RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0170RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0180</td><td>3.5</td>
     <td th:text="${report.r0180Product}"></td>
-    <td th:text="${report.r0180AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0180AverageQualify}" 
+    th:attr="RowId='R0180', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0180RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0180RequirementApplied}" class="right-align"></td>
 </tr>
@@ -695,35 +746,45 @@ function downloadfile(button) {
 <tr style="background-color: #b3b6b9">
     <td>0200</td><td>4.1</td>
     <td th:text="${report.r0200Product}"></td>
-    <td th:text="${report.r0200AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0200AverageQualify}" 
+    th:attr="RowId='R0200', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0200RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0200RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0210</td><td>4.2</td>
     <td th:text="${report.r0210Product}"></td>
-    <td th:text="${report.r0210AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0210AverageQualify}" 
+    th:attr="RowId='R0210', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0210RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0210RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0220</td><td>4.3</td>
     <td th:text="${report.r0220Product}"></td>
-    <td th:text="${report.r0220AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0220AverageQualify}"
+    th:attr="RowId='R0220', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0220RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0220RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0230</td><td>4.4</td>
     <td th:text="${report.r0230Product}"></td>
-    <td th:text="${report.r0230AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0230AverageQualify}"
+    th:attr="RowId='R0230', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0230RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0230RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0240</td><td>4.5</td>
     <td th:text="${report.r0240Product}"></td>
-    <td th:text="${report.r0240AverageQualify}" class="right-align"></td>
+    <td th:text="${report.r0240AverageQualify}" 
+    th:attr="RowId='R0240', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"
+    class="right-align"></td>
     <td th:text="${report.r0240RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0240RequirementApplied}" class="right-align"></td>
 </tr>
