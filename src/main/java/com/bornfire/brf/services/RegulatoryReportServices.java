@@ -232,6 +232,21 @@ public class RegulatoryReportServices {
 		
 		return repfile;
 	}
+	
+	
+	public byte[] getDownloadDetailFile(String filename, String fromdate, String todate) {
+		
+		System.out.println("came to common service");
+	    if ("BRF1_12Detail".equals(filename)) {
+	        return cbuae_brf1_12_reportservice.getBRF1_12DetailExcel(filename, fromdate, todate);
+	    }
+	    return new byte[0];
+	}
+
+
+
+
+
 
 }
 
