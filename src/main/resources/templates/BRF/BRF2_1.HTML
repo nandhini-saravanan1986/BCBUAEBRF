@@ -1,8 +1,8 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <!-- 
-CREATED BY	: VINOTH KUMAR S 
-CREATED ON	: 02.07.2025
+CREATED BY	: NIVETHA S 
+CREATED ON	: 05.07.2025
 PURPOSE		: BRFREPORT
 -->
 
@@ -425,7 +425,7 @@ function downloadfile(button) {
 				const a = document.createElement('a');
 				a.style.display = 'none';
 				a.href = url;
-				a.download = 'filename';
+				a.download = filename;
 				document.body.appendChild(a);
 				a.click();
 				window.URL.revokeObjectURL(url);
@@ -476,7 +476,6 @@ function showResultModal(title, message) {
 <body> 
 <div class="container-fluid" style="padding-left:0px; padding-right:0px;">
 		<div class="row">
-			
 		
 			<div th:insert="HeaderMenu :: header"></div>
 
@@ -490,7 +489,7 @@ function showResultModal(title, message) {
 
         <!-- Title -->
         <h5 style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-            LENDING TO STABLE RESOURCES RATIO (LSRR)- BRF 2.1 (AED 000)										
+           BRF 2.1 - LENDING TO STABLE RESOURCES RATIO (LSRR)									
         </h5>
     </div>
 
@@ -528,6 +527,7 @@ function showResultModal(title, message) {
         </button>
     </div>
 </div>
+			
 			
 			<div th:if="${displaymode == 'summary'}">
 			<div class="row" >
@@ -621,8 +621,8 @@ function showResultModal(title, message) {
 
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0100</td>
-											<td style="text-align: right; background-color: #b3b6b9;">2</td>
-											<td colspan = "2" style="background-color: #b3b6b9;" th:text="${report.r0100_product}"></td>
+											<td style="text-align: right; font-weight: bold; background-color: #b3b6b9;">2</td>
+											<td colspan = "2" style="background-color: #b3b6b9; font-weight: bold;" th:text="${report.r0100_product}"></td>
 											
 										</tr>
 										<tr>
@@ -676,21 +676,21 @@ function showResultModal(title, message) {
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0180</td>
 											<td style="text-align: right; background-color: #b3b6b9;">2.9</td>
-											<td th:text="${report.r0180_product}"></td>
+											<td style="font-weight: bold;" th:text="${report.r0180_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0180_amount}"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0190</td>
 											<td style="text-align: right; background-color: #b3b6b9;">2.10</td>
-											<td th:text="${report.r0190_product}"></td>
+											<td style="font-weight: bold;" th:text="${report.r0190_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0190_amount}"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0200</td>
 											<td style="text-align: right; background-color: #b3b6b9;">3</td>
-											<td colspan = "2" style="background-color: #b3b6b9;" th:text="${report.r0200_product}"></td>
+											<td colspan = "2" style="background-color: #b3b6b9; font-weight: bold;" th:text="${report.r0200_product}"></td>
 											
 										</tr>
 										<tr>
@@ -759,21 +759,21 @@ function showResultModal(title, message) {
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0300</td>
 											<td style="text-align: right; background-color: #b3b6b9;">3.8</td>
-											<td th:text="${report.r0300_product}"></td>
+											<td style="font-weight: bold;" th:text="${report.r0300_product}"></td>
 											<td style="text-align: right; background-color: #b3b6b9;"
 												th:text="${report.r0300_amount}"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0310</td>
 											<td style="text-align: right; background-color: #b3b6b9;">3.9</td>
-											<td th:text="${report.r0310_product}"></td>
+											<td style="font-weight: bold;" th:text="${report.r0310_product}"></td>
 											<td style="text-align: right; background-color: #b3b6b9;"
 												th:text="${report.r0310_amount}"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0320</td>
 											<td style="text-align: right; background-color: #b3b6b9;">4</td>
-											<td th:text="${report.r0320_product}"></td>
+											<td style="font-weight: bold;" th:text="${report.r0320_product}"></td>
 											<td style="text-align: right; background-color: #b3b6b9;"
 												th:text="${report.r0320_amount}"></td>
 										</tr>
@@ -782,243 +782,244 @@ function showResultModal(title, message) {
 
 
 
-										</tbody>
-																															</table>
-																														</div>
-																														
+									</tbody>
 
-																													</div>
-																												</div>
-																												</div>
-																												
-																												<div th:if="${displaymode == 'Details'}">
-																												<div class="row" >
-																													<div class="col-sm-12">
-																														<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
-																									    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
-																																<thead class="thead-light">
-																																		<tr>
-																													                    <th></th>
-																													                    <th>CUST ID</th>
-																													                    <th>ACCT NO</th>
-																													                    <th>ACCT NAME</th>
-																													                    <th>ACCT BALANCE</th>
-																													                    <th>ROWID</th>
-																													                    <th>COLUMNID</th>
-																													                    <th>REPORT_DATE</th>
-																													                	</tr>
+																					</table>
+																				</div>
+																				
 
-																																	</thead>
-																																
-																																<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
-																																<tr>
-																																	<td>
-																											                        <a data-toggle="tooltip" class="editrec" title="Click to Edit this Record">
-																											                            <i class="fas fa-edit"
-																											                               onclick="editRecord(this)"></i>
-																											                        </a>
-																											                    	</td>
-																											                    	<td th:text="${report.custId}"></td>
-																											                    	<td th:text="${report.acctNumber}"></td>
-																											                    	<td th:text="${report.acctName}"></td>
-																											                    	<td th:text="${report.acctBalanceInAed}"></td>
-																											                    	<td th:text="${report.rowId}"></td>
-																											                    	<td th:text="${report.columnId}"></td>
-																											                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
-																											                    
-																											                   </tr> 
-																																</tbody>
-																																</table>
-																																</div>
-																																
-																																
-																																</div>
-																																</div>
-																																</div>
-																												
-																												</div>
-																												
+																			</div>
+																		</div>
+																		</div>
+																		
+																		<div th:if="${displaymode == 'Details'}">
+																		<div class="row" >
+																			<div class="col-sm-12">
+																				<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
+															    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+																						<thead class="thead-light">
+																								<tr>
+																			                    <th></th>
+																			                    <th>CUST ID</th>
+																			                    <th>ACCT NO</th>
+																			                    <th>ACCT NAME</th>
+																			                    <th>ACCT BALANCE</th>
+																			                    <th>ROWID</th>
+																			                    <th>COLUMNID</th>
+																			                    <th>REPORT_DATE</th>
+																			                	</tr>
 
-
-																										</div>
-																												
-																												
-																											
-																									</div>
-																										
-
-																										
-																									<div class="modal fade" id="loader" data-backdrop="static"
-																												data-keyboard="false">
-																												<div
-																													class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-																													<div class="modal-content" style="background: transparent;">
-																														<div class="modal-body" style="text-align: center">
-																															<div>
-																																<img th:src=@{/images/loader.gif} id="bfirelogo"
-																																	style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
-																																	border-color: transparent;"
-																																	alt="Bornfire">
-																															</div>
-																														</div>
-																													</div>
-																												</div>
-																											</div>
-
-																										
-																													
-																											<!-- Custom Alert/Result Modal (Matches your existing style) -->
-																										<div class="modal fade" id="resultModal">
-																											<div class="modal-dialog modal-dialog-centered">
-																												<div class="modal-content">
-																													<!-- Your custom styled header -->
-																													<div class="menu-title-header">
-																														<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
-																															<!-- Title will be set by JavaScript -->
-																														</div>
-																													</div>
-																													<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-																														<p id="resultModalBody"></p>
-																														<!-- Your custom styled button -->
-																														<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
-																													</div>
-																												</div>
-																											</div>
-																										</div>		
-																										
-																											
-																									</body>
-																									<!-- <script>
-																									  $(document).ready(function () {
-																									    $('#BRFvalidation').DataTable({
-																									      "paging": true,
-																									      "pageLength": 10,
-																									      "lengthChange": false,
-																									      "searching": true,
-																									      "ordering": true,
-																									      "autoWidth": false,
-																									      "language": {
-																									        "search": "Search:"
-																									      }
-																									    });
-																									  });
-																									</script> -->
-																									<!-- <script>
-																									  $(document).ready(function () {
-																									    $('#BRFvalidation').DataTable({
-																									      "paging": true,
-																									      "info": false,       // turn off "Showing x of y"
-																									      "searching": false,  // turn off search
-																									      "ordering": false,   // turn off ordering
-																									      "lengthChange": false // hide "Show x entries"
-																									    });
-																									  });
-																									</script> -->
+																							</thead>
+																						
+																						<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
+																						<tr>
+																							<td>
+																	                        <a data-toggle="tooltip" class="editrec" title="Click to Edit this Record">
+																	                            <i class="fas fa-edit"
+																	                               onclick="editRecord(this)"></i>
+																	                        </a>
+																	                    	</td>
+																	                    	<td th:text="${report.custId}"></td>
+																	                    	<td th:text="${report.acctNumber}"></td>
+																	                    	<td th:text="${report.acctName}"></td>
+																	                    	<td th:text="${report.acctBalanceInAed}"></td>
+																	                    	<td th:text="${report.rowId}"></td>
+																	                    	<td th:text="${report.columnId}"></td>
+																	                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+																	                    
+																	                   </tr> 
+																						</tbody>
+																						</table>
+																						</div>
+																						
+																						
+																						</div>
+																						</div>
+																						</div>
+																		
+																		</div>
+																		
 
 
+																</div>
+																		
+																		
+																	
+															</div>
+																
 
-																									<style>
-																									/* Your existing CSS - this is the correct approach */
-																									.scrollable-table-container {
-																									    /* This is the key: it creates the scroll context */
-																									    max-height: 620px; /* Or a suitable height like 80vh for responsive design */
-																									    overflow-y: auto;
-																									    border: 1px solid #ccc;
-																									}
+																
+															<div class="modal fade" id="loader" data-backdrop="static"
+																		data-keyboard="false">
+																		<div
+																			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+																			<div class="modal-content" style="background: transparent;">
+																				<div class="modal-body" style="text-align: center">
+																					<div>
+																						<img th:src=@{/images/loader.gif} id="bfirelogo"
+																							style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
+																							border-color: transparent;"
+																							alt="Bornfire">
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
 
-																									/* Your existing sticky header CSS, targeting the tr elements within the thead */
-																									.scrollable-table-container thead tr:nth-child(1) {
-																									    position: sticky;
-																									    top: 0;
-																									    background-color: #b3b6b9;
-																									    z-index: 5;
-																									}
-
-																									.scrollable-table-container thead tr:nth-child(2) {
-																									    position: sticky;
-																									    top: 36px; /* adjust based on row height */
-																									    background-color: #b3b6b9;
-																									    z-index: 4;
-																									}
+																
+																			
+																	<!-- Custom Alert/Result Modal (Matches your existing style) -->
+																<div class="modal fade" id="resultModal">
+																	<div class="modal-dialog modal-dialog-centered">
+																		<div class="modal-content">
+																			<!-- Your custom styled header -->
+																			<div class="menu-title-header">
+																				<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
+																					<!-- Title will be set by JavaScript -->
+																				</div>
+																			</div>
+																			<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+																				<p id="resultModalBody"></p>
+																				<!-- Your custom styled button -->
+																				<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>		
+																
+																	
+															</body>
+															<!-- <script>
+															  $(document).ready(function () {
+															    $('#BRFvalidation').DataTable({
+															      "paging": true,
+															      "pageLength": 10,
+															      "lengthChange": false,
+															      "searching": true,
+															      "ordering": true,
+															      "autoWidth": false,
+															      "language": {
+															        "search": "Search:"
+															      }
+															    });
+															  });
+															</script> -->
+															<!-- <script>
+															  $(document).ready(function () {
+															    $('#BRFvalidation').DataTable({
+															      "paging": true,
+															      "info": false,       // turn off "Showing x of y"
+															      "searching": false,  // turn off search
+															      "ordering": false,   // turn off ordering
+															      "lengthChange": false // hide "Show x entries"
+															    });
+															  });
+															</script> -->
 
 
 
-																									.scrollable-table-container thead tr:nth-child(3) {
-																									    position: sticky;
-																									    top: 72px; /* Adjust based on row height */
-																									    background-color: #b3b6b9;
-																									    z-index: 3;
-																									}
+															<style>
+															/* Your existing CSS - this is the correct approach */
+															.scrollable-table-container {
+															    /* This is the key: it creates the scroll context */
+															    max-height: 620px; /* Or a suitable height like 80vh for responsive design */
+															    overflow-y: auto;
+															    border: 1px solid #ccc;
+															}
 
-																									.scrollable-table-container thead tr:nth-child(4) {
-																									    position: sticky;
-																									    top: 100px; /* Adjust based on row height */
-																									    background-color: #b3b6b9;
-																									    z-index: 2;
-																									}
+															/* Your existing sticky header CSS, targeting the tr elements within the thead */
+															.scrollable-table-container thead tr:nth-child(1) {
+															    position: sticky;
+															    top: 0;
+															    background-color: #b3b6b9;
+															    z-index: 5;
+															}
 
-																									.scrollable-table-container thead tr:nth-child(5) {
-																									    position: sticky;
-																									    top: 135px; /* Adjust based on row height */
-																									    background-color: #b3b6b9;
-																									    z-index: 1;
-																									}
-
-
-																									</style>
+															.scrollable-table-container thead tr:nth-child(2) {
+															    position: sticky;
+															    top: 36px; /* adjust based on row height */
+															    background-color: #b3b6b9;
+															    z-index: 4;
+															}
 
 
-																									<style>
-																									.inner {
-																									    max-height: 600px; /* Adjust height as needed */
-																									    overflow: auto;
-																									    border: 1px solid #dee2e6;
-																									}
 
-																									/* Sticky thead */
-																									#reports thead th {
-																									    position: sticky;
-																									    top: 0;
-																									    background-color: #f8f9fa; /* Match Bootstrap thead-light */
-																									    z-index: 2;
-																									}
+															.scrollable-table-container thead tr:nth-child(3) {
+															    position: sticky;
+															    top: 72px; /* Adjust based on row height */
+															    background-color: #b3b6b9;
+															    z-index: 3;
+															}
 
-																									div.dataTables_wrapper div.dataTables_paginate {
-																									    text-align: right !important;
-																									    float: right !important;
-																									    width: auto;
-																									    margin-top: 10px;
-																									}
+															.scrollable-table-container thead tr:nth-child(4) {
+															    position: sticky;
+															    top: 100px; /* Adjust based on row height */
+															    background-color: #b3b6b9;
+															    z-index: 2;
+															}
 
-																									/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
-																									div.dataTables_wrapper div.dataTables_info {
-																									    float: left !important;
-																									    margin-top: 10px;
-																									}
-																									.pagination {
-																									    margin: 0;
-																									}
+															.scrollable-table-container thead tr:nth-child(5) {
+															    position: sticky;
+															    top: 135px; /* Adjust based on row height */
+															    background-color: #b3b6b9;
+															    z-index: 1;
+															}
 
-																									.page-item.active .page-link {
-																									    background-color: #386276;
-																									    border-color: #386276;
-																									}
 
-																									.page-link {
-																									    color: #386276;
-																									}
+															</style>
 
-																									.page-link:hover {
-																									    color: #2a4a5c;
-																									}
 
-																									.form-select {
-																									    display: inline-block;
-																									    width: auto;
-																									}
-																									</style>
+															<style>
+															.inner {
+															    max-height: 600px; /* Adjust height as needed */
+															    overflow: auto;
+															    border: 1px solid #dee2e6;
+															}
 
-																									</html>
-																									
-																									
-																									
+															/* Sticky thead */
+															#reports thead th {
+															    position: sticky;
+															    top: 0;
+															    background-color: #f8f9fa; /* Match Bootstrap thead-light */
+															    z-index: 2;
+															}
+
+															div.dataTables_wrapper div.dataTables_paginate {
+															    text-align: right !important;
+															    float: right !important;
+															    width: auto;
+															    margin-top: 10px;
+															}
+
+															/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
+															div.dataTables_wrapper div.dataTables_info {
+															    float: left !important;
+															    margin-top: 10px;
+															}
+															.pagination {
+															    margin: 0;
+															}
+
+															.page-item.active .page-link {
+															    background-color: #386276;
+															    border-color: #386276;
+															}
+
+															.page-link {
+															    color: #386276;
+															}
+
+															.page-link:hover {
+															    color: #2a4a5c;
+															}
+
+															.form-select {
+															    display: inline-block;
+															    width: auto;
+															}
+															</style>
+
+															</html>
+															
+															
+															
