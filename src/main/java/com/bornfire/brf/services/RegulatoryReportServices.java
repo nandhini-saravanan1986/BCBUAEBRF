@@ -155,7 +155,6 @@ public class RegulatoryReportServices {
 			break;
 
 
-
 		case "BRF2_4":
 			repdetail = cbuae_brf2_4_reportservice.getBRF2_4currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
