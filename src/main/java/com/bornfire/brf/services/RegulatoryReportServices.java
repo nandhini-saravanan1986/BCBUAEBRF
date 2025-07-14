@@ -1,6 +1,8 @@
 package com.bornfire.brf.services;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -54,7 +56,7 @@ public class RegulatoryReportServices {
 	
 	public ModelAndView getReportView(String reportId, String reportDate, String fromdate, String todate,
 			String currency, String dtltype, String subreportid, String secid, String reportingTime, Pageable pageable,
-			BigDecimal srl_no, String req) {
+			BigDecimal srl_no, String req,String type,String version) {
 
 		ModelAndView repsummary = new ModelAndView();
 
@@ -62,7 +64,7 @@ public class RegulatoryReportServices {
 		switch (reportId) {
 
 		case "BRF1_1":
-			repsummary = cbuae_brf1_1_reportservice.getBRF1_1View(reportId, fromdate, todate, currency, dtltype, pageable);
+			repsummary = cbuae_brf1_1_reportservice.getBRF1_1View(reportId, fromdate, todate, currency, dtltype, pageable,type,version);
 			break;
 
 		case "BRF1_12":
@@ -101,9 +103,11 @@ public class RegulatoryReportServices {
 		return repsummary;
 	}
 	
+	
+	
 	public ModelAndView getReportDetails(String reportId, String instanceCode, String asondate, String fromdate,
 			String todate, String currency, String reportingTime, String dtltype, String subreportid, String secid,
-			Pageable pageable, String Filter) {
+			Pageable pageable, String Filter,String type,String version) {
 
 		ModelAndView repdetail = new ModelAndView();
 		logger.info("Getting Details for the Report :" + reportId);
@@ -112,7 +116,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_1":
 			repdetail = cbuae_brf1_1_reportservice.getBRF1_1currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter,type,version);
 			break;
 	
 		case "BRF2_1":
@@ -167,7 +171,7 @@ public class RegulatoryReportServices {
 	
 	public byte[] getDownloadFile(String reportId,String filename, String asondate, String fromdate, String todate, String currency,
 			String subreportid, String secid, String dtltype, String reportingTime, 
-			String instancecode, String filter)  {
+			String instancecode, String filter,String type,String version)  {
 
 		byte[] repfile = null;
 		
@@ -177,7 +181,7 @@ public class RegulatoryReportServices {
 		
 			case "BRF1_1":
 				try {
-					repfile = cbuae_brf1_1_reportservice.getBRF1_1Excel(filename, reportId, fromdate, todate, currency, dtltype);
+					repfile = cbuae_brf1_1_reportservice.getBRF1_1Excel(filename, reportId, fromdate, todate, currency, dtltype,type,version);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -233,6 +237,7 @@ public class RegulatoryReportServices {
 		return repfile;
 	}
 	
+
 	
 	public byte[] getDownloadDetailFile(String filename, String fromdate, String todate) {
 		
@@ -240,12 +245,36 @@ public class RegulatoryReportServices {
 	    if ("BRF1_12Detail".equals(filename)) {
 	        return cbuae_brf1_12_reportservice.getBRF1_12DetailExcel(filename, fromdate, todate);
 	    }
+	    else if(filename.equals("BRF1_1Detail")) {
+	    	return cbuae_brf1_1_reportservice.getBRF1_1DetailExcel(filename, fromdate, todate);
+	    }
 	    return new byte[0];
 	}
 
 
 
 
+
+
+	public List<Object> getArchival(String rptcode){
+		
+		List<Object> archivalData = new ArrayList<>();
+		switch (rptcode) {
+			case "BRF1_1":
+				try {
+					archivalData=cbuae_brf1_1_reportservice.getBRF1_1Archival();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+		
+		}
+		
+		
+		
+		return archivalData;
+	}
 
 
 }

@@ -3,6 +3,7 @@ package com.bornfire.brf.controllers;
 import java.io.File;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,12 +40,14 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bornfire.brf.entities.AccessAndRoles;
 import com.bornfire.brf.entities.AccessandRolesRepository;
@@ -58,6 +61,7 @@ import com.bornfire.brf.entities.CBUAE_BRFValidationsRepo;
 
 import com.bornfire.brf.services.AccessAndRolesServices;
 import com.bornfire.brf.services.LoginServices;
+import com.bornfire.brf.services.RegulatoryReportServices;
 
 
 @Controller
@@ -70,6 +74,9 @@ public class NavigationController {
 	 */
 
 	UserProfileRep UserProfileReps;
+	
+	@Autowired
+	RegulatoryReportServices regulatoryreportservices;
 	
 	@Autowired
 	CBUAE_BRFValidationsRepo cbuae_brfvalidationsRepo;
@@ -232,8 +239,9 @@ public class NavigationController {
 			md.addAttribute("userProfile", loginServices.getUser(""));
 
 		}
+		
 
-		return "BRF/CBUAE_BRF1_1";
+		return "Userprofile";
 	}
 
 	@GetMapping("/getRoleDetails")
@@ -298,7 +306,42 @@ public class NavigationController {
 	  return "BRF/RRReports";
 	  
 	  }
-	 
+	  
+
+	  @RequestMapping(value = "Monthly-1Archival", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String monthly1Archival(Model md, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+	  md.addAttribute("menu", "Monthly 1 - BRF ARCHIVAL");
+	System.out.println("count"+rrReportlist.getReportListmonthly1().size());
+	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
+	  
+	  return "BRF/BRFArchival";
+	  
+	  }
+	  
+	
+	  
+	  
+	  @RequestMapping(value = "Archival", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String Archival(Model md,@RequestParam(value = "rptcode", required = false) String rptcode, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		  RRReport data=rrReportlist.getReportbyrptcode(rptcode);
+		  md.addAttribute("reportlist", data);
+		  md.addAttribute("menu", data.getRptDescription());
+		  md.addAttribute("domain", data.getDomainId());
+		  md.addAttribute("rptcode", data.getRptCode());
+		  List<Object> Archivaldata=regulatoryreportservices.getArchival(rptcode);
+		  md.addAttribute("Archivaldata",Archivaldata);
+		  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
+	  
+	  return "BRF/BRFArchivalform";
+	  
+	  }
+	   	    
 
 	  @RequestMapping(value = "fort", method = { RequestMethod.GET,RequestMethod.POST })
 	  public String fort(Model md, HttpServletRequest req)
