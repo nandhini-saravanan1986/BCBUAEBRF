@@ -69,12 +69,15 @@ public class CBUAE_BRF_ReportsController {
 		@RequestMapping(value = "{reportid}", method = { RequestMethod.GET, RequestMethod.POST })
 		public ModelAndView reportView(@PathVariable("reportid") String reportid,
 				@RequestParam(value = "function", required = false) String function,
-				@RequestParam("asondate") String asondate, @RequestParam(required = false) String fromdate,
-				@RequestParam("todate") String todate, @RequestParam(value = "currency", required = false) String currency,
+				@RequestParam("asondate") String asondate, 
+				@RequestParam(required = false) String fromdate,
+				@RequestParam("todate") String todate,
+				@RequestParam(value = "currency", required = false) String currency,
 				@RequestParam(value = "subreportid", required = false) String subreportid,
 				@RequestParam(value = "secid", required = false) String secid,
 				@RequestParam(value = "dtltype", required = false) String dtltype,
 				@RequestParam(value = "type", required = false) String type,
+				@RequestParam(value = "version", required = false) String version,
 				@RequestParam(value = "page", required = false) Optional<Integer> page,
 				@RequestParam(value = "size", required = false) Optional<Integer> size,
 				@RequestParam(value = "reportingTime", required = false) String reportingTime, Model md,
@@ -83,10 +86,7 @@ public class CBUAE_BRF_ReportsController {
 			String userid = (String) req.getSession().getAttribute("USERID");
 			String roleid = (String) req.getSession().getAttribute("ROLEID");
 			String accesscode = (String) req.getSession().getAttribute("ACCESSCODE");
-			
-
-			
-			
+						
 
 			int currentPage = page.orElse(0);
 			int pageSize = size.orElse(Integer.parseInt(pagesize));
@@ -102,6 +102,7 @@ public class CBUAE_BRF_ReportsController {
 			md.addAttribute("currency", currency);
 			md.addAttribute("dtltype", dtltype);
 			md.addAttribute("type", type);
+			md.addAttribute("version", version);
 			md.addAttribute("reportingTime", reportingTime);
 			//md.addAttribute("reportTitle", reportServices.getReportName(reportid));
 			
@@ -116,7 +117,7 @@ public class CBUAE_BRF_ReportsController {
 			ModelAndView mv = new ModelAndView();
 
 			mv = regreportServices.getReportView(reportid, asondate, fromdate, todate, currency, dtltype, subreportid,
-					secid, reportingTime, PageRequest.of(currentPage, pageSize), srl_no, userid);
+					secid, reportingTime, PageRequest.of(currentPage, pageSize), srl_no, userid,type,version);
 
 			return mv;
 
@@ -128,6 +129,8 @@ public class CBUAE_BRF_ReportsController {
 				@RequestParam(value = "filter", required = false) String filter, @RequestParam("asondate") String asondate,
 				@RequestParam("fromdate") String fromdate, @RequestParam("todate") String todate,
 				@RequestParam("currency") String currency,
+				@RequestParam(value = "type", required = false) String type,
+				@RequestParam(value = "version", required = false) String version,
 				@RequestParam(value = "subreportid", required = false) String subreportid,
 				@RequestParam(value = "secid", required = false) String secid,
 				@RequestParam(value = "dtltype", required = false) String dtltype,
@@ -162,7 +165,7 @@ public class CBUAE_BRF_ReportsController {
 
 			//logger.info("Getting ModelandView :" + reportid);
 			ModelAndView mv = regreportServices.getReportDetails(reportid, instancecode, asondate, fromdate, todate,
-					currency, reportingTime, dtltype, subreportid, secid, PageRequest.of(currentPage, pageSize), filter);
+					currency, reportingTime, dtltype, subreportid, secid, PageRequest.of(currentPage, pageSize), filter,type,version);
 
 			return mv;
 		}
@@ -175,6 +178,8 @@ public class CBUAE_BRF_ReportsController {
 		        @RequestParam("fromdate") String fromdate,
 		        @RequestParam("todate") String todate,
 		        @RequestParam("currency") String currency,
+		        @RequestParam(value = "type", required = false) String type,
+				@RequestParam(value = "version", required = false) String version,
 		        @RequestParam(value = "subreportid", required = false) String subreportid,
 		        @RequestParam(value = "secid", required = false) String secid,
 		        @RequestParam(value = "dtltype", required = false) String dtltype,
@@ -194,7 +199,7 @@ public class CBUAE_BRF_ReportsController {
 			}
 		    try {
 		        byte[] excelData = regreportServices.getDownloadFile(reportid, filename, asondate, fromdate, todate, currency,
-		                subreportid, secid, dtltype, reportingTime, instancecode, filter);
+		                subreportid, secid, dtltype, reportingTime, instancecode, filter,type,version);
 
 		        if (excelData.length == 0) {
 		            logger.warn("Controller: Service returned no data. Responding with 204 No Content.");
