@@ -282,6 +282,25 @@ public class RegulatoryReportServices {
 					e.printStackTrace();
 				}
 				break;
+				
+			case "BRF2_4":
+				try {
+					repfile = cbuae_brf2_4_reportservice.getBRF2_4Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+				
+			case "BRF2_6":
+				try {
+					repfile = cbuae_brf2_6_reportservice.getBRF2_6Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+		
 			}
 		
 		return repfile;
