@@ -34,12 +34,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bornfire.brf.entities.CBUAE_BRF1_2_DETAIL_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_DETAIL_REPO;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_SUMMARY_ENTITY1;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_SUMMARY_ENTITY2;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_SUMMARY_REPO1;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_SUMMARY_REPO2;
+import com.bornfire.brf.entities.CBUAE_BRF1_2_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF1_2_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Entity1;
+import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Entity2;
+import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Repo1;
+import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Repo2;
 
 
 
@@ -59,13 +59,13 @@ public class CBUAE_BRF1_2_ReportService {
 	SessionFactory sessionFactory;
 	
 	@Autowired
-	CBUAE_BRF1_2_DETAIL_REPO CBUAE_BRF1_2_DETAIL_REPO;
+	CBUAE_BRF1_2_Detail_Repo CBUAE_BRF1_2_DETAIL_REPO;
 	
 	@Autowired
-	CBUAE_BRF1_2_SUMMARY_REPO1 CBUAE_BRF1_2_REPORT_REPO1;
+	CBUAE_BRF1_2_Summary_Repo1 CBUAE_BRF1_2_REPORT_REPO1;
 	
 	@Autowired
-	CBUAE_BRF1_2_SUMMARY_REPO2 CBUAE_BRF1_2_REPORT_REPO2;
+	CBUAE_BRF1_2_Summary_Repo2 CBUAE_BRF1_2_REPORT_REPO2;
 	
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -78,8 +78,8 @@ public class CBUAE_BRF1_2_ReportService {
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;	
 
-		List<CBUAE_BRF1_2_SUMMARY_ENTITY1> T1Master = new ArrayList<CBUAE_BRF1_2_SUMMARY_ENTITY1>();
-		List<CBUAE_BRF1_2_SUMMARY_ENTITY2> T1Master1 = new ArrayList<CBUAE_BRF1_2_SUMMARY_ENTITY2>();
+		List<CBUAE_BRF1_2_Summary_Entity1> T1Master = new ArrayList<CBUAE_BRF1_2_Summary_Entity1>();
+		List<CBUAE_BRF1_2_Summary_Entity2> T1Master1 = new ArrayList<CBUAE_BRF1_2_Summary_Entity2>();
 		try {
 			Date d1 = dateformat.parse(todate);
 			
@@ -113,7 +113,7 @@ public class CBUAE_BRF1_2_ReportService {
 		ModelAndView mv = new ModelAndView();
 
 		Session hs = sessionFactory.getCurrentSession();
-		List<CBUAE_BRF1_2_DETAIL_ENTITY> T1Dt1 = new ArrayList<CBUAE_BRF1_2_DETAIL_ENTITY>();
+		List<CBUAE_BRF1_2_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF1_2_Detail_Entity>();
 		
 		try {
 			Date d1 = dateformat.parse(todate);
@@ -141,8 +141,8 @@ public class CBUAE_BRF1_2_ReportService {
 	public byte[] getBRF1_2Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 
-		List<CBUAE_BRF1_2_SUMMARY_ENTITY1> dataList =CBUAE_BRF1_2_REPORT_REPO1.getdatabydateList(dateformat.parse(todate)) ;
-		List<CBUAE_BRF1_2_SUMMARY_ENTITY2> dataList1 =CBUAE_BRF1_2_REPORT_REPO2.getdatabydateList(dateformat.parse(todate)) ;
+		List<CBUAE_BRF1_2_Summary_Entity1> dataList =CBUAE_BRF1_2_REPORT_REPO1.getdatabydateList(dateformat.parse(todate)) ;
+		List<CBUAE_BRF1_2_Summary_Entity2> dataList1 =CBUAE_BRF1_2_REPORT_REPO2.getdatabydateList(dateformat.parse(todate)) ;
 
 		if (dataList.isEmpty()) {
 			logger.warn("Service: No data found for BRF1.2 report. Returning empty result.");
@@ -211,7 +211,7 @@ public class CBUAE_BRF1_2_ReportService {
 				for (int i = 0; i < dataList.size(); i++) {
 
 
-					CBUAE_BRF1_2_SUMMARY_ENTITY1 record = dataList.get(i);
+					CBUAE_BRF1_2_Summary_Entity1 record = dataList.get(i);
 					System.out.println("rownumber="+startRow + i);
 					Row row = sheet.getRow(startRow + i);
 					if (row == null) {
@@ -5020,7 +5020,7 @@ int startRow1 = 102;
 // dataList1 for entity 2
 if (!dataList1.isEmpty()) {
  for (int i = 0; i < dataList1.size(); i++) {
-     CBUAE_BRF1_2_SUMMARY_ENTITY2 record1 = dataList1.get(i);
+     CBUAE_BRF1_2_Summary_Entity2 record1 = dataList1.get(i);
 
      System.out.println("rownumber = " + startRow + i);
      Row row = sheet.getRow(startRow + i);

@@ -32,11 +32,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bornfire.brf.entities.CBUAE_BRF2_4_SUMMARY_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_6_DETAIL_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_6_DETAIL_REPO;
-import com.bornfire.brf.entities.CBUAE_BRF2_6_SUMMARY_ENTITY;
-import com.bornfire.brf.entities.CBUAE_BRF2_6_SUMMARY_REPO;
+import com.bornfire.brf.entities.CBUAE_BRF2_4_Summary_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_6_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_6_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF2_6_Summary_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_6_Summary_Repo;
 
 @Component
 @Service
@@ -54,10 +54,10 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_7_Report
 	SessionFactory sessionFactory;
 	
 	@Autowired
-	CBUAE_BRF2_6_DETAIL_REPO BRF2_6_DETAIL_REPO;
+	CBUAE_BRF2_6_Detail_Repo BRF2_6_DETAIL_REPO;
 	
 	@Autowired
-	CBUAE_BRF2_6_SUMMARY_REPO BRF2_6_SUMMARY_REPO;
+	CBUAE_BRF2_6_Summary_Repo BRF2_6_SUMMARY_REPO;
 	
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -70,7 +70,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_7_Report
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;	
 
-		List<CBUAE_BRF2_6_SUMMARY_ENTITY> T1Master = new ArrayList<CBUAE_BRF2_6_SUMMARY_ENTITY>();
+		List<CBUAE_BRF2_6_Summary_Entity> T1Master = new ArrayList<CBUAE_BRF2_6_Summary_Entity>();
 		try {
 			Date d1 = dateformat.parse(todate);
 			// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
@@ -109,7 +109,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_7_Report
 		ModelAndView mv = new ModelAndView();
 
 		Session hs = sessionFactory.getCurrentSession();
-		List<CBUAE_BRF2_6_DETAIL_ENTITY> T1Dt1 = new ArrayList<CBUAE_BRF2_6_DETAIL_ENTITY>();
+		List<CBUAE_BRF2_6_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF2_6_Detail_Entity>();
 		
 		try {
 			Date d1 = dateformat.parse(todate);
@@ -139,7 +139,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_7_Report
 	public byte[] getBRF2_6Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 
-		List<CBUAE_BRF2_6_SUMMARY_ENTITY> dataList =BRF2_6_SUMMARY_REPO.getdatabydateList(dateformat.parse(todate)) ;
+		List<CBUAE_BRF2_6_Summary_Entity> dataList =BRF2_6_SUMMARY_REPO.getdatabydateList(dateformat.parse(todate)) ;
 
 		if (dataList.isEmpty()) {
 			logger.warn("Service: No data found for BRF2.6 report. Returning empty result.");
@@ -206,7 +206,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_7_Report
 
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
-					CBUAE_BRF2_6_SUMMARY_ENTITY record = dataList.get(i);
+					CBUAE_BRF2_6_Summary_Entity record = dataList.get(i);
 					System.out.println("rownumber="+startRow + i);
 					Row row = sheet.getRow(startRow + i);
 					if (row == null) {

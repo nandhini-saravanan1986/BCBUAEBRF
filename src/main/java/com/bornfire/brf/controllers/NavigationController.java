@@ -320,9 +320,20 @@ public class NavigationController {
 	  return "BRF/BRFArchival";
 	  
 	  }
+	  @RequestMapping(value = "Fortnightly-Archival", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String  FortnightlyArchival(Model md, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+	  md.addAttribute("menu", "Fortnightly-Archival");
+	System.out.println("count"+rrReportlist.getReportListFORTNIGHTLY().size());
+	  md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
 	  
-	
+	  return "BRF/BRFArchival";
 	  
+	  }
+	  
+  
 	  
 	  @RequestMapping(value = "Archival", method = { RequestMethod.GET,RequestMethod.POST })
 	  public String Archival(Model md,@RequestParam(value = "rptcode", required = false) String rptcode, HttpServletRequest req)
