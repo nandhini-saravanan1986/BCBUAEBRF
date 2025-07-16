@@ -724,13 +724,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right; background-color: #b3b6b9">1.2</td>
 								    <td th:text="${report.R0030_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0030_AMOUNT_AED_RESIDENT}" ></td>
+								    <td style="text-align: right;" th:attr="RowId='R0030', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0030_AMOUNT_AED_RESIDENT}" ></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0030_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0030', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0030_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0030', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0030', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0030_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0030_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -739,13 +743,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">1.3</td>
 								    <td th:text="${report.R0040_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0040_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0040', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0040_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0040_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0040', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0040_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0040', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0040', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0040_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0040_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -754,13 +762,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">1.4</td>
 								    <td th:text="${report.R0050_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"   th:text="${report.R0050_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0050', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0050_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0050_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0050', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0050_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0050', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0050', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0050_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0050_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -769,13 +781,13 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">1.5</td>
 								    <td th:text="${report.R0060_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"   th:text="${report.R0060_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9"   th:text="${report.R0060_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0060_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9"  th:text="${report.R0060_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0060_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0060_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -784,13 +796,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">1.5.1</td>
 								    <td th:text="${report.R0070_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0070', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0070_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;"  th:text="${report.R0070_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;"  th:attr="RowId='R0070', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0070_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0070', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0070', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0070_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0070_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -799,13 +815,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">1.5.2</td>
 								    <td th:text="${report.R0080_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0080', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0080_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0080', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0080_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0080', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0080', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0080_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0080_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -829,13 +849,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">2.1</td>
 								    <td th:text="${report.R0100_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0100', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0100_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0100', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0100_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0100', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0100', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0100_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0100_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -844,13 +868,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">2.2</td>
 								    <td th:text="${report.R0110_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0110', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0110_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0110', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0110_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0110', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0110', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0110_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0110_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -859,13 +887,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">2.3</td>
 								    <td th:text="${report.R0120_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0120', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0120_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0120', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0120_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0120', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0120', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0120_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0120_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -889,13 +921,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">3.1</td>
 								    <td th:text="${report.R0140_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0140', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0140_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0140', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0140_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0140', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0140', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0140_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0140_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -904,13 +940,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">3.2</td>
 								    <td th:text="${report.R0150_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0150', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0150_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0150', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)"  th:text="${report.R0150_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0150', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0150', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0150_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0150_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -919,13 +959,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">3.3</td>
 								    <td th:text="${report.R0160_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0160', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0160_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0160', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0160_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0160', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0160', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0160_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0160_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -934,13 +978,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">3.4</td>
 								    <td th:text="${report.R0170_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0170', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0170_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0170', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0170_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0170', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0170', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0170_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0170_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -949,13 +997,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9">3.5</td>
 								    <td th:text="${report.R0180_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0180', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0180_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0180', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0180_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0180', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0180', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0180_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0180_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -964,13 +1016,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right; background-color: #b3b6b9;">3.6</td>
 								    <td th:text="${report.R0190_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0190', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0190_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0190', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0190_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0190', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0190', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0190_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0190_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -994,13 +1050,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right; background-color: #b3b6b9;">4.1</td>
 								    <td th:text="${report.R0210_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0210', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0210_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0210', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0210_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0210', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0210', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0210_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0210_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1009,13 +1069,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right; background-color: #b3b6b9;">4.2</td>
 								    <td th:text="${report.R0220_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0220', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0220_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0220', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0220_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0220', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0220', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0220_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0220_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1024,13 +1088,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">4.3</td>
 								    <td th:text="${report.R0230_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0230', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0230_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0230', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0230_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0230', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0230', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0230_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0230_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1069,13 +1137,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right; background-color: #b3b6b9">5.1.1</td>
 								    <td th:text="${report.R0260_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0260', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0260_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0260', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0260_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0260', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0260', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0260_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9" th:text="${report.R0260_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1084,13 +1156,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right; background-color: #b3b6b9;">5.1.2</td>
 								    <td th:text="${report.R0270_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;"  th:attr="RowId='R0270', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)"th:text="${report.R0270_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0270', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0270_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0270', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0270', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0270_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0270_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1099,13 +1175,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">5.1.3</td>
 								    <td th:text="${report.R0280_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0280', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0280_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0280', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0280_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0280', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0280', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0280_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0280_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1144,13 +1224,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">5.2.1.1</td>
 								    <td th:text="${report.R0310_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0310', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0310_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0310', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0310_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0310', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0310', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0310_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0310_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1159,13 +1243,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">5.2.1.2</td>
 								    <td th:text="${report.R0320_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0320', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0320_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0320', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0320_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0320', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0320', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0320_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9" th:text="${report.R0320_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1174,13 +1262,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">5.2.2</td>
 								    <td th:text="${report.R0330_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0330', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0330_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0330', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0330_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0330', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0330', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0330_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0330_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1204,13 +1296,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">6.1</td>
 								    <td th:text="${report.R0350_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0350', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0350_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0350', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0350_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0350', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0350', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0350_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0350_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1219,13 +1315,17 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: right;background-color: #b3b6b9;">6.2</td>
 								    <td th:text="${report.R0360_PRODUCT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0360', ColumnId='C0020'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0360_AMOUNT_AED_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0360', ColumnId='C0040'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0360_AMOUNT_FCY_RESIDENT}"></td>
 								    <td style="background-color: #b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0360', ColumnId='C0060'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="background-color:#b3b6b9"></td>
-								    <td style="text-align: right;" th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0360', ColumnId='C0080'" 
+      								onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0360_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0360_TOTAL_AMOUNT}"></td>
 								</tr>
 								
@@ -1263,14 +1363,14 @@ function showdetailsbyRowAndColumn(a) {
 								    <td style="text-align: center;background-color: #b3b6b9;">0390</td>
 								    <td style="text-align: right;background-color: #b3b6b9;">7.1.1</td>
 								    <td th:text="${report.R0390_PRODUCT}"></td>
-								    <td style="text-align: right;"></td>
-								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_AED_RESIDENT}"></td>
-								    <td style="text-align: right;"></td>
-								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_FCY_RESIDENT}"></td>
-								    <td style="text-align: right;"></td>
-								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
-								    <td style="text-align: right;"></td>
-								    <td style="text-align: right;" th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0390', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0390_NO_ACCT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0390', ColumnId='C0020'" onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0390_AMOUNT_AED_RESIDENT}"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_NO_ACCT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0390', ColumnId='C0040'" onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0390_AMOUNT_FCY_RESIDENT}"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_NO_ACCT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0390', ColumnId='C0060'" onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:text="${report.R0390_NO_ACCT_FCY_NON_RESIDENT}"></td>
+								    <td style="text-align: right;" th:attr="RowId='R0390', ColumnId='C0080'" onclick="showdetailsbyRowAndColumn(this)" th:text="${report.R0390_AMOUNT_AED_NON_RESIDENT}"></td>
 								    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0390_TOTAL_AMOUNT}"></td>
 								</tr>
 								

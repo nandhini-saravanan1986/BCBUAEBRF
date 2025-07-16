@@ -24,6 +24,9 @@ import com.bornfire.brf.services.CBUAE_BRF1_1_ReportService;
 public class RegulatoryReportServices {
 	
 	@Autowired
+	CBUAE_BRF2_11_ReportService cbuae_brf2_11_ReportService;
+	
+	@Autowired
 	CBUAE_BRF1_1_ReportService cbuae_brf1_1_reportservice;
 	
 	@Autowired
@@ -119,6 +122,11 @@ public class RegulatoryReportServices {
 		case "BRF5_17":
 			repsummary = cbuae_brf5_17_reportservice.getBRF5_17View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
+
+		case "BRF2_11":
+			repsummary = cbuae_brf2_11_ReportService.getBRF2_11View(reportId, fromdate, todate, currency, dtltype, pageable,type,version);
+			break;	
+
 			
 		}
 		return repsummary;

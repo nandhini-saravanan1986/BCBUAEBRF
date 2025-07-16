@@ -307,6 +307,18 @@ public class NavigationController {
 	  
 	  }
 	  
+	  @RequestMapping(value = "Monthly-2", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String monthly2(Model md, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+	  md.addAttribute("menu", "Monthly 2 - BRF Report");
+	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly2());
+	  
+	  return "BRF/RRReports";
+	  
+	  }
+	  
 
 	  @RequestMapping(value = "Monthly-1Archival", method = { RequestMethod.GET,RequestMethod.POST })
 	  public String monthly1Archival(Model md, HttpServletRequest req)
@@ -328,9 +340,8 @@ public class NavigationController {
 	  md.addAttribute("menu", "Fortnightly-Archival");
 	System.out.println("count"+rrReportlist.getReportListFORTNIGHTLY().size());
 	  md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
-	  
 	  return "BRF/BRFArchival";
-	  
+
 	  }
 	  
   
