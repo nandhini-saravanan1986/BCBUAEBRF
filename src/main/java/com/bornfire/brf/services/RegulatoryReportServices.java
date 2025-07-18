@@ -377,7 +377,7 @@ public class RegulatoryReportServices {
 				}
 				break;
 				
-			case "BRF5_7":
+			case "BRF5_17":
 				try {
 					archivalData=cbuae_brf5_17_reportservice.getBRF5_17Archival();
 				} catch (Exception e) {
