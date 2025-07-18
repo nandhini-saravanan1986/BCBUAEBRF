@@ -1,6 +1,7 @@
 package com.bornfire.brf.entities;
 
 import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface AuditServicesRep extends JpaRepository<AuditServicesEntity , UUID>{
+public interface AuditServicesRep extends JpaRepository<AuditServicesEntity , String>{
 	@Query(value = "select * from BRF_AUDIT ", nativeQuery = true)
 	List<AuditServicesEntity> getauditService();
 
