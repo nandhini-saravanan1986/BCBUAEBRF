@@ -478,7 +478,7 @@ function downloadfile(button) {
 				window.URL.revokeObjectURL(url);
 				document.body.removeChild(a);
 
-				showResultModal('Success', 'The file has been downloaded successfully.');
+				showResultModal('Success', filename + ' downloaded successfully.');
 			} else {
 				showResultModal('Information', 'No data was available to create a download.');
 			}

@@ -1,6 +1,7 @@
 package com.bornfire.brf.config;
 
 import java.io.IOException;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Collections;
@@ -44,6 +45,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bornfire.brf.entities.UserProfile;
 import com.bornfire.brf.entities.UserProfileRep;
 import com.bornfire.brf.services.LoginServices;
+import com.bornfire.brf.services.AuditService;
 
 @Configuration
 @EnableWebSecurity
@@ -58,8 +60,8 @@ public class BrfWebSecurity extends WebSecurityConfigurerAdapter {
 	@Autowired
 	LoginServices loginServices;
 
-
-	
+	@Autowired 
+	AuditService auditService;
 	
 	private final Integer SESSION_TIMEOUT_IN_SECONDS = 650000;
 
@@ -235,6 +237,9 @@ public class BrfWebSecurity extends WebSecurityConfigurerAdapter {
 				request.getSession().setAttribute("ACCESSCODE", user.getAcct_access_code());
 				request.getSession().setAttribute("BRANCHCODE", user.getBranch_code());
 				request.getSession().setAttribute("BRANCHNAME", user.getBranch_name());
+				
+				auditService.createBusinessAudit(user.getUserid() , "Login",null , null, "BRF_USER_PROFILE_TABLE");				
+				
 				response.sendRedirect("Dashboard");
 			}
 

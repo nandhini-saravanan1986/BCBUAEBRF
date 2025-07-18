@@ -1,6 +1,9 @@
 package com.bornfire.brf.services;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -48,6 +53,7 @@ import com.bornfire.brf.entities.CBUAE_BRF1_12_Summary_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Entity;
+import com.bornfire.brf.services.AuditService;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Repo;
 
@@ -56,6 +62,9 @@ import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Repo;
 public class CBUAE_BRF1_12_ReportService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_1_ReportService.class);
+	
+	@Autowired 
+	AuditService auditService;
 	
 	@Autowired
 	private Environment env;
@@ -94,7 +103,7 @@ public class CBUAE_BRF1_12_ReportService {
 
 		// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
-		mv.setViewName("BRF/CBUAE_BRF1_12");
+		mv.setViewName("BRF/BRF1_12");
 		
 		mv.addObject("reportsummary", T1Master);
 		//mv.addObject("reportmaster", T1Master);
@@ -145,7 +154,7 @@ public class CBUAE_BRF1_12_ReportService {
 	        e.printStackTrace();
 	    }
 
-	    mv.setViewName("BRF/CBUAE_BRF1_12");
+	    mv.setViewName("BRF/BRF1_12");
 	    mv.addObject("displaymode", "Details");
 	    mv.addObject("reportdetails", T1Dt1);
 	    mv.addObject("reportmaster12", T1Dt1);
@@ -480,7 +489,15 @@ public class CBUAE_BRF1_12_ReportService {
 			workbook.write(out);
 
 			logger.info("Service: Excel data successfully written to memory buffer ({} bytes).", out.size());
-
+			
+			//audit
+	        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+	        if (attrs != null) {
+	            HttpServletRequest request = attrs.getRequest();
+	            String userid = (String) request.getSession().getAttribute("USERID");
+	            auditService.createBusinessAudit(userid, "DOWNLOAD", "BRF1_12_SUMMARY", null, "CBUAE_BRF1_12_SUMMARYTABLE");
+	        }
+	        
 			return out.toByteArray();
 		}
 	}
@@ -599,12 +616,24 @@ public class CBUAE_BRF1_12_ReportService {
 	        workbook.close();
 
 	        logger.info("Excel generation completed with {} row(s).", reportData != null ? reportData.size() : 0);
+	        
+	        //audit
+	        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+	        if (attrs != null) {
+	            HttpServletRequest request = attrs.getRequest();
+	            String userid = (String) request.getSession().getAttribute("USERID");
+	            auditService.createBusinessAudit(userid, "DOWNLOAD", "BRF1_12_DETAIL", null, "CBUAE_BRF1_12_DETAILTABLE");
+	        }
+
+
 	        return bos.toByteArray();
 
 	    } catch (Exception e) {
 	        logger.error("Error generating BRF1_12 Excel", e);
 	        return new byte[0];
 	    }
+	   
+	 
 	}
 
 
