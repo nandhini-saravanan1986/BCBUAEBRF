@@ -356,6 +356,15 @@ public class RegulatoryReportServices {
 	    else if(filename.equals("BRF5_17Detail")) {
 	    	return cbuae_brf5_17_reportservice.getBRF5_17DetailExcel(filename, fromdate, todate);
 	    }
+	    else if(filename.equals("BRF1_2Detail")) {
+	    	return cbuae_brf1_2_reportservice.getBRF1_2DetailExcel(filename, fromdate, todate);
+	    }
+	    else if(filename.equals("BRF2_3Detail")) {
+	    	return cbuae_brf2_3_reportservice.getBRF2_3DetailExcel(filename, fromdate, todate);
+	    }
+	    else if(filename.equals("BRF2_5Detail")) {
+	    	return cbuae_brf2_5_reportservice.getBRF2_5DetailExcel(filename, fromdate, todate);
+	    }
 	    return new byte[0];
 	}
 

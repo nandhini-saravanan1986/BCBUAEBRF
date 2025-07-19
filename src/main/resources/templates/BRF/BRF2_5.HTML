@@ -474,7 +474,116 @@ PURPOSE		: BRFREPORT
 	</script>
 
 
+	<script>
 
+			function downloadDetailfile(button) {
+				const filename = button.getAttribute('data-filename');
+				const fromdate = button.getAttribute('data-fromdate');
+				const todate = button.getAttribute('data-todate');
+
+				$('#loader').modal('show');
+
+				const baseUrl = '/BCDRS/Reports/';
+				const downloadUrl = baseUrl + 'downloadDetailExcel' +
+					'?filename=' + encodeURIComponent(filename) +
+					'&fromdate=' + encodeURIComponent(fromdate) +
+					'&todate=' + encodeURIComponent(todate);
+
+				$.ajax({
+					url: downloadUrl,
+					type: 'GET',
+					xhrFields: {
+						responseType: 'blob'
+					},
+					success: function (data) {
+						$('#loader').modal('hide');
+
+						if (data && data.size > 100) {
+							const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+							const url = window.URL.createObjectURL(blob);
+							const a = document.createElement('a');
+							a.style.display = 'none';
+							a.href = url;
+							a.download = filename + '.xls';
+							document.body.appendChild(a);
+							a.click();
+							a.remove();
+							window.URL.revokeObjectURL(url);
+
+							showResultModal('Success', filename + ' downloaded successfully.');
+						} else {
+							showResultModal('Information', 'No data was available to create a download or file was empty.');
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('#loader').modal('hide');
+						console.error('Download error:', textStatus, errorThrown, jqXHR);
+
+						let errorMessage = 'An error occurred while downloading the file. Please try again.';
+						if (jqXHR.response) {
+							const reader = new FileReader();
+							reader.onload = function () {
+								errorMessage = reader.result;
+								showResultModal('Error', errorMessage);
+							};
+							reader.onerror = function () {
+								showResultModal('Error', 'An unknown error occurred during download.');
+							};
+							reader.readAsText(jqXHR.response);
+							return;
+						}
+						showResultModal('Error', errorMessage);
+					}
+				});
+			}
+
+
+
+		</script>
+
+
+		<script th:inline="javascript">
+			function showdetailsbyRowAndColumn(a) {
+				var rowId = a.getAttribute('RowId');
+				var columnId = a.getAttribute('ColumnId');
+				var cellValue = a.textContent || a.innerText;
+
+				if (cellValue !== '0') {
+					if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
+						$('#loader').modal('show');
+
+						var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+
+						if (!Callurl) {
+							alert("Error: Base URL not set.");
+							return;
+						}
+
+						const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+
+						if (Callurl.includes("?")) {
+							Callurl += "&" + filterParam;
+						} else {
+							Callurl += "?" + filterParam;
+						}
+
+						console.log("Redirecting to:", Callurl);
+						location.href = Callurl;
+					}
+				} else {
+					alert("No Records available for this selected cell.");
+				}
+			}
+		</script>
+
+		<style>
+			/* Apply pointer cursor on hover for ONLY the 3rd td in tbody of #reports */
+			#reports tbody tr td:nth-child(4):hover {
+				cursor: pointer;
+				background-color: #d6d8db;
+				/* Optional: subtle hover effect */
+			}
+		</style>
 
 </head>
 
