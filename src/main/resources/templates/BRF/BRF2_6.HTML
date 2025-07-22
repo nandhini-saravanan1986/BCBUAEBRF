@@ -465,7 +465,106 @@ function showResultModal(title, message) {
 
 </script>
 
+<script>
 
+function downloadDetailfile(button) {
+    const filename = button.getAttribute('data-filename');
+    const fromdate = button.getAttribute('data-fromdate');
+    const todate = button.getAttribute('data-todate');
+
+    $('#loader').modal('show');
+
+    const baseUrl = '/BCDRS/Reports/'; 
+    const downloadUrl = baseUrl + 'downloadDetailExcel' +
+        '?filename=' + encodeURIComponent(filename) +
+        '&fromdate=' + encodeURIComponent(fromdate) +
+        '&todate=' + encodeURIComponent(todate);
+
+    $.ajax({
+        url: downloadUrl,
+        type: 'GET',
+        xhrFields: {
+            responseType: 'blob'
+        },
+        success: function (data) {
+            $('#loader').modal('hide');
+
+            if (data && data.size > 100) {
+                const blob = new Blob([data], { type: 'application/vnd.ms-excel' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = filename + '.xls';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+
+                showResultModal('Success', filename + ' downloaded successfully.');
+            } else {
+                showResultModal('Information', 'No data was available to create a download or file was empty.');
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#loader').modal('hide');
+            console.error('Download error:', textStatus, errorThrown, jqXHR);
+
+            let errorMessage = 'An error occurred while downloading the file. Please try again.';
+            if (jqXHR.response) {
+                 const reader = new FileReader();
+                 reader.onload = function() {
+                     errorMessage = reader.result;
+                     showResultModal('Error', errorMessage);
+                 };
+                 reader.onerror = function() {
+                    showResultModal('Error', 'An unknown error occurred during download.');
+                 };
+                 reader.readAsText(jqXHR.response);
+                 return;
+            }
+            showResultModal('Error', errorMessage);
+        }
+    });
+}
+
+
+
+</script>  
+
+<script th:inline="javascript">
+function showdetailsbyRowAndColumn(a) {
+    var rowId = a.getAttribute('RowId');
+    var columnId = a.getAttribute('ColumnId');
+    var cellValue = a.textContent || a.innerText;
+
+    if (cellValue !== '0') {
+        if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
+            $('#loader').modal('show');
+
+            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+
+            if (!Callurl) {
+                alert("Error: Base URL not set.");
+                return;
+            }
+
+            const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+
+            if (Callurl.includes("?")) {
+                Callurl += "&" + filterParam;
+            } else {
+                Callurl += "?" + filterParam;
+            }
+
+            console.log("Redirecting to:", Callurl);
+            location.href = Callurl;
+        }
+    } else {
+        alert("No Records available for this selected cell.");
+    }
+}
+</script>
 
 
 </head>
@@ -503,38 +602,37 @@ function showResultModal(title, message) {
 							Date: <span th:text="${asondate}">2025-07-04</span>
 						</span>
 
-						<!-- Buttons -->
-						<input type="hidden" id="selectedTab" th:value="${displaymode}">
-						<button type="button" class="custom-tab-btn"
-							id="custom-tab-btnSummary" onclick="showsummary();"
-							th:if="${displaymode == 'Details'}">Summary</button>
-						<button type="button" class="custom-tab-btn"
-							id="custom-tab-btnDetails" onclick="showdetails();"
-							th:if="${displaymode == 'summary'}">Details</button>
-						<button type="button" class="custom-tab-btn"
-							id="custom-tab-btnAdd" th:if="${displaymode == 'summary'}"
-							th:attr="data-reportid=${reportid}, 
+						  <!-- Buttons -->
+        <input type="hidden" id="selectedTab" th:value="${displaymode}">
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();" th:if="${displaymode == 'Details'}">Summary</button>
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();" th:if="${displaymode == 'summary'}">Details</button>
+        <button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" th:if="${displaymode == 'summary'}"
+            th:attr="data-reportid=${reportid}, 
                      data-asondate=${asondate}, 
                      data-fromdate=${fromdate}, 
                      data-todate=${todate}, 
                      data-currency=${currency},  
                      data-dtltype=${dtltype}, 
-                     data-filename='BRF2_6.xls'"
-							onclick="downloadfile(this);">
-							<i class="fa fa-download"></i>
-						</button>
-						<button type="button" class="custom-tab-btn"
-							id="custom-tab-btnAdd" th:if="${displaymode == 'Details'}"
-							th:attr="data-reportid=${reportid}, 
-                     data-asondate=${asondate}, 
-                     data-fromdate=${fromdate}, 
-                     data-todate=${todate}, 
-                     data-currency=${currency},  
-                     data-dtltype=${dtltype}, 
-                     data-filename='BRF2_6'"
-							onclick="editRecord();">
-							<i class="fa fa-download"></i>
-						</button>
+                     data-filename='BRF2_6.xls',
+                     data-type=${type},
+                     data-version=${version}"
+                     
+            onclick="downloadfile(this);">
+            <i class="fa fa-download"></i>
+        </button>
+        <button
+		  type="button"
+		  class="custom-tab-btn"
+		  id="custom-tab-btnAdd"
+		  th:if="${displaymode == 'Details'}"
+		  onclick="downloadDetailfile(this);"
+		  th:attr="
+		    data-fromdate=${fromdate},
+		    data-todate=${todate},
+		    data-filename='BRF2_6Detail'
+		  ">
+		  <i class="fa fa-download"></i>
+		</button>
 					</div>
 				</div>
 			
@@ -666,39 +764,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.1.1</td>
 											<td style="padding-left: 20px;" th:text="${report.r0030_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0030_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0030', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0030_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0030', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0030_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0030_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0030_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0030', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0030_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0030', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0030_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0030_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0030_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0030_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0030', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0030_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0030', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0030_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0030_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0030_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0030', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0030_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0030', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0030_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0030_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0030_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0030', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0030_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -709,39 +823,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.1.2</td>
 											<td style="padding-left: 20px;" th:text="${report.r0040_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0040_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0040', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0040_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0040', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0040_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0040_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0040_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0040', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0040_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0040', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0040_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0040_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0040_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0040_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0040', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0040_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0040', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0040_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0040_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0040_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0040', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0040_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0040', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0040_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0040_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0040_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0040', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0040_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -795,39 +925,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.2.1</td>
 											<td style="padding-left: 20px;" th:text="${report.r0060_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0060_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0060', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0060_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0060', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0060_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0060_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0060_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0060', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0060_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0060', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0060_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0060_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0060_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0060_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0060', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0060_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0060', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0060_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0060_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0060_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0060', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0060_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0060', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0060_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0060_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0060_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0060', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0060_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -838,39 +984,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.2.2</td>
 											<td style="padding-left: 20px;" th:text="${report.r0070_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0070_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0070', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0070_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0070', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0070_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0070_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0070_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0070', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0070_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0070', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0070_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0070_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0070_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0070_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0070', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0070_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0070', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0070_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0070_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0070_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0070', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0070_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0070', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0070_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0070_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0070_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0070', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0070_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -924,39 +1086,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.3.1</td>
 											<td style="padding-left: 20px;" th:text="${report.r0090_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0090_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0090', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0090_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0090', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0090_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0090_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0090_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0090', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0090_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0090', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0090_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0090_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0090_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0090_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0090', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0090_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0090', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0090_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0090_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0090_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0090', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0090_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0090', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0090_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0090_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0090_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0090', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0090_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -967,39 +1145,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.3.2</td>
 											<td style="padding-left: 20px;" th:text="${report.r0100_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0100_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0100', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0100_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0100', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0100_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0100_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0100_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0100', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0100_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0100', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0100_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0100_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0100_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0100_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0100', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0100_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0100', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0100_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0100_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0100_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0100', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0100_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0100', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0100_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0100_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0100_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0100', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0100_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1053,39 +1247,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.4.1</td>
 											<td style="padding-left: 20px;" th:text="${report.r0120_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0120_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0120', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0120_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0120', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0120_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0120_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0120_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0120', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0120_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0120', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0120_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0120_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0120_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0120_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0120', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0120_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0120', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0120_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0120_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0120_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0120', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0120_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0120', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0120_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0120_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0120_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0120', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0120_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1096,39 +1306,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.4.2</td>
 											<td style="padding-left: 20px;" th:text="${report.r0130_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0130_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0130', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0130_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0130', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0130_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0130_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0130_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0130', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0130_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0130', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0130_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0130_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0130_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0130_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0130', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0130_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0130', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0130_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0130_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0130_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0130', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0130_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0130', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0130_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0130_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0130_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0130', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0130_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1182,39 +1408,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.5.1</td>
 											<td style="padding-left: 20px;" th:text="${report.r0150_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0150_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0150', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0150_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0150', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0150_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0150_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0150_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0150', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0150_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0150', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0150_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0150_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0150_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0150_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0150', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0150_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0150', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0150_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0150_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0150_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0150', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0150_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0150', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0150_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0150_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0150_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0150', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0150_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1225,39 +1467,55 @@ function showResultModal(title, message) {
 											<td style="text-align: right; background-color: #b3b6b9;">1.5.2</td>
 											<td style="padding-left: 20px;" th:text="${report.r0160_product}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_aed_up_to_3_months}"></td>
+												th:text="${report.r0160_resi_aed_up_to_3_months}"
+												th:attr="RowId='R0160', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0160_resi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0160', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0160_resi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0160_resi_aed_exceeding_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0160_resi_fcy_up_to_3_months}"
+												th:attr="RowId='R0160', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0160_resi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0160', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0160_resi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_resi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0160_resi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0160_total_resident}"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_aed_up_to_3_months}"></td>
+												th:text="${report.r0160_nonresi_aed_up_to_3_months}"
+												th:attr="RowId='R0160', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_aed_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0160_nonresi_aed_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0160', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_aed_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0160_nonresi_aed_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_aed_exceeding_12_months}"></td>
+												th:text="${report.r0160_nonresi_aed_exceeding_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_fcy_up_to_3_months}"></td>
+												th:text="${report.r0160_nonresi_fcy_up_to_3_months}"
+												th:attr="RowId='R0160', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_fcy_above_3_and_up_to_6_months}"></td>
+												th:text="${report.r0160_nonresi_fcy_above_3_and_up_to_6_months}"
+												th:attr="RowId='R0160', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_fcy_above_6_and_up_to_12_months}"></td>
+												th:text="${report.r0160_nonresi_fcy_above_6_and_up_to_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
-												th:text="${report.r0160_nonresi_fcy_exceeding_12_months}"></td>
+												th:text="${report.r0160_nonresi_fcy_exceeding_12_months}"
+												th:attr="RowId='R0160', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0160_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"

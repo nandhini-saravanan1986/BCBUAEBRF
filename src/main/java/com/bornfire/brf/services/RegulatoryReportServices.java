@@ -57,6 +57,12 @@ public class RegulatoryReportServices {
    	CBUAE_BRF2_7_ReportService cbuae_brf2_7_reportservice;
     
     @Autowired
+   	CBUAE_BRF2_16_ReportService cbuae_brf2_16_reportservice;
+    
+    @Autowired
+   	CBUAE_BRF2_18_ReportService cbuae_brf2_18_reportservice;
+    
+    @Autowired
    	CBUAE_BRF1_3_ReportService cbuae_brf1_3_reportservice;
     
     @Autowired
@@ -117,6 +123,14 @@ public class RegulatoryReportServices {
 			
 		case "BRF2_7":
 			repsummary = cbuae_brf2_7_reportservice.getBRF2_7View(reportId, fromdate, todate, currency, dtltype, pageable);
+			break;
+			
+		case "BRF2_16":
+			repsummary = cbuae_brf2_16_reportservice.getBRF2_16View(reportId, fromdate, todate, currency, dtltype, pageable);
+			break;
+			
+		case "BRF2_18":
+			repsummary = cbuae_brf2_18_reportservice.getBRF2_18View(reportId, fromdate, todate, currency, dtltype, pageable);
 			break;
 			
 		case "BRF1_3":
@@ -202,6 +216,16 @@ public class RegulatoryReportServices {
 			
 		case "BRF2_7":
 			repdetail = cbuae_brf2_7_reportservice.getBRF2_7currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			
+		case "BRF2_16":
+			repdetail = cbuae_brf2_16_reportservice.getBRF2_16currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			
+		case "BRF2_18":
+			repdetail = cbuae_brf2_18_reportservice.getBRF2_18currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
 			
@@ -335,6 +359,24 @@ public class RegulatoryReportServices {
 				}
 				break;
 				
+			case "BRF2_16":
+				try {
+					repfile = cbuae_brf2_16_reportservice.getBRF2_16Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+				
+			case "BRF2_18":
+				try {
+					repfile = cbuae_brf2_18_reportservice.getBRF2_18Excel(filename, reportId, fromdate, todate, currency, dtltype);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+				
 			
 		
 			}
@@ -364,6 +406,15 @@ public class RegulatoryReportServices {
 	    }
 	    else if(filename.equals("BRF2_5Detail")) {
 	    	return cbuae_brf2_5_reportservice.getBRF2_5DetailExcel(filename, fromdate, todate);
+	    }
+	    else if(filename.equals("BRF2_6Detail")) {
+	    	return cbuae_brf2_6_reportservice.getBRF2_6DetailExcel(filename, fromdate, todate);
+	    }
+	    else if(filename.equals("BRF2_16Detail")) {
+	    	return cbuae_brf2_16_reportservice.getBRF2_16DetailExcel(filename, fromdate, todate);
+	    }
+	    else if(filename.equals("BRF2_18Detail")) {
+	    	return cbuae_brf2_18_reportservice.getBRF2_18DetailExcel(filename, fromdate, todate);
 	    }
 	    return new byte[0];
 	}
