@@ -11,261 +11,249 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF1_3_DETAILTABLE")
-
+@Table(name = "CBUAE_BRF1_3_DETAILTABLE", schema = "CXBRL")
 public class CBUAE_BRF1_3_Detail_Entity {
-	
-    
-    @Id
-    @Column(name = "CUST_ID", length = 100)
-    private String custId;
+	 	
+	    @Column(name = "ROW_ID", length = 100)
+	    private String rowId;
+	    
+	    @Id
+	    @Column(name = "CUST_ID", length = 100)
+	    private String custId;
 
-    @Column(name = "ACCT_NUMBER", length = 100)
-    private String acctNumber;
+	    @Column(name = "ACCT_NUMBER", length = 100)
+	    private String acctNumber;
 
-    @Column(name = "ACCT_NAME", length = 100)
-    private String acctName;
+	    @Column(name = "ACCT_NAME", length = 100)
+	    private String acctName;
 
-    @Column(name = "DATA_TYPE", length = 100)
-    private String dataType;
-    
-    @Column(name = "ROW_ID", length = 100)
-    private String rowId;
-    
-    @Column(name = "COLUMN_ID", length = 100)
-    private String columnId;
+	    @Column(name = "DATA_TYPE", length = 100)
+	    private String dataType;
 
-    @Column(name = "REPORT_REMARKS", length = 100)
-    private String reportRemarks;
+	    @Column(name = "COLUMN_ID", length = 100)
+	    private String columnId;
 
-    @Column(name = "MODIFICATION_REMARKS", length = 100)
-    private String modificationRemarks;
+	    @Column(name = "REPORT_REMARKS", length = 100)
+	    private String reportRemarks;
 
-    @Column(name = "DATA_ENTRY_VERSION", length = 100)
-    private String dataEntryVersion;
+	    @Column(name = "MODIFICATION_REMARKS", length = 100)
+	    private String modificationRemarks;
 
-    @Column(name = "ACCT_BALANCE_YEAR_TO_DATE", precision = 24, scale = 3)
-    private BigDecimal acctBalanceYearToDate;
-    
-    @Column(name = "REPORT_DATE")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date reportDate;
+	    @Column(name = "DATA_ENTRY_VERSION", length = 100)
+	    private String dataEntryVersion;
 
-    @Column(name = "REPORT_NAME", length = 100)
-    private String reportName;
+	    @Column(name = "ACCT_BALANCE_IN_AED", precision = 24, scale = 3)
+	    private BigDecimal acctBalanceInAed;
+	    
+	    @Column(name = "REPORT_DATE")
+	    @DateTimeFormat(pattern = "dd-MM-yyyy")
+	    private Date reportDate;
 
-    @Column(name = "CREATE_USER", length = 50)
-    private String createUser;
+	    @Column(name = "REPORT_NAME", length = 100)
+	    private String reportName;
 
-    @Column(name = "CREATE_TIME")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date createTime;
+	    @Column(name = "CREATE_USER", length = 50)
+	    private String createUser;
 
-    @Column(name = "MODIFY_USER", length = 50)
-    private String modifyUser;
+	    @Column(name = "CREATE_TIME")
+	    @DateTimeFormat(pattern = "dd-MM-yyyy")
+	    private Date createTime;
 
-    @Column(name = "MODIFY_TIME")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date modifyTime;
+	    @Column(name = "MODIFY_USER", length = 50)
+	    private String modifyUser;
 
-    @Column(name = "VERIFY_USER", length = 50)
-    private String verifyUser;
+	    @Column(name = "MODIFY_TIME")
+	    @DateTimeFormat(pattern = "dd-MM-yyyy")
+	    private Date modifyTime;
 
-    @Column(name = "VERIFY_TIME")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date verifyTime;
+	    @Column(name = "VERIFY_USER", length = 50)
+	    private String verifyUser;
 
-    @Column(name = "ENTITY_FLG", length = 1)
-    private String entityFlg;
+	    @Column(name = "VERIFY_TIME")
+	    @DateTimeFormat(pattern = "dd-MM-yyyy")
+	    private Date verifyTime;
 
-    @Column(name = "MODIFY_FLG", length = 1)
-    private String modifyFlg;
+	    @Column(name = "ENTITY_FLG", length = 1)
+	    private String entityFlg;
 
-    @Column(name = "DEL_FLG", length = 1)
-    private String delFlg;
-    
-    
-    
+	    @Column(name = "MODIFY_FLG", length = 1)
+	    private String modifyFlg;
 
-	public String getCustId() {
-		return custId;
-	}
+	    @Column(name = "DEL_FLG", length = 1)
+	    private String delFlg;
 
-	public void setCustId(String custId) {
-		this.custId = custId;
-	}
+		public String getRowId() {
+			return rowId;
+		}
 
-	public String getAcctNumber() {
-		return acctNumber;
-	}
+		public void setRowId(String rowId) {
+			this.rowId = rowId;
+		}
 
-	public void setAcctNumber(String acctNumber) {
-		this.acctNumber = acctNumber;
-	}
+		public String getCustId() {
+			return custId;
+		}
 
-	public String getAcctName() {
-		return acctName;
-	}
+		public void setCustId(String custId) {
+			this.custId = custId;
+		}
 
-	public void setAcctName(String acctName) {
-		this.acctName = acctName;
-	}
+		public String getAcctNumber() {
+			return acctNumber;
+		}
 
-	public String getDataType() {
-		return dataType;
-	}
+		public void setAcctNumber(String acctNumber) {
+			this.acctNumber = acctNumber;
+		}
 
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
-	}
+		public String getAcctName() {
+			return acctName;
+		}
 
-	public String getRowId() {
-		return rowId;
-	}
+		public void setAcctName(String acctName) {
+			this.acctName = acctName;
+		}
 
-	public void setRowId(String rowId) {
-		this.rowId = rowId;
-	}
+		public String getDataType() {
+			return dataType;
+		}
 
-	public String getColumnId() {
-		return columnId;
-	}
+		public void setDataType(String dataType) {
+			this.dataType = dataType;
+		}
 
-	public void setColumnId(String columnId) {
-		this.columnId = columnId;
-	}
+		public String getColumnId() {
+			return columnId;
+		}
 
-	public String getReportRemarks() {
-		return reportRemarks;
-	}
+		public void setColumnId(String columnId) {
+			this.columnId = columnId;
+		}
 
-	public void setReportRemarks(String reportRemarks) {
-		this.reportRemarks = reportRemarks;
-	}
+		public String getReportRemarks() {
+			return reportRemarks;
+		}
 
-	public String getModificationRemarks() {
-		return modificationRemarks;
-	}
+		public void setReportRemarks(String reportRemarks) {
+			this.reportRemarks = reportRemarks;
+		}
 
-	public void setModificationRemarks(String modificationRemarks) {
-		this.modificationRemarks = modificationRemarks;
-	}
+		public String getModificationRemarks() {
+			return modificationRemarks;
+		}
 
-	public String getDataEntryVersion() {
-		return dataEntryVersion;
-	}
+		public void setModificationRemarks(String modificationRemarks) {
+			this.modificationRemarks = modificationRemarks;
+		}
 
-	public void setDataEntryVersion(String dataEntryVersion) {
-		this.dataEntryVersion = dataEntryVersion;
-	}
+		public String getDataEntryVersion() {
+			return dataEntryVersion;
+		}
 
-	public BigDecimal getAcctBalanceYearToDate() {
-		return acctBalanceYearToDate;
-	}
+		public void setDataEntryVersion(String dataEntryVersion) {
+			this.dataEntryVersion = dataEntryVersion;
+		}
 
-	public void setAcctBalanceYearToDate(BigDecimal acctBalanceYearToDate) {
-		this.acctBalanceYearToDate = acctBalanceYearToDate;
-	}
+		public BigDecimal getAcctBalanceInAed() {
+			return acctBalanceInAed;
+		}
 
-	public Date getReportDate() {
-		return reportDate;
-	}
+		public void setAcctBalanceInAed(BigDecimal acctBalanceInAed) {
+			this.acctBalanceInAed = acctBalanceInAed;
+		}
 
-	public void setReportDate(Date reportDate) {
-		this.reportDate = reportDate;
-	}
+		public Date getReportDate() {
+			return reportDate;
+		}
 
-	public String getReportName() {
-		return reportName;
-	}
+		public void setReportDate(Date reportDate) {
+			this.reportDate = reportDate;
+		}
 
-	public void setReportName(String reportName) {
-		this.reportName = reportName;
-	}
+		public String getReportName() {
+			return reportName;
+		}
 
-	public String getCreateUser() {
-		return createUser;
-	}
+		public void setReportName(String reportName) {
+			this.reportName = reportName;
+		}
 
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
+		public String getCreateUser() {
+			return createUser;
+		}
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+		public void setCreateUser(String createUser) {
+			this.createUser = createUser;
+		}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+		public Date getCreateTime() {
+			return createTime;
+		}
 
-	public String getModifyUser() {
-		return modifyUser;
-	}
+		public void setCreateTime(Date createTime) {
+			this.createTime = createTime;
+		}
 
-	public void setModifyUser(String modifyUser) {
-		this.modifyUser = modifyUser;
-	}
+		public String getModifyUser() {
+			return modifyUser;
+		}
 
-	public Date getModifyTime() {
-		return modifyTime;
-	}
+		public void setModifyUser(String modifyUser) {
+			this.modifyUser = modifyUser;
+		}
 
-	public void setModifyTime(Date modifyTime) {
-		this.modifyTime = modifyTime;
-	}
+		public Date getModifyTime() {
+			return modifyTime;
+		}
 
-	public String getVerifyUser() {
-		return verifyUser;
-	}
+		public void setModifyTime(Date modifyTime) {
+			this.modifyTime = modifyTime;
+		}
 
-	public void setVerifyUser(String verifyUser) {
-		this.verifyUser = verifyUser;
-	}
+		public String getVerifyUser() {
+			return verifyUser;
+		}
 
-	public Date getVerifyTime() {
-		return verifyTime;
-	}
+		public void setVerifyUser(String verifyUser) {
+			this.verifyUser = verifyUser;
+		}
 
-	public void setVerifyTime(Date verifyTime) {
-		this.verifyTime = verifyTime;
-	}
+		public Date getVerifyTime() {
+			return verifyTime;
+		}
 
-	public String getEntityFlg() {
-		return entityFlg;
-	}
+		public void setVerifyTime(Date verifyTime) {
+			this.verifyTime = verifyTime;
+		}
 
-	public void setEntityFlg(String entityFlg) {
-		this.entityFlg = entityFlg;
-	}
+		public String getEntityFlg() {
+			return entityFlg;
+		}
 
-	public String getModifyFlg() {
-		return modifyFlg;
-	}
+		public void setEntityFlg(String entityFlg) {
+			this.entityFlg = entityFlg;
+		}
 
-	public void setModifyFlg(String modifyFlg) {
-		this.modifyFlg = modifyFlg;
-	}
+		public String getModifyFlg() {
+			return modifyFlg;
+		}
 
-	public String getDelFlg() {
-		return delFlg;
-	}
+		public void setModifyFlg(String modifyFlg) {
+			this.modifyFlg = modifyFlg;
+		}
 
-	public void setDelFlg(String delFlg) {
-		this.delFlg = delFlg;
-	}
-	
-	
-	
-	
+		public String getDelFlg() {
+			return delFlg;
+		}
 
-	public CBUAE_BRF1_3_Detail_Entity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-    
-    
-    
-    
+		public void setDelFlg(String delFlg) {
+			this.delFlg = delFlg;
+		}
 
+		public CBUAE_BRF1_3_Detail_Entity() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+	    
+	    
 }

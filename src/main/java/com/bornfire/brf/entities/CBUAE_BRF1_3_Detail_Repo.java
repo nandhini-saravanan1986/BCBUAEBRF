@@ -11,5 +11,9 @@ public interface CBUAE_BRF1_3_Detail_Repo extends JpaRepository<CBUAE_BRF1_3_Det
 	
 	@Query(value = "select * from CBUAE_BRF1_3_DETAILTABLE  ", nativeQuery = true)
 	List<CBUAE_BRF1_3_Detail_Entity> getdatabydateList(Date reportdate);
+	
+	
+	@Query(value = "select * from CBUAE_BRF1_3_DETAILTABLE where ROW_ID =?1 and COLUMN_ID=?2", nativeQuery = true)
+	List<CBUAE_BRF1_3_Detail_Entity> GetDataByRowIdAndColumnId(String rowId,String ColumnId);
 
 }
