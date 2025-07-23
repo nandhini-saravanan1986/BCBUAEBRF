@@ -2117,13 +2117,13 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 	}
 	
 	
-	public byte[] getBRF2_18DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF2_6DetailExcel(String filename, String fromdate, String todate) {
 	    try {
-	        logger.info("Generating Excel for BRF2_18 Details...");
+	        logger.info("Generating Excel for BRF2_6 Details...");
 	        System.out.println("came to Detail download service");
 
 	        XSSFWorkbook workbook = new XSSFWorkbook();
-	        XSSFSheet sheet = workbook.createSheet("BRF2_18Details");
+	        XSSFSheet sheet = workbook.createSheet("BRF2_6Details");
 
 	        // Common border style
 	        BorderStyle border = BorderStyle.THIN;
@@ -2185,11 +2185,11 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 
 	        // Get data
 	        Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
-	        List<CBUAE_BRF2_18_Detail_Entity> reportData = BRF2_18_DETAIL_Repo.getdatabydateList(parsedToDate);
+	        List<CBUAE_BRF2_6_Detail_Entity> reportData = BRF2_6_DETAIL_Repo.getdatabydateList(parsedToDate);
 
 	        if (reportData != null && !reportData.isEmpty()) {
 	            int rowIndex = 1;
-	            for (CBUAE_BRF2_18_Detail_Entity item : reportData) {
+	            for (CBUAE_BRF2_6_Detail_Entity item : reportData) {
 	                XSSFRow row = sheet.createRow(rowIndex++);
 
 	                row.createCell(0).setCellValue(item.getCustId());
@@ -2220,7 +2220,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 	                }
 	            }
 	        } else {
-	            logger.info("No data found for BRF2_18 — only header will be written.");
+	            logger.info("No data found for BRF2_6 — only header will be written.");
 	        }
 
 	        // Write to byte[]
@@ -2232,7 +2232,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 	        return bos.toByteArray();
 
 	    } catch (Exception e) {
-	        logger.error("Error generating BRF2_18 Excel", e);
+	        logger.error("Error generating BRF2_6 Excel", e);
 	        return new byte[0];
 	    }
 	}
