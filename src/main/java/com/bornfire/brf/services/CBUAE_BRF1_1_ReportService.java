@@ -1496,7 +1496,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 Cell cell6 = row.createCell(6);
 					if (record.getR0390_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0390_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0390_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -1581,7 +1581,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0390_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0390_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0390_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -1666,7 +1666,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0400_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0400_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0400_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -1751,7 +1751,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0420_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0420_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0420_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -1836,7 +1836,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0430_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0430_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0430_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -1921,7 +1921,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0450_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0450_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0450_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2005,7 +2005,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0460_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0460_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0460_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2090,7 +2090,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0480_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0480_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0480_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2174,7 +2174,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0490_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0490_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0490_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2258,7 +2258,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0520_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0520_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0520_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2342,7 +2342,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0530_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0530_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0530_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2427,7 +2427,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0540_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0540_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0540_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2511,7 +2511,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0550_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0550_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0550_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2596,7 +2596,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0560_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0560_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0560_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2681,7 +2681,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0580_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0580_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0580_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2765,7 +2765,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0590_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0590_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0590_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2850,7 +2850,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0600_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0600_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0600_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -2935,7 +2935,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0610_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0610_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0610_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");
@@ -3019,7 +3019,7 @@ public class CBUAE_BRF1_1_ReportService {
 					// Column 6
 					 cell6 = row.createCell(6);
 					if (record.getR0620_NO_ACCT_FCY_RESIDENT() != null) {
-						cell6.setCellValue(record.getR0620_NO_ACCT_AED_RESIDENT().doubleValue());
+						cell6.setCellValue(record.getR0620_NO_ACCT_FCY_RESIDENT().doubleValue());
 						cell6.setCellStyle(numberStyle);
 					} else {
 						cell6.setCellValue("");

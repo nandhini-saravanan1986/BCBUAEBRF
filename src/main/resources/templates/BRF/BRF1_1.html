@@ -493,7 +493,6 @@ function downloadDetailfile(button) {
         },
         success: function (data) {
             $('#loader').modal('hide');
-
             if (data && data.size > 100) {
                 const blob = new Blob([data], { type: 'application/vnd.ms-excel' });
                 const url = window.URL.createObjectURL(blob);
@@ -1728,13 +1727,13 @@ function showdetailsbyRowAndColumn(a) {
 							    <th style="text-align: right;background-color: #b3b6b9;">9</th>
 							    <th th:text="${report.R0630_PRODUCT}"></th>
 							    <td style="background-color: #b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_AED_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0630_AMOUNT_AED_RESIDENT}"></td>
 							    <td style="background-color: #b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_FCY_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0630_AMOUNT_FCY_RESIDENT}"></td>
 							    <td style="background-color: #b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_AED_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0630_AMOUNT_AED_NON_RESIDENT}"></td>
 							    <td style="background-color:#b3b6b9"></td>
-							    <td style="text-align: right;" th:text="${report.R0630_AMOUNT_FCY_NON_RESIDENT}"></td>
+							    <td style="text-align: right; background-color: #b3b6b9;" th:text="${report.R0630_AMOUNT_FCY_NON_RESIDENT}"></td>
 							    <td style="text-align: right;background-color: #b3b6b9;" th:text="${report.R0630_TOTAL_AMOUNT}"></td>
 							</tr>
 							<tr style="background-color: #b3b6b9">
