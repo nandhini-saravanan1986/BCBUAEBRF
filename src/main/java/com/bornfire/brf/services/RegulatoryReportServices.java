@@ -22,7 +22,8 @@ import com.bornfire.brf.services.CBUAE_BRF1_1_ReportService;
 @ConfigurationProperties("output")
 
 public class RegulatoryReportServices {
-	
+	@Autowired
+	CBUAE_BRF3_16_4_ReportService CBUAE_BRF3_16_4_ReportServices;
 	@Autowired
 	CBUAE_BRF2_11_ReportService cbuae_brf2_11_ReportService;
 	
@@ -74,6 +75,8 @@ public class RegulatoryReportServices {
     @Autowired
    	CBUAE_BRF2_15_ReportService cbuae_brf2_15_reportservice;
 
+    @Autowired
+    CBUAE_BRF3_16_4_ReportService CBUAE_BRF_16_4_ReportServices;
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegulatoryReportServices.class);
@@ -146,6 +149,10 @@ public class RegulatoryReportServices {
 
 		case "BRF2_11":
 			repsummary = cbuae_brf2_11_ReportService.getBRF2_11View(reportId, fromdate, todate, currency, dtltype, pageable,type,version);
+			break;	
+			
+		case "BRF_16.4":
+			repsummary = CBUAE_BRF_16_4_ReportServices.getBRF_16_4View(reportId, fromdate, todate, currency, dtltype, pageable,type,version);
 			break;	
 
 		case "BRF2_13":
@@ -400,6 +407,15 @@ public class RegulatoryReportServices {
 					e.printStackTrace();
 				}
 				break;
+			case "BRF3_16_4":
+				try {
+					repfile = CBUAE_BRF3_16_4_ReportServices.getBRF3_16_4Excel(filename, reportId, fromdate, todate, currency, dtltype);
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
 				
 			case "BRF2_13":
 				try {
@@ -420,7 +436,6 @@ public class RegulatoryReportServices {
 				break;
 				
 			
-		
 			}
 		
 		return repfile;
