@@ -435,7 +435,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_1_Report
 										
 										
 										//row30
-										row = sheet.getRow(31);
+										row = sheet.getRow(29);
 										
 										// Column E
 										 cell4 = row.createCell(4);
@@ -558,6 +558,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_1_Report
 			return out.toByteArray();
 		}
 	}
+	
 	
 	public byte[] getBRF2_1DetailExcel(String filename, String fromdate, String todate) {
 	    try {

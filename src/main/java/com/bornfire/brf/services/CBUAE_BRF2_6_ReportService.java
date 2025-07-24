@@ -39,6 +39,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bornfire.brf.entities.CBUAE_BRF2_18_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_4_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_6_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_6_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_6_Summary_Entity;
@@ -150,7 +151,6 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 	    mv.addObject("menu", reportId);
 	    return mv;
 	}
-	
 	public byte[] getBRF2_6Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 
@@ -357,7 +357,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					Cell cell16 = row.createCell(10);
+					Cell cell16 = row.createCell(16);
 					if (record.getR0030_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0030_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -368,7 +368,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					Cell cell17 = row.createCell(11);
+					Cell cell17 = row.createCell(17);
 					if (record.getR0030_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0030_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -380,7 +380,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					Cell cell18 = row.createCell(13);
+					Cell cell18 = row.createCell(18);
 					if (record.getR0030_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0030_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -392,7 +392,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					Cell cell19 = row.createCell(14);
+					Cell cell19 = row.createCell(19);
 					if (record.getR0030_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0030_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -403,9 +403,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					Cell cell20 = row.createCell(15);
+					Cell cell20 = row.createCell(20);
 					if (record.getR0030_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0030_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0030_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -544,7 +544,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0040_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0040_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -555,7 +555,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0040_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0040_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -567,7 +567,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0040_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0040_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -579,7 +579,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0040_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0040_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -590,9 +590,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0040_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0040_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0040_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -731,7 +731,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0060_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0060_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -742,7 +742,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0060_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0060_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -754,7 +754,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0060_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0060_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -766,7 +766,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0060_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0060_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -777,9 +777,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0060_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0060_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0060_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -919,7 +919,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0070_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0070_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -930,7 +930,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0070_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0070_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -942,7 +942,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0070_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0070_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -954,7 +954,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0070_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0070_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -965,9 +965,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0070_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0070_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0070_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -1107,7 +1107,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0090_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0090_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -1118,7 +1118,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0090_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0090_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -1130,7 +1130,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0090_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0090_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -1142,7 +1142,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0090_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0090_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -1153,9 +1153,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0090_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0090_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0090_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -1294,7 +1294,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0100_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0100_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -1305,7 +1305,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0100_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0100_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -1317,7 +1317,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0100_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0100_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -1329,7 +1329,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0100_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0100_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -1340,9 +1340,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0100_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0100_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0100_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -1482,7 +1482,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0120_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0120_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -1493,7 +1493,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0120_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0120_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -1505,7 +1505,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0120_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0120_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -1517,7 +1517,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0120_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0120_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -1528,9 +1528,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0120_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0120_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0120_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -1670,7 +1670,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0130_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0130_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -1681,7 +1681,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0130_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0130_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -1693,7 +1693,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0130_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0130_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -1705,7 +1705,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0130_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0130_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -1716,9 +1716,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0130_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0130_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0130_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -1858,7 +1858,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0150_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0150_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -1869,7 +1869,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0150_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0150_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -1881,7 +1881,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0150_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0150_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -1893,7 +1893,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0150_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0150_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -1904,9 +1904,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0150_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0150_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0150_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -2045,7 +2045,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column Q
-					 cell16 = row.createCell(10);
+					 cell16 = row.createCell(16);
 					if (record.getR0160_nonresi_aed_exceeding_12_months() != null) {
 						cell16.setCellValue(record.getR0160_nonresi_aed_exceeding_12_months().doubleValue());
 						cell16.setCellStyle(numberStyle);
@@ -2056,7 +2056,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column R
-					 cell17 = row.createCell(11);
+					 cell17 = row.createCell(17);
 					if (record.getR0160_nonresi_fcy_up_to_3_months() != null) {
 						cell17.setCellValue(record.getR0160_nonresi_fcy_up_to_3_months().doubleValue());
 						cell17.setCellStyle(numberStyle);
@@ -2068,7 +2068,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column S
-					 cell18 = row.createCell(13);
+					 cell18 = row.createCell(18);
 					if (record.getR0160_nonresi_fcy_above_3_and_up_to_6_months() != null) {
 						cell18.setCellValue(record.getR0160_nonresi_fcy_above_3_and_up_to_6_months().doubleValue());
 						cell18.setCellStyle(numberStyle);
@@ -2080,7 +2080,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column T
-					 cell19 = row.createCell(14);
+					 cell19 = row.createCell(19);
 					if (record.getR0160_nonresi_fcy_above_6_and_up_to_12_months() != null) {
 						cell19.setCellValue(record.getR0160_nonresi_fcy_above_6_and_up_to_12_months().doubleValue());
 						cell19.setCellStyle(numberStyle);
@@ -2091,9 +2091,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 					
 				
 					// Column U
-					 cell20 = row.createCell(15);
+					 cell20 = row.createCell(20);
 					if (record.getR0160_nonresi_fcy_exceeding_12_months() != null) {
-						cell20.setCellValue(record.getR0160_nonresi_aed_above_6_and_up_to_12_months().doubleValue());
+						cell20.setCellValue(record.getR0160_nonresi_fcy_exceeding_12_months().doubleValue());
 						cell20.setCellStyle(numberStyle);
 					} else {
 						cell20.setCellValue("");
@@ -2236,4 +2236,6 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_6_Report
 	        return new byte[0];
 	    }
 	}
+	
+
 }
