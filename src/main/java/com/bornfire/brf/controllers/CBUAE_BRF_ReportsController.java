@@ -1,30 +1,21 @@
 package com.bornfire.brf.controllers;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,16 +23,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.bornfire.brf.services.RegulatoryReportServices;
 
 @Controller
@@ -142,6 +130,8 @@ public class CBUAE_BRF_ReportsController {
 		md.addAttribute("currency", currency);
 		md.addAttribute("dtltype", dtltype);
 		md.addAttribute("reportingTime", reportingTime);
+		md.addAttribute("type", type);
+		md.addAttribute("version", version);
 		// md.addAttribute("instancecode", Integer.parseInt(instancecode));
 		// md.addAttribute("reportTitle", reportServices.getReportName(reportid));
 		md.addAttribute("displaymode", "detail");
@@ -216,11 +206,14 @@ public class CBUAE_BRF_ReportsController {
 	@RequestMapping(value = "downloadDetailExcel", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<ByteArrayResource> downloadDetailExcel(@RequestParam("filename") String filename,
-			@RequestParam("fromdate") String fromdate, @RequestParam("todate") String todate) {
+			@RequestParam("fromdate") String fromdate, @RequestParam("todate") String todate,
+			@RequestParam("currency") String currency, @RequestParam("dtltype") String dtltype,
+			@RequestParam("type") String type, @RequestParam("version") String version, Model md) {
 
 		try {
 			System.out.println("came to controller");
-			byte[] data = regreportServices.getDownloadDetailFile(filename, fromdate, todate);
+			byte[] data = regreportServices.getDownloadDetailFile(filename, fromdate, todate, currency, dtltype, type,
+					version);
 
 			if (data == null || data.length == 0) {
 				return ResponseEntity.noContent().build();

@@ -327,7 +327,7 @@ PURPOSE		: BRFREPORT
 
 			var Callurl;
 			$('#loader').modal('show');
-			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/
+			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
 			/*  $.ajax({
@@ -475,6 +475,10 @@ PURPOSE		: BRFREPORT
 			const filename = button.getAttribute('data-filename');
 			const fromdate = button.getAttribute('data-fromdate');
 			const todate = button.getAttribute('data-todate');
+			const currency = button.getAttribute('data-currency');
+			const dtltype = button.getAttribute('data-dtltype');
+			const type = button.getAttribute('data-type');
+			const version = button.getAttribute('data-version');
 
 			$('#loader').modal('show');
 
@@ -482,7 +486,11 @@ PURPOSE		: BRFREPORT
 			const downloadUrl = baseUrl + 'downloadDetailExcel' +
 				'?filename=' + encodeURIComponent(filename) +
 				'&fromdate=' + encodeURIComponent(fromdate) +
-				'&todate=' + encodeURIComponent(todate);
+				'&todate=' + encodeURIComponent(todate) +
+				'&currency=' + encodeURIComponent(currency) +
+				'&dtltype=' + encodeURIComponent(dtltype) +
+				'&type=' + encodeURIComponent(type) +
+				'&version=' + encodeURIComponent(version);
 
 			$.ajax({
 				url: downloadUrl,
@@ -629,7 +637,11 @@ PURPOSE		: BRFREPORT
 							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
 		    data-fromdate=${fromdate},
 		    data-todate=${todate},
-		    data-filename='BRF1_3Detail'
+			data-currency=${currency},  
+			data-dtltype=${dtltype}, 
+		    data-filename='BRF1_3Detail',
+			data-type=${type},
+			data-version=${version}
 		  ">
 							<i class="fa fa-download"></i>
 						</button>
