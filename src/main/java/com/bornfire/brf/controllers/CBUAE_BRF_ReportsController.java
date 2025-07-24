@@ -182,7 +182,7 @@ public class CBUAE_BRF_ReportsController {
 			byte[] excelData = regreportServices.getDownloadFile(reportid, filename, asondate, fromdate, todate,
 					currency, subreportid, secid, dtltype, reportingTime, instancecode, filter, type, version);
 
-			if (excelData.length == 0) {
+			if (excelData == null || excelData.length == 0) {
 				logger.warn("Controller: Service returned no data. Responding with 204 No Content.");
 				return ResponseEntity.noContent().build();
 			}

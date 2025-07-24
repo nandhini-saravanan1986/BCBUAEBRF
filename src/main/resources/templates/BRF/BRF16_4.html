@@ -518,7 +518,7 @@ PURPOSE		: BRFREPORT
                      data-todate=${todate}, 
                      data-currency=${currency},  
                      data-dtltype=${dtltype}, 
-                     data-filename='BRF3_16_4.xls'" onclick="downloadfile(this);">
+                     data-filename='BRF16_4.xls'" onclick="downloadfile(this);">
 							<i class="fa fa-download"></i>
 						</button>
 
@@ -623,7 +623,7 @@ PURPOSE		: BRFREPORT
 											<td style="background-color: #b3b6b9;"><span
 													th:text="${#numbers.formatInteger(stat.count + 9, 4)}"></span>
 											</td>
-											<td style="background-color: #b3b6b9;" th:text="${stat.count}"></td>
+											<td style="background-color: #b3b6b9;" th:text="${report.id}"></td>
 											<td th:text="${report.r0010_lfi_type}"></td>
 											<td th:text="${report.r0020_lfi_name}"></td>
 											<td th:text="${report.r0030_consumer_name}"></td>

@@ -3,6 +3,7 @@ package com.bornfire.brf.entities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,8 +13,12 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF3_16_4_SUMMARYTABLE")
-public class CBUAE_BRF3_16_4_Summary_Entity {
+@Table(name = "CBUAE_BRF16_4_SUMMARYTABLE")
+public class CBUAE_BRF16_4_Summary_Entity {
+	
+	@Id
+	private Long id;
+	
 	private String	r0010_lfi_type;
 	private String	r0020_lfi_name;
 	private String	r0030_consumer_name;
@@ -51,9 +56,11 @@ public class CBUAE_BRF3_16_4_Summary_Entity {
 	private String	r0290_escalated_to_sanadak;
 	private String	r0300_is_the_complaint_pending_in_court;
 	private String	r0310_remarks;
+	
+
+	@Column(name = "REPORT_DATE")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Id
 	private Date	report_date;
 	private String	report_version;
 	private String	report_frequency;
@@ -62,11 +69,11 @@ public class CBUAE_BRF3_16_4_Summary_Entity {
 	private String	modify_flg;
 	private String	entity_flg;
 	private String	delete_flg;
-	public CBUAE_BRF3_16_4_Summary_Entity() {
+	public CBUAE_BRF16_4_Summary_Entity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CBUAE_BRF3_16_4_Summary_Entity(String r0010_lfi_type, String r0020_lfi_name, String r0030_consumer_name,
+	public CBUAE_BRF16_4_Summary_Entity(Long id,String r0010_lfi_type, String r0020_lfi_name, String r0030_consumer_name,
 			String r0040_service_request_number, String r0050_people_of_determination, String r0060_consumer_type,
 			String r0070_residence_type, String r0080_emirates_id_only_for_resident_customer,
 			String r0090_trade_license_no, String r0100_passport_no_for_resident_and_non_resident,
@@ -121,6 +128,14 @@ public class CBUAE_BRF3_16_4_Summary_Entity {
 		this.modify_flg = modify_flg;
 		this.entity_flg = entity_flg;
 		this.delete_flg = delete_flg;
+		this.id = id;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getR0010_lfi_type() {
 		return r0010_lfi_type;

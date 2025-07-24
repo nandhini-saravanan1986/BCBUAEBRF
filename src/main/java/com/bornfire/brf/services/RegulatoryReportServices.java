@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class RegulatoryReportServices {
 	@Autowired
-	CBUAE_BRF3_16_4_ReportService CBUAE_BRF3_16_4_ReportServices;
+	CBUAE_BRF16_4_ReportService CBUAE_BRF16_4_ReportServices;
 	@Autowired
 	CBUAE_BRF2_11_ReportService cbuae_brf2_11_ReportService;
 
@@ -75,7 +75,7 @@ public class RegulatoryReportServices {
 	CBUAE_BRF2_15_ReportService cbuae_brf2_15_reportservice;
 
 	@Autowired
-	CBUAE_BRF3_16_4_ReportService CBUAE_BRF_16_4_ReportServices;
+	CBUAE_BRF16_4_ReportService CBUAE_BRF_16_4_ReportServices;
 
 	private static final Logger logger = LoggerFactory.getLogger(RegulatoryReportServices.class);
 
@@ -422,9 +422,9 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
-		case "BRF3_16_4":
+		case "BRF16_4":
 			try {
-				repfile = CBUAE_BRF3_16_4_ReportServices.getBRF3_16_4Excel(filename, reportId, fromdate, todate,
+				repfile = CBUAE_BRF16_4_ReportServices.getBRF16_4Excel(filename, reportId, fromdate, todate,
 						currency, dtltype);
 
 			} catch (Exception e) {
