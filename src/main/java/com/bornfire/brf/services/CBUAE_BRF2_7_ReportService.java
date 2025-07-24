@@ -46,7 +46,7 @@ import org.springframework.stereotype.Service;
 import com.bornfire.brf.entities.CBUAE_BRF2_7_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_7_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_7_Summary_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF2_7_Summary_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF2_7_SUMMARY_Repo;
 
 @Component
 @Service
@@ -65,7 +65,8 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_7_Report
 	CBUAE_BRF2_7_Detail_Repo BRF2_7_Detail_Repo;
 	
 	@Autowired
-	CBUAE_BRF2_7_Summary_Repo BRF2_7_Summary_Repo;
+	CBUAE_BRF2_7_SUMMARY_Repo BRF2_7_Summary_Repo;
+	
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 	public ModelAndView getBRF2_7View(String reportId, String fromdate, String todate, String currency, String dtltype,
