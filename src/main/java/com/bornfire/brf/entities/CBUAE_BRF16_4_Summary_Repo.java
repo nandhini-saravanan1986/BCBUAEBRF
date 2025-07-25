@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 
-public interface CBUAE_BRF16_4_Summary_Repo extends JpaRepository<CBUAE_BRF16_4_Summary_Entity, Date> {
+public interface CBUAE_BRF16_4_Summary_Repo extends JpaRepository<CBUAE_BRF16_4_Summary_Entity, Long> {
 
-	@Query(value = "select * from CBUAE_BRF16_4_SUMMARYTABLE", nativeQuery = true)
+	@Query(value = "select * from CBUAE_BRF16_4_SUMMARYTABLE ORDER BY ID", nativeQuery = true)
 	List<CBUAE_BRF16_4_Summary_Entity> getdatabydateList();
 	
 	@Query(value = "select * from CBUAE_BRF16_4_SUMMARYTABLE", nativeQuery = true)

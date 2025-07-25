@@ -162,7 +162,7 @@ public class RegulatoryReportServices {
 					pageable, type, version);
 			break;
 
-		case "BRF_16.4":
+		case "BRF16_4":
 			repsummary = CBUAE_BRF_16_4_ReportServices.getBRF_16_4View(reportId, fromdate, todate, currency, dtltype,
 					pageable, type, version);
 			break;
@@ -267,6 +267,11 @@ public class RegulatoryReportServices {
 
 		case "BRF2_15":
 			repdetail = cbuae_brf2_15_reportservice.getBRF2_15currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			
+		case "BRF16_4":
+			repdetail = CBUAE_BRF16_4_ReportServices.getBRF16_4currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
 

@@ -100,7 +100,6 @@ public class CBUAE_BRF_ReportsController {
 		}
 
 		ModelAndView mv = new ModelAndView();
-
 		mv = regreportServices.getReportView(reportid, asondate, fromdate, todate, currency, dtltype, subreportid,
 				secid, reportingTime, PageRequest.of(currentPage, pageSize), srl_no, userid, type, version);
 
