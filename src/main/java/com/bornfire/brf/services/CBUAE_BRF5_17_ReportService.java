@@ -1,7 +1,5 @@
 package com.bornfire.brf.services;
 
-import org.springframework.web.servlet.ModelAndView;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -35,29 +33,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.bornfire.brf.controllers.CBUAE_BRF_ReportsController;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Archival_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Archival_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17__Archival_Detail_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Archival_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Archival_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17__Archival_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF5_17__Archival_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF5_17_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_17_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Archival_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Archival_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_17_Summary_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF5_17__Archival_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF5_17__Archival_Detail_Repo;
 
 @Component
 @Service
@@ -70,10 +58,10 @@ public class CBUAE_BRF5_17_ReportService {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	@Autowired
 	CBUAE_BRF5_17_Summary_Archival_Repo BRF5_17_Summary_Archival_Repo;
-	
+
 	@Autowired
 	CBUAE_BRF5_17__Archival_Detail_Repo archival_detail_repo;
 
@@ -86,38 +74,37 @@ public class CBUAE_BRF5_17_ReportService {
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 
 	public ModelAndView getBRF5_17View(String reportId, String fromdate, String todate, String currency, String dtltype,
-			Pageable pageable,String type,String version) {
+			Pageable pageable, String type, String version) {
 		System.out.println("getBRF5_17View");
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;
-		
-		if(type.equals("ARCHIVAL")&version!=null) {
+
+		if (type.equals("ARCHIVAL") & version != null) {
 			List<CBUAE_BRF5_17_Summary_Archival_Entity> T1Master = new ArrayList<CBUAE_BRF5_17_Summary_Archival_Entity>();
 			try {
 				Date d1 = dateformat.parse(todate);
-				 T1Master=BRF5_17_Summary_Archival_Repo.getdatabydateListarchival(dateformat.parse(todate),version);
-			
+				T1Master = BRF5_17_Summary_Archival_Repo.getdatabydateListarchival(dateformat.parse(todate), version);
+
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
+
 			mv.addObject("reportsummary", T1Master);
-		}
-		else {
+		} else {
 			List<CBUAE_BRF5_17_Summary_Entity> T1Master = new ArrayList<CBUAE_BRF5_17_Summary_Entity>();
 			try {
 				Date d1 = dateformat.parse(todate);
-				 T1Master= BRF5_17_Summary_Repo.getdatabydateList(dateformat.parse(todate));
-			
+				T1Master = BRF5_17_Summary_Repo.getdatabydateList(dateformat.parse(todate));
+
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 			mv.addObject("reportsummary", T1Master);
 		}
-		
+
 		mv.setViewName("BRF/BRF5_17");
 		mv.addObject("displaymode", "summary");
 		System.out.println("scv" + mv.getViewName());
@@ -125,67 +112,62 @@ public class CBUAE_BRF5_17_ReportService {
 		return mv;
 
 	}
-	
-	
-	
+
 	public ModelAndView getBRF5_17currentDtl(String reportId, String fromdate, String todate, String currency,
-			String dtltype, Pageable pageable, String filter,String type,String version) {
+			String dtltype, Pageable pageable, String filter, String type, String version) {
 
 		int pageSize = pageable.getPageSize();
-	    int currentPage = pageable.getPageNumber();
+		int currentPage = pageable.getPageNumber();
 
-	    ModelAndView mv = new ModelAndView();
-	    List<CBUAE_BRF5_17_Detail_Entity> T1Dt1 = new ArrayList<>();
+		ModelAndView mv = new ModelAndView();
+		List<CBUAE_BRF5_17_Detail_Entity> T1Dt1 = new ArrayList<>();
 
-	    try {
-	        Date d1 = dateformat.parse(todate);
+		try {
+			Date d1 = dateformat.parse(todate);
 
-	        String rowId = null;
-	        String columnId = null;
+			String rowId = null;
+			String columnId = null;
 
-	        // ✅ Split the filter string here
-	        if (filter != null && filter.contains(",")) {
-	            String[] parts = filter.split(",");
-	            if (parts.length >= 2) {
-	                rowId = parts[0];
-	                columnId = parts[1];
-	            }
-	        }
+			// ✅ Split the filter string here
+			if (filter != null && filter.contains(",")) {
+				String[] parts = filter.split(",");
+				if (parts.length >= 2) {
+					rowId = parts[0];
+					columnId = parts[1];
+				}
+			}
 
-	        if (rowId != null && columnId != null) {
-	        	 T1Dt1 = BRF5_17_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
-	        } else {
-	            T1Dt1 = BRF5_17_Detail_Repo.getdatabydateList(d1);
-	        }
+			if (rowId != null && columnId != null) {
+				T1Dt1 = BRF5_17_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+			} else {
+				T1Dt1 = BRF5_17_Detail_Repo.getdatabydateList(d1);
+			}
 
-	        System.out.println("LISTCOUNT: " + T1Dt1.size());
+			System.out.println("LISTCOUNT: " + T1Dt1.size());
 
-	    } catch (ParseException e) {
-	        e.printStackTrace();
-	    }
-
-	    mv.setViewName("BRF/BRF5_17");
-	    mv.addObject("displaymode", "Details");
-	    mv.addObject("reportdetails", T1Dt1);
-	    mv.addObject("reportmaster12", T1Dt1);
-	    mv.addObject("reportsflag", "reportsflag");
-	    mv.addObject("menu", reportId);
-	    return mv;
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		
-	    
-	
-	
-	
 
-	public byte[] getBRF5_17Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype,String type,String version) throws Exception {
+		mv.setViewName("BRF/BRF5_17");
+		mv.addObject("displaymode", "Details");
+		mv.addObject("reportdetails", T1Dt1);
+		mv.addObject("reportmaster12", T1Dt1);
+		mv.addObject("reportsflag", "reportsflag");
+		mv.addObject("menu", reportId);
+		return mv;
+	}
+
+	public byte[] getBRF5_17Excel(String filename, String reportId, String fromdate, String todate, String currency,
+			String dtltype, String type, String version) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
-		if(type.equals("ARCHIVAL")&version!=null) {
-			byte[] ARCHIVALreport =getBRF5_17ExcelARCHIVAL(filename,reportId,fromdate,todate,currency,dtltype,type,version);
+		if (type.equals("ARCHIVAL") & version != null) {
+			byte[] ARCHIVALreport = getBRF5_17ExcelARCHIVAL(filename, reportId, fromdate, todate, currency, dtltype,
+					type, version);
 			return ARCHIVALreport;
 		}
 
-		List<CBUAE_BRF5_17_Summary_Entity> dataList =BRF5_17_Summary_Repo.getdatabydateList(dateformat.parse(todate)) ;
+		List<CBUAE_BRF5_17_Summary_Entity> dataList = BRF5_17_Summary_Repo.getdatabydateList(dateformat.parse(todate));
 
 		if (dataList.isEmpty()) {
 			logger.warn("Service: No data found for BRF1.1 report. Returning empty result.");
@@ -197,7 +179,7 @@ public class CBUAE_BRF5_17_ReportService {
 		System.out.println(filename);
 		Path templatePath = Paths.get(templateDir, templateFileName);
 		System.out.println(templatePath);
-		
+
 		logger.info("Service: Attempting to load template from path: {}", templatePath.toAbsolutePath());
 
 		if (!Files.exists(templatePath)) {
@@ -233,22 +215,20 @@ public class CBUAE_BRF5_17_ReportService {
 			textStyle.setBorderTop(BorderStyle.THIN);
 			textStyle.setBorderLeft(BorderStyle.THIN);
 			textStyle.setBorderRight(BorderStyle.THIN);
-			
+
 			// Create the font
 			Font font = workbook.createFont();
-			font.setFontHeightInPoints((short)8); // size 8
-			font.setFontName("Arial");    
+			font.setFontHeightInPoints((short) 8); // size 8
+			font.setFontName("Arial");
 
 			CellStyle numberStyle = workbook.createCellStyle();
-			//numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("0.000"));
+			// numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("0.000"));
 			numberStyle.setBorderBottom(BorderStyle.THIN);
 			numberStyle.setBorderTop(BorderStyle.THIN);
 			numberStyle.setBorderLeft(BorderStyle.THIN);
 			numberStyle.setBorderRight(BorderStyle.THIN);
 			numberStyle.setFont(font);
 			// --- End of Style Definitions ---
-
-
 
 			int startRow = 11;
 
@@ -656,8 +636,6 @@ public class CBUAE_BRF5_17_ReportService {
 						cell39.setCellValue("");
 						cell39.setCellStyle(textStyle);
 					}
-					
-	
 
 					/// ROW13
 					//// Column E
@@ -1054,9 +1032,8 @@ public class CBUAE_BRF5_17_ReportService {
 					} else {
 						R0030cell39.setCellValue("");
 						R0030cell39.setCellStyle(textStyle);
-					}	
-					
-					
+					}
+
 					/// ROW15
 					//// Column E
 					row = sheet.getRow(14);
@@ -1453,7 +1430,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0050cell39.setCellValue("");
 						R0050cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW16
 					//// Column E
 					row = sheet.getRow(15);
@@ -1850,8 +1827,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0060cell39.setCellValue("");
 						R0060cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 					/// ROW17
 					//// Column E
 					row = sheet.getRow(16);
@@ -2248,8 +2224,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0070cell39.setCellValue("");
 						R0070cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 					/// ROW18
 					//// Column E
 					row = sheet.getRow(17);
@@ -2646,7 +2621,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0080cell39.setCellValue("");
 						R0080cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW19
 					//// Column E
 					row = sheet.getRow(18);
@@ -3043,8 +3018,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0090cell39.setCellValue("");
 						R0090cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 					/// ROW21
 					//// Column E
 					row = sheet.getRow(20);
@@ -3441,7 +3415,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0110cell39.setCellValue("");
 						R0110cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW22
 					//// Column E
 					row = sheet.getRow(21);
@@ -3838,7 +3812,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0120cell39.setCellValue("");
 						R0120cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW23
 					//// Column E
 					row = sheet.getRow(22);
@@ -4235,7 +4209,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0130cell39.setCellValue("");
 						R0130cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW24
 					//// Column E
 					row = sheet.getRow(23);
@@ -4632,7 +4606,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0140cell39.setCellValue("");
 						R0140cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW25
 					//// Column E
 					row = sheet.getRow(24);
@@ -5029,7 +5003,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0150cell39.setCellValue("");
 						R0150cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW26
 					//// Column E
 					row = sheet.getRow(25);
@@ -5426,7 +5400,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0160cell39.setCellValue("");
 						R0160cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW28
 					//// Column E
 					row = sheet.getRow(27);
@@ -5823,7 +5797,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0180cell39.setCellValue("");
 						R0180cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW29
 					//// Column E
 					row = sheet.getRow(28);
@@ -6220,7 +6194,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0190cell39.setCellValue("");
 						R0190cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW30
 					//// Column E
 					row = sheet.getRow(29);
@@ -6617,7 +6591,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0200cell39.setCellValue("");
 						R0200cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW31
 					//// Column E
 					row = sheet.getRow(30);
@@ -7014,7 +6988,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0210cell39.setCellValue("");
 						R0210cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW32
 					//// Column E
 					row = sheet.getRow(31);
@@ -7411,7 +7385,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0220cell39.setCellValue("");
 						R0220cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW33
 					//// Column E
 					row = sheet.getRow(32);
@@ -7808,10 +7782,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0230cell39.setCellValue("");
 						R0230cell39.setCellStyle(textStyle);
 					}
-					
-					
-					
-					
+
 				}
 
 				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
@@ -7828,30 +7799,30 @@ public class CBUAE_BRF5_17_ReportService {
 		}
 	}
 
-	
 	public List<Object> getBRF5_17Archival() {
-	    List<Object> BRF5_17Archivallist = new ArrayList<>();
-	    try {
-	        BRF5_17Archivallist = BRF5_17_Summary_Archival_Repo.getBRF5_17archival();
-	        System.out.println("countser"+BRF5_17Archivallist.size());
-	    } catch (Exception e) {
-	        // Log the exception
-	        System.err.println("Error fetching BRF5_17 Archival data: " + e.getMessage());
-	        e.printStackTrace();
-	        
-	        // Optionally, you can rethrow it or return empty list
-	        // throw new RuntimeException("Failed to fetch data", e);
-	    }
-	    return BRF5_17Archivallist;
-	}
-	
-	public byte[] getBRF5_17ExcelARCHIVAL(String filename,String reportId, String fromdate, String todate, String currency, String dtltype,String type,String version) throws Exception {
-		logger.info("Service: Starting Excel generation process in memory.");
-		if(type.equals("ARCHIVAL")&version!=null) {
-			
+		List<Object> BRF5_17Archivallist = new ArrayList<>();
+		try {
+			BRF5_17Archivallist = BRF5_17_Summary_Archival_Repo.getBRF5_17archival();
+			System.out.println("countser" + BRF5_17Archivallist.size());
+		} catch (Exception e) {
+			// Log the exception
+			System.err.println("Error fetching BRF5_17 Archival data: " + e.getMessage());
+			e.printStackTrace();
+
+			// Optionally, you can rethrow it or return empty list
+			// throw new RuntimeException("Failed to fetch data", e);
 		}
-		List<CBUAE_BRF5_17_Summary_Archival_Entity> dataList =BRF5_17_Summary_Archival_Repo.getdatabydateListarchival(dateformat.parse(todate),version);
-		
+		return BRF5_17Archivallist;
+	}
+
+	public byte[] getBRF5_17ExcelARCHIVAL(String filename, String reportId, String fromdate, String todate,
+			String currency, String dtltype, String type, String version) throws Exception {
+		logger.info("Service: Starting Excel generation process in memory.");
+		if (type.equals("ARCHIVAL") & version != null) {
+
+		}
+		List<CBUAE_BRF5_17_Summary_Archival_Entity> dataList = BRF5_17_Summary_Archival_Repo
+				.getdatabydateListarchival(dateformat.parse(todate), version);
 
 		if (dataList.isEmpty()) {
 			logger.warn("Service: No data found for BRF5.17 report. Returning empty result.");
@@ -7863,7 +7834,7 @@ public class CBUAE_BRF5_17_ReportService {
 		System.out.println(filename);
 		Path templatePath = Paths.get(templateDir, templateFileName);
 		System.out.println(templatePath);
-		
+
 		logger.info("Service: Attempting to load template from path: {}", templatePath.toAbsolutePath());
 
 		if (!Files.exists(templatePath)) {
@@ -7899,14 +7870,14 @@ public class CBUAE_BRF5_17_ReportService {
 			textStyle.setBorderTop(BorderStyle.THIN);
 			textStyle.setBorderLeft(BorderStyle.THIN);
 			textStyle.setBorderRight(BorderStyle.THIN);
-			
+
 			// Create the font
 			Font font = workbook.createFont();
-			font.setFontHeightInPoints((short)8); // size 8
-			font.setFontName("Arial");    
+			font.setFontHeightInPoints((short) 8); // size 8
+			font.setFontName("Arial");
 
 			CellStyle numberStyle = workbook.createCellStyle();
-			//numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("0.000"));
+			// numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("0.000"));
 			numberStyle.setBorderBottom(BorderStyle.THIN);
 			numberStyle.setBorderTop(BorderStyle.THIN);
 			numberStyle.setBorderLeft(BorderStyle.THIN);
@@ -7919,7 +7890,7 @@ public class CBUAE_BRF5_17_ReportService {
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
 					CBUAE_BRF5_17_Summary_Archival_Entity record = dataList.get(i);
-					System.out.println("rownumber="+startRow + i);
+					System.out.println("rownumber=" + startRow + i);
 					Row row = sheet.getRow(startRow + i);
 					if (row == null) {
 						row = sheet.createRow(startRow + i);
@@ -8320,8 +8291,6 @@ public class CBUAE_BRF5_17_ReportService {
 						cell39.setCellValue("");
 						cell39.setCellStyle(textStyle);
 					}
-					
-	
 
 					/// ROW13
 					//// Column E
@@ -8718,9 +8687,8 @@ public class CBUAE_BRF5_17_ReportService {
 					} else {
 						R0030cell39.setCellValue("");
 						R0030cell39.setCellStyle(textStyle);
-					}	
-					
-					
+					}
+
 					/// ROW15
 					//// Column E
 					row = sheet.getRow(14);
@@ -9117,7 +9085,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0050cell39.setCellValue("");
 						R0050cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW16
 					//// Column E
 					row = sheet.getRow(15);
@@ -9514,8 +9482,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0060cell39.setCellValue("");
 						R0060cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 					/// ROW17
 					//// Column E
 					row = sheet.getRow(16);
@@ -9912,8 +9879,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0070cell39.setCellValue("");
 						R0070cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 					/// ROW18
 					//// Column E
 					row = sheet.getRow(17);
@@ -10310,7 +10276,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0080cell39.setCellValue("");
 						R0080cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW19
 					//// Column E
 					row = sheet.getRow(18);
@@ -10707,8 +10673,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0090cell39.setCellValue("");
 						R0090cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 					/// ROW21
 					//// Column E
 					row = sheet.getRow(20);
@@ -11105,7 +11070,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0110cell39.setCellValue("");
 						R0110cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW22
 					//// Column E
 					row = sheet.getRow(21);
@@ -11502,7 +11467,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0120cell39.setCellValue("");
 						R0120cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW23
 					//// Column E
 					row = sheet.getRow(22);
@@ -11899,7 +11864,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0130cell39.setCellValue("");
 						R0130cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW24
 					//// Column E
 					row = sheet.getRow(23);
@@ -12296,7 +12261,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0140cell39.setCellValue("");
 						R0140cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW25
 					//// Column E
 					row = sheet.getRow(24);
@@ -12693,7 +12658,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0150cell39.setCellValue("");
 						R0150cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW26
 					//// Column E
 					row = sheet.getRow(25);
@@ -13090,7 +13055,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0160cell39.setCellValue("");
 						R0160cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW28
 					//// Column E
 					row = sheet.getRow(27);
@@ -13487,7 +13452,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0180cell39.setCellValue("");
 						R0180cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW29
 					//// Column E
 					row = sheet.getRow(28);
@@ -13884,7 +13849,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0190cell39.setCellValue("");
 						R0190cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW30
 					//// Column E
 					row = sheet.getRow(29);
@@ -14281,7 +14246,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0200cell39.setCellValue("");
 						R0200cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW31
 					//// Column E
 					row = sheet.getRow(30);
@@ -14678,7 +14643,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0210cell39.setCellValue("");
 						R0210cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW32
 					//// Column E
 					row = sheet.getRow(31);
@@ -15075,7 +15040,7 @@ public class CBUAE_BRF5_17_ReportService {
 						R0220cell39.setCellValue("");
 						R0220cell39.setCellStyle(textStyle);
 					}
-					
+
 					/// ROW33
 					//// Column E
 					row = sheet.getRow(32);
@@ -15472,13 +15437,12 @@ public class CBUAE_BRF5_17_ReportService {
 						R0230cell39.setCellValue("");
 						R0230cell39.setCellStyle(textStyle);
 					}
-					
-					
+
 				}
 
 				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 			} else {
-				
+
 			}
 
 			// Write the final workbook content to the in-memory stream.
@@ -15489,129 +15453,254 @@ public class CBUAE_BRF5_17_ReportService {
 			return out.toByteArray();
 		}
 	}
-	
-	
-	//DetailExcel
-	public byte[] getBRF5_17DetailExcel(String filename, String fromdate, String todate) {
-	    try {
-	        logger.info("Generating Excel for BRF5_17 Details...");
-	        System.out.println("came to Detail download service");
 
-	        XSSFWorkbook workbook = new XSSFWorkbook();
-	        XSSFSheet sheet = workbook.createSheet("BRF5_17Details");
+	// DetailExcel
+	public byte[] getBRF5_17DetailExcel(String filename, String fromdate, String todate, String currency,
+			String dtltype, String type, String version) {
+		try {
+			logger.info("Generating Excel for BRF5_17 Details...");
+			System.out.println("came to Detail download service");
+			if (type.equals("ARCHIVAL") & version != null) {
+				byte[] ARCHIVALreport = getBRF5_17DetailExcelARCHIVAL(filename, fromdate, todate, currency, dtltype,
+						type, version);
+				return ARCHIVALreport;
+			}
 
-	        // Common border style
-	        BorderStyle border = BorderStyle.THIN;
+			XSSFWorkbook workbook = new XSSFWorkbook();
+			XSSFSheet sheet = workbook.createSheet("BRF5_17Details");
 
-	        // Header style (left aligned)
-	        CellStyle headerStyle = workbook.createCellStyle();
-	        Font headerFont = workbook.createFont();
-	        headerFont.setBold(true);
-	        headerFont.setFontHeightInPoints((short) 10);
-	        headerStyle.setFont(headerFont);
-	        headerStyle.setAlignment(HorizontalAlignment.LEFT);
-	        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-	        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-	        headerStyle.setBorderTop(border);
-	        headerStyle.setBorderBottom(border);
-	        headerStyle.setBorderLeft(border);
-	        headerStyle.setBorderRight(border);
+			// Common border style
+			BorderStyle border = BorderStyle.THIN;
 
-	        // Right-aligned header style for ACCT BALANCE
-	        CellStyle rightAlignedHeaderStyle = workbook.createCellStyle();
-	        rightAlignedHeaderStyle.cloneStyleFrom(headerStyle);
-	        rightAlignedHeaderStyle.setAlignment(HorizontalAlignment.RIGHT);
+			// Header style (left aligned)
+			CellStyle headerStyle = workbook.createCellStyle();
+			Font headerFont = workbook.createFont();
+			headerFont.setBold(true);
+			headerFont.setFontHeightInPoints((short) 10);
+			headerStyle.setFont(headerFont);
+			headerStyle.setAlignment(HorizontalAlignment.LEFT);
+			headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+			headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			headerStyle.setBorderTop(border);
+			headerStyle.setBorderBottom(border);
+			headerStyle.setBorderLeft(border);
+			headerStyle.setBorderRight(border);
 
-	        // Default data style (left aligned)
-	        CellStyle dataStyle = workbook.createCellStyle();
-	        dataStyle.setAlignment(HorizontalAlignment.LEFT);
-	        dataStyle.setBorderTop(border);
-	        dataStyle.setBorderBottom(border);
-	        dataStyle.setBorderLeft(border);
-	        dataStyle.setBorderRight(border);
+			// Right-aligned header style for ACCT BALANCE
+			CellStyle rightAlignedHeaderStyle = workbook.createCellStyle();
+			rightAlignedHeaderStyle.cloneStyleFrom(headerStyle);
+			rightAlignedHeaderStyle.setAlignment(HorizontalAlignment.RIGHT);
 
-	        // ACCT BALANCE style (right aligned with 3 decimals)
-	        CellStyle balanceStyle = workbook.createCellStyle();
-	        balanceStyle.setAlignment(HorizontalAlignment.RIGHT);
-	        balanceStyle.setDataFormat(workbook.createDataFormat().getFormat("0.000"));
-	        balanceStyle.setBorderTop(border);
-	        balanceStyle.setBorderBottom(border);
-	        balanceStyle.setBorderLeft(border);
-	        balanceStyle.setBorderRight(border);
+			// Default data style (left aligned)
+			CellStyle dataStyle = workbook.createCellStyle();
+			dataStyle.setAlignment(HorizontalAlignment.LEFT);
+			dataStyle.setBorderTop(border);
+			dataStyle.setBorderBottom(border);
+			dataStyle.setBorderLeft(border);
+			dataStyle.setBorderRight(border);
 
-	        // Header row
-	        String[] headers = {
-	            "CUST ID", "ACCT NO", "ACCT NAME", "ACCT BALANCE", "ROWID", "COLUMNID", "REPORT_DATE"
-	        };
+			// ACCT BALANCE style (right aligned with 3 decimals)
+			CellStyle balanceStyle = workbook.createCellStyle();
+			balanceStyle.setAlignment(HorizontalAlignment.RIGHT);
+			balanceStyle.setDataFormat(workbook.createDataFormat().getFormat("0.000"));
+			balanceStyle.setBorderTop(border);
+			balanceStyle.setBorderBottom(border);
+			balanceStyle.setBorderLeft(border);
+			balanceStyle.setBorderRight(border);
 
-	        XSSFRow headerRow = sheet.createRow(0);
-	        for (int i = 0; i < headers.length; i++) {
-	            Cell cell = headerRow.createCell(i);
-	            cell.setCellValue(headers[i]);
+			// Header row
+			String[] headers = { "CUST ID", "ACCT NO", "ACCT NAME", "ACCT BALANCE", "ROWID", "COLUMNID",
+					"REPORT_DATE" };
 
-	            if (i == 3) { // ACCT BALANCE
-	                cell.setCellStyle(rightAlignedHeaderStyle);
-	            } else {
-	                cell.setCellStyle(headerStyle);
-	            }
+			XSSFRow headerRow = sheet.createRow(0);
+			for (int i = 0; i < headers.length; i++) {
+				Cell cell = headerRow.createCell(i);
+				cell.setCellValue(headers[i]);
 
-	            sheet.setColumnWidth(i, 5000);
-	        }
+				if (i == 3) { // ACCT BALANCE
+					cell.setCellStyle(rightAlignedHeaderStyle);
+				} else {
+					cell.setCellStyle(headerStyle);
+				}
 
-	        // Get data
-	        Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
-	        List<CBUAE_BRF5_17_Detail_Entity> reportData = BRF5_17_Detail_Repo.getdatabydateList(parsedToDate);
+				sheet.setColumnWidth(i, 5000);
+			}
 
-	        if (reportData != null && !reportData.isEmpty()) {
-	            int rowIndex = 1;
-	            for (CBUAE_BRF5_17_Detail_Entity item : reportData) {
-	                XSSFRow row = sheet.createRow(rowIndex++);
+			// Get data
+			Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
+			List<CBUAE_BRF5_17_Detail_Entity> reportData = BRF5_17_Detail_Repo.getdatabydateList(parsedToDate);
 
-	                row.createCell(0).setCellValue(item.getCustId());
-	                row.createCell(1).setCellValue(item.getAcctNumber());
-	                row.createCell(2).setCellValue(item.getAcctName());
+			if (reportData != null && !reportData.isEmpty()) {
+				int rowIndex = 1;
+				for (CBUAE_BRF5_17_Detail_Entity item : reportData) {
+					XSSFRow row = sheet.createRow(rowIndex++);
 
-	                // ACCT BALANCE (right aligned, 3 decimal places)
-	                Cell balanceCell = row.createCell(3);
-	                if (item.getAcctBalanceInAed() != null) {
-	                    balanceCell.setCellValue(item.getAcctBalanceInAed().doubleValue());
-	                } else {
-	                    balanceCell.setCellValue(0.000);
-	                }
-	                balanceCell.setCellStyle(balanceStyle);
+					row.createCell(0).setCellValue(item.getCustId());
+					row.createCell(1).setCellValue(item.getAcctNumber());
+					row.createCell(2).setCellValue(item.getAcctName());
 
-	                row.createCell(4).setCellValue(item.getRowId());
-	                row.createCell(5).setCellValue(item.getColumnId());
-	                row.createCell(6).setCellValue(
-	                    item.getReportDate() != null ?
-	                    new SimpleDateFormat("dd-MM-yyyy").format(item.getReportDate()) : ""
-	                );
+					// ACCT BALANCE (right aligned, 3 decimal places)
+					Cell balanceCell = row.createCell(3);
+					if (item.getAcctBalanceInAed() != null) {
+						balanceCell.setCellValue(item.getAcctBalanceInAed().doubleValue());
+					} else {
+						balanceCell.setCellValue(0.000);
+					}
+					balanceCell.setCellStyle(balanceStyle);
 
-	                // Apply data style for all other cells
-	                for (int j = 0; j < 7; j++) {
-	                    if (j != 3) {
-	                        row.getCell(j).setCellStyle(dataStyle);
-	                    }
-	                }
-	            }
-	        } else {
-	            logger.info("No data found for BRF5_17 — only header will be written.");
-	        }
+					row.createCell(4).setCellValue(item.getRowId());
+					row.createCell(5).setCellValue(item.getColumnId());
+					row.createCell(6)
+							.setCellValue(item.getReportDate() != null
+									? new SimpleDateFormat("dd-MM-yyyy").format(item.getReportDate())
+									: "");
 
-	        // Write to byte[]
-	        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	        workbook.write(bos);
-	        workbook.close();
+					// Apply data style for all other cells
+					for (int j = 0; j < 7; j++) {
+						if (j != 3) {
+							row.getCell(j).setCellStyle(dataStyle);
+						}
+					}
+				}
+			} else {
+				logger.info("No data found for BRF5_17 — only header will be written.");
+			}
 
-	        logger.info("Excel generation completed with {} row(s).", reportData != null ? reportData.size() : 0);
-	        return bos.toByteArray();
+			// Write to byte[]
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			workbook.write(bos);
+			workbook.close();
 
-	    } catch (Exception e) {
-	        logger.error("Error generating BRF5_17 Excel", e);
-	        return new byte[0];
-	    }
+			logger.info("Excel generation completed with {} row(s).", reportData != null ? reportData.size() : 0);
+			return bos.toByteArray();
+
+		} catch (Exception e) {
+			logger.error("Error generating BRF5_17 Excel", e);
+			return new byte[0];
+		}
 	}
 
+	public byte[] getBRF5_17DetailExcelARCHIVAL(String filename, String fromdate, String todate, String currency,
+			String dtltype, String type, String version) {
+		try {
+			logger.info("Generating Excel for BRF5_17 ARCHIVAL Details...");
+			System.out.println("came to Detail download service");
+			if (type.equals("ARCHIVAL") & version != null) {
+
+			}
+			XSSFWorkbook workbook = new XSSFWorkbook();
+			XSSFSheet sheet = workbook.createSheet("BRF5_17Details");
+
+			// Common border style
+			BorderStyle border = BorderStyle.THIN;
+
+			// Header style (left aligned)
+			CellStyle headerStyle = workbook.createCellStyle();
+			Font headerFont = workbook.createFont();
+			headerFont.setBold(true);
+			headerFont.setFontHeightInPoints((short) 10);
+			headerStyle.setFont(headerFont);
+			headerStyle.setAlignment(HorizontalAlignment.LEFT);
+			headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+			headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			headerStyle.setBorderTop(border);
+			headerStyle.setBorderBottom(border);
+			headerStyle.setBorderLeft(border);
+			headerStyle.setBorderRight(border);
+
+			// Right-aligned header style for ACCT BALANCE
+			CellStyle rightAlignedHeaderStyle = workbook.createCellStyle();
+			rightAlignedHeaderStyle.cloneStyleFrom(headerStyle);
+			rightAlignedHeaderStyle.setAlignment(HorizontalAlignment.RIGHT);
+
+			// Default data style (left aligned)
+			CellStyle dataStyle = workbook.createCellStyle();
+			dataStyle.setAlignment(HorizontalAlignment.LEFT);
+			dataStyle.setBorderTop(border);
+			dataStyle.setBorderBottom(border);
+			dataStyle.setBorderLeft(border);
+			dataStyle.setBorderRight(border);
+
+			// ACCT BALANCE style (right aligned with 3 decimals)
+			CellStyle balanceStyle = workbook.createCellStyle();
+			balanceStyle.setAlignment(HorizontalAlignment.RIGHT);
+			balanceStyle.setDataFormat(workbook.createDataFormat().getFormat("0.000"));
+			balanceStyle.setBorderTop(border);
+			balanceStyle.setBorderBottom(border);
+			balanceStyle.setBorderLeft(border);
+			balanceStyle.setBorderRight(border);
+
+			// Header row
+			String[] headers = { "CUST ID", "ACCT NO", "ACCT NAME", "ACCT BALANCE", "ROWID", "COLUMNID",
+					"REPORT_DATE" };
+
+			XSSFRow headerRow = sheet.createRow(0);
+			for (int i = 0; i < headers.length; i++) {
+				Cell cell = headerRow.createCell(i);
+				cell.setCellValue(headers[i]);
+
+				if (i == 3) { // ACCT BALANCE
+					cell.setCellStyle(rightAlignedHeaderStyle);
+				} else {
+					cell.setCellStyle(headerStyle);
+				}
+
+				sheet.setColumnWidth(i, 5000);
+			}
+
+			// Get data
+			Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
+			List<CBUAE_BRF5_17__Archival_Detail_Entity> reportData = archival_detail_repo
+					.getdatabydateList(parsedToDate, version);
+
+			if (reportData != null && !reportData.isEmpty()) {
+				int rowIndex = 1;
+				for (CBUAE_BRF5_17__Archival_Detail_Entity item : reportData) {
+					XSSFRow row = sheet.createRow(rowIndex++);
+
+					row.createCell(0).setCellValue(item.getCustId());
+					row.createCell(1).setCellValue(item.getAcctNumber());
+					row.createCell(2).setCellValue(item.getAcctName());
+
+					// ACCT BALANCE (right aligned, 3 decimal places)
+					Cell balanceCell = row.createCell(3);
+					if (item.getAcctBalanceInAed() != null) {
+						balanceCell.setCellValue(item.getAcctBalanceInAed().doubleValue());
+					} else {
+						balanceCell.setCellValue(0.000);
+					}
+					balanceCell.setCellStyle(balanceStyle);
+
+					row.createCell(4).setCellValue(item.getRowId());
+					row.createCell(5).setCellValue(item.getColumnId());
+					row.createCell(6)
+							.setCellValue(item.getReportDate() != null
+									? new SimpleDateFormat("dd-MM-yyyy").format(item.getReportDate())
+									: "");
+
+					// Apply data style for all other cells
+					for (int j = 0; j < 7; j++) {
+						if (j != 3) {
+							row.getCell(j).setCellStyle(dataStyle);
+						}
+					}
+				}
+			} else {
+				logger.info("No data found for BRF5_17 — only header will be written.");
+			}
+
+			// Write to byte[]
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			workbook.write(bos);
+			workbook.close();
+
+			logger.info("Excel generation completed with {} row(s).", reportData != null ? reportData.size() : 0);
+			return bos.toByteArray();
+
+		} catch (Exception e) {
+			logger.error("Error generating BRF5_17 Excel", e);
+			return new byte[0];
+		}
+	}
 
 }
-
