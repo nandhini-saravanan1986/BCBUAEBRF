@@ -469,7 +469,7 @@ PURPOSE		: COMPLAINTS DATA - 16.4
 	    border-width: 1px var(--bs-border-width) !important;
 	}
 </style>
-<script>
+<!--<script>
 function DetailDownload() {
     let table = document.getElementById("Detailreports");
     if (!table) {
@@ -541,7 +541,7 @@ function DetailDownload() {
                 font-family: Arial;
             }
         </style>
-        <!--[if gte mso 9]>
+        [if gte mso 9]>
         <xml>
             <x:ExcelWorkbook>
                 <x:ExcelWorksheets>
@@ -554,7 +554,7 @@ function DetailDownload() {
                 </x:ExcelWorksheets>
             </x:ExcelWorkbook>
         </xml>
-        <![endif]-->
+        <![endif]
     </head>
     <body>
         ${clonedTable.outerHTML}
@@ -572,8 +572,79 @@ function DetailDownload() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
-</script>
+</script>-->
+<script>
 
+	function downloadDetailfile(button) {
+		const filename = button.getAttribute('data-filename');
+		const fromdate = button.getAttribute('data-fromdate');
+		const todate = button.getAttribute('data-todate');
+		const currency = button.getAttribute('data-currency');
+		const dtltype = button.getAttribute('data-dtltype');
+		const type = button.getAttribute('data-type');
+		const version = button.getAttribute('data-version');
+
+		$('#loader').modal('show');
+
+		const baseUrl = '/BCDRS/Reports/';
+		const downloadUrl = baseUrl + 'downloadDetailExcel' +
+			'?filename=' + encodeURIComponent(filename) +
+			'&fromdate=' + encodeURIComponent(fromdate) +
+			'&todate=' + encodeURIComponent(todate) +
+			'&currency=' + encodeURIComponent(currency) +
+			'&dtltype=' + encodeURIComponent(dtltype) +
+			'&type=' + encodeURIComponent(type) +
+			'&version=' + encodeURIComponent(version);
+
+		$.ajax({
+			url: downloadUrl,
+			type: 'GET',
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				$('#loader').modal('hide');
+				if (data && data.size > 100) {
+					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+					const url = window.URL.createObjectURL(blob);
+					const a = document.createElement('a');
+					a.style.display = 'none';
+					a.href = url;
+					a.download = filename + '.xls';
+					document.body.appendChild(a);
+					a.click();
+					a.remove();
+					window.URL.revokeObjectURL(url);
+
+					showResultModal('Success', filename + ' downloaded successfully.');
+				} else {
+					showResultModal('Information', 'No data was available to create a download or file was empty.');
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				$('#loader').modal('hide');
+				console.error('Download error:', textStatus, errorThrown, jqXHR);
+
+				let errorMessage = 'An error occurred while downloading the file. Please try again.';
+				if (jqXHR.response) {
+					const reader = new FileReader();
+					reader.onload = function () {
+						errorMessage = reader.result;
+						showResultModal('Error', errorMessage);
+					};
+					reader.onerror = function () {
+						showResultModal('Error', 'An unknown error occurred during download.');
+					};
+					reader.readAsText(jqXHR.response);
+					return;
+				}
+				showResultModal('Error', errorMessage);
+			}
+		});
+	}
+
+
+</script>
 
 </head>
 
@@ -627,8 +698,19 @@ function DetailDownload() {
 							<i class="fa fa-download"></i>
 						</button>
 
-
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+												th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+							    data-fromdate=${fromdate},
+							    data-todate=${todate},
+								data-currency=${currency},  
+											data-dtltype=${dtltype}, 
+							    data-filename='BRF16_4Detail',
+								data-type=${type},
+											data-version=${version}
+							  ">
+												<i class="fa fa-download"></i>
+											</button>
+						<!--<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
 							th:if="${displaymode == 'Details'}" th:attr="data-reportid=${reportid}, 
                      data-asondate=${asondate}, 
                      data-fromdate=${fromdate}, 
@@ -637,7 +719,7 @@ function DetailDownload() {
                      data-dtltype=${dtltype}, 
                      data-filename='BRF2_2'" onclick="DetailDownload();">
 							<i class="fa fa-download"></i>
-						</button>
+						</button>-->
 					</div>
 				</div>
 

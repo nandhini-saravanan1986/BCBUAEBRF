@@ -494,6 +494,8 @@ public class RegulatoryReportServices {
 			return cbuae_brf2_13_reportservice.getBRF2_13DetailExcel(filename, fromdate, todate);
 		} else if (filename.equals("BRF2_15Detail")) {
 			return cbuae_brf2_15_reportservice.getBRF2_15DetailExcel(filename, fromdate, todate);
+		}else if (filename.equals("BRF16_4Detail")) {
+			return CBUAE_BRF16_4_ReportServices.getBRF16_4DetailExcel(filename, fromdate, todate);
 		}
 		return new byte[0];
 	}
