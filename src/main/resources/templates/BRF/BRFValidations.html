@@ -339,7 +339,7 @@ label.error {
 	        });
 	    } else {
 	    	
-		    if (confirm("Do you want to open reports?")) {
+		    if (confirm("Do you want to open report?")) {
 	            const type = 'BRF';
 	            $('#loader').modal('show');
 	            location.href = "Reports/"+reportid+"?dtltype=report&fromdate="+fromdate+"&todate="+todate+"&type="+type+"&asondate="+asondate;
@@ -514,7 +514,7 @@ label.error {
   <script>
   $(document).ready(function () {
     $('#BRFvalidations').DataTable({
-      pageLength: 10,
+      pageLength: 20,
       lengthChange: false,
       searching: true,
       paging: true,
