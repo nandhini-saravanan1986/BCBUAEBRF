@@ -118,41 +118,80 @@ public class CBUAE_BRF5_17_ReportService {
 
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
+		int startItem = currentPage * pageSize;
 
 		ModelAndView mv = new ModelAndView();
-		List<CBUAE_BRF5_17_Detail_Entity> T1Dt1 = new ArrayList<>();
+		if (type.equals("ARCHIVAL") & version != null) {
+			List<CBUAE_BRF5_17__Archival_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF5_17__Archival_Detail_Entity>();
 
-		try {
-			Date d1 = dateformat.parse(todate);
+			try {
+				Date d1 = dateformat.parse(todate);
 
-			String rowId = null;
-			String columnId = null;
+				String rowId = null;
+				String columnId = null;
 
-			// ✅ Split the filter string here
-			if (filter != null && filter.contains(",")) {
-				String[] parts = filter.split(",");
-				if (parts.length >= 2) {
-					rowId = parts[0];
-					columnId = parts[1];
+				// ✅ Split the filter string here
+				if (filter != null && filter.contains(",")) {
+					String[] parts = filter.split(",");
+					if (parts.length >= 2) {
+						rowId = parts[0];
+						columnId = parts[1];
+					}
 				}
+
+				if (rowId != null && columnId != null) {
+					T1Dt1 = archival_detail_repo.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate),
+							version);
+
+					System.out.println("countavd" + T1Dt1.size());
+				} else {
+
+					T1Dt1 = archival_detail_repo.getdatabydateList(dateformat.parse(todate), version);
+					System.out.println("countavd" + T1Dt1.size());
+				}
+
+				mv.addObject("reportdetails", T1Dt1);
+				mv.addObject("reportmaster12", T1Dt1);
+
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
+		} else {
+			System.out.println(type);
+			List<CBUAE_BRF5_17_Detail_Entity> T1Dt1 = new ArrayList<>();
 
-			if (rowId != null && columnId != null) {
-				T1Dt1 = BRF5_17_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
-			} else {
-				T1Dt1 = BRF5_17_Detail_Repo.getdatabydateList(d1);
+			try {
+				Date d1 = dateformat.parse(todate);
+
+				String rowId = null;
+				String columnId = null;
+
+				// ✅ Split the filter string here
+				if (filter != null && filter.contains(",")) {
+					String[] parts = filter.split(",");
+					if (parts.length >= 2) {
+						rowId = parts[0];
+						columnId = parts[1];
+					}
+				}
+
+				if (rowId != null && columnId != null) {
+					T1Dt1 = BRF5_17_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+				} else {
+					T1Dt1 = BRF5_17_Detail_Repo.getdatabydateList(d1);
+				}
+				mv.addObject("reportdetails", T1Dt1);
+				mv.addObject("reportmaster12", T1Dt1);
+				System.out.println("LISTCOUNT: " + T1Dt1.size());
+
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-
-			System.out.println("LISTCOUNT: " + T1Dt1.size());
-
-		} catch (ParseException e) {
-			e.printStackTrace();
 		}
-
 		mv.setViewName("BRF/BRF5_17");
 		mv.addObject("displaymode", "Details");
-		mv.addObject("reportdetails", T1Dt1);
-		mv.addObject("reportmaster12", T1Dt1);
+		// mv.addObject("reportdetails", T1Dt1);
+		// mv.addObject("reportmaster12", T1Dt1);
 		mv.addObject("reportsflag", "reportsflag");
 		mv.addObject("menu", reportId);
 		return mv;
