@@ -6,391 +6,389 @@ CREATED ON	: 07.07.2025
 PURPOSE		: BRFREPORT
 -->
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- CSS -->
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}">
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
-<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
-<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
+	<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon" />
 
-<!-- JavaScript -->
-<!-- jQuery core (required first) -->
+	<!-- JavaScript -->
+	<!-- jQuery core (required first) -->
 
 
-<!-- ✅ Your manually placed jQuery validation
+	<!-- âœ… Your manually placed jQuery validation
 	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
 	 <script th:src="/jquery/jquery.validate.min.js"></script>
 	 -->
 
-<!-- jQuery (required first) -->
-<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<!-- jQuery (required first) -->
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
-<!-- ✅ jQuery Validation -->
-<script src="/webjars/jquery-validation/1.19.0/jquery.validate.min.js"
-	th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
+	<!-- âœ… jQuery Validation -->
+	<script src="/webjars/jquery-validation/1.19.0/jquery.validate.min.js"
+		th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
 
-<!-- Bootstrap + Others -->
-<script th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
-<script th:src="@{/webjars/jquery-form/4.2.2/jquery.form.min.js}"></script>
-<script
-	th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
-<script
-	th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
+	<!-- Bootstrap + Others -->
+	<script th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:src="@{/webjars/jquery-form/4.2.2/jquery.form.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
 
 
 
-<style>
-.btns {
-	float: right;
-	margin: 5px;
-}
+	<style>
+		.btns {
+			float: right;
+			margin: 5px;
+		}
 
-.col-sm-5 {
-	padding-bottom: 15px;
-}
+		.col-sm-5 {
+			padding-bottom: 15px;
+		}
 
-.list-body {
-	padding: 0px;
-}
+		.list-body {
+			padding: 0px;
+		}
 
-.error {
-	color: red;
-	padding-left: 10px;
-}
+		.error {
+			color: red;
+			padding-left: 10px;
+		}
 
-.formline {
-	padding-bottom: 15px;
-}
+		.formline {
+			padding-bottom: 15px;
+		}
 
-.btn-primary {
-	background-color: #E77400;
-	border-color: #0c0c0c;
-}
+		.btn-primary {
+			background-color: #E77400;
+			border-color: #0c0c0c;
+		}
 
-.btn-primary:not (:disabled ):not (.disabled ).active, .btn-primary:not
-	 (:disabled ):not (.disabled ):active, .show>.btn-primary.dropdown-toggle
-	{
-	color: #fff;
-	background-color: #cc000000;
-	border-color: #161617;
-}
+		.btn-primary:not (:disabled):not (.disabled).active,
+		.btn-primary:not (:disabled):not (.disabled):active,
+		.show>.btn-primary.dropdown-toggle {
+			color: #fff;
+			background-color: #cc000000;
+			border-color: #161617;
+		}
 
-#finusertb {
-	width: 460px;
-}
+		#finusertb {
+			width: 460px;
+		}
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-	padding: 0px;
-}
-</style>
+		.dataTables_wrapper .dataTables_paginate .paginate_button {
+			padding: 0px;
+		}
+	</style>
 
 
 
 
-<style>
-div span {
-	font-weight: bold;
-	color: white !important;
-}
+	<style>
+		div span {
+			font-weight: bold;
+			color: white !important;
+		}
 
-.card {
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-}
+		.card {
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+		}
 
-.card-header h5 {
-	font-size: 22px;
-	color: #fff;
-	font-weight: 600;
-}
+		.card-header h5 {
+			font-size: 22px;
+			color: #fff;
+			font-weight: 600;
+		}
 
-.nav-tabs .nav-link {
-	font-weight: 500;
-	border: 1px solid #dee2e6;
-	border-bottom: none;
-	border-radius: 4px 4px 0 0;
-	background-color: #f1f1f1;
-	margin-right: 5px;
-}
+		.nav-tabs .nav-link {
+			font-weight: 500;
+			border: 1px solid #dee2e6;
+			border-bottom: none;
+			border-radius: 4px 4px 0 0;
+			background-color: #f1f1f1;
+			margin-right: 5px;
+		}
 
-.nav-tabs .nav-link.active {
-	background-color: #ffffff;
-	border-color: #dee2e6 #dee2e6 #ffffff;
-}
+		.nav-tabs .nav-link.active {
+			background-color: #ffffff;
+			border-color: #dee2e6 #dee2e6 #ffffff;
+		}
 
-.table-responsive {
-	border: 1px solid #dee2e6;
-	border-radius: 4px;
-}
+		.table-responsive {
+			border: 1px solid #dee2e6;
+			border-radius: 4px;
+		}
 
-.table-hover tbody tr:hover {
-	background-color: #f3f6f9;
-}
+		.table-hover tbody tr:hover {
+			background-color: #f3f6f9;
+		}
 
-thead th {
-	position: sticky;
-	top: 0;
-	background-color: #e9ecf0;
-	z-index: 1;
-}
+		thead th {
+			position: sticky;
+			top: 0;
+			background-color: #e9ecf0;
+			z-index: 1;
+		}
 
-.table td {
-	background-color: #FFFFFF;
-}
+		.table td {
+			background-color: #FFFFFF;
+		}
 
-.card-footer {
-	padding: 10px;
-	border-top: 1px solid #ccc;
-}
+		.card-footer {
+			padding: 10px;
+			border-top: 1px solid #ccc;
+		}
 
-.btn-xs {
-	padding: 4px 12px;
-	font-size: 14px;
-	border-radius: 4px;
-}
+		.btn-xs {
+			padding: 4px 12px;
+			font-size: 14px;
+			border-radius: 4px;
+		}
 
-#BRFvalidation th, #usertable td {
-	vertical-align: middle;
-	text-align: left;
-	font-size: 16px;
-	font-family: Arial;
-}
+		#BRFvalidation th,
+		#usertable td {
+			vertical-align: middle;
+			text-align: left;
+			font-size: 16px;
+			font-family: Arial;
+		}
 
-.fa-edit:hover {
-	color: #28a745;
-	transform: scale(1.1);
-}
+		.fa-edit:hover {
+			color: #28a745;
+			transform: scale(1.1);
+		}
 
-td {
-	border: 1px solid rgb(0, 164, 166);
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-</style>
-
-
-<style>
-.form-group {
-	position: relative;
-	margin-bottom: 1.5rem;
-}
-
-.form-control {
-	width: 100%;
-	border: 2px solid #ccc;
-	border-radius: 8px;
-	font-size: 1rem;
-	outline: none;
-	background: transparent;
-	transition: border-color 0.3s ease, padding-top 0.3s ease;
-}
-
-.error {
-	color: red;
-	padding-top: 15px;
-}
-
-.form-control:focus {
-	border-color: #007bff;
-}
-
-.form-legend {
-	position: absolute;
-	top: 50%;
-	left: 15px;
-	transform: translateY(-50%);
-	font-size: 1rem;
-	color: #aaa;
-	background: white;
-	padding: 0 5px;
-	pointer-events: none;
-	transition: 0.3s ease;
-}
-
-/* When input or select is focused or has a value, move the label up */
-.form-control:focus ~ .form-legend, .form-control:not (:placeholder-shown
-	) ~ .form-legend {
-	top: -8px;
-	font-size: 1rem;
-	color: #007bff;
-}
-
-/* Hover effect when the input/select is focused */
-.form-control:focus:hover ~ .form-legend {
-	color: #0056b3; /* Darker shade of blue on hover */
-}
-
-/* Ensure the label returns to the normal color after focus or hover is removed */
-.form-control:not (:focus ) ~ .form-legend {
-	color: #aaa; /* Normal label color */
-}
-</style>
-
-<style>
-/* Red border for invalid inputs */
-input.error, select.error {
-	border: 2px solid red !important;
-}
-
-/* Error message style */
-label.error {
-	color: red;
-	font-size: 0.85em;
-	margin-top: 5px;
-	display: block;
-}
-
-.underline {
-	text-decoration: underline;
-	color: #08a6f1;
-	cursor: pointer;
-}
-
-.left-arrow-circle {
-	width: 35px;
-	height: 35px;
-	border-radius: 50%;
-	background-color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-right: 10px;
-	transition: background-color 0.3s, transform 0.2s;
-}
-
-.left-arrow-circle i {
-	color: rgb(107, 122, 143);
-}
-
-.left-arrow-circle:hover {
-	background-color: rgb(107, 122, 143);
-	cursor: pointer;
-	transform: scale(1.05);
-	border: 2px solid white;
-}
-
-.left-arrow-circle:hover i {
-	color: white;
-}
-
-.white-text span {
-	color: white !important;
-}
-</style>
+		td {
+			border: 1px solid rgb(0, 164, 166);
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	</style>
 
 
-<script th:inline="javascript">
+	<style>
+		.form-group {
+			position: relative;
+			margin-bottom: 1.5rem;
+		}
 
-$(document).ready(function() {
-    // hide loader on normal load
-    $('#loader').modal('hide');
-});
+		.form-control {
+			width: 100%;
+			border: 2px solid #ccc;
+			border-radius: 8px;
+			font-size: 1rem;
+			outline: none;
+			background: transparent;
+			transition: border-color 0.3s ease, padding-top 0.3s ease;
+		}
 
-$(window).on('pageshow', function() {
-    // hide loader on back/forward nav
-    $('#loader').modal('hide');
-});
+		.error {
+			color: red;
+			padding-top: 15px;
+		}
 
-$(window).on('beforeunload', function() {
-    // hide loader on leaving page
-    $('#loader').modal('hide');
-});
+		.form-control:focus {
+			border-color: #007bff;
+		}
 
-	
+		.form-legend {
+			position: absolute;
+			top: 50%;
+			left: 15px;
+			transform: translateY(-50%);
+			font-size: 1rem;
+			color: #aaa;
+			background: white;
+			padding: 0 5px;
+			pointer-events: none;
+			transition: 0.3s ease;
+		}
 
-	function home() {
-        $("#loader").modal("toggle");
-		location.href = 'Dashboard'
-	}
+		/* When input or select is focused or has a value, move the label up */
+		.form-control:focus~.form-legend,
+		.form-control:not (:placeholder-shown)~.form-legend {
+			top: -8px;
+			font-size: 1rem;
+			color: #007bff;
+		}
 
-	function back() {
-        $("#loader").modal("toggle");
+		/* Hover effect when the input/select is focused */
+		.form-control:focus:hover~.form-legend {
+			color: #0056b3;
+			/* Darker shade of blue on hover */
+		}
 
-		window.history.back();
-	}
-	
-	//to fetch summary from the database - called from the summary button
-	function showdetails() {
-    
-    var Callurl;
-    	$('#loader').modal('show');
-        Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/ 
-        location.href = Callurl;
-        	console.log(Callurl);
-   /*  $.ajax({
-        type: 'get',
-        url: Callurl,
-        beforeSend: function () {
-            $('#loader').modal('show'); // 🔄 Show loader
-        },
-        success: function (data) {
-            $('.content').html(data);
-            //$("#detailsbtn").addClass("active");
-            //tablepagination();
-        },
-        complete: function () {
-            $('#loader').modal('hide'); 
-        },
-        error: function () {
-        	  $('#loader').modal('hide');
-            alert("Something went wrongss. Please try again.");
-          
-        }
-    }); */
-}
-	
-	function showsummary() {
-		$('#loader').modal('show');
-		var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;								
-		location.href = Callurl;
+		/* Ensure the label returns to the normal color after focus or hover is removed */
+		.form-control:not (:focus)~.form-legend {
+			color: #aaa;
+			/* Normal label color */
+		}
+	</style>
 
-	}
-    </script>
+	<style>
+		/* Red border for invalid inputs */
+		input.error,
+		select.error {
+			border: 2px solid red !important;
+		}
 
-<script>
+		/* Error message style */
+		label.error {
+			color: red;
+			font-size: 0.85em;
+			margin-top: 5px;
+			display: block;
+		}
 
-function activateTab(tabName) {
-    // Remove 'active' from all buttons
-    document.querySelectorAll('.custom-tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
+		.underline {
+			text-decoration: underline;
+			color: #08a6f1;
+			cursor: pointer;
+		}
 
-    // Add 'active' to selected button
-    if (tabName === 'summary') {
-        document.getElementById('custom-tab-btnSummary').classList.add('active');
-    } else if (tabName === 'Details') {
-        document.getElementById('custom-tab-btnDetails').classList.add('active');
-    }
-}
+		.left-arrow-circle {
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			background-color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 10px;
+			transition: background-color 0.3s, transform 0.2s;
+		}
 
-window.onload = function() {
-    /* setTimeout(function() {
-        var selectedTab = document.getElementById("selectedTab").value;
-        alert(selectedTab);
-        activateTab(selectedTab);
-    }, 10000); */ // 10,000 milliseconds = 10 seconds
-    
-	var selectedTab = document.getElementById("selectedTab").value;
-    activateTab(selectedTab);
-};
+		.left-arrow-circle i {
+			color: rgb(107, 122, 143);
+		}
+
+		.left-arrow-circle:hover {
+			background-color: rgb(107, 122, 143);
+			cursor: pointer;
+			transform: scale(1.05);
+			border: 2px solid white;
+		}
+
+		.left-arrow-circle:hover i {
+			color: white;
+		}
+
+		.white-text span {
+			color: white !important;
+		}
+	</style>
 
 
-function downloadfile(button) {
+	<script th:inline="javascript">
+
+		$(document).ready(function () {
+			// hide loader on normal load
+			$('#loader').modal('hide');
+		});
+
+		$(window).on('pageshow', function () {
+			// hide loader on back/forward nav
+			$('#loader').modal('hide');
+		});
+
+		$(window).on('beforeunload', function () {
+			// hide loader on leaving page
+			$('#loader').modal('hide');
+		});
+
+
+
+		function home() {
+			$("#loader").modal("toggle");
+			location.href = 'Dashboard'
+		}
+
+		function back() {
+			$("#loader").modal("toggle");
+
+			window.history.back();
+		}
+
+		//to fetch summary from the database - called from the summary button
+		function showdetails() {
+
+			var Callurl;
+			$('#loader').modal('show');
+			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/
+				location.href = Callurl;
+			console.log(Callurl);
+			/*  $.ajax({
+				 type: 'get',
+				 url: Callurl,
+				 beforeSend: function () {
+					 $('#loader').modal('show'); // ðŸ”„ Show loader
+				 },
+				 success: function (data) {
+					 $('.content').html(data);
+					 //$("#detailsbtn").addClass("active");
+					 //tablepagination();
+				 },
+				 complete: function () {
+					 $('#loader').modal('hide'); 
+				 },
+				 error: function () {
+					   $('#loader').modal('hide');
+					 alert("Something went wrongss. Please try again.");
+				   
+				 }
+			 }); */
+		}
+
+		function showsummary() {
+			$('#loader').modal('show');
+			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
+			location.href = Callurl;
+
+		}
+	</script>
+
+	<script>
+
+		function activateTab(tabName) {
+			// Remove 'active' from all buttons
+			document.querySelectorAll('.custom-tab-btn').forEach(btn => {
+				btn.classList.remove('active');
+			});
+
+			// Add 'active' to selected button
+			if (tabName === 'summary') {
+				document.getElementById('custom-tab-btnSummary').classList.add('active');
+			} else if (tabName === 'Details') {
+				document.getElementById('custom-tab-btnDetails').classList.add('active');
+			}
+		}
+
+		window.onload = function () {
+			/* setTimeout(function() {
+				var selectedTab = document.getElementById("selectedTab").value;
+				alert(selectedTab);
+				activateTab(selectedTab);
+			}, 10000); */ // 10,000 milliseconds = 10 seconds
+
+			var selectedTab = document.getElementById("selectedTab").value;
+			activateTab(selectedTab);
+		};
+
+
+		function downloadfile(button) {
 			var reportid = button.getAttribute('data-reportid');
 			var asondate = button.getAttribute('data-asondate');
 			var fromdate = button.getAttribute('data-fromdate');
@@ -400,9 +398,6 @@ function downloadfile(button) {
 			var secid = button.getAttribute('data-secid');
 			var dtltype = button.getAttribute('data-dtltype');
 			var filename = button.getAttribute('data-filename');
-			var type = button.getAttribute('data-type');
-			var version = button.getAttribute('data-version');
-
 
 			$('#loader').modal('show');
 
@@ -414,9 +409,7 @@ function downloadfile(button) {
 					'&currency=' + currency +
 					'&subreportid=' + subreportid +
 					'&secid=' + secid +
-					'&filename=' + filename +
-					'&type=' + type +
-					'&version=' + version,
+					'&filename=' + filename,
 				type: 'GET',
 				xhrFields: {
 					responseType: 'blob'
@@ -436,7 +429,7 @@ function downloadfile(button) {
 						window.URL.revokeObjectURL(url);
 						document.body.removeChild(a);
 
-						showResultModal('Success', filename + ' downloaded successfully.');
+						showResultModal('Success', 'The file has been downloaded successfully.');
 					} else {
 						showResultModal('Information', 'No data was available to create a download.');
 					}
@@ -449,128 +442,127 @@ function downloadfile(button) {
 			});
 		}
 
+		function editRecord() {
+			showResultModal('Alert', 'Development in progress');
 
-function editRecord(){
-	showResultModal('Alert', 'Development in progress');
-	
-}
-function closemodel(){
-	$('#alert').modal('hide');
-	$('#resultModal').modal('hide');
-	
-}
+		}
+		function closemodel() {
+			$('#alert').modal('hide');
+			$('#resultModal').modal('hide');
 
-function showResultModal(title, message) {
-	// Set the text for the modal elements
-	$('#resultModalLabel').text(title);
-	$('#resultModalBody').text(message);
+		}
 
-	// Show the modal
-	$('#resultModal').modal('show');
-}
+		function showResultModal(title, message) {
+			// Set the text for the modal elements
+			$('#resultModalLabel').text(title);
+			$('#resultModalBody').text(message);
 
-</script>
+			// Show the modal
+			$('#resultModal').modal('show');
+		}
 
-<script>
+	</script>
 
-function downloadDetailfile(button) {
-    const filename = button.getAttribute('data-filename');
-    const fromdate = button.getAttribute('data-fromdate');
-    const todate = button.getAttribute('data-todate');
+	<script>
 
-    $('#loader').modal('show');
+		function downloadDetailfile(button) {
+			const filename = button.getAttribute('data-filename');
+			const fromdate = button.getAttribute('data-fromdate');
+			const todate = button.getAttribute('data-todate');
 
-    const baseUrl = '/BCDRS/Reports/'; 
-    const downloadUrl = baseUrl + 'downloadDetailExcel' +
-        '?filename=' + encodeURIComponent(filename) +
-        '&fromdate=' + encodeURIComponent(fromdate) +
-        '&todate=' + encodeURIComponent(todate);
+			$('#loader').modal('show');
 
-    $.ajax({
-        url: downloadUrl,
-        type: 'GET',
-        xhrFields: {
-            responseType: 'blob'
-        },
-        success: function (data) {
-            $('#loader').modal('hide');
+			const baseUrl = '/BCDRS/Reports/';
+			const downloadUrl = baseUrl + 'downloadDetailExcel' +
+				'?filename=' + encodeURIComponent(filename) +
+				'&fromdate=' + encodeURIComponent(fromdate) +
+				'&todate=' + encodeURIComponent(todate);
 
-            if (data && data.size > 100) {
-                const blob = new Blob([data], { type: 'application/vnd.ms-excel' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = filename + '.xls';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                window.URL.revokeObjectURL(url);
+			$.ajax({
+				url: downloadUrl,
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				success: function (data) {
+					$('#loader').modal('hide');
 
-                showResultModal('Success', filename + ' downloaded successfully.');
-            } else {
-                showResultModal('Information', 'No data was available to create a download or file was empty.');
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            $('#loader').modal('hide');
-            console.error('Download error:', textStatus, errorThrown, jqXHR);
+					if (data && data.size > 100) {
+						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+						const url = window.URL.createObjectURL(blob);
+						const a = document.createElement('a');
+						a.style.display = 'none';
+						a.href = url;
+						a.download = filename + '.xls';
+						document.body.appendChild(a);
+						a.click();
+						a.remove();
+						window.URL.revokeObjectURL(url);
 
-            let errorMessage = 'An error occurred while downloading the file. Please try again.';
-            if (jqXHR.response) {
-                 const reader = new FileReader();
-                 reader.onload = function() {
-                     errorMessage = reader.result;
-                     showResultModal('Error', errorMessage);
-                 };
-                 reader.onerror = function() {
-                    showResultModal('Error', 'An unknown error occurred during download.');
-                 };
-                 reader.readAsText(jqXHR.response);
-                 return;
-            }
-            showResultModal('Error', errorMessage);
-        }
-    });
-}
+						showResultModal('Success', filename + ' downloaded successfully.');
+					} else {
+						showResultModal('Information', 'No data was available to create a download or file was empty.');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$('#loader').modal('hide');
+					console.error('Download error:', textStatus, errorThrown, jqXHR);
 
+					let errorMessage = 'An error occurred while downloading the file. Please try again.';
+					if (jqXHR.response) {
+						const reader = new FileReader();
+						reader.onload = function () {
+							errorMessage = reader.result;
+							showResultModal('Error', errorMessage);
+						};
+						reader.onerror = function () {
+							showResultModal('Error', 'An unknown error occurred during download.');
+						};
+						reader.readAsText(jqXHR.response);
+						return;
+					}
+					showResultModal('Error', errorMessage);
+				}
+			});
+		}
 
 
-</script>  
 
-<script th:inline="javascript">
-function showdetailsbyRowAndColumn(a) {
-    var rowId = a.getAttribute('RowId');
-    var columnId = a.getAttribute('ColumnId');
-    var cellValue = a.textContent || a.innerText;
+	</script>
 
-    if (cellValue !== '0') {
-        if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-            $('#loader').modal('show');
+	<script th:inline="javascript">
+		function showdetailsbyRowAndColumn(a) {
+			var rowId = a.getAttribute('RowId');
+			var columnId = a.getAttribute('ColumnId');
+			var cellValue = a.textContent || a.innerText;
 
-            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+			if (cellValue !== '0') {
+				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
+					$('#loader').modal('show');
 
-            if (!Callurl) {
-                alert("Error: Base URL not set.");
-                return;
-            }
+					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
 
-            const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+					if (!Callurl) {
+						alert("Error: Base URL not set.");
+						return;
+					}
 
-            if (Callurl.includes("?")) {
-                Callurl += "&" + filterParam;
-            } else {
-                Callurl += "?" + filterParam;
-            }
+					const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
 
-            console.log("Redirecting to:", Callurl);
-            location.href = Callurl;
-        }
-    } else {
-        alert("No Records available for this selected cell.");
-    }
-}
-</script>
+					if (Callurl.includes("?")) {
+						Callurl += "&" + filterParam;
+					} else {
+						Callurl += "?" + filterParam;
+					}
+
+					console.log("Redirecting to:", Callurl);
+					location.href = Callurl;
+				}
+			} else {
+				alert("No Records available for this selected cell.");
+			}
+		}
+	</script>
 
 
 </head>
@@ -578,9 +570,9 @@ function showdetailsbyRowAndColumn(a) {
 
 
 <title>BRF</title>
+
 <body>
-	<div class="container-fluid"
-		style="padding-left: 0px; padding-right: 0px;">
+	<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 		<div class="row">
 
 			<div th:insert="HeaderMenu :: header"></div>
@@ -589,7 +581,7 @@ function showdetailsbyRowAndColumn(a) {
 				<div class="card-header"
 					style="background-color: rgb(107, 122, 143); display: flex; align-items: center; justify-content: space-between;">
 					<div style="display: flex; align-items: center;" onclick="back();">
-						<!-- ⬅️ Left circular arrow -->
+						<!-- â¬…ï¸ Left circular arrow -->
 						<div class="left-arrow-circle">
 							<i class="fa fa-arrow-left"></i>
 						</div>
@@ -597,23 +589,25 @@ function showdetailsbyRowAndColumn(a) {
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
-							BRF 2.6 -  CLASSIFICATION BY TIME / FIXED DEPOSITS BY REMAINING MATURITY (AED 000)</h5>
+							BRF 2.6 - CLASSIFICATION BY TIME / FIXED DEPOSITS BY REMAINING MATURITY (AED 000)</h5>
 					</div>
 
 					<div class="custom-tab-btn-group nav-buttons"
 						style="display: flex; color: white; align-items: center;">
-						<!-- 📅 Date -->
+						<!-- ðŸ“… Date -->
 						<span class="white-text"
 							style="color: white !important; font-size: 16px; margin-right: 20px;">Report
 							Date: <span th:text="${asondate}">2025-07-04</span>
 						</span>
 
-						  <!-- Buttons -->
-        <input type="hidden" id="selectedTab" th:value="${displaymode}">
-        <button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();" th:if="${displaymode == 'Details'}">Summary</button>
-        <button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();" th:if="${displaymode == 'summary'}">Details</button>
-        <button type="button" class="custom-tab-btn" id="custom-tab-btnAdd" th:if="${displaymode == 'summary'}"
-            th:attr="data-reportid=${reportid}, 
+						<!-- Buttons -->
+						<input type="hidden" id="selectedTab" th:value="${displaymode}">
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();"
+							th:if="${displaymode == 'Details'}">Summary</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();"
+							th:if="${displaymode == 'summary'}">Details</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+							th:if="${displaymode == 'summary'}" th:attr="data-reportid=${reportid}, 
                      data-asondate=${asondate}, 
                      data-fromdate=${fromdate}, 
                      data-todate=${todate}, 
@@ -621,110 +615,115 @@ function showdetailsbyRowAndColumn(a) {
                      data-dtltype=${dtltype}, 
                      data-filename='BRF2_6.xls',
                      data-type=${type},
-                     data-version=${version}"
-                     
-            onclick="downloadfile(this);">
-            <i class="fa fa-download"></i>
-        </button>
-        <button
-		  type="button"
-		  class="custom-tab-btn"
-		  id="custom-tab-btnAdd"
-		  th:if="${displaymode == 'Details'}"
-		  onclick="downloadDetailfile(this);"
-		  th:attr="
+                     data-version=${version}" onclick="downloadfile(this);">
+							<i class="fa fa-download"></i>
+						</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
 		    data-fromdate=${fromdate},
 		    data-todate=${todate},
 		    data-filename='BRF2_6Detail'
 		  ">
-		  <i class="fa fa-download"></i>
-		</button>
+							<i class="fa fa-download"></i>
+						</button>
 					</div>
 				</div>
-			
-			<div th:if="${displaymode == 'summary'}">
-			<div class="row" >
-				<div class="col-sm-12">
-					<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
-    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
-							<thead class="thead-light">
-  									<tr style="background-color: #b3b6b9">
-										<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ROW</th>
-										<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ID</th>
-										<th rowspan="4" style="text-align: center; width: 40%; background-color: #b3b6b9">Item</th>
-										<th colspan="8" style="text-align: center">RESIDENT</th>
-										<th rowspan="3" style="text-align: center">Total (Resident)</th>
-										<th colspan="8" style="text-align: center">NON-RESIDENT</th>
-										<th rowspan="3" style="text-align: center">Total
-                                                                                   ( Non Resident )</th>
-										<th rowspan="3" style="text-align: center">GRAND TOTAL (Amount)</th>
-										
-									</tr>
-									
-									<tr style="background-color: #b3b6b9">
-										<th colspan="4" style="text-align: center">AED</th>
-										<th colspan="4" style="text-align: center">FCY</th>
-										<th colspan="4" style="text-align: center">AED</th>
-										<th colspan="4" style="text-align: center">FCY</th>
-									</tr>
-									
-									
-									<tr style="background-color: #b3b6b9">
-										
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-									</tr>
-									
-									<tr style="background-color: #b3b6b9">
-										
-										<th style="text-align: center; background-color: #b3b6b9">0010</th>
-										<th style="text-align: center; background-color: #b3b6b9">0020</th>
-										<th style="text-align: center; background-color: #b3b6b9">0030</th>
-										<th style="text-align: center; background-color: #b3b6b9">0040</th>
-										<th style="text-align: center; background-color: #b3b6b9">0050</th>
-										<th style="text-align: center; background-color: #b3b6b9">0060</th>
-										<th style="text-align: center; background-color: #b3b6b9">0070</th>
-										<th style="text-align: center; background-color: #b3b6b9">0080</th>
-										<th style="text-align: center; background-color: #b3b6b9">0090</th>
-										<th style="text-align: center; background-color: #b3b6b9">0100</th>
-										<th style="text-align: center; background-color: #b3b6b9">0110</th>
-										<th style="text-align: center; background-color: #b3b6b9">0120</th>
-										<th style="text-align: center; background-color: #b3b6b9">0130</th>
-										<th style="text-align: center; background-color: #b3b6b9">0140</th>
-										<th style="text-align: center; background-color: #b3b6b9">0150</th>
-										<th style="text-align: center; background-color: #b3b6b9">0160</th>
-										<th style="text-align: center; background-color: #b3b6b9">0170</th>
-										<th style="text-align: center; background-color: #b3b6b9">0180</th>
-										<th style="text-align: center; background-color: #b3b6b9">0190</th>
-									</tr>
 
-								</thead>
-							
-							<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
+				<div th:if="${displaymode == 'summary'}">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="table-responsive scrollable-table-container"
+								style="border-right: 1px solid #dee2e6; ">
+								<table
+									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									id="reports">
+									<thead class="thead-light">
+										<tr style="background-color: #b3b6b9">
+											<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ROW
+											</th>
+											<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ID
+											</th>
+											<th rowspan="4"
+												style="text-align: center; width: 40%; background-color: #b3b6b9">Item
+											</th>
+											<th colspan="8" style="text-align: center">RESIDENT</th>
+											<th rowspan="3" style="text-align: center">Total (Resident)</th>
+											<th colspan="8" style="text-align: center">NON-RESIDENT</th>
+											<th rowspan="3" style="text-align: center">Total
+												( Non Resident )</th>
+											<th rowspan="3" style="text-align: center">GRAND TOTAL (Amount)</th>
+
+										</tr>
+
+										<tr style="background-color: #b3b6b9">
+											<th colspan="4" style="text-align: center">AED</th>
+											<th colspan="4" style="text-align: center">FCY</th>
+											<th colspan="4" style="text-align: center">AED</th>
+											<th colspan="4" style="text-align: center">FCY</th>
+										</tr>
+
+
+										<tr style="background-color: #b3b6b9">
+
+											<th>Up to 3 Months</th>
+											<th>Above 3 and up to 6 Months</th>
+											<th>Above 6 and up to 12 Months</th>
+											<th>Exceeding 12 Months</th>
+											<th>Up to 3 Months</th>
+											<th>Above 3 and up to 6 Months</th>
+											<th>Above 6 and up to 12 Months</th>
+											<th>Exceeding 12 Months</th>
+											<th>Up to 3 Months</th>
+											<th>Above 3 and up to 6 Months</th>
+											<th>Above 6 and up to 12 Months</th>
+											<th>Exceeding 12 Months</th>
+											<th>Up to 3 Months</th>
+											<th>Above 3 and up to 6 Months</th>
+											<th>Above 6 and up to 12 Months</th>
+											<th>Exceeding 12 Months</th>
+										</tr>
+
+										<tr style="background-color: #b3b6b9">
+
+											<th style="text-align: center; background-color: #b3b6b9">0010</th>
+											<th style="text-align: center; background-color: #b3b6b9">0020</th>
+											<th style="text-align: center; background-color: #b3b6b9">0030</th>
+											<th style="text-align: center; background-color: #b3b6b9">0040</th>
+											<th style="text-align: center; background-color: #b3b6b9">0050</th>
+											<th style="text-align: center; background-color: #b3b6b9">0060</th>
+											<th style="text-align: center; background-color: #b3b6b9">0070</th>
+											<th style="text-align: center; background-color: #b3b6b9">0080</th>
+											<th style="text-align: center; background-color: #b3b6b9">0090</th>
+											<th style="text-align: center; background-color: #b3b6b9">0100</th>
+											<th style="text-align: center; background-color: #b3b6b9">0110</th>
+											<th style="text-align: center; background-color: #b3b6b9">0120</th>
+											<th style="text-align: center; background-color: #b3b6b9">0130</th>
+											<th style="text-align: center; background-color: #b3b6b9">0140</th>
+											<th style="text-align: center; background-color: #b3b6b9">0150</th>
+											<th style="text-align: center; background-color: #b3b6b9">0160</th>
+											<th style="text-align: center; background-color: #b3b6b9">0170</th>
+											<th style="text-align: center; background-color: #b3b6b9">0180</th>
+											<th style="text-align: center; background-color: #b3b6b9">0190</th>
+										</tr>
+
+									</thead>
+
+									<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
 
 										<tr>
 											<td style="background-color: #b3b6b9;">0010</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9; ">1</td>
-											<td colspan="20" style=" background-color: #b3b6b9; font-weight: bold;" th:text="${report.r0010_product}"></td>
-										
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9; ">
+												1</td>
+											<td colspan="20" style=" background-color: #b3b6b9; font-weight: bold;"
+												th:text="${report.r0010_product}"></td>
+
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0020</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9;">1.1</td>
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9;">
+												1.1</td>
 											<td style="font-weight: bold;" th:text="${report.r0020_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0020_resi_aed_up_to_3_months}"></td>
@@ -771,54 +770,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0030_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0030', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0030', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0030', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0030', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0030_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0030', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0030', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0030', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0030', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0030_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0030', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0030', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0030_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -830,54 +845,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0040_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0040', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0040', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0040', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0040', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0040_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0040', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0040', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0040', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0040', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0040_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0040', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0040', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0040_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -885,7 +916,9 @@ function showdetailsbyRowAndColumn(a) {
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0050</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9;">1.2</td>
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9;">
+												1.2</td>
 											<td style="font-weight: bold;" th:text="${report.r0050_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0050_resi_aed_up_to_3_months}"></td>
@@ -932,54 +965,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0060_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0060', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0060', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0060', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0060', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0060_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0060', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0060', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0060', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0060', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0060_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0060', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0060', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0060_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -991,54 +1040,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0070_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0070', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0070', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0070', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0070', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0070_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0070', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0070', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0070', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0070', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0070_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0070', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0070', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0070_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1046,7 +1111,9 @@ function showdetailsbyRowAndColumn(a) {
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0080</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9;">1.3</td>
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9;">
+												1.3</td>
 											<td style="font-weight: bold;" th:text="${report.r0080_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0080_resi_aed_up_to_3_months}"></td>
@@ -1093,54 +1160,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0090_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0090', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0090', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0090', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0090', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0090_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0090', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0090', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0090', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0090', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0090_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0090', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0090', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0090_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1152,54 +1235,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0100_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0100', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0100', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0100', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0100', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0100_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0100', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0100', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0100', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0100', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0100_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0100', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0100', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0100_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1207,7 +1306,9 @@ function showdetailsbyRowAndColumn(a) {
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0110</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9;">1.4</td>
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9;">
+												1.4</td>
 											<td style="font-weight: bold;" th:text="${report.r0110_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0110_resi_aed_up_to_3_months}"></td>
@@ -1254,54 +1355,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0120_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0120', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0120', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0120', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0120', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0120_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0120', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0120', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0120', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0120', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0120_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0120', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0120', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0120_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1313,54 +1430,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0130_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0130', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0130', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0130', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0130', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0130_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0130', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0130', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0130', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0130', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0130_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0130', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0130', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0130_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1368,7 +1501,9 @@ function showdetailsbyRowAndColumn(a) {
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0140</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9;">1.5</td>
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9;">
+												1.5</td>
 											<td style="font-weight: bold;" th:text="${report.r0140_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0140_resi_aed_up_to_3_months}"></td>
@@ -1415,54 +1550,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0150_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0150', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0150', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0150', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0150', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0150_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0150', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0150', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0150', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0150', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0150_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0150', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0150', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0150_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1474,54 +1625,70 @@ function showdetailsbyRowAndColumn(a) {
 											<td style="padding-left: 20px;" th:text="${report.r0160_product}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_aed_up_to_3_months}"
-												th:attr="RowId='R0160', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0010'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0160', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0020'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0030'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_aed_exceeding_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0040'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_fcy_up_to_3_months}"
-												th:attr="RowId='R0160', ColumnId='C0050'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0050'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0160', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0060'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0070'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_resi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0080'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0160_total_resident}"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_aed_up_to_3_months}"
-												th:attr="RowId='R0160', ColumnId='C0100'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0100'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_aed_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0160', ColumnId='C0110'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0110'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_aed_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0120'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0120'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_aed_exceeding_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0130'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_fcy_up_to_3_months}"
-												th:attr="RowId='R0160', ColumnId='C0140'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_fcy_above_3_and_up_to_6_months}"
-												th:attr="RowId='R0160', ColumnId='C0150'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_fcy_above_6_and_up_to_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0160'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right;"
 												th:text="${report.r0160_nonresi_fcy_exceeding_12_months}"
-												th:attr="RowId='R0160', ColumnId='C0170'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+												th:attr="RowId='R0160', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0160_total_nonresident}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
@@ -1529,7 +1696,9 @@ function showdetailsbyRowAndColumn(a) {
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0170</td>
-											<td style="font-weight: bold; text-align: right; background-color: #b3b6b9;">1.6</td>
+											<td
+												style="font-weight: bold; text-align: right; background-color: #b3b6b9;">
+												1.6</td>
 											<td style="font-weight: bold;" th:text="${report.r0170_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
 												th:text="${report.r0170_resi_aed_up_to_3_months}"></td>
@@ -1577,7 +1746,7 @@ function showdetailsbyRowAndColumn(a) {
 
 
 									</tbody>
-						</table>
+								</table>
 							</div>
 
 
@@ -1607,21 +1776,19 @@ function showdetailsbyRowAndColumn(a) {
 
 									</thead>
 
-									<tbody th:each="report: ${reportdetails}"
-										style="font-family: Arial;">
+									<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
 										<tr>
 											<td><a data-toggle="tooltip" class="editrec"
-												title="Click to Edit this Record"> <i
-													class="fas fa-edit" onclick="editRecord(this)"></i>
-											</a></td>
+													title="Click to Edit this Record"> <i class="fas fa-edit"
+														onclick="editRecord(this)"></i>
+												</a></td>
 											<td th:text="${report.custId}"></td>
 											<td th:text="${report.acctNumber}"></td>
 											<td th:text="${report.acctName}"></td>
 											<td th:text="${report.acctBalanceInAed}"></td>
 											<td th:text="${report.rowId}"></td>
 											<td th:text="${report.columnId}"></td>
-											<td
-												th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
 
 										</tr>
 									</tbody>
@@ -1645,10 +1812,8 @@ function showdetailsbyRowAndColumn(a) {
 
 
 
-	<div class="modal fade" id="loader" data-backdrop="static"
-		data-keyboard="false">
-		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+	<div class="modal fade" id="loader" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content" style="background: transparent;">
 				<div class="modal-body" style="text-align: center">
 					<div>
@@ -1669,17 +1834,14 @@ function showdetailsbyRowAndColumn(a) {
 			<div class="modal-content">
 				<!-- Your custom styled header -->
 				<div class="menu-title-header">
-					<div class="modal-title" id="resultModalLabel"
-						style="text-align: center; color: white;">
+					<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
 						<!-- Title will be set by JavaScript -->
 					</div>
 				</div>
-				<div class="modal-body"
-					style="text-align: center; font-size: 1.1rem;">
+				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
 					<p id="resultModalBody"></p>
 					<!-- Your custom styled button -->
-					<button type="button" class="custom-tab-btn" onclick="closemodel()"
-						data-dismiss="modal">OK</button>
+					<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
 				</div>
 			</div>
 		</div>
@@ -1717,102 +1879,108 @@ function showdetailsbyRowAndColumn(a) {
 
 
 <style>
-/* Your existing CSS - this is the correct approach */
-.scrollable-table-container {
-	/* This is the key: it creates the scroll context */
-	max-height: 620px;
-	/* Or a suitable height like 80vh for responsive design */
-	overflow-y: auto;
-	border: 1px solid #ccc;
-}
+	/* Your existing CSS - this is the correct approach */
+	.scrollable-table-container {
+		/* This is the key: it creates the scroll context */
+		max-height: 620px;
+		/* Or a suitable height like 80vh for responsive design */
+		overflow-y: auto;
+		border: 1px solid #ccc;
+	}
 
-/* Your existing sticky header CSS, targeting the tr elements within the thead */
-.scrollable-table-container thead tr:nth-child(1) {
-	position: sticky;
-	top: 0;
-	background-color: #b3b6b9;
-	z-index: 5;
-}
+	/* Your existing sticky header CSS, targeting the tr elements within the thead */
+	.scrollable-table-container thead tr:nth-child(1) {
+		position: sticky;
+		top: 0;
+		background-color: #b3b6b9;
+		z-index: 5;
+	}
 
-.scrollable-table-container thead tr:nth-child(2) {
-	position: sticky;
-	top: 36px; /* adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 4;
-}
+	.scrollable-table-container thead tr:nth-child(2) {
+		position: sticky;
+		top: 36px;
+		/* adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 4;
+	}
 
-.scrollable-table-container thead tr:nth-child(3) {
-	position: sticky;
-	top: 72px; /* Adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 3;
-}
+	.scrollable-table-container thead tr:nth-child(3) {
+		position: sticky;
+		top: 72px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 3;
+	}
 
-.scrollable-table-container thead tr:nth-child(4) {
-	position: sticky;
-	top: 100px; /* Adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 2;
-}
+	.scrollable-table-container thead tr:nth-child(4) {
+		position: sticky;
+		top: 100px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 2;
+	}
 
-.scrollable-table-container thead tr:nth-child(5) {
-	position: sticky;
-	top: 135px; /* Adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 1;
-}
+	.scrollable-table-container thead tr:nth-child(5) {
+		position: sticky;
+		top: 135px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 1;
+	}
 </style>
 
 
 <style>
-.inner {
-	max-height: 600px; /* Adjust height as needed */
-	overflow: auto;
-	border: 1px solid #dee2e6;
-}
+	.inner {
+		max-height: 600px;
+		/* Adjust height as needed */
+		overflow: auto;
+		border: 1px solid #dee2e6;
+	}
 
-/* Sticky thead */
-#reports thead th {
-	position: sticky;
-	top: 0;
-	background-color: #f8f9fa; /* Match Bootstrap thead-light */
-	z-index: 2;
-}
+	/* Sticky thead */
+	#reports thead th {
+		position: sticky;
+		top: 0;
+		background-color: #f8f9fa;
+		/* Match Bootstrap thead-light */
+		z-index: 2;
+	}
 
-div.dataTables_wrapper div.dataTables_paginate {
-	text-align: right !important;
-	float: right !important;
-	width: auto;
-	margin-top: 10px;
-}
+	div.dataTables_wrapper div.dataTables_paginate {
+		text-align: right !important;
+		float: right !important;
+		width: auto;
+		margin-top: 10px;
+	}
 
-/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
-div.dataTables_wrapper div.dataTables_info {
-	float: left !important;
-	margin-top: 10px;
-}
+	/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
+	div.dataTables_wrapper div.dataTables_info {
+		float: left !important;
+		margin-top: 10px;
+	}
 
-.pagination {
-	margin: 0;
-}
+	.pagination {
+		margin: 0;
+	}
 
-.page-item.active .page-link {
-	background-color: #386276;
-	border-color: #386276;
-}
+	.page-item.active .page-link {
+		background-color: #386276;
+		border-color: #386276;
+	}
 
-.page-link {
-	color: #386276;
-}
+	.page-link {
+		color: #386276;
+	}
 
-.page-link:hover {
-	color: #2a4a5c;
-}
+	.page-link:hover {
+		color: #2a4a5c;
+	}
 
-.form-select {
-	display: inline-block;
-	width: auto;
-}
+	.form-select {
+		display: inline-block;
+		width: auto;
+	}
 </style>
 
 </html>

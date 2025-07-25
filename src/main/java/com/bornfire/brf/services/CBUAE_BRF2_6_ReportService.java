@@ -38,8 +38,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bornfire.brf.entities.CBUAE_BRF2_18_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF2_4_Summary_Entity;
+
 import com.bornfire.brf.entities.CBUAE_BRF2_6_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_6_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_6_Summary_Entity;
