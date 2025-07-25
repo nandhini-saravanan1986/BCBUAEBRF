@@ -3,7 +3,7 @@
 <!-- 
 CREATED BY	: PRASANTH M
 CREATED ON	: 24.07.2025
-PURPOSE		: BRFREPORT
+PURPOSE		: COMPLAINTS DATA - 16.4 
 -->
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
@@ -431,7 +431,7 @@ PURPOSE		: BRFREPORT
 						window.URL.revokeObjectURL(url);
 						document.body.removeChild(a);
 
-						showResultModal('Success', 'The file has been downloaded successfully.');
+						showResultModal('Success', 'BRF16_4.xlx has been downloaded successfully.');
 					} else {
 						showResultModal('Information', 'No data was available to create a download.');
 					}
@@ -469,6 +469,111 @@ PURPOSE		: BRFREPORT
 	    border-width: 1px var(--bs-border-width) !important;
 	}
 </style>
+<script>
+function DetailDownload() {
+    let table = document.getElementById("Detailreports");
+    if (!table) {
+        alert("Table not found");
+        return;
+    }
+
+    let clonedTable = table.cloneNode(true);
+
+    // Remove inputs, selects, buttons, etc.
+    clonedTable.querySelectorAll('input, button, select, textarea').forEach(el => el.remove());
+
+    // Remove unwanted links like edit icons
+    clonedTable.querySelectorAll('a.editrec').forEach(el => el.remove());
+
+    // Fix 1: Remove empty <th> or <td> at the beginning (A column issue)
+    clonedTable.querySelectorAll("thead tr, tbody tr").forEach(row => {
+        if (row.children.length && row.children[0].textContent.trim() === "") {
+            row.deleteCell(0);
+        }
+    });
+
+    // Get column indexes for "ACCT BALANCE" and "ACCT NAME"
+    let acctBalanceColIndex = -1;
+    let acctNameColIndex = -1;
+    const headers = clonedTable.querySelectorAll("thead th");
+    headers.forEach((th, index) => {
+        let text = th.textContent.trim().toUpperCase();
+        if (text.includes("ACCT BALANCE")) acctBalanceColIndex = index;
+        if (text.includes("ACCT NAME")) acctNameColIndex = index;
+
+        // Apply styling
+        th.style.backgroundColor = "#d3d3d3";
+        th.style.fontSize = "12px";
+    });
+
+    // Apply styles and alignment to body cells
+    clonedTable.querySelectorAll("tbody tr").forEach(row => {
+        row.querySelectorAll("td").forEach((td, idx) => {
+            let value = td.textContent.trim();
+
+            if (idx === acctBalanceColIndex && !isNaN(value) && value !== "") {
+                td.textContent = parseFloat(value).toFixed(2);  // Decimal format
+                td.style.textAlign = "right";                   // Right align
+            } else if (idx === acctNameColIndex) {
+                td.style.textAlign = "left";                    // Left align for ACCT NAME
+            } else {
+                td.style.textAlign = "center";                  // Default center
+            }
+
+            td.style.fontSize = "11px";
+        });
+    });
+
+    // Prepare Excel-compatible HTML
+    let html = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 4px;
+                font-family: Arial;
+            }
+        </style>
+        <!--[if gte mso 9]>
+        <xml>
+            <x:ExcelWorkbook>
+                <x:ExcelWorksheets>
+                    <x:ExcelWorksheet>
+                        <x:Name>Sheet1</x:Name>
+                        <x:WorksheetOptions>
+                            <x:DisplayGridlines/>
+                        </x:WorksheetOptions>
+                    </x:ExcelWorksheet>
+                </x:ExcelWorksheets>
+            </x:ExcelWorkbook>
+        </xml>
+        <![endif]-->
+    </head>
+    <body>
+        ${clonedTable.outerHTML}
+    </body>
+    </html>`;
+
+    // Download Excel
+    let blob = new Blob([html], { type: "application/vnd.ms-excel" });
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = `BRF16_4_DETAIL.xls`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+
 
 </head>
 
@@ -494,7 +599,7 @@ PURPOSE		: BRFREPORT
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
-							Complaints Data- BRF16.4</h5>
+							 BRF16.4 - Complaints Data</h5>
 					</div>
 
 					<div class="custom-tab-btn-group nav-buttons"
@@ -530,7 +635,7 @@ PURPOSE		: BRFREPORT
                      data-todate=${todate}, 
                      data-currency=${currency},  
                      data-dtltype=${dtltype}, 
-                     data-filename='BRF2_2'" onclick="editRecord();">
+                     data-filename='BRF2_2'" onclick="DetailDownload();">
 							<i class="fa fa-download"></i>
 						</button>
 					</div>
@@ -562,8 +667,8 @@ PURPOSE		: BRFREPORT
 											<th>Date of Birth</th>
 											<th>Complaint Creation Date</th>
 											<th>Complaint Closure Date</th>
-											<th>Acknowledgement Duration</th>
-											<th>Closure Duration</th>
+											<th> Duration Complaint Acknowledgement </th>
+											<th>Complaint Closure Duration</th>
 											<th>Status</th>
 											<th>Complaint Outcome</th>
 											<th>Product</th>
@@ -620,8 +725,8 @@ PURPOSE		: BRFREPORT
 
 									<tbody style="font-family: Arial;">
 										<tr th:each="report, stat : ${reportsummary}">
-											<td style="background-color: #b3b6b9;"><span
-													th:text="${#numbers.formatInteger(stat.count + 9, 4)}"></span>
+											<td style="background-color: #b3b6b9;">
+											<span th:text="${#numbers.formatInteger((stat.count + 0) * 10, 4)}"></span>
 											</td>
 											<td style="background-color: #b3b6b9;" th:text="${report.id}"></td>
 											<td th:text="${report.r0010_lfi_type}"></td>
@@ -716,50 +821,52 @@ PURPOSE		: BRFREPORT
 					</div>
 				</div>
 				<div th:if="${displaymode == 'Details'}">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="table-responsive scrollable-table-container"
-								style="border-right: 1px solid #dee2e6;">
-								<table
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="reports">
-									<thead class="thead-light">
-										<tr>
-											<th></th>
-											<th>CUST ID</th>
-											<th>ACCT NO</th>
-											<th>ACCT NAME</th>
-											<th>ACCT BALANCE</th>
-											<th>ROWID</th>
-											<th>COLUMNID</th>
-											<th>REPORT_DATE</th>
-										</tr>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="table-responsive scrollable-table-container"
+												style="border-right: 1px solid #dee2e6; ">
+												<table
+													class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+													id="Detailreports">
+													<thead class="thead-light">
+														<tr>
+															<th></th>
+															<th>CUST ID</th>
+															<th>ACCT NO</th>
+															<th>ACCT NAME</th>
+															<th>ACCT BALANCE</th>
+															<th>ROWID</th>
+															<th>COLUMNID</th>
+															<th>REPORT_DATE</th>
+														</tr>
 
-									</thead>
+													</thead>
 
-									<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
-										<tr>
-											<td><a data-toggle="tooltip" class="editrec"
-													title="Click to Edit this Record"> <i class="fas fa-edit"
-														onclick="editRecord(this)"></i>
-												</a></td>
-											<td th:text="${report.custId}"></td>
-											<td th:text="${report.acctNumber}"></td>
-											<td th:text="${report.acctName}"></td>
-											<td th:text="${report.acctBalanceInAed}"></td>
-											<td th:text="${report.rowId}"></td>
-											<td th:text="${report.columnId}"></td>
-											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+													<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
+														<tr>
+															<td>
+																<a data-toggle="tooltip" class="editrec"
+																	title="Click to Edit this Record">
+																	<i class="fas fa-edit" onclick="editRecord(this)"></i>
+																</a>
+															</td>
+															<td th:text="${report.custId}"></td>
+															<td th:text="${report.acctNumber}"></td>
+															<td th:text="${report.acctName}"></td>
+															<td th:text="${report.acctBalanceInAed}"></td>
+															<td th:text="${report.rowId}"></td>
+															<td th:text="${report.columnId}"></td>
+															<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
 
-										</tr>
-									</tbody>
-								</table>
-							</div>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 
 
-						</div>
-					</div>
-				</div>
+										</div>
+									</div>
+								</div>
 
 			</div>
 

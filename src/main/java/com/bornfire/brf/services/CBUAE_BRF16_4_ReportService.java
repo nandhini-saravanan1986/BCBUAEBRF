@@ -124,8 +124,10 @@ public class CBUAE_BRF16_4_ReportService {
 	        }
 
 	        if (rowId != null && columnId != null) {
+	        	logger.info("enter if block");
 	            T1Dt1 = CBUAE_BRF16_4_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId);
 	        } else {
+	        	logger.info("enter else block");
 	            T1Dt1 = CBUAE_BRF16_4_Detail_Repos.getdatabydateList(d1);
 	        }
 
@@ -149,7 +151,7 @@ public class CBUAE_BRF16_4_ReportService {
 	        List<CBUAE_BRF16_4_Summary_Entity> dataList = CBUAE_BRF16_4_Summary_Repos.getdatabydateList();
 
 	        if (dataList.isEmpty()) {
-	            logger.warn("No data found for BRF3.16.4 report.");
+	            logger.warn("No data found for BRF16.4 report.");
 	            return new byte[0];
 	        }
 	        String templateDir = env.getProperty("output.exportpathtemp");
@@ -204,7 +206,7 @@ public class CBUAE_BRF16_4_ReportService {
 
 	                // Column B - Serial Number (starts from 0010)
 	                Cell serialCell = row.createCell(1);
-	                serialCell.setCellValue(String.format("%04d", 10 + i));
+	                serialCell.setCellValue(String.format("%04d", (i + 1) * 10));
 	                serialCell.setCellStyle(centerStyle);
 
 	                // Column C - ID
@@ -274,7 +276,7 @@ public class CBUAE_BRF16_4_ReportService {
 	        }
 
 	    } catch (Exception e) {
-	        logger.error("Error generating BRF3.16.4 Excel file", e);
+	        logger.error("Error generating BRF16.4 Excel file", e);
 	        throw e;
 	    }
 	}
