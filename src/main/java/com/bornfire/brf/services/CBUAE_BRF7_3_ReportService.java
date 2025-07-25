@@ -53,13 +53,27 @@ import com.bornfire.brf.entities.CBUAE_BRF1_12_Summary_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity1;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity2;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity3;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity4;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity7;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity8;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity9;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo1;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo2;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo3;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo4;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo7;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo8;
+import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo9;
 import com.bornfire.brf.services.AuditService;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Repo;
 
 @Component
 @Service
-public class CBUAE_BRF1_12_ReportService {
+public class CBUAE_BRF7_3_ReportService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF1_1_ReportService.class);
 	
@@ -78,34 +92,88 @@ public class CBUAE_BRF1_12_ReportService {
 	@Autowired
 	CBUAE_BRF1_12_Summary_Repo BRF1_12Summary_Repo;
 	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo1 BRF7_3Summary_Repo1;
+	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo2 BRF7_3Summary_Repo2;
+	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo3 BRF7_3Summary_Repo3;
+	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo4 BRF7_3Summary_Repo4;
+	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo7 BRF7_3Summary_Repo7;
+	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo8 BRF7_3Summary_Repo8;
+	
+	@Autowired
+	CBUAE_BRF7_3_Summary_Repo9 BRF7_3Summary_Repo9;
+	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
-	public ModelAndView getBRF1_12View(String reportId, String fromdate, String todate, String currency, String dtltype,
+	public ModelAndView getBRF7_3View(String reportId, String fromdate, String todate, String currency, String dtltype,
 			Pageable pageable) {
-		System.out.println("brf1_12");
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;	
 
-		List<CBUAE_BRF1_12_Summary_Entitiy> T1Master = new ArrayList<CBUAE_BRF1_12_Summary_Entitiy>();
+		List<CBUAE_BRF7_3_Summary_Entity1> T1Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity1>();
+		List<CBUAE_BRF7_3_Summary_Entity2> T2Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity2>();
+		List<CBUAE_BRF7_3_Summary_Entity3> T3Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity3>();
+		List<CBUAE_BRF7_3_Summary_Entity4> T4Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity4>();
+		
+		
+		//5,6 are iterative
+		List<CBUAE_BRF7_3_Summary_Entity7> T7Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity7>();
+		List<CBUAE_BRF7_3_Summary_Entity8> T8Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity8>();
+		List<CBUAE_BRF7_3_Summary_Entity9> T9Master = new ArrayList<CBUAE_BRF7_3_Summary_Entity9>();
+		
+		
+		
 		try {
 			Date d1 = dateformat.parse(todate);
 			// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
 			//T1Master = hs.createQuery("from  BRF1_REPORT_ENTITY a where a.report_date = ?1 ", BRF1_REPORT_ENTITY.class)
 				//	.setParameter(1, df.parse(todate)).getResultList();
-			 T1Master=BRF1_12Summary_Repo.getdatabydateList(dateformat.parse(todate));
-		
+			 T1Master=BRF7_3Summary_Repo1.getdatabydateList(dateformat.parse(todate));
+			 
+			 System.out.println("count is" + T1Master.size());
+			 T2Master=BRF7_3Summary_Repo2.getdatabydateList(dateformat.parse(todate));
+			
+			 T3Master=BRF7_3Summary_Repo3.getdatabydateList(dateformat.parse(todate));
+				
+			 T4Master=BRF7_3Summary_Repo4.getdatabydateList(dateformat.parse(todate));
+				
+			 T7Master=BRF7_3Summary_Repo7.getdatabydateList(dateformat.parse(todate));
+				
+			 T8Master=BRF7_3Summary_Repo8.getdatabydateList(dateformat.parse(todate));
+				
+			 T9Master=BRF7_3Summary_Repo9.getdatabydateList(dateformat.parse(todate));
+				
+			 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
-		mv.setViewName("BRF/BRF1_12");
+		mv.setViewName("BRF/BRF7_3");
 		
-		mv.addObject("reportsummary", T1Master);
+
+		mv.addObject("reportsummary1", T1Master);
+		mv.addObject("reportsummary2", T2Master);
+		mv.addObject("reportsummary3", T3Master);
+		mv.addObject("reportsummary4", T4Master);
+		mv.addObject("reportsummary7", T7Master);
+		mv.addObject("reportsummary8", T8Master);
+		mv.addObject("reportsummary9", T9Master);
+		
 		//mv.addObject("reportmaster", T1Master);
 		mv.addObject("displaymode", "summary");
 		//mv.addObject("reportsflag", "reportsflag");
@@ -362,8 +430,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row22
 					row = sheet.getRow(21);
 					cell5 = row.createCell(4);
-					if(record.getR0140AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0140AverageQualify().doubleValue());
+					if(record.getR0130AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0130AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -373,8 +441,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row23
 					row = sheet.getRow(22);
 					cell5 = row.createCell(4);
-					if(record.getR0150AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0150AverageQualify().doubleValue());
+					if(record.getR0140AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0140AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -384,8 +452,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row24
 					row = sheet.getRow(23);
 					cell5 = row.createCell(4);
-					if(record.getR0160AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0160AverageQualify().doubleValue());
+					if(record.getR0150AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0150AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -395,8 +463,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row25
 					row = sheet.getRow(24);
 					cell5 = row.createCell(4);
-					if(record.getR0170AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0170AverageQualify().doubleValue());
+					if(record.getR0150AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0150AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -406,8 +474,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row26
 					row = sheet.getRow(25);
 					cell5 = row.createCell(4);
-					if(record.getR0180AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0180AverageQualify().doubleValue());
+					if(record.getR0160AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0160AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -419,8 +487,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row28
 					row = sheet.getRow(27);
 					cell5 = row.createCell(4);
-					if(record.getR0200AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0200AverageQualify().doubleValue());
+					if(record.getR0180AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0180AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -430,8 +498,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row29
 					row = sheet.getRow(28);
 					cell5 = row.createCell(4);
-					if(record.getR0210AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0210AverageQualify().doubleValue());
+					if(record.getR0190AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0190AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -441,8 +509,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row30
 					row = sheet.getRow(29);
 					cell5 = row.createCell(4);
-					if(record.getR0220AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0220AverageQualify().doubleValue());
+					if(record.getR0200AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0200AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -452,8 +520,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row31
 					row = sheet.getRow(30);
 					cell5 = row.createCell(4);
-					if(record.getR0230AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0230AverageQualify().doubleValue());
+					if(record.getR0210AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0210AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
@@ -463,8 +531,8 @@ public class CBUAE_BRF1_12_ReportService {
 					// row32
 					row = sheet.getRow(31);
 					cell5 = row.createCell(4);
-					if(record.getR0240AverageQualify() != null) {
-					    cell5.setCellValue(record.getR0240AverageQualify().doubleValue());
+					if(record.getR0220AverageQualify() != null) {
+					    cell5.setCellValue(record.getR0220AverageQualify().doubleValue());
 					    cell5.setCellStyle(numberStyle);
 					} else {
 					    cell5.setCellValue("");
