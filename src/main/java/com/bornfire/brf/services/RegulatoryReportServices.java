@@ -297,10 +297,12 @@ public class RegulatoryReportServices {
 					pageable, Filter);
 			break;
 
+
 		case "BRF16_4":
 			repdetail = CBUAE_BRF16_4_ReportServices.getBRF16_4currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
+
 
 		}
 
@@ -542,13 +544,12 @@ public class RegulatoryReportServices {
 			return cbuae_brf2_14_reportservice.getBRF2_14DetailExcel(filename, fromdate, todate);
 		} else if (filename.equals("BRF2_15Detail")) {
 			return cbuae_brf2_15_reportservice.getBRF2_15DetailExcel(filename, fromdate, todate);
-<<<<<<< Updated upstream
 		}else if (filename.equals("BRF16_4Detail")) {
 			return CBUAE_BRF16_4_ReportServices.getBRF16_4DetailExcel(filename, fromdate, todate);
-=======
+        } else if (filename.equals("BRF5_1Detail")) {
+			return cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate);
 		} else if (filename.equals("BRF5_1Detail")) {
 			return cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate);
->>>>>>> Stashed changes
 		}
 		return new byte[0];
 	}
