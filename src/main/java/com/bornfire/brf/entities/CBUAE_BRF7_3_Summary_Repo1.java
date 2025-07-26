@@ -12,3 +12,4 @@ public interface CBUAE_BRF7_3_Summary_Repo1  extends JpaRepository<CBUAE_BRF7_3_
 	@Query(value = "select * from CBUAE_BRF7_3_SUMMARYTABLE1 where report_date=?1 ", nativeQuery = true)
 	List<CBUAE_BRF7_3_Summary_Entity1> getdatabydateList(Date report_date);
 }
+

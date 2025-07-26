@@ -6729,7 +6729,8 @@ public class CBUAE_BRF2_13_ReportService {
 	}
 
 	// DetailExcel
-	public byte[] getBRF2_13DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF2_13DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
+			String type, String version) {
 		try {
 			logger.info("Generating Excel for BRF2_13 Details...");
 			System.out.println("came to Detail download service");

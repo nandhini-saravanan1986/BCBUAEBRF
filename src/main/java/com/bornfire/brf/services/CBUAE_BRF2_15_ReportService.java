@@ -6567,7 +6567,8 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_15_Repor
 	}
 	
 	
-	public byte[] getBRF2_15DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF2_15DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
+			String type, String version) {
 	    try {
 	        logger.info("Generating Excel for BRF2_15 Details...");
 	        System.out.println("came to Detail download service");

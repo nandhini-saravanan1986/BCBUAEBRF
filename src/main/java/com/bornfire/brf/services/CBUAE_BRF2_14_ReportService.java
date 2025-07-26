@@ -216,7 +216,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_14_Repor
 			numberStyle.setFont(font);
 			// --- End of Style Definitions ---
 
-			int startRow = 12;
+			int startRow = 11;
 
 			if (!dataList.isEmpty()) {
 				for (int i = 0; i < dataList.size(); i++) {
@@ -226,9 +226,5040 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_14_Repor
 					if (row == null) {
 						row = sheet.createRow(startRow + i);
 					}
-
-		
 					
+					
+					//row12
+					// Column E 
+					Cell cell4 = row.createCell(4);
+					if (record.getR0030_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0030_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					Cell cell5 = row.createCell(5);
+					if (record.getR0030_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0030_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					Cell cell6 = row.createCell(6);
+					if (record.getR0030_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0030_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					Cell cell7 = row.createCell(7);
+					if (record.getR0030_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0030_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					Cell cell8 = row.createCell(8);
+					if (record.getR0030_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0030_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					Cell cell9 = row.createCell(9);
+					if (record.getR0030_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0030_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					Cell cell10 = row.createCell(10);
+					if (record.getR0030_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0030_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					Cell cell11 = row.createCell(11);
+					if (record.getR0030_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0030_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					Cell cell12 = row.createCell(12);
+					if (record.getR0030_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0030_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					Cell cell13 = row.createCell(13);
+					if (record.getR0030_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0030_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					Cell cell14 = row.createCell(14);
+					if (record.getR0030_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0030_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					Cell cell15 = row.createCell(15);
+					if (record.getR0030_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0030_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+	
+					
+					
+					
+					//row13
+					row = sheet.getRow(12);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0040_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0040_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0040_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0040_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0040_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0040_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0040_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0040_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0040_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0040_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0040_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0040_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0040_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0040_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0040_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0040_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0040_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0040_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0040_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0040_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0040_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0040_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0040_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0040_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row14
+					row = sheet.getRow(13);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0050_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0050_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0050_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0050_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0050_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0050_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0050_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0050_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0050_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0050_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0050_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0050_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0050_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0050_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0050_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0050_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0050_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0050_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0050_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0050_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0050_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0050_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0050_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0050_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row16
+					row = sheet.getRow(15);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0070_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0070_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0070_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0070_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0070_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0070_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0070_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0070_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0070_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0070_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0070_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0070_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0070_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0070_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0070_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0070_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0070_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0070_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0070_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0070_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0070_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0070_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0070_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0070_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row17
+					row = sheet.getRow(16);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0080_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0080_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0080_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0080_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0080_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0080_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0080_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0080_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0080_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0080_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0080_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0080_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0080_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0080_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0080_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0080_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0080_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0080_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0080_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0080_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0080_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0080_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0080_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0080_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row18
+					row = sheet.getRow(17);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0090_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0090_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0090_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0090_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0090_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0090_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0090_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0090_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0090_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0090_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0090_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0090_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0090_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0090_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0090_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0090_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0090_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0090_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0090_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0090_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0090_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0090_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0090_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0090_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row19
+					row = sheet.getRow(18);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0100_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0100_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0100_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0100_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0100_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0100_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0100_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0100_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0100_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0100_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0100_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0100_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0100_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0100_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0100_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0100_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0100_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0100_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0100_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0100_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0100_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0100_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0100_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0100_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					//row20
+					row = sheet.getRow(19);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0110_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0110_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0110_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0110_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0110_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0110_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0110_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0110_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0110_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0110_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0110_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0110_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0110_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0110_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0110_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0110_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0110_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0110_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0110_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0110_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0110_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0110_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0110_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0110_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row21
+					row = sheet.getRow(20);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0120_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0120_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0120_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0120_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0120_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0120_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0120_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0120_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0120_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0120_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0120_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0120_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0120_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0120_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0120_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0120_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0120_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0120_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0120_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0120_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0120_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0120_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0120_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0120_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row22
+					row = sheet.getRow(21);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0130_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0130_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0130_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0130_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0130_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0130_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0130_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0130_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0130_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0130_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0130_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0130_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0130_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0130_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0130_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0130_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0130_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0130_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0130_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0130_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0130_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0130_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0130_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0130_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row24
+					row = sheet.getRow(23);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0150_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0150_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0150_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0150_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0150_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0150_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0150_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0150_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0150_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0150_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0150_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0150_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0150_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0150_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0150_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0150_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0150_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0150_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0150_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0150_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0150_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0150_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0150_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0150_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row25
+					row = sheet.getRow(24);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0160_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0160_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0160_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0160_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0160_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0160_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0160_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0160_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0160_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0160_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0160_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0160_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0160_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0160_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0160_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0160_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0160_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0160_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0160_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0160_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0160_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0160_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0160_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0160_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row26
+					row = sheet.getRow(25);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0170_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0170_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0170_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0170_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0170_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0170_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0170_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0170_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0170_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0170_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0170_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0170_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0170_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0170_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0170_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0170_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0170_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0170_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0170_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0170_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0170_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0170_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0170_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0170_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row28
+					row = sheet.getRow(27);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0190_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0190_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0190_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0190_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0190_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0190_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0190_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0190_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0190_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0190_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0190_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0190_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0190_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0190_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0190_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0190_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0190_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0190_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0190_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0190_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0190_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0190_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0190_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0190_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row29
+					row = sheet.getRow(28);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0200_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0200_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0200_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0200_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0200_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0200_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0200_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0200_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0200_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0200_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0200_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0200_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0200_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0200_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0200_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0200_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0200_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0200_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0200_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0200_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0200_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0200_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0200_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0200_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}//row29
+					row = sheet.getRow(28);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0200_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0200_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0200_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0200_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0200_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0200_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0200_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0200_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0200_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0200_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0200_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0200_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0200_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0200_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0200_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0200_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0200_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0200_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0200_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0200_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0200_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0200_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0200_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0200_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row30
+					row = sheet.getRow(29);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0210_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0210_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0210_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0210_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0210_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0210_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0210_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0210_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0210_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0210_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0210_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0210_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0210_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0210_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0210_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0210_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0210_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0210_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0210_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0210_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0210_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0210_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0210_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0210_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row32
+					row = sheet.getRow(31);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0230_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0230_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0230_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0230_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0230_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0230_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0230_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0230_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0230_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0230_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0230_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0230_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0230_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0230_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0230_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0230_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0230_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0230_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0230_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0230_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0230_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0230_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0230_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0230_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row33
+					row = sheet.getRow(32);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0240_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0240_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0240_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0240_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0240_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0240_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0240_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0240_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0240_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0240_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0240_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0240_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0240_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0240_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0240_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0240_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0240_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0240_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0240_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0240_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0240_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0240_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0240_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0240_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row34
+					row = sheet.getRow(33);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0250_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0250_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0250_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0250_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0250_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0250_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0250_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0250_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0250_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0250_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0250_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0250_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0250_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0250_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0250_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0250_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0250_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0250_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0250_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0250_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0250_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0250_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0250_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0250_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row35
+					row = sheet.getRow(34);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0260_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0260_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0260_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0260_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0260_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0260_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0260_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0260_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0260_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0260_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0260_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0260_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0260_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0260_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0260_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0260_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0260_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0260_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0260_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0260_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0260_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0260_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0260_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0260_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row36
+					row = sheet.getRow(35);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0270_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0270_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0270_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0270_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0270_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0270_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0270_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0270_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0270_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0270_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0270_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0270_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0270_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0270_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0270_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0270_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0270_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0270_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0270_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0270_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0270_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0270_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0270_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0270_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row37
+					row = sheet.getRow(36);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0280_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0280_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0280_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0280_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0280_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0280_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0280_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0280_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0280_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0280_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0280_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0280_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0280_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0280_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0280_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0280_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0280_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0280_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0280_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0280_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0280_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0280_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0280_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0280_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row38
+					row = sheet.getRow(37);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0290_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0290_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0290_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0290_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0290_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0290_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0290_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0290_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0290_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0290_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0290_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0290_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0290_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0290_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0290_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0290_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0290_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0290_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0290_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0290_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0290_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0290_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0290_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0290_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row39
+					row = sheet.getRow(38);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0300_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0300_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0300_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0300_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0300_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0300_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0300_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0300_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0300_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0300_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0300_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0300_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0300_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0300_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0300_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0300_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0300_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0300_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0300_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0300_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0300_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0300_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0300_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0300_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row40
+					row = sheet.getRow(39);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0310_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0310_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0310_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0310_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0310_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0310_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0310_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0310_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0310_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0310_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0310_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0310_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0310_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0310_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0310_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0310_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0310_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0310_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0310_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0310_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0310_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0310_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0310_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0310_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row41
+					row = sheet.getRow(40);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0320_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0320_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0320_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0320_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0320_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0320_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0320_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0320_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0320_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0320_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0320_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0320_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0320_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0320_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0320_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0320_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0320_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0320_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0320_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0320_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0320_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0320_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0320_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0320_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row42
+					row = sheet.getRow(41);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0330_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0330_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0330_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0330_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0330_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0330_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0330_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0330_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0330_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0330_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0330_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0330_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0330_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0330_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0330_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0330_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0330_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0330_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0330_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0330_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0330_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0330_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0330_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0330_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					//row44
+					row = sheet.getRow(43);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0350_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0350_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0350_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0350_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0350_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0350_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0350_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0350_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0350_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0350_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0350_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0350_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0350_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0350_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0350_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0350_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0350_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0350_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0350_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0350_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0350_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0350_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0350_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0350_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row45
+					row = sheet.getRow(44);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0360_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0360_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0360_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0360_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0360_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0360_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0360_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0360_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0360_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0360_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0360_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0360_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0360_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0360_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0360_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0360_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0360_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0360_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0360_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0360_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0360_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0360_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0360_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0360_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row47
+					row = sheet.getRow(46);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0380_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0380_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0380_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0380_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0380_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0380_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0380_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0380_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0380_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0380_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0380_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0380_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0380_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0380_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0380_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0380_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0380_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0380_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0380_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0380_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0380_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0380_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0380_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0380_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row48
+					row = sheet.getRow(47);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0390_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0390_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0390_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0390_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0390_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0390_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0390_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0390_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0390_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0390_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0390_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0390_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0390_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0390_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0390_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0390_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0390_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0390_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0390_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0390_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0390_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0390_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0390_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0390_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row49
+					row = sheet.getRow(48);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0400_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0400_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0400_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0400_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0400_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0400_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0400_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0400_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0400_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0400_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0400_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0400_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0400_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0400_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0400_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0400_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0400_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0400_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0400_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0400_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0400_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0400_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0400_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0400_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					//row50
+					row = sheet.getRow(49);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0410_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0410_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0410_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0410_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0410_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0410_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0410_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0410_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0410_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0410_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0410_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0410_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0410_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0410_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0410_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0410_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0410_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0410_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0410_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0410_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0410_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0410_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0410_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0410_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row51
+					row = sheet.getRow(50);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0420_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0420_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0420_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0420_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0420_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0420_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0420_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0420_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0420_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0420_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0420_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0420_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0420_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0420_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0420_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0420_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0420_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0420_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0420_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0420_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0420_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0420_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0420_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0420_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row52
+					row = sheet.getRow(51);
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0430_new_loan_in_month_resi() != null) {
+						cell4.setCellValue(record.getR0430_new_loan_in_month_resi().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0430_min_interest_rate_resi() != null) {
+						cell5.setCellValue(record.getR0430_min_interest_rate_resi().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column G 
+					 cell6 = row.createCell(6);
+					if (record.getR0430_max_interest_rate_resi() != null) {
+						cell6.setCellValue(record.getR0430_max_interest_rate_resi().doubleValue());
+						cell6.setCellStyle(numberStyle);
+					} else {
+						cell6.setCellValue("");
+						cell6.setCellStyle(textStyle);
+					}
+					
+					
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0430_weighted_interest_resi() != null) {
+						cell7.setCellValue(record.getR0430_weighted_interest_resi().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I 
+					 cell8 = row.createCell(8);
+					if (record.getR0430_total_loan_outstanding_resi() != null) {
+						cell8.setCellValue(record.getR0430_total_loan_outstanding_resi().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column J 
+					 cell9 = row.createCell(9);
+					if (record.getR0430_total_interest_income_resi() != null) {
+						cell9.setCellValue(record.getR0430_total_interest_income_resi().doubleValue());
+						cell9.setCellStyle(numberStyle);
+					} else {
+						cell9.setCellValue("");
+						cell9.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column K 
+					 cell10 = row.createCell(10);
+					if (record.getR0430_new_loan_in_month_nonresi() != null) {
+						cell10.setCellValue(record.getR0430_new_loan_in_month_nonresi().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+			
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0430_min_interest_rate_nonresi() != null) {
+						cell11.setCellValue(record.getR0430_min_interest_rate_nonresi().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column M
+					 cell12 = row.createCell(12);
+					if (record.getR0430_max_interest_rate_nonresi() != null) {
+						cell12.setCellValue(record.getR0430_max_interest_rate_nonresi().doubleValue());
+						cell12.setCellStyle(numberStyle);
+					} else {
+						cell12.setCellValue("");
+						cell12.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0430_weighted_interest_nonresi() != null) {
+						cell13.setCellValue(record.getR0430_weighted_interest_nonresi().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+		
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0430_total_loan_outstanding_nonresi() != null) {
+						cell14.setCellValue(record.getR0430_total_loan_outstanding_nonresi().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column P
+					 cell15 = row.createCell(15);
+					if (record.getR0430_total_interest_income_nonresi() != null) {
+						cell15.setCellValue(record.getR0430_total_interest_income_nonresi().doubleValue());
+						cell15.setCellStyle(numberStyle);
+					} else {
+						cell15.setCellValue("");
+						cell15.setCellStyle(textStyle);
+					}
 					
 				}
 				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
@@ -246,7 +5277,8 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_14_Repor
 	}
 	
 	
-	public byte[] getBRF2_14DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF2_14DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
+			String type, String version) {
 	    try {
 	        logger.info("Generating Excel for BRF2_14 Details...");
 	        System.out.println("came to Detail download service");

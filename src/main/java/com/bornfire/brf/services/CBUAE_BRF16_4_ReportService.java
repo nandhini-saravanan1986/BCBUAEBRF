@@ -294,7 +294,8 @@ public class CBUAE_BRF16_4_ReportService {
 	}
 
 	
-	public byte[] getBRF16_4DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF16_4DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
+			String type, String version) {
 	    try {
 	        logger.info("Generating Excel for BRF16_4 Details...");
 	        System.out.println("came to Detail download service");

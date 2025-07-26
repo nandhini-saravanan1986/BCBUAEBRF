@@ -1,10 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <!-- 
-CREATED BY	: NIVETHA S 
-CREATED ON	: 04.07.2025
-PURPOSE		: BRFREPORT
--->
+	-->
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
@@ -25,9 +22,9 @@ PURPOSE		: BRFREPORT
 
 
 	<!-- ✅ Your manually placed jQuery validation
-	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
-	 <script th:src="/jquery/jquery.validate.min.js"></script>
-	 -->
+		<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+		 <script th:src="/jquery/jquery.validate.min.js"></script>
+		 -->
 
 	<!-- jQuery (required first) -->
 	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
@@ -144,7 +141,10 @@ PURPOSE		: BRFREPORT
 
 		.table td {
 			background-color: #FFFFFF;
+
 		}
+
+
 
 		.card-footer {
 			padding: 10px;
@@ -169,6 +169,8 @@ PURPOSE		: BRFREPORT
 			color: #28a745;
 			transform: scale(1.1);
 		}
+
+
 
 		td {
 			border: 1px solid rgb(0, 164, 166);
@@ -200,6 +202,8 @@ PURPOSE		: BRFREPORT
 			padding-top: 15px;
 		}
 
+
+
 		.form-control:focus {
 			border-color: #007bff;
 		}
@@ -219,7 +223,7 @@ PURPOSE		: BRFREPORT
 
 		/* When input or select is focused or has a value, move the label up */
 		.form-control:focus~.form-legend,
-		.form-control:not (:placeholder-shown)~.form-legend {
+		.form-control:not(:placeholder-shown)~.form-legend {
 			top: -8px;
 			font-size: 1rem;
 			color: #007bff;
@@ -232,7 +236,7 @@ PURPOSE		: BRFREPORT
 		}
 
 		/* Ensure the label returns to the normal color after focus or hover is removed */
-		.form-control:not (:focus)~.form-legend {
+		.form-control:not(:focus)~.form-legend {
 			color: #aaa;
 			/* Normal label color */
 		}
@@ -544,6 +548,7 @@ PURPOSE		: BRFREPORT
 
 	</script>
 
+
 	<script th:inline="javascript">
 		function showdetailsbyRowAndColumn(a) {
 			var rowId = a.getAttribute('RowId');
@@ -580,6 +585,7 @@ PURPOSE		: BRFREPORT
 
 
 
+
 </head>
 
 
@@ -587,7 +593,7 @@ PURPOSE		: BRFREPORT
 <title>BRF</title>
 
 <body>
-	<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+	<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
 		<div class="row">
 
 			<div th:insert="HeaderMenu :: header"></div>
@@ -603,16 +609,17 @@ PURPOSE		: BRFREPORT
 
 						<!-- Title -->
 						<h5
-							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
-							BRF 1.3 - INCOME STATEMENT (AED 000)</h5>
+							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
+							INCOME STATEMENT- BRF 1.3 (AED 000)
+						</h5>
 					</div>
 
 					<div class="custom-tab-btn-group nav-buttons"
 						style="display: flex; color: white; align-items: center;">
 						<!-- 📅 Date -->
 						<span class="white-text"
-							style="color: white !important; font-size: 16px; margin-right: 20px;">Report
-							Date: <span th:text="${asondate}">2025-07-04</span>
+							style="color:white !important; font-size: 16px; margin-right: 20px;">Report Date:
+							<span th:text="${asondate}">2025-07-04</span>
 						</span>
 
 						<!-- Buttons -->
@@ -623,26 +630,26 @@ PURPOSE		: BRFREPORT
 							th:if="${displaymode == 'summary'}">Details</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
 							th:if="${displaymode == 'summary'}" th:attr="data-reportid=${reportid}, 
-                     data-asondate=${asondate}, 
-                     data-fromdate=${fromdate}, 
-                     data-todate=${todate}, 
-                     data-currency=${currency},  
-                     data-dtltype=${dtltype}, 
-                     data-filename='BRF1_3.xls',
-                     data-type=${type},
-                     data-version=${version}" onclick="downloadfile(this);">
+	                     data-asondate=${asondate}, 
+	                     data-fromdate=${fromdate}, 
+	                     data-todate=${todate}, 
+	                     data-currency=${currency},  
+	                     data-dtltype=${dtltype}, 
+	                     data-filename='BRF1_3.xls',
+	                     data-type=${type},
+	                     data-version=${version}" onclick="downloadfile(this);">
 							<i class="fa fa-download"></i>
 						</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
 							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
-		    data-fromdate=${fromdate},
-		    data-todate=${todate},
-			data-currency=${currency},  
-			data-dtltype=${dtltype}, 
-		    data-filename='BRF1_3Detail',
-			data-type=${type},
-			data-version=${version}
-		  ">
+			    data-fromdate=${fromdate},
+			    data-todate=${todate},
+				data-currency=${currency},  
+				data-dtltype=${dtltype}, 
+			    data-filename='BRF1_3Detail',
+				data-type=${type},
+				data-version=${version}
+			  ">
 							<i class="fa fa-download"></i>
 						</button>
 					</div>
