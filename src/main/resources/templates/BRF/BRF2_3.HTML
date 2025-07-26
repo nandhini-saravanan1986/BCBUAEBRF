@@ -483,7 +483,6 @@
 			const dtltype = button.getAttribute('data-dtltype');
 			const type = button.getAttribute('data-type');
 			const version = button.getAttribute('data-version');
-
 			$('#loader').modal('show');
 
 			const baseUrl = '/BCDRS/Reports/';
@@ -635,7 +634,7 @@
 	                     data-todate=${todate}, 
 	                     data-currency=${currency},  
 	                     data-dtltype=${dtltype}, 
-	                     data-filename='BRF2.xls',
+	                     data-filename='BRF2_3.xls',
 	                     data-type=${type},
 	                     data-version=${version}" onclick="downloadfile(this);">
 							<i class="fa fa-download"></i>
