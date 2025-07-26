@@ -2996,7 +2996,7 @@ PURPOSE		: BRFREPORT
 								style="border-right: 1px solid #dee2e6; ">
 								<table
 									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="reports">
+									id="BRFdet">
 									<thead class="thead-light">
 										<tr>
 											<th></th>
@@ -3011,8 +3011,8 @@ PURPOSE		: BRFREPORT
 
 									</thead>
 
-									<tbody th:each="report: ${reportdetails}" style="font-family: Arial;">
-										<tr>
+									<tbody  style="font-family: Arial;">
+										<tr th:each="report: ${reportdetails}">
 											<td>
 												<a data-toggle="tooltip" class="editrec"
 													title="Click to Edit this Record">
@@ -3085,21 +3085,21 @@ PURPOSE		: BRFREPORT
 
 
 </body>
-<!-- <script>
+<script>
   $(document).ready(function () {
-    $('#BRFvalidation').DataTable({
+    $('#BRFdet').DataTable({
       "paging": true,
-      "pageLength": 10,
+      "pageLength": 100,
       "lengthChange": false,
-      "searching": true,
-      "ordering": true,
+      "searching": false,
+      "ordering": false,
       "autoWidth": false,
       "language": {
         "search": "Search:"
       }
     });
   });
-</script> -->
+</script>
 <!-- <script>
   $(document).ready(function () {
     $('#BRFvalidation').DataTable({
