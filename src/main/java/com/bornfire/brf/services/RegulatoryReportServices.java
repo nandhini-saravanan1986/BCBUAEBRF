@@ -121,7 +121,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_2":
 			repsummary = cbuae_brf2_2_reportservice.getBRF2_2View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_4":
@@ -239,7 +239,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_2":
 			repdetail = cbuae_brf2_2_reportservice.getBRF2_2currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_4":
@@ -388,7 +388,7 @@ public class RegulatoryReportServices {
 		case "BRF2_2":
 			try {
 				repfile = cbuae_brf2_2_reportservice.getBRF2_2Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -527,6 +527,9 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF2_1Detail")) {
 			return cbuae_brf2_1_reportservice.getBRF2_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
+		} else if (filename.equals("BRF2_2Detail")) {
+			return cbuae_brf2_2_reportservice.getBRF2_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
 		} else if (filename.equals("BRF2_3Detail")) {
 			return cbuae_brf2_3_reportservice.getBRF2_3DetailExcel(filename, fromdate, todate);
 		} else if (filename.equals("BRF2_5Detail")) {
@@ -576,6 +579,7 @@ public class RegulatoryReportServices {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			break;
 		case "BRF2_1":
 			try {
 				archivalData = cbuae_brf2_1_reportservice.getBRF2_1Archival();
@@ -583,7 +587,14 @@ public class RegulatoryReportServices {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			break;
+		case "BRF2_2":
+			try {
+				archivalData = cbuae_brf2_2_reportservice.getBRF2_2Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case "BRF5_17":
 			try {
