@@ -39,7 +39,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bornfire.brf.entities.CBUAE_BRF2_4_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF1_3_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_18_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_2_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_4_Detail_Entity;
@@ -4050,7 +4050,8 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_4_Report
 	}
 	
 	
-	public byte[] getBRF2_4DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF2_4DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
+			String type, String version) {
 	    try {
 	        logger.info("Generating Excel for BRF2_4 Details...");
 	        System.out.println("came to Detail download service");
@@ -4169,4 +4170,6 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_4_Report
 	        return new byte[0];
 	    }
 	}
+
+
 }

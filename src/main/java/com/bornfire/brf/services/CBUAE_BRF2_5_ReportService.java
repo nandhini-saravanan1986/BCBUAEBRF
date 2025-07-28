@@ -41,12 +41,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bornfire.brf.entities.CBUAE_BRF2_5_Summary_Entity1;
 import com.bornfire.brf.entities.CBUAE_BRF2_5_Summary_Entity2;
 import com.bornfire.brf.entities.CBUAE_BRF2_5_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF2_5_Summary_Entity2;
-import com.bornfire.brf.entities.CBUAE_BRF2_5_Detail_Entity;
+
 import com.bornfire.brf.entities.CBUAE_BRF2_5_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_5_Summary_Repo1;
 import com.bornfire.brf.entities.CBUAE_BRF2_5_Summary_Repo2;
-import com.bornfire.brf.entities.CBUAE_BRF2_5_Detail_Entity;
+
 
 @Component
 @Service
@@ -9534,4 +9533,8 @@ if (!dataList1.isEmpty()) {
 			return out.toByteArray();
 		}
 	}
+	
+	
+	
+	
 	}

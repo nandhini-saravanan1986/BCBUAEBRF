@@ -593,6 +593,5900 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF5_1_Report
 					
 					
 					
+					//row14
+					row = sheet.getRow(13);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0030_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0030_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0030_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0030_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0030_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0030_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0030_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0030_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0030_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0030_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0030_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0030_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0030_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0030_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0030_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0030_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0030_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0030_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0030_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0030_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0030_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0030_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0030_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0030_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0030_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0030_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0030_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0030_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0030_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0030_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0030_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0030_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0030_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0030_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0030_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0030_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0030_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0030_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0030_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0030_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0030_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0030_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0030_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0030_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0030_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0030_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0030_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0030_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0030_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0030_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0030_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0030_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0030_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0030_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0030_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0030_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0030_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0030_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0030_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0030_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0030_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0030_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0030_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0030_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row15
+					row = sheet.getRow(14);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0040_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0040_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0040_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0040_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0040_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0040_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0040_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0040_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0040_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0040_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0040_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0040_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0040_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0040_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0040_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0040_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0040_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0040_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0040_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0040_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0040_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0040_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0040_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0040_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0040_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0040_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0040_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0040_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0040_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0040_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0040_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0040_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0040_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0040_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0040_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0040_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0040_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0040_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0040_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0040_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0040_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0040_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0040_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0040_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0040_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0040_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0040_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0040_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0040_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0040_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0040_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0040_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0040_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0040_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0040_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0040_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0040_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0040_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0040_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0040_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0040_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0040_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0040_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0040_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row16
+					row = sheet.getRow(15);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0050_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0050_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0050_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0050_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0050_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0050_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0050_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0050_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0050_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0050_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0050_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0050_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0050_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0050_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0050_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0050_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0050_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0050_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0050_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0050_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0050_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0050_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0050_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0050_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0050_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0050_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0050_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0050_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0050_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0050_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0050_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0050_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0050_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0050_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0050_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0050_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0050_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0050_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0050_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0050_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0050_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0050_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0050_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0050_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0050_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0050_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0050_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0050_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0050_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0050_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0050_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0050_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0050_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0050_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0050_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0050_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0050_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0050_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0050_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0050_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0050_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0050_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0050_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0050_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row17
+					row = sheet.getRow(16);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0060_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0060_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0060_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0060_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0060_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0060_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0060_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0060_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0060_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0060_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0060_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0060_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0060_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0060_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0060_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0060_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0060_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0060_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0060_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0060_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0060_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0060_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0060_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0060_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0060_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0060_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0060_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0060_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0060_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0060_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0060_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0060_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0060_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0060_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0060_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0060_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0060_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0060_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0060_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0060_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0060_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0060_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0060_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0060_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0060_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0060_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0060_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0060_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0060_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0060_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0060_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0060_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0060_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0060_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0060_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0060_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0060_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0060_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0060_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0060_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0060_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0060_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0060_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0060_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row18
+					row = sheet.getRow(17);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0070_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0070_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0070_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0070_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0070_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0070_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0070_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0070_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0070_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0070_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0070_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0070_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0070_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0070_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0070_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0070_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0070_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0070_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0070_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0070_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0070_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0070_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0070_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0070_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0070_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0070_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0070_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0070_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0070_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0070_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0070_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0070_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0070_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0070_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0070_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0070_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0070_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0070_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0070_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0070_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0070_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0070_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0070_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0070_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0070_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0070_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0070_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0070_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0070_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0070_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0070_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0070_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0070_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0070_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0070_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0070_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0070_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0070_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0070_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0070_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0070_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0070_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0070_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0070_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row19
+					row = sheet.getRow(18);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0080_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0080_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0080_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0080_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0080_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0080_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0080_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0080_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0080_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0080_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0080_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0080_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0080_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0080_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0080_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0080_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0080_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0080_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0080_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0080_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0080_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0080_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0080_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0080_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0080_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0080_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0080_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0080_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0080_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0080_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0080_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0080_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0080_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0080_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0080_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0080_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0080_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0080_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0080_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0080_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0080_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0080_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0080_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0080_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0080_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0080_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0080_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0080_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0080_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0080_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0080_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0080_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0080_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0080_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0080_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0080_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0080_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0080_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0080_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0080_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0080_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0080_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0080_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0080_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row20
+					row = sheet.getRow(19);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0090_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0090_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0090_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0090_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0090_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0090_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0090_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0090_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0090_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0090_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0090_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0090_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0090_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0090_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0090_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0090_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0090_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0090_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0090_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0090_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0090_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0090_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0090_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0090_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0090_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0090_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0090_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0090_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0090_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0090_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0090_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0090_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0090_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0090_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0090_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0090_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0090_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0090_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0090_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0090_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0090_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0090_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0090_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0090_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0090_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0090_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0090_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0090_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0090_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0090_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0090_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0090_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0090_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0090_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0090_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0090_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0090_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0090_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0090_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0090_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0090_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0090_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0090_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0090_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row21
+					row = sheet.getRow(20);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0100_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0100_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0100_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0100_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0100_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0100_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0100_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0100_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0100_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0100_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0100_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0100_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0100_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0100_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0100_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0100_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0100_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0100_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0100_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0100_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0100_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0100_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0100_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0100_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0100_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0100_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0100_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0100_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0100_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0100_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0100_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0100_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0100_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0100_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0100_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0100_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0100_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0100_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0100_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0100_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0100_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0100_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0100_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0100_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0100_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0100_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0100_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0100_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0100_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0100_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0100_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0100_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0100_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0100_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0100_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0100_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0100_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0100_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0100_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0100_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0100_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0100_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0100_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0100_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					//row23
+					row = sheet.getRow(22);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0120_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0120_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0120_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0120_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0120_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0120_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0120_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0120_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0120_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0120_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0120_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0120_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0120_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0120_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0120_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0120_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0120_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0120_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0120_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0120_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0120_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0120_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0120_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0120_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0120_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0120_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0120_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0120_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0120_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0120_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0120_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0120_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0120_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0120_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0120_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0120_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0120_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0120_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0120_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0120_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0120_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0120_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0120_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0120_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0120_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0120_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0120_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0120_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0120_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0120_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0120_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0120_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0120_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0120_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0120_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0120_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0120_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0120_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0120_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0120_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0120_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0120_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0120_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0120_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row24
+					row = sheet.getRow(23);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0130_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0130_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0130_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0130_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0130_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0130_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0130_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0130_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0130_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0130_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0130_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0130_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0130_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0130_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0130_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0130_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0130_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0130_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0130_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0130_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0130_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0130_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0130_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0130_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0130_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0130_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0130_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0130_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0130_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0130_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0130_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0130_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0130_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0130_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0130_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0130_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0130_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0130_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0130_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0130_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0130_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0130_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0130_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0130_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0130_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0130_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0130_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0130_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0130_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0130_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0130_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0130_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0130_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0130_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0130_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0130_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0130_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0130_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0130_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0130_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0130_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0130_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0130_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0130_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row25
+					row = sheet.getRow(24);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0140_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0140_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0140_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0140_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0140_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0140_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0140_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0140_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0140_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0140_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0140_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0140_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0140_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0140_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0140_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0140_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0140_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0140_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0140_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0140_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0140_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0140_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0140_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0140_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0140_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0140_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0140_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0140_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0140_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0140_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0140_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0140_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0140_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0140_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0140_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0140_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0140_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0140_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0140_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0140_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0140_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0140_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0140_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0140_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0140_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0140_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0140_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0140_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0140_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0140_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0140_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0140_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0140_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0140_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0140_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0140_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0140_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0140_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0140_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0140_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0140_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0140_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0140_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0140_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row26
+					row = sheet.getRow(25);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0150_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0150_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0150_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0150_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0150_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0150_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0150_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0150_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0150_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0150_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0150_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0150_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0150_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0150_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0150_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0150_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0150_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0150_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0150_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0150_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0150_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0150_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0150_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0150_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0150_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0150_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0150_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0150_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0150_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0150_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0150_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0150_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0150_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0150_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0150_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0150_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0150_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0150_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0150_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0150_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0150_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0150_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0150_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0150_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0150_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0150_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0150_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0150_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0150_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0150_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0150_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0150_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0150_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0150_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0150_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0150_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0150_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0150_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0150_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0150_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0150_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0150_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0150_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0150_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row27
+					row = sheet.getRow(26);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0160_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0160_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0160_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0160_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0160_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0160_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0160_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0160_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0160_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0160_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0160_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0160_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0160_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0160_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0160_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0160_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0160_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0160_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0160_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0160_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0160_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0160_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0160_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0160_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0160_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0160_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0160_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0160_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0160_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0160_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0160_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0160_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0160_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0160_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0160_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0160_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0160_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0160_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0160_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0160_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0160_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0160_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0160_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0160_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0160_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0160_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0160_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0160_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0160_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0160_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0160_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0160_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0160_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0160_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0160_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0160_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0160_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0160_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0160_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0160_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0160_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0160_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0160_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0160_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row28
+					row = sheet.getRow(27);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0170_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0170_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0170_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0170_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0170_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0170_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0170_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0170_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0170_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0170_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0170_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0170_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0170_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0170_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0170_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0170_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0170_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0170_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0170_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0170_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0170_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0170_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0170_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0170_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0170_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0170_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0170_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0170_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0170_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0170_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0170_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0170_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0170_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0170_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0170_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0170_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0170_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0170_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0170_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0170_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0170_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0170_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0170_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0170_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0170_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0170_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0170_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0170_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0170_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0170_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0170_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0170_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0170_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0170_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0170_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0170_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0170_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0170_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0170_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0170_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0170_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0170_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0170_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0170_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row29
+					row = sheet.getRow(28);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0180_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0180_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0180_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0180_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0180_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0180_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0180_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0180_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0180_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0180_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0180_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0180_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0180_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0180_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0180_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0180_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0180_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0180_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0180_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0180_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0180_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0180_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0180_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0180_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0180_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0180_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0180_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0180_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0180_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0180_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0180_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0180_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0180_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0180_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0180_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0180_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0180_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0180_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0180_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0180_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0180_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0180_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0180_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0180_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0180_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0180_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0180_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0180_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0180_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0180_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0180_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0180_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0180_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0180_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0180_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0180_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0180_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0180_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0180_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0180_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0180_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0180_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0180_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0180_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
+					
+					
+					
+					
+					//row30
+					row = sheet.getRow(29);
+					
+					
+					// Column E 
+					 cell4 = row.createCell(4);
+					if (record.getR0190_resi_aed_nos_male() != null) {
+						cell4.setCellValue(record.getR0190_resi_aed_nos_male().doubleValue());
+						cell4.setCellStyle(numberStyle);
+					} else {
+						cell4.setCellValue("");
+						cell4.setCellStyle(textStyle);
+					}
+					
+				
+					// Column F 
+					 cell5 = row.createCell(5);
+					if (record.getR0190_resi_aed_nos_female() != null) {
+						cell5.setCellValue(record.getR0190_resi_aed_nos_female().doubleValue());
+						cell5.setCellStyle(numberStyle);
+					} else {
+						cell5.setCellValue("");
+						cell5.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column H
+					 cell7 = row.createCell(7);
+					if (record.getR0190_resi_aed_amount_male() != null) {
+						cell7.setCellValue(record.getR0190_resi_aed_amount_male().doubleValue());
+						cell7.setCellStyle(numberStyle);
+					} else {
+						cell7.setCellValue("");
+						cell7.setCellStyle(textStyle);
+					}
+					
+					
+					// Column I
+					 cell8 = row.createCell(8);
+					if (record.getR0190_resi_aed_amount_female() != null) {
+						cell8.setCellValue(record.getR0190_resi_aed_amount_female().doubleValue());
+						cell8.setCellStyle(numberStyle);
+					} else {
+						cell8.setCellValue("");
+						cell8.setCellStyle(textStyle);
+					}
+					
+					
+					// Column K
+					 cell10 = row.createCell(10);
+					if (record.getR0190_resi_foreign_ccy_nos_male() != null) {
+						cell10.setCellValue(record.getR0190_resi_foreign_ccy_nos_male().doubleValue());
+						cell10.setCellStyle(numberStyle);
+					} else {
+						cell10.setCellValue("");
+						cell10.setCellStyle(textStyle);
+					}
+					
+					
+					// Column L
+					 cell11 = row.createCell(11);
+					if (record.getR0190_resi_foreign_ccy_nos_female() != null) {
+						cell11.setCellValue(record.getR0190_resi_foreign_ccy_nos_female().doubleValue());
+						cell11.setCellStyle(numberStyle);
+					} else {
+						cell11.setCellValue("");
+						cell11.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column N
+					 cell13 = row.createCell(13);
+					if (record.getR0190_resi_foreign_ccy_amount_male() != null) {
+						cell13.setCellValue(record.getR0190_resi_foreign_ccy_amount_male().doubleValue());
+						cell13.setCellStyle(numberStyle);
+					} else {
+						cell13.setCellValue("");
+						cell13.setCellStyle(textStyle);
+					}
+					
+			
+					// Column O
+					 cell14 = row.createCell(14);
+					if (record.getR0190_resi_foreign_ccy_amount_female() != null) {
+						cell14.setCellValue(record.getR0190_resi_foreign_ccy_amount_female().doubleValue());
+						cell14.setCellStyle(numberStyle);
+					} else {
+						cell14.setCellValue("");
+						cell14.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Q
+					 cell16 = row.createCell(16);
+					if (record.getR0190_resi_newloans_in_repo_peri_nos_male() != null) {
+						cell16.setCellValue(record.getR0190_resi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell16.setCellStyle(numberStyle);
+					} else {
+						cell16.setCellValue("");
+						cell16.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column R
+					 cell17 = row.createCell(17);
+					if (record.getR0190_resi_newloans_in_repo_peri_nos_female() != null) {
+						cell17.setCellValue(record.getR0190_resi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell17.setCellStyle(numberStyle);
+					} else {
+						cell17.setCellValue("");
+						cell17.setCellStyle(textStyle);
+					}
+					
+		
+					// Column T
+					 cell19 = row.createCell(19);
+					if (record.getR0190_resi_newloans_in_repo_peri_amount_male() != null) {
+						cell19.setCellValue(record.getR0190_resi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell19.setCellStyle(numberStyle);
+					} else {
+						cell19.setCellValue("");
+						cell19.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column U
+					 cell20 = row.createCell(20);
+					if (record.getR0190_resi_newloans_in_repo_peri_amount_female() != null) {
+						cell20.setCellValue(record.getR0190_resi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell20.setCellStyle(numberStyle);
+					} else {
+						cell20.setCellValue("");
+						cell20.setCellStyle(textStyle);
+					}
+					
+				
+					// Column W
+					 cell22 = row.createCell(22);
+					if (record.getR0190_resi_loans_classifi_under_stage3_nos_male() != null) {
+						cell22.setCellValue(record.getR0190_resi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell22.setCellStyle(numberStyle);
+					} else {
+						cell22.setCellValue("");
+						cell22.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column X
+					 cell23 = row.createCell(23);
+					if (record.getR0190_resi_loans_classifi_under_stage3_nos_female() != null) {
+						cell23.setCellValue(record.getR0190_resi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell23.setCellStyle(numberStyle);
+					} else {
+						cell23.setCellValue("");
+						cell23.setCellStyle(textStyle);
+					}
+					
+					
+				
+					// Column Z
+					 cell25 = row.createCell(25);
+					if (record.getR0190_resi_loans_classifi_under_stage3_amount_male() != null) {
+						cell25.setCellValue(record.getR0190_resi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell25.setCellStyle(numberStyle);
+					} else {
+						cell25.setCellValue("");
+						cell25.setCellStyle(textStyle);
+					}
+					
+				
+					// Column AA
+					 cell26 = row.createCell(26);
+					if (record.getR0190_resi_loans_classifi_under_stage3_amount_female() != null) {
+						cell26.setCellValue(record.getR0190_resi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell26.setCellStyle(numberStyle);
+					} else {
+						cell26.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AC
+					 cell28 = row.createCell(28);
+					if (record.getR0190_nonresi_aed_nos_male() != null) {
+						cell28.setCellValue(record.getR0190_nonresi_aed_nos_male().doubleValue());
+						cell28.setCellStyle(numberStyle);
+					} else {
+						cell28.setCellValue("");
+						cell28.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AD
+					 cell29 = row.createCell(29);
+					if (record.getR0190_nonresi_aed_nos_female() != null) {
+						cell29.setCellValue(record.getR0190_nonresi_aed_nos_female().doubleValue());
+						cell29.setCellStyle(numberStyle);
+					} else {
+						cell29.setCellValue("");
+						cell29.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AF
+					 cell31 = row.createCell(31);
+					if (record.getR0190_nonresi_aed_amount_male() != null) {
+						cell31.setCellValue(record.getR0190_nonresi_aed_amount_male().doubleValue());
+						cell31.setCellStyle(numberStyle);
+					} else {
+						cell31.setCellValue("");
+						cell31.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AG
+					 cell32 = row.createCell(32);
+					if (record.getR0190_nonresi_aed_amount_female() != null) {
+						cell32.setCellValue(record.getR0190_nonresi_aed_amount_female().doubleValue());
+						cell32.setCellStyle(numberStyle);
+					} else {
+						cell32.setCellValue("");
+						cell32.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AI
+					 cell34 = row.createCell(34);
+					if (record.getR0190_nonresi_foreign_ccy_nos_male() != null) {
+						cell34.setCellValue(record.getR0190_nonresi_foreign_ccy_nos_male().doubleValue());
+						cell34.setCellStyle(numberStyle);
+					} else {
+						cell34.setCellValue("");
+						cell34.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AJ
+					 cell35 = row.createCell(35);
+					if (record.getR0190_nonresi_foreign_ccy_nos_female() != null) {
+						cell35.setCellValue(record.getR0190_nonresi_foreign_ccy_nos_female().doubleValue());
+						cell35.setCellStyle(numberStyle);
+					} else {
+						cell35.setCellValue("");
+						cell26.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AL
+					 cell37 = row.createCell(37);
+					if (record.getR0190_nonresi_foreign_ccy_amount_male() != null) {
+						cell37.setCellValue(record.getR0190_nonresi_foreign_ccy_amount_male().doubleValue());
+						cell37.setCellStyle(numberStyle);
+					} else {
+						cell37.setCellValue("");
+						cell37.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AM
+					 cell38 = row.createCell(38);
+					if (record.getR0190_nonresi_foreign_ccy_amount_female() != null) {
+						cell38.setCellValue(record.getR0190_nonresi_foreign_ccy_amount_female().doubleValue());
+						cell38.setCellStyle(numberStyle);
+					} else {
+						cell38.setCellValue("");
+						cell38.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AO
+					 cell40 = row.createCell(40);
+					if (record.getR0190_nonresi_newloans_in_repo_peri_nos_male() != null) {
+						cell40.setCellValue(record.getR0190_nonresi_newloans_in_repo_peri_nos_male().doubleValue());
+						cell40.setCellStyle(numberStyle);
+					} else {
+						cell40.setCellValue("");
+						cell40.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AP
+					 cell41 = row.createCell(41);
+					if (record.getR0190_nonresi_newloans_in_repo_peri_nos_female() != null) {
+						cell41.setCellValue(record.getR0190_nonresi_newloans_in_repo_peri_nos_female().doubleValue());
+						cell41.setCellStyle(numberStyle);
+					} else {
+						cell41.setCellValue("");
+						cell41.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AR
+					 cell43 = row.createCell(43);
+					if (record.getR0190_nonresi_newloans_in_repo_peri_amount_male() != null) {
+						cell43.setCellValue(record.getR0190_nonresi_newloans_in_repo_peri_amount_male().doubleValue());
+						cell43.setCellStyle(numberStyle);
+					} else {
+						cell43.setCellValue("");
+						cell43.setCellStyle(textStyle);
+					}
+					
+					
+					
+
+					// Column AS
+					 cell44 = row.createCell(44);
+					if (record.getR0190_nonresi_newloans_in_repo_peri_amount_female() != null) {
+						cell44.setCellValue(record.getR0190_nonresi_newloans_in_repo_peri_amount_female().doubleValue());
+						cell44.setCellStyle(numberStyle);
+					} else {
+						cell44.setCellValue("");
+						cell44.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AU
+					 cell46 = row.createCell(46);
+					if (record.getR0190_nonresi_loans_classifi_under_stage3_nos_male() != null) {
+						cell46.setCellValue(record.getR0190_nonresi_loans_classifi_under_stage3_nos_male().doubleValue());
+						cell46.setCellStyle(numberStyle);
+					} else {
+						cell46.setCellValue("");
+						cell46.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AV
+					 cell47 = row.createCell(47);
+					if (record.getR0190_nonresi_loans_classifi_under_stage3_nos_female() != null) {
+						cell47.setCellValue(record.getR0190_nonresi_loans_classifi_under_stage3_nos_female().doubleValue());
+						cell47.setCellStyle(numberStyle);
+					} else {
+						cell47.setCellValue("");
+						cell47.setCellStyle(textStyle);
+					}
+					
+					
+					// Column AX
+					 cell49 = row.createCell(49);
+					if (record.getR0190_nonresi_loans_classifi_under_stage3_amount_male() != null) {
+						cell49.setCellValue(record.getR0190_nonresi_loans_classifi_under_stage3_amount_male().doubleValue());
+						cell49.setCellStyle(numberStyle);
+					} else {
+						cell49.setCellValue("");
+						cell49.setCellStyle(textStyle);
+					}
+					
+					
+					
+					// Column AY
+					 cell50 = row.createCell(50);
+					if (record.getR0190_nonresi_loans_classifi_under_stage3_amount_female() != null) {
+						cell50.setCellValue(record.getR0190_nonresi_loans_classifi_under_stage3_amount_female().doubleValue());
+						cell50.setCellStyle(numberStyle);
+					} else {
+						cell50.setCellValue("");
+						cell50.setCellStyle(textStyle);
+					}
 					
 					
 					
