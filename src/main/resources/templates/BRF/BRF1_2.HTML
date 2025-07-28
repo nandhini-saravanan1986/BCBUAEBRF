@@ -610,7 +610,7 @@
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-							COMPUTATION OF STATUTORY RESERVE REQUIREMENTS ON CUSTOMER DEPOSITS -BRF1.12 (AED 000)
+							LIABILITIES & CAPITAL- BRF 1.2 (AED 000)
 						</h5>
 					</div>
 
@@ -2425,6 +2425,8 @@
 												th:text="${report.r0580_amount_fcy_non_resident}"
 												th:attr="RowId='R0580', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right; background-color: #b3b6b9"
+												th:text="${report.r0580_total_amount}"></td>
 										</tr>
 
 										<tr style="background-color: #b3b6b9">
@@ -2829,7 +2831,6 @@
 											<td style="text-align: center; background-color: #b3b6b9">0750</td>
 											<td style="text-align: right; background-color: #b3b6b9">14.3</td>
 											<td th:text="${report.r0750_product}"></td>
-											<td style="text-align: center; background-color: #b3b6b9"></td>
 											<td style="text-align: center; background-color: #b3b6b9"></td>
 											<td style="text-align: right;" th:text="${report.r0750_amount_aed_resident}"
 												th:attr="RowId='R0750', ColumnId='C0020'"
