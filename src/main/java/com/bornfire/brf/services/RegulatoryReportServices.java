@@ -563,16 +563,12 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF2_3Detail")) {
 			return cbuae_brf2_3_reportservice.getBRF2_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
-		} else if (filename.equals("BRF2_4Detail")) {
-			return cbuae_brf2_4_reportservice.getBRF2_4DetailExcel(filename, fromdate, todate, currency, dtltype, type, version);
 		} else if (filename.equals("BRF2_5Detail")) {
 			return cbuae_brf2_5_reportservice.getBRF2_5DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
 		} else if (filename.equals("BRF2_6Detail")) {
 			return cbuae_brf2_6_reportservice.getBRF2_6DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
-        }else if (filename.equals("BRF2_7Detail")) {
-			return cbuae_brf2_7_reportservice.getBRF2_7DetailExcel(filename, fromdate, todate, currency, dtltype, type, version);
 		} else if (filename.equals("BRF2_16Detail")) {
 			return cbuae_brf2_16_reportservice.getBRF2_16DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
@@ -594,17 +590,17 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF5_1Detail")) {
 			return cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
-		} else if (filename.equals("BRF5_17Detail")) {
-			return cbuae_brf5_17_reportservice.getBRF5_17DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+		} else if (filename.equals("BRF5_1Detail")) {
+			return cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
+		} else if (filename.equals("BRF5_17Detail")) {
+			return cbuae_brf5_17_reportservice.getBRF5_17DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
 		}else if (filename.equals("BRF16_5Detail")) {
 			return CBUAE_BRF16_5_ReportServices.getBRF16_5DetailExcel(filename, fromdate, todate);
 		}
-
-
 		return new byte[0];
 	}
-
 
 	public List<Object> getArchival(String rptcode) {
 
