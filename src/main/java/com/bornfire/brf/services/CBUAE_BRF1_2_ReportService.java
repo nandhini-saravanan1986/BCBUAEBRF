@@ -2338,6 +2338,101 @@ public class CBUAE_BRF1_2_ReportService {
 						R26cell11.setCellStyle(textStyle);
 					}
 
+					
+					//ROW46
+					//Column F: 
+					row = sheet.getRow(45);
+										Cell R81cell5 = row.createCell(5);
+										if (record.getR0350_amount_aed_resident() != null) {
+											R81cell5.setCellValue(record.getR0350_amount_aed_resident().doubleValue());
+											R81cell5.setCellStyle(numberStyle);
+										} else {
+											R81cell5.setCellValue("");
+											R81cell5.setCellStyle(textStyle);
+										}
+
+					//ROW46
+					//Column H: 
+										Cell R81cell7 = row.createCell(7);
+										if (record.getR0350_amount_fcy_resident() != null) {
+											R81cell7.setCellValue(record.getR0350_amount_fcy_resident().doubleValue());
+											R81cell7.setCellStyle(numberStyle);
+										} else {
+											R81cell7.setCellValue("");
+											R81cell7.setCellStyle(textStyle);
+										}
+
+					//ROW46
+					//Column J: 
+										Cell R81cell9 = row.createCell(9);
+										if (record.getR0350_amount_aed_non_resident() != null) {
+											R81cell9.setCellValue(record.getR0350_amount_aed_non_resident().doubleValue());
+											R81cell9.setCellStyle(numberStyle);
+										} else {
+											R81cell9.setCellValue("");
+											R81cell9.setCellStyle(textStyle);
+										}
+
+					//ROW46
+					//Column L: 
+										Cell R81cell11 = row.createCell(11);
+										if (record.getR0350_amount_fcy_non_resident() != null) {
+											R81cell11.setCellValue(record.getR0350_amount_fcy_non_resident().doubleValue());
+											R81cell11.setCellStyle(numberStyle);
+										} else {
+											R81cell11.setCellValue("");
+											R81cell11.setCellStyle(textStyle);
+										}
+
+										
+										//ROW47
+										//Column F:
+										row = sheet.getRow(46);
+															Cell R82cell5 = row.createCell(5);
+															if (record.getR0360_amount_aed_resident() != null) {
+																R82cell5.setCellValue(record.getR0360_amount_aed_resident().doubleValue());
+																R82cell5.setCellStyle(numberStyle);
+															} else {
+																R82cell5.setCellValue("");
+																R82cell5.setCellStyle(textStyle);
+															}
+
+										//ROW47
+										//Column H: 
+															Cell R82cell7 = row.createCell(7);
+															if (record.getR0360_amount_fcy_resident() != null) {
+																R82cell7.setCellValue(record.getR0360_amount_fcy_resident().doubleValue());
+																R82cell7.setCellStyle(numberStyle);
+															} else {
+																R82cell7.setCellValue("");
+																R82cell7.setCellStyle(textStyle);
+															}
+
+										//ROW47
+										//Column J: 
+															Cell R82cell9 = row.createCell(9);
+															if (record.getR0360_amount_aed_non_resident() != null) {
+																R82cell9.setCellValue(record.getR0360_amount_aed_non_resident().doubleValue());
+																R82cell9.setCellStyle(numberStyle);
+															} else {
+																R82cell9.setCellValue("");
+																R82cell9.setCellStyle(textStyle);
+															}
+
+										//ROW47
+										//Column L: 
+															Cell R82cell11 = row.createCell(11);
+															if (record.getR0360_amount_fcy_non_resident() != null) {
+																R82cell11.setCellValue(record.getR0360_amount_fcy_non_resident().doubleValue());
+																R82cell11.setCellStyle(numberStyle);
+															} else {
+																R82cell11.setCellValue("");
+																R82cell11.setCellStyle(textStyle);
+															}
+
+
+					
+					
 /////ROW49///////////
 //ROW49
 // Column E: 

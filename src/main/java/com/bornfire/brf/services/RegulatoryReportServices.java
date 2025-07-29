@@ -81,6 +81,9 @@ public class RegulatoryReportServices {
 
 	@Autowired
 	CBUAE_BRF5_1_ReportService cbuae_brf5_1_reportservice;
+	
+	@Autowired
+	CBUAE_BRF5_2_ReportService cbuae_brf5_2_reportservice;
 
 	@Autowired
 	CBUAE_BRF16_4_ReportService CBUAE_BRF_16_4_ReportServices;
@@ -205,6 +208,12 @@ public class RegulatoryReportServices {
 			repsummary = cbuae_brf5_1_reportservice.getBRF5_1View(reportId, fromdate, todate, currency, dtltype,
 					pageable);
 			break;
+			
+		case "BRF5_2":
+			repsummary = cbuae_brf5_2_reportservice.getBRF5_2View(reportId, fromdate, todate, currency, dtltype,
+					pageable, type, version);
+			break;
+			
 		case "BRF16_5":
 			repsummary = CBUAE_BRF16_5_ReportServices.getBRF_16_5View(reportId, fromdate, todate, currency, dtltype,
 					pageable, type, version);
