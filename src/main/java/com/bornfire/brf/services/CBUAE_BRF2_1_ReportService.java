@@ -38,6 +38,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.entities.CBUAE_BRF2_1_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_1__Archival_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_1_Archival_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_1_Archival_Summary_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_1_Detail_Entity;
@@ -135,7 +137,9 @@ public class CBUAE_BRF2_1_ReportService {
 		int startItem = currentPage * pageSize;
 
 		ModelAndView mv = new ModelAndView();
+
 		Session hs = sessionFactory.getCurrentSession();
+
 		if (type.equals("ARCHIVAL") & version != null) {
 			List<CBUAE_BRF2_1__Archival_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF2_1__Archival_Detail_Entity>();
 			try {
@@ -153,8 +157,8 @@ public class CBUAE_BRF2_1_ReportService {
 				}
 
 				if (rowId != null && columnId != null) {
-					T1Dt1 = BRF2_1_archival_detail_repo.GetDataByRowIdAndColumnId(rowId, columnId,
-							dateformat.parse(todate), version);
+					T1Dt1 = BRF2_1_archival_detail_repo.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate),
+							version);
 
 					System.out.println("countavd" + T1Dt1.size());
 				} else {
@@ -171,9 +175,7 @@ public class CBUAE_BRF2_1_ReportService {
 			}
 
 		} else {
-			System.out.println(type);
-			List<CBUAE_BRF2_1_Detail_Entity> T1Dt1 = new ArrayList<>();
-
+			List<CBUAE_BRF2_1_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF2_1_Detail_Entity>();
 			try {
 				Date d1 = dateformat.parse(todate);
 
@@ -190,23 +192,29 @@ public class CBUAE_BRF2_1_ReportService {
 				}
 
 				if (rowId != null && columnId != null) {
-					T1Dt1 = BRF2_1_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+					T1Dt1 = BRF2_1_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
 				} else {
-					T1Dt1 = BRF2_1_DETAIL_Repo.getdatabydateList(d1);
+					T1Dt1 = BRF2_1_DETAIL_Repo.getdatabydateList(dateformat.parse(todate));
 				}
+
 				mv.addObject("reportdetails", T1Dt1);
 				mv.addObject("reportmaster12", T1Dt1);
-
-				System.out.println("LISTCOUNT: " + T1Dt1.size());
+				System.out.println("LISTCOUNT" + T1Dt1.size());
 
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+
 		}
+
+		// Page<Object> T1Dt1Page = new PageImpl<Object>(pagedlist,
+		// PageRequest.of(currentPage, pageSize), T1Dt1.size());
 		mv.setViewName("BRF/BRF2_1");
 		mv.addObject("displaymode", "Details");
-		// mv.addObject("reportdetails", T1Dt1);
-		// mv.addObject("reportmaster12", T1Dt1);
+		// mv.addObject("reportdetails", T1Dt1Page.getContent());
+
+		// mv.addObject("reportmaster1", qr);
+		// mv.addObject("singledetail", new T1CurProdDetail());
 		mv.addObject("reportsflag", "reportsflag");
 		mv.addObject("menu", reportId);
 		return mv;

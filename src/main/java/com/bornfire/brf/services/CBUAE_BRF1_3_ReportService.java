@@ -180,7 +180,7 @@ public class CBUAE_BRF1_3_ReportService {
 				}
 
 				if (rowId != null && columnId != null) {
-					T1Dt1 = BRF1_3_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+					T1Dt1 = BRF1_3_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
 				} else {
 					T1Dt1 = BRF1_3_DETAIL_Repo.getdatabydateList(d1);
 				}
