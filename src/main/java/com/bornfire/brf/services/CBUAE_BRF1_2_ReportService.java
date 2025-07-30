@@ -44,6 +44,7 @@ import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Entity1;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Entity2;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Repo1;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_Summary_Repo2;
+import com.bornfire.brf.entities.CBUAE_BRF2_7_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_2_Detail_Entity;
 
 @Component
@@ -101,49 +102,50 @@ public class CBUAE_BRF1_2_ReportService {
 
 	}
 
-	public ModelAndView getBRF1_2currentDtl(String reportId, String fromdate, String todate, String currency,
-			String dtltype, Pageable pageable, String filter) {
+	public ModelAndView getBRF1_2currentDtl(
+	        String reportId, String fromdate, String todate, String currency,
+	        String dtltype, Pageable pageable, String filter) {
 
-		int pageSize = pageable.getPageSize();
-		int currentPage = pageable.getPageNumber();
+	    int pageSize = pageable.getPageSize();
+	    int currentPage = pageable.getPageNumber();
 
-		ModelAndView mv = new ModelAndView();
-		List<CBUAE_BRF1_2_Detail_Entity> T1Dt1 = new ArrayList<>();
+	    ModelAndView mv = new ModelAndView();
+	    List<CBUAE_BRF1_2_Detail_Entity> T1Dt1 = new ArrayList<>();
 
-		try {
-			Date d1 = dateformat.parse(todate);
+	    try {
+	        Date d1 = dateformat.parse(todate);
 
-			String rowId = null;
-			String columnId = null;
+	        String rowId = null;
+	        String columnId = null;
 
-			// ✅ Split the filter string here
-			if (filter != null && filter.contains(",")) {
-				String[] parts = filter.split(",");
-				if (parts.length >= 2) {
-					rowId = parts[0];
-					columnId = parts[1];
-				}
-			}
+	        // ✅ Split the filter string here
+	        if (filter != null && filter.contains(",")) {
+	            String[] parts = filter.split(",");
+	            if (parts.length >= 2) {
+	                rowId = parts[0];
+	                columnId = parts[1];
+	            }
+	        }
 
-			if (rowId != null && columnId != null) {
-				T1Dt1 = CBUAE_BRF1_2_DETAIL_REPO.GetDataByRowIdAndColumnId(rowId, columnId, d1);
-			} else {
-				T1Dt1 = CBUAE_BRF1_2_DETAIL_REPO.getdatabydateList(d1);
-			}
+	        if (rowId != null && columnId != null) {
+	        	T1Dt1 = CBUAE_BRF1_2_DETAIL_REPO.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
+	        } else {
+	            T1Dt1 = CBUAE_BRF1_2_DETAIL_REPO.getdatabydateList(d1);
+	        }
 
-			System.out.println("LISTCOUNT: " + T1Dt1.size());
+	        System.out.println("LISTCOUNT: " + T1Dt1.size());
 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
 
-		mv.setViewName("BRF/BRF1_2");
-		mv.addObject("displaymode", "Details");
-		mv.addObject("reportdetails", T1Dt1);
-		mv.addObject("reportmaster12", T1Dt1);
-		mv.addObject("reportsflag", "reportsflag");
-		mv.addObject("menu", reportId);
-		return mv;
+	    mv.setViewName("BRF/BRF1_2");
+	    mv.addObject("displaymode", "Details");
+	    mv.addObject("reportdetails", T1Dt1);
+	    mv.addObject("reportmaster12", T1Dt1);
+	    mv.addObject("reportsflag", "reportsflag");
+	    mv.addObject("menu", reportId);
+	    return mv;
 	}
 
 	public byte[] getBRF1_2Excel(String filename, String reportId, String fromdate, String todate, String currency,
