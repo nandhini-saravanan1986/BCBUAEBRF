@@ -4763,6 +4763,8 @@ public class CBUAE_BRF1_2_ReportService {
 							R75cell5.setCellValue(record1.getR0910_amount_aed_resident().doubleValue());
 							R75cell5.setCellStyle(numberStyle);
 						} else {
+							
+							
 							R75cell5.setCellValue("");
 							R75cell5.setCellStyle(textStyle);
 						}
