@@ -1,5 +1,7 @@
 package com.bornfire.brf.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,374 +10,572 @@ import javax.persistence.Table;
 @Table(name = "CBUAE_BRF7_3_SUMMARYTABLE5")
 public class CBUAE_BRF7_3_Summary_Entity5 {
 
-	private  String  R0860_PRODUCT;
-	private  String  R0870_1_TO_3_YEARS_NAT_AMT;
-	private  String  R0870_BOUGHT_HEDG_NET_DELTA_POS;
-	private  String  R0870_BOUGHT_TRAD_NET_DELTA_POS;
-	private  String  R0870_GROSS_MKT_VAL;
-	private  String  R0870_HEDG_NAT_AMT;
-	private  String  R0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT;
-	private  String  R0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT;
-	private  String  R0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	private  String  R0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	private  String  R0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT;
-	private  String  R0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT;
-	private  String  R0870_NAT_AMT;
-	private  String  R0870_NON_RES_NAT_AMT;
-	private  String  R0870_OVER_3_YEARS_NAT_AMT;
-	private  String  R0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	private  String  R0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT;
-	private  String  R0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT;
-	private  String  R0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	private  String  R0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	private  String  R0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT;
-	private  String  R0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT;
-	private  String  R0870_PRODUCT;
-	private  String  R0870_PRO_BOUGHT_NET_GAIN_LOSS;
-	private  String  R0870_PRO_SOLD_NET_GAIN_LOSS;
-	private  String  R0870_RES_1_TO_3_YEARS_MKT_VAL;
-	private  String  R0870_RES_LESSTHAN_1_YEAR_MKT_VAL;
-	private  String  R0870_RES_MORETHAN_3_YEARS_MKT_VAL;
-	private  String  R0870_RES_NAT_AMT;
-	private  String  R0870_SOLD_HEDG_NET_DELTA_POS;
-	private  String  R0870_SOLD_TRAD_NET_DELTA_POS;
-	private  String  R0870_TRAD_NAT_AMT;
-	private  String  R0870_WITHIN_1_YEAR_NAT_AMT;
-	private  String  REPORT_CODE;
-	@Id
-	private  String  REPORT_DATE;
-	private  String  REPORT_DESC;
-	private  String  REPORT_FREQUENCY;
-	private  String  REPORT_VERSION;
-	public String getR0860_PRODUCT() {
-		return R0860_PRODUCT;
-	}
-	public void setR0860_PRODUCT(String r0860_PRODUCT) {
-		R0860_PRODUCT = r0860_PRODUCT;
-	}
-	public String getR0870_1_TO_3_YEARS_NAT_AMT() {
-		return R0870_1_TO_3_YEARS_NAT_AMT;
-	}
-	public void setR0870_1_TO_3_YEARS_NAT_AMT(String r0870_1_TO_3_YEARS_NAT_AMT) {
-		R0870_1_TO_3_YEARS_NAT_AMT = r0870_1_TO_3_YEARS_NAT_AMT;
-	}
-	public String getR0870_BOUGHT_HEDG_NET_DELTA_POS() {
-		return R0870_BOUGHT_HEDG_NET_DELTA_POS;
-	}
-	public void setR0870_BOUGHT_HEDG_NET_DELTA_POS(String r0870_BOUGHT_HEDG_NET_DELTA_POS) {
-		R0870_BOUGHT_HEDG_NET_DELTA_POS = r0870_BOUGHT_HEDG_NET_DELTA_POS;
-	}
-	public String getR0870_BOUGHT_TRAD_NET_DELTA_POS() {
-		return R0870_BOUGHT_TRAD_NET_DELTA_POS;
-	}
-	public void setR0870_BOUGHT_TRAD_NET_DELTA_POS(String r0870_BOUGHT_TRAD_NET_DELTA_POS) {
-		R0870_BOUGHT_TRAD_NET_DELTA_POS = r0870_BOUGHT_TRAD_NET_DELTA_POS;
-	}
-	public String getR0870_GROSS_MKT_VAL() {
-		return R0870_GROSS_MKT_VAL;
-	}
-	public void setR0870_GROSS_MKT_VAL(String r0870_GROSS_MKT_VAL) {
-		R0870_GROSS_MKT_VAL = r0870_GROSS_MKT_VAL;
-	}
-	public String getR0870_HEDG_NAT_AMT() {
-		return R0870_HEDG_NAT_AMT;
-	}
-	public void setR0870_HEDG_NAT_AMT(String r0870_HEDG_NAT_AMT) {
-		R0870_HEDG_NAT_AMT = r0870_HEDG_NAT_AMT;
-	}
-	public String getR0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING = r0870_MINUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING = r0870_MINUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING = r0870_MINUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING = r0870_MINUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING = r0870_MINUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING = r0870_MINUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT() {
-		return R0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public void setR0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT(
-			String r0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT) {
-		R0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT = r0870_MINUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public String getR0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT() {
-		return R0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public void setR0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT(
-			String r0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT) {
-		R0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT = r0870_MINUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public String getR0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT() {
-		return R0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public void setR0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT(
-			String r0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT) {
-		R0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT = r0870_MINUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public String getR0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT() {
-		return R0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public void setR0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT(
-			String r0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT) {
-		R0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT = r0870_MINUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public String getR0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT() {
-		return R0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT;
-	}
-	public void setR0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT(
-			String r0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT) {
-		R0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT = r0870_MINUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT;
-	}
-	public String getR0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT() {
-		return R0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT;
-	}
-	public void setR0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT(
-			String r0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT) {
-		R0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT = r0870_MINUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT;
-	}
-	public String getR0870_NAT_AMT() {
-		return R0870_NAT_AMT;
-	}
-	public void setR0870_NAT_AMT(String r0870_NAT_AMT) {
-		R0870_NAT_AMT = r0870_NAT_AMT;
-	}
-	public String getR0870_NON_RES_NAT_AMT() {
-		return R0870_NON_RES_NAT_AMT;
-	}
-	public void setR0870_NON_RES_NAT_AMT(String r0870_NON_RES_NAT_AMT) {
-		R0870_NON_RES_NAT_AMT = r0870_NON_RES_NAT_AMT;
-	}
-	public String getR0870_OVER_3_YEARS_NAT_AMT() {
-		return R0870_OVER_3_YEARS_NAT_AMT;
-	}
-	public void setR0870_OVER_3_YEARS_NAT_AMT(String r0870_OVER_3_YEARS_NAT_AMT) {
-		R0870_OVER_3_YEARS_NAT_AMT = r0870_OVER_3_YEARS_NAT_AMT;
-	}
-	public String getR0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING = r0870_PLUSTEN_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING = r0870_PLUSTEN_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING = r0870_PLUSTEN_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING = r0870_PLUSTEN_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING = r0870_PLUSTEN_LESSTHAN_1_YEAR_HEDG_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING() {
-		return R0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public void setR0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING(
-			String r0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING) {
-		R0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING = r0870_PLUSTEN_LESSTHAN_1_YEAR_TRAD_NET_LOSS_GAIN_UNDERLYING;
-	}
-	public String getR0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT() {
-		return R0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public void setR0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT(
-			String r0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT) {
-		R0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT = r0870_PLUS_2BP_1_TO_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public String getR0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT() {
-		return R0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public void setR0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT(
-			String r0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT) {
-		R0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT = r0870_PLUS_2BP_1_TO_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLELSHIFT;
-	}
-	public String getR0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT() {
-		return R0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public void setR0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT(
-			String r0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT) {
-		R0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT = r0870_PLUS_2BP_GREATERTHAN_3_YEARS_HEDG_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public String getR0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT() {
-		return R0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public void setR0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT(
-			String r0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT) {
-		R0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT = r0870_PLUS_2BP_GREATERTHAN_3_YEARS_TRAD_NET_LOSS_GAIN_PARALLEL_SHIFT;
-	}
-	public String getR0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT() {
-		return R0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT;
-	}
-	public void setR0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT(
-			String r0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT) {
-		R0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT = r0870_PLUS_2BP_LESSTHAN_1_YEAR_HEDG_NET_LOSS_PARALLELSHIFT;
-	}
-	public String getR0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT() {
-		return R0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT;
-	}
-	public void setR0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT(
-			String r0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT) {
-		R0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT = r0870_PLUS_2BP_LESSTHAN_1_YEAR_TRAD_NET_LOSS_PARALLELSHIFT;
-	}
-	public String getR0870_PRODUCT() {
-		return R0870_PRODUCT;
-	}
-	public void setR0870_PRODUCT(String r0870_PRODUCT) {
-		R0870_PRODUCT = r0870_PRODUCT;
-	}
-	public String getR0870_PRO_BOUGHT_NET_GAIN_LOSS() {
-		return R0870_PRO_BOUGHT_NET_GAIN_LOSS;
-	}
-	public void setR0870_PRO_BOUGHT_NET_GAIN_LOSS(String r0870_PRO_BOUGHT_NET_GAIN_LOSS) {
-		R0870_PRO_BOUGHT_NET_GAIN_LOSS = r0870_PRO_BOUGHT_NET_GAIN_LOSS;
-	}
-	public String getR0870_PRO_SOLD_NET_GAIN_LOSS() {
-		return R0870_PRO_SOLD_NET_GAIN_LOSS;
-	}
-	public void setR0870_PRO_SOLD_NET_GAIN_LOSS(String r0870_PRO_SOLD_NET_GAIN_LOSS) {
-		R0870_PRO_SOLD_NET_GAIN_LOSS = r0870_PRO_SOLD_NET_GAIN_LOSS;
-	}
-	public String getR0870_RES_1_TO_3_YEARS_MKT_VAL() {
-		return R0870_RES_1_TO_3_YEARS_MKT_VAL;
-	}
-	public void setR0870_RES_1_TO_3_YEARS_MKT_VAL(String r0870_RES_1_TO_3_YEARS_MKT_VAL) {
-		R0870_RES_1_TO_3_YEARS_MKT_VAL = r0870_RES_1_TO_3_YEARS_MKT_VAL;
-	}
-	public String getR0870_RES_LESSTHAN_1_YEAR_MKT_VAL() {
-		return R0870_RES_LESSTHAN_1_YEAR_MKT_VAL;
-	}
-	public void setR0870_RES_LESSTHAN_1_YEAR_MKT_VAL(String r0870_RES_LESSTHAN_1_YEAR_MKT_VAL) {
-		R0870_RES_LESSTHAN_1_YEAR_MKT_VAL = r0870_RES_LESSTHAN_1_YEAR_MKT_VAL;
-	}
-	public String getR0870_RES_MORETHAN_3_YEARS_MKT_VAL() {
-		return R0870_RES_MORETHAN_3_YEARS_MKT_VAL;
-	}
-	public void setR0870_RES_MORETHAN_3_YEARS_MKT_VAL(String r0870_RES_MORETHAN_3_YEARS_MKT_VAL) {
-		R0870_RES_MORETHAN_3_YEARS_MKT_VAL = r0870_RES_MORETHAN_3_YEARS_MKT_VAL;
-	}
-	public String getR0870_RES_NAT_AMT() {
-		return R0870_RES_NAT_AMT;
-	}
-	public void setR0870_RES_NAT_AMT(String r0870_RES_NAT_AMT) {
-		R0870_RES_NAT_AMT = r0870_RES_NAT_AMT;
-	}
-	public String getR0870_SOLD_HEDG_NET_DELTA_POS() {
-		return R0870_SOLD_HEDG_NET_DELTA_POS;
-	}
-	public void setR0870_SOLD_HEDG_NET_DELTA_POS(String r0870_SOLD_HEDG_NET_DELTA_POS) {
-		R0870_SOLD_HEDG_NET_DELTA_POS = r0870_SOLD_HEDG_NET_DELTA_POS;
-	}
-	public String getR0870_SOLD_TRAD_NET_DELTA_POS() {
-		return R0870_SOLD_TRAD_NET_DELTA_POS;
-	}
-	public void setR0870_SOLD_TRAD_NET_DELTA_POS(String r0870_SOLD_TRAD_NET_DELTA_POS) {
-		R0870_SOLD_TRAD_NET_DELTA_POS = r0870_SOLD_TRAD_NET_DELTA_POS;
-	}
-	public String getR0870_TRAD_NAT_AMT() {
-		return R0870_TRAD_NAT_AMT;
-	}
-	public void setR0870_TRAD_NAT_AMT(String r0870_TRAD_NAT_AMT) {
-		R0870_TRAD_NAT_AMT = r0870_TRAD_NAT_AMT;
-	}
-	public String getR0870_WITHIN_1_YEAR_NAT_AMT() {
-		return R0870_WITHIN_1_YEAR_NAT_AMT;
-	}
-	public void setR0870_WITHIN_1_YEAR_NAT_AMT(String r0870_WITHIN_1_YEAR_NAT_AMT) {
-		R0870_WITHIN_1_YEAR_NAT_AMT = r0870_WITHIN_1_YEAR_NAT_AMT;
-	}
-	public String getREPORT_CODE() {
-		return REPORT_CODE;
-	}
-	public void setREPORT_CODE(String rEPORT_CODE) {
-		REPORT_CODE = rEPORT_CODE;
-	}
-	public String getREPORT_DATE() {
-		return REPORT_DATE;
-	}
-	public void setREPORT_DATE(String rEPORT_DATE) {
-		REPORT_DATE = rEPORT_DATE;
-	}
-	public String getREPORT_DESC() {
-		return REPORT_DESC;
-	}
-	public void setREPORT_DESC(String rEPORT_DESC) {
-		REPORT_DESC = rEPORT_DESC;
-	}
-	public String getREPORT_FREQUENCY() {
-		return REPORT_FREQUENCY;
-	}
-	public void setREPORT_FREQUENCY(String rEPORT_FREQUENCY) {
-		REPORT_FREQUENCY = rEPORT_FREQUENCY;
-	}
-	public String getREPORT_VERSION() {
-		return REPORT_VERSION;
-	}
-	public void setREPORT_VERSION(String rEPORT_VERSION) {
-		REPORT_VERSION = rEPORT_VERSION;
-	}
+	private  String  r0860_product;
+	private  String  r0870_1_to_3_years_nat_amt;
+	private  String  r0870_bought_hedg_net_delta_pos;
+	private  String  r0870_bought_trad_net_delta_pos;
+	private  String  r0870_gross_mkt_val;
+	private  String  r0870_hedg_nat_amt;
+	private  String  r0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying;
+	private  String  r0870_minusten_1_to_3_years_trad_net_loss_gain_underlying;
+	private  String  r0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying;
+	private  String  r0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying;
+	private  String  r0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying;
+	private  String  r0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying;
+	private  String  r0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift;
+	private  String  r0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift;
+	private  String  r0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift;
+	private  String  r0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift;
+	private  String  r0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift;
+	private  String  r0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift;
+	private  String  r0870_nat_amt;
+	private  String  r0870_non_res_nat_amt;
+	private  String  r0870_over_3_years_nat_amt;
+	private  String  r0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying;
+	private  String  r0870_plusten_1_to_3_years_trad_net_loss_gain_underlying;
+	private  String  r0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying;
+	private  String  r0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying;
+	private  String  r0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying;
+	private  String  r0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying;
+	private  String  r0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift;
+	private  String  r0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift;
+	private  String  r0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift;
+	private  String  r0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift;
+	private  String  r0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift;
+	private  String  r0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift;
+	private  String  r0870_product;
+	private  String  r0870_pro_bought_net_gain_loss;
+	private  String  r0870_pro_sold_net_gain_loss;
+	private  String  r0870_res_1_to_3_years_mkt_val;
+	private  String  r0870_res_lessthan_1_year_mkt_val;
+	private  String  r0870_res_morethan_3_years_mkt_val;
+	private  String  r0870_res_nat_amt;
+	private  String  r0870_sold_hedg_net_delta_pos;
+	private  String  r0870_sold_trad_net_delta_pos;
+	private  String  r0870_trad_nat_amt;
+	private  String  r0870_within_1_year_nat_amt;
+	private  String  report_code;
+	@Id    
+	private  Date  report_date;
+	private  String  report_desc;
+	private  String  report_frequency;
+	private  String  report_version;
+
+	
+	public String getR0860_product() {
+		return r0860_product;
+	}
+
+
+	public void setR0860_product(String r0860_product) {
+		this.r0860_product = r0860_product;
+	}
+
+
+	public String getR0870_1_to_3_years_nat_amt() {
+		return r0870_1_to_3_years_nat_amt;
+	}
+
+
+	public void setR0870_1_to_3_years_nat_amt(String r0870_1_to_3_years_nat_amt) {
+		this.r0870_1_to_3_years_nat_amt = r0870_1_to_3_years_nat_amt;
+	}
+
+
+	public String getR0870_bought_hedg_net_delta_pos() {
+		return r0870_bought_hedg_net_delta_pos;
+	}
+
+
+	public void setR0870_bought_hedg_net_delta_pos(String r0870_bought_hedg_net_delta_pos) {
+		this.r0870_bought_hedg_net_delta_pos = r0870_bought_hedg_net_delta_pos;
+	}
+
+
+	public String getR0870_bought_trad_net_delta_pos() {
+		return r0870_bought_trad_net_delta_pos;
+	}
+
+
+	public void setR0870_bought_trad_net_delta_pos(String r0870_bought_trad_net_delta_pos) {
+		this.r0870_bought_trad_net_delta_pos = r0870_bought_trad_net_delta_pos;
+	}
+
+
+	public String getR0870_gross_mkt_val() {
+		return r0870_gross_mkt_val;
+	}
+
+
+	public void setR0870_gross_mkt_val(String r0870_gross_mkt_val) {
+		this.r0870_gross_mkt_val = r0870_gross_mkt_val;
+	}
+
+
+	public String getR0870_hedg_nat_amt() {
+		return r0870_hedg_nat_amt;
+	}
+
+
+	public void setR0870_hedg_nat_amt(String r0870_hedg_nat_amt) {
+		this.r0870_hedg_nat_amt = r0870_hedg_nat_amt;
+	}
+
+
+	public String getR0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying() {
+		return r0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying(
+			String r0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying) {
+		this.r0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying = r0870_minusten_1_to_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_minusten_1_to_3_years_trad_net_loss_gain_underlying() {
+		return r0870_minusten_1_to_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_minusten_1_to_3_years_trad_net_loss_gain_underlying(
+			String r0870_minusten_1_to_3_years_trad_net_loss_gain_underlying) {
+		this.r0870_minusten_1_to_3_years_trad_net_loss_gain_underlying = r0870_minusten_1_to_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying() {
+		return r0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying(
+			String r0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying) {
+		this.r0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying = r0870_minusten_greaterthan_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying() {
+		return r0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying(
+			String r0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying) {
+		this.r0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying = r0870_minusten_greaterthan_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying() {
+		return r0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying(
+			String r0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying) {
+		this.r0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying = r0870_minusten_lessthan_1_year_hedg_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying() {
+		return r0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying(
+			String r0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying) {
+		this.r0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying = r0870_minusten_lessthan_1_year_trad_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift() {
+		return r0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift;
+	}
+
+
+	public void setR0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift(
+			String r0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift) {
+		this.r0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift = r0870_minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift;
+	}
+
+
+	public String getR0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift() {
+		return r0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift;
+	}
+
+
+	public void setR0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift(
+			String r0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift) {
+		this.r0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift = r0870_minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift;
+	}
+
+
+	public String getR0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift() {
+		return r0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift;
+	}
+
+
+	public void setR0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift(
+			String r0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift) {
+		this.r0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift = r0870_minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift;
+	}
+
+
+	public String getR0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift() {
+		return r0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift;
+	}
+
+
+	public void setR0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift(
+			String r0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift) {
+		this.r0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift = r0870_minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift;
+	}
+
+
+	public String getR0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift() {
+		return r0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift;
+	}
+
+
+	public void setR0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift(
+			String r0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift) {
+		this.r0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift = r0870_minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift;
+	}
+
+
+	public String getR0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift() {
+		return r0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift;
+	}
+
+
+	public void setR0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift(
+			String r0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift) {
+		this.r0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift = r0870_minus_2bp_lessthan_1_year_trad_net_loss_parallelshift;
+	}
+
+
+	public String getR0870_nat_amt() {
+		return r0870_nat_amt;
+	}
+
+
+	public void setR0870_nat_amt(String r0870_nat_amt) {
+		this.r0870_nat_amt = r0870_nat_amt;
+	}
+
+
+	public String getR0870_non_res_nat_amt() {
+		return r0870_non_res_nat_amt;
+	}
+
+
+	public void setR0870_non_res_nat_amt(String r0870_non_res_nat_amt) {
+		this.r0870_non_res_nat_amt = r0870_non_res_nat_amt;
+	}
+
+
+	public String getR0870_over_3_years_nat_amt() {
+		return r0870_over_3_years_nat_amt;
+	}
+
+
+	public void setR0870_over_3_years_nat_amt(String r0870_over_3_years_nat_amt) {
+		this.r0870_over_3_years_nat_amt = r0870_over_3_years_nat_amt;
+	}
+
+
+	public String getR0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying() {
+		return r0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying(
+			String r0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying) {
+		this.r0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying = r0870_plusten_1_to_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_plusten_1_to_3_years_trad_net_loss_gain_underlying() {
+		return r0870_plusten_1_to_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_plusten_1_to_3_years_trad_net_loss_gain_underlying(
+			String r0870_plusten_1_to_3_years_trad_net_loss_gain_underlying) {
+		this.r0870_plusten_1_to_3_years_trad_net_loss_gain_underlying = r0870_plusten_1_to_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying() {
+		return r0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying(
+			String r0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying) {
+		this.r0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying = r0870_plusten_greaterthan_3_years_hedg_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying() {
+		return r0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying(
+			String r0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying) {
+		this.r0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying = r0870_plusten_greaterthan_3_years_trad_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying() {
+		return r0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying(
+			String r0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying) {
+		this.r0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying = r0870_plusten_lessthan_1_year_hedg_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying() {
+		return r0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying;
+	}
+
+
+	public void setR0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying(
+			String r0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying) {
+		this.r0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying = r0870_plusten_lessthan_1_year_trad_net_loss_gain_underlying;
+	}
+
+
+	public String getR0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift() {
+		return r0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift;
+	}
+
+
+	public void setR0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift(
+			String r0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift) {
+		this.r0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift = r0870_plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift;
+	}
+
+
+	public String getR0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift() {
+		return r0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift;
+	}
+
+
+	public void setR0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift(
+			String r0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift) {
+		this.r0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift = r0870_plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift;
+	}
+
+
+	public String getR0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift() {
+		return r0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift;
+	}
+
+
+	public void setR0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift(
+			String r0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift) {
+		this.r0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift = r0870_plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift;
+	}
+
+
+	public String getR0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift() {
+		return r0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift;
+	}
+
+
+	public void setR0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift(
+			String r0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift) {
+		this.r0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift = r0870_plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift;
+	}
+
+
+	public String getR0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift() {
+		return r0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift;
+	}
+
+
+	public void setR0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift(
+			String r0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift) {
+		this.r0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift = r0870_plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift;
+	}
+
+
+	public String getR0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift() {
+		return r0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift;
+	}
+
+
+	public void setR0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift(
+			String r0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift) {
+		this.r0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift = r0870_plus_2bp_lessthan_1_year_trad_net_loss_parallelshift;
+	}
+
+
+	public String getR0870_product() {
+		return r0870_product;
+	}
+
+
+	public void setR0870_product(String r0870_product) {
+		this.r0870_product = r0870_product;
+	}
+
+
+	public String getR0870_pro_bought_net_gain_loss() {
+		return r0870_pro_bought_net_gain_loss;
+	}
+
+
+	public void setR0870_pro_bought_net_gain_loss(String r0870_pro_bought_net_gain_loss) {
+		this.r0870_pro_bought_net_gain_loss = r0870_pro_bought_net_gain_loss;
+	}
+
+
+	public String getR0870_pro_sold_net_gain_loss() {
+		return r0870_pro_sold_net_gain_loss;
+	}
+
+
+	public void setR0870_pro_sold_net_gain_loss(String r0870_pro_sold_net_gain_loss) {
+		this.r0870_pro_sold_net_gain_loss = r0870_pro_sold_net_gain_loss;
+	}
+
+
+	public String getR0870_res_1_to_3_years_mkt_val() {
+		return r0870_res_1_to_3_years_mkt_val;
+	}
+
+
+	public void setR0870_res_1_to_3_years_mkt_val(String r0870_res_1_to_3_years_mkt_val) {
+		this.r0870_res_1_to_3_years_mkt_val = r0870_res_1_to_3_years_mkt_val;
+	}
+
+
+	public String getR0870_res_lessthan_1_year_mkt_val() {
+		return r0870_res_lessthan_1_year_mkt_val;
+	}
+
+
+	public void setR0870_res_lessthan_1_year_mkt_val(String r0870_res_lessthan_1_year_mkt_val) {
+		this.r0870_res_lessthan_1_year_mkt_val = r0870_res_lessthan_1_year_mkt_val;
+	}
+
+
+	public String getR0870_res_morethan_3_years_mkt_val() {
+		return r0870_res_morethan_3_years_mkt_val;
+	}
+
+
+	public void setR0870_res_morethan_3_years_mkt_val(String r0870_res_morethan_3_years_mkt_val) {
+		this.r0870_res_morethan_3_years_mkt_val = r0870_res_morethan_3_years_mkt_val;
+	}
+
+
+	public String getR0870_res_nat_amt() {
+		return r0870_res_nat_amt;
+	}
+
+
+	public void setR0870_res_nat_amt(String r0870_res_nat_amt) {
+		this.r0870_res_nat_amt = r0870_res_nat_amt;
+	}
+
+
+	public String getR0870_sold_hedg_net_delta_pos() {
+		return r0870_sold_hedg_net_delta_pos;
+	}
+
+
+	public void setR0870_sold_hedg_net_delta_pos(String r0870_sold_hedg_net_delta_pos) {
+		this.r0870_sold_hedg_net_delta_pos = r0870_sold_hedg_net_delta_pos;
+	}
+
+
+	public String getR0870_sold_trad_net_delta_pos() {
+		return r0870_sold_trad_net_delta_pos;
+	}
+
+
+	public void setR0870_sold_trad_net_delta_pos(String r0870_sold_trad_net_delta_pos) {
+		this.r0870_sold_trad_net_delta_pos = r0870_sold_trad_net_delta_pos;
+	}
+
+
+	public String getR0870_trad_nat_amt() {
+		return r0870_trad_nat_amt;
+	}
+
+
+	public void setR0870_trad_nat_amt(String r0870_trad_nat_amt) {
+		this.r0870_trad_nat_amt = r0870_trad_nat_amt;
+	}
+
+
+	public String getR0870_within_1_year_nat_amt() {
+		return r0870_within_1_year_nat_amt;
+	}
+
+
+	public void setR0870_within_1_year_nat_amt(String r0870_within_1_year_nat_amt) {
+		this.r0870_within_1_year_nat_amt = r0870_within_1_year_nat_amt;
+	}
+
+
+	public String getReport_code() {
+		return report_code;
+	}
+
+
+	public void setReport_code(String report_code) {
+		this.report_code = report_code;
+	}
+
+
+	public Date getReport_date() {
+		return report_date;
+	}
+
+
+	public void setReport_date(Date report_date) {
+		this.report_date = report_date;
+	}
+
+
+	public String getReport_desc() {
+		return report_desc;
+	}
+
+
+	public void setReport_desc(String report_desc) {
+		this.report_desc = report_desc;
+	}
+
+
+	public String getReport_frequency() {
+		return report_frequency;
+	}
+
+
+	public void setReport_frequency(String report_frequency) {
+		this.report_frequency = report_frequency;
+	}
+
+
+	public String getReport_version() {
+		return report_version;
+	}
+
+
+	public void setReport_version(String report_version) {
+		this.report_version = report_version;
+	}
+
+
 	public CBUAE_BRF7_3_Summary_Entity5() {
 		super();
 		// TODO Auto-generated constructor stub
