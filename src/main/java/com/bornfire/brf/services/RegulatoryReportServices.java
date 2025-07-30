@@ -255,6 +255,11 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf1_12_reportservice.getBRF1_12currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
+		
+		case "BRF7_3":
+			repdetail = cbuae_brf7_3_reportservice.getBRF7_3currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
 
 		case "BRF1_2":
 			repdetail = cbuae_brf1_2_reportservice.getBRF1_2currentDtl(reportId, fromdate, todate, currency, dtltype,
@@ -588,6 +593,9 @@ public class RegulatoryReportServices {
 					type, version);
 		} else if (filename.equals("BRF1_1Detail")) {
 			return cbuae_brf1_1_reportservice.getBRF1_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
+		} else if (filename.equals("BRF7_3Detail")) {
+			return cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
 		} else if (filename.equals("BRF1_2Detail")) {
 			return cbuae_brf1_2_reportservice.getBRF1_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,
