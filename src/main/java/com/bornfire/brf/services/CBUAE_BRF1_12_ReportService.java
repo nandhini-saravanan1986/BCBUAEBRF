@@ -145,7 +145,7 @@ public class CBUAE_BRF1_12_ReportService {
 	        if (rowId != null && columnId != null) {
 	            T1Dt1 = BRF1_12_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
 	        } else {
-	            T1Dt1 = BRF1_12_DETAIL_Repo.getdatabydateList(d1);
+	            T1Dt1 = BRF1_12_DETAIL_Repo.getListbydate(d1);
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
