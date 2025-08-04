@@ -3,6 +3,7 @@ package com.bornfire.brf.entities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,16 +15,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "CBUAE_BRF2_11_SUMMARYTABLE")
 public class CBUAE_BRF2_11_Summary_Entity {
+	@Id
+	@Column(name = "ID")
+	private Long id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	private String country_party;
 	private String branch;
 	private String head_office;
 	private BigDecimal due_from_placements;
 	private BigDecimal due_to_borrowing;
 	private BigDecimal due_from_remaining;
-	private BigDecimal due_to_bremaining;
+	private BigDecimal due_to_remaining;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Id
 	private Date report_date;
 	private String REPORT_VERSION;
 	private String REPORT_CODE;
@@ -67,11 +76,11 @@ public class CBUAE_BRF2_11_Summary_Entity {
 	public void setDue_from_remaining(BigDecimal due_from_remaining) {
 		this.due_from_remaining = due_from_remaining;
 	}
-	public BigDecimal getDue_to_bremaining() {
-		return due_to_bremaining;
+	public BigDecimal getDue_to_remaining() {
+		return due_to_remaining;
 	}
-	public void setDue_to_bremaining(BigDecimal due_to_bremaining) {
-		this.due_to_bremaining = due_to_bremaining;
+	public void setDue_to_remaining(BigDecimal due_to_remaining) {
+		this.due_to_remaining = due_to_remaining;
 	}
 	public Date getReport_date() {
 		return report_date;
@@ -117,18 +126,19 @@ public class CBUAE_BRF2_11_Summary_Entity {
 	}
 	
 	
-	public CBUAE_BRF2_11_Summary_Entity(String country_party, String branch, String head_office,
+	public CBUAE_BRF2_11_Summary_Entity(Long id,String country_party, String branch, String head_office,
 			BigDecimal due_from_placements, BigDecimal due_to_borrowing, BigDecimal due_from_remaining,
-			BigDecimal due_to_bremaining, Date report_date, String rEPORT_VERSION, String rEPORT_CODE,
+			BigDecimal due_to_remaining, Date report_date, String rEPORT_VERSION, String rEPORT_CODE,
 			String rEPORT_DESC, String eNTITY_FLG, String mODIFY_FLG, String dEL_FLG) {
 		super();
+		this.id=id;
 		this.country_party = country_party;
 		this.branch = branch;
 		this.head_office = head_office;
 		this.due_from_placements = due_from_placements;
 		this.due_to_borrowing = due_to_borrowing;
 		this.due_from_remaining = due_from_remaining;
-		this.due_to_bremaining = due_to_bremaining;
+		this.due_to_remaining = due_to_remaining;
 		this.report_date = report_date;
 		REPORT_VERSION = rEPORT_VERSION;
 		REPORT_CODE = rEPORT_CODE;
