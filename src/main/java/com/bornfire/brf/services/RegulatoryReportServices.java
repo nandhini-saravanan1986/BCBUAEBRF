@@ -144,7 +144,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_4":
 			repsummary = cbuae_brf2_4_reportservice.getBRF2_4View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_5":
@@ -154,7 +154,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_6":
 			repsummary = cbuae_brf2_6_reportservice.getBRF2_6View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_3":
@@ -164,17 +164,17 @@ public class RegulatoryReportServices {
 
 		case "BRF2_7":
 			repsummary = cbuae_brf2_7_reportservice.getBRF2_7View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_16":
 			repsummary = cbuae_brf2_16_reportservice.getBRF2_16View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_18":
 			repsummary = cbuae_brf2_18_reportservice.getBRF2_18View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF1_3":
@@ -195,17 +195,17 @@ public class RegulatoryReportServices {
 
 		case "BRF2_14":
 			repsummary = cbuae_brf2_14_reportservice.getBRF2_14View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_15":
 			repsummary = cbuae_brf2_15_reportservice.getBRF2_15View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF5_1":
 			repsummary = cbuae_brf5_1_reportservice.getBRF5_1View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 			
 		case "BRF5_2":
@@ -286,7 +286,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_4":
 			repdetail = cbuae_brf2_4_reportservice.getBRF2_4currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_5":
@@ -296,7 +296,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_6":
 			repdetail = cbuae_brf2_6_reportservice.getBRF2_6currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_3":
@@ -306,17 +306,17 @@ public class RegulatoryReportServices {
 
 		case "BRF2_7":
 			repdetail = cbuae_brf2_7_reportservice.getBRF2_7currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_16":
 			repdetail = cbuae_brf2_16_reportservice.getBRF2_16currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_18":
 			repdetail = cbuae_brf2_18_reportservice.getBRF2_18currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_13":
@@ -326,17 +326,17 @@ public class RegulatoryReportServices {
 
 		case "BRF2_14":
 			repdetail = cbuae_brf2_14_reportservice.getBRF2_14currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_15":
 			repdetail = cbuae_brf2_15_reportservice.getBRF2_15currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF5_1":
 			repdetail = cbuae_brf5_1_reportservice.getBRF5_1currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 			
 		case "BRF5_2":
@@ -481,7 +481,7 @@ public class RegulatoryReportServices {
 		case "BRF2_7":
 			try {
 				repfile = cbuae_brf2_7_reportservice.getBRF2_7Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -491,7 +491,7 @@ public class RegulatoryReportServices {
 		case "BRF2_4":
 			try {
 				repfile = cbuae_brf2_4_reportservice.getBRF2_4Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -501,7 +501,7 @@ public class RegulatoryReportServices {
 		case "BRF2_6":
 			try {
 				repfile = cbuae_brf2_6_reportservice.getBRF2_6Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -511,7 +511,7 @@ public class RegulatoryReportServices {
 		case "BRF2_16":
 			try {
 				repfile = cbuae_brf2_16_reportservice.getBRF2_16Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -521,7 +521,7 @@ public class RegulatoryReportServices {
 		case "BRF2_18":
 			try {
 				repfile = cbuae_brf2_18_reportservice.getBRF2_18Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -551,7 +551,7 @@ public class RegulatoryReportServices {
 		case "BRF2_14":
 			try {
 				repfile = cbuae_brf2_14_reportservice.getBRF2_14Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -561,7 +561,7 @@ public class RegulatoryReportServices {
 		case "BRF2_15":
 			try {
 				repfile = cbuae_brf2_15_reportservice.getBRF2_15Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -571,7 +571,7 @@ public class RegulatoryReportServices {
 		case "BRF5_1":
 			try {
 				repfile = cbuae_brf5_1_reportservice.getBRF5_1Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

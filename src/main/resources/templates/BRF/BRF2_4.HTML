@@ -1,7 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 
 <!-- 
-	-->
+CREATED BY	: NIVETHA S 
+CREATED ON	: 07.07.2025
+PURPOSE		: BRFREPORT
+-->
+
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
@@ -591,9 +595,9 @@
 
 
 <title>BRF</title>
-
 <body>
-	<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+	<div class="container-fluid"
+		style="padding-left: 0px; padding-right: 0px;">
 		<div class="row">
 
 			<div th:insert="HeaderMenu :: header"></div>
@@ -609,17 +613,16 @@
 
 						<!-- Title -->
 						<h5
-							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-							 CURRENCY-WISE CLASSIFICATION OF ASSETS AND LIABILITIES- BRF 2.4 (AED 000)
-						</h5>
+							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
+							Currency-Wise Classification of Assets - BRF 2.4 (AED 000)</h5>
 					</div>
 
 					<div class="custom-tab-btn-group nav-buttons"
 						style="display: flex; color: white; align-items: center;">
 						<!-- 📅 Date -->
 						<span class="white-text"
-							style="color:white !important; font-size: 16px; margin-right: 20px;">Report Date:
-							<span th:text="${asondate}">2025-07-04</span>
+							style="color: white !important; font-size: 16px; margin-right: 20px;">Report
+							Date: <span th:text="${asondate}">2025-07-04</span>
 						</span>
 
 						<!-- Buttons -->
@@ -2230,7 +2233,7 @@
 																				<th>CUST ID</th>
 																				<th>ACCT NO</th>
 																				<th>ACCT NAME</th>
-																				<th style="text-align:right;">ACCT BALANCE</th>
+																				<th>ACCT BALANCE</th>
 																				<th style="text-align:left;">ROWID</th>
 																				<th>COLUMNID</th>
 																				<th>REPORT_DATE</th>

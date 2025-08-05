@@ -38,11 +38,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.entities.CBUAE_BRF1_3_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_16_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_16_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_16_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_16_Summary_Repo;
-
+import com.bornfire.brf.entities.CBUAE_BRF2_18_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_18_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF2_18_Summary_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_18_Summary_Repo;
 
 @Component
 @Service
@@ -66,7 +70,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_16_Repor
 	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 	public ModelAndView getBRF2_16View(String reportId, String fromdate, String todate, String currency, String dtltype,
-			Pageable pageable) {
+			Pageable pageable, String type, String version) {
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
 		int pageSize = pageable.getPageSize();
@@ -99,7 +103,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_16_Repor
 	
 	public ModelAndView getBRF2_16currentDtl(
 	        String reportId, String fromdate, String todate, String currency,
-	        String dtltype, Pageable pageable, String filter) {
+	        String dtltype, Pageable pageable, String filter, String type, String version) {
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
@@ -123,7 +127,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_16_Repor
 	        }
 
 	        if (rowId != null && columnId != null) {
-	            T1Dt1 = BRF2_16_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+	            T1Dt1 = BRF2_16_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId,  dateformat.parse(todate));
 	        } else {
 	            T1Dt1 = BRF2_16_DETAIL_Repo.getdatabydateList(d1);
 	        }
@@ -144,7 +148,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_16_Repor
 	}
 	
 	
-	public byte[] getBRF2_16Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
+	public byte[] getBRF2_16Excel(String filename,String reportId, String fromdate, String todate, String currency, String dtltype, String type, String version) throws Exception {
 		logger.info("Service: Starting Excel generation process in memory.");
 		List<CBUAE_BRF2_16_Summary_Entity> dataList =BRF2_16_Summary_Repo.getdatabydateList(dateformat.parse(todate)) ;
 		if (dataList.isEmpty()) {
@@ -683,9 +687,8 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF2_16_Repor
 	}
 	
 	
-	public byte[] getBRF2_16DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
-			String type, String version) {
-		try {
+	public byte[] getBRF2_16DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype, String type, String version) {
+	    try {
 	        logger.info("Generating Excel for BRF2_16 Details...");
 	        System.out.println("came to Detail download service");
 

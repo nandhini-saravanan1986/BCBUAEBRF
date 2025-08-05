@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface CBUAE_BRF2_5_Summary_Repo2 extends JpaRepository<CBUAE_BRF2_5_Summary_Entity2, Date> {
 
-	@Query(value = "select * from CBUAE_BRF2_5_SUMMARYTABLE2  ", nativeQuery = true)
-	List<CBUAE_BRF2_5_Summary_Entity2> getdatabydateList(Date rpt_code);
-
+	@Query(value = "select * from CBUAE_BRF2_5_SUMMARYTABLE2 where report_date=?1 ", nativeQuery = true)
+	List<CBUAE_BRF2_5_Summary_Entity2> getdatabydateList(Date report_date);
 }
+
