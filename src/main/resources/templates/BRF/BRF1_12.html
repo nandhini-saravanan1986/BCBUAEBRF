@@ -945,7 +945,7 @@
 				                    <th>CUST ID</th>
 				                    <th>ACCT NO</th>
 				                    <th>ACCT NAME</th>
-				                    <th>ACCT BALANCE</th>
+				                    <th class="right-align">ACCT BALANCE</th>
 				                    <th>ROWID</th>
 				                    <th>COLUMNID</th>
 				                    <th>REPORT_DATE</th>
@@ -964,7 +964,7 @@
 		                    	<td th:text="${report.custId}"></td>
 		                    	<td th:text="${report.acctNumber}" ></td>
 		                    	<td th:text="${report.acctName}"></td>
-		                    	<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
+		                    	<td class="right-align" th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
 		                    	<td th:text="${report.rowId}"></td>
 		                    	<td th:text="${report.columnId}"></td>
 		                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>

@@ -389,7 +389,15 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
-
+		case "BRF7_3":
+			try {
+				repfile = cbuae_brf7_3_reportservice.getBRF7_3Excel(filename, reportId, fromdate, todate, currency,
+						dtltype, type, version);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case "BRF5_17":
 			try {
 				repfile = cbuae_brf5_17_reportservice.getBRF5_17Excel(filename, reportId, fromdate, todate, currency,

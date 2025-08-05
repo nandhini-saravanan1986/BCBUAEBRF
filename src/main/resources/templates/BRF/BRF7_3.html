@@ -604,7 +604,7 @@ function showdetailsbyRowAndColumn(a) {
 
         <!-- Title -->
         <h5 style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-            ASSETS- BRF 1.1 (AED 000)											
+            Derivatives Expanded- BRF-7.3 (AED 000)											
         </h5>
     </div>
 
@@ -625,7 +625,7 @@ function showdetailsbyRowAndColumn(a) {
                      data-todate=${todate}, 
                      data-currency=${currency},  
                      data-dtltype=${dtltype}, 
-                     data-filename='BRF1_1.xls',
+                     data-filename='BRF7_3.xls',
                      data-type=${type},
                      data-version=${version}"
                      
@@ -4340,7 +4340,7 @@ function showdetailsbyRowAndColumn(a) {
 				                    <th>CUST ID</th>
 				                    <th>ACCT NO</th>
 				                    <th>ACCT NAME</th>
-				                    <th>ACCT BALANCE</th>
+				                    <th class="right-align">ACCT BALANCE</th>
 				                    <th>ROWID</th>
 				                    <th>COLUMNID</th>
 				                    <th>REPORT_DATE</th>
@@ -4359,7 +4359,7 @@ function showdetailsbyRowAndColumn(a) {
 		                    	<td th:text="${report.custId}"></td>
 		                    	<td th:text="${report.acctNumber}"></td>
 		                    	<td th:text="${report.acctName}"></td>
-		                    	<td th:text="${report.acctBalanceInAed}"></td>
+		                    	<td class="right-align" th:text="${report.acctBalanceInAed}"></td>
 		                    	<td th:text="${report.rowId}"></td>
 		                    	<td th:text="${report.columnId}"></td>
 		                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
