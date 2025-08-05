@@ -330,6 +330,19 @@ public class NavigationController {
 	  return "BRF/RRReports";
 	  
 	  }
+	  
+	  @RequestMapping(value = "HalfYearly-1", method = { RequestMethod.GET,RequestMethod.POST })
+	  public String HalfYearly1(Model md, HttpServletRequest req)
+	  {
+	//String roleId = (String) req.getSession().getAttribute("ROLEID");
+	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
+	  md.addAttribute("menu", "Half Yealry 1 - BRF Report");
+	  md.addAttribute("reportlist", rrReportlist.getReportHalfYearly1());
+	  
+	  return "BRF/RRReports";
+	  
+	  }
+	  
 	  @RequestMapping(value = "Monthly-1Archival", method = { RequestMethod.GET,RequestMethod.POST })
 	  public String monthly1Archival(Model md, HttpServletRequest req)
 	  {
