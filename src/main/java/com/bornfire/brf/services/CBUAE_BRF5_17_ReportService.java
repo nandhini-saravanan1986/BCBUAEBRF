@@ -176,7 +176,7 @@ public class CBUAE_BRF5_17_ReportService {
 				}
 
 				if (rowId != null && columnId != null) {
-					T1Dt1 = BRF5_17_Detail_Repo.GetDataByRowIdAndColumnId(rowId,ColumnId,reportdate);
+					T1Dt1 = BRF5_17_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
 				} else {
 					T1Dt1 = BRF5_17_Detail_Repo.getdatabydateList(d1);
 				}
