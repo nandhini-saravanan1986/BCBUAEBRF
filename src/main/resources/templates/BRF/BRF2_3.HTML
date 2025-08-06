@@ -712,73 +712,48 @@
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0010</td>
 											<td style="text-align: right; background-color: #b3b6b9">1</td>
-											<th th:text="${report.r0010_product}"></th>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_overdue}"></td>
-											<td style="text-align: right;background-color: #b3b6b0"
-												th:text="${report.r0010_overdraft}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_0_7days}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_8_14days}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_15days_1months}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_1_2months}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_2_3months}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_3_6months}"></td>
-											<td style="text-align: right; background-color: #b3b6b9"
-												th:text="${report.r0010_6_12months}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_1_3years}"></td>
-											<td style="text-align: right;background-color: #b3b6b9"
-												th:text="${report.r0010_3_5years}"></td>
-											<td style="text-align: right; background-color: #b3b6b9"
-												th:text="${report.r0010_5years}"></td>
-											<td style="text-align: right; background-color: #b3b6b9"
-												th:text="${report.r0010_total}"></td>
+											<th colspan = '14' style="background-color: #b3b6b9" th:text="${report.r0010_product}"></th>
+											
 										</tr>
 
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0020</td>
 											<td style="text-align: right; background-color: #b3b6b9">1.1</td>
 											<td th:text="${report.r0020_product}"></td>
-											<td style="text-align: right;" th:text="${report.r0020_overdue}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_overdue}"
 												th:attr="RowId='R0020', ColumnId='C0010'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_overdraft}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_overdraft}"
 												th:attr="RowId='R0020', ColumnId='C0020'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_0_7days}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_0_7days}"
 												th:attr="RowId='R0020', ColumnId='C0030'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_8_14days}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_8_14days}"
 												th:attr="RowId='R0020', ColumnId='C0040'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_15days_1months}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_15days_1months}"
 												th:attr="RowId='R0020', ColumnId='C0050'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_1_2months}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_1_2months}"
 												th:attr="RowId='R0020', ColumnId='C0060'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_2_3months}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_2_3months}"
 												th:attr="RowId='R0020', ColumnId='C0070'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_3_6months}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_3_6months}"
 												th:attr="RowId='R0020', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_6_12months}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_6_12months}"
 												th:attr="RowId='R0020', ColumnId='C0090'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_1_3years}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_1_3years}"
 												th:attr="RowId='R0020', ColumnId='C0100'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_3_5years}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_3_5years}"
 												th:attr="RowId='R0020', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="text-align: right" th:text="${report.r0020_5years}"
+											<td style="text-align: right;background-color: #b3b6b9" th:text="${report.r0020_5years}"
 												th:attr="RowId='R0020', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
 											<td style="text-align: right; background-color: #b3b6b9"
