@@ -1,0 +1,2967 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<!-- 
+CREATED BY	: NIVETHA S 
+CREATED ON	: 29.07.2025
+PURPOSE		: BRFREPORT
+-->
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
+	<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon" />
+
+	<!-- JavaScript -->
+	<!-- jQuery core (required first) -->
+
+
+	<!-- ✅ Your manually placed jQuery validation
+		<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+		 <script th:src="/jquery/jquery.validate.min.js"></script>
+		 -->
+
+	<!-- jQuery (required first) -->
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+
+	<!-- ✅ jQuery Validation -->
+	<script src="/webjars/jquery-validation/1.19.0/jquery.validate.min.js"
+		th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
+
+	<!-- Bootstrap + Others -->
+	<script th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:src="@{/webjars/jquery-form/4.2.2/jquery.form.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
+
+
+
+	<style>
+		.btns {
+			float: right;
+			margin: 5px;
+		}
+
+		.col-sm-5 {
+			padding-bottom: 15px;
+		}
+
+		.list-body {
+			padding: 0px;
+		}
+
+		.error {
+			color: red;
+			padding-left: 10px;
+		}
+
+		.formline {
+			padding-bottom: 15px;
+		}
+
+		.btn-primary {
+			background-color: #E77400;
+			border-color: #0c0c0c;
+		}
+
+		.btn-primary:not (:disabled):not (.disabled).active,
+		.btn-primary:not (:disabled):not (.disabled):active,
+		.show>.btn-primary.dropdown-toggle {
+			color: #fff;
+			background-color: #cc000000;
+			border-color: #161617;
+		}
+
+		#finusertb {
+			width: 460px;
+		}
+
+		.dataTables_wrapper .dataTables_paginate .paginate_button {
+			padding: 0px;
+		}
+	</style>
+
+
+
+
+	<style>
+		div span {
+			font-weight: bold;
+			color: white !important;
+		}
+
+		.card {
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+		}
+
+		.card-header h5 {
+			font-size: 22px;
+			color: #fff;
+			font-weight: 600;
+		}
+
+		.nav-tabs .nav-link {
+			font-weight: 500;
+			border: 1px solid #dee2e6;
+			border-bottom: none;
+			border-radius: 4px 4px 0 0;
+			background-color: #f1f1f1;
+			margin-right: 5px;
+		}
+
+		.nav-tabs .nav-link.active {
+			background-color: #ffffff;
+			border-color: #dee2e6 #dee2e6 #ffffff;
+		}
+
+		.table-responsive {
+			border: 1px solid #dee2e6;
+			border-radius: 4px;
+		}
+
+		.table-hover tbody tr:hover {
+			background-color: #f3f6f9;
+		}
+
+		thead th {
+			position: sticky;
+			top: 0;
+			background-color: #e9ecf0;
+			z-index: 1;
+		}
+
+		.table td {
+			background-color: #FFFFFF;
+
+		}
+
+
+
+		.card-footer {
+			padding: 10px;
+			border-top: 1px solid #ccc;
+		}
+
+		.btn-xs {
+			padding: 4px 12px;
+			font-size: 14px;
+			border-radius: 4px;
+		}
+
+		#BRFvalidation th,
+		#usertable td {
+			vertical-align: middle;
+			text-align: left;
+			font-size: 16px;
+			font-family: Arial;
+		}
+
+		.fa-edit:hover {
+			color: #28a745;
+			transform: scale(1.1);
+		}
+
+
+
+		td {
+			border: 1px solid rgb(0, 164, 166);
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	</style>
+
+
+	<style>
+		.form-group {
+			position: relative;
+			margin-bottom: 1.5rem;
+		}
+
+		.form-control {
+			width: 100%;
+			border: 2px solid #ccc;
+			border-radius: 8px;
+			font-size: 1rem;
+			outline: none;
+			background: transparent;
+			transition: border-color 0.3s ease, padding-top 0.3s ease;
+		}
+
+		.error {
+			color: red;
+			padding-top: 15px;
+		}
+
+
+
+		.form-control:focus {
+			border-color: #007bff;
+		}
+
+		.form-legend {
+			position: absolute;
+			top: 50%;
+			left: 15px;
+			transform: translateY(-50%);
+			font-size: 1rem;
+			color: #aaa;
+			background: white;
+			padding: 0 5px;
+			pointer-events: none;
+			transition: 0.3s ease;
+		}
+
+		/* When input or select is focused or has a value, move the label up */
+		.form-control:focus~.form-legend,
+		.form-control:not(:placeholder-shown)~.form-legend {
+			top: -8px;
+			font-size: 1rem;
+			color: #007bff;
+		}
+
+		/* Hover effect when the input/select is focused */
+		.form-control:focus:hover~.form-legend {
+			color: #0056b3;
+			/* Darker shade of blue on hover */
+		}
+
+		/* Ensure the label returns to the normal color after focus or hover is removed */
+		.form-control:not(:focus)~.form-legend {
+			color: #aaa;
+			/* Normal label color */
+		}
+	</style>
+
+	<style>
+		/* Red border for invalid inputs */
+		input.error,
+		select.error {
+			border: 2px solid red !important;
+		}
+
+		/* Error message style */
+		label.error {
+			color: red;
+			font-size: 0.85em;
+			margin-top: 5px;
+			display: block;
+		}
+
+		.underline {
+			text-decoration: underline;
+			color: #08a6f1;
+			cursor: pointer;
+		}
+
+		.left-arrow-circle {
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			background-color: white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-right: 10px;
+			transition: background-color 0.3s, transform 0.2s;
+		}
+
+		.left-arrow-circle i {
+			color: rgb(107, 122, 143);
+		}
+
+		.left-arrow-circle:hover {
+			background-color: rgb(107, 122, 143);
+			cursor: pointer;
+			transform: scale(1.05);
+			border: 2px solid white;
+		}
+
+		.left-arrow-circle:hover i {
+			color: white;
+		}
+
+		.white-text span {
+			color: white !important;
+		}
+	</style>
+
+
+	<script th:inline="javascript">
+
+		$(document).ready(function () {
+			// hide loader on normal load
+			$('#loader').modal('hide');
+		});
+
+		$(window).on('pageshow', function () {
+			// hide loader on back/forward nav
+			$('#loader').modal('hide');
+		});
+
+		$(window).on('beforeunload', function () {
+			// hide loader on leaving page
+			$('#loader').modal('hide');
+		});
+
+
+
+		function home() {
+			$("#loader").modal("toggle");
+			location.href = 'Dashboard'
+		}
+
+		function back() {
+			$("#loader").modal("toggle");
+
+			window.history.back();
+		}
+
+		//to fetch summary from the database - called from the summary button
+		function showdetails() {
+
+			var Callurl;
+			$('#loader').modal('show');
+			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
+				location.href = Callurl;
+			console.log(Callurl);
+			/*  $.ajax({
+				 type: 'get',
+				 url: Callurl,
+				 beforeSend: function () {
+					 $('#loader').modal('show'); // 🔄 Show loader
+				 },
+				 success: function (data) {
+					 $('.content').html(data);
+					 //$("#detailsbtn").addClass("active");
+					 //tablepagination();
+				 },
+				 complete: function () {
+					 $('#loader').modal('hide'); 
+				 },
+				 error: function () {
+					   $('#loader').modal('hide');
+					 alert("Something went wrongss. Please try again.");
+				   
+				 }
+			 }); */
+		}
+
+		function showsummary() {
+			$('#loader').modal('show');
+			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
+			location.href = Callurl;
+
+		}
+	</script>
+
+	<script>
+
+		function activateTab(tabName) {
+			// Remove 'active' from all buttons
+			document.querySelectorAll('.custom-tab-btn').forEach(btn => {
+				btn.classList.remove('active');
+			});
+
+			// Add 'active' to selected button
+			if (tabName === 'summary') {
+				document.getElementById('custom-tab-btnSummary').classList.add('active');
+			} else if (tabName === 'Details') {
+				document.getElementById('custom-tab-btnDetails').classList.add('active');
+			}
+		}
+
+		window.onload = function () {
+			/* setTimeout(function() {
+				var selectedTab = document.getElementById("selectedTab").value;
+				alert(selectedTab);
+				activateTab(selectedTab);
+			}, 10000); */ // 10,000 milliseconds = 10 seconds
+
+			var selectedTab = document.getElementById("selectedTab").value;
+			activateTab(selectedTab);
+		};
+
+
+		function downloadfile(button) {
+			var reportid = button.getAttribute('data-reportid');
+			var asondate = button.getAttribute('data-asondate');
+			var fromdate = button.getAttribute('data-fromdate');
+			var todate = button.getAttribute('data-todate');
+			var currency = button.getAttribute('data-currency');
+			var subreportid = button.getAttribute('data-subreportid');
+			var secid = button.getAttribute('data-secid');
+			var dtltype = button.getAttribute('data-dtltype');
+			var filename = button.getAttribute('data-filename');
+			var type = button.getAttribute('data-type');
+			var version = button.getAttribute('data-version');
+
+
+			$('#loader').modal('show');
+
+			$.ajax({
+				url: './downloadExcel?reportid=' + reportid +
+					'&fromdate=' + fromdate +
+					'&asondate=' + asondate +
+					'&todate=' + todate +
+					'&currency=' + currency +
+					'&subreportid=' + subreportid +
+					'&secid=' + secid +
+					'&filename=' + filename +
+					'&type=' + type +
+					'&version=' + version,
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				success: function (data) {
+					$('#loader').modal('hide');
+
+					if (data && data.size > 100) {
+						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+						const url = window.URL.createObjectURL(blob);
+						const a = document.createElement('a');
+						a.style.display = 'none';
+						a.href = url;
+						a.download = filename;
+						document.body.appendChild(a);
+						a.click();
+						window.URL.revokeObjectURL(url);
+						document.body.removeChild(a);
+
+						showResultModal('Success', filename + ' downloaded successfully.');
+					} else {
+						showResultModal('Information', 'No data was available to create a download.');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$('#loader').modal('hide');
+					console.error("Download failed:", textStatus, errorThrown);
+					showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+				}
+			});
+		}
+
+
+		function editRecord() {
+			showResultModal('Alert', 'Development in progress');
+
+		}
+		function closemodel() {
+			$('#alert').modal('hide');
+			$('#resultModal').modal('hide');
+
+		}
+
+		function showResultModal(title, message) {
+			// Set the text for the modal elements
+			$('#resultModalLabel').text(title);
+			$('#resultModalBody').text(message);
+
+			// Show the modal
+			$('#resultModal').modal('show');
+		}
+
+	</script>
+
+	<script>
+
+		function downloadDetailfile(button) {
+			const filename = button.getAttribute('data-filename');
+			const fromdate = button.getAttribute('data-fromdate');
+			const todate = button.getAttribute('data-todate');
+			const currency = button.getAttribute('data-currency');
+			const dtltype = button.getAttribute('data-dtltype');
+			const type = button.getAttribute('data-type');
+			const version = button.getAttribute('data-version');
+
+			$('#loader').modal('show');
+
+			const baseUrl = '/BCDRS/Reports/';
+			const downloadUrl = baseUrl + 'downloadDetailExcel' +
+				'?filename=' + encodeURIComponent(filename) +
+				'&fromdate=' + encodeURIComponent(fromdate) +
+				'&todate=' + encodeURIComponent(todate) +
+				'&currency=' + encodeURIComponent(currency) +
+				'&dtltype=' + encodeURIComponent(dtltype) +
+				'&type=' + encodeURIComponent(type) +
+				'&version=' + encodeURIComponent(version);
+
+			$.ajax({
+				url: downloadUrl,
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				success: function (data) {
+					$('#loader').modal('hide');
+
+					if (data && data.size > 100) {
+						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+						const url = window.URL.createObjectURL(blob);
+						const a = document.createElement('a');
+						a.style.display = 'none';
+						a.href = url;
+						a.download = filename + '.xls';
+						document.body.appendChild(a);
+						a.click();
+						a.remove();
+						window.URL.revokeObjectURL(url);
+
+						showResultModal('Success', filename + ' downloaded successfully.');
+					} else {
+						showResultModal('Information', 'No data was available to create a download or file was empty.');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$('#loader').modal('hide');
+					console.error('Download error:', textStatus, errorThrown, jqXHR);
+
+					let errorMessage = 'An error occurred while downloading the file. Please try again.';
+					if (jqXHR.response) {
+						const reader = new FileReader();
+						reader.onload = function () {
+							errorMessage = reader.result;
+							showResultModal('Error', errorMessage);
+						};
+						reader.onerror = function () {
+							showResultModal('Error', 'An unknown error occurred during download.');
+						};
+						reader.readAsText(jqXHR.response);
+						return;
+					}
+					showResultModal('Error', errorMessage);
+				}
+			});
+		}
+
+
+
+	</script>
+
+
+	<script th:inline="javascript">
+		function showdetailsbyRowAndColumn(a) {
+			var rowId = a.getAttribute('RowId');
+			var columnId = a.getAttribute('ColumnId');
+			var cellValue = a.textContent || a.innerText;
+
+			if (cellValue !== '0') {
+				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
+					$('#loader').modal('show');
+
+					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+
+					if (!Callurl) {
+						alert("Error: Base URL not set.");
+						return;
+					}
+
+					const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+
+					if (Callurl.includes("?")) {
+						Callurl += "&" + filterParam;
+					} else {
+						Callurl += "?" + filterParam;
+					}
+
+					console.log("Redirecting to:", Callurl);
+					location.href = Callurl;
+				}
+			} else {
+				alert("No Records available for this selected cell.");
+			}
+		}
+	</script>
+
+
+
+
+</head>
+
+<title>BRF</title>
+
+<body>
+	<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+		<div class="row">
+
+			<div th:insert="HeaderMenu :: header"></div>
+
+			<div class="card">
+				<div class="card-header"
+					style="background-color: rgb(107, 122, 143); display: flex; align-items: center; justify-content: space-between;">
+					<div style="display: flex; align-items: center;" onclick="back();">
+						<!-- ⬅️ Left circular arrow -->
+						<div class="left-arrow-circle">
+							<i class="fa fa-arrow-left"></i>
+						</div>
+
+						<!-- Title -->
+						<h5
+							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
+							 Country-Wise Remittances Report - BRF 9.1 (AED 000)
+						</h5>
+					</div>
+
+					<div class="custom-tab-btn-group nav-buttons"
+						style="display: flex; color: white; align-items: center;">
+						<!-- 📅 Date -->
+						<span class="white-text"
+							style="color:white !important; font-size: 16px; margin-right: 20px;">Report Date:
+							<span th:text="${asondate}">2025-07-04</span>
+						</span>
+
+						<!-- Buttons -->
+						<input type="hidden" id="selectedTab" th:value="${displaymode}">
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();"
+							th:if="${displaymode == 'Details'}">Summary</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();"
+							th:if="${displaymode == 'summary'}">Details</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+							th:if="${displaymode == 'summary'}" th:attr="data-reportid=${reportid}, 
+	                     data-asondate=${asondate}, 
+	                     data-fromdate=${fromdate}, 
+	                     data-todate=${todate}, 
+	                     data-currency=${currency},  
+	                     data-dtltype=${dtltype}, 
+	                     data-filename='BRF9_1.xls',
+	                     data-type=${type},
+	                     data-version=${version}" onclick="downloadfile(this);">
+							<i class="fa fa-download"></i>
+						</button>
+						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
+							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+			    data-fromdate=${fromdate},
+			    data-todate=${todate},
+				data-currency=${currency},  
+				data-dtltype=${dtltype}, 
+			    data-filename='BRF9_1Detail',
+				data-type=${type},
+				data-version=${version}
+			  ">
+							<i class="fa fa-download"></i>
+						</button>
+					</div>
+				</div>
+			
+			<div th:if="${displaymode == 'summary'}">
+			<div class="row" >
+				<div class="col-sm-12">
+					<div class="table-wrapper table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
+    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+							<thead class="thead-light">
+  									<tr style="background-color: #b3b6b9">
+										<th rowspan="3" style="text-align: center; background-color: #b3b6b9">ROW</th>
+										<th rowspan="3" style="text-align: center; background-color: #b3b6b9">ID</th>
+										<th rowspan="3" style="text-align: center; width:33%; background-color: #b3b6b9">Country Break Down</th>
+										<th colspan= "5" style="text-align: center">OUTWARD</th>
+										<th colspan= "5" style="text-align: center">INWARD</th>
+									</tr>
+
+
+									<tr>
+										<th style="text-align: center;"> Family </th>
+										<th style="text-align: center;">Investment</th>
+										<th style="text-align: center;">Trade</th>
+										<th style="text-align: center;">Other</th>
+										<th style="text-align: center;">TOTAL</th>
+										<th style="text-align: center;"> Family </th>
+										<th style="text-align: center;">Investment</th>
+										<th style="text-align: center;">Trade</th>
+										<th style="text-align: center;">Other</th>
+										<th style="text-align: center;">TOTAL</th>
+									</tr>
+
+
+									<tr style="background-color: #b3b6b9">
+										
+										<th style="text-align: center; background-color: #b3b6b9">0010</th>
+										<th style="text-align: center; background-color: #b3b6b9">0020</th>
+										<th style="text-align: center; background-color: #b3b6b9">0030</th>
+										<th style="text-align: center; background-color: #b3b6b9">0040</th>
+										<th style="text-align: center; background-color: #b3b6b9">0050</th>
+										<th style="text-align: center; background-color: #b3b6b9">0060</th>
+										<th style="text-align: center; background-color: #b3b6b9">0070</th>
+										<th style="text-align: center; background-color: #b3b6b9">0080</th>
+										<th style="text-align: center; background-color: #b3b6b9">0090</th>
+										<th style="text-align: center; background-color: #b3b6b9">0100</th>
+								
+									</tr>
+
+								</thead>
+
+
+								<tbody th:each="report: ${reportsummary}" style="font-family: Arial;">
+
+										<tr>
+											<td style="text-align: center;">0010</td>
+											<td style="font-weight: bold; text-align: right; ">1</td>
+											<td style="font-weight: bold;" th:text="${report.r0010_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0010_inward_total}"></td>
+										</tr>
+										
+										
+										 <tr>
+											<td style="text-align: center;">0020</td>
+											<td style="text-align: right;">1.1</td>
+											<td th:text="${report.r0020_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_outward_family}"
+										    th:attr="RowId='R0020', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_outward_investment}"
+										    th:attr="RowId='R0020', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_outward_trade}"
+										    th:attr="RowId='R0020', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_outward_other}"
+										    th:attr="RowId='R0020', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0020_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_inward_family}"
+										    th:attr="RowId='R0020', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_inward_investment}"
+										    th:attr="RowId='R0020', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_inward_trade}"
+										    th:attr="RowId='R0020', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0020_inward_other}"
+										    th:attr="RowId='R0020', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0020_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0030</td>
+											<td style="text-align: right;">1.2</td>
+											<td  th:text="${report.r0030_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_outward_family}"
+										    th:attr="RowId='R0030', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_outward_investment}"
+										    th:attr="RowId='R0030', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_outward_trade}"
+										    th:attr="RowId='R0030', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_outward_other}"
+										    th:attr="RowId='R0030', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0030_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_inward_family}"
+										    th:attr="RowId='R0030', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_inward_investment}"
+										    th:attr="RowId='R0030', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_inward_trade}"
+										    th:attr="RowId='R0030', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0030_inward_other}"
+										    th:attr="RowId='R0030', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0030_inward_total}"></td>
+										 </tr>
+										
+										
+										<tr>
+											<td style="text-align: center;">0040</td>
+											<td style="font-weight: bold; text-align: right; ">2</td>
+											<td style="font-weight: bold;" th:text="${report.r0040_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0040_inward_total}"></td>
+										</tr>
+										
+										<tr>
+											<td style="text-align: center;">0050</td>
+											<td style="text-align: right; ">2.1</td>
+											<td th:text="${report.r0050_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_outward_family}"
+										    th:attr="RowId='R0050', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_outward_investment}"
+										    th:attr="RowId='R0050', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_outward_trade}"
+										    th:attr="RowId='R0050', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_outward_other}"
+										    th:attr="RowId='R0050', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0050_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_inward_family}"
+										    th:attr="RowId='R0050', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_inward_investment}"
+										    th:attr="RowId='R0050', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_inward_trade}"
+										    th:attr="RowId='R0050', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0050_inward_other}"
+										    th:attr="RowId='R0050', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0050_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0060</td>
+											<td style="text-align: right;">2.2</td>
+											<td th:text="${report.r0060_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_outward_family}"
+										    th:attr="RowId='R0060', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_outward_investment}"
+										    th:attr="RowId='R0060', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_outward_trade}"
+										    th:attr="RowId='R0060', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_outward_other}"
+										    th:attr="RowId='R0060', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0060_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_inward_family}"
+										    th:attr="RowId='R0060', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_inward_investment}"
+										    th:attr="RowId='R0060', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_inward_trade}"
+										    th:attr="RowId='R0060', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0060_inward_other}"
+										    th:attr="RowId='R0060', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0060_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style=" text-align: center;">0070</td>
+											<td style="text-align: right;">2.3</td>
+											<td th:text="${report.r0070_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_outward_family}"
+										    th:attr="RowId='R0070', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_outward_investment}"
+										    th:attr="RowId='R0070', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_outward_trade}"
+										    th:attr="RowId='R0070', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_outward_other}"
+										    th:attr="RowId='R0070', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0070_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_inward_family}"
+										    th:attr="RowId='R0070', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_inward_investment}"
+										    th:attr="RowId='R0070', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_inward_trade}"
+										    th:attr="RowId='R0070', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0070_inward_other}"
+										    th:attr="RowId='R0070', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0070_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0080</td>
+											<td style="text-align: right;">2.4</td>
+											<td th:text="${report.r0080_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_outward_family}"
+										    th:attr="RowId='R0080', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_outward_investment}"
+										    th:attr="RowId='R0080', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_outward_trade}"
+										    th:attr="RowId='R0080', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_outward_other}"
+										    th:attr="RowId='R0080', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0080_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_inward_family}"
+										    th:attr="RowId='R0080', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_inward_investment}"
+										    th:attr="RowId='R0080', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_inward_trade}"
+										    th:attr="RowId='R0080', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0080_inward_other}"
+										    th:attr="RowId='R0080', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0080_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0090</td>
+											<td style="text-align: right;">2.5</td>
+											<td th:text="${report.r0090_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_outward_family}"
+										    th:attr="RowId='R0090', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_outward_investment}"
+										    th:attr="RowId='R0090', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_outward_trade}"
+										    th:attr="RowId='R0090', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_outward_other}"
+										    th:attr="RowId='R0090', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0090_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_inward_family}"
+										    th:attr="RowId='R0090', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_inward_investment}"
+										    th:attr="RowId='R0090', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_inward_trade}"
+										    th:attr="RowId='R0090', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0090_inward_other}"
+										    th:attr="RowId='R0090', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0090_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0100</td>
+											<td style="text-align: right; ">2.6</td>
+											<td th:text="${report.r0100_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_outward_family}"
+										    th:attr="RowId='R0100', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_outward_investment}"
+										    th:attr="RowId='R0100', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_outward_trade}"
+										    th:attr="RowId='R0100', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_outward_other}"
+										    th:attr="RowId='R0100', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0100_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_inward_family}"
+										    th:attr="RowId='R0100', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_inward_investment}"
+										    th:attr="RowId='R0100', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_inward_trade}"
+										    th:attr="RowId='R0100', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0100_inward_other}"
+										    th:attr="RowId='R0100', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0100_inward_total}"></td>
+										 </tr>
+										
+										
+										<tr>
+											<td style="text-align: center;">0110</td>
+											<td style="text-align: right; ">2.7</td>
+											<td th:text="${report.r0110_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_outward_family}"
+										    th:attr="RowId='R0110', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_outward_investment}"
+										    th:attr="RowId='R0110', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_outward_trade}"
+										    th:attr="RowId='R0110', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_outward_other}"
+										    th:attr="RowId='R0110', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0110_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_inward_family}"
+										    th:attr="RowId='R0110', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_inward_investment}"
+										    th:attr="RowId='R0110', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_inward_trade}"
+										    th:attr="RowId='R0110', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0110_inward_other}"
+										    th:attr="RowId='R0110', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0110_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0120</td>
+											<td style="text-align: right;">2.8</td>
+											<td th:text="${report.r0120_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_outward_family}"
+										    th:attr="RowId='R0120', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_outward_investment}"
+										    th:attr="RowId='R0120', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_outward_trade}"
+										    th:attr="RowId='R0120', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_outward_other}"
+										    th:attr="RowId='R0120', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0120_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_inward_family}"
+										    th:attr="RowId='R0120', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_inward_investment}"
+										    th:attr="RowId='R0120', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_inward_trade}"
+										    th:attr="RowId='R0120', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0120_inward_other}"
+										    th:attr="RowId='R0120', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0120_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0130</td>
+											<td style="text-align: right;">2.9</td>
+											<td th:text="${report.r0130_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_outward_family}"
+										    th:attr="RowId='R0130', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_outward_investment}"
+										    th:attr="RowId='R0130', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_outward_trade}"
+										    th:attr="RowId='R0130', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_outward_other}"
+										    th:attr="RowId='R0130', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0130_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_inward_family}"
+										    th:attr="RowId='R0130', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_inward_investment}"
+										    th:attr="RowId='R0130', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_inward_trade}"
+										    th:attr="RowId='R0130', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0130_inward_other}"
+										    th:attr="RowId='R0130', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0130_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0140</td>
+											<td style="text-align: right; ">2.10</td>
+											<td th:text="${report.r0140_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_outward_family}"
+										    th:attr="RowId='R0140', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_outward_investment}"
+										    th:attr="RowId='R0140', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_outward_trade}"
+										    th:attr="RowId='R0140', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_outward_other}"
+										    th:attr="RowId='R0140', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0140_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_inward_family}"
+										    th:attr="RowId='R0140', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_inward_investment}"
+										    th:attr="RowId='R0140', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_inward_trade}"
+										    th:attr="RowId='R0140', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0140_inward_other}"
+										    th:attr="RowId='R0140', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0140_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0150</td>
+											<td style="text-align: right;">2.11</td>
+											<td th:text="${report.r0150_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_outward_family}"
+										    th:attr="RowId='R0150', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_outward_investment}"
+										    th:attr="RowId='R0150', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_outward_trade}"
+										    th:attr="RowId='R0150', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_outward_other}"
+										    th:attr="RowId='R0150', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0150_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_inward_family}"
+										    th:attr="RowId='R0150', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_inward_investment}"
+										    th:attr="RowId='R0150', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_inward_trade}"
+										    th:attr="RowId='R0150', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0150_inward_other}"
+										    th:attr="RowId='R0150', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0150_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0160</td>
+											<td style="text-align: right;">2.12</td>
+											<td th:text="${report.r0160_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_outward_family}"
+										    th:attr="RowId='R0160', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_outward_investment}"
+										    th:attr="RowId='R0160', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_outward_trade}"
+										    th:attr="RowId='R0160', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_outward_other}"
+										    th:attr="RowId='R0160', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0160_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_inward_family}"
+										    th:attr="RowId='R0160', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_inward_investment}"
+										    th:attr="RowId='R0160', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_inward_trade}"
+										    th:attr="RowId='R0160', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0160_inward_other}"
+										    th:attr="RowId='R0160', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0160_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0170</td>
+											<td style="text-align: right;">2.13</td>
+											<td th:text="${report.r0170_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_outward_family}"
+										    th:attr="RowId='R0170', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_outward_investment}"
+										    th:attr="RowId='R0170', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_outward_trade}"
+										    th:attr="RowId='R0170', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_outward_other}"
+										    th:attr="RowId='R0170', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0170_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_inward_family}"
+										    th:attr="RowId='R0170', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_inward_investment}"
+										    th:attr="RowId='R0170', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_inward_trade}"
+										    th:attr="RowId='R0170', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0170_inward_other}"
+										    th:attr="RowId='R0170', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0170_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0180</td>
+											<td style="text-align: right;">2.14</td>
+											<td th:text="${report.r0180_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_outward_family}"
+										    th:attr="RowId='R0180', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_outward_investment}"
+										    th:attr="RowId='R0180', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_outward_trade}"
+										    th:attr="RowId='R0180', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_outward_other}"
+										    th:attr="RowId='R0180', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0180_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_inward_family}"
+										    th:attr="RowId='R0180', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_inward_investment}"
+										    th:attr="RowId='R0180', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_inward_trade}"
+										    th:attr="RowId='R0180', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0180_inward_other}"
+										    th:attr="RowId='R0180', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0180_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0190</td>
+											<td style="text-align: right;">2.15</td>
+											<td th:text="${report.r0190_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_outward_family}"
+										    th:attr="RowId='R0190', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_outward_investment}"
+										    th:attr="RowId='R0190', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_outward_trade}"
+										    th:attr="RowId='R0190', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_outward_other}"
+										    th:attr="RowId='R0190', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0190_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_inward_family}"
+										    th:attr="RowId='R0190', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_inward_investment}"
+										    th:attr="RowId='R0190', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_inward_trade}"
+										    th:attr="RowId='R0190', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0190_inward_other}"
+										    th:attr="RowId='R0190', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0190_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0200</td>
+											<td style="text-align: right;">2.16</td>
+											<td th:text="${report.r0200_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_outward_family}"
+										    th:attr="RowId='R0200', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_outward_investment}"
+										    th:attr="RowId='R0200', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_outward_trade}"
+										    th:attr="RowId='R0200', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_outward_other}"
+										    th:attr="RowId='R0200', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0200_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_inward_family}"
+										    th:attr="RowId='R0200', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_inward_investment}"
+										    th:attr="RowId='R0200', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_inward_trade}"
+										    th:attr="RowId='R0200', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0200_inward_other}"
+										    th:attr="RowId='R0200', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0200_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0210</td>
+											<td style="text-align: right;">2.17</td>
+											<td th:text="${report.r0210_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_outward_family}"
+										    th:attr="RowId='R0210', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_outward_investment}"
+										    th:attr="RowId='R0210', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_outward_trade}"
+										    th:attr="RowId='R0210', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_outward_other}"
+										    th:attr="RowId='R0210', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0210_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_inward_family}"
+										    th:attr="RowId='R0210', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_inward_investment}"
+										    th:attr="RowId='R0210', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_inward_trade}"
+										    th:attr="RowId='R0210', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0210_inward_other}"
+										    th:attr="RowId='R0210', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0210_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0220</td>
+											<td style="text-align: right;">2.18</td>
+											<td th:text="${report.r0220_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_outward_family}"
+										    th:attr="RowId='R0220', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_outward_investment}"
+										    th:attr="RowId='R0220', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_outward_trade}"
+										    th:attr="RowId='R0220', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_outward_other}"
+										    th:attr="RowId='R0220', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0220_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_inward_family}"
+										    th:attr="RowId='R0220', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_inward_investment}"
+										    th:attr="RowId='R0220', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_inward_trade}"
+										    th:attr="RowId='R0220', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0220_inward_other}"
+										    th:attr="RowId='R0220', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0220_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0230</td>
+											<td style="text-align: right;">2.19</td>
+											<td th:text="${report.r0230_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_outward_family}"
+										    th:attr="RowId='R0230', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_outward_investment}"
+										    th:attr="RowId='R0230', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_outward_trade}"
+										    th:attr="RowId='R0230', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_outward_other}"
+										    th:attr="RowId='R0230', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0230_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_inward_family}"
+										    th:attr="RowId='R0230', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_inward_investment}"
+										    th:attr="RowId='R0230', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_inward_trade}"
+										    th:attr="RowId='R0230', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0230_inward_other}"
+										    th:attr="RowId='R0230', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0230_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0240</td>
+											<td style="text-align: right; ">2.20</td>
+											<td th:text="${report.r0240_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_outward_family}"
+										    th:attr="RowId='R0240', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_outward_investment}"
+										    th:attr="RowId='R0240', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_outward_trade}"
+										    th:attr="RowId='R0240', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_outward_other}"
+										    th:attr="RowId='R0240', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0240_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_inward_family}"
+										    th:attr="RowId='R0240', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_inward_investment}"
+										    th:attr="RowId='R0240', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_inward_trade}"
+										    th:attr="RowId='R0240', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0240_inward_other}"
+										    th:attr="RowId='R0240', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0240_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0250</td>
+											<td style="text-align: right;">2.21</td>
+											<td th:text="${report.r0250_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_outward_family}"
+										    th:attr="RowId='R0250', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_outward_investment}"
+										    th:attr="RowId='R0250', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_outward_trade}"
+										    th:attr="RowId='R0250', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_outward_other}"
+										    th:attr="RowId='R0250', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0250_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_inward_family}"
+										    th:attr="RowId='R0250', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_inward_investment}"
+										    th:attr="RowId='R0250', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_inward_trade}"
+										    th:attr="RowId='R0250', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0250_inward_other}"
+										    th:attr="RowId='R0250', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0250_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0260</td>
+											<td style="font-weight: bold; text-align: right;">3</td>
+											<td style="font-weight: bold;" th:text="${report.r0260_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0260_inward_total}"></td>
+										</tr>
+										
+										
+										<tr>
+											<td style="text-align: center;">0270</td>
+											<td style="text-align: right;">3.1</td>
+											<td th:text="${report.r0270_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_outward_family}"
+										    th:attr="RowId='R0270', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_outward_investment}"
+										    th:attr="RowId='R0270', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_outward_trade}"
+										    th:attr="RowId='R0270', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_outward_other}"
+										    th:attr="RowId='R0270', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0270_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_inward_family}"
+										    th:attr="RowId='R0270', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_inward_investment}"
+										    th:attr="RowId='R0270', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_inward_trade}"
+										    th:attr="RowId='R0270', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0270_inward_other}"
+										    th:attr="RowId='R0270', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0270_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0280</td>
+											<td style="text-align: right;">3.2</td>
+											<td th:text="${report.r0280_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_outward_family}"
+										    th:attr="RowId='R0280', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_outward_investment}"
+										    th:attr="RowId='R0280', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_outward_trade}"
+										    th:attr="RowId='R0280', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_outward_other}"
+										    th:attr="RowId='R0280', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0280_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_inward_family}"
+										    th:attr="RowId='R0280', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_inward_investment}"
+										    th:attr="RowId='R0280', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_inward_trade}"
+										    th:attr="RowId='R0280', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0280_inward_other}"
+										    th:attr="RowId='R0280', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0280_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0290</td>
+											<td style="text-align: right; ">3.3</td>
+											<td th:text="${report.r0290_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_outward_family}"
+										    th:attr="RowId='R0290', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_outward_investment}"
+										    th:attr="RowId='R0290', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_outward_trade}"
+										    th:attr="RowId='R0290', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_outward_other}"
+										    th:attr="RowId='R0290', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0290_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_inward_family}"
+										    th:attr="RowId='R0290', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_inward_investment}"
+										    th:attr="RowId='R0290', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_inward_trade}"
+										    th:attr="RowId='R0290', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0290_inward_other}"
+										    th:attr="RowId='R0290', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0290_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0300</td>
+											<td style="text-align: right;">3.4</td>
+											<td th:text="${report.r0300_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_outward_family}"
+										    th:attr="RowId='R0300', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_outward_investment}"
+										    th:attr="RowId='R0300', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_outward_trade}"
+										    th:attr="RowId='R0300', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_outward_other}"
+										    th:attr="RowId='R0300', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0300_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_inward_family}"
+										    th:attr="RowId='R0300', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_inward_investment}"
+										    th:attr="RowId='R0300', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_inward_trade}"
+										    th:attr="RowId='R0300', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0300_inward_other}"
+										    th:attr="RowId='R0300', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0300_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0310</td>
+											<td style="text-align: right;">3.5</td>
+											<td th:text="${report.r0310_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_outward_family}"
+										    th:attr="RowId='R0310', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_outward_investment}"
+										    th:attr="RowId='R0310', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_outward_trade}"
+										    th:attr="RowId='R0310', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_outward_other}"
+										    th:attr="RowId='R0310', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0310_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_inward_family}"
+										    th:attr="RowId='R0310', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_inward_investment}"
+										    th:attr="RowId='R0310', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_inward_trade}"
+										    th:attr="RowId='R0310', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0310_inward_other}"
+										    th:attr="RowId='R0310', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0310_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0320</td>
+											<td style="font-weight: bold; text-align: right;">4</td>
+											<td style="font-weight: bold;" th:text="${report.r0320_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0320_inward_total}"></td>
+										</tr>
+										
+										
+										<tr>
+											<td style="text-align: center;">0330</td>
+											<td style="text-align: right;">4.1</td>
+											<td th:text="${report.r0330_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_outward_family}"
+										    th:attr="RowId='R0330', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_outward_investment}"
+										    th:attr="RowId='R0330', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_outward_trade}"
+										    th:attr="RowId='R0330', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_outward_other}"
+										    th:attr="RowId='R0330', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0330_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_inward_family}"
+										    th:attr="RowId='R0330', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_inward_investment}"
+										    th:attr="RowId='R0330', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_inward_trade}"
+										    th:attr="RowId='R0330', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0330_inward_other}"
+										    th:attr="RowId='R0330', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0330_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0340</td>
+											<td style="text-align: right; ">4.2</td>
+											<td th:text="${report.r0340_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_outward_family}"
+										    th:attr="RowId='R0340', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_outward_investment}"
+										    th:attr="RowId='R0340', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_outward_trade}"
+										    th:attr="RowId='R0340', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_outward_other}"
+										    th:attr="RowId='R0340', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0340_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_inward_family}"
+										    th:attr="RowId='R0340', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_inward_investment}"
+										    th:attr="RowId='R0340', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_inward_trade}"
+										    th:attr="RowId='R0340', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0340_inward_other}"
+										    th:attr="RowId='R0340', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0340_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0350</td>
+											<td style="text-align: right;">4.3</td>
+											<td th:text="${report.r0350_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_outward_family}"
+										    th:attr="RowId='R0350', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_outward_investment}"
+										    th:attr="RowId='R0350', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_outward_trade}"
+										    th:attr="RowId='R0350', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_outward_other}"
+										    th:attr="RowId='R0350', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0350_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_inward_family}"
+										    th:attr="RowId='R0350', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_inward_investment}"
+										    th:attr="RowId='R0350', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_inward_trade}"
+										    th:attr="RowId='R0350', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0350_inward_other}"
+										    th:attr="RowId='R0350', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0350_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0360</td>
+											<td style="text-align: right;">4.4</td>
+											<td th:text="${report.r0360_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_outward_family}"
+										    th:attr="RowId='R0360', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_outward_investment}"
+										    th:attr="RowId='R0360', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_outward_trade}"
+										    th:attr="RowId='R0360', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_outward_other}"
+										    th:attr="RowId='R0360', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0360_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_inward_family}"
+										    th:attr="RowId='R0360', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_inward_investment}"
+										    th:attr="RowId='R0360', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_inward_trade}"
+										    th:attr="RowId='R0360', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0360_inward_other}"
+										    th:attr="RowId='R0360', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0360_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style=" text-align: center;">0370</td>
+											<td style="text-align: right;">4.5</td>
+											<td th:text="${report.r0370_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_outward_family}"
+										    th:attr="RowId='R0370', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_outward_investment}"
+										    th:attr="RowId='R0370', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_outward_trade}"
+										    th:attr="RowId='R0370', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_outward_other}"
+										    th:attr="RowId='R0370', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0370_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_inward_family}"
+										    th:attr="RowId='R0370', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_inward_investment}"
+										    th:attr="RowId='R0370', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_inward_trade}"
+										    th:attr="RowId='R0370', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0370_inward_other}"
+										    th:attr="RowId='R0370', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0370_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0380</td>
+											<td style="text-align: right;">4.6</td>
+											<td th:text="${report.r0380_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_outward_family}"
+										    th:attr="RowId='R0380', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_outward_investment}"
+										    th:attr="RowId='R0380', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_outward_trade}"
+										    th:attr="RowId='R0380', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_outward_other}"
+										    th:attr="RowId='R0380', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0380_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_inward_family}"
+										    th:attr="RowId='R0380', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_inward_investment}"
+										    th:attr="RowId='R0380', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_inward_trade}"
+										    th:attr="RowId='R0380', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0380_inward_other}"
+										    th:attr="RowId='R0380', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0380_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0390</td>
+											<td style="text-align: right; ">4.7</td>
+											<td th:text="${report.r0390_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_outward_family}"
+										    th:attr="RowId='R0390', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_outward_investment}"
+										    th:attr="RowId='R0390', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_outward_trade}"
+										    th:attr="RowId='R0390', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_outward_other}"
+										    th:attr="RowId='R0390', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0390_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_inward_family}"
+										    th:attr="RowId='R0390', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_inward_investment}"
+										    th:attr="RowId='R0390', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_inward_trade}"
+										    th:attr="RowId='R0390', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0390_inward_other}"
+										    th:attr="RowId='R0390', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0390_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0400</td>
+											<td style="text-align: right;">4.8</td>
+											<td th:text="${report.r0400_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_outward_family}"
+										    th:attr="RowId='R0400', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_outward_investment}"
+										    th:attr="RowId='R0400', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_outward_trade}"
+										    th:attr="RowId='R0400', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_outward_other}"
+										    th:attr="RowId='R0400', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0400_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_inward_family}"
+										    th:attr="RowId='R0400', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_inward_investment}"
+										    th:attr="RowId='R0400', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_inward_trade}"
+										    th:attr="RowId='R0400', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0400_inward_other}"
+										    th:attr="RowId='R0400', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0400_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0410</td>
+											<td style="text-align: right;">4.9</td>
+											<td th:text="${report.r0410_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_outward_family}"
+										    th:attr="RowId='R0410', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_outward_investment}"
+										    th:attr="RowId='R0410', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_outward_trade}"
+										    th:attr="RowId='R0410', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_outward_other}"
+										    th:attr="RowId='R0410', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0410_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_inward_family}"
+										    th:attr="RowId='R0410', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_inward_investment}"
+										    th:attr="RowId='R0410', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_inward_trade}"
+										    th:attr="RowId='R0410', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0410_inward_other}"
+										    th:attr="RowId='R0410', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0410_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0420</td>
+											<td style="text-align: right;">4.10</td>
+											<td th:text="${report.r0420_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_outward_family}"
+										    th:attr="RowId='R0420', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_outward_investment}"
+										    th:attr="RowId='R0420', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_outward_trade}"
+										    th:attr="RowId='R0420', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_outward_other}"
+										    th:attr="RowId='R0420', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0420_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_inward_family}"
+										    th:attr="RowId='R0420', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_inward_investment}"
+										    th:attr="RowId='R0420', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_inward_trade}"
+										    th:attr="RowId='R0420', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0420_inward_other}"
+										    th:attr="RowId='R0420', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0420_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0430</td>
+											<td style="font-weight: bold; text-align: right; ">5</td>
+											<td style=" font-weight: bold;" th:text="${report.r0430_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0430_inward_total}"></td>
+										</tr>
+										
+										
+										<tr>
+											<td style="text-align: center;">0440</td>
+											<td style="text-align: right; ">5.1</td>
+											<td th:text="${report.r0440_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_outward_family}"
+										    th:attr="RowId='R0440', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_outward_investment}"
+										    th:attr="RowId='R0440', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_outward_trade}"
+										    th:attr="RowId='R0440', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_outward_other}"
+										    th:attr="RowId='R0440', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0440_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_inward_family}"
+										    th:attr="RowId='R0440', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_inward_investment}"
+										    th:attr="RowId='R0440', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_inward_trade}"
+										    th:attr="RowId='R0440', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0440_inward_other}"
+										    th:attr="RowId='R0440', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0440_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0450</td>
+											<td style="text-align: right;">5.2</td>
+											<td th:text="${report.r0450_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_outward_family}"
+										    th:attr="RowId='R0450', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_outward_investment}"
+										    th:attr="RowId='R0450', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_outward_trade}"
+										    th:attr="RowId='R0450', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_outward_other}"
+										    th:attr="RowId='R0450', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0450_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_inward_family}"
+										    th:attr="RowId='R0450', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_inward_investment}"
+										    th:attr="RowId='R0450', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_inward_trade}"
+										    th:attr="RowId='R0450', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0450_inward_other}"
+										    th:attr="RowId='R0450', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0450_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0460</td>
+											<td style="text-align: right;">5.3</td>
+											<td th:text="${report.r0460_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_outward_family}"
+										    th:attr="RowId='R0460', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_outward_investment}"
+										    th:attr="RowId='R0460', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_outward_trade}"
+										    th:attr="RowId='R0460', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_outward_other}"
+										    th:attr="RowId='R0460', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0460_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_inward_family}"
+										    th:attr="RowId='R0460', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_inward_investment}"
+										    th:attr="RowId='R0460', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_inward_trade}"
+										    th:attr="RowId='R0460', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0460_inward_other}"
+										    th:attr="RowId='R0460', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0460_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0470</td>
+											<td style="text-align: right; ">5.4</td>
+											<td th:text="${report.r0470_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_outward_family}"
+										    th:attr="RowId='R0470', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_outward_investment}"
+										    th:attr="RowId='R0470', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_outward_trade}"
+										    th:attr="RowId='R0470', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_outward_other}"
+										    th:attr="RowId='R0470', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0470_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_inward_family}"
+										    th:attr="RowId='R0470', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_inward_investment}"
+										    th:attr="RowId='R0470', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_inward_trade}"
+										    th:attr="RowId='R0470', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0470_inward_other}"
+										    th:attr="RowId='R0470', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0470_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0480</td>
+											<td style="text-align: right;">5.5</td>
+											<td th:text="${report.r0480_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_outward_family}"
+										    th:attr="RowId='R0480', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_outward_investment}"
+										    th:attr="RowId='R0480', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_outward_trade}"
+										    th:attr="RowId='R0480', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_outward_other}"
+										    th:attr="RowId='R0480', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0480_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_inward_family}"
+										    th:attr="RowId='R0480', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_inward_investment}"
+										    th:attr="RowId='R0480', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_inward_trade}"
+										    th:attr="RowId='R0480', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0480_inward_other}"
+										    th:attr="RowId='R0480', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0480_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0490</td>
+											<td style="font-weight: bold; text-align: right;">6</td>
+											<td style=" font-weight: bold;" th:text="${report.r0490_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0490_inward_total}"></td>
+										</tr>
+										
+										
+										  <tr>
+											<td style="text-align: center;">0500</td>
+											<td style="text-align: right;">6.1</td>
+											<td th:text="${report.r0500_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_outward_family}"
+										    th:attr="RowId='R0500', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_outward_investment}"
+										    th:attr="RowId='R0500', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_outward_trade}"
+										    th:attr="RowId='R0500', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_outward_other}"
+										    th:attr="RowId='R0500', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0500_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_inward_family}"
+										    th:attr="RowId='R0500', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_inward_investment}"
+										    th:attr="RowId='R0500', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_inward_trade}"
+										    th:attr="RowId='R0500', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0500_inward_other}"
+										    th:attr="RowId='R0500', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0500_inward_total}"></td>
+										 </tr>
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0510</td>
+											<td style="text-align: right;">6.2</td>
+											<td th:text="${report.r0510_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_outward_family}"
+										    th:attr="RowId='R0510', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_outward_investment}"
+										    th:attr="RowId='R0510', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_outward_trade}"
+										    th:attr="RowId='R0510', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_outward_other}"
+										    th:attr="RowId='R0510', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0510_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_inward_family}"
+										    th:attr="RowId='R0510', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_inward_investment}"
+										    th:attr="RowId='R0510', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_inward_trade}"
+										    th:attr="RowId='R0510', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0510_inward_other}"
+										    th:attr="RowId='R0510', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0510_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0520</td>
+											<td style="text-align: right; ">6.3</td>
+											<td th:text="${report.r0520_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_outward_family}"
+										    th:attr="RowId='R0520', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_outward_investment}"
+										    th:attr="RowId='R0520', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_outward_trade}"
+										    th:attr="RowId='R0520', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_outward_other}"
+										    th:attr="RowId='R0520', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0520_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_inward_family}"
+										    th:attr="RowId='R0520', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_inward_investment}"
+										    th:attr="RowId='R0520', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_inward_trade}"
+										    th:attr="RowId='R0520', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0520_inward_other}"
+										    th:attr="RowId='R0520', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0520_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0530</td>
+											<td style="text-align: right;">6.4</td>
+											<td th:text="${report.r0530_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_outward_family}"
+										    th:attr="RowId='R0530', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_outward_investment}"
+										    th:attr="RowId='R0530', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_outward_trade}"
+										    th:attr="RowId='R0530', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_outward_other}"
+										    th:attr="RowId='R0530', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0530_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_inward_family}"
+										    th:attr="RowId='R0530', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_inward_investment}"
+										    th:attr="RowId='R0530', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_inward_trade}"
+										    th:attr="RowId='R0530', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0530_inward_other}"
+										    th:attr="RowId='R0530', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0530_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0540</td>
+											<td style="text-align: right;">6.5</td>
+											<td th:text="${report.r0540_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_outward_family}"
+										    th:attr="RowId='R0540', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_outward_investment}"
+										    th:attr="RowId='R0540', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_outward_trade}"
+										    th:attr="RowId='R0540', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_outward_other}"
+										    th:attr="RowId='R0540', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0540_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_inward_family}"
+										    th:attr="RowId='R0540', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_inward_investment}"
+										    th:attr="RowId='R0540', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_inward_trade}"
+										    th:attr="RowId='R0540', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0540_inward_other}"
+										    th:attr="RowId='R0540', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0540_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0550</td>
+											<td style="text-align: right;">6.6</td>
+											<td th:text="${report.r0550_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_outward_family}"
+										    th:attr="RowId='R0550', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_outward_investment}"
+										    th:attr="RowId='R0550', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_outward_trade}"
+										    th:attr="RowId='R0550', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_outward_other}"
+										    th:attr="RowId='R0550', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0550_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_inward_family}"
+										    th:attr="RowId='R0550', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_inward_investment}"
+										    th:attr="RowId='R0550', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_inward_trade}"
+										    th:attr="RowId='R0550', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0550_inward_other}"
+										    th:attr="RowId='R0550', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0550_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0560</td>
+											<td style="text-align: right; ">6.7</td>
+											<td th:text="${report.r0560_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_outward_family}"
+										    th:attr="RowId='R0560', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_outward_investment}"
+										    th:attr="RowId='R0560', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_outward_trade}"
+										    th:attr="RowId='R0560', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_outward_other}"
+										    th:attr="RowId='R0560', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0560_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_inward_family}"
+										    th:attr="RowId='R0560', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_inward_investment}"
+										    th:attr="RowId='R0560', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_inward_trade}"
+										    th:attr="RowId='R0560', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0560_inward_other}"
+										    th:attr="RowId='R0560', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0560_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0570</td>
+											<td style="text-align: right; ">6.8</td>
+											<td th:text="${report.r0570_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_outward_family}"
+										    th:attr="RowId='R0570', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_outward_investment}"
+										    th:attr="RowId='R0570', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_outward_trade}"
+										    th:attr="RowId='R0570', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_outward_other}"
+										    th:attr="RowId='R0570', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0570_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_inward_family}"
+										    th:attr="RowId='R0570', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_inward_investment}"
+										    th:attr="RowId='R0570', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_inward_trade}"
+										    th:attr="RowId='R0570', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0570_inward_other}"
+										    th:attr="RowId='R0570', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0570_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0580</td>
+											<td style="text-align: right;">6.9</td>
+											<td th:text="${report.r0580_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_outward_family}"
+										    th:attr="RowId='R0580', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_outward_investment}"
+										    th:attr="RowId='R0580', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_outward_trade}"
+										    th:attr="RowId='R0580', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_outward_other}"
+										    th:attr="RowId='R0580', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0580_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_inward_family}"
+										    th:attr="RowId='R0580', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_inward_investment}"
+										    th:attr="RowId='R0580', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_inward_trade}"
+										    th:attr="RowId='R0580', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0580_inward_other}"
+										    th:attr="RowId='R0580', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0580_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0590</td>
+											<td style="text-align: right;">6.10</td>
+											<td th:text="${report.r0590_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_outward_family}"
+										    th:attr="RowId='R0590', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_outward_investment}"
+										    th:attr="RowId='R0590', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_outward_trade}"
+										    th:attr="RowId='R0590', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_outward_other}"
+										    th:attr="RowId='R0590', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0590_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_inward_family}"
+										    th:attr="RowId='R0590', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_inward_investment}"
+										    th:attr="RowId='R0590', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_inward_trade}"
+										    th:attr="RowId='R0590', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0590_inward_other}"
+										    th:attr="RowId='R0590', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0590_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0600</td>
+											<td style="text-align: right;">6.11</td>
+											<td th:text="${report.r0600_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_outward_family}"
+										    th:attr="RowId='R0600', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_outward_investment}"
+										    th:attr="RowId='R0600', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_outward_trade}"
+										    th:attr="RowId='R0600', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_outward_other}"
+										    th:attr="RowId='R0600', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0600_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_inward_family}"
+										    th:attr="RowId='R0600', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_inward_investment}"
+										    th:attr="RowId='R0600', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_inward_trade}"
+										    th:attr="RowId='R0600', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0600_inward_other}"
+										    th:attr="RowId='R0600', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0600_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0610</td>
+											<td style="text-align: right;">6.12</td>
+											<td th:text="${report.r0610_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_outward_family}"
+										    th:attr="RowId='R0610', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_outward_investment}"
+										    th:attr="RowId='R0610', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_outward_trade}"
+										    th:attr="RowId='R0610', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_outward_other}"
+										    th:attr="RowId='R0610', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0610_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_inward_family}"
+										    th:attr="RowId='R0610', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_inward_investment}"
+										    th:attr="RowId='R0610', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_inward_trade}"
+										    th:attr="RowId='R0610', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0610_inward_other}"
+										    th:attr="RowId='R0610', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0610_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0620</td>
+											<td style="text-align: right;">6.13</td>
+											<td th:text="${report.r0620_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_outward_family}"
+										    th:attr="RowId='R0620', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_outward_investment}"
+										    th:attr="RowId='R0620', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_outward_trade}"
+										    th:attr="RowId='R0620', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_outward_other}"
+										    th:attr="RowId='R0620', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0620_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_inward_family}"
+										    th:attr="RowId='R0620', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_inward_investment}"
+										    th:attr="RowId='R0620', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_inward_trade}"
+										    th:attr="RowId='R0620', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0620_inward_other}"
+										    th:attr="RowId='R0620', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0620_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0630</td>
+											<td style="text-align: right;">6.14</td>
+											<td th:text="${report.r0630_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_outward_family}"
+										    th:attr="RowId='R0630', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_outward_investment}"
+										    th:attr="RowId='R0630', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_outward_trade}"
+										    th:attr="RowId='R0630', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_outward_other}"
+										    th:attr="RowId='R0630', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0630_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_inward_family}"
+										    th:attr="RowId='R0630', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_inward_investment}"
+										    th:attr="RowId='R0630', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_inward_trade}"
+										    th:attr="RowId='R0630', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0630_inward_other}"
+										    th:attr="RowId='R0630', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0630_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0640</td>
+											<td style="text-align: right;">6.15</td>
+											<td th:text="${report.r0640_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_outward_family}"
+										    th:attr="RowId='R0640', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_outward_investment}"
+										    th:attr="RowId='R0640', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_outward_trade}"
+										    th:attr="RowId='R0640', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_outward_other}"
+										    th:attr="RowId='R0640', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0640_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_inward_family}"
+										    th:attr="RowId='R0640', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_inward_investment}"
+										    th:attr="RowId='R0640', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_inward_trade}"
+										    th:attr="RowId='R0640', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0640_inward_other}"
+										    th:attr="RowId='R0640', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0640_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0650</td>
+											<td style="text-align: right;">6.16</td>
+											<td th:text="${report.r0650_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_outward_family}"
+										    th:attr="RowId='R0650', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_outward_investment}"
+										    th:attr="RowId='R0650', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_outward_trade}"
+										    th:attr="RowId='R0650', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_outward_other}"
+										    th:attr="RowId='R0650', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0650_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_inward_family}"
+										    th:attr="RowId='R0650', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_inward_investment}"
+										    th:attr="RowId='R0650', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_inward_trade}"
+										    th:attr="RowId='R0650', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0650_inward_other}"
+										    th:attr="RowId='R0650', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0650_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0660</td>
+											<td style="text-align: right;">6.17</td>
+											<td th:text="${report.r0660_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_outward_family}"
+										    th:attr="RowId='R0660', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_outward_investment}"
+										    th:attr="RowId='R0660', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_outward_trade}"
+										    th:attr="RowId='R0660', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_outward_other}"
+										    th:attr="RowId='R0660', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0660_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_inward_family}"
+										    th:attr="RowId='R0660', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_inward_investment}"
+										    th:attr="RowId='R0660', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_inward_trade}"
+										    th:attr="RowId='R0660', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0660_inward_other}"
+										    th:attr="RowId='R0660', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0660_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0670</td>
+											<td style="text-align: right;">6.18</td>
+											<td th:text="${report.r0670_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_outward_family}"
+										    th:attr="RowId='R0670', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_outward_investment}"
+										    th:attr="RowId='R0670', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_outward_trade}"
+										    th:attr="RowId='R0670', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_outward_other}"
+										    th:attr="RowId='R0670', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0670_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_inward_family}"
+										    th:attr="RowId='R0670', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_inward_investment}"
+										    th:attr="RowId='R0670', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_inward_trade}"
+										    th:attr="RowId='R0670', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0670_inward_other}"
+										    th:attr="RowId='R0670', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0670_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0680</td>
+											<td style="font-weight: bold; text-align: right;">7</td>
+											<td style=" font-weight: bold;" th:text="${report.r0680_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0680_inward_total}"></td>
+										</tr>
+										
+										
+										<tr>
+											<td style="text-align: center;">0690</td>
+											<td style="text-align: right;">7.1</td>
+											<td th:text="${report.r0690_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_outward_family}"
+										    th:attr="RowId='R0690', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_outward_investment}"
+										    th:attr="RowId='R0690', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_outward_trade}"
+										    th:attr="RowId='R0690', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_outward_other}"
+										    th:attr="RowId='R0690', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0690_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_inward_family}"
+										    th:attr="RowId='R0690', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_inward_investment}"
+										    th:attr="RowId='R0690', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_inward_trade}"
+										    th:attr="RowId='R0690', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0690_inward_other}"
+										    th:attr="RowId='R0690', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0690_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0700</td>
+											<td style="text-align: right;">7.2</td>
+											<td th:text="${report.r0700_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_outward_family}"
+										    th:attr="RowId='R0700', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_outward_investment}"
+										    th:attr="RowId='R0700', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_outward_trade}"
+										    th:attr="RowId='R0700', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_outward_other}"
+										    th:attr="RowId='R0700', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0700_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_inward_family}"
+										    th:attr="RowId='R0700', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_inward_investment}"
+										    th:attr="RowId='R0700', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_inward_trade}"
+										    th:attr="RowId='R0700', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0700_inward_other}"
+										    th:attr="RowId='R0700', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0700_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0710</td>
+											<td style="text-align: right;">7.3</td>
+											<td th:text="${report.r0710_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_outward_family}"
+										    th:attr="RowId='R0710', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_outward_investment}"
+										    th:attr="RowId='R0710', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_outward_trade}"
+										    th:attr="RowId='R0710', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_outward_other}"
+										    th:attr="RowId='R0710', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0710_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_inward_family}"
+										    th:attr="RowId='R0710', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_inward_investment}"
+										    th:attr="RowId='R0710', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_inward_trade}"
+										    th:attr="RowId='R0710', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0710_inward_other}"
+										    th:attr="RowId='R0710', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0710_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0720</td>
+											<td style="text-align: right;">7.4</td>
+											<td th:text="${report.r0720_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_outward_family}"
+										    th:attr="RowId='R0720', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_outward_investment}"
+										    th:attr="RowId='R0720', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_outward_trade}"
+										    th:attr="RowId='R0720', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_outward_other}"
+										    th:attr="RowId='R0720', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0720_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_inward_family}"
+										    th:attr="RowId='R0720', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_inward_investment}"
+										    th:attr="RowId='R0720', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_inward_trade}"
+										    th:attr="RowId='R0720', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0720_inward_other}"
+										    th:attr="RowId='R0720', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0720_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0730</td>
+											<td style="text-align: right;">7.5</td>
+											<td th:text="${report.r0730_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_outward_family}"
+										    th:attr="RowId='R0730', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_outward_investment}"
+										    th:attr="RowId='R0730', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_outward_trade}"
+										    th:attr="RowId='R0730', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_outward_other}"
+										    th:attr="RowId='R0730', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0730_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_inward_family}"
+										    th:attr="RowId='R0730', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_inward_investment}"
+										    th:attr="RowId='R0730', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_inward_trade}"
+										    th:attr="RowId='R0730', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0730_inward_other}"
+										    th:attr="RowId='R0730', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0730_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0740</td>
+											<td style="text-align: right;">7.6</td>
+											<td th:text="${report.r0740_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_outward_family}"
+										    th:attr="RowId='R0740', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_outward_investment}"
+										    th:attr="RowId='R0740', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_outward_trade}"
+										    th:attr="RowId='R0740', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_outward_other}"
+										    th:attr="RowId='R0740', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0740_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_inward_family}"
+										    th:attr="RowId='R0740', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_inward_investment}"
+										    th:attr="RowId='R0740', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_inward_trade}"
+										    th:attr="RowId='R0740', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0740_inward_other}"
+										    th:attr="RowId='R0740', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0740_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										  <tr>
+											<td style="text-align: center;">0750</td>
+											<td style="font-weight: bold; text-align: right;">8</td>
+											<td style=" font-weight: bold;" th:text="${report.r0750_product}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_outward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_outward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_outward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_outward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_outward_total}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_inward_family}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_inward_investment}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_inward_trade}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_inward_other}"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0750_inward_total}"></td>
+										</tr>
+										
+										
+										
+										<tr>
+											<td style="text-align: center;">0760</td>
+											<td style="text-align: right; ">8.1</td>
+											<td th:text="${report.r0760_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_outward_family}"
+										    th:attr="RowId='R0760', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_outward_investment}"
+										    th:attr="RowId='R0760', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_outward_trade}"
+										    th:attr="RowId='R0760', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_outward_other}"
+										    th:attr="RowId='R0760', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0760_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_inward_family}"
+										    th:attr="RowId='R0760', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_inward_investment}"
+										    th:attr="RowId='R0760', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_inward_trade}"
+										    th:attr="RowId='R0760', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0760_inward_other}"
+										    th:attr="RowId='R0760', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0760_inward_total}"></td>
+										 </tr>
+										 
+										 
+										 
+										 <tr>
+											<td style="text-align: center;">0770</td>
+											<td style="text-align: right;">8.2</td>
+											<td th:text="${report.r0770_product}"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_outward_family}"
+										    th:attr="RowId='R0770', ColumnId='C0010'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_outward_investment}"
+										    th:attr="RowId='R0770', ColumnId='C0020'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_outward_trade}"
+										    th:attr="RowId='R0770', ColumnId='C0030'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_outward_other}"
+										    th:attr="RowId='R0770', ColumnId='C0040'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0770_outward_total}"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_inward_family}"
+										    th:attr="RowId='R0770', ColumnId='C0060'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_inward_investment}"
+										    th:attr="RowId='R0770', ColumnId='C0070'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_inward_trade}"
+										    th:attr="RowId='R0770', ColumnId='C0080'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style="text-align: right;" th:text="${report.r0770_inward_other}"
+										    th:attr="RowId='R0770', ColumnId='C0090'"  onclick="showdetailsbyRowAndColumn(this)"></td>
+										    <td style=" background-color: #dcdcdc; text-align: right;" th:text="${report.r0770_inward_total}"></td>
+										 </tr>
+								</tbody>
+								
+								<!-- <tbody th:each="report2: ${reportsummary1}">
+									<tr>
+									    <td style="text-align: center;">0780</td>
+										<td style="font-weight: bold; text-align: right;">9</td>
+										<td>Remaining Countries</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.outward_family_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.outward_investment_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.outward_trade_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.outward_other_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.outward_total_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.inward_family_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.inward_investment_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.inward_trade_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.inward_other_rem}"></td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${report2.inward_total_rem}"></td>
+
+									</tr>
+								</tbody> -->
+								
+								
+								<tbody>
+									<tr>
+									    <td style="text-align: center;">0780</td>
+										<td style="font-weight: bold; text-align: right;">9</td>
+										<td>Remaining Countries</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getOutward_family_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getOutward_investment_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getOutward_trade_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getOutward_other_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getOutward_total_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getInward_family_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getInward_investment_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getInward_trade_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getInward_other_rem}">0</td>
+										<td style=" background-color: #dcdcdc; text-align: right;" th:text="${getInward_total_rem}">0</td>
+
+									</tr>
+								</tbody>
+								 
+
+
+									<tbody th:each="report1,iterStat8: ${reportsummary1}">
+									
+
+										<tr>
+											<td align="left"></td>
+											<td style="text-align: right;" th:text="${'9.' + iterStat8.count}"></td>
+											<td th:text="${report1.remaining_countries}"></td>
+											<td th:text="${report1.outward_family1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.outward_investment1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.outward_trade1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.outward_other1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.outward_total1}"
+												style="text-align: right; background-color: #dcdcdc;"></td>
+											<td th:text="${report1.inward_family1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.inward_investment1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.inward_trade1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.inward_other1}"
+												style="text-align: right;"></td>
+											<td th:text="${report1.inward_total1}"
+												style="text-align: right; background-color: #dcdcdc;"></td>
+										</tr>
+
+									</tbody>
+
+									<tbody th:each="report: ${reportsummary}">
+
+									<tr>
+										<td align="left"></td>
+										<td style="font-weight: bold; text-align: right;">10</td>
+										<td style="font-weight: bold;" th:text="${report.product}" align="left"></td>
+										<td th:text="${report.outward_family}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.outward_investment}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.outward_trade}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.outward_other}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.outward_total}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.inward_family}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.inward_investment}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.inward_trade}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+										<td th:text="${report.inward_other}"
+											style=" background-color: #dcdcdc; text-align: right;" ></td>
+										<td th:text="${report.inward_total}"
+											style=" background-color: #dcdcdc; text-align: right;"></td>
+									</tr>
+
+								</tbody>
+								
+
+			              </table>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+				<div th:if="${displaymode == 'Details'}">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="table-responsive scrollable-table-container"
+								style="border-right: 1px solid #dee2e6; ">
+								<table
+									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									id="BRFdet" style='margin-top:-30px'>
+									<thead class="thead-light">
+										<tr>
+											<th></th>
+											<th>CUST ID</th>
+											<th>ACCT NO</th>
+											<th>ACCT NAME</th>
+											<th style="text-align:right;">ACCT BALANCE</th>
+											<th style="text-align:left;">ROWID</th>
+											<th>COLUMNID</th>
+											<th>REPORT_DATE</th>
+										</tr>
+
+									</thead>
+
+									<tbody  style="font-family: Arial;">
+										<tr th:each="report: ${reportdetails}">
+											<td>
+												<a data-toggle="tooltip" class="editrec"
+													title="Click to Edit this Record">
+													<i class="fas fa-edit" onclick="editRecord(this)"></i>
+												</a>
+											</td>
+											<td th:text="${report.custId}"></td>
+											<td th:text="${report.acctNumber}"></td>
+											<td th:text="${report.acctName}"></td>
+											<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
+											<td style="text-align:left;" th:text="${report.rowId}"></td>
+											<td th:text="${report.columnId}"></td>
+											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+
+	</div>
+
+
+
+	<div class="modal fade" id="loader" data-backdrop="static"
+		data-keyboard="false">
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content" style="background: transparent;">
+				<div class="modal-body" style="text-align: center">
+					<div>
+						<img th:src=@{/images/loader.gif} id="bfirelogo"
+							style="width: 153px; height: auto; margin-left: 18px; background-color: transparent; border-color: transparent;"
+							alt="Bornfire">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Custom Alert/Result Modal (Matches your existing style) -->
+	<div class="modal fade" id="resultModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- Your custom styled header -->
+				<div class="menu-title-header">
+					<div class="modal-title" id="resultModalLabel"
+						style="text-align: center; color: white;">
+						<!-- Title will be set by JavaScript -->
+					</div>
+				</div>
+				<div class="modal-body"
+					style="text-align: center; font-size: 1.1rem;">
+					<p id="resultModalBody"></p>
+					<!-- Your custom styled button -->
+					<button type="button" class="custom-tab-btn" onclick="closemodel()"
+						data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<!-- <script>
+															  $(document).ready(function () {
+															    $('#BRFvalidation').DataTable({
+															      "paging": true,
+															      "pageLength": 10,
+															      "lengthChange": false,
+															      "searching": true,
+															      "ordering": true,
+															      "autoWidth": false,
+															      "language": {
+															        "search": "Search:"
+															      }
+															    });
+															  });
+															</script> -->
+<!-- <script>
+															  $(document).ready(function () {
+															    $('#BRFvalidation').DataTable({
+															      "paging": true,
+															      "info": false,       // turn off "Showing x of y"
+															      "searching": false,  // turn off search
+															      "ordering": false,   // turn off ordering
+															      "lengthChange": false // hide "Show x entries"
+															    });
+															  });
+															</script> -->
+
+<script>
+  $(document).ready(function () {
+    $('#BRFdet').DataTable({
+      "paging": true,
+      "pageLength": 100,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": false,
+      "autoWidth": false,
+      "language": {
+        "search": "Search:"
+      }
+    });
+  });
+</script>
+
+
+<style>
+  #BRFdet td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  #BRFdet {
+    border-collapse: collapse;
+    width: 100%;
+  }
+</style>
+
+
+
+<style>
+/* Your existing CSS - this is the correct approach */
+.scrollable-table-container {
+	/* This is the key: it creates the scroll context */
+	max-height: 620px;
+	/* Or a suitable height like 80vh for responsive design */
+	overflow-y: auto;
+	border: 1px solid #ccc;
+}
+
+/* Your existing sticky header CSS, targeting the tr elements within the thead */
+.scrollable-table-container thead tr:nth-child(1) {
+	position: sticky;
+	top: 0;
+	background-color: #b3b6b9;
+	z-index: 5;
+}
+
+.scrollable-table-container thead tr:nth-child(2) {
+	position: sticky;
+	top: 36px; /* adjust based on row height */
+	background-color: #b3b6b9;
+	z-index: 4;
+}
+
+.scrollable-table-container thead tr:nth-child(3) {
+	position: sticky;
+	top: 72px; /* Adjust based on row height */
+	background-color: #b3b6b9;
+	z-index: 3;
+}
+
+.scrollable-table-container thead tr:nth-child(4) {
+	position: sticky;
+	top: 100px; /* Adjust based on row height */
+	background-color: #b3b6b9;
+	z-index: 2;
+}
+
+.scrollable-table-container thead tr:nth-child(5) {
+	position: sticky;
+	top: 135px; /* Adjust based on row height */
+	background-color: #b3b6b9;
+	z-index: 1;
+}
+</style>
+
+
+<style>
+.inner {
+	max-height: 600px; /* Adjust height as needed */
+	overflow: auto;
+	border: 1px solid #dee2e6;
+}
+
+/* Sticky thead */
+#reports thead th {
+	position: sticky;
+	top: 0;
+	background-color: #f8f9fa; /* Match Bootstrap thead-light */
+	z-index: 2;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+	text-align: right !important;
+	float: right !important;
+	width: auto;
+	margin-top: 10px;
+}
+
+/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
+div.dataTables_wrapper div.dataTables_info {
+	float: left !important;
+	margin-top: 10px;
+}
+
+.pagination {
+	margin: 0;
+}
+
+.page-item.active .page-link {
+	background-color: #386276;
+	border-color: #386276;
+}
+
+.page-link {
+	color: #386276;
+}
+
+.page-link:hover {
+	color: #2a4a5c;
+}
+
+.form-select {
+	display: inline-block;
+	width: auto;
+}
+</style>
+
+</html>

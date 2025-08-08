@@ -39,6 +39,12 @@ public class RegulatoryReportServices {
 
 	@Autowired
 	CBUAE_BRF1_2_ReportService cbuae_brf1_2_reportservice;
+	
+	@Autowired
+	CBUAE_BRF9_1_ReportService cbuae_brf9_1_reportservice;
+	
+	@Autowired
+	CBUAE_BRF1_7_ReportService cbuae_brf1_7_reportservice;
 
 	@Autowired
 	CBUAE_BRF2_2_ReportService cbuae_brf2_2_reportservice;
@@ -93,6 +99,7 @@ public class RegulatoryReportServices {
 
 	@Autowired
 	CBUAE_BRF7_3_ReportService cbuae_brf7_3_reportservice;
+	
 	@Autowired
 	CBUAE_BRF16_5_ReportService CBUAE_BRF16_5_ReportServices;
 	
@@ -144,6 +151,16 @@ public class RegulatoryReportServices {
 		case "BRF1_2":
 			repsummary = cbuae_brf1_2_reportservice.getBRF1_2View(reportId, fromdate, todate, currency, dtltype,
 					pageable);
+			break;
+			
+		case "BRF1_7":
+			repsummary = cbuae_brf1_7_reportservice.getBRF1_7View(reportId, fromdate, todate, currency, dtltype,
+					pageable);
+			break;
+			
+		case "BRF9_1":
+			repsummary = cbuae_brf9_1_reportservice.getBRF9_1View(reportId, fromdate, todate, currency, dtltype,
+					pageable, type, version);
 			break;
 
 		case "BRF2_2":
@@ -271,6 +288,11 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf1_1_reportservice.getBRF1_1currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter, type, version);
 			break;
+			
+		case "BRF9_1":
+			repdetail = cbuae_brf9_1_reportservice.getBRF9_1currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter, type, version);
+			break;
 
 		case "BRF5_17":
 			repdetail = cbuae_brf5_17_reportservice.getBRF5_17currentDtl(reportId, fromdate, todate, currency, dtltype,
@@ -299,6 +321,11 @@ public class RegulatoryReportServices {
 			
 		case "BRF1_2":
 			repdetail = cbuae_brf1_2_reportservice.getBRF1_2currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
+			
+		case "BRF1_7":
+			repdetail = cbuae_brf1_7_reportservice.getBRF1_7currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
 
@@ -427,6 +454,19 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+			
+			
+		case "BRF9_1":
+			try {
+				repfile = cbuae_brf9_1_reportservice.getBRF9_1Excel(filename, reportId, fromdate, todate, currency,
+						dtltype, type, version);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+			
 		case "BRF7_3":
 			try {
 				repfile = cbuae_brf7_3_reportservice.getBRF7_3Excel(filename, reportId, fromdate, todate, currency,
@@ -469,6 +509,16 @@ public class RegulatoryReportServices {
 		case "BRF1_2":
 			try {
 				repfile = cbuae_brf1_2_reportservice.getBRF1_2Excel(filename, reportId, fromdate, todate, currency,
+						dtltype);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+		case "BRF1_7":
+			try {
+				repfile = cbuae_brf1_7_reportservice.getBRF1_7Excel(filename, reportId, fromdate, todate, currency,
 						dtltype);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -703,6 +753,9 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF1_1Detail")) {
 			return cbuae_brf1_1_reportservice.getBRF1_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
+		}else if (filename.equals("BRF9_1Detail")) {
+			return cbuae_brf9_1_reportservice.getBRF9_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
 		} else if (filename.equals("BRF7_3Detail")) {
 			return cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
@@ -711,6 +764,9 @@ public class RegulatoryReportServices {
 					version);
 		} else if (filename.equals("BRF1_2Detail")) {
 			return cbuae_brf1_2_reportservice.getBRF1_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
+		} else if (filename.equals("BRF1_7Detail")) {
+			return cbuae_brf1_7_reportservice.getBRF1_7DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
 		} else if (filename.equals("BRF1_3Detail")) {
 			return cbuae_brf1_3_reportservice.getBRF1_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,
