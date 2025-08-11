@@ -21,6 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 @ConfigurationProperties("output")
 
 public class RegulatoryReportServices {
+
+	@Autowired
+	CBUAE_BRF7_4_ReportService CBUAE_BRF7_4_ReportServices;
+	
 	@Autowired
 	CBUAE_BRF2_11_ReportService CBUAE_BRF2_11_ReportServices;
 	@Autowired
@@ -278,6 +282,12 @@ public class RegulatoryReportServices {
 
 					pageable, type, version);
 			break;
+		case "BRF7_4":
+			repsummary = CBUAE_BRF7_4_ReportServices.getBRF7_4View(reportId, fromdate, todate, currency, dtltype,
+
+					pageable, type, version);
+			break;
+			
 		}
 		return repsummary;
 	}
@@ -441,7 +451,12 @@ public class RegulatoryReportServices {
 			repdetail = cbuae_brf5_6_reportservice.getBRF5_6currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
-		}
+		
+			case "BRF7_4":
+				repdetail = CBUAE_BRF7_4_ReportServices.getBRF7_4currentDtl(reportId, fromdate, todate, currency, dtltype,
+						pageable, Filter);
+				break;
+			}
 		
 
 		return repdetail;
@@ -748,6 +763,16 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+			
+		case "BRF7_4":
+			try {
+				repfile = CBUAE_BRF7_4_ReportServices.getBRF7_4Excel(filename, reportId, fromdate, todate, currency,
+						dtltype, type, version);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		}
 
 		return repfile;
@@ -845,6 +870,10 @@ public class RegulatoryReportServices {
 		else if (filename.equals("BRF5_6Detail")) {
 			return cbuae_brf5_6_reportservice.getBRF5_6DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
+		}
+		else if (filename.equals("BRF7_4Detail")) {
+			return CBUAE_BRF7_4_ReportServices.getBRF7_4DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
 		}
 		return new byte[0];
 	}
