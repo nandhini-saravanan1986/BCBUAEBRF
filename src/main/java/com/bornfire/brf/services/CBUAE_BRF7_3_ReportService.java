@@ -428,13 +428,11 @@ public class CBUAE_BRF7_3_ReportService {
 			String[] rowCodesPart1 = {
 				    "R0030", "R0040", "R0050", "R0060", "R0070",
 				    "R0080", "R0090", "R0100", "R0110", "R0120",
-				    "R0130", "R0140", "R0150", "R0160", "R0170"
-				};
-
-			String[] rowCodesPart2 = {
-				    "R0190", "R0200", "R0210", "R0220", "R0230",
+				    "R0130", "R0140", "R0150", "R0160", "R0170","R0190", "R0200", "R0210", "R0220", "R0230",
 				    "R0240", "R0250","R0260"
 				};
+
+			
 			
 			String[] rowCodesPart3 = {
 				    "R0270", "R0280", "R0290", "R0300",
@@ -443,11 +441,11 @@ public class CBUAE_BRF7_3_ReportService {
 
 			String[] rowCodesPart4 = {
 				    "R0360", "R0370", "R0380", "R0390", "R0400",
-				    "R0410", "R0420", "R0430", "R0440"
+				    "R0410", "R0420", "R0430", "R0440","R0460", "R0470", "R0480", "R0490", "R0500", "R0510"
 				};
 
 			String[] rowCodesPart5 = {
-				    "R0460", "R0470", "R0480", "R0490", "R0500", "R0510"
+				    
 				};
 			String[] rowCodesPart6 = {
 				    "R0520", "R0530", "R0540"
@@ -494,9 +492,7 @@ public class CBUAE_BRF7_3_ReportService {
 				String[] fieldSuffixes2 = {
 					    "nat_amt", "hedg_nat_amt", "trad_nat_amt", "res_nat_amt", "non_res_nat_amt",
 					    "within_1_year_nat_amt", "1_to_3_years_nat_amt", "over_3_years_nat_amt",
-					    "gross_mkt_val", "res_lessthan_1_year_mkt_val", "res_1_to_3_years_mkt_val", "res_morethan_3_years_mkt_val"
-					    };
-				String[] fieldSuffixes3 = {
+					    "gross_mkt_val", "res_lessthan_1_year_mkt_val", "res_1_to_3_years_mkt_val", "res_morethan_3_years_mkt_val",
 					    "plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift",
 					    "minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift",
 					    "plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift",
@@ -509,6 +505,20 @@ public class CBUAE_BRF7_3_ReportService {
 					    "minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift",
 					    "plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift",
 					    "minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift"
+					    };
+				String[] fieldSuffixes3 = {
+						 "plus_2bp_lessthan_1_year_hedg_net_loss_parallelshift",
+						    "minus_2bp_lessthan_1_year_hedg_net_loss_parallelshift",
+						    "plus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift",
+						    "minus_2bp_1_to_3_years_hedg_net_loss_gain_parallelshift",
+						    "plus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift",
+						    "minus_2bp_greaterthan_3_years_hedg_net_loss_gain_parallel_shift",
+						    "plus_2bp_lessthan_1_year_trad_net_loss_parallelshift",
+						    "minus_2bp_lessthan_1_year_trad_net_loss_parallelshift",
+						    "plus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift",
+						    "minus_2bp_1_to_3_years_trad_net_loss_gain_parallelshift",
+						    "plus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift",
+						    "minus_2bp_greaterthan_3_years_trad_net_loss_gain_parallel_shift"
 					};
 
 				String[] fieldSuffixes4 = {
@@ -557,24 +567,21 @@ public class CBUAE_BRF7_3_ReportService {
 				
 				String[] fieldSuffixes10 = {"pro_bought_net_gain_loss", "pro_sold_net_gain_loss"};
 				
-				// First set: R0030 - R0170 at row 12
+				// Row --  R0030 -  R0260  , Excel row 13 - 36
 				writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 12, numberStyle, textStyle);
 
-				// Second set: R0190 - R0260 at row 28 (skipping R0180 and one row)
-				writeRowData1(sheet, dataList, rowCodesPart2, fieldSuffixes, 28, numberStyle, textStyle);
-			
 				// Third set: R0270 - R0330 at row 36 (i.e., Excel row 37)
 				writeRowData2(sheet, dataList2, rowCodesPart3, fieldSuffixes, 36, numberStyle, textStyle);
 
 				// Fourth set: R0360 - R0440 at row 43 (36 + 7 + 2(static) rows from previous block)
 				writeRowData3(sheet, dataList2, rowCodesPart4, fieldSuffixes2, 45, numberStyle, textStyle);
 				
-				writeRowData4(sheet, dataList2, rowCodesPart4, fieldSuffixes3, 45, numberStyle, textStyle);
+				writeRowData4(sheet, dataList2, rowCodesPart4, fieldSuffixes2, 45, numberStyle, textStyle);
 				
 				// Fourth set: R0460 - R05410 at row 55 (45 + 9 + 1(static) rows from previous block)
-				writeRowData3(sheet, dataList2, rowCodesPart5, fieldSuffixes2, 55, numberStyle, textStyle);
+				writeRowData3(sheet, dataList2, rowCodesPart4, fieldSuffixes2, 55, numberStyle, textStyle);
 				
-				writeRowData4(sheet, dataList2, rowCodesPart5, fieldSuffixes3, 55, numberStyle, textStyle);
+				writeRowData4(sheet, dataList2, rowCodesPart4, fieldSuffixes2, 55, numberStyle, textStyle);
 				
 				//R0520-R0540
 				writeRowData5(sheet, dataList3, rowCodesPart6, fieldSuffixes2, 61, numberStyle, textStyle);
@@ -629,40 +636,50 @@ public class CBUAE_BRF7_3_ReportService {
 			}
 			}
 
-		//C0010-C0240
-		private void writeRowData1(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity1> dataList,
-                String[] rowCodes, String[] fieldSuffixes, int baseRow,
-                CellStyle numberStyle, CellStyle textStyle) {
-				
-				for (CBUAE_BRF7_3_Summary_Entity1 record : dataList) {
-				for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
-				  String rowCode = rowCodes[rowIndex];
-				  Row row = sheet.getRow(baseRow + rowIndex);
-				  if (row == null) row = sheet.createRow(baseRow + rowIndex);
-				
-				  for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-				      String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
-				      Cell cell = row.createCell(4 + colIndex);
-				      try {
-				          Field field = CBUAE_BRF7_3_Summary_Entity1.class.getDeclaredField(fieldName);
-				          field.setAccessible(true);
-				          Object value = field.get(record);
-				          if (value instanceof BigDecimal) {
-				              cell.setCellValue(((BigDecimal) value).doubleValue());
-				              cell.setCellStyle(numberStyle);
-				          } else {
-				              cell.setCellValue("");
-				              cell.setCellStyle(textStyle);
-				          }
-				      } catch (NoSuchFieldException | IllegalAccessException e) {
-				          cell.setCellValue("");
-				          cell.setCellStyle(textStyle);
-				          LoggerFactory.getLogger(getClass()).warn("Field not found or inaccessible: {}", fieldName);
-				      }
-				  }
+		//Column -- C0010-C0240,  Row --  R0030 -  R0260  , Excel row 13 - 36
+				private void writeRowData1(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity1> dataList,
+				        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+				        CellStyle numberStyle, CellStyle textStyle) {
+
+				    for (CBUAE_BRF7_3_Summary_Entity1 record : dataList) {
+				        int sheetrow = baseRow;
+
+				        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+				            // Skip only in Excel row numbering, not in rowCodes sequence
+				            if (sheetrow == 27) {
+				                sheetrow++; // move Excel pointer forward
+				            }
+
+				            String rowCode = rowCodes[rowIndex];
+				            Row row = sheet.getRow(sheetrow);
+				            if (row == null) row = sheet.createRow(sheetrow);
+
+				            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+				                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+				                Cell cell = row.createCell(4 + colIndex);
+				                try {
+				                    Field field = CBUAE_BRF7_3_Summary_Entity1.class.getDeclaredField(fieldName);
+				                    field.setAccessible(true);
+				                    Object value = field.get(record);
+				                    if (value instanceof BigDecimal) {
+				                        cell.setCellValue(((BigDecimal) value).doubleValue());
+				                        cell.setCellStyle(numberStyle);
+				                    } else {
+				                        cell.setCellValue("");
+				                        cell.setCellStyle(textStyle);
+				                    }
+				                } catch (NoSuchFieldException | IllegalAccessException e) {
+				                    cell.setCellValue("");
+				                    cell.setCellStyle(textStyle);
+				                    LoggerFactory.getLogger(getClass())
+				                        .warn("Field not found or inaccessible: {}", fieldName);
+				                }
+				            }
+				            sheetrow++; // always increment after processing a rowCode
+				        }
+				    }
 				}
-				}
-				}
+
 
 		//C0010-C0240 Entity changed
 		private void writeRowData2(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity2> dataList,
@@ -731,21 +748,24 @@ public class CBUAE_BRF7_3_ReportService {
 		    }
 
 		    for (CBUAE_BRF7_3_Summary_Entity2 record : dataList) {
-		        logger.info("Processing record: {}", record.toString());
+		        logger.info("Processing record: {}", record);
 
 		        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
 		            String rowCode = rowCodes[rowIndex];
+
 		            Row row = sheet.getRow(baseRow + rowIndex);
 		            if (row == null) {
 		                row = sheet.createRow(baseRow + rowIndex);
 		                logger.info("Created new row at index {}", baseRow + rowIndex);
 		            }
 
-		            int actualColIndex = 4; // Start from column E
+		            int actualColIndex = 4; // Excel column E
+
 		            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-		                // Write only first 12 and last 12 columns
-		                if (colIndex >= 12 && colIndex < 24) {
-		                    continue; // Skip middle 12
+
+		                // Add a gap in Excel after first 12 fields
+		                if (colIndex == 12) {
+		                    actualColIndex += 12; // skip 12 Excel columns
 		                }
 
 		                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
@@ -759,21 +779,19 @@ public class CBUAE_BRF7_3_ReportService {
 		                    if (value instanceof BigDecimal) {
 		                        cell.setCellValue(((BigDecimal) value).doubleValue());
 		                        cell.setCellStyle(numberStyle);
-		                        logger.debug("Set value {} for field {}", value, fieldName);
 		                    } else {
 		                        cell.setCellValue("");
 		                        cell.setCellStyle(textStyle);
 		                    }
 		                } catch (NoSuchFieldException e) {
-		                    logger.error("Field not found: {}", fieldName);
 		                    cell.setCellValue("");
 		                    cell.setCellStyle(textStyle);
 		                } catch (IllegalAccessException e) {
-		                    logger.error("Access error for field: {}", fieldName, e);
 		                    cell.setCellValue("");
 		                    cell.setCellStyle(textStyle);
 		                }
 		            }
+
 		        }
 		    }
 		}
