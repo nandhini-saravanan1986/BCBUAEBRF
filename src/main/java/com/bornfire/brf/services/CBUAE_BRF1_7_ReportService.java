@@ -3,6 +3,8 @@ package com.bornfire.brf.services;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,6 +46,8 @@ import com.bornfire.brf.entities.CBUAE_BRF1_7_Summary_Entity1;
 import com.bornfire.brf.entities.CBUAE_BRF1_7_Summary_Entity2;
 import com.bornfire.brf.entities.CBUAE_BRF1_7_Summary_Repo1;
 import com.bornfire.brf.entities.CBUAE_BRF1_7_Summary_Repo2;
+import com.bornfire.brf.entities.CBUAE_BRF1_7_Summary_Entity2;
+import com.bornfire.brf.entities.CBUAE_BRF1_7_Summary_Entity1;
 
 @Component
 @Service
@@ -159,93 +163,182 @@ public class CBUAE_BRF1_7_ReportService {
 			logger.warn("Service: No data found for BRF1.7 report. Returning empty result.");
 			return new byte[0];
 		}
-
+		if (dataList1.isEmpty()) {
+		    logger.error("No data found for Entity2 - check query for date: {}", todate);
+		}
+		
 		String templateDir = env.getProperty("output.exportpathtemp");
-		String templateFileName = filename;
-		System.out.println(filename);
-		Path templatePath = Paths.get(templateDir, templateFileName);
-		System.out.println(templatePath);
-
+		Path templatePath = Paths.get(templateDir, filename);
+		
 		logger.info("Service: Attempting to load template from path: {}", templatePath.toAbsolutePath());
-
+		
 		if (!Files.exists(templatePath)) {
-			// This specific exception will be caught by the controller.
 			throw new FileNotFoundException("Template file not found at: " + templatePath.toAbsolutePath());
-		}
-		if (!Files.isReadable(templatePath)) {
-			// A specific exception for permission errors.
-			throw new SecurityException(
-					"Template file exists but is not readable (check permissions): " + templatePath.toAbsolutePath());
-		}
-
-		// This try-with-resources block is perfect. It guarantees all resources are
-		// closed automatically.
-		try (InputStream templateInputStream = Files.newInputStream(templatePath);
-				Workbook workbook = WorkbookFactory.create(templateInputStream);
-				ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-
-			Sheet sheet = workbook.getSheetAt(0);
-
-			// --- Style Definitions ---
-			CreationHelper createHelper = workbook.getCreationHelper();
-
-			CellStyle dateStyle = workbook.createCellStyle();
-			dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd-MM-yyyy"));
-			dateStyle.setBorderBottom(BorderStyle.THIN);
-			dateStyle.setBorderTop(BorderStyle.THIN);
-			dateStyle.setBorderLeft(BorderStyle.THIN);
-			dateStyle.setBorderRight(BorderStyle.THIN);
-
-			CellStyle textStyle = workbook.createCellStyle();
-			textStyle.setBorderBottom(BorderStyle.THIN);
-			textStyle.setBorderTop(BorderStyle.THIN);
-			textStyle.setBorderLeft(BorderStyle.THIN);
-			textStyle.setBorderRight(BorderStyle.THIN);
-
-			// Create the font
-			Font font = workbook.createFont();
-			font.setFontHeightInPoints((short) 8); // size 8
-			font.setFontName("Arial");
-
-			CellStyle numberStyle = workbook.createCellStyle();
-			// numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("0.000"));
-			numberStyle.setBorderBottom(BorderStyle.THIN);
-			numberStyle.setBorderTop(BorderStyle.THIN);
-			numberStyle.setBorderLeft(BorderStyle.THIN);
-			numberStyle.setBorderRight(BorderStyle.THIN);
-			numberStyle.setFont(font);
-			// --- End of Style Definitions ---
-
-			int startRow = 12;
-
-			if (!dataList.isEmpty()) {
-				for (int i = 0; i < dataList.size(); i++) {
-
-					CBUAE_BRF1_7_Summary_Entity1 record = dataList.get(i);
-					System.out.println("rownumber=" + startRow + i);
-					Row row = sheet.getRow(startRow + i);
-					if (row == null) {
-						row = sheet.createRow(startRow + i);
-					}
-
-					
-				}
-					
-
-				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
-			} else {
-
 			}
+			if (!Files.isReadable(templatePath)) {
+			throw new SecurityException("Template file exists but is not readable: " + templatePath.toAbsolutePath());
+			}
+		try (InputStream templateInputStream = Files.newInputStream(templatePath);
+		Workbook workbook = WorkbookFactory.create(templateInputStream);
+		ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+		
+		Sheet sheet = workbook.getSheetAt(0);
+		
+		CreationHelper createHelper = workbook.getCreationHelper();
+		
+		Font font = workbook.createFont();
+		font.setFontHeightInPoints((short) 8);
+		font.setFontName("Arial");
+		
+		CellStyle textStyle = workbook.createCellStyle();
+		textStyle.setBorderBottom(BorderStyle.THIN);
+		textStyle.setBorderTop(BorderStyle.THIN);
+		textStyle.setBorderLeft(BorderStyle.THIN);
+		textStyle.setBorderRight(BorderStyle.THIN);
+		textStyle.setFont(font);
+		
+		CellStyle numberStyle = workbook.createCellStyle();
+		//numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("#,##0.000"));
+		numberStyle.setBorderBottom(BorderStyle.THIN);
+		numberStyle.setBorderTop(BorderStyle.THIN);
+		numberStyle.setBorderLeft(BorderStyle.THIN);
+		numberStyle.setBorderRight(BorderStyle.THIN);
+		numberStyle.setFont(font);
+		
+		String[] rowCodesPart1 = {
+				"R0020","R0030","R0040","R0050","R0070","R0080","R0100","R0110",
+				"R0120","R0140","R0150","R0160","R0170","R0180","R0190","R0210", 
+				"R0220","R0230","R0260","R0270","R0280","R0310","R0320","R0330",
+				"R0350","R0360","R0390","R0400","R0420","R0430","R0450","R0460",
+				"R0480","R0490","R0520","R0530","R0540","R0550","R0560","R0580",
+				"R0590","R0600"
+			};
 
-			// Write the final workbook content to the in-memory stream.
+		String[] rowCodesPart2 = {
+				"R0610","R0620","R0640","R0650","R0660","R0670","R0680","R0690",
+				"R0710","R0720","R0730","R0740","R0750","R0760","R0770","R0780",
+				"R0800","R0810","R0820","R0840","R0850","R0860","R0870","R0880",
+				"R0890","R0900"
+			};					
+
+		
+		String[] fieldSuffixes = {
+			    "aed_ksa","fcy_ksa","aed_oman","fcy_oman","aed_kuwait",
+			    "fcy_kuwait","aed_qatar","fcy_qatar","aed_bahrain",
+			    "fcy_bahrain","aed_rest", "fcy_rest"
+			    };
+			
+			String[] fieldSuffixes2 = {
+					"aed_ksa","fcy_ksa","aed_oman","fcy_oman","aed_kuwait",
+				    "fcy_kuwait","aed_qatar","fcy_qatar","aed_bahrain",
+				    "fcy_bahrain","aed_rest", "fcy_rest"
+           			};
+			
+			// First set: R0020 - R0600 at row 12
+			writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 12, numberStyle, textStyle);
+
+			// Second set: R0610 - R0910 at row 71 
+			writeRowData2(sheet, dataList1, rowCodesPart2, fieldSuffixes2, 71, numberStyle, textStyle);
+		
+			
+			workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 			workbook.write(out);
-
 			logger.info("Service: Excel data successfully written to memory buffer ({} bytes).", out.size());
-
+			
 			return out.toByteArray();
-		}
-	}
+			}
+			}
+	
+	//R0010-R0600
+			private void writeRowData1(Sheet sheet, List<CBUAE_BRF1_7_Summary_Entity1> dataList,
+	                String[] rowCodes, String[] fieldSuffixes, int baseRow,
+	                CellStyle numberStyle, CellStyle textStyle) {
+					
+					for (CBUAE_BRF1_7_Summary_Entity1 record : dataList) {
+					for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+					  String rowCode = rowCodes[rowIndex];
+					  Row row = sheet.getRow(baseRow + rowIndex);
+					  if (row == null) row = sheet.createRow(baseRow + rowIndex);
+					
+					  for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+					      String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+					      Cell cell = row.createCell(4 + colIndex);
+					      try {
+					          Field field = CBUAE_BRF1_7_Summary_Entity1.class.getDeclaredField(fieldName);
+					          field.setAccessible(true);
+					          Object value = field.get(record);
+					          if (value instanceof BigDecimal) {
+					              cell.setCellValue(((BigDecimal) value).doubleValue());
+					              cell.setCellStyle(numberStyle);
+					          } else {
+					              cell.setCellValue("");
+					              cell.setCellStyle(textStyle);
+					          }
+					      } catch (NoSuchFieldException | IllegalAccessException e) {
+					          cell.setCellValue("");
+					          cell.setCellStyle(textStyle);
+					          LoggerFactory.getLogger(getClass()).warn("Field not found or inaccessible: {}", fieldName);
+					      }
+					  }
+					}
+					}
+					}
+	
+			//R0610-R0910 Entity changed
+			private void writeRowData2(Sheet sheet, List<CBUAE_BRF1_7_Summary_Entity2> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+			    
+			    logger.info("writeRowData2 - Starting with {} records", dataList.size());
+			    
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData2 - dataList is empty!");
+			        return;
+			    }
 
+			    for (CBUAE_BRF1_7_Summary_Entity2 record : dataList) {
+			        logger.info("Processing record: {}", record.toString()); // Make sure you have toString() implemented
+			        
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(4 + colIndex);
+			                
+			                try {
+			                    Field field = CBUAE_BRF1_7_Summary_Entity2.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+			                    
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			
 	// DetailExcel
 	public byte[] getBRF1_7DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
 			String type, String version) {

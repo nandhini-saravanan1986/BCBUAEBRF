@@ -51,7 +51,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Entity;
+
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Entity;
@@ -71,8 +71,7 @@ import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo7;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo8;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Repo9;
 import com.bornfire.brf.services.AuditService;
-import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Repo;
+
 
 @Component
 @Service
