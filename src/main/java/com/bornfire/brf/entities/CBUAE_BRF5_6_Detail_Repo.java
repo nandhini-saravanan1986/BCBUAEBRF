@@ -16,3 +16,4 @@ public interface CBUAE_BRF5_6_Detail_Repo extends JpaRepository<CBUAE_BRF5_6_Det
 	List<CBUAE_BRF5_6_Detail_Entity> GetDataByRowIdAndColumnId(String rowId,String ColumnId);
  
 }
+
