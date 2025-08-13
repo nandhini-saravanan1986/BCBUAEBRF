@@ -51,7 +51,6 @@ public class CBUAE_BRF5_6_Summary_Entity {
     @Column(name = "REPORT_CODE")
     private String reportCode;
 
-    @Id
     @Column(name = "REPORT_DATE")
     private Date reportDate;
 
@@ -69,6 +68,19 @@ public class CBUAE_BRF5_6_Summary_Entity {
 
     @Column(name = "RESTRUCTURED_NON_DISTRESSED_YN")
     private String restructuredNonDistressedYn;
+
+    @Id
+    @Column(name = "SRL_NO")
+    private String srl_no;
+    
+    
+	public String getSrl_no() {
+		return srl_no;
+	}
+
+	public void setSrl_no(String srl_no) {
+		this.srl_no = srl_no;
+	}
 
 	public BigDecimal getAmountDrawnDownOutstanding() {
 		return amountDrawnDownOutstanding;

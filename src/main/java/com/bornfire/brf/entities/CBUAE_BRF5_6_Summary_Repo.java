@@ -11,4 +11,7 @@ public interface CBUAE_BRF5_6_Summary_Repo extends JpaRepository<CBUAE_BRF5_6_Su
 	@Query(value = "select * from CBUAE_BRF5_6_SUMMARYTABLE where report_date=?1 ", nativeQuery = true)
 	List<CBUAE_BRF5_6_Summary_Entity> getdatabydateList(Date report_date);
 
+	@Query(value = "select * from CBUAE_BRF5_6_SUMMARYTABLE ORDER BY ID", nativeQuery = true)
+	List<CBUAE_BRF5_6_Summary_Entity> getdatabydateList();
+	
 }

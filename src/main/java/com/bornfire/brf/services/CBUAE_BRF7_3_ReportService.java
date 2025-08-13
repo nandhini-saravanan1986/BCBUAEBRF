@@ -1401,4 +1401,60 @@ private void writeRowData14(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity4> data
         }
     }
 }
+
+
+private void writeRowData100(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity4> dataList,
+        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+        CellStyle numberStyle, CellStyle textStyle) {
+
+    logger.info("writeRowData3 - Starting with {} records", dataList.size());
+
+    if (dataList.isEmpty()) {
+        logger.warn("writeRowData3 - dataList is empty!");
+        return;
+    }
+
+    for (CBUAE_BRF7_3_Summary_Entity4 record : dataList) {
+        logger.info("Processing record: {}", record.toString());
+
+        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+            String rowCode = rowCodes[rowIndex];
+            Row row = sheet.getRow(baseRow + rowIndex);
+            if (row == null) {
+                row = sheet.createRow(baseRow + rowIndex);
+                logger.info("Created new row at index {}", baseRow + rowIndex);
+            }
+
+            int actualColIndex = 44; 
+            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+               
+                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+                Cell cell = row.createCell(actualColIndex++);
+
+                try {
+                    Field field = CBUAE_BRF7_3_Summary_Entity4.class.getDeclaredField(fieldName);
+                    field.setAccessible(true);
+                    Object value = field.get(record);
+
+                    if (value instanceof BigDecimal) {
+                        cell.setCellValue(((BigDecimal) value).doubleValue());
+                        cell.setCellStyle(numberStyle);
+                        logger.debug("Set value {} for field {}", value, fieldName);
+                    } else {
+                        cell.setCellValue("");
+                        cell.setCellStyle(textStyle);
+                    }
+                } catch (NoSuchFieldException e) {
+                    logger.error("Field not found: {}", fieldName);
+                    cell.setCellValue("");
+                    cell.setCellStyle(textStyle);
+                } catch (IllegalAccessException e) {
+                    logger.error("Access error for field: {}", fieldName, e);
+                    cell.setCellValue("");
+                    cell.setCellStyle(textStyle);
+                }
+            }
+        }
+    }
+}
 }

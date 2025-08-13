@@ -644,7 +644,7 @@ PURPOSE		: BRFREPORT 5.6
 	                     data-todate=${todate}, 
 	                     data-currency=${currency},  
 	                     data-dtltype=${dtltype}, 
-	                     data-filename='BRF1_12.xls',
+	                     data-filename='BRF5_6.xls',
 	                     data-type=${type},
 	                     data-version=${version}" onclick="downloadfile(this);">
 							<i class="fa fa-download"></i>
@@ -655,7 +655,7 @@ PURPOSE		: BRFREPORT 5.6
 			    data-todate=${todate},
 				data-currency=${currency},  
 				data-dtltype=${dtltype}, 
-			    data-filename='BRF1_12Detail',
+			    data-filename='BRF5_6Detail',
 				data-type=${type},
 				data-version=${version}
 			  ">
@@ -712,46 +712,54 @@ PURPOSE		: BRFREPORT 5.6
 								</thead>
 							
 							<tbody th:each="report, iterStat : ${reportsummary}" style="font-family: Arial;">
-    <tr>
-        <!-- ROW number -->
-        <td th:text="${iterStat.index + 1}"></td>
+   <tr>
+    <!-- ROW number -->
+    <td th:text="${iterStat.index + 1}"></td>
 
-        <!-- ID (if you want to use reportCode as ID) -->
-        <td th:text="${report.reportCode}"></td>
+    <!-- ID -->
+    <td th:text="${report != null ? report.reportCode : '-'}"></td>
 
-        <!-- 0010: Identification number of the Deal -->
-        <td th:text="${report.reportDesc}"></td>
+    <!-- Identification number of the Deal -->
+    <td th:text="${report != null ? report.reportDesc : '-'}"></td>
 
-        <!-- 0020: Issuer Name -->
-        <td th:text="${report.issuerName}"></td>
+    <!-- Issuer Name -->
+    <td th:text="${report != null ? report.issuerName : '-'}"></td>
 
-        <!-- 0030: Issuer ticker -->
-        <td th:text="${report.issuerTicker}"></td>
+    <!-- Issuer ticker -->
+    <td th:text="${report != null ? report.issuerTicker : '-'}"></td>
 
-        <!-- 0040: Lead Bank -->
-        <td th:text="${report.leadBank}"></td>
+    <!-- Lead Bank -->
+    <td th:text="${report != null ? report.leadBank : '-'}"></td>
 
-        <!-- 0050: Restructured - Distressed (Y/N) -->
-        <td th:text="${report.restructuredDistressedYn}"></td>
+    <!-- Restructured - Distressed -->
+    <td th:text="${report != null ? report.restructuredDistressedYn : '-'}"></td>
 
-        <!-- 0060: Restructured - Non Distressed (Y/N) -->
-        <td th:text="${report.restructuredNonDistressedYn}"></td>
+    <!-- Restructured - Non Distressed -->
+    <td th:text="${report != null ? report.restructuredNonDistressedYn : '-'}"></td>
 
-        <!-- 0070: Country of risk -->
-        <td th:text="${report.countryOfRisk}"></td>
+    <!-- Country of risk -->
+    <td th:text="${report != null ? report.countryOfRisk : '-'}"></td>
 
-        <!-- 0080: Counterparty type -->
-        <td th:text="${report.counterpartyType}"></td>
+    <!-- Counterparty type -->
+    <td th:text="${report != null ? report.counterpartyType : '-'}"></td>
 
-        <!-- 0090: Amount of Syndicated Loan deal provided by the bank -->
-        <td th:text="${report.amtOfSyndicatedLoanProvided}"></td>
+    <!-- Amount of Syndicated Loan deal -->
+    <td th:text="${report != null && report.amtOfSyndicatedLoanProvided != null 
+        ? #numbers.formatDecimal(report.amtOfSyndicatedLoanProvided, 1, 'COMMA', 3, 'POINT') 
+        : '0.000'}"></td>
 
-        <!-- 0100: Amount drawn-down (outstanding) -->
-        <td th:text="${report.amountDrawnDownOutstanding}"></td>
+    <!-- Amount drawn-down (outstanding) -->
+    <td th:text="${report != null && report.amountDrawnDownOutstanding != null 
+        ? #numbers.formatDecimal(report.amountDrawnDownOutstanding, 1, 'COMMA', 3, 'POINT') 
+        : '0.000'}"></td>
 
-        <!-- 0110: Loans classified under Stage 3 -->
-        <td th:text="${report.loansClassifiedUnderStage3}"></td>
-    </tr>
+    <!-- Loans classified under Stage 3 -->
+    <td th:text="${report != null && report.loansClassifiedUnderStage3 != null 
+        ? #numbers.formatDecimal(report.loansClassifiedUnderStage3, 1, 'COMMA', 3, 'POINT') 
+        : '0.000'}"></td>
+</tr>
+
+
 </tbody>
 
 						</table>

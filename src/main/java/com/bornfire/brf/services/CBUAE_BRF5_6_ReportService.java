@@ -42,6 +42,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.entities.CBUAE_BRF16_4_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_6_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_6_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_6_Detail_Repo;
@@ -289,6 +290,123 @@ public class CBUAE_BRF5_6_ReportService {
 	 
 	}
 
+
+
+	public byte[] getBRF5_6Excel(String filename, String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
+	    try {
+	        List<CBUAE_BRF5_6_Summary_Entity> dataList = BRF5_6Summary_Repo.getdatabydateList();
+
+	        if (dataList.isEmpty()) {
+	            logger.warn("No data found for BRF5.6 report.");
+	            return new byte[0];
+	        }
+
+	        String templateDir = env.getProperty("output.exportpathtemp");
+	        String templateFileName = filename;
+	        Path templatePath = Paths.get(templateDir, templateFileName);
+
+	        logger.info("Service: Attempting to load template from path: {}", templatePath.toAbsolutePath());
+
+	        if (!Files.exists(templatePath)) {
+	            throw new FileNotFoundException("Template file not found at: " + templatePath.toAbsolutePath());
+	        }
+	        if (!Files.isReadable(templatePath)) {
+	            throw new SecurityException("Template file exists but is not readable (check permissions): " + templatePath.toAbsolutePath());
+	        }
+
+	        try (InputStream templateInputStream = Files.newInputStream(templatePath);
+	             Workbook workbook = WorkbookFactory.create(templateInputStream);
+	             ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+
+	            Sheet sheet = workbook.getSheetAt(0);
+	            CreationHelper createHelper = workbook.getCreationHelper();
+
+	            CellStyle centerStyle = workbook.createCellStyle();
+	            centerStyle.setAlignment(HorizontalAlignment.CENTER);
+
+	            CellStyle leftStyle = workbook.createCellStyle();
+	            leftStyle.setAlignment(HorizontalAlignment.LEFT);
+
+	            CellStyle numStyle = workbook.createCellStyle();
+	            numStyle.setDataFormat(createHelper.createDataFormat().getFormat("#,##0.00"));
+
+	            int startCol = 2; // Column C (0-based: 0=A,1=B,2=C,...)
+	            int startRow = 7; // 8th row in Excel (0-based index)
+	            int notesRow = 10; // "Notes" row position
+
+	            // Shift notes down to insert data
+	            if (sheet.getLastRowNum() >= notesRow) {
+	                sheet.shiftRows(notesRow, sheet.getLastRowNum(), dataList.size());
+	            }
+
+	            // Write data rows
+	            for (int i = 0; i < dataList.size(); i++) {
+	                CBUAE_BRF5_6_Summary_Entity record = dataList.get(i);
+	                Row row = sheet.getRow(startRow + i);
+	                if (row == null) row = sheet.createRow(startRow + i);
+
+	                int col = startCol;
+
+	                // Serial Number (Column B)
+	                Cell serialCell = row.createCell(1);
+	                serialCell.setCellValue(String.format("%04d", (i + 1) * 10));
+	                serialCell.setCellStyle(centerStyle);
+
+	                // 0010: Identification number of the Deal
+	                row.createCell(col++).setCellValue(record.getSrl_no());
+
+	                // 0020: Issuer Name
+	                row.createCell(col++).setCellValue(record.getIssuerName());
+
+	                // 0030: Issuer ticker
+	                row.createCell(col++).setCellValue(record.getIssuerTicker());
+
+	                // 0040: Lead Bank
+	                row.createCell(col++).setCellValue(record.getLeadBank());
+
+	                // 0050: Restructured - Distressed (Y/N)
+	                row.createCell(col++).setCellValue(record.getRestructuredDistressedYn());
+
+	                // 0060: Restructured - Non Distressed (Y/N)
+	                row.createCell(col++).setCellValue(record.getRestructuredNonDistressedYn());
+
+	                // 0070: Country of risk
+	                row.createCell(col++).setCellValue(record.getCountryOfRisk());
+
+	                // 0080: Counterparty type
+	                row.createCell(col++).setCellValue(record.getCounterpartyType());
+
+	                // 0090: Amount of Syndicated Loan deal provided by the bank
+	                Cell amtLoanProvided = row.createCell(col++);
+	                if (record.getAmtOfSyndicatedLoanProvided() != null) {
+	                    amtLoanProvided.setCellValue(record.getAmtOfSyndicatedLoanProvided().doubleValue());
+	                    amtLoanProvided.setCellStyle(numStyle);
+	                }
+
+	                // 0100: Amount drawn-down (outstanding)
+	                Cell amtDrawnDown = row.createCell(col++);
+	                if (record.getAmountDrawnDownOutstanding() != null) {
+	                    amtDrawnDown.setCellValue(record.getAmountDrawnDownOutstanding().doubleValue());
+	                    amtDrawnDown.setCellStyle(numStyle);
+	                }
+
+	                // 0110: Loans classified under Stage 3
+	                Cell loansStage3 = row.createCell(col++);
+	                if (record.getLoansClassifiedUnderStage3() != null) {
+	                    loansStage3.setCellValue(record.getLoansClassifiedUnderStage3().doubleValue());
+	                    loansStage3.setCellStyle(numStyle);
+	                }
+	            }
+
+	            workbook.write(out);
+	            return out.toByteArray();
+	        }
+
+	    } catch (Exception e) {
+	        logger.error("Error generating BRF5.6 Excel file", e);
+	        throw e;
+	    }
+	}
 
 
 
