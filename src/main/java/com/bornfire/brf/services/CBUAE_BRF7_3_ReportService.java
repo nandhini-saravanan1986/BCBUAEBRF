@@ -556,69 +556,69 @@ String[] rowCodesPart14 = {
 	
 	String[] fieldSuffixes10 = {"pro_bought_net_gain_loss", "pro_sold_net_gain_loss"};
 	
-	// First set: R0030 - R0170 at row 12
-	writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 12, numberStyle, textStyle);
+	// First set: R0030 - R0170 at row 13
+	writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 13, numberStyle, textStyle);
 
-	// Second set: R0190 - R0260 at row 28 (skipping R0180 and one row)
-	writeRowData1(sheet, dataList, rowCodesPart2, fieldSuffixes, 28, numberStyle, textStyle);
+	// Second set: R0190 - R0260 at row 29 (skipping R0180 and one row)
+	writeRowData1(sheet, dataList, rowCodesPart2, fieldSuffixes, 29, numberStyle, textStyle);
 
-	// Third set: R0270 - R0330 at row 36 (i.e., Excel row 37)
-	writeRowData2(sheet, dataList2, rowCodesPart3, fieldSuffixes, 36, numberStyle, textStyle);
+	// Third set: R0270 - R0330 at row 37 (i.e., Excel row 38)
+	writeRowData2(sheet, dataList2, rowCodesPart3, fieldSuffixes, 37, numberStyle, textStyle);
 
-	// Fourth set: R0360 - R0440 at row 43 (36 + 7 + 2(static) rows from previous block)
-	writeRowData3(sheet, dataList2, rowCodesPart4, fieldSuffixes2, 45, numberStyle, textStyle);
+	// Fourth set: R0360 - R0440 at row 46 (37 + 7 + 2(static) rows from previous block)
+	writeRowData3(sheet, dataList2, rowCodesPart4, fieldSuffixes2, 46, numberStyle, textStyle);
 	
-	writeRowData4(sheet, dataList2, rowCodesPart4, fieldSuffixes3, 45, numberStyle, textStyle);
+	writeRowData4(sheet, dataList2, rowCodesPart4, fieldSuffixes3, 46, numberStyle, textStyle);
 	
-	// Fourth set: R0460 - R05410 at row 55 (45 + 9 + 1(static) rows from previous block)
-	writeRowData3(sheet, dataList2, rowCodesPart5, fieldSuffixes2, 55, numberStyle, textStyle);
+	// Fourth set: R0460 - R05410 at row 56 (46 + 9 + 1(static) rows from previous block)
+	writeRowData3(sheet, dataList2, rowCodesPart5, fieldSuffixes2, 56, numberStyle, textStyle);
 	
-	writeRowData4(sheet, dataList2, rowCodesPart5, fieldSuffixes3, 55, numberStyle, textStyle);
+	writeRowData4(sheet, dataList2, rowCodesPart5, fieldSuffixes3, 56, numberStyle, textStyle);
 	
 	//R0520-R0540
-	writeRowData5(sheet, dataList3, rowCodesPart6, fieldSuffixes2, 61, numberStyle, textStyle);
+	writeRowData5(sheet, dataList3, rowCodesPart6, fieldSuffixes2, 62, numberStyle, textStyle);
 	
-	writeRowData6(sheet, dataList3, rowCodesPart6, fieldSuffixes3, 61, numberStyle, textStyle);
+	writeRowData6(sheet, dataList3, rowCodesPart6, fieldSuffixes3, 62, numberStyle, textStyle);
 	
-	// Fifth set: R0560 at row 65 (61 + 2 + 1(static) rows from previous block)
-	writeRowData5(sheet, dataList3, rowCodesPart7, fieldSuffixes4, 65, numberStyle, textStyle);
+	// Fifth set: R0560 at row 66 (62 + 2 + 1(static) rows from previous block)
+	writeRowData5(sheet, dataList3, rowCodesPart7, fieldSuffixes4, 66, numberStyle, textStyle);
 	
-	writeRowData6(sheet, dataList3, rowCodesPart7, fieldSuffixes3, 65, numberStyle, textStyle);
+	writeRowData6(sheet, dataList3, rowCodesPart7, fieldSuffixes3, 66, numberStyle, textStyle);
 	
-	// SIXTH set: R0580 at row 67 (65 + 1(static) rows from previous block)
-	writeRowData5(sheet, dataList3, rowCodesPart8, fieldSuffixes4, 67, numberStyle, textStyle);
-	writeRowData6(sheet, dataList3, rowCodesPart8, fieldSuffixes3, 67, numberStyle, textStyle);
+	// SIXTH set: R0580 at row 68 (66 + 1(static) rows from previous block)
+	writeRowData5(sheet, dataList3, rowCodesPart8, fieldSuffixes4, 68, numberStyle, textStyle);
+	writeRowData6(sheet, dataList3, rowCodesPart8, fieldSuffixes3, 68, numberStyle, textStyle);
 	
-	// Seventh set: R0600-R0670 at row 69 (67 + 1(static) rows from previous block)
-	writeRowData5(sheet, dataList3, rowCodesPart9, fieldSuffixes4, 69, numberStyle, textStyle);
+	// Seventh set: R0600-R0670 at row 70 (68 + 1(static) rows from previous block)
+	writeRowData5(sheet, dataList3, rowCodesPart9, fieldSuffixes4, 70, numberStyle, textStyle);
 	
-	writeRowData7(sheet, dataList3, rowCodesPart9, fieldSuffixes5, 69, numberStyle, textStyle);
+	writeRowData7(sheet, dataList3, rowCodesPart9, fieldSuffixes5, 70, numberStyle, textStyle);
 	
 	//eighth set: only for R0690
-	writeRowData8(sheet, dataList3, rowCodesPart10, fieldSuffixes6, 78, numberStyle, textStyle);
+	writeRowData8(sheet, dataList3, rowCodesPart10, fieldSuffixes6, 79, numberStyle, textStyle);
 	
-	writeRowData9(sheet, dataList3, rowCodesPart10, fieldSuffixes7, 78, numberStyle, textStyle);
+	writeRowData9(sheet, dataList3, rowCodesPart10, fieldSuffixes7, 79, numberStyle, textStyle);
 	
-	writeRowData10(sheet, dataList3, rowCodesPart10, fieldSuffixes3, 78, numberStyle, textStyle);
+	writeRowData10(sheet, dataList3, rowCodesPart10, fieldSuffixes3, 79, numberStyle, textStyle);
 	
 	//Ninth set: only for R0710
-	writeRowData5(sheet, dataList3, rowCodesPart11, fieldSuffixes4, 80, numberStyle, textStyle);
+	writeRowData5(sheet, dataList3, rowCodesPart11, fieldSuffixes4, 81, numberStyle, textStyle);
 	
-	writeRowData11(sheet, dataList3, rowCodesPart11, fieldSuffixes8, 80, numberStyle, textStyle);
+	writeRowData11(sheet, dataList3, rowCodesPart11, fieldSuffixes8, 81, numberStyle, textStyle);
 	
 	//Tenth set: only for R0730
-	writeRowData5(sheet, dataList3, rowCodesPart12, fieldSuffixes4, 82, numberStyle, textStyle);
+	writeRowData5(sheet, dataList3, rowCodesPart12, fieldSuffixes4, 83, numberStyle, textStyle);
 	
-	writeRowData11(sheet, dataList3, rowCodesPart12, fieldSuffixes9, 82, numberStyle, textStyle);
+	writeRowData11(sheet, dataList3, rowCodesPart12, fieldSuffixes9, 83, numberStyle, textStyle);
 	
-	// Eleventh set: R0760-R0850 at row 85 (82 + 2(static) rows from previous block)
-	writeRowData5(sheet, dataList3, rowCodesPart13, fieldSuffixes4, 85, numberStyle, textStyle);
+	// Eleventh set: R0760-R0850 at row 86 (83 + 2(static) rows from previous block)
+	writeRowData5(sheet, dataList3, rowCodesPart13, fieldSuffixes4, 86, numberStyle, textStyle);
 	
-	writeRowData12(sheet, dataList3, rowCodesPart13, fieldSuffixes10, 85, numberStyle, textStyle);
+	writeRowData12(sheet, dataList3, rowCodesPart13, fieldSuffixes10, 86, numberStyle, textStyle);
 	
-	writeRowData13(sheet, dataList4, rowCodesPart14, fieldSuffixes4, 91, numberStyle, textStyle);
+	writeRowData13(sheet, dataList4, rowCodesPart14, fieldSuffixes4, 92, numberStyle, textStyle);
 	
-	writeRowData14(sheet, dataList4, rowCodesPart14, fieldSuffixes10, 91, numberStyle, textStyle);
+	writeRowData14(sheet, dataList4, rowCodesPart14, fieldSuffixes10, 92, numberStyle, textStyle);
 	
 workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 workbook.write(out);
@@ -1402,59 +1402,4 @@ private void writeRowData14(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity4> data
     }
 }
 
-
-private void writeRowData100(Sheet sheet, List<CBUAE_BRF7_3_Summary_Entity4> dataList,
-        String[] rowCodes, String[] fieldSuffixes, int baseRow,
-        CellStyle numberStyle, CellStyle textStyle) {
-
-    logger.info("writeRowData3 - Starting with {} records", dataList.size());
-
-    if (dataList.isEmpty()) {
-        logger.warn("writeRowData3 - dataList is empty!");
-        return;
-    }
-
-    for (CBUAE_BRF7_3_Summary_Entity4 record : dataList) {
-        logger.info("Processing record: {}", record.toString());
-
-        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
-            String rowCode = rowCodes[rowIndex];
-            Row row = sheet.getRow(baseRow + rowIndex);
-            if (row == null) {
-                row = sheet.createRow(baseRow + rowIndex);
-                logger.info("Created new row at index {}", baseRow + rowIndex);
-            }
-
-            int actualColIndex = 44; 
-            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-               
-                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
-                Cell cell = row.createCell(actualColIndex++);
-
-                try {
-                    Field field = CBUAE_BRF7_3_Summary_Entity4.class.getDeclaredField(fieldName);
-                    field.setAccessible(true);
-                    Object value = field.get(record);
-
-                    if (value instanceof BigDecimal) {
-                        cell.setCellValue(((BigDecimal) value).doubleValue());
-                        cell.setCellStyle(numberStyle);
-                        logger.debug("Set value {} for field {}", value, fieldName);
-                    } else {
-                        cell.setCellValue("");
-                        cell.setCellStyle(textStyle);
-                    }
-                } catch (NoSuchFieldException e) {
-                    logger.error("Field not found: {}", fieldName);
-                    cell.setCellValue("");
-                    cell.setCellStyle(textStyle);
-                } catch (IllegalAccessException e) {
-                    logger.error("Access error for field: {}", fieldName, e);
-                    cell.setCellValue("");
-                    cell.setCellStyle(textStyle);
-                }
-            }
-        }
-    }
-}
 }
