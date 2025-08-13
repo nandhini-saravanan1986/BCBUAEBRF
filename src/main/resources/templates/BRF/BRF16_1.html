@@ -63,15 +63,25 @@ PURPOSE		: BRFREPORT
     white-space: normal;
     vertical-align: bottom;
   }
+
+  /* Reduce only Row and ID column widths */
+  #BRFtable tr td:nth-child(1),
+  #BRFtable tr td:nth-child(2),
+  #BRFtable tr th:nth-child(1),
+  #BRFtable tr th:nth-child(2) {
+    width: 50px !important;  /* Adjust size as needed */
+    white-space: nowrap;
+    text-align: center;
+  }
   
   #BRFtable thead th {
-	position: sticky;
-	top: 0;
-	background-color: #f8f9fa; /* Match Bootstrap thead-light */
-	z-index: 2;
-}
-  
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; 
+    z-index: 2;
+  }
 </style>
+
 
 
 
@@ -698,7 +708,7 @@ label.error {
 									<thead class="thead-light">
 									    <tr>
 											<th rowspan="3"
-												style="text-align: center; background-color: #b3b6b9; width:100px;">ROW</th>
+												style="text-align: center; background-color: #b3b6b9;">ROW</th>
 											<th rowspan="3"
 												style="text-align: center; background-color: #b3b6b9">ID</th>
 											<th rowspan="3"
