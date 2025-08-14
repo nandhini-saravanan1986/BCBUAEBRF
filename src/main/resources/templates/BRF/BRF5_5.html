@@ -633,7 +633,7 @@ PURPOSE		: BRFREPORT
 		    data-todate=${todate},
 			data-currency=${currency},  
 						data-dtltype=${dtltype}, 
-		    data-filename='BRF5_3Detail',
+		    data-filename='BRF5_5Detail',
 			data-type=${type},
 						data-version=${version}">
 							<i class="fa fa-download"></i>
@@ -641,8 +641,7 @@ PURPOSE		: BRFREPORT
 					</div>
 				</div>
 
-
-				<div th:if="${displaymode == 'summary'}">
+<div th:if="${displaymode == 'summary'}">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="table-responsive scrollable-table-container"
@@ -12555,7 +12554,22 @@ PURPOSE		: BRFREPORT
     th:attr="RowId='R0810', ColumnId='0630'" onclick="showdetailsbyRowAndColumn(this)"></td>
 <td style="text-align: right;" th:text="${report.r0810_non_resident_tradebills_provision_interest_legacy_interest}"
     th:attr="RowId='R0810', ColumnId='0640'" onclick="showdetailsbyRowAndColumn(this)"></td>
-										
+	
+			
+		</tr>
+			
+
+
+</tbody>
+			
+						</table>
+					</div>
+					
+
+				</div>
+			</div>
+			</div>
+			
 			<div th:if="${displaymode == 'Details'}">
 			<div class="row" >
 				<div class="col-sm-12">
@@ -12613,26 +12627,8 @@ PURPOSE		: BRFREPORT
 			
 			
 		
-</div>							</tr>
-										
-										
-										
-									</tbody>
-								</table>
-							</div>
-
-
-						</div>
-					</div>
-				</div>
-				
-				
-				
-
-			
-
-
-
+</div>
+	
 	<div class="modal fade" id="loader" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content" style="background: transparent;">
@@ -12817,3 +12813,5 @@ PURPOSE		: BRFREPORT
 </style>
 
 </html>
+
+						
