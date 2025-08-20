@@ -1,5 +1,6 @@
 package com.bornfire.brf.controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,7 +103,7 @@ public class NavigationController {
 			@RequestParam(value = "size", required = false) Optional<Integer> size, Model md, HttpServletRequest req) {
 
 		String roleId = (String) req.getSession().getAttribute("ROLEID");
-		System.out.println("role id is : " + roleId);
+		//System.out.println("role id is : " + roleId);
 		md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(roleId));
 
 		if (formmode == null || formmode.equals("list")) {
@@ -141,21 +143,31 @@ public class NavigationController {
 	@RequestMapping(value = "createAccessRole", method = RequestMethod.POST)
 	@ResponseBody
 	public String createAccessRoleEn(@RequestParam("formmode") String formmode,
-			@RequestParam(value = "adminValue", required = false) String adminValue,
-			@RequestParam(value = "RT_ReportsValue", required = false) String RT_ReportsValue,
-			@RequestParam(value = "finalString", required = false) String finalString,
-			@ModelAttribute AccessAndRoles alertparam, Model md, HttpServletRequest rq) {
+	        @RequestParam(value = "adminValue", required = false) String adminValue,
+	        @RequestParam(value = "BRF_ReportsValue", required = false) String BRF_ReportsValue,
+	        @RequestParam(value = "Archival", required = false) String Archival,
+	        @RequestParam(value = "auditUsValue", required = false) String auditUsValue,
+	        @RequestParam(value = "finalString", required = false) String finalString,
+	        @ModelAttribute AccessAndRoles alertparam, Model md, HttpServletRequest rq) {
 
-		System.out.println("came to controller");
-		String userid = (String) rq.getSession().getAttribute("USERID");
-		String roleId = (String) rq.getSession().getAttribute("ROLEID");
-		md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(roleId));
+	    String userid = (String) rq.getSession().getAttribute("USERID");
+	    String roleId = (String) rq.getSession().getAttribute("ROLEID");
+	    md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(roleId));
 
-		String msg = AccessRoleService.addPARAMETER(alertparam, formmode, adminValue, RT_ReportsValue, finalString,
-				userid);
+	    String msg = AccessRoleService.addPARAMETER(alertparam, formmode, adminValue, BRF_ReportsValue,
+	    		Archival, auditUsValue, finalString, userid);
 
-		return msg;
+	    return msg;
 	}
+	
+	@GetMapping("/checkRoleExists")
+	@ResponseBody
+	public String checkRoleExists(@RequestParam("roleId") String roleId) {
+	    boolean exists = accessandrolesrepository.findById(roleId).isPresent();
+	    return exists ? "exists" : "not_exists";
+	}
+	
+	
 
 	@RequestMapping(value = "UserProfile", method = { RequestMethod.GET, RequestMethod.POST })
 	public String userprofile(@RequestParam(required = false) String formmode,
