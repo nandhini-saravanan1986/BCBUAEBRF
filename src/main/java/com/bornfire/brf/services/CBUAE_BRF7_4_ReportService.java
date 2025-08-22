@@ -121,9 +121,9 @@ public class CBUAE_BRF7_4_ReportService {
 
 				if (rowId != null && columnId != null) {
 					T1Dt1 = CBUAE_BRF7_4_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
-				} else {
+			} else {
 					T1Dt1 = CBUAE_BRF7_4_Detail_Repos.getdatabydateList(dateformat.parse(todate));
-				}
+			}
 
 				mv.addObject("reportdetails", T1Dt1);
 				mv.addObject("reportmaster12", T1Dt1);
@@ -242,7 +242,10 @@ public class CBUAE_BRF7_4_ReportService {
 	            String rowCode = rowCodes[rowIndex];
 
 	            // ✅ Skip specific rows
-	            if ("R0240".equals(rowCode) || "R0480".equals(rowCode)) {
+	            if ("R0240".equals(rowCode) || "R0480".equals(rowCode)|| "R0020".equals(rowCode)|| "R0090".equals(rowCode)
+	            		|| "R0160".equals(rowCode)|| "R0230".equals(rowCode)|| "R0250".equals(rowCode)|| "R0260".equals(rowCode)
+	            		|| "R0330".equals(rowCode)|| "R0400".equals(rowCode)|| "R0470".equals(rowCode)|| "R0490".equals(rowCode)
+	            		|| "R0560".equals(rowCode)|| "R0630".equals(rowCode)|| "R0640".equals(rowCode)) {
 	                continue;
 	            }
 
@@ -251,7 +254,7 @@ public class CBUAE_BRF7_4_ReportService {
 	                row = sheet.createRow(baseRow + rowIndex);
 	            }
 
-	            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+	            for (int colIndex = 0; colIndex < fieldSuffixes.length-1; colIndex++) {
 	                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
 	                System.out.println("fieldName:-" + fieldName);
 
@@ -352,7 +355,7 @@ public class CBUAE_BRF7_4_ReportService {
 			// Get data
 			Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
 			List<CBUAE_BRF7_4_Detail_Entity> reportData = CBUAE_BRF7_4_Detail_Repos.getdatabydateList(parsedToDate);
-
+System.out.println("The size is"+reportData.size());
 			if (reportData != null && !reportData.isEmpty()) {
 				int rowIndex = 1;
 				for (CBUAE_BRF7_4_Detail_Entity item : reportData) {
