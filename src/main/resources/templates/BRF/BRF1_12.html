@@ -591,7 +591,76 @@
         padding-right: 8px;
     }
 </style>
+<style>
+    html, body {
+      height: 100%;       /* full screen height */
+      margin: 0;
+    }
 
+    .card {
+      height: 100vh;      /* card fills screen */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header {
+      flex: 0 0 auto;     /* keep header height natural */
+      background-color: #6b7a8f;
+      color: white;
+      font-weight: bold;
+    }
+
+    .card-body {
+      flex: 1 1 auto;     /* body takes rest of the space */
+      min-height: 0;      /* allow inner scroll */
+      padding: 0;
+    }
+
+    .scrollable-table-container {
+      height: 100%;       /* take full body height */
+      overflow-y: auto;   /* ✅ scrollbar appears here */
+      border: 1px solid #ccc;
+    }
+
+	   /* Your existing sticky header CSS, targeting the tr elements within the thead */
+	.scrollable-table-container thead tr:nth-child(1) {
+	    position: sticky;
+	    top: 0;
+	    background-color: #b3b6b9;
+	    z-index: 5;
+	}
+	
+	.scrollable-table-container thead tr:nth-child(2) {
+	    position: sticky;
+	    top: 36px; /* adjust based on row height */
+	    background-color: #b3b6b9;
+	    z-index: 4;
+	}
+	
+	
+	
+	.scrollable-table-container thead tr:nth-child(3) {
+	    position: sticky;
+	    top: 72px; /* Adjust based on row height */
+	    background-color: #b3b6b9;
+	    z-index: 3;
+	}
+	
+	.scrollable-table-container thead tr:nth-child(4) {
+	    position: sticky;
+	    top: 100px; /* Adjust based on row height */
+	    background-color: #b3b6b9;
+	    z-index: 2;
+	}
+	
+	.scrollable-table-container thead tr:nth-child(5) {
+	    position: sticky;
+	    top: 135px; /* Adjust based on row height */
+	    background-color: #b3b6b9;
+	    z-index: 1;
+	}
+   
+  </style>
 </head>
 
 

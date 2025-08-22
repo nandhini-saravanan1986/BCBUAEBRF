@@ -96,7 +96,7 @@ public class CBUAE_BRF1_12_ReportService {
 			//T1Master = hs.createQuery("from  BRF1_REPORT_ENTITY a where a.report_date = ?1 ", BRF1_REPORT_ENTITY.class)
 				//	.setParameter(1, df.parse(todate)).getResultList();
 			 T1Master=BRF1_12Summary_Repo.getdatabydateList(dateformat.parse(todate));
-		
+			 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -106,6 +106,7 @@ public class CBUAE_BRF1_12_ReportService {
 		mv.setViewName("BRF/BRF1_12");
 		
 		mv.addObject("reportsummary", T1Master);
+		
 		//mv.addObject("reportmaster", T1Master);
 		mv.addObject("displaymode", "summary");
 		//mv.addObject("reportsflag", "reportsflag");

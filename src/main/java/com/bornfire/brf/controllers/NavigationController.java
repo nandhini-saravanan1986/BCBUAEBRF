@@ -210,9 +210,11 @@ public class NavigationController {
 			md.addAttribute("formmode", formmode);
 			md.addAttribute("userProfile", loginServices.getUser(""));
 		} else if (formmode.equals("verify")) {
-
-			md.addAttribute("formmode", formmode);
-			md.addAttribute("userProfile", loginServices.getUser(userid));
+			md.addAttribute("WORKCLASSAC", WORKCLASSAC);
+		    md.addAttribute("ROLEIDAC", ROLEIDAC);
+	        md.addAttribute("formmode", formmode);
+	        md.addAttribute("userProfile", loginServices.getUser(userid));
+			
 
 		} else {
 
@@ -257,7 +259,16 @@ public class NavigationController {
 
 	}
 
+	
+	@RequestMapping(value = "verifyUser", method = RequestMethod.POST)
+	@ResponseBody
+	public String verifyUser(@ModelAttribute UserProfile userprofile, Model md, HttpServletRequest rq) {
+		String userid = (String) rq.getSession().getAttribute("USERID");
+		String msg = loginServices.verifyUser(userprofile, userid);
 
+		return msg;
+
+	}
 
 	@GetMapping("/checkDomainFlag")
 	@ResponseBody
