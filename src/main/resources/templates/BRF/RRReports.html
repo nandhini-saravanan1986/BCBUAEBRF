@@ -75,12 +75,12 @@ PURPOSE		: RRREPORT
 	border-color: #0c0c0c;
 }
 
-.btn-primary:not (:disabled ):not (.disabled ).active, .btn-primary:not
-	 (:disabled ):not (.disabled ):active, .show>.btn-primary.dropdown-toggle
+
+.btn-primary:not(:disabled ):not(.disabled ).active,.btn-primary:not(:disabled ):not(.disabled ):active, .show>.btn-primary.dropdown-toggle
 	{
-	color: #fff;
-	background-color: #cc000000;
-	border-color: #161617;
+	color:#fff;
+	background-color:#cc000000;
+	border-color:#161617;
 }
 
 #finusertb {
@@ -333,8 +333,8 @@ function getVali(a) {
     var todate = a.getAttribute("data-todate");
 
     // Show loader
-    $('#loader').modal('show');
-        
+	var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+	loader.show();
     
     $.ajax({
         url: "checkDomainFlag?rptcode=" + reportid,
