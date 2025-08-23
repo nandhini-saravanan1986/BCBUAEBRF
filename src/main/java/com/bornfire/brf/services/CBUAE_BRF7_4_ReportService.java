@@ -41,18 +41,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Archival_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Archival_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_1__Archival_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF1_1__Archival_Detail_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity1;
-import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity2;
-import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity3;
-import com.bornfire.brf.entities.CBUAE_BRF7_3_Summary_Entity4;
 import com.bornfire.brf.entities.CBUAE_BRF7_4_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF7_4_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF7_4_Summary_Entity;
