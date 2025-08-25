@@ -183,6 +183,7 @@ public class NavigationController {
 		String ROLEIDAC = (String) req.getSession().getAttribute("ROLEID");
 		md.addAttribute("RuleIDType", accessandrolesrepository.roleidtype());
 
+		
 		System.out.println("work class is : " + WORKCLASSAC);
 		// Logging Navigation
 		loginServices.SessionLogging("USERPROFILE", "M2", req.getSession().getId(), loginuserid, req.getRemoteAddr(),
@@ -202,6 +203,16 @@ public class NavigationController {
 			md.addAttribute("userProfiles", user);
 
 		} else if (formmode.equals("edit")) {
+
+			md.addAttribute("formmode", formmode);
+			md.addAttribute("userProfile", loginServices.getUser(userid));
+
+		}else if (formmode.equals("view")) {
+
+			md.addAttribute("formmode", formmode);
+			md.addAttribute("userProfile", loginServices.getUser(userid));
+
+		}else if (formmode.equals("delete")) {
 
 			md.addAttribute("formmode", formmode);
 			md.addAttribute("userProfile", loginServices.getUser(userid));
@@ -252,7 +263,7 @@ public class NavigationController {
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteuser(@RequestParam("formmode") String userid, Model md, HttpServletRequest rq) {
-
+		System.out.println("came to Delete user nav controller");
 		String msg = loginServices.deleteuser(userid);
 
 		return msg;
