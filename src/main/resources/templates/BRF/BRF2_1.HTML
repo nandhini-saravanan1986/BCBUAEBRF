@@ -474,7 +474,11 @@ PURPOSE		: BRFREPORT
 		}
 
 	</script>
-
+	<style>
+			.table-bordered>:not(caption)>*>* {
+				border-width: 1px var(--bs-border-width) !important;
+			}
+		</style>
 	<script>
 
 		function downloadDetailfile(button) {
@@ -572,7 +576,35 @@ PURPOSE		: BRFREPORT
 		}
 	</script>
 
+	<script th:inline="javascript">
+			function showdetailsbyRowAndColumn(a) {
+				var rowId = a.getAttribute('RowId');
+				var columnId = a.getAttribute('ColumnId');
+				var cellValue = a.textContent || a.innerText;
 
+				if (cellValue !== '0') {
+					// Set dynamic message
+					document.getElementById("cellresultModalLabel").innerText = 
+					    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+
+					// Show custom modal
+					$('#cellresultModal').modal('show');
+
+					// Handle Yes button
+					document.querySelector('.yes-btn').onclick = function() {
+						$('#cellresultModal').modal('hide');
+						$('#loader').modal('show');
+
+						var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+						Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+
+						location.href = Callurl;
+					};
+				} else {
+					showResultModal("Alert", "No Records available for this selected cell.");
+				}
+			}
+		</script>
 </head>
 
 
@@ -597,7 +629,7 @@ PURPOSE		: BRFREPORT
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-							LENDING TO STABLE RESOURCES RATIO (LSRR)- BRF 2.1 (AED 000)
+							LENDING TO STABLE RESOURCES RATIO (LSRR) - BRF 2.1 (AED 000)
 						</h5>
 					</div>
 
@@ -696,7 +728,7 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0020_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0020_amount}"
 												th:attr="RowId='R0020', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0030</td>
@@ -704,7 +736,7 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0030_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0030_amount}"
 												th:attr="RowId='R0030', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0040</td>
@@ -712,7 +744,7 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0040_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0040_amount}"
 												th:attr="RowId='R0040', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0050</td>
@@ -720,7 +752,7 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0050_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0050_amount}"
 												th:attr="RowId='R0050', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0060</td>
@@ -728,7 +760,7 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0060_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0060_amount}"
 												th:attr="RowId='R0060', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0070</td>
@@ -736,7 +768,7 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0070_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0070_amount}"
 												th:attr="RowId='R0070', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0080</td>
@@ -744,14 +776,14 @@ PURPOSE		: BRFREPORT
 											<td th:text="${report.r0080_product}"></td>
 											<td style="text-align: right;" th:text="${report.r0080_amount}"
 												th:attr="RowId='R0080', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
+												onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
 										</tr>
 										<tr>
 											<td style="text-align: center; background-color: #b3b6b9;">0090</td>
 											<td style="text-align: right; background-color: #b3b6b9;">1.8</td>
 											<td th:text="${report.r0090_product}"></td>
 											<td style="text-align: right; background-color: #dcdcdc;"
-												th:text="${report.r0090_amount}"></td>
+												th:text="${report.r0090_amount}"  class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1040,7 +1072,29 @@ PURPOSE		: BRFREPORT
 		</div>
 	</div>
 
+	<!-- Custom Cellresult Modal -->
+		<div class="modal fade" id="cellresultModal">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      
+		      <!-- Custom header -->
+		      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+		        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+		          Do you want to open the report?
+		        </div>
+		      </div>
 
+		      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+		        <button type="button" class="custom-tab-btn cancel-btn" data-dismiss="modal" style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+		          Cancel
+		        </button>
+		        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+		          Yes
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 </body>
 <script>
 	$(document).ready(function () {
@@ -1187,6 +1241,19 @@ PURPOSE		: BRFREPORT
 		display: inline-block;
 		width: auto;
 	}
+	
+	/* Add pointer cursor on hover */
+		.clickable-cell {
+		    cursor: pointer;
+		    background-color: transparent; /* keep normal */
+		}
+
+		/* Optional: highlight cell on hover */
+		.clickable-cell:hover {
+		    background-color: 
+			#e4e0d7
+		;  
+		}
 </style>
 
 </html>

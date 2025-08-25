@@ -128,9 +128,7 @@
 			border-radius: 4px;
 		}
 
-		.table-hover tbody tr:hover {
-			background-color: #f3f6f9;
-		}
+		
 
 		thead th {
 			position: sticky;
@@ -685,7 +683,7 @@
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-							COMPUTATION OF STATUTORY RESERVE REQUIREMENTS ON CUSTOMER DEPOSITS -BRF1.12 (AED 000)
+							COMPUTATION OF STATUTORY RESERVE REQUIREMENTS ON CUSTOMER DEPOSITS - BRF1.12 (AED 000)
 						</h5>
 					</div>
 
@@ -741,14 +739,14 @@
   									<tr style="background-color: #b3b6b9">
 										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ROW</th>
 										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ID</th>
-										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">Details</th>
+										<th rowspan="2" style="text-align: center; background-color: #b3b6b9">DETAILS</th>
 										
 								
 								
 									
-									<th style="text-align: center;"> Average Qualifying Liabilities for the RCP</th>
-									<th style="text-align: center;"> Reserve Requirement Ratios</th>
-									<th style="text-align: center;"> Reserve Requirements to be Applied to the Corresponding RMP</th>
+										<th style="text-align: center;">AVERAGE QUALIFYING LIABILITIES FOR THE RCP</th>
+										<th style="text-align: center;">RESERVE REQUIREMENT RATIOS</th>
+										<th style="text-align: center; white-space: normal; word-wrap: break-word; width: 34%;">RESERVE REQUIREMENTS TO BE APPLIED TO THE CORRESPONDING RMP</th>
 									</tr>
 									
 									
@@ -771,21 +769,23 @@
     <td th:text="${report.r0010RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
-    <td>0020</td><td>1.1</td>
+    <td>0020</td>
+    <td>1.1</td>
     <td th:text="${report.r0020Product}"></td>
-     <td th:text="${report.r0020AverageQualify}" 
-      th:attr="RowId='R0020', ColumnId='C0010'" 
-      onclick="showdetailsbyRowAndColumn(this)" 
-      class="right-align"></td>
-      <td th:text="${report.r0020RequirementRatios}" class="right-align"></td>
+    <td th:text="${report.r0020AverageQualify}" 
+        th:attr="RowId='R0020', ColumnId='C0010'" 
+        onclick="showdetailsbyRowAndColumn(this)" 
+        class="right-align clickable-cell"></td>
+    <td th:text="${report.r0020RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0020RequirementApplied}" class="right-align"></td>
 </tr>
+
 <tr style="background-color: #b3b6b9">
     <td>0030</td><td>1.2</td>
     <td th:text="${report.r0030Product}"></td>
     <td th:text="${report.r0030AverageQualify}" 
     th:attr="RowId='R0030', ColumnId='C0010'"  
-    onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
+    onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0030RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0030RequirementApplied}" class="right-align"></td>
 </tr>
@@ -793,7 +793,7 @@
     <td>0040</td><td>1.3</td>
     <td th:text="${report.r0040Product}"></td>
     <td th:text="${report.r0040AverageQualify}" th:attr="RowId='R0040', ColumnId='C0010'" 
-      onclick="showdetailsbyRowAndColumn(this)"  class="right-align"></td>
+      onclick="showdetailsbyRowAndColumn(this)"  class="right-align clickable-cell"></td>
     <td th:text="${report.r0040RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0040RequirementApplied}" class="right-align"></td>
 </tr>
@@ -811,7 +811,7 @@
     <td th:text="${report.r0060Product}"></td>
     <td th:text="${report.r0060AverageQualify}" 
     th:attr="RowId='R0060', ColumnId='C0010'" 
-      onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
+      onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0060RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0060RequirementApplied}" class="right-align"></td>
 </tr>
@@ -825,28 +825,28 @@
 <tr style="background-color: #b3b6b9">
     <td>0080</td><td>2.1</td>
     <td th:text="${report.r0080Product}"></td>
-    <td th:text="${report.r0080AverageQualify}" th:attr="RowId='R0080', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
+    <td th:text="${report.r0080AverageQualify}" th:attr="RowId='R0080', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0080RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0080RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0090</td><td>2.2</td>
     <td th:text="${report.r0090Product}"></td>
-    <td th:text="${report.r0090AverageQualify}" th:attr="RowId='R0090', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
+    <td th:text="${report.r0090AverageQualify}" th:attr="RowId='R0090', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0090RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0090RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0100</td><td>2.3</td>
     <td th:text="${report.r0100Product}"></td>
-    <td th:text="${report.r0100AverageQualify}" th:attr="RowId='R0100', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
+    <td th:text="${report.r0100AverageQualify}" th:attr="RowId='R0100', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0100RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0100RequirementApplied}" class="right-align"></td>
 </tr>
 <tr style="background-color: #b3b6b9">
     <td>0110</td><td>2.4</td>
     <td th:text="${report.r0110Product}"></td>
-    <td th:text="${report.r0110AverageQualify}" th:attr="RowId='R0110', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)"class="right-align"></td>
+    <td th:text="${report.r0110AverageQualify}" th:attr="RowId='R0110', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0110RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0110RequirementApplied}" class="right-align"></td>
 </tr>
@@ -854,7 +854,7 @@
     <td>0120</td><td>2.5</td>
     <td th:text="${report.r0120Product}"></td>
     <td th:text="${report.r0120AverageQualify}" 
-    th:attr="RowId='R0120', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align"></td>
+    th:attr="RowId='R0120', ColumnId='C0010'" onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
     <td th:text="${report.r0120RequirementRatios}" class="right-align"></td>
     <td th:text="${report.r0120RequirementApplied}" class="right-align"></td>
 </tr>
@@ -1233,6 +1233,24 @@ div.dataTables_wrapper div.dataTables_info {
     display: inline-block;
     width: auto;
 }
+/* Add pointer cursor on hover */
+.clickable-cell {
+    cursor: pointer;
+    background-color: transparent; /* keep normal */
+}
+
+/* Optional: highlight cell on hover */
+.clickable-cell:hover {
+    background-color: 
+	#e4e0d7
+;  
+}
+/* Force all table borders to black */
+#reports th,
+#reports td {
+    border: 1px solid black !important;
+}
+
 </style>
 
 </html>
