@@ -93,10 +93,10 @@ public class CBUAE_BRF16_3_Summary_Entity {
 	private BigDecimal	r0180_lfi;
 	private BigDecimal	r0180_evidence;
 	private BigDecimal	r0180_evidencebylfi;
-	private String	r10190_product;
-	private BigDecimal	r10190_lfi;
-	private BigDecimal	r10190_evidence;
-	private BigDecimal	r10190_evidencebylfi;
+	private String	r0190_product;
+	private BigDecimal	r0190_lfi;
+	private BigDecimal	r0190_evidence;
+	private BigDecimal	r0190_evidencebylfi;
 	private String	r0200_product;
 	private BigDecimal	r0200_lfi;
 	private BigDecimal	r0200_evidence;
@@ -631,29 +631,29 @@ public class CBUAE_BRF16_3_Summary_Entity {
 	public void setR0180_evidencebylfi(BigDecimal r0180_evidencebylfi) {
 		this.r0180_evidencebylfi = r0180_evidencebylfi;
 	}
-	public String getR10190_product() {
-		return r10190_product;
+	public String getR0190_product() {
+		return r0190_product;
 	}
-	public void setR10190_product(String r10190_product) {
-		this.r10190_product = r10190_product;
+	public void setR0190_product(String r0190_product) {
+		this.r0190_product = r0190_product;
 	}
-	public BigDecimal getR10190_lfi() {
-		return r10190_lfi;
+	public BigDecimal getR0190_lfi() {
+		return r0190_lfi;
 	}
-	public void setR10190_lfi(BigDecimal r10190_lfi) {
-		this.r10190_lfi = r10190_lfi;
+	public void setR0190_lfi(BigDecimal r0190_lfi) {
+		this.r0190_lfi = r0190_lfi;
 	}
-	public BigDecimal getR10190_evidence() {
-		return r10190_evidence;
+	public BigDecimal getR0190_evidence() {
+		return r0190_evidence;
 	}
-	public void setR10190_evidence(BigDecimal r10190_evidence) {
-		this.r10190_evidence = r10190_evidence;
+	public void setR0190_evidence(BigDecimal r0190_evidence) {
+		this.r0190_evidence = r0190_evidence;
 	}
-	public BigDecimal getR10190_evidencebylfi() {
-		return r10190_evidencebylfi;
+	public BigDecimal getR0190_evidencebylfi() {
+		return r0190_evidencebylfi;
 	}
-	public void setR10190_evidencebylfi(BigDecimal r10190_evidencebylfi) {
-		this.r10190_evidencebylfi = r10190_evidencebylfi;
+	public void setR0190_evidencebylfi(BigDecimal r0190_evidencebylfi) {
+		this.r0190_evidencebylfi = r0190_evidencebylfi;
 	}
 	public String getR0200_product() {
 		return r0200_product;
@@ -1379,6 +1379,8 @@ public class CBUAE_BRF16_3_Summary_Entity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 
 }

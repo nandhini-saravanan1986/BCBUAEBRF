@@ -8,14 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF16_2_DETAILTABLE", schema = "CXBRL")
-public class CBUAE_BRF16_2_Detail_Entity {
+@Table(name = "CBUAE_BRF5_5_DETAILTABLE", schema = "CXBRL")
+public class CBUAE_BRF1_8_Detail_Entity {
 	 	
 	    @Column(name = "ROW_ID", length = 100)
 	    private String rowId;
@@ -48,7 +46,6 @@ public class CBUAE_BRF16_2_Detail_Entity {
 	    @Column(name = "ACCT_BALANCE_IN_AED", precision = 24, scale = 3)
 	    private BigDecimal acctBalanceInAed;
 	    
-	    @Temporal(TemporalType.DATE)
 	    @Column(name = "REPORT_DATE")
 	    @DateTimeFormat(pattern = "dd-MM-yyyy")
 	    private Date reportDate;
@@ -59,7 +56,6 @@ public class CBUAE_BRF16_2_Detail_Entity {
 	    @Column(name = "CREATE_USER", length = 50)
 	    private String createUser;
 
-	    @Temporal(TemporalType.DATE)
 	    @Column(name = "CREATE_TIME")
 	    @DateTimeFormat(pattern = "dd-MM-yyyy")
 	    private Date createTime;
@@ -67,15 +63,13 @@ public class CBUAE_BRF16_2_Detail_Entity {
 	    @Column(name = "MODIFY_USER", length = 50)
 	    private String modifyUser;
 
-	    @Temporal(TemporalType.DATE)
 	    @Column(name = "MODIFY_TIME")
 	    @DateTimeFormat(pattern = "dd-MM-yyyy")
 	    private Date modifyTime;
 
 	    @Column(name = "VERIFY_USER", length = 50)
 	    private String verifyUser;
-	    
-	    @Temporal(TemporalType.DATE)
+
 	    @Column(name = "VERIFY_TIME")
 	    @DateTimeFormat(pattern = "dd-MM-yyyy")
 	    private Date verifyTime;
@@ -257,11 +251,11 @@ public class CBUAE_BRF16_2_Detail_Entity {
 			this.delFlg = delFlg;
 		}
 
-		public CBUAE_BRF16_2_Detail_Entity() {
+		public CBUAE_BRF1_8_Detail_Entity() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
+    
 
-	    
-	    
 }
+

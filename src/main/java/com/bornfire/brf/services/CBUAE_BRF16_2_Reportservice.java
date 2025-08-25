@@ -155,38 +155,51 @@ public class CBUAE_BRF16_2_Reportservice {
 	    List<CBUAE_BRF16_2_Detail_Entity> T1Dt1 = new ArrayList<>();
 
 	    try {
-	        Date d1 = dateformat.parse(todate);
+	        Date reportDate = dateformat.parse(todate);  // parse once
+	        System.out.println("Parsed Report Date: " + dateformat.format(reportDate));
+	        System.out.println("Received Filter: " + filter);
 
 	        String rowId = null;
 	        String columnId = null;
 
-	        // ✅ Split the filter string here
+	        // ✅ Extract rowId and columnId from filter
 	        if (filter != null && filter.contains(",")) {
 	            String[] parts = filter.split(",");
 	            if (parts.length >= 2) {
-	                rowId = parts[0];
-	                columnId = parts[1];
+	                rowId = parts[0].trim();
+	                columnId = parts[1].trim();
 	            }
 	        }
 
+	        // ✅ Check if both rowId and columnId are present
 	        if (rowId != null && columnId != null) {
-	        	T1Dt1 = CBUAE_BRF16_2_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
+	        	System.out.println("Fetching for: " + rowId + ", " + columnId + ", " + dateformat.format(reportDate));
+	        	T1Dt1 = CBUAE_BRF16_2_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId, reportDate);
+	        	System.out.println("LISTCOUNT: " + T1Dt1.size());
 	        } else {
-	            T1Dt1 = CBUAE_BRF16_2_Detail_Repos.getdatabydateList(d1);
+	            System.out.println("No Row/Column filter found, fetching full data for date: " + dateformat.format(reportDate));
+	            T1Dt1 = CBUAE_BRF16_2_Detail_Repos.getdatabydateList(reportDate);
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
 
 	    } catch (ParseException e) {
+	        System.err.println("Date parsing failed for todate: " + todate);
+	        e.printStackTrace();
+	    } catch (Exception e) {
+	        System.err.println("Exception while fetching report details: " + e.getMessage());
 	        e.printStackTrace();
 	    }
 
 	    mv.setViewName("BRF/BRF16_2");
 	    mv.addObject("displaymode", "Details");
+	    mv.addObject("reportid", reportId);
 	    mv.addObject("reportdetails", T1Dt1);
 	    mv.addObject("reportmaster12", T1Dt1);
 	    mv.addObject("reportsflag", "reportsflag");
 	    mv.addObject("menu", reportId);
+	    
+
 	    return mv;
 	}
 
@@ -749,7 +762,7 @@ public class CBUAE_BRF16_2_Reportservice {
 	                     ? record.getR0100_no_cavc_training().doubleValue() : 0.0);
 	             R0100cell15.setCellStyle(numberStyle);
 	             
-	             colR0100 += 1;
+					colR0100 += 1; /* ---SKIP ONE COLUMN--- */
 	             
 	          // Column: Market Conduct Training
 	             Cell R0100Cell17 = rowR0100.createCell(colR0100++);
