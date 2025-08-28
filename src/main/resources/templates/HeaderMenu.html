@@ -976,7 +976,6 @@ function downloadDetailfiles(jobId,filename) {
 <body>
   <nav class="navbar full-navbar">
     <div class="navbar-container d-flex" style="width:100%">
-      
       <!-- Logo -->
       <div class="logo-container">
         <img th:src="@{/images/bob.jpeg}" alt="Bornfire" class="logo-img">
@@ -996,7 +995,8 @@ function downloadDetailfiles(jobId,filename) {
 							th:href="@{/Dashboard}"
 							style=" text-align: center; color: black;">Home</a>
 						</li>
-						<li class="nav-item dropdown" style="text-align: center;">
+						<li class="nav-item dropdown" style="text-align: center;"
+    th:if="${session.DOMAINID != null and #strings.containsIgnoreCase(session.DOMAINID, 'admin')}">
     <a href="#" class="dropdown-toggle">Admin</a>
     <ul class="dropdown-menu">
         <li>
@@ -1008,7 +1008,9 @@ function downloadDetailfiles(jobId,filename) {
     </ul>
 </li>
 
-						<li class="nav-item dropdown" style=" text-align: center;">
+
+						<li class="nav-item dropdown" style=" text-align: center;"
+						 th:if="${session.DOMAINID != null and #strings.containsIgnoreCase(session.DOMAINID, 'BRF_Reports')}">
 							<a href="#" class="dropdown-toggle">BRF Reports</a>
 								
 								<ul class="dropdown-menu">
@@ -1027,7 +1029,8 @@ function downloadDetailfiles(jobId,filename) {
 						</li>
 						
 						
-						<li class="nav-item dropdown" style=" text-align: center;">
+						<li class="nav-item dropdown" style=" text-align: center;"
+						th:if="${session.DOMAINID != null and #strings.containsIgnoreCase(session.DOMAINID, 'Archival')}">
 							<a href="#" class="dropdown-toggle">Archival</a>
 								
 								<ul class="dropdown-menu">
@@ -1040,7 +1043,8 @@ function downloadDetailfiles(jobId,filename) {
 								
 						</li>
 
-						<li class="nav-item dropdown" style=" text-align: center;">
+						<li class="nav-item dropdown" style=" text-align: center;"
+						th:if="${session.DOMAINID != null and #strings.containsIgnoreCase(session.DOMAINID, 'AUDIT_US')}">
 							<a href="#" class="dropdown-toggle">Audit</a>
 							<ul class="dropdown-menu">
 								

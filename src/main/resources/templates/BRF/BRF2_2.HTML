@@ -170,7 +170,7 @@
 			transform: scale(1.1);
 		}
 
-
+	
 
 		td {
 			border: 1px solid rgb(0, 164, 166);
@@ -293,8 +293,14 @@
 		.white-text span {
 			color: white !important;
 		}
+		
+		
+		 .table-bordered td, 
+.table-bordered th {
+     border: 1px solid #000 !important;
+}
 	</style>
-
+	
 
 	<script th:inline="javascript">
 
@@ -330,7 +336,8 @@
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -357,7 +364,8 @@
 		}
 
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -406,7 +414,8 @@
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -484,7 +493,8 @@
 			const type = button.getAttribute('data-type');
 			const version = button.getAttribute('data-version');
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			const baseUrl = '/BCDRS/Reports/';
 			const downloadUrl = baseUrl + 'downloadDetailExcel' +
@@ -556,29 +566,35 @@
 			var cellValue = a.textContent || a.innerText;
 
 			if (cellValue !== '0') {
-				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+				document.getElementById("cellresultModalLabel").innerText = 
+				    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+				$('#cellresultModal').modal('show');
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+				
+				// YES button
+				document.querySelector('.yes-btn').onclick = function () {
+				    $('#cellresultModal').modal('hide');
+				    var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+					loader.show();
 
-					if (!Callurl) {
-						alert("Error: Base URL not set.");
-						return;
-					}
+				    var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+				    
+				    if (!Callurl) {
+				        alert("Error: Base URL not set.");
+				        return;
+				    }
 
-					const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+				    Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+				    location.href = Callurl;
+				};
 
-					if (Callurl.includes("?")) {
-						Callurl += "&" + filterParam;
-					} else {
-						Callurl += "?" + filterParam;
-					}
+				// CANCEL button
+				document.querySelector('.cancel-btn').onclick = function () {
+				    $('#cellresultModal').modal('hide');
+				};
 
-					console.log("Redirecting to:", Callurl);
-					location.href = Callurl;
-				}
 			} else {
-				alert("No Records available for this selected cell.");
+				showResultModal("Alert", "No Records available for this selected cell.");
 			}
 		}
 	</script>
@@ -592,6 +608,20 @@
 
 <title>BRF</title>
 
+<style>
+
+/* 4th column cursor */
+table tr td:nth-child(4) {
+    cursor: pointer;
+}
+
+/* 4th column hover background */
+table tr td:nth-child(4):hover {
+    background-color: #f3f6f9;
+}
+
+
+</style>
 <body>
 	<div class="container-fluid" style="padding-left:0px; padding-right:0px;">
 		<div class="row">
@@ -610,7 +640,7 @@
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-							 ELIGIBLE LIQUID ASSETS RATIO (ELAR)- BRF 2.2 (AED 000)
+							 ELIGIBLE LIQUID ASSETS RATIO (ELAR) - BRF 2.2 (AED 000)
 						</h5>
 					</div>
 
@@ -660,7 +690,7 @@
 							<div class="table-wrapper table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6; ">
 								<table
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									class="sticky-header-table table table-bordered table-sm table-condensed"
 									id="reports">
 									<thead class="thead-light">
 										<tr style="background-color: #b3b6b9">
@@ -680,8 +710,8 @@
 
 										<tr style="background-color: #b3b6b9">
 
-											<th style="text-align: center; background-color: #b3b6b9">0010</th>
-											<th style="text-align: center; background-color: #b3b6b9">0020</th>
+											<th style="text-align: center; background-color: #b3b6b9;border-bottom: 1px solid #000 !important;">0010</th>
+											<th style="text-align: center; background-color: #b3b6b9;border: 1px solid #000 !important;">0020</th>
 
 										</tr>
 
@@ -966,7 +996,35 @@
 											</div>
 										</div>
 
+									<!-- Custom Cellresult Modal -->
+	<div class="modal fade" id="cellresultModal" 
+     data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <!-- Custom header -->
+      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+          Do you want to open the report?
+        </div>
+      </div>
 
+      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+        <button type="button" class="custom-tab-btn cancel-btn" 
+                style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+          Cancel
+        </button>
+        <button type="button" class="custom-tab-btn yes-btn" 
+                style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	
 									</body>
 									<script>
 									  $(document).ready(function () {

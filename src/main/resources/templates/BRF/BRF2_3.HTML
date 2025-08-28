@@ -298,6 +298,32 @@ PURPOSE		: BRFREPORT
 		}
 	</style>
 
+	<style>
+		 .table-cell tbody td:hover {
+        background-color: #f0f0f0; /* Hover color for cell */
+        cursor: pointer;           /* Optional: pointer cursor */
+    }
+    
+    .table-bordered td, 
+.table-bordered th {
+     border: 1px solid #000 !important;
+}
+
+
+
+/* Cursor pointer for columns 4 to 15 */
+table tr td:nth-child(n+4):nth-child(-n+15) {
+    cursor: pointer !important;
+}
+
+/* Hover background for columns 4 to 15 */
+table tr td:nth-child(n+4):nth-child(-n+15):hover {
+    background-color: #f3f6f9;
+}
+
+
+
+</style>
 
 	<script th:inline="javascript">
 
@@ -333,7 +359,8 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -360,7 +387,8 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -409,7 +437,8 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -486,7 +515,8 @@ PURPOSE		: BRFREPORT
 			const type = button.getAttribute('data-type');
 			const version = button.getAttribute('data-version');
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			const baseUrl = '/BCDRS/Reports/';
 			const downloadUrl = baseUrl + 'downloadDetailExcel' +
@@ -549,27 +579,49 @@ PURPOSE		: BRFREPORT
 	</script>
 
 	<script th:inline="javascript">
-		function showdetailsbyRowAndColumn(a) {
-			var rowId = a.getAttribute('RowId');
-			var columnId = a.getAttribute('ColumnId');
-			var cellValue = a.textContent || a.innerText;
+	function showdetailsbyRowAndColumn(a) {
+	    var rowId = a.getAttribute('RowId');
+	    var columnId = a.getAttribute('ColumnId');
+	    var cellValue = a.textContent || a.innerText;
 
-			if (cellValue !== '0') {
-				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+	    if (cellValue !== '0') {
+	        // Set dynamic modal content
+	        document.getElementById("cellresultModalLabel").innerText =
+	            "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+	        // Show custom confirm modal
+	        $('#cellresultModal').modal('show');
 
-					Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+	        // YES button handler
+	        document.querySelector('.yes-btn').onclick = function () {
+	            $('#cellresultModal').modal('hide');
+	            var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+				loader.show();
 
-					location.href = Callurl;
+	            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
 
-					console.log(Callurl);
-				}
-			} else {
-				alert("No Records available for this selected cell.");
-			}
-		}
+	            if (!Callurl) {
+	                showResultModal("Error", "Base URL not set.");
+	                return;
+	            }
+
+	            Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+	            location.href = Callurl;
+
+	            console.log(Callurl);
+	        };
+
+	        // CANCEL button handler
+	        document.querySelector('.cancel-btn').onclick = function () {
+	            $('#cellresultModal').modal('hide');
+	        };
+
+	    } else {
+	        // Show alert modal instead of browser alert
+	        showResultModal("Alert", "No Records available for this selected cell.");
+	    }
+	}
+
 	</script>
 
 
@@ -597,7 +649,7 @@ PURPOSE		: BRFREPORT
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
-							CLASSIFICATION OF ASSETS & LIABILITIES- MATURITY-WISE- BRF 2.3 (AED 000)
+							CLASSIFICATION OF ASSETS & LIABILITIES - MATURITY-WISE - BRF 2.3 (AED 000)
 						</h5>
 					</div>
 
@@ -648,7 +700,7 @@ PURPOSE		: BRFREPORT
 							<div class="table-wrapper table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6; ">
 								<table
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
 									id="reports">
 									<thead class="thead-light">
 										<tr style="background-color: #b3b6b9">
@@ -673,7 +725,7 @@ PURPOSE		: BRFREPORT
 											<th style="text-align: center">Total </th>
 
 
-
+										</tr>
 
 
 										<tr style="background-color: #b3b6b9">
@@ -3498,6 +3550,7 @@ PURPOSE		: BRFREPORT
 
 
 
+
 	<div class="modal fade" id="loader" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content" style="background: transparent;">
@@ -3532,6 +3585,32 @@ PURPOSE		: BRFREPORT
 		</div>
 	</div>
 
+						<!-- Custom Cellresult Modal -->
+	<div class="modal fade" id="cellresultModal" 
+     data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <!-- Custom header -->
+      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+          Do you want to open the report?
+        </div>
+      </div>
+
+      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+        <button type="button" class="custom-tab-btn cancel-btn" 
+                style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+          Cancel
+        </button>
+        <button type="button" class="custom-tab-btn yes-btn" 
+                style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 <script>

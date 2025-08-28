@@ -297,6 +297,17 @@ PURPOSE		: BRFREPORT
 		.white-text span {
 			color: white !important;
 		}
+		
+		 .table-cell tbody td:hover {
+        background-color: #f0f0f0; /* Hover color for cell */
+        cursor: pointer;           /* Optional: pointer cursor */
+    }
+    
+    .table-bordered td, 
+.table-bordered th {
+     border: 1px solid #000 !important;
+}
+    
 	</style>
 
 
@@ -320,12 +331,14 @@ PURPOSE		: BRFREPORT
 
 
 		function home() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			location.href = 'Dashboard'
 		}
 
 		function back() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			window.history.back();
 		}
@@ -334,7 +347,8 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -361,7 +375,8 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -410,7 +425,8 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -488,8 +504,8 @@ PURPOSE		: BRFREPORT
 			const type = button.getAttribute('data-type');
 			const version = button.getAttribute('data-version');
 
-			$('#loader').modal('show');
-
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			const baseUrl = '/BCDRS/Reports/';
 			const downloadUrl = baseUrl + 'downloadDetailExcel' +
 				'?filename=' + encodeURIComponent(filename) +
@@ -554,37 +570,65 @@ PURPOSE		: BRFREPORT
 
 
 	<script th:inline="javascript">
-		function showdetailsbyRowAndColumn(a) {
-			var rowId = a.getAttribute('RowId');
-			var columnId = a.getAttribute('ColumnId');
-			var cellValue = a.textContent || a.innerText;
+	function showdetailsbyRowAndColumn(a) {
+	    var rowId = a.getAttribute('RowId');
+	    var columnId = a.getAttribute('ColumnId');
+	    var cellValue = a.textContent || a.innerText;
 
-			if (cellValue !== '0') {
-				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+	    if (cellValue !== '0') {
+	        // Set dynamic modal content
+	        document.getElementById("cellresultModalLabel").innerText =
+	            "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+	        document.getElementById("cellresultModalBody").innerText =
+	            "Click Yes to open details or Cancel to close.";
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+	        // Show modal
+	        var confirmModal = new bootstrap.Modal(document.getElementById('cellresultModal'));
+	        confirmModal.show();
 
-					if (!Callurl) {
-						alert("Error: Base URL not set.");
-						return;
-					}
+	        // YES button
+	        document.querySelector('#cellresultModal .yes-btn').onclick = function () {
+	            confirmModal.hide();
 
-					const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+	            var loader = new bootstrap.Modal(document.getElementById('loader'), {
+	                backdrop: 'static',
+	                keyboard: false
+	            });
+	            loader.show();
 
-					if (Callurl.includes("?")) {
-						Callurl += "&" + filterParam;
-					} else {
-						Callurl += "?" + filterParam;
-					}
+	            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
 
-					console.log("Redirecting to:", Callurl);
-					location.href = Callurl;
-				}
-			} else {
-				alert("No Records available for this selected cell.");
-			}
-		}
+	            if (!Callurl) {
+	                showResultModal("Error", "Base URL not set.");
+	                return;
+	            }
+
+	            const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+
+	            if (Callurl.includes("?")) {
+	                Callurl += "&" + filterParam;
+	            } else {
+	                Callurl += "?" + filterParam;
+	            }
+
+	            console.log("Redirecting to:", Callurl);
+	            location.href = Callurl;
+	        };
+
+	        // CANCEL button
+	        document.querySelector('#cellresultModal .cancel-btn').onclick = function () {
+	            confirmModal.hide();
+	        };
+
+	        // Ensure YES button is visible for next use
+	        document.querySelector('#cellresultModal .yes-btn').style.display = "inline-block";
+
+	    } else {
+	        // Show alert modal if cellValue is 0
+	        showResultModal("Alert", "No Records available for this selected cell.");
+	    }
+	}
+
 	</script>
 
 
@@ -614,7 +658,7 @@ PURPOSE		: BRFREPORT
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
-							Classification of Time/Fixed Deposits by Remaining Maturity - BRF 2.6(AED 000)</h5>
+							CLASSIFICATION OF TIME / FIXED DEPOSITS BY REMAINING MATURITY - BRF 2.6(AED 000)</h5>
 					</div>
 
 					<div class="custom-tab-btn-group nav-buttons"
@@ -662,7 +706,7 @@ PURPOSE		: BRFREPORT
 			<div class="row" >
 				<div class="col-sm-12">
 					<div class="table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6; ">
-    					<table class="sticky-header-table table table-bordered table-hover table-sm table-condensed" id="reports" >
+    					<table class="sticky-header-table table table-bordered table-cell table-sm table-condensed" id="reports" >
 							<thead class="thead-light">
   									<tr style="background-color: #b3b6b9">
 										<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ROW</th>
@@ -1674,7 +1718,33 @@ PURPOSE		: BRFREPORT
 											</div>
 										</div>
 
+									<!-- Custom Cellresult Modal -->
+	<div class="modal fade" id="cellresultModal" 
+     data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <!-- Custom header -->
+      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+          Do you want to open the report?
+        </div>
+      </div>
 
+      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+        <button type="button" class="custom-tab-btn cancel-btn" 
+                style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+          Cancel
+        </button>
+        <button type="button" class="custom-tab-btn yes-btn" 
+                style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+						
 
 										<!-- Custom Alert/Result Modal (Matches your existing style) -->
 										<div class="modal fade" id="resultModal">
