@@ -335,7 +335,8 @@ PURPOSE		: BRFREPORT
 		}
 
 		function back() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			window.history.back();
 		}
@@ -344,7 +345,8 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -371,7 +373,8 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -420,7 +423,8 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -504,6 +508,9 @@ PURPOSE		: BRFREPORT
        	 	showAlert();
 			return;
 		}
+		
+		alertMsg.innerHTML ='Download request Processing...';
+   	 	showAlert();
 
 		const baseUrl = '/BCDRS/Reports/startreport';
 		const downloadUrl = baseUrl +
@@ -3121,14 +3128,14 @@ PURPOSE		: BRFREPORT
 								style="border-right: 1px solid #dee2e6; ">
 								<table
 									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="BRFdet" style='margin-top:-30px'>
+									id="BRFdet" >
 									<thead class="thead-light">
 										<tr>
 											<th></th>
 											<th>CUST ID</th>
 											<th>ACCT NO</th>
 											<th>ACCT NAME</th>
-											<th>ACCT BALANCE</th>
+											<th style="text-align:right;" >ACCT BALANCE</th>
 											<th style="text-align:left;">ROWID</th>
 											<th>COLUMNID</th>
 											<th>REPORT_DATE</th>

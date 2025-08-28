@@ -12,6 +12,12 @@ public interface CBUAE_BRF1_3_Detail_Repo extends JpaRepository<CBUAE_BRF1_3_Det
 	@Query(value = "select * from CBUAE_BRF1_3_DETAILTABLE where REPORT_DATE=?1", nativeQuery = true)
 	List<CBUAE_BRF1_3_Detail_Entity> getdatabydateList(Date reportdate);
 	
+	@Query(value = "select * from CBUAE_BRF1_3_DETAILTABLE where REPORT_DATE=?1 offset ?2 rows fetch next ?3 rows only", nativeQuery = true)
+	List<CBUAE_BRF1_3_Detail_Entity> getdatabydateList(Date reportdate,int startpage,int endpage);
+	
+	@Query(value = "select count(*) from CBUAE_BRF1_3_DETAILTABLE where REPORT_DATE=?1", nativeQuery = true)
+	int getdatacount(Date reportdate);
+	
 
 	@Query(value = "select * from CBUAE_BRF1_3_DETAILTABLE where ROW_ID =?1 and COLUMN_ID=?2 AND REPORT_DATE=?3", nativeQuery = true)
 	List<CBUAE_BRF1_3_Detail_Entity> GetDataByRowIdAndColumnId(String rowId,String ColumnId,Date reportdate);

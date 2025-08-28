@@ -1120,7 +1120,7 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 	
     @Async
     public void generateReportAsync(String jobId, String filename, String fromdate,String todate, String dtltype,String type,String currency, String version) {
-        System.out.println("Starting report generation for: " + filename);
+        //System.out.println("Starting report generation for: " + filename);
 		        
 		byte[] fileData =null;
 				
@@ -1130,6 +1130,14 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 				else if (filename.equals("BRF1_2Detail")) {
 					fileData= cbuae_brf1_2_reportservice.getBRF1_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
 				}
+				else if (filename.equals("BRF1_3Detail")) {
+					 fileData= cbuae_brf1_3_reportservice.getBRF1_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
+				}
+				else if (filename.equals("BRF2_1Detail")) {
+					fileData= cbuae_brf2_1_reportservice.getBRF2_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
+				}
+				
+				
 				
 			
 		if (fileData == null) {

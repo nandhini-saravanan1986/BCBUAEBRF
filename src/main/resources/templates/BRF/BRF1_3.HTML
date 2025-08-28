@@ -296,6 +296,16 @@ PURPOSE		: BRFREPORT
 		.white-text span {
 			color: white !important;
 		}
+		
+		 .table-cell tbody td:hover {
+        background-color: #f0f0f0; /* Hover color for cell */
+        cursor: pointer;           /* Optional: pointer cursor */
+    }
+    
+    .table-bordered td, 
+	.table-bordered th {
+     border: 1px solid #000 !important;
+	}
 	</style>
 
 
@@ -319,13 +329,14 @@ PURPOSE		: BRFREPORT
 
 
 		function home() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			location.href = 'Dashboard'
 		}
 
 		function back() {
-			$("#loader").modal("toggle");
-
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			window.history.back();
 		}
 
@@ -333,7 +344,8 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -360,7 +372,8 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -409,8 +422,9 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
-
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
+			
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
 					'&fromdate=' + fromdate +
@@ -480,101 +494,116 @@ PURPOSE		: BRFREPORT
 		}
 	</style>
 	<script>
-
-		function downloadDetailfile(button) {
-			const filename = button.getAttribute('data-filename');
-			const fromdate = button.getAttribute('data-fromdate');
-			const todate = button.getAttribute('data-todate');
-			const currency = button.getAttribute('data-currency');
-			const dtltype = button.getAttribute('data-dtltype');
-			const type = button.getAttribute('data-type');
-			const version = button.getAttribute('data-version');
-
-			$('#loader').modal('show');
-
-			const baseUrl = '/BCDRS/Reports/';
-			const downloadUrl = baseUrl + 'downloadDetailExcel' +
-				'?filename=' + encodeURIComponent(filename) +
-				'&fromdate=' + encodeURIComponent(fromdate) +
-				'&todate=' + encodeURIComponent(todate) +
-				'&currency=' + encodeURIComponent(currency) +
-				'&dtltype=' + encodeURIComponent(dtltype) +
-				'&type=' + encodeURIComponent(type) +
-				'&version=' + encodeURIComponent(version);
-
-			$.ajax({
-				url: downloadUrl,
-				type: 'GET',
-				xhrFields: {
-					responseType: 'blob'
-				},
-				success: function (data) {
-					$('#loader').modal('hide');
-					if (data && data.size > 100) {
-						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-						const url = window.URL.createObjectURL(blob);
-						const a = document.createElement('a');
-						a.style.display = 'none';
-						a.href = url;
-						a.download = filename + '.xls';
-						document.body.appendChild(a);
-						a.click();
-						a.remove();
-						window.URL.revokeObjectURL(url);
-
-						showResultModal('Success', filename + ' downloaded successfully.');
-					} else {
-						showResultModal('Information', 'No data was available to create a download or file was empty.');
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					$('#loader').modal('hide');
-					console.error('Download error:', textStatus, errorThrown, jqXHR);
-
-					let errorMessage = 'An error occurred while downloading the file. Please try again.';
-					if (jqXHR.response) {
-						const reader = new FileReader();
-						reader.onload = function () {
-							errorMessage = reader.result;
-							showResultModal('Error', errorMessage);
-						};
-						reader.onerror = function () {
-							showResultModal('Error', 'An unknown error occurred during download.');
-						};
-						reader.readAsText(jqXHR.response);
-						return;
-					}
-					showResultModal('Error', errorMessage);
-				}
-			});
+	
+	
+	
+	function startReport(button){
+		const alertMsg = document.getElementById("alertMessage");
+		const filename = button.getAttribute('data-filename');
+		const fromdate = button.getAttribute('data-fromdate');
+		const todate = button.getAttribute('data-todate');
+		const currency = button.getAttribute('data-currency');
+		const dtltype = button.getAttribute('data-dtltype');
+		const type = button.getAttribute('data-type');
+		const version = button.getAttribute('data-version');
+		const sessionfilename = sessionStorage.getItem("filename");
+		
+		if(sessionfilename==filename){
+			alertMsg.innerHTML ='Download request already Processing...';
+       	 	showAlert();
+			return;
 		}
+		
+		alertMsg.innerHTML ='Download request Processing...';
+   	 	showAlert();
+
+		const baseUrl = '/BCDRS/Reports/startreport';
+		const downloadUrl = baseUrl +
+			'?filename=' + encodeURIComponent(filename) +
+			'&fromdate=' + encodeURIComponent(fromdate) +
+			'&todate=' + encodeURIComponent(todate) +
+			'&currency=' + encodeURIComponent(currency) +
+			'&dtltype=' + encodeURIComponent(dtltype) +
+			'&type=' + encodeURIComponent(type) +
+			'&version=' + encodeURIComponent(version);
+	    fetch(downloadUrl)  // ✅ no invalid characters now
+	        .then(res => res.text())
+	        .then(jobId => {
+
+	        	alertMsg.innerHTML ='Download request received...'+jobId;
+	       	 	showAlert();
+	            sessionStorage.setItem("jobId", jobId);
+	            sessionStorage.setItem("filename", filename);
+	            checkReport(jobId);
+	        });
+	}
+
+	function checkReport(jobId) {
+		const alertMsg = document.getElementById("alertMessage");
+	    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+	        .then(res => res.text())
+	        .then(status => {
+	            if (status === "READY") {
+	            	alertMsg.innerHTML ='Report is ready! Downloading…';
+	           	 	showAlert();
+	                const filename = sessionStorage.getItem("filename");
+	                downloadDetailfile(jobId,filename)
+	                sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");                
+	                
+	            } else {
+	                alertMsg.innerHTML ='Download Is Processing…';
+	            	showAlert();
+	                setTimeout(() => checkReport(jobId), 5000);
+	            }
+	        });
+	}
 
 
-	</script>
 
-	<script th:inline="javascript">
-		function showdetailsbyRowAndColumn(a) {
-			var rowId = a.getAttribute('RowId');
-			var columnId = a.getAttribute('ColumnId');
-			var cellValue = a.textContent || a.innerText;
+	function downloadDetailfile(jobId,filename) {
+		
+		//$('#loader').modal('show');
+		
+		$.ajax({
+			url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+				'&filename=' + filename,
+			type: 'GET',
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				$('#loader').modal('hide');
 
-			if (cellValue !== '0') {
-				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+				if (data && data.size > 100) {
+					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+					const url = window.URL.createObjectURL(blob);
+					const a = document.createElement('a');
+					a.style.display = 'none';
+					a.href = url;
+					a.download = filename;
+					document.body.appendChild(a);
+					a.click();
+					window.URL.revokeObjectURL(url);
+					document.body.removeChild(a);
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
-
-					Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
-
-					location.href = Callurl;
-
-					console.log(Callurl);
+					showResultModal('Success', filename + ' downloaded successfully.');
+				} else {
+					showResultModal('Information', 'No data was available to create a download.');
 				}
-			} else {
-				alert("No Records available for this selected cell.");
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				$('#loader').modal('hide');
+				console.error("Download failed:", textStatus, errorThrown);
+				showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
 			}
-		}
+		});
+	}
+
+		
+
 	</script>
+
 
 	<script th:inline="javascript">
 		function showdetailsbyRowAndColumn(a) {
@@ -605,6 +634,7 @@ PURPOSE		: BRFREPORT
 			}
 		}
 	</script>
+	
 </head>
 
 
@@ -660,7 +690,7 @@ PURPOSE		: BRFREPORT
 							<i class="fa fa-download"></i>
 						</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
-							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+							th:if="${displaymode == 'Details'}" onclick="startReport(this);" th:attr="
 		    data-fromdate=${fromdate},
 		    data-todate=${todate},
 			data-currency=${currency},  
@@ -681,7 +711,7 @@ PURPOSE		: BRFREPORT
 							<div class="table-wrapper table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6;">
 								<table
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
 									id="reports">
 									<thead class="thead-light">
 										
@@ -1835,6 +1865,47 @@ PURPOSE		: BRFREPORT
 										</tr>
 									</tbody>
 								</table>
+								
+								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									   
+									    									    
+									<a th:if="${currentPage > 0}"
+									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},                             
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage - 100},
+									    size=100
+									)}">
+									    Previous
+									</a>
+			
+									    
+									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+									
+									    
+									    <a th:if="${currentPage < (totalPages - 1) * 100}"
+									    	
+									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage + 100},
+									    size=100
+									)}">	
+									    Next
+									    </a>
+									</div>
+								
+								
 							</div>
 
 
@@ -1900,7 +1971,7 @@ PURPOSE		: BRFREPORT
 	      </div>
 
 	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-	        <button type="button" class="custom-tab-btn cancel-btn" data-dismiss="modal" style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+	        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal" style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
 	          Cancel
 	        </button>
 	        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
@@ -1914,7 +1985,7 @@ PURPOSE		: BRFREPORT
 </body>
 <script>
 	$(document).ready(function () {
-		$('#BRFdet').DataTable({
+		$('#BRFdets').DataTable({
 			"paging": true,
 			"pageLength": 100,
 			"lengthChange": false,
@@ -1956,7 +2027,7 @@ PURPOSE		: BRFREPORT
 	/* Your existing CSS - this is the correct approach */
 	.scrollable-table-container {
 		/* This is the key: it creates the scroll context */
-		max-height: 620px;
+		max-height: 590px;
 		/* Or a suitable height like 80vh for responsive design */
 		overflow-y: auto;
 		border: 1px solid #ccc;

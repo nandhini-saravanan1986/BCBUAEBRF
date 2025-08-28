@@ -354,7 +354,6 @@ PURPOSE		: BRFREPORT
 		        keyboard: false
 		    });
 			var Callurl;
-			$('#loader').modal('show');
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -385,7 +384,6 @@ PURPOSE		: BRFREPORT
 		        backdrop: 'static',
 		        keyboard: false
 		    });
-			$('#loader').modal('show');
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -437,7 +435,6 @@ PURPOSE		: BRFREPORT
 		        backdrop: 'static',
 		        keyboard: false
 		    });
-			$('#loader').modal('show');
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -521,6 +518,8 @@ PURPOSE		: BRFREPORT
        	 	showAlert();
 			return;
 		}
+		alertMsg.innerHTML ='Download request Processing...';
+   	 	showAlert();
 
 		const baseUrl = '/BCDRS/Reports/startreport';
 		const downloadUrl = baseUrl +
@@ -727,7 +726,7 @@ PURPOSE		: BRFREPORT
 											</th>
 											<th rowspan="5" style="text-align: center; background-color: #b3b6b9">ID
 											</th>
-											<th rowspan="5" style="text-align: center; background-color: #b3b6b9">
+											<th rowspan="5" style="text-align: center;vertical-align: middle; background-color: #b3b6b9">
 												LIABILITIES</th>
 											<th colspan="9" style="text-align: center">UAE Operation</th>
 
@@ -3372,30 +3371,30 @@ PURPOSE		: BRFREPORT
 
 
 										<tr style="background-color: #b3b6b9">
-											<th rowspan="3" style="text-align: center; background-color: #b3b6b9">ROW
+											<th rowspan="3" style="text-align: center; vertical-align: middle; background-color: #b3b6b9">ROW
 											</th>
-											<th rowspan="3" style="text-align: center; background-color: #b3b6b9">ID
+											<th rowspan="3" style="text-align: center; vertical-align: middle; background-color: #b3b6b9">ID
 											</th>
-											<th rowspan="3" style="text-align: center; background-color: #b3b6b9">
+											<th rowspan="3" style="text-align: center; vertical-align: middle; background-color: #b3b6b9">
 												LIABILITIES</th>
-											<th colspan="11" style="text-align: center">UAE Operation</th>
+											<th colspan="11" style="text-align: center;vertical-align: middle;">UAE Operation</th>
 										</tr>
 
 										<tr>
-											<th style="text-align: center">Stage 1 for Loans and Advances</th>
-											<th style="text-align: center">Stage 1 for Investments</th>
-											<th style="text-align: center">Stage 1 for all other assets</th>
-											<th style="text-align: center">Stage 2 for Loans and Advances</th>
-											<th style="text-align: center">Stage 2 for Investments</th>
-											<th style="text-align: center">Stage 2 for all other assets</th>
-											<th style="text-align: center">Stage 3 for Loans and Advances (Principal)
+											<th style="text-align: center;vertical-align: middle">Stage 1 for Loans and Advances</th>
+											<th style="text-align: center;vertical-align: middle">Stage 1 for Investments</th>
+											<th style="text-align: center;vertical-align: middle">Stage 1 for all other assets</th>
+											<th style="text-align: center;vertical-align: middle">Stage 2 for Loans and Advances</th>
+											<th style="text-align: center;vertical-align: middle">Stage 2 for Investments</th>
+											<th style="text-align: center;vertical-align: middle">Stage 2 for all other assets</th>
+											<th style="text-align: center;vertical-align: middle">Stage 3 for Loans and Advances (Principal)
 											</th>
-											<th style="text-align: center">Stage 3 for Investments</th>
-											<th style="text-align: center">Stage 3 for all other Assets</th>
-											<th style="text-align: center">Legacy Interest in Suspense</th>
-											<th style="text-align: center">Provision for Interest & Fees past due more
+											<th style="text-align: center;vertical-align: middle">Stage 3 for Investments</th>
+											<th style="text-align: center;vertical-align: middle">Stage 3 for all other Assets</th>
+											<th style="text-align: center;vertical-align: middle">Legacy Interest in Suspense</th>
+											<th style="text-align: center;vertical-align: middle">Provision for Interest & Fees past due more
 												than 90 days</th>
-											<th style="text-align: center">Total</th>
+											<th style="text-align: center;vertical-align: middle">Total</th>
 										</tr>
 
 										<tr style="background-color: #b3b6b9">
@@ -3681,7 +3680,7 @@ PURPOSE		: BRFREPORT
 																	style="border-right: 1px solid #dee2e6; ">
 																	<table
 																		class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-																		id="BRFdet" style='margin-top:-30px'>
+																		id="BRFdet" >
 																		<thead class="thead-light">
 																			<tr>
 																				<th></th>
@@ -3707,7 +3706,7 @@ PURPOSE		: BRFREPORT
 																				<td th:text="${report.custId}"></td>
 																				<td th:text="${report.acctNumber}"></td>
 																				<td th:text="${report.acctName}"></td>
-																				<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
+																				<td  th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
 																				<td th:text="${report.rowId}"></td>
 																				<td th:text="${report.columnId}"></td>
 																				<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>

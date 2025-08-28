@@ -122,7 +122,8 @@ public class CBUAE_BRF1_3_ReportService {
 
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
-		int startItem = currentPage * pageSize;
+		int totalPages=0;
+		
 
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
@@ -182,7 +183,9 @@ public class CBUAE_BRF1_3_ReportService {
 				if (rowId != null && columnId != null) {
 					T1Dt1 = BRF1_3_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
 				} else {
-					T1Dt1 = BRF1_3_DETAIL_Repo.getdatabydateList(d1);
+					T1Dt1 = BRF1_3_DETAIL_Repo.getdatabydateList(dateformat.parse(todate),currentPage,pageSize);
+					totalPages=BRF1_3_DETAIL_Repo.getdatacount(dateformat.parse(todate));
+					mv.addObject("pagination","YES");
 				}
 				mv.addObject("reportdetails", T1Dt1);
 				mv.addObject("reportmaster12", T1Dt1);
@@ -194,6 +197,9 @@ public class CBUAE_BRF1_3_ReportService {
 		}
 		mv.setViewName("BRF/BRF1_3");
 		mv.addObject("displaymode", "Details");
+		mv.addObject("currentPage", currentPage);
+		System.out.println("totalPages"+totalPages);
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
 		/// mv.addObject("reportdetails", T1Dt1);
 		// mv.addObject("reportmaster12", T1Dt1);
 		mv.addObject("reportsflag", "reportsflag");
