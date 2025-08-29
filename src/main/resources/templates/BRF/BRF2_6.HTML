@@ -495,75 +495,114 @@ PURPOSE		: BRFREPORT
 
 	<script>
 
-		function downloadDetailfile(button) {
-			const filename = button.getAttribute('data-filename');
-			const fromdate = button.getAttribute('data-fromdate');
-			const todate = button.getAttribute('data-todate');
-			const currency = button.getAttribute('data-currency');
-			const dtltype = button.getAttribute('data-dtltype');
-			const type = button.getAttribute('data-type');
-			const version = button.getAttribute('data-version');
-
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
-			loader.show();
-			const baseUrl = '/BCDRS/Reports/';
-			const downloadUrl = baseUrl + 'downloadDetailExcel' +
-				'?filename=' + encodeURIComponent(filename) +
-				'&fromdate=' + encodeURIComponent(fromdate) +
-				'&todate=' + encodeURIComponent(todate) +
-				'&currency=' + encodeURIComponent(currency) +
-				'&dtltype=' + encodeURIComponent(dtltype) +
-				'&type=' + encodeURIComponent(type) +
-				'&version=' + encodeURIComponent(version);
-
-			$.ajax({
-				url: downloadUrl,
-				type: 'GET',
-				xhrFields: {
-					responseType: 'blob'
-				},
-				success: function (data) {
-					$('#loader').modal('hide');
-
-					if (data && data.size > 100) {
-						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-						const url = window.URL.createObjectURL(blob);
-						const a = document.createElement('a');
-						a.style.display = 'none';
-						a.href = url;
-						a.download = filename + '.xls';
-						document.body.appendChild(a);
-						a.click();
-						a.remove();
-						window.URL.revokeObjectURL(url);
-
-						showResultModal('Success', filename + ' downloaded successfully.');
-					} else {
-						showResultModal('Information', 'No data was available to create a download or file was empty.');
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					$('#loader').modal('hide');
-					console.error('Download error:', textStatus, errorThrown, jqXHR);
-
-					let errorMessage = 'An error occurred while downloading the file. Please try again.';
-					if (jqXHR.response) {
-						const reader = new FileReader();
-						reader.onload = function () {
-							errorMessage = reader.result;
-							showResultModal('Error', errorMessage);
-						};
-						reader.onerror = function () {
-							showResultModal('Error', 'An unknown error occurred during download.');
-						};
-						reader.readAsText(jqXHR.response);
-						return;
-					}
-					showResultModal('Error', errorMessage);
-				}
-			});
+	function startReport(button){
+		const alertMsg = document.getElementById("alertMessage");
+		const filename = button.getAttribute('data-filename');
+		const fromdate = button.getAttribute('data-fromdate');
+		const todate = button.getAttribute('data-todate');
+		const currency = button.getAttribute('data-currency');
+		const dtltype = button.getAttribute('data-dtltype');
+		const type = button.getAttribute('data-type');
+		const version = button.getAttribute('data-version');
+		const sessionfilename = sessionStorage.getItem("filename");
+		
+		if(sessionfilename==filename){
+			alertMsg.innerHTML ='Download request already Processing...';
+       	 	showAlert();
+			return;
 		}
+		
+		alertMsg.innerHTML ='Download request Processing...';
+   	 	showAlert();
 
+		const baseUrl = '/BCDRS/Reports/startreport';
+		const downloadUrl = baseUrl +
+			'?filename=' + encodeURIComponent(filename) +
+			'&fromdate=' + encodeURIComponent(fromdate) +
+			'&todate=' + encodeURIComponent(todate) +
+			'&currency=' + encodeURIComponent(currency) +
+			'&dtltype=' + encodeURIComponent(dtltype) +
+			'&type=' + encodeURIComponent(type) +
+			'&version=' + encodeURIComponent(version);
+	    fetch(downloadUrl)  // ✅ no invalid characters now
+	        .then(res => res.text())
+	        .then(jobId => {
+
+	        	alertMsg.innerHTML ='Download request received...'+jobId;
+	       	 	showAlert();
+	            sessionStorage.setItem("jobId", jobId);
+	            sessionStorage.setItem("filename", filename);
+	            checkReport(jobId);
+	        });
+	}
+
+	function checkReport(jobId) {
+		const alertMsg = document.getElementById("alertMessage");
+	    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+	        .then(res => res.text())
+	        .then(status => {
+	            if (status === "READY") {
+	            	alertMsg.innerHTML ='Report is ready! Downloading…';
+	           	 	showAlert();
+	                const filename = sessionStorage.getItem("filename");
+	                downloadDetailfile(jobId,filename)
+	                sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");                
+	                
+	            } else if(status ==="PROCESSING") {
+	                alertMsg.innerHTML ='Download Is Processing…';
+	            	showAlert();
+	                setTimeout(() => checkReport(jobId), 5000);
+	            }
+	            else if(status ==="ERROR") {
+	                alertMsg.innerHTML ='No data was available to create a download.';
+	            	showAlert();
+	            	sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");  
+	            }
+	        });
+	}
+
+
+
+	function downloadDetailfile(jobId,filename) {
+		
+		//$('#loader').modal('show');
+		
+		$.ajax({
+			url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+				'&filename=' + filename,
+			type: 'GET',
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				$('#loader').modal('hide');
+
+				if (data && data.size > 100) {
+					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+					const url = window.URL.createObjectURL(blob);
+					const a = document.createElement('a');
+					a.style.display = 'none';
+					a.href = url;
+					a.download = filename;
+					document.body.appendChild(a);
+					a.click();
+					window.URL.revokeObjectURL(url);
+					document.body.removeChild(a);
+
+					showResultModal('Success', filename + ' downloaded successfully.');
+				} else {
+					showResultModal('Information', 'No data was available to create a download.');
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				$('#loader').modal('hide');
+				console.error("Download failed:", textStatus, errorThrown);
+				showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+			}
+		});
+	}
 
 
 	</script>
@@ -688,7 +727,7 @@ PURPOSE		: BRFREPORT
 							<i class="fa fa-download"></i>
 						</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
-							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+							th:if="${displaymode == 'Details'}" onclick="startReport(this);" th:attr="
 			    data-fromdate=${fromdate},
 			    data-todate=${todate},
 				data-currency=${currency},  
@@ -713,11 +752,11 @@ PURPOSE		: BRFREPORT
 										<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ID</th>
 										<th rowspan="4" style="text-align: center; width: 40%; background-color: #b3b6b9">Item</th>
 										<th colspan="8" style="text-align: center">RESIDENT</th>
-										<th rowspan="3" style="text-align: center">Total (Resident)</th>
+										<th rowspan="3" style="text-align: center;VERTICAL-ALIGN: middle">Total (Resident)</th>
 										<th colspan="8" style="text-align: center">NON-RESIDENT</th>
-										<th rowspan="3" style="text-align: center">Total
+										<th rowspan="3" style="text-align: center;VERTICAL-ALIGN: middle">Total
                                                                                    ( Non Resident )</th>
-										<th rowspan="3" style="text-align: center">GRAND TOTAL (Amount)</th>
+										<th rowspan="3" style="text-align: center;VERTICAL-ALIGN: middle">GRAND TOTAL (Amount)</th>
 										
 									</tr>
 									
@@ -731,22 +770,22 @@ PURPOSE		: BRFREPORT
 									
 									<tr style="background-color: #b3b6b9">
 										
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
-										<th>Up to 3 Months</th>
-										<th>Above 3 and up to 6 Months</th>
-										<th>Above 6 and up to 12 Months</th>
-										<th>Exceeding 12 Months</th>
+										<th  style="text-align: center ;VERTICAL-ALIGN: middle">Up to 3 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 3 and up to 6 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 6 and up to 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Exceeding 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Up to 3 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 3 and up to 6 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 6 and up to 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Exceeding 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Up to 3 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 3 and up to 6 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 6 and up to 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Exceeding 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Up to 3 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 3 and up to 6 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Above 6 and up to 12 Months</th>
+										<th style="text-align: center ;VERTICAL-ALIGN: middle">Exceeding 12 Months</th>
 									</tr>
 									
 									<tr style="background-color: #b3b6b9">
@@ -1652,14 +1691,14 @@ PURPOSE		: BRFREPORT
 																	style="border-right: 1px solid #dee2e6; ">
 																	<table
 																		class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-																		id="BRFdet" style='margin-top:-30px'>
+																		id="BRFdet">
 																		<thead class="thead-light">
 																			<tr>
 																				<th></th>
 																				<th>CUST ID</th>
 																				<th>ACCT NO</th>
 																				<th>ACCT NAME</th>
-																				<th>ACCT BALANCE</th>
+																				<th style="text-align:right;">ACCT BALANCE</th>
 																				<th style="text-align:left;">ROWID</th>
 																				<th>COLUMNID</th>
 																				<th>REPORT_DATE</th>
@@ -1686,6 +1725,45 @@ PURPOSE		: BRFREPORT
 																			</tr>
 																		</tbody>
 																	</table>
+																	
+																	<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									   
+																<a th:if="${currentPage > 0}"
+																 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+																    asondate=${asondate},                             
+																    fromdate=${fromdate},
+																    todate=${todate},
+																    currency=${currency},
+																    dtltype=${dtltype},
+																    type=${type},
+																    version=${version},
+																    page=${currentPage - 100},
+																    size=100
+																)}">
+																    Previous
+																</a>
+										
+																    
+																    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+																
+																    
+																    <a th:if="${currentPage < (totalPages - 1) * 100}"
+																    	
+																    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+																    asondate=${asondate},
+																    fromdate=${fromdate},
+																    todate=${todate},
+																    currency=${currency},
+																    dtltype=${dtltype},
+																    type=${type},
+																    version=${version},
+																    page=${currentPage + 100},
+																    size=100
+																)}">	
+																    Next
+																    </a>
+																</div>
+																	
 																</div>
 
 
@@ -1769,7 +1847,7 @@ PURPOSE		: BRFREPORT
 									</body>
 									<script>
 									  $(document).ready(function () {
-									    $('#BRFdet').DataTable({
+									    $('#BRFdetS').DataTable({
 									      "paging": true,
 									      "pageLength": 100,
 									      "lengthChange": false,
@@ -1811,7 +1889,7 @@ PURPOSE		: BRFREPORT
 										/* Your existing CSS - this is the correct approach */
 										.scrollable-table-container {
 											/* This is the key: it creates the scroll context */
-											max-height: 620px;
+											max-height: 590px;
 											/* Or a suitable height like 80vh for responsive design */
 											overflow-y: auto;
 											border: 1px solid #ccc;
@@ -1827,7 +1905,7 @@ PURPOSE		: BRFREPORT
 
 										.scrollable-table-container thead tr:nth-child(2) {
 											position: sticky;
-											top: 36px;
+											top: 34px;
 											/* adjust based on row height */
 											background-color: #b3b6b9;
 											z-index: 4;
@@ -1837,7 +1915,7 @@ PURPOSE		: BRFREPORT
 
 										.scrollable-table-container thead tr:nth-child(3) {
 											position: sticky;
-											top: 72px;
+											top: 68px;
 											/* Adjust based on row height */
 											background-color: #b3b6b9;
 											z-index: 3;
@@ -1845,7 +1923,7 @@ PURPOSE		: BRFREPORT
 
 										.scrollable-table-container thead tr:nth-child(4) {
 											position: sticky;
-											top: 100px;
+											top: 195px;
 											/* Adjust based on row height */
 											background-color: #b3b6b9;
 											z-index: 2;

@@ -328,12 +328,14 @@ PURPOSE		: BRFREPORT
 
 
 		function home() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			location.href = 'Dashboard'
 		}
 
 		function back() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			window.history.back();
 		}
@@ -2195,7 +2197,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(2) {
 		position: sticky;
-		top: 36px;
+		top: 34px;
 		/* adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 4;
@@ -2205,7 +2207,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(3) {
 		position: sticky;
-		top: 72px;
+		top: 354px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 3;
