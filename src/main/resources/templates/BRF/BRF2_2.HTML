@@ -484,76 +484,114 @@
 
 	<script>
 
-		function downloadDetailfile(button) {
-			const filename = button.getAttribute('data-filename');
-			const fromdate = button.getAttribute('data-fromdate');
-			const todate = button.getAttribute('data-todate');
-			const currency = button.getAttribute('data-currency');
-			const dtltype = button.getAttribute('data-dtltype');
-			const type = button.getAttribute('data-type');
-			const version = button.getAttribute('data-version');
 
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
-			loader.show();
-
-			const baseUrl = '/BCDRS/Reports/';
-			const downloadUrl = baseUrl + 'downloadDetailExcel' +
-				'?filename=' + encodeURIComponent(filename) +
-				'&fromdate=' + encodeURIComponent(fromdate) +
-				'&todate=' + encodeURIComponent(todate) +
-				'&currency=' + encodeURIComponent(currency) +
-				'&dtltype=' + encodeURIComponent(dtltype) +
-				'&type=' + encodeURIComponent(type) +
-				'&version=' + encodeURIComponent(version);
-
-			$.ajax({
-				url: downloadUrl,
-				type: 'GET',
-				xhrFields: {
-					responseType: 'blob'
-				},
-				success: function (data) {
-					$('#loader').modal('hide');
-
-					if (data && data.size > 100) {
-						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-						const url = window.URL.createObjectURL(blob);
-						const a = document.createElement('a');
-						a.style.display = 'none';
-						a.href = url;
-						a.download = filename + '.xls';
-						document.body.appendChild(a);
-						a.click();
-						a.remove();
-						window.URL.revokeObjectURL(url);
-
-						showResultModal('Success', filename + ' downloaded successfully.');
-					} else {
-						showResultModal('Information', 'No data was available to create a download or file was empty.');
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					$('#loader').modal('hide');
-					console.error('Download error:', textStatus, errorThrown, jqXHR);
-
-					let errorMessage = 'An error occurred while downloading the file. Please try again.';
-					if (jqXHR.response) {
-						const reader = new FileReader();
-						reader.onload = function () {
-							errorMessage = reader.result;
-							showResultModal('Error', errorMessage);
-						};
-						reader.onerror = function () {
-							showResultModal('Error', 'An unknown error occurred during download.');
-						};
-						reader.readAsText(jqXHR.response);
-						return;
-					}
-					showResultModal('Error', errorMessage);
-				}
-			});
+	function startReport(button){
+		const alertMsg = document.getElementById("alertMessage");
+		const filename = button.getAttribute('data-filename');
+		const fromdate = button.getAttribute('data-fromdate');
+		const todate = button.getAttribute('data-todate');
+		const currency = button.getAttribute('data-currency');
+		const dtltype = button.getAttribute('data-dtltype');
+		const type = button.getAttribute('data-type');
+		const version = button.getAttribute('data-version');
+		const sessionfilename = sessionStorage.getItem("filename");
+		
+		if(sessionfilename==filename){
+			alertMsg.innerHTML ='Download request already Processing...';
+       	 	showAlert();
+			return;
 		}
+		
+		alertMsg.innerHTML ='Download request Processing...';
+   	 	showAlert();
 
+		const baseUrl = '/BCDRS/Reports/startreport';
+		const downloadUrl = baseUrl +
+			'?filename=' + encodeURIComponent(filename) +
+			'&fromdate=' + encodeURIComponent(fromdate) +
+			'&todate=' + encodeURIComponent(todate) +
+			'&currency=' + encodeURIComponent(currency) +
+			'&dtltype=' + encodeURIComponent(dtltype) +
+			'&type=' + encodeURIComponent(type) +
+			'&version=' + encodeURIComponent(version);
+	    fetch(downloadUrl)  // ✅ no invalid characters now
+	        .then(res => res.text())
+	        .then(jobId => {
+
+	        	alertMsg.innerHTML ='Download request received...'+jobId;
+	       	 	showAlert();
+	            sessionStorage.setItem("jobId", jobId);
+	            sessionStorage.setItem("filename", filename);
+	            checkReport(jobId);
+	        });
+	}
+
+	function checkReport(jobId) {
+		const alertMsg = document.getElementById("alertMessage");
+	    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+	        .then(res => res.text())
+	        .then(status => {
+	            if (status === "READY") {
+	            	alertMsg.innerHTML ='Report is ready! Downloading…';
+	           	 	showAlert();
+	                const filename = sessionStorage.getItem("filename");
+	                downloadDetailfile(jobId,filename)
+	                sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");                
+	                
+	            } else if(status ==="PROCESSING") {
+	                alertMsg.innerHTML ='Download Is Processing…';
+	            	showAlert();
+	                setTimeout(() => checkReport(jobId), 5000);
+	            }
+	            else if(status ==="ERROR") {
+	                alertMsg.innerHTML ='No data was available to create a download.';
+	            	showAlert();
+	            	sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");  
+	            }
+	        });
+	}
+
+
+	function downloadDetailfile(jobId,filename) {
+		
+		//$('#loader').modal('show');
+		
+		$.ajax({
+			url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+				'&filename=' + filename,
+			type: 'GET',
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				$('#loader').modal('hide');
+
+				if (data && data.size > 100) {
+					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+					const url = window.URL.createObjectURL(blob);
+					const a = document.createElement('a');
+					a.style.display = 'none';
+					a.href = url;
+					a.download = filename;
+					document.body.appendChild(a);
+					a.click();
+					window.URL.revokeObjectURL(url);
+					document.body.removeChild(a);
+
+					showResultModal('Success', filename + ' downloaded successfully.');
+				} else {
+					showResultModal('Information', 'No data was available to create a download.');
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				$('#loader').modal('hide');
+				console.error("Download failed:", textStatus, errorThrown);
+				showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+			}
+		});
+	}
 
 
 	</script>
@@ -671,7 +709,7 @@ table tr td:nth-child(4):hover {
 							<i class="fa fa-download"></i>
 						</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
-							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+							th:if="${displaymode == 'Details'}" onclick="startReport(this);" th:attr="
 			    data-fromdate=${fromdate},
 			    data-todate=${todate},
 				data-currency=${currency},  
@@ -895,6 +933,8 @@ table tr td:nth-child(4):hover {
 
 										</tbody>
 																	</table>
+																	
+												
 																</div>
 
 
@@ -943,6 +983,45 @@ table tr td:nth-child(4):hover {
 																			</tr>
 																		</tbody>
 																	</table>
+																	<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									   
+									    
+									    
+									<a th:if="${currentPage > 0}"
+									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},                             
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage - 100},
+									    size=100
+									)}">
+									    Previous
+									</a>
+			
+									    
+									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+									
+									    
+									    <a th:if="${currentPage < (totalPages - 1) * 100}"
+									    	
+									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage + 100},
+									    size=100
+									)}">	
+									    Next
+									    </a>
+									</div>
 																</div>
 
 
@@ -1026,32 +1105,7 @@ table tr td:nth-child(4):hover {
 
 	
 									</body>
-									<script>
-									  $(document).ready(function () {
-									    $('#BRFdet').DataTable({
-									      "paging": true,
-									      "pageLength": 100,
-									      "lengthChange": false,
-									      "searching": false,
-									      "ordering": false,
-									      "autoWidth": false,
-									      "language": {
-									        "search": "Search:"
-									      }
-									    });
-									  });
-									</script>
-									<!-- <script>
-									  $(document).ready(function () {
-									    $('#BRFvalidation').DataTable({
-									      "paging": true,
-									      "info": false,       // turn off "Showing x of y"
-									      "searching": false,  // turn off search
-									      "ordering": false,   // turn off ordering
-									      "lengthChange": false // hide "Show x entries"
-									    });
-									  });
-									</script> -->
+									
 
 									<style>
 									  #BRFdet td {

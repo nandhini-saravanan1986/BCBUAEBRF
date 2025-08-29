@@ -1119,6 +1119,7 @@ public class RegulatoryReportServices {
 	}
 	
 	
+	
 private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashMap<>();
 
 	
@@ -1134,6 +1135,7 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 				else if (filename.equals("BRF1_2Detail")) {
 					fileData= cbuae_brf1_2_reportservice.getBRF1_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
 				}
+
 				else if (filename.equals("BRF2_4Detail")) {
 					fileData= cbuae_brf2_4_reportservice.getBRF2_4DetailExcel(filename, fromdate, todate, currency, dtltype, type, version);
 
@@ -1151,6 +1153,16 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 				else if (filename.equals("BRF2_1Detail")) {
 					fileData= cbuae_brf2_1_reportservice.getBRF2_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
 				}
+				else if (filename.equals("BRF1_12Detail")) {
+					fileData= cbuae_brf1_12_reportservice.getBRF1_12DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
+				}
+				else if (filename.equals("BRF2_2Detail")) {
+					fileData= cbuae_brf2_2_reportservice.getBRF2_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
+				}
+				else if (filename.equals("BRF2_3Detail")) {
+					fileData= cbuae_brf2_3_reportservice.getBRF2_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
+				}
+				
 				
 				
 				
