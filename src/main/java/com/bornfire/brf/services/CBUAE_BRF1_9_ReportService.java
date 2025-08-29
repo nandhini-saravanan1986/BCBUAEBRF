@@ -60,6 +60,7 @@ import com.bornfire.brf.entities.CBUAE_BRF1_9_Summary_Entity2;
 
 import com.bornfire.brf.entities.CBUAE_BRF1_9_Summary_Repo1;
 import com.bornfire.brf.entities.CBUAE_BRF1_9_Summary_Repo2;
+import com.bornfire.brf.entities.CBUAE_BRF2_4_Detail_Entity;
 
 
 
@@ -146,9 +147,10 @@ public class CBUAE_BRF1_9_ReportService {
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
+	    int totalPages=0;
 
 	    ModelAndView mv = new ModelAndView();
-	    List<CBUAE_BRF1_9_Detail_Entity> T1Dt1 = new ArrayList<>();
+	    List<CBUAE_BRF1_9_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF1_9_Detail_Entity>();
 
 	    try {
 	        Date d1 = dateformat.parse(todate);
@@ -168,7 +170,11 @@ public class CBUAE_BRF1_9_ReportService {
 	        if (rowId != null && columnId != null) {
 	            T1Dt1 = BRF1_9_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
 	        } else {
-	            T1Dt1 = BRF1_9_DETAIL_Repo.getListbydate(d1);
+	            T1Dt1 = BRF1_9_DETAIL_Repo.getdatabydateList(d1);
+	            T1Dt1 = BRF1_9_DETAIL_Repo.getdatabydateList(d1,currentPage,pageSize);
+	            totalPages=BRF1_9_DETAIL_Repo.getdatacount(dateformat.parse(todate));
+	            mv.addObject("pagination","YES");
+	            
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
@@ -178,13 +184,20 @@ public class CBUAE_BRF1_9_ReportService {
 	    }
 
 	    mv.setViewName("BRF/BRF1_9");
-	    mv.addObject("displaymode", "Details");
-	    mv.addObject("reportdetails", T1Dt1);
-	    mv.addObject("reportmaster12", T1Dt1);
-	    mv.addObject("reportsflag", "reportsflag");
-	    mv.addObject("menu", reportId);
-	    return mv;
+		mv.addObject("displaymode", "Details");
+   	  	mv.addObject("currentPage", currentPage);
+   	  	System.out.println("totalPages"+(int)Math.ceil((double)totalPages / 100));
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
+		
+   	    mv.addObject("reportdetails", T1Dt1);
+
+		// mv.addObject("reportmaster1", qr);
+		// mv.addObject("singledetail", new T1CurProdDetail());
+		mv.addObject("reportsflag", "reportsflag");
+		mv.addObject("menu", reportId);
+		return mv;
 	}
+	
 
 	
 	
@@ -261,7 +274,7 @@ public class CBUAE_BRF1_9_ReportService {
 
 					// Get data
 					Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
-					List<CBUAE_BRF1_9_Detail_Entity> reportData = BRF1_9_DETAIL_Repo.getListbydate(parsedToDate);
+					List<CBUAE_BRF1_9_Detail_Entity> reportData = BRF1_9_DETAIL_Repo.getdatabydateList(parsedToDate);
 
 					if (reportData != null && !reportData.isEmpty()) {
 						int rowIndex = 1;

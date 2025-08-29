@@ -1150,6 +1150,10 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 				else if (filename.equals("BRF1_3Detail")) {
 					 fileData= cbuae_brf1_3_reportservice.getBRF1_3DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
 				}
+				
+				else if (filename.equals("BRF1_9Detail")) {
+					 fileData= cbuae_brf1_9_reportservice.getBRF1_9DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
+				}
 				else if (filename.equals("BRF2_1Detail")) {
 					fileData= cbuae_brf2_1_reportservice.getBRF2_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
 				}
