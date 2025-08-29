@@ -717,16 +717,16 @@ PURPOSE		: BRFREPORT
 							<div class="table-wrapper table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6; ">
 								<table
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
 									id="reports">
 									<thead class="thead-light">
 										<tr style="background-color: #b3b6b9">
-											<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ROW
+											<th rowspan="2" style="text-align: center;vertical-align: middle; background-color: #b3b6b9">ROW
 											</th>
-											<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ID
+											<th rowspan="2" style="text-align: center;vertical-align: middle; background-color: #b3b6b9">ID
 											</th>
 											<th rowspan="2"
-												style="text-align: center; background-color: #b3b6b9; width:" 25%"">Assets
+												style="text-align: center;vertical-align: middle; background-color: #b3b6b9; width:10;">Assets
 											</th>
 											<th style="text-align: center;vertical-align: middle;">Bank Operations (see note 1) </th>
 											<th style="text-align: center;vertical-align: middle;">Banking Subsidiaries in UAE</th>
@@ -900,7 +900,7 @@ PURPOSE		: BRFREPORT
 
 <tr style="background-color: #b3b6b9">
     <td style="text-align: center; background-color: #b3b6b9">0070</td>
-    <td style="text-align: right; background-color: #b3b6b9">15.1</td>
+    <td style="text-align: right; background-color: #b3b6b9">1.5.1</td>
     <td style="" th:text="${report.r0070_asstes}"></td>
     <td style="text-align: right;" th:attr="RowId='R0070', ColumnId='C0010'"onclick="showdetailsbyRowAndColumn(this)" th:text="${report.r0070_banking_operations}"></td>
     <td style="text-align: right;" th:attr="RowId='R0070', ColumnId='C0020'"onclick="showdetailsbyRowAndColumn(this)" th:text="${report.r0070_banking_subsidiaries_uae}"></td>
@@ -916,7 +916,7 @@ PURPOSE		: BRFREPORT
 
 <tr style="background-color: #b3b6b9">
     <td style="text-align: center; background-color: #b3b6b9">0080</td>
-    <td style="text-align: right; background-color: #b3b6b9">15.2</td>
+    <td style="text-align: right; background-color: #b3b6b9">1.5.2</td>
     <td style=" text-align: left;" th:text="${report.r0080_asstes}"></td>
     <td style="text-align: right;" th:attr="RowId='R0080', ColumnId='C0010'"onclick="showdetailsbyRowAndColumn(this)" th:text="${report.r0080_banking_operations}"></td>
     <td style="text-align: right;" th:attr="RowId='R0080', ColumnId='C0020'"onclick="showdetailsbyRowAndColumn(this)" th:text="${report.r0080_banking_subsidiaries_uae}"></td>
