@@ -555,10 +555,16 @@ PURPOSE		: BRFREPORT
 	                sessionStorage.removeItem("jobId");
 	                sessionStorage.removeItem("filename");                
 	                
-	            } else {
+	            } else if(status ==="PROCESSING") {
 	                alertMsg.innerHTML ='Download Is Processing…';
 	            	showAlert();
 	                setTimeout(() => checkReport(jobId), 5000);
+	            }
+	            else if(status ==="ERROR") {
+	                alertMsg.innerHTML ='No data was available to create a download.';
+	            	showAlert();
+	            	sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");  
 	            }
 	        });
 	}

@@ -1133,7 +1133,8 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 				}
 				else if (filename.equals("BRF1_2Detail")) {
 					fileData= cbuae_brf1_2_reportservice.getBRF1_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,version);
-				}else if (filename.equals("BRF1_8Detail")) {
+				}
+				else if (filename.equals("BRF2_4Detail")) {
 					fileData= cbuae_brf2_4_reportservice.getBRF2_4DetailExcel(filename, fromdate, todate, currency, dtltype, type, version);
 
 				}else if (filename.equals("BRF2_15Detail")) {
@@ -1156,8 +1157,8 @@ private final ConcurrentHashMap<String, byte[]> jobStorage = new ConcurrentHashM
 
 			
 		if (fileData == null) {
-		    //logger.warn("Excel generation failed or no data for jobId: {}", jobId);
-		    jobStorage.put(jobId, null); 
+		    logger.warn("Excel generation failed or no data for jobId: {}", jobId);
+		    jobStorage.put(jobId, "Nodata".getBytes()); 
 		} else {
 		    jobStorage.put(jobId, fileData);
 		}

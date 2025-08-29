@@ -2,6 +2,7 @@ package com.bornfire.brf.controllers;
 
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -43,10 +44,12 @@ public class CBUAE_BRF_ReportsController {
 	RegulatoryReportServices regreportServices;
 
 	private String pagesize;
+	
 
 	public String getPagesize() {
 		return pagesize;
 	}
+	
 
 	public void setPagesize(String pagesize) {
 		this.pagesize = pagesize;
@@ -293,6 +296,11 @@ public class CBUAE_BRF_ReportsController {
 	        //System.out.println("Report generation completed for: " + jobId);
 	        if (report == null) {
 	            return ResponseEntity.ok("PROCESSING");
+	        }
+	        
+	        String content = new String(report, StandardCharsets.UTF_8);
+	        if ("Nodata".equals(content)) {
+	            return ResponseEntity.ok("ERROR");
 	        }
 	        return ResponseEntity.ok("READY");
 	    }

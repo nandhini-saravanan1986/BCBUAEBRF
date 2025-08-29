@@ -914,18 +914,23 @@ function startPolling(jobId) {
                     downloadDetailfiles(jobId,filename)
                     sessionStorage.removeItem("jobId");
                     sessionStorage.removeItem("filename"); 
-                } else {
-                    
-                    alertMsg.innerHTML ='Download Is Processing…';
-                	showAlert();
-                    setTimeout(checkReport, 6000);  // ✅ keeps retrying on every page
-                }
+                } else if(status ==="PROCESSING") {
+	                alertMsg.innerHTML ='Download Is Processing…';
+	            	showAlert();
+	                setTimeout(() => checkReport(jobId), 5000);
+	            }
+	            else if(status ==="ERROR") {
+	                alertMsg.innerHTML ='No data was available to create a download.';
+	            	showAlert();
+	            	sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");  
+	            }
             })
             .catch(err => {
-                console.error("Error checking report:", err);
                 alertMsg.innerHTML ='Error checking report:'+err;
             	showAlert();
-                setTimeout(checkReport, 6000);
+            	sessionStorage.removeItem("jobId");
+                sessionStorage.removeItem("filename"); 
             });
     }
 
