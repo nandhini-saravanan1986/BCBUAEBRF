@@ -695,11 +695,11 @@
 									id="reports">
 									<thead class="thead-light">
 										<tr style="background-color: #b3b6b9">
-											<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ROW
+											<th rowspan="2" style="text-align: center; vertical-align: middle; background-color: #b3b6b9">ROW
 											</th>
-											<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ID
+											<th rowspan="2" style="text-align: center; vertical-align: middle; background-color: #b3b6b9">ID
 											</th>
-											<th rowspan="2" style="text-align: center; background-color: #b3b6b9">Item
+											<th rowspan="2" style="text-align: center; vertical-align: middle; background-color: #b3b6b9">Item
 											</th>
 											<th style="text-align: center">Overdraft </th>
 											<th style="text-align: center">0 - 7 days</th>
@@ -3584,7 +3584,11 @@
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center;background-color: #8c8f92">0570</td>
 											<td style="text-align: right;background-color: #8c8f92">2.3.3</td>
-											<td th:text="${report1.r0570_product}"></td>
+											<!--<td th:text="${report1.r0570_product}"></td>-->
+											<td th:text="${report1.r0570_product}" 
+											    style="white-space: normal; word-wrap: break-word; word-break: break-word; max-width: 150px;">
+											</td>
+
 											<td style="text-align: right;" th:text="${report1.r0570_overdraft}"
 												th:attr="RowId='R0570', ColumnId='C0010'"
 												onclick="showdetailsbyRowAndColumn(this)" 	class="right-align clickable-cell"></td>
