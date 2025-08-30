@@ -1187,6 +1187,10 @@ public class RegulatoryReportServices {
 			fileData = cbuae_brf2_14_reportservice.getBRF2_14DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
 		}
+		 else if (filename.equals("BRF2_11Detail")) {
+				fileData= CBUAE_BRF2_11_ReportServices.getBRF2_11DetailExcel(filename, fromdate, todate);
+		}
+		
 
 		if (fileData == null) {
 			logger.warn("Excel generation failed or no data for jobId: {}", jobId);

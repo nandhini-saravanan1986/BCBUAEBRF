@@ -129,6 +129,7 @@ public class CBUAE_BRF2_11_ReportService {
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
+	    int totalPages=0;
 
 	    ModelAndView mv = new ModelAndView();
 	    List<CBUAE_BRF2_11_Detail_Entity> T1Dt1 = new ArrayList<>();
@@ -153,7 +154,9 @@ public class CBUAE_BRF2_11_ReportService {
 	            T1Dt1 = CBUAE_BRF2_11_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId);
 	        } else {
 	        	logger.info("enter else block");
-	            T1Dt1 = CBUAE_BRF2_11_Detail_Repos.getdatabydateList(d1);
+	            T1Dt1 = CBUAE_BRF2_11_Detail_Repos.getdatabydateList(dateformat.parse(todate),currentPage,pageSize);
+				totalPages=CBUAE_BRF2_11_Detail_Repos.getdatacount(dateformat.parse(todate));
+				mv.addObject("pagination","YES");
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
@@ -163,6 +166,8 @@ public class CBUAE_BRF2_11_ReportService {
 	    }
 
 	    mv.setViewName("BRF/BRF2_11");
+   	  	mv.addObject("currentPage", currentPage);
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
 	    mv.addObject("displaymode", "Details");
 	    mv.addObject("reportdetails", T1Dt1);
 	    mv.addObject("reportmaster12", T1Dt1);
