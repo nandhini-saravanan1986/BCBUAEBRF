@@ -717,11 +717,9 @@ PURPOSE		: BRFREPORT
 				<div th:if="${displaymode == 'summary'}">
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="table-wrapper table-responsive scrollable-table-container"
-															style="border-right: 1px solid #dee2e6; ">
-															<table class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
-																id="reports">
-																<thead class="thead-light">
+							<div class="table-wrapper table-responsive scrollable-table-container" style="border-right: 1px solid #dee2e6">
+								<table class="sticky-header-table table table-bordered table-cell table-sm table-condensed" id="reports">
+									<thead class="thead-light">
 										<tr style="background-color: #b3b6b9">
 											<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ROW
 											</th>
@@ -2189,7 +2187,7 @@ PURPOSE		: BRFREPORT
 											<td style="text-align: right;"
 												th:text="${report.r0110_after_nonresident_government}"
 												th:attr="RowId='R0110', ColumnId='C0360'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>"></td>
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 										</tr>
 
 
@@ -4065,7 +4063,7 @@ PURPOSE		: BRFREPORT
 	/* Your existing CSS - this is the correct approach */
 	.scrollable-table-container {
 		/* This is the key: it creates the scroll context */
-		max-height: 620px;
+		max-height: 590px;
 		/* Or a suitable height like 80vh for responsive design */
 		overflow-y: auto;
 		border: 1px solid #ccc;
