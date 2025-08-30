@@ -337,7 +337,7 @@ public class CBUAE_BRF1_9_ReportService {
 
 
 			    if (dataList.isEmpty()) {
-			        logger.warn("Service: No data found for BRF5.5 report. Returning empty result.");
+			        logger.warn("Service: No data found for BRF1.9 report. Returning empty result.");
 			        return new byte[0];
 			    }
 			    if (dataList2.isEmpty()) {
@@ -385,153 +385,140 @@ public class CBUAE_BRF1_9_ReportService {
 			        numberStyle.setFont(font);
 
 			        String[] rowCodesPart1 = {
-			        	    "R0030", "R0040" 
+			        		"R0020",  "R0030", "R0040","R0050" 
 			        	};
 			        String[] rowCodesPart2 = {
-			        	    "R0060", "R0070",
-			        	    "R0080", "R0090", "R0100", "R0110", "R0120",
-			        	    "R0130", "R0140", "R0150"
+			        	     "R0070",  "R0080" 
 			        	};
-			        
 			        String[] rowCodesPart3 = {
-			        		"R0160", "R0170",
-			        	    "R0180", "R0190", "R0200", "R0210", "R0220",
-			        	    "R0230", "R0240", "R0250", "R0260", 
+			       "R0100", "R0110", "R0120",
+	        	    "R0130"
+			    };
+			         
+			        String[] rowCodesPart4 = {
+			        		"R0150","R0160", "R0170","R0180", "R0190", 
 			        	   
 			        	};
 			        
-			        String[] rowCodesPart4 = {
-			        		
-			        	    "R0280", "R0290", "R0300"
-			        	};
 			        String[] rowCodesPart5 = {
-			        		"R0310", "R0320",
-			        	    "R0330", "R0340", "R0350"
+			        		
+			        	    "R0210", "R0220", "R0230"
 			        	};
-			        
 			        String[] rowCodesPart6 = {
-			        		  "R0370",
-			        	    "R0380", "R0390", "R0400", "R0410", "R0420",
-			        	    "R0430", "R0440", "R0450"
+			        		 "R0260","R0270", "R0280"
 			        	};
 			        String[] rowCodesPart7 = {
-			        		"R0460" 
-			        	   
+			        		 "R0260","R0270", "R0280"
 			        	};
+			        
 			        String[] rowCodesPart8 = {
-			        		
-			        	    "R0480", "R0490", "R0500", "R0510", "R0520",
-			        	   
+			        		 "R0310","R0320", "R0330"
 			        	};
+			        
 			        String[] rowCodesPart9 = {
-			        		 "R0540", "R0550", "R0560", "R0570",
-			        	    "R0580", "R0590", "R0600"
+			        		   "R0350", "R0360",
 			        	};
 			        String[] rowCodesPart10 = {
-			        		 "R0610", "R0620",
-				        	    "R0630", "R0640", "R0650", "R0660", "R0670",
-				        	    "R0680", "R0690", "R0700", "R0710", 
-				        	  
+			        		  "R0390", "R0400"			        	       
 			        	};
-
+			        
 			        String[] rowCodesPart11 = {
-			        	    "R0730", "R0740", "R0750"
+			        		  "R0420", "R0430"			        	       
 			        	};
 			        String[] rowCodesPart12 = {
-			        		"R0760", "R0770","R0780"
+			        		
+			        		 "R0450" ,"R0460" 
+			        	   
 			        	};
-			      
 			        String[] rowCodesPart13 = {
-			        		"R0800", "R0810"
+			        		 "R0480", "R0490"
+			        };
+			        
+
+			        String[] rowCodesPart14 = {
+			        		 "R0520", "R0530", "R0540", "R0550", "R0560"
+				       };
+			        
+			        String[] rowCodesPart15 = {
+			        		  "R0580", "R0590", "R0600","R0610", "R0620"
+				       };
+
+			        String[] rowCodesPart16 = {
+			        	   "R0640", "R0650", "R0660", "R0670", "R0680" , "R0690"
 			        	};
+			        String[] rowCodesPart17 = {
+			        		 "R0710","R0730", "R0740", "R0750","R0760", "R0770"
+			        	};
+			        String[] rowCodesPart18 = {
+			        "R0790", "R0800", "R0810","R0820","R0830"
+			         };
+			        String[] rowCodesPart19 = {
+			        		 "R0850", "R0860","R0870", "R0880","R0890"
+			        	};
+			        
+			        String[] rowCodesPart20 = {
+			        		"R0900","R0910"
+			        	};
+			        
+			       
 			        
 			        String[] fieldSuffixes = {
-			        	    
-			        	    "resident_government_private_sector_outstanding_balance",
-			        	    "resident_government_private_sector_loans_stage3",
-			        	    "resident_government_private_sector_stage3_provisions",
-			        	    "resident_government_private_sector_provision_interest_legacy_interest",
-			        	    "resident_gre_outstanding_balance",
-			        	    "resident_gre_loans_stage3",
-			        	    "resident_gre_stage3_provisions",
-			        	    "resident_gre_provision_interest_legacy_interest",
-			        	    "resident_private_sector_outstanding_balance",
-			        	    "resident_private_sector_loans_stage3",
-			        	    "resident_private_sector_stage3_provisions",
-			        	    "resident_private_sector_provision_interest_legacy_interest",
-			        	    "resident_sme_outstanding_balance",
-			        	    "resident_sme_loans_stage3",
-			        	    "resident_sme_stage3_provisions",
-			        	    "resident_sme_provision_interest_legacy_interest",
-			        	    "resident_hni_outstanding_balance",
-			        	    "resident_hni_loans_stage3",
-			        	    "resident_hni_stage3_provisions",
-			        	    "resident_hni_provision_interest_legacy_interest",
-			        	    "resident_individuals_outstanding_balance",
-			        	    "resident_individuals_loans_stage3",
-			        	    "resident_individuals_stage3_provisions",
-			        	    "resident_individuals_provision_interest_legacy_interest",
-			        	    "resident_nonbanking_financial_outstanding_balance",
-			        	    "resident_nonbanking_financial_loans_stage3",
-			        	    "resident_nonbanking_financial_stage3_provisions",
-			        	    "resident_nonbanking_financial_provision_interest_legacy_interest",
-			        	    "resident_tradebills_outstanding_balance",
-			        	    "resident_tradebills_loans_stage3",
-			        	    "resident_tradebills_stage3_provisions",
-			        	    "resident_tradebills_provision_interest_legacy_interest",
-			        	    "non_resident_government_private_sector_outstanding_balance",
-			        	    "non_resident_government_private_sector_loans_stage3",
-			        	    "non_resident_government_private_sector_stage3_provisions",
-			        	    "non_resident_government_private_sector_provision_interest_legacy_interest",
-			        	    "non_resident_gre_outstanding_balance",
-			        	    "non_resident_gre_loans_stage3",
-			        	    "non_resident_gre_stage3_provisions",
-			        	    "non_resident_gre_provision_interest_legacy_interest",
-			        	    "non_resident_private_sector_outstanding_balance",
-			        	    "non_resident_private_sector_loans_stage3",
-			        	    "non_resident_private_sector_stage3_provisions",
-			        	    "non_resident_private_sector_provision_interest_legacy_interest",
-			        	    "non_resident_sme_outstanding_balance",
-			        	    "non_resident_sme_loans_stage3",
-			        	    "non_resident_sme_stage3_provisions",
-			        	    "non_resident_sme_provision_interest_legacy_interest",
-			        	    "non_resident_hni_outstanding_balance",
-			        	    "non_resident_hni_loans_stage3",
-			        	    "non_resident_hni_stage3_provisions",
-			        	    "non_resident_hni_provision_interest_legacy_interest",
-			        	    "non_resident_individuals_outstanding_balance",
-			        	    "non_resident_individuals_loans_stage3",
-			        	    "non_resident_individuals_stage3_provisions",
-			        	    "non_resident_individuals_provision_interest_legacy_interest",
-			        	    "non_resident_nonbanking_financial_outstanding_balance",
-			        	    "non_resident_nonbanking_financial_loans_stage3",
-			        	    "non_resident_nonbanking_financial_stage3_provisions",
-			        	    "non_resident_nonbanking_financial_provision_interest_legacy_interest",
-			        	    "non_resident_tradebills_outstanding_balance",
-			        	    "non_resident_tradebills_loans_stage3",
-			        	    "non_resident_tradebills_stage3_provisions",
-			        	    "non_resident_tradebills_provision_interest_legacy_interest"
+			        		"banking_operations",
+			        		"banking_subsidiaries_uae",
+			        		"financial_subsidiary_uae",
+			        		"financial_subsidiary_outside_uae",
+			        		"all_other_subsidiary_uae",
+			        		"all_other_subsidiary_outside_uae",
+			        		
+			        		"elimination",
+			        		"reclassification",
+			        		
 			        	};
 			        
-			     // First set: ROW0010 TO R0150
-					writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 14, numberStyle, textStyle);
+			     
+					writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 9, numberStyle, textStyle);
 					
-				// Second set: ROW0160 TO R0300
-					writeRowData2(sheet, dataList, rowCodesPart2, fieldSuffixes, 17, numberStyle, textStyle);
+				    writeRowData2(sheet, dataList, rowCodesPart2, fieldSuffixes, 14, numberStyle, textStyle);
 					
-				// Third  set: ROW0160 TO R0260
-					writeRowData3(sheet, dataList2, rowCodesPart3, fieldSuffixes, 27, numberStyle, textStyle);	
-					
-				// Fourth  set: ROW0270 TO R0300
-					writeRowData4(sheet, dataList2, rowCodesPart4, fieldSuffixes, 39, numberStyle, textStyle);	
+			        writeRowData3(sheet, dataList, rowCodesPart3, fieldSuffixes, 17, numberStyle, textStyle);	
 					
 				
+					writeRowData4(sheet, dataList, rowCodesPart4, fieldSuffixes, 21, numberStyle, textStyle);	
 					
-				
-				
+					writeRowData5(sheet, dataList, rowCodesPart5, fieldSuffixes, 28, numberStyle, textStyle);	
+					
+					writeRowData6(sheet, dataList, rowCodesPart6, fieldSuffixes, 33, numberStyle, textStyle);	
+					
+					writeRowData7(sheet, dataList, rowCodesPart7, fieldSuffixes, 38, numberStyle, textStyle);	
+					
+					writeRowData8(sheet, dataList, rowCodesPart8, fieldSuffixes, 40, numberStyle, textStyle);
+					
+					writeRowData9(sheet, dataList, rowCodesPart9, fieldSuffixes, 42, numberStyle, textStyle);
+					
+					writeRowData10(sheet, dataList, rowCodesPart10, fieldSuffixes, 46, numberStyle, textStyle);	
+					
+					writeRowData11(sheet, dataList, rowCodesPart11, fieldSuffixes, 49, numberStyle, textStyle);	
 
+					writeRowData12(sheet, dataList, rowCodesPart12, fieldSuffixes, 52, numberStyle, textStyle);	
 
-			      
+					writeRowData13(sheet, dataList, rowCodesPart13, fieldSuffixes, 55, numberStyle, textStyle);	
+
+					writeRowData14(sheet, dataList, rowCodesPart14, fieldSuffixes, 59, numberStyle, textStyle);	
+
+					writeRowData15(sheet, dataList, rowCodesPart15, fieldSuffixes, 65, numberStyle, textStyle);
+					
+					writeRowData16(sheet, dataList, rowCodesPart16, fieldSuffixes, 71, numberStyle, textStyle);	
+					
+					writeRowData17(sheet, dataList, rowCodesPart17, fieldSuffixes, 78, numberStyle, textStyle);	
+
+					writeRowData18(sheet, dataList, rowCodesPart18, fieldSuffixes, 86, numberStyle, textStyle);	
+					
+					writeRowData19(sheet, dataList, rowCodesPart19, fieldSuffixes, 92, numberStyle, textStyle);	
+					
+					writeRowData20(sheet, dataList2, rowCodesPart20, fieldSuffixes, 97, numberStyle, textStyle);	
+					
+					
+
 			        workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 					workbook.write(out);
 					logger.info("Service: Excel data successfully written to memory buffer ({} bytes).", out.size());
@@ -543,226 +530,1101 @@ public class CBUAE_BRF1_9_ReportService {
 
 			} 
 			
-			   // R0010 TO R0040 ENTITY CHANGED
 			private void writeRowData1(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
-				        String[] rowCodes, String[] fieldSuffixes, int baseRow,
-				        CellStyle numberStyle, CellStyle textStyle) {
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
 
-				    logger.info("writeRowData1 - Starting with {} records", dataList.size());
+			    logger.info("writeRowData1 - Starting with {} records", dataList.size());
 
-				    if (dataList.isEmpty()) {
-				        logger.warn("writeRowData1 - dataList is empty!");
-				        return;
-				    }
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData1 - dataList is empty!");
+			        return;
+			    }
 
-				    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
-				        logger.info("Processing record: {}", record.toString());
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
 
-				        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
-				            String rowCode = rowCodes[rowIndex];
-				            Row row = sheet.getRow(baseRow + rowIndex);
-				            if (row == null) {
-				                row = sheet.createRow(baseRow + rowIndex);
-				                logger.info("Created new row at index {}", baseRow + rowIndex);
-				            }
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
 
-				            int actualColIndex = 4; 
-				            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-				               
-				                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
-				                Cell cell = row.createCell(actualColIndex++);
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
 
-				                try {
-				                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
-				                    field.setAccessible(true);
-				                    Object value = field.get(record);
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
 
-				                    if (value instanceof BigDecimal) {
-				                        cell.setCellValue(((BigDecimal) value).doubleValue());
-				                        cell.setCellStyle(numberStyle);
-				                        logger.debug("Set value {} for field {}", value, fieldName);
-				                    } else {
-				                        cell.setCellValue("");
-				                        cell.setCellStyle(textStyle);
-				                    }
-				                } catch (NoSuchFieldException e) {
-				                    logger.error("Field not found: {}", fieldName);
-				                    cell.setCellValue("");
-				                    cell.setCellStyle(textStyle);
-				                } catch (IllegalAccessException e) {
-				                    logger.error("Access error for field: {}", fieldName, e);
-				                    cell.setCellValue("");
-				                    cell.setCellStyle(textStyle);
-				                }
-				            }
-				        }
-				    }
-				}
-			// ROW0060 TO R0150 ENTITY CHANGED
-						private void writeRowData2(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
-							        String[] rowCodes, String[] fieldSuffixes, int baseRow,
-							        CellStyle numberStyle, CellStyle textStyle) {
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData2(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
 
-							    logger.info("writeRowData2 - Starting with {} records", dataList.size());
+			    logger.info("writeRowData2 - Starting with {} records", dataList.size());
 
-							    if (dataList.isEmpty()) {
-							        logger.warn("writeRowData2 - dataList is empty!");
-							        return;
-							    }
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData2 - dataList is empty!");
+			        return;
+			    }
 
-							    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
-							        logger.info("Processing record: {}", record.toString());
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
 
-							        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
-							            String rowCode = rowCodes[rowIndex];
-							            Row row = sheet.getRow(baseRow + rowIndex);
-							            if (row == null) {
-							                row = sheet.createRow(baseRow + rowIndex);
-							                logger.info("Created new row at index {}", baseRow + rowIndex);
-							            }
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
 
-							            int actualColIndex = 4; 
-							            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-							               
-							                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
-							                Cell cell = row.createCell(actualColIndex++);
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
 
-							                try {
-							                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
-							                    field.setAccessible(true);
-							                    Object value = field.get(record);
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
 
-							                    if (value instanceof BigDecimal) {
-							                        cell.setCellValue(((BigDecimal) value).doubleValue());
-							                        cell.setCellStyle(numberStyle);
-							                        logger.debug("Set value {} for field {}", value, fieldName);
-							                    } else {
-							                        cell.setCellValue("");
-							                        cell.setCellStyle(textStyle);
-							                    }
-							                } catch (NoSuchFieldException e) {
-							                    logger.error("Field not found: {}", fieldName);
-							                    cell.setCellValue("");
-							                    cell.setCellStyle(textStyle);
-							                } catch (IllegalAccessException e) {
-							                    logger.error("Access error for field: {}", fieldName, e);
-							                    cell.setCellValue("");
-							                    cell.setCellStyle(textStyle);
-							                }
-							            }
-							        }
-							    }
-							}
-						
-						// R0160 TO R0260 ENTITY CHANGED
-						private void writeRowData3(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity2> dataList,
-							        String[] rowCodes, String[] fieldSuffixes, int baseRow,
-							        CellStyle numberStyle, CellStyle textStyle) {
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			private void writeRowData3(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
 
-							    logger.info("writeRowData3 - Starting with {} records", dataList.size());
+			    logger.info("writeRowData3 - Starting with {} records", dataList.size());
 
-							    if (dataList.isEmpty()) {
-							        logger.warn("writeRowData3 - dataList is empty!");
-							        return;
-							    }
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData3 - dataList is empty!");
+			        return;
+			    }
 
-							    for (CBUAE_BRF1_9_Summary_Entity2 record : dataList) {
-							        logger.info("Processing record: {}", record.toString());
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
 
-							        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
-							            String rowCode = rowCodes[rowIndex];
-							            Row row = sheet.getRow(baseRow + rowIndex);
-							            if (row == null) {
-							                row = sheet.createRow(baseRow + rowIndex);
-							                logger.info("Created new row at index {}", baseRow + rowIndex);
-							            }
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
 
-							            int actualColIndex = 4; 
-							            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-							               
-							                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
-							                Cell cell = row.createCell(actualColIndex++);
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
 
-							                try {
-							                    Field field = CBUAE_BRF1_9_Summary_Entity2.class.getDeclaredField(fieldName);
-							                    field.setAccessible(true);
-							                    Object value = field.get(record);
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
 
-							                    if (value instanceof BigDecimal) {
-							                        cell.setCellValue(((BigDecimal) value).doubleValue());
-							                        cell.setCellStyle(numberStyle);
-							                        logger.debug("Set value {} for field {}", value, fieldName);
-							                    } else {
-							                        cell.setCellValue("");
-							                        cell.setCellStyle(textStyle);
-							                    }
-							                } catch (NoSuchFieldException e) {
-							                    logger.error("Field not found: {}", fieldName);
-							                    cell.setCellValue("");
-							                    cell.setCellStyle(textStyle);
-							                } catch (IllegalAccessException e) {
-							                    logger.error("Access error for field: {}", fieldName, e);
-							                    cell.setCellValue("");
-							                    cell.setCellStyle(textStyle);
-							                }
-							            }
-							        }
-							    }
-							}
-						// ROW0280 TO R0300 ENTITY CHANGED
-									private void writeRowData4(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity2> dataList,
-										        String[] rowCodes, String[] fieldSuffixes, int baseRow,
-										        CellStyle numberStyle, CellStyle textStyle) {
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			private void writeRowData4(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
 
-										    logger.info("writeRowData4 - Starting with {} records", dataList.size());
+			    logger.info("writeRowData4 - Starting with {} records", dataList.size());
 
-										    if (dataList.isEmpty()) {
-										        logger.warn("writeRowData4 - dataList is empty!");
-										        return;
-										    }
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData4 - dataList is empty!");
+			        return;
+			    }
 
-										    for (CBUAE_BRF1_9_Summary_Entity2 record : dataList) {
-										        logger.info("Processing record: {}", record.toString());
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
 
-										        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
-										            String rowCode = rowCodes[rowIndex];
-										            Row row = sheet.getRow(baseRow + rowIndex);
-										            if (row == null) {
-										                row = sheet.createRow(baseRow + rowIndex);
-										                logger.info("Created new row at index {}", baseRow + rowIndex);
-										            }
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
 
-										            int actualColIndex = 4; 
-										            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
-										               
-										                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
-										                Cell cell = row.createCell(actualColIndex++);
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
 
-										                try {
-										                    Field field = CBUAE_BRF1_9_Summary_Entity2.class.getDeclaredField(fieldName);
-										                    field.setAccessible(true);
-										                    Object value = field.get(record);
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
 
-										                    if (value instanceof BigDecimal) {
-										                        cell.setCellValue(((BigDecimal) value).doubleValue());
-										                        cell.setCellStyle(numberStyle);
-										                        logger.debug("Set value {} for field {}", value, fieldName);
-										                    } else {
-										                        cell.setCellValue("");
-										                        cell.setCellStyle(textStyle);
-										                    }
-										                } catch (NoSuchFieldException e) {
-										                    logger.error("Field not found: {}", fieldName);
-										                    cell.setCellValue("");
-										                    cell.setCellStyle(textStyle);
-										                } catch (IllegalAccessException e) {
-										                    logger.error("Access error for field: {}", fieldName, e);
-										                    cell.setCellValue("");
-										                    cell.setCellStyle(textStyle);
-										                }
-										            }
-										        }
-										    }
-										}
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			private void writeRowData5(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData5 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData5 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData6(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData6 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData6 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			private void writeRowData7(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData7 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData7 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData8(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData8 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData8 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData9(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData9 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData9 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData10(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData10 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData10 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			private void writeRowData11(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData11 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData11 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData12(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData12 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData12 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData13(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData13 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData13 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData14(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData14 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData14 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData15(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData15 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData15 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData16(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData16 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData16 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData17(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData17 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData17 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData18(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData18 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData18 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData19(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity1> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData19 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData19 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity1 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity1.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			
+			private void writeRowData20(Sheet sheet, List<CBUAE_BRF1_9_Summary_Entity2> dataList,
+			        String[] rowCodes, String[] fieldSuffixes, int baseRow,
+			        CellStyle numberStyle, CellStyle textStyle) {
+
+			    logger.info("writeRowData20 - Starting with {} records", dataList.size());
+
+			    if (dataList.isEmpty()) {
+			        logger.warn("writeRowData20 - dataList is empty!");
+			        return;
+			    }
+
+			    for (CBUAE_BRF1_9_Summary_Entity2 record : dataList) {
+			        logger.info("Processing record: {}", record.toString());
+
+			        for (int rowIndex = 0; rowIndex < rowCodes.length; rowIndex++) {
+			            String rowCode = rowCodes[rowIndex];
+			            Row row = sheet.getRow(baseRow + rowIndex);
+			            if (row == null) {
+			                row = sheet.createRow(baseRow + rowIndex);
+			                logger.info("Created new row at index {}", baseRow + rowIndex);
+			            }
+
+			            int actualColIndex = 4; 
+			            for (int colIndex = 0; colIndex < fieldSuffixes.length; colIndex++) {
+			               
+			                String fieldName = rowCode.toLowerCase() + "_" + fieldSuffixes[colIndex];
+			                Cell cell = row.createCell(actualColIndex++);
+
+			                try {
+			                    Field field = CBUAE_BRF1_9_Summary_Entity2.class.getDeclaredField(fieldName);
+			                    field.setAccessible(true);
+			                    Object value = field.get(record);
+
+			                    if (value instanceof BigDecimal) {
+			                        cell.setCellValue(((BigDecimal) value).doubleValue());
+			                        cell.setCellStyle(numberStyle);
+			                        logger.debug("Set value {} for field {}", value, fieldName);
+			                    } else {
+			                        cell.setCellValue("");
+			                        cell.setCellStyle(textStyle);
+			                    }
+			                } catch (NoSuchFieldException e) {
+			                    logger.error("Field not found: {}", fieldName);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                } catch (IllegalAccessException e) {
+			                    logger.error("Access error for field: {}", fieldName, e);
+			                    cell.setCellValue("");
+			                    cell.setCellStyle(textStyle);
+			                }
+			            }
+			        }
+			    }
+			}
+			  
+										
 									
 }
