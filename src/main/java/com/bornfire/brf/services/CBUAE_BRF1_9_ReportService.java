@@ -470,6 +470,11 @@ public class CBUAE_BRF1_9_ReportService {
 			        		"all_other_subsidiary_uae",
 			        		"all_other_subsidiary_outside_uae",
 			        		
+			        		
+			        	};
+			        
+			        String[] fieldSuffixes2 = {
+			        		
 			        		"elimination",
 			        		"reclassification",
 			        		
@@ -477,45 +482,83 @@ public class CBUAE_BRF1_9_ReportService {
 			        
 			     
 					writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes, 9, numberStyle, textStyle);
+					writeRowData1(sheet, dataList, rowCodesPart1, fieldSuffixes2, 9, numberStyle, textStyle);
+
 					
 				    writeRowData2(sheet, dataList, rowCodesPart2, fieldSuffixes, 14, numberStyle, textStyle);
+				    writeRowData2(sheet, dataList, rowCodesPart2, fieldSuffixes2, 14, numberStyle, textStyle);
+
 					
 			        writeRowData3(sheet, dataList, rowCodesPart3, fieldSuffixes, 17, numberStyle, textStyle);	
-					
+			        writeRowData3(sheet, dataList, rowCodesPart3, fieldSuffixes2, 17, numberStyle, textStyle);	
+
 				
-					writeRowData4(sheet, dataList, rowCodesPart4, fieldSuffixes, 21, numberStyle, textStyle);	
+					writeRowData4(sheet, dataList, rowCodesPart4, fieldSuffixes, 21, numberStyle, textStyle);
+					writeRowData4(sheet, dataList, rowCodesPart4, fieldSuffixes2, 21, numberStyle, textStyle);	
+
 					
-					writeRowData5(sheet, dataList, rowCodesPart5, fieldSuffixes, 28, numberStyle, textStyle);	
+					writeRowData5(sheet, dataList, rowCodesPart5, fieldSuffixes, 27, numberStyle, textStyle);
+					writeRowData5(sheet, dataList, rowCodesPart5, fieldSuffixes2, 27, numberStyle, textStyle);	
+
 					
-					writeRowData6(sheet, dataList, rowCodesPart6, fieldSuffixes, 33, numberStyle, textStyle);	
+					writeRowData6(sheet, dataList, rowCodesPart6, fieldSuffixes, 33, numberStyle, textStyle);
+					writeRowData6(sheet, dataList, rowCodesPart6, fieldSuffixes2, 33, numberStyle, textStyle);	
+
 					
-					writeRowData7(sheet, dataList, rowCodesPart7, fieldSuffixes, 38, numberStyle, textStyle);	
+					writeRowData7(sheet, dataList, rowCodesPart7, fieldSuffixes, 38, numberStyle, textStyle);
+					writeRowData7(sheet, dataList, rowCodesPart7, fieldSuffixes2, 38, numberStyle, textStyle);	
+
 					
 					writeRowData8(sheet, dataList, rowCodesPart8, fieldSuffixes, 40, numberStyle, textStyle);
+					writeRowData8(sheet, dataList, rowCodesPart8, fieldSuffixes2, 40, numberStyle, textStyle);
+
 					
 					writeRowData9(sheet, dataList, rowCodesPart9, fieldSuffixes, 42, numberStyle, textStyle);
-					
-					writeRowData10(sheet, dataList, rowCodesPart10, fieldSuffixes, 46, numberStyle, textStyle);	
+					writeRowData9(sheet, dataList, rowCodesPart9, fieldSuffixes2, 42, numberStyle, textStyle);
+
+					writeRowData10(sheet, dataList, rowCodesPart10, fieldSuffixes, 46, numberStyle, textStyle);
+					writeRowData10(sheet, dataList, rowCodesPart10, fieldSuffixes2, 46, numberStyle, textStyle);	
+
 					
 					writeRowData11(sheet, dataList, rowCodesPart11, fieldSuffixes, 49, numberStyle, textStyle);	
+					writeRowData11(sheet, dataList, rowCodesPart11, fieldSuffixes2, 49, numberStyle, textStyle);	
+
 
 					writeRowData12(sheet, dataList, rowCodesPart12, fieldSuffixes, 52, numberStyle, textStyle);	
+					writeRowData12(sheet, dataList, rowCodesPart12, fieldSuffixes2, 52, numberStyle, textStyle);	
+
 
 					writeRowData13(sheet, dataList, rowCodesPart13, fieldSuffixes, 55, numberStyle, textStyle);	
+					writeRowData13(sheet, dataList, rowCodesPart13, fieldSuffixes2, 55, numberStyle, textStyle);	
+
 
 					writeRowData14(sheet, dataList, rowCodesPart14, fieldSuffixes, 59, numberStyle, textStyle);	
+					writeRowData14(sheet, dataList, rowCodesPart14, fieldSuffixes2, 59, numberStyle, textStyle);	
+
 
 					writeRowData15(sheet, dataList, rowCodesPart15, fieldSuffixes, 65, numberStyle, textStyle);
+					writeRowData15(sheet, dataList, rowCodesPart15, fieldSuffixes2, 65, numberStyle, textStyle);
+
 					
-					writeRowData16(sheet, dataList, rowCodesPart16, fieldSuffixes, 71, numberStyle, textStyle);	
+					writeRowData16(sheet, dataList, rowCodesPart16, fieldSuffixes, 71, numberStyle, textStyle);
+					writeRowData16(sheet, dataList, rowCodesPart16, fieldSuffixes2, 71, numberStyle, textStyle);	
+
 					
-					writeRowData17(sheet, dataList, rowCodesPart17, fieldSuffixes, 78, numberStyle, textStyle);	
+					writeRowData17(sheet, dataList, rowCodesPart17, fieldSuffixes, 78, numberStyle, textStyle);
+					writeRowData17(sheet, dataList, rowCodesPart17, fieldSuffixes2, 78, numberStyle, textStyle);	
+
 
 					writeRowData18(sheet, dataList, rowCodesPart18, fieldSuffixes, 86, numberStyle, textStyle);	
+					writeRowData18(sheet, dataList, rowCodesPart18, fieldSuffixes2, 86, numberStyle, textStyle);	
+
 					
 					writeRowData19(sheet, dataList, rowCodesPart19, fieldSuffixes, 92, numberStyle, textStyle);	
+					writeRowData18(sheet, dataList, rowCodesPart18, fieldSuffixes2, 86, numberStyle, textStyle);	
+
 					
-					writeRowData20(sheet, dataList2, rowCodesPart20, fieldSuffixes, 97, numberStyle, textStyle);	
+					writeRowData20(sheet, dataList2, rowCodesPart20, fieldSuffixes, 97, numberStyle, textStyle);
+					writeRowData20(sheet, dataList2, rowCodesPart20, fieldSuffixes2, 97, numberStyle, textStyle);	
+
 					
 					
 
