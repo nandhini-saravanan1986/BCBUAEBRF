@@ -51,7 +51,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-
+import com.bornfire.brf.entities.CBUAE_BRF1_9_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF7_3_Detail_Entity;
@@ -191,9 +191,11 @@ public class CBUAE_BRF7_3_ReportService {
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
+	    int totalPages=0;
+
 
 	    ModelAndView mv = new ModelAndView();
-	    List<CBUAE_BRF7_3_Detail_Entity> T1Dt1 = new ArrayList<>();
+	    List<CBUAE_BRF7_3_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF7_3_Detail_Entity>();
 
 	    try {
 	        Date d1 = dateformat.parse(todate);
@@ -213,7 +215,11 @@ public class CBUAE_BRF7_3_ReportService {
 	        if (rowId != null && columnId != null) {
 	            T1Dt1 = BRF7_3_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
 	        } else {
-	            T1Dt1 = BRF7_3_DETAIL_Repo.getListbydate(d1);
+	            T1Dt1 = BRF7_3_DETAIL_Repo.getdatabydateList(d1);
+	            T1Dt1 = BRF7_3_DETAIL_Repo.getdatabydateList(d1,currentPage,pageSize);
+	            totalPages=BRF7_3_DETAIL_Repo.getdatacount(dateformat.parse(todate));
+	            mv.addObject("pagination","YES");
+	            
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
@@ -223,13 +229,20 @@ public class CBUAE_BRF7_3_ReportService {
 	    }
 
 	    mv.setViewName("BRF/BRF7_3");
-	    mv.addObject("displaymode", "Details");
-	    mv.addObject("reportdetails", T1Dt1);
-	    mv.addObject("reportmaster12", T1Dt1);
-	    mv.addObject("reportsflag", "reportsflag");
-	    mv.addObject("menu", reportId);
-	    return mv;
+		mv.addObject("displaymode", "Details");
+   	  	mv.addObject("currentPage", currentPage);
+   	  	System.out.println("totalPages"+(int)Math.ceil((double)totalPages / 100));
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
+		
+   	    mv.addObject("reportdetails", T1Dt1);
+
+		// mv.addObject("reportmaster1", qr);
+		// mv.addObject("singledetail", new T1CurProdDetail());
+		mv.addObject("reportsflag", "reportsflag");
+		mv.addObject("menu", reportId);
+		return mv;
 	}
+	
 
 	
 	
@@ -307,7 +320,7 @@ public class CBUAE_BRF7_3_ReportService {
 
 				// Get data
 				Date parsedToDate = new SimpleDateFormat("dd/MM/yyyy").parse(todate);
-				List<CBUAE_BRF7_3_Detail_Entity> reportData = BRF7_3_DETAIL_Repo.getListbydate(parsedToDate);
+				List<CBUAE_BRF7_3_Detail_Entity> reportData = BRF7_3_DETAIL_Repo.getdatabydateList(parsedToDate);
 
 				if (reportData != null && !reportData.isEmpty()) {
 					int rowIndex = 1;
