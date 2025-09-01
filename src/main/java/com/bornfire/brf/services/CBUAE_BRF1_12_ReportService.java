@@ -164,8 +164,9 @@ public class CBUAE_BRF1_12_ReportService {
 
 					System.out.println("countavd" + T1Dt1.size());
 				} else {
-
-					T1Dt1 = BRF1_12_archival_detail_repo.getdatabydateList(dateformat.parse(todate), version);
+					T1Dt1 = BRF1_12_archival_detail_repo.getdatabydateList(d1, version, currentPage, pageSize);
+					totalPages = BRF1_12_archival_detail_repo.getdatacount(dateformat.parse(todate), version);
+					mv.addObject("pagination", "YES");
 					System.out.println("countavd" + T1Dt1.size());
 				}
 
