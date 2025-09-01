@@ -689,7 +689,7 @@
 	            });
 	            $('#loader').modal('show');
 
-	            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+				var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
 
 	            if (!Callurl) {
 	                showResultModal("Error", "Base URL not set.");

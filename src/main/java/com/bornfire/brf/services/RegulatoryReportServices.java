@@ -170,7 +170,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_12":
 			repsummary = cbuae_brf1_12_reportservice.getBRF1_12View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF7_3":
@@ -381,7 +381,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_12":
 			repdetail = cbuae_brf1_12_reportservice.getBRF1_12currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF7_3":
@@ -620,7 +620,7 @@ public class RegulatoryReportServices {
 		case "BRF1_12":
 			try {
 				repfile = cbuae_brf1_12_reportservice.getBRF1_12Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1076,6 +1076,14 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF1_12":
+			try {
+				archivalData = cbuae_brf1_12_reportservice.getBRF1_12Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case "BRF2_1":
 			try {
 				archivalData = cbuae_brf2_1_reportservice.getBRF2_1Archival();
@@ -1194,15 +1202,13 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF2_14Detail")) {
 			fileData = cbuae_brf2_14_reportservice.getBRF2_14DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
+		} else if (filename.equals("BRF2_11Detail")) {
+			fileData = CBUAE_BRF2_11_ReportServices.getBRF2_11DetailExcel(filename, fromdate, todate);
+
+		} else if (filename.equals("BRF7_3Detail")) {
+			fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
 		}
-		 else if (filename.equals("BRF2_11Detail")) {
-				fileData= CBUAE_BRF2_11_ReportServices.getBRF2_11DetailExcel(filename, fromdate, todate);
-		
-	} else if (filename.equals("BRF7_3Detail")) {
-		fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
-				type, version);
-	}
-		
 
 		if (fileData == null) {
 			logger.warn("Excel generation failed or no data for jobId: {}", jobId);
