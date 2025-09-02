@@ -1116,6 +1116,14 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF2_6":
+			try {
+				archivalData = cbuae_brf2_6_reportservice.getBRF2_6Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case "BRF5_17":
 			try {
 				archivalData = cbuae_brf5_17_reportservice.getBRF5_17Archival();
@@ -1209,6 +1217,22 @@ public class RegulatoryReportServices {
 			fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
 		}
+
+		 else if (filename.equals("BRF2_11Detail")) {
+				fileData= CBUAE_BRF2_11_ReportServices.getBRF2_11DetailExcel(filename, fromdate, todate);
+		
+	} else if (filename.equals("BRF7_3Detail")) {
+		fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
+				type, version);
+	}else if (filename.equals("BRF2_16Detail")) {
+		fileData = cbuae_brf2_16_reportservice.getBRF2_16DetailExcel(filename, fromdate, todate, currency, dtltype,
+				type, version);
+	}else if (filename.equals("BRF2_18Detail")) {
+		fileData = cbuae_brf2_18_reportservice.getBRF2_18DetailExcel(filename, fromdate, todate, currency, dtltype,
+				type, version);
+	}
+		
+
 
 		if (fileData == null) {
 			logger.warn("Excel generation failed or no data for jobId: {}", jobId);
