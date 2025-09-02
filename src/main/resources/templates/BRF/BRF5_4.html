@@ -817,7 +817,7 @@ PURPOSE		: LOANS & ADVANCES FOR PURCHASE OF/ AGAINST SHARES- BRF 5.4 (AED 000)
 											<th>CUST ID</th>
 											<th>ACCT NO</th>
 											<th>ACCT NAME</th>
-											<th>ACCT BALANCE</th>
+											<th style="text-align: right;">ACCT BALANCE</th>
 											<th>ROWID</th>
 											<th>COLUMNID</th>
 											<th>REPORT_DATE</th>
@@ -836,7 +836,7 @@ PURPOSE		: LOANS & ADVANCES FOR PURCHASE OF/ AGAINST SHARES- BRF 5.4 (AED 000)
 											<td th:text="${report.custId}"></td>
 											<td th:text="${report.acctNumber}"></td>
 											<td th:text="${report.acctName}"></td>
-											<td th:text="${report.acctBalanceInAed}"></td>
+											<td style="text-align: right;" th:text="${report.acctBalanceInAed}"></td>
 											<td th:text="${report.rowId}"></td>
 											<td th:text="${report.columnId}"></td>
 											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
