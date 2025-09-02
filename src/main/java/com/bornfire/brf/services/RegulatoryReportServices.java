@@ -1247,16 +1247,34 @@ public class RegulatoryReportServices {
 		 else if (filename.equals("BRF2_11Detail")) {
 				fileData= CBUAE_BRF2_11_ReportServices.getBRF2_11DetailExcel(filename, fromdate, todate);
 		
-	} else if (filename.equals("BRF7_3Detail")) {
-		fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
-				type, version);
-	}else if (filename.equals("BRF2_16Detail")) {
-		fileData = cbuae_brf2_16_reportservice.getBRF2_16DetailExcel(filename, fromdate, todate, currency, dtltype,
-				type, version);
-	}else if (filename.equals("BRF2_18Detail")) {
-		fileData = cbuae_brf2_18_reportservice.getBRF2_18DetailExcel(filename, fromdate, todate, currency, dtltype,
-				type, version);
-	}
+
+		} else if (filename.equals("BRF7_3Detail")) {
+			fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
+		}else if (filename.equals("BRF2_16Detail")) {
+			fileData = cbuae_brf2_16_reportservice.getBRF2_16DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
+		}else if (filename.equals("BRF2_18Detail")) {
+			fileData = cbuae_brf2_18_reportservice.getBRF2_18DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
+		}
+
+		 else if (filename.equals("BRF7_3Detail")) {
+			fileData = cbuae_brf7_3_reportservice.getBRF7_3DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
+		}
+		else if (filename.equals("BRF5_4Detail")) {
+			fileData = CBUAE_BRF5_4_ReportServices.getBRF5_4DetailExcel(filename, fromdate, todate);
+		}
+		else if (filename.equals("BRF5_5Detail")) {
+			fileData = cbuae_brf5_5_reportservice.getBRF5_5DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
+		}
+		else if (filename.equals("BRF5_6Detail")) {
+			fileData = cbuae_brf5_6_reportservice.getBRF5_6DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
+		}
+
 		
 
 

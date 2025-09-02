@@ -296,6 +296,16 @@ PURPOSE		: BRFREPORT
 		.white-text span {
 			color: white !important;
 		}
+		
+			 .table-cell tbody td:hover {
+        		background-color: #f0f0f0; /* Hover color for cell */
+        		cursor: pointer;           /* Optional: pointer cursor */
+    			}
+    
+    .table-bordered td, 
+	.table-bordered th {
+     border: 1px solid #000 !important;
+	}
 	</style>
 
 
@@ -476,100 +486,149 @@ PURPOSE		: BRFREPORT
 	</script>
 
 	<script>
-
-		function downloadDetailfile(button) {
-			const filename = button.getAttribute('data-filename');
-			const fromdate = button.getAttribute('data-fromdate');
-			const todate = button.getAttribute('data-todate');
-			const currency = button.getAttribute('data-currency');
-			const dtltype = button.getAttribute('data-dtltype');
-			const type = button.getAttribute('data-type');
-			const version = button.getAttribute('data-version');
-
-			$('#loader').modal('show');
-
-			const baseUrl = '/BCDRS/Reports/';
-			const downloadUrl = baseUrl + 'downloadDetailExcel' +
-				'?filename=' + encodeURIComponent(filename) +
-				'&fromdate=' + encodeURIComponent(fromdate) +
-				'&todate=' + encodeURIComponent(todate) +
-				'&currency=' + encodeURIComponent(currency) +
-				'&dtltype=' + encodeURIComponent(dtltype) +
-				'&type=' + encodeURIComponent(type) +
-				'&version=' + encodeURIComponent(version);
-
-			$.ajax({
-				url: downloadUrl,
-				type: 'GET',
-				xhrFields: {
-					responseType: 'blob'
-				},
-				success: function (data) {
-					$('#loader').modal('hide');
-					if (data && data.size > 100) {
-						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-						const url = window.URL.createObjectURL(blob);
-						const a = document.createElement('a');
-						a.style.display = 'none';
-						a.href = url;
-						a.download = filename + '.xls';
-						document.body.appendChild(a);
-						a.click();
-						a.remove();
-						window.URL.revokeObjectURL(url);
-
-						showResultModal('Success', filename + ' downloaded successfully.');
-					} else {
-						showResultModal('Information', 'No data was available to create a download or file was empty.');
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					$('#loader').modal('hide');
-					console.error('Download error:', textStatus, errorThrown, jqXHR);
-
-					let errorMessage = 'An error occurred while downloading the file. Please try again.';
-					if (jqXHR.response) {
-						const reader = new FileReader();
-						reader.onload = function () {
-							errorMessage = reader.result;
-							showResultModal('Error', errorMessage);
-						};
-						reader.onerror = function () {
-							showResultModal('Error', 'An unknown error occurred during download.');
-						};
-						reader.readAsText(jqXHR.response);
-						return;
-					}
-					showResultModal('Error', errorMessage);
-				}
-			});
+	function startReport(button){
+		const alertMsg = document.getElementById("alertMessage");
+		const filename = button.getAttribute('data-filename');
+		const fromdate = button.getAttribute('data-fromdate');
+		const todate = button.getAttribute('data-todate');
+		const currency = button.getAttribute('data-currency');
+		const dtltype = button.getAttribute('data-dtltype');
+		const type = button.getAttribute('data-type');
+		const version = button.getAttribute('data-version');
+		const sessionfilename = sessionStorage.getItem("filename");
+		
+		if(sessionfilename==filename){
+			alertMsg.innerHTML ='Download request already Processing...';
+       	 	showAlert();
+			return;
 		}
+		
+		alertMsg.innerHTML ='Download request Processing...';
+   	 	showAlert();
 
+		const baseUrl = '/BCDRS/Reports/startreport';
+		const downloadUrl = baseUrl +
+			'?filename=' + encodeURIComponent(filename) +
+			'&fromdate=' + encodeURIComponent(fromdate) +
+			'&todate=' + encodeURIComponent(todate) +
+			'&currency=' + encodeURIComponent(currency) +
+			'&dtltype=' + encodeURIComponent(dtltype) +
+			'&type=' + encodeURIComponent(type) +
+			'&version=' + encodeURIComponent(version);
+	    fetch(downloadUrl)  // ✅ no invalid characters now
+	        .then(res => res.text())
+	        .then(jobId => {
+
+	        	alertMsg.innerHTML ='Download request received...'+jobId;
+	       	 	showAlert();
+	            sessionStorage.setItem("jobId", jobId);
+	            sessionStorage.setItem("filename", filename);
+	            checkReport(jobId);
+	        });
+	}
+
+	function checkReport(jobId) {
+		const alertMsg = document.getElementById("alertMessage");
+	    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+	        .then(res => res.text())
+	        .then(status => {
+	            if (status === "READY") {
+	            	alertMsg.innerHTML ='Report is ready! Downloading…';
+	           	 	showAlert();
+	                const filename = sessionStorage.getItem("filename");
+	                downloadDetailfile(jobId,filename)
+	                sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");                
+	                
+	            } else if(status ==="PROCESSING") {
+	                alertMsg.innerHTML ='Download Is Processing…';
+	            	showAlert();
+	                setTimeout(() => checkReport(jobId), 5000);
+	            }
+	            else if(status ==="ERROR") {
+	                alertMsg.innerHTML ='No data was available to create a download.';
+	            	showAlert();
+	            	sessionStorage.removeItem("jobId");
+	                sessionStorage.removeItem("filename");  
+	            }
+	        });
+	}
+
+
+
+	function downloadDetailfile(jobId,filename) {
+		
+		//$('#loader').modal('show');
+		
+		$.ajax({
+			url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+				'&filename=' + filename,
+			type: 'GET',
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				$('#loader').modal('hide');
+
+				if (data && data.size > 100) {
+					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+					const url = window.URL.createObjectURL(blob);
+					const a = document.createElement('a');
+					a.style.display = 'none';
+					a.href = url;
+					a.download = filename;
+					document.body.appendChild(a);
+					a.click();
+					window.URL.revokeObjectURL(url);
+					document.body.removeChild(a);
+
+					showResultModal('Success', filename + ' downloaded successfully.');
+				} else {
+					showResultModal('Information', 'No data was available to create a download.');
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				$('#loader').modal('hide');
+				console.error("Download failed:", textStatus, errorThrown);
+				showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+			}
+		});
+	}
 
 	</script>
 
 	<script th:inline="javascript">
-		function showdetailsbyRowAndColumn(a) {
-			var rowId = a.getAttribute('RowId');
-			var columnId = a.getAttribute('ColumnId');
-			var cellValue = a.textContent || a.innerText;
+	function showdetailsbyRowAndColumn(a) {
+		var rowId = a.getAttribute('RowId');
+		var columnId = a.getAttribute('ColumnId');
+		var cellValue = a.textContent || a.innerText;
 
-			if (cellValue !== '0') {
-				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+		if (cellValue !== '0') {
+			// Set dynamic message
+			document.getElementById("cellresultModalLabel").innerText = 
+			    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+			// Show custom modal
+			$('#cellresultModal').modal('show');
 
-					Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+			// Handle Yes button
+			document.querySelector('.yes-btn').onclick = function() {
+				$('#cellresultModal').modal('hide');
+				const loader = bootstrap.Modal.getOrCreateInstance(document.getElementById('loader'), {
+			        backdrop: 'static',
+			        keyboard: false
+			    });
+				$('#loader').modal('show');
 
-					location.href = Callurl;
+				var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+				Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
 
-					console.log(Callurl);
-				}
-			} else {
-				alert("No Records available for this selected cell.");
-			}
+				location.href = Callurl;
+			};
+		} else {
+			showResultModal("Alert", "No Records available for this selected cell.");
 		}
+	}
 	</script>
 
 
@@ -628,7 +687,7 @@ PURPOSE		: BRFREPORT
 							<i class="fa fa-download"></i>
 						</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
-							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+							th:if="${displaymode == 'Details'}" onclick="startReport(this);" th:attr="
 		    data-fromdate=${fromdate},
 		    data-todate=${todate},
 			data-currency=${currency},  
@@ -647,17 +706,26 @@ PURPOSE		: BRFREPORT
 							<div class="table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6; ">
 								<table
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
 									id="reports">
 									<thead class="thead-light">
+									<tr>
+											<th rowspan='5' style="text-align: center; background-color: #b3b6b9">ROW</th>
+											<th rowspan='5' style="text-align: center; background-color: #b3b6b9">ID</th>
+											<th rowspan='4' Width='800' style="text-align: center; background-color: #b3b6b9">Item</th>
+											<th colspan='32' style="text-align: center;">Resident</th>
+											<th colspan='32' style="text-align: center;">Non-resident</th>
+									</tr>
+									
+									<tr>
+											<th colspan='32' style="text-align: center;">Total</th>
+											<th colspan='32' style="text-align: center;">Total</th>
+									
+									</tr>
+									
 										<tr style="background-color: #b3b6b9">
-											<th rowspan='3' style="text-align: center; background-color: #b3b6b9">ROW
-											</th>
-											<th rowspan='3' style="text-align: center; background-color: #b3b6b9">ID
-											</th>
-											<th rowspan='3' Width='800'
-												style="text-align: center; background-color: #b3b6b9">
-												Country Breakdown</th>
+
+											
 											<th colspan='4' style="text-align: center;"> Government & Public Sector (excluding GREs)</th>
 											<th colspan='4' style="text-align: center">GREs</th>
 											<th colspan='4' style="text-align: center">Private Sector (Corporate) (excluding HNI & SME)</th>
@@ -686,91 +754,91 @@ PURPOSE		: BRFREPORT
 
 										<tr style="background-color: #b3b6b9">
 
-                                 <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
- <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-											<td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-											<td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-											<td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-											<td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-											<td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-											<td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
-    <td style="text-align: center; vertical-align: bottom;">Outstanding balance</td>
-											<td style="text-align: center; vertical-align: bottom; ">Loans classified under Stage 3</th>
-											<td style="text-align: center; vertical-align: bottom;">Stage 3 Provisions</th>
-											<td style="text-align: center; word-wrap: break-word; white-space: normal; width: 250px;">
-    Provision for Interest & Fees past due more than 90 days and Legacy Interest in Suspense</td>
+                                 <td style="text-align: center; vertical-align: middle">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+ <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+											<td style="text-align: center; vertical-align: middle">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+											<td style="text-align: center; vertical-align: middle">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+											<td style="text-align: center; vertical-align: middle">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+											<td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+											<td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle;">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+											<td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle;">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
+    <td style="text-align: center; vertical-align: middle;">Outstanding balance</td>
+											<td style="text-align: center; vertical-align: middle; ">Loans classified under Stage 3</th>
+											<td style="text-align: center; vertical-align: middle;">Stage 3 Provisions</th>
+											<td style="text-align: center; vertical-align: middle; width: 250px;">
+    Provision for Interest & Fees <br> past due more than 90 days <br>and Legacy Interest in<br> Suspense</td>
 										</tr>
 
 
 										<tr style="background-color: #b3b6b9">
-
+											<td style="text-align: center; background-color: #b3b6b9">Country Breakdown</td>
 											<td style="text-align: center; background-color: #b3b6b9">0010</th>
 											<td style="text-align: center; background-color: #b3b6b9">0020</th>
 											<td style="text-align: center; background-color: #b3b6b9">0030</th>
@@ -1023,7 +1091,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0030</td>
 											<td style="text-align: right; background-color: #b3b6b9">3</td>
-<th style="text-align: left; " th:text="${report.r0030_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0030_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0030_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0030', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -1175,7 +1243,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0040</td>
 											<td style="text-align: right; background-color: #b3b6b9">4</td>
-<th style="text-align: left;" th:text="${report.r0040_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0040_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0040_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0040', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -1414,7 +1482,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0060</td>
 											<td style="text-align: right; background-color: #b3b6b9">6</td>
-<th style="text-align: left;" th:text="${report.r0060_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0060_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0060_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0060', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -1565,7 +1633,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0070</td>
 											<td style="text-align: right; background-color: #b3b6b9">7</td>
-<th style="text-align: left; " th:text="${report.r0070_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0070_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0070_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0070', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -1716,7 +1784,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0080</td>
 											<td style="text-align: right; background-color: #b3b6b9">8</td>
-<th style="text-align: left;" th:text="${report.r0080_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0080_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0080_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0080', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -1867,7 +1935,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0090</td>
 											<td style="text-align: right; background-color: #b3b6b9">9</td>
-<th style="text-align: left;" th:text="${report.r0090_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0090_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0090_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0090', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2018,7 +2086,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0100</td>
 											<td style="text-align: right; background-color: #b3b6b9">10</td>
-<th style="text-align: left;" th:text="${report.r0100_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0100_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0100_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0100', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2169,7 +2237,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0110</td>
 											<td style="text-align: right; background-color: #b3b6b9">11</td>
-<th style="text-align: left; " th:text="${report.r0110_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0110_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0110_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0110', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2320,7 +2388,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0120</td>
 											<td style="text-align: right; background-color: #b3b6b9">12</td>
-<th style="text-align: left;" th:text="${report.r0120_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0120_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0120_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0120', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2471,7 +2539,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0130</td>
 											<td style="text-align: right; background-color: #b3b6b9">13</td>
-<th style="text-align: left;" th:text="${report.r0130_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0130_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0130_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0130', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2622,7 +2690,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0140</td>
 											<td style="text-align: right; background-color: #b3b6b9">14</td>
-<th style="text-align: left; " th:text="${report.r0140_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0140_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0140_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0140', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2773,7 +2841,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0150</td>
 											<td style="text-align: right; background-color: #b3b6b9">15</td>
-<th style="text-align: left; " th:text="${report.r0150_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0150_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0150_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0150', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -2928,7 +2996,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0160</td>
 											<td style="text-align: right; background-color: #b3b6b9">16</td>
-<th style="text-align: left;" th:text="${report.r0160_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0160_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0160_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0160', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3079,7 +3147,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0170</td>
 											<td style="text-align: right; background-color: #b3b6b9">17</td>
-<th style="text-align: left;" th:text="${report.r0170_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0170_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0170_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0170', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3230,7 +3298,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0180</td>
 											<td style="text-align: right; background-color: #b3b6b9">18</td>
-<th style="text-align: left; " th:text="${report.r0180_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0180_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0180_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0180', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3381,7 +3449,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0190</td>
 											<td style="text-align: right; background-color: #b3b6b9">19</td>
-<th style="text-align: left; " th:text="${report.r0190_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0190_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0190_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0190', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3532,7 +3600,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0200</td>
 											<td style="text-align: right; background-color: #b3b6b9">20</td>
-<th style="text-align: left;" th:text="${report.r0200_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0200_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0200_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0200', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3684,7 +3752,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0210</td>
 											<td style="text-align: right; background-color: #b3b6b9">21</td>
-<th style="text-align: left; " th:text="${report.r0210_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0210_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0210_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0210', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3835,7 +3903,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0220</td>
 											<td style="text-align: right; background-color: #b3b6b9">22</td>
-<th style="text-align: left; " th:text="${report.r0220_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0220_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0220_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0220', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -3986,7 +4054,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0230</td>
 											<td style="text-align: right; background-color: #b3b6b9">23</td>
-<th style="text-align: left; " th:text="${report.r0230_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0230_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0230_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0230', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -4137,7 +4205,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0240</td>
 											<td style="text-align: right; background-color: #b3b6b9">24</td>
-<th style="text-align: left; " th:text="${report.r0240_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0240_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0240_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0240', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -4288,7 +4356,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0250</td>
 											<td style="text-align: right; background-color: #b3b6b9">25</td>
-<th style="text-align: left;" th:text="${report.r0250_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0250_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0250_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0250', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -4440,7 +4508,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0260</td>
 											<td style="text-align: right; background-color: #b3b6b9">26</td>
-<th style="text-align: left; " th:text="${report.r0260_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0260_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0260_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0260', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -4680,7 +4748,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0280</td>
 											<td style="text-align: right; background-color: #b3b6b9">28</td>
-<th style="text-align: left; " th:text="${report.r0280_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0280_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0280_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0280', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -4831,7 +4899,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0290</td>
 											<td style="text-align: right; background-color: #b3b6b9">29</td>
-<th style="text-align: left;" th:text="${report.r0290_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0290_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0290_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0290', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -4982,7 +5050,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0300</td>
 											<td style="text-align: right; background-color: #b3b6b9">300</td>
-<th style="text-align: left; " th:text="${report.r0300_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0300_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0300_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0300', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -5136,7 +5204,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0310</td>
 											<td style="text-align: right; background-color: #b3b6b9">31</td>
-<th style="text-align: left; " th:text="${report.r0310_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0310_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0310_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0310', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -5287,7 +5355,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0320</td>
 											<td style="text-align: right; background-color: #b3b6b9">32</td>
-<th style="text-align: left;" th:text="${report.r0320_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0320_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0320_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0320', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -5439,7 +5507,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0330</td>
 											<td style="text-align: right; background-color: #b3b6b9">33</td>
-<th style="text-align: left;" th:text="${report.r0330_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0330_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0330_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0330', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -5590,7 +5658,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0340</td>
 											<td style="text-align: right; background-color: #b3b6b9">34</td>
-<th style="text-align: left; " th:text="${report.r0340_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0340_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0340_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0340', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -5742,7 +5810,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0350</td>
 											<td style="text-align: right; background-color: #b3b6b9">35</td>
-<th style="text-align: left; " th:text="${report.r0350_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0350_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0350_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0350', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -5983,7 +6051,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0370</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.1</td>
-<th style="text-align: left; " th:text="${report.r0370_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0370_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0370_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0370', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -6134,7 +6202,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0380</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.2</td>
-<th style="text-align: left;" th:text="${report.r0380_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0380_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0380_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0380', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -6285,7 +6353,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0390</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.3</td>
-<th style="text-align: left; " th:text="${report.r0390_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0390_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0390_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0390', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -6439,7 +6507,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0400</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.4</td>
-<th style="text-align: left; " th:text="${report.r0400_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0400_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0400_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0400', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -6590,7 +6658,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0410</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.5</td>
-<th style="text-align: left;" th:text="${report.r0410_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0410_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0410_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0410', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -6742,7 +6810,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0420</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.6</td>
-<th style="text-align: left; " th:text="${report.r0420_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0420_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0420_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0420', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -6893,7 +6961,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0430</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.7</td>
-<th style="text-align: left;" th:text="${report.r0430_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0430_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0430_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0430', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -7044,7 +7112,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0440</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.8</td>
-<th style="text-align: left; " th:text="${report.r0440_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0440_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0440_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0440', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -7198,7 +7266,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0450</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.9</td>
-<th style="text-align: left; " th:text="${report.r0450_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0450_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0450_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0450', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -7352,7 +7420,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0460</td>
 											<td style="text-align: right; background-color: #b3b6b9">5.10</td>
-<th style="text-align: left;" th:text="${report.r0460_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0460_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0460_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0460', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -7593,7 +7661,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0480</td>
 											<td style="text-align: right; background-color: #b3b6b9">6.1</td>
-<th style="text-align: left; " th:text="${report.r0480_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0480_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0480_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0480', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -7744,7 +7812,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0490</td>
 											<td style="text-align: right; background-color: #b3b6b9">6.2</td>
-<th style="text-align: left;" th:text="${report.r0490_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0490_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0490_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0490', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -7895,7 +7963,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0500</td>
 											<td style="text-align: right; background-color: #b3b6b9">6.3</td>
-<th style="text-align: left; " th:text="${report.r0500_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0500_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0500_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0500', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -8048,7 +8116,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0510</td>
 											<td style="text-align: right; background-color: #b3b6b9">6.4</td>
-<th style="text-align: left; " th:text="${report.r0510_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0510_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0510_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0510', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -8199,7 +8267,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0520</td>
 											<td style="text-align: right; background-color: #b3b6b9">6.5</td>
-<th style="text-align: left;" th:text="${report.r0520_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0520_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0520_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0520', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -8439,7 +8507,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0540</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.1</td>
-<th style="text-align: left; " th:text="${report.r0540_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0540_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0540_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0540', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -8590,7 +8658,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0550</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.2</td>
-<th style="text-align: left;" th:text="${report.r0550_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0550_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0550_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0550', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -8741,7 +8809,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0560</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.3</td>
-<th style="text-align: left; " th:text="${report.r0560_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0560_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0560_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0560', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -8894,7 +8962,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0570</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.4</td>
-<th style="text-align: left; " th:text="${report.r0570_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0570_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0570_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0570', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9045,7 +9113,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0580</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.5</td>
-<th style="text-align: left;" th:text="${report.r0580_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0580_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0580_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0580', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9197,7 +9265,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0590</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.6</td>
-<th style="text-align: left; " th:text="${report.r0590_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0590_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0590_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0590', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9348,7 +9416,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0600</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.7</td>
-<th style="text-align: left;" th:text="${report.r0600_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0600_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0600_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0600', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9502,7 +9570,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0610</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.8</td>
-<th style="text-align: left; " th:text="${report.r0610_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0610_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0610_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0610', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9655,7 +9723,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0620</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.9</td>
-<th style="text-align: left; " th:text="${report.r0620_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0620_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0620_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0620', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9806,7 +9874,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0630</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.10</td>
-<th style="text-align: left;" th:text="${report.r0630_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0630_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0630_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0630', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -9958,7 +10026,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0640</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.11</td>
-<th style="text-align: left; " th:text="${report.r0640_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0640_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0640_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0640', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -10109,7 +10177,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0650</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.12</td>
-<th style="text-align: left;" th:text="${report.r0650_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0650_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0650_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0650', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -10260,7 +10328,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0660</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.13</td>
-<th style="text-align: left; " th:text="${report.r0660_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0660_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0660_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0660', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -10413,7 +10481,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0670</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.14</td>
-<th style="text-align: left; " th:text="${report.r0670_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0670_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0670_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0670', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -10564,7 +10632,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0680</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.15</td>
-<th style="text-align: left;" th:text="${report.r0680_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0680_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0680_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0680', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -10715,7 +10783,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0690</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.16</td>
-<th style="text-align: left; " th:text="${report.r0690_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0690_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0690_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0690', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -10866,7 +10934,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0700</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.17</td>
-<th style="text-align: left; " th:text="${report.r0700_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0700_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0700_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0700', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -11017,7 +11085,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0710</td>
 											<td style="text-align: right; background-color: #b3b6b9">7.18</td>
-<th style="text-align: left; " th:text="${report.r0710_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0710_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0710_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0710', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -11258,7 +11326,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0730</td>
 											<td style="text-align: right; background-color: #b3b6b9">8.1</td>
-<th style="text-align: left; " th:text="${report.r0730_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0730_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0730_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0730', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -11409,7 +11477,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0740</td>
 											<td style="text-align: right; background-color: #b3b6b9">8.2</td>
-<th style="text-align: left;" th:text="${report.r0740_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0740_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0740_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0740', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -11560,7 +11628,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0750</td>
 											<td style="text-align: right; background-color: #b3b6b9">8.3</td>
-<th style="text-align: left; " th:text="${report.r0750_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0750_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0750_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0750', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -11715,7 +11783,7 @@ PURPOSE		: BRFREPORT
 									<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0760</td>
 											<td style="text-align: right; background-color: #b3b6b9">8.4</td>
-<th style="text-align: left; " th:text="${report.r0760_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0760_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0760_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0760', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -11866,7 +11934,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0770</td>
 											<td style="text-align: right; background-color: #b3b6b9">8.5</td>
-<th style="text-align: left;" th:text="${report.r0770_resident_item}"></th>
+<td style="text-align: left;" th:text="${report.r0770_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0770_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0770', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -12017,7 +12085,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0780</td>
 											<td style="text-align: right; background-color: #b3b6b9">8.6</td>
-<th style="text-align: left; " th:text="${report.r0780_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0780_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0780_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0780', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -12256,7 +12324,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0800</td>
 											<td style="text-align: right; background-color: #b3b6b9">9.1</td>
-<th style="text-align: left; " th:text="${report.r0800_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0800_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0800_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0800', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -12408,7 +12476,7 @@ PURPOSE		: BRFREPORT
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0810</td>
 											<td style="text-align: right; background-color: #b3b6b9">9.2</td>
-<th style="text-align: left; " th:text="${report.r0810_resident_item}"></th>
+<td style="text-align: left; " th:text="${report.r0810_resident_item}"></td>
 
 <td style="text-align: right;" th:text="${report.r0810_resident_government_private_sector_outstanding_balance}"
     th:attr="RowId='R0810', ColumnId='0010'" onclick="showdetailsbyRowAndColumn(this)"></td>
@@ -12581,7 +12649,7 @@ PURPOSE		: BRFREPORT
 				                    <th>CUST ID</th>
 				                    <th>ACCT NO</th>
 				                    <th>ACCT NAME</th>
-				                    <th class="right-align">ACCT BALANCE</th>
+				                    <th style="text-align: right;">ACCT BALANCE</th>
 				                    <th>ROWID</th>
 				                    <th>COLUMNID</th>
 				                    <th>REPORT_DATE</th>
@@ -12600,7 +12668,7 @@ PURPOSE		: BRFREPORT
 		                    	<td th:text="${report.custId}"></td>
 		                    	<td th:text="${report.acctNumber}"></td>
 		                    	<td th:text="${report.acctName}"></td>
-		                    	<td class="right-align" th:text="${report.acctBalanceInAed}"></td>
+		                    	<td style="text-align: right;" th:text="${report.acctBalanceInAed}"></td>
 		                    	<td th:text="${report.rowId}"></td>
 		                    	<td th:text="${report.columnId}"></td>
 		                    	<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
@@ -12612,6 +12680,47 @@ PURPOSE		: BRFREPORT
 		                    
 							</tbody>
 							</table>
+							
+							<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									   
+									    
+									    
+									<a th:if="${currentPage > 0}"
+									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},                             
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage - 100},
+									    size=100
+									)}">
+									    Previous
+									</a>
+			
+									    
+									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+									
+									    
+									    <a th:if="${currentPage < (totalPages - 1) * 100}"
+									    	
+									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage + 100},
+									    size=100
+									)}">	
+									    Next
+									    </a>
+									</div>
+							
 							</div>
 							
 							
@@ -12663,6 +12772,29 @@ PURPOSE		: BRFREPORT
 		</div>
 	</div>
 
+<!-- Custom Cellresult Modal -->
+	<div class="modal fade" id="cellresultModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      
+	      <!-- Custom header -->
+	      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+	        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+	          Do you want to open the report?
+	        </div>
+	      </div>
+
+	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+	        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"  style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+	          Cancel
+	        </button>
+	        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+	          Yes
+	        </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 </body>
 <script>
@@ -12709,7 +12841,7 @@ PURPOSE		: BRFREPORT
 	/* Your existing CSS - this is the correct approach */
 	.scrollable-table-container {
 		/* This is the key: it creates the scroll context */
-		max-height: 620px;
+		max-height: 590px;
 		/* Or a suitable height like 80vh for responsive design */
 		overflow-y: auto;
 		border: 1px solid #ccc;
@@ -12725,7 +12857,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(2) {
 		position: sticky;
-		top: 36px;
+		top: 34px;
 		/* adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 4;
@@ -12735,7 +12867,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(3) {
 		position: sticky;
-		top: 72px;
+		top: 70px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 3;
@@ -12751,7 +12883,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(5) {
 		position: sticky;
-		top: 135px;
+		top: 203px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 1;
