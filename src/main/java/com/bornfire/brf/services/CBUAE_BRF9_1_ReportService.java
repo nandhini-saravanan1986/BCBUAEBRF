@@ -126,6 +126,7 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF9_1_Report
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
+	    int totalPages=0;
 
 	    ModelAndView mv = new ModelAndView();
 	    List<CBUAE_BRF9_1_Detail_Entity1> T1Dt1 = new ArrayList<>();
@@ -151,8 +152,11 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF9_1_Report
 	            T1Dt1 = BRF9_1_DETAIL_Repo1.GetDataByRowIdAndColumnId(rowId, columnId,  dateformat.parse(todate));
 	            T1Dt2 = BRF9_1_DETAIL_Repo2.GetDataByRowIdAndColumnId(rowId, columnId,  dateformat.parse(todate));
 	        } else {
-	            T1Dt1 = BRF9_1_DETAIL_Repo1.getdatabydateList(d1);
-	            T1Dt2 = BRF9_1_DETAIL_Repo2.getdatabydateList(d1);
+	            //T1Dt1 = BRF9_1_DETAIL_Repo1.getdatabydateList(d1);
+	            T1Dt1 = BRF9_1_DETAIL_Repo1.getdatabydateList(dateformat.parse(todate),currentPage,pageSize);
+				totalPages=BRF9_1_DETAIL_Repo1.getdatacount(dateformat.parse(todate));
+				mv.addObject("pagination","YES");
+	            //T1Dt2 = BRF9_1_DETAIL_Repo2.getdatabydateList(d1);
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
@@ -163,10 +167,12 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF9_1_Report
 	    }
 
 	    mv.setViewName("BRF/BRF9_1");
+	    mv.addObject("currentPage", currentPage);
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
 	    mv.addObject("displaymode", "Details");
 	    mv.addObject("reportdetails", T1Dt1);
 	    mv.addObject("reportdetails1", T1Dt2);
-	    mv.addObject("reportmaster12", T1Dt1);
+	    //mv.addObject("reportmaster12", T1Dt1);
 	    mv.addObject("reportsflag", "reportsflag");
 	    mv.addObject("menu", reportId);
 	    return mv;

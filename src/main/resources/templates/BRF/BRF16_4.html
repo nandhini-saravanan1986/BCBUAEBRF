@@ -324,12 +324,14 @@ PURPOSE		: COMPLAINTS DATA - 16.4
 
 
 		function home() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			location.href = 'Dashboard'
 		}
 
 		function back() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			window.history.back();
 		}
@@ -338,7 +340,8 @@ PURPOSE		: COMPLAINTS DATA - 16.4
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -365,7 +368,8 @@ PURPOSE		: COMPLAINTS DATA - 16.4
 		}
 
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/
 				location.href = Callurl;
 
@@ -411,7 +415,8 @@ PURPOSE		: COMPLAINTS DATA - 16.4
 			var dtltype = button.getAttribute('data-dtltype');
 			var filename = button.getAttribute('data-filename');
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +

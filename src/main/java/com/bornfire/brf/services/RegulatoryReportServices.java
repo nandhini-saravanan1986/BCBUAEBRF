@@ -1278,6 +1278,14 @@ public class RegulatoryReportServices {
 			fileData = CBUAE_BRF16_4_ReportServices.getBRF16_4DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
 		}
+		 else if (filename.equals("BRF16_5Detail")) {
+			 fileData = CBUAE_BRF16_5_ReportServices.getBRF16_5DetailExcel(filename, fromdate, todate);
+		}
+		
+		 else if (filename.equals("BRF9_1Detail")) {
+			 fileData = cbuae_brf9_1_reportservice.getBRF9_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+						version);
+		} 
 
 		
 
