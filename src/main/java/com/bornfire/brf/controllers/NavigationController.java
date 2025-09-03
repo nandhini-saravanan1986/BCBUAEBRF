@@ -35,7 +35,6 @@ import com.bornfire.brf.services.AccessAndRolesServices;
 import com.bornfire.brf.services.LoginServices;
 import com.bornfire.brf.services.RegulatoryReportServices;
 
-
 @Controller
 @ConfigurationProperties("default")
 public class NavigationController {
@@ -46,10 +45,10 @@ public class NavigationController {
 	 */
 
 	UserProfileRep UserProfileReps;
-	
+
 	@Autowired
 	RegulatoryReportServices regulatoryreportservices;
-	
+
 	@Autowired
 	CBUAE_BRFValidationsRepo cbuae_brfvalidationsRepo;
 	@Autowired
@@ -65,9 +64,6 @@ public class NavigationController {
 
 	@Autowired
 	AccessandRolesRepository accessandrolesrepository;
-
-
-	
 
 	private String pagesize;
 
@@ -103,7 +99,7 @@ public class NavigationController {
 			@RequestParam(value = "size", required = false) Optional<Integer> size, Model md, HttpServletRequest req) {
 
 		String roleId = (String) req.getSession().getAttribute("ROLEID");
-		//System.out.println("role id is : " + roleId);
+		// System.out.println("role id is : " + roleId);
 		md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(roleId));
 
 		if (formmode == null || formmode.equals("list")) {
@@ -143,31 +139,29 @@ public class NavigationController {
 	@RequestMapping(value = "createAccessRole", method = RequestMethod.POST)
 	@ResponseBody
 	public String createAccessRoleEn(@RequestParam("formmode") String formmode,
-	        @RequestParam(value = "adminValue", required = false) String adminValue,
-	        @RequestParam(value = "BRF_ReportsValue", required = false) String BRF_ReportsValue,
-	        @RequestParam(value = "Archival", required = false) String Archival,
-	        @RequestParam(value = "auditUsValue", required = false) String auditUsValue,
-	        @RequestParam(value = "finalString", required = false) String finalString,
-	        @ModelAttribute AccessAndRoles alertparam, Model md, HttpServletRequest rq) {
+			@RequestParam(value = "adminValue", required = false) String adminValue,
+			@RequestParam(value = "BRF_ReportsValue", required = false) String BRF_ReportsValue,
+			@RequestParam(value = "Archival", required = false) String Archival,
+			@RequestParam(value = "auditUsValue", required = false) String auditUsValue,
+			@RequestParam(value = "finalString", required = false) String finalString,
+			@ModelAttribute AccessAndRoles alertparam, Model md, HttpServletRequest rq) {
 
-	    String userid = (String) rq.getSession().getAttribute("USERID");
-	    String roleId = (String) rq.getSession().getAttribute("ROLEID");
-	    md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(roleId));
+		String userid = (String) rq.getSession().getAttribute("USERID");
+		String roleId = (String) rq.getSession().getAttribute("ROLEID");
+		md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(roleId));
 
-	    String msg = AccessRoleService.addPARAMETER(alertparam, formmode, adminValue, BRF_ReportsValue,
-	    		Archival, auditUsValue, finalString, userid);
+		String msg = AccessRoleService.addPARAMETER(alertparam, formmode, adminValue, BRF_ReportsValue, Archival,
+				auditUsValue, finalString, userid);
 
-	    return msg;
+		return msg;
 	}
-	
+
 	@GetMapping("/checkRoleExists")
 	@ResponseBody
 	public String checkRoleExists(@RequestParam("roleId") String roleId) {
-	    boolean exists = accessandrolesrepository.findById(roleId).isPresent();
-	    return exists ? "exists" : "not_exists";
+		boolean exists = accessandrolesrepository.findById(roleId).isPresent();
+		return exists ? "exists" : "not_exists";
 	}
-	
-	
 
 	@RequestMapping(value = "UserProfile", method = { RequestMethod.GET, RequestMethod.POST })
 	public String userprofile(@RequestParam(required = false) String formmode,
@@ -183,7 +177,6 @@ public class NavigationController {
 		String ROLEIDAC = (String) req.getSession().getAttribute("ROLEID");
 		md.addAttribute("RuleIDType", accessandrolesrepository.roleidtype());
 
-		
 		System.out.println("work class is : " + WORKCLASSAC);
 		// Logging Navigation
 		loginServices.SessionLogging("USERPROFILE", "M2", req.getSession().getId(), loginuserid, req.getRemoteAddr(),
@@ -207,12 +200,12 @@ public class NavigationController {
 			md.addAttribute("formmode", formmode);
 			md.addAttribute("userProfile", loginServices.getUser(userid));
 
-		}else if (formmode.equals("view")) {
+		} else if (formmode.equals("view")) {
 
 			md.addAttribute("formmode", formmode);
 			md.addAttribute("userProfile", loginServices.getUser(userid));
 
-		}else if (formmode.equals("delete")) {
+		} else if (formmode.equals("delete")) {
 
 			md.addAttribute("formmode", formmode);
 			md.addAttribute("userProfile", loginServices.getUser(userid));
@@ -222,10 +215,9 @@ public class NavigationController {
 			md.addAttribute("userProfile", loginServices.getUser(""));
 		} else if (formmode.equals("verify")) {
 			md.addAttribute("WORKCLASSAC", WORKCLASSAC);
-		    md.addAttribute("ROLEIDAC", ROLEIDAC);
-	        md.addAttribute("formmode", formmode);
-	        md.addAttribute("userProfile", loginServices.getUser(userid));
-			
+			md.addAttribute("ROLEIDAC", ROLEIDAC);
+			md.addAttribute("formmode", formmode);
+			md.addAttribute("userProfile", loginServices.getUser(userid));
 
 		} else {
 
@@ -234,7 +226,6 @@ public class NavigationController {
 			md.addAttribute("userProfile", loginServices.getUser(""));
 
 		}
-		
 
 		return "Userprofile";
 	}
@@ -270,7 +261,6 @@ public class NavigationController {
 
 	}
 
-	
 	@RequestMapping(value = "verifyUser", method = RequestMethod.POST)
 	@ResponseBody
 	public String verifyUser(@ModelAttribute UserProfile userprofile, Model md, HttpServletRequest rq) {
@@ -297,125 +287,142 @@ public class NavigationController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND");
 		}
 	}
-	
-	  @RequestMapping(value = "Monthly-1", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String monthly1(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Monthly 1 - BRF Report");
-	System.out.println("count"+rrReportlist.getReportListmonthly1().size());
-	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
-	  
-	  return "BRF/RRReports";
-	  
-	  }
-	  
-	  @RequestMapping(value = "Monthly-2", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String monthly2(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Monthly 2 - BRF Report");
-	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly2());
-	  
-	  return "BRF/RRReports";
-	  
-	  }
-	  
-	  @RequestMapping(value = "Monthly-3", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String monthly3(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Monthly 3 - BRF Report");
-	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly3());
-	  
-	  return "BRF/RRReports";
-	  
-	  }
-	  
-	  @RequestMapping(value = "HalfYearly-1", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String HalfYearly1(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Half Yealry 1 - BRF Report");
-	  md.addAttribute("reportlist", rrReportlist.getReportHalfYearly1());
-	  
-	  return "BRF/RRReports";
-	  
-	  }
-	  
-	  @RequestMapping(value = "Yearly-1", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String Yearly1(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Yealry 1 - BRF Report");
-	  md.addAttribute("reportlist", rrReportlist.getReportYearly1());
-	  
-	  return "BRF/RRReports";
-	  
-	  } 
-	  
-	  @RequestMapping(value = "Monthly-1Archival", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String monthly1Archival(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Monthly 1 - BRF ARCHIVAL");
-	System.out.println("count"+rrReportlist.getReportListmonthly1().size());
-	  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
-	  
-	  return "BRF/BRFArchival";
-	  
-	  }
-	  @RequestMapping(value = "Fortnightly-Archival", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String  FortnightlyArchival(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Fortnightly-Archival");
-	System.out.println("count"+rrReportlist.getReportListFORTNIGHTLY().size());
-	  md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
-	  return "BRF/BRFArchival";
 
-	  }
-	  
-  
-	  
-	  @RequestMapping(value = "Archival", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String Archival(Model md,@RequestParam(value = "rptcode", required = false) String rptcode, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-		  RRReport data=rrReportlist.getReportbyrptcode(rptcode);
-		  md.addAttribute("reportlist", data);
-		  md.addAttribute("menu", data.getRptDescription());
-		  md.addAttribute("domain", data.getDomainId());
-		  md.addAttribute("rptcode", data.getRptCode());
-		  List<Object> Archivaldata=regulatoryreportservices.getArchival(rptcode);
-		  md.addAttribute("Archivaldata",Archivaldata);
-		  md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
-	  
-	  return "BRF/BRFArchivalform";
-	  
-	  }
-	   	    
+	@RequestMapping(value = "Monthly-1", method = { RequestMethod.GET, RequestMethod.POST })
+	public String monthly1(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 1 - BRF Report");
+		System.out.println("count" + rrReportlist.getReportListmonthly1().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
 
-	  @RequestMapping(value = "fort", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String fort(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	 md.addAttribute("menu", "Fortnightly - BRF Report");
-	System.out.println("count"+rrReportlist.getReportListFORTNIGHTLY().size());
-	  md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
-	  
-	  return "BRF/RRReports";
-	  
-	  }
+		return "BRF/RRReports";
+
+	}
+
+	@RequestMapping(value = "Monthly-2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String monthly2(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 2 - BRF Report");
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly2());
+
+		return "BRF/RRReports";
+
+	}
+
+	@RequestMapping(value = "Monthly-3", method = { RequestMethod.GET, RequestMethod.POST })
+	public String monthly3(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 3 - BRF Report");
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly3());
+
+		return "BRF/RRReports";
+
+	}
+
+	@RequestMapping(value = "HalfYearly-1", method = { RequestMethod.GET, RequestMethod.POST })
+	public String HalfYearly1(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Half Yealry 1 - BRF Report");
+		md.addAttribute("reportlist", rrReportlist.getReportHalfYearly1());
+
+		return "BRF/RRReports";
+
+	}
+
+	@RequestMapping(value = "Yearly-1", method = { RequestMethod.GET, RequestMethod.POST })
+	public String Yearly1(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Yealry 1 - BRF Report");
+		md.addAttribute("reportlist", rrReportlist.getReportYearly1());
+
+		return "BRF/RRReports";
+
+	}
+
+	@RequestMapping(value = "Fortnightly-Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String FortnightlyArchival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Fortnightly-Archival");
+		System.out.println("count" + rrReportlist.getReportListFORTNIGHTLY().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
+		return "BRF/BRFArchival";
+
+	}
+
+	@RequestMapping(value = "Monthly-1Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String monthly1Archival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 1 - BRF ARCHIVAL");
+		System.out.println("count" + rrReportlist.getReportListmonthly1().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
+
+		return "BRF/BRFArchival";
+
+	}
+
+	@RequestMapping(value = "Monthly-2Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String monthly2Archival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 2 - BRF ARCHIVAL");
+		System.out.println("count" + rrReportlist.getReportListmonthly2().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly2());
+
+		return "BRF/BRFArchival";
+
+	}
+
+	@RequestMapping(value = "Monthly-3Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String monthly3Archival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 3 - BRF ARCHIVAL");
+		System.out.println("count" + rrReportlist.getReportListmonthly3().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly3());
+
+		return "BRF/BRFArchival";
+
+	}
+
+	@RequestMapping(value = "Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String Archival(Model md, @RequestParam(value = "rptcode", required = false) String rptcode,
+			HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		RRReport data = rrReportlist.getReportbyrptcode(rptcode);
+		md.addAttribute("reportlist", data);
+		md.addAttribute("menu", data.getRptDescription());
+		md.addAttribute("domain", data.getDomainId());
+		md.addAttribute("rptcode", data.getRptCode());
+		List<Object> Archivaldata = regulatoryreportservices.getArchival(rptcode);
+		md.addAttribute("Archivaldata", Archivaldata);
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly2());
+		md.addAttribute("reportlist", rrReportlist.getReportListmonthly3());
+
+		return "BRF/BRFArchivalform";
+
+	}
+
+	@RequestMapping(value = "fort", method = { RequestMethod.GET, RequestMethod.POST })
+	public String fort(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Fortnightly - BRF Report");
+		System.out.println("count" + rrReportlist.getReportListFORTNIGHTLY().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListFORTNIGHTLY());
+
+		return "BRF/RRReports";
+
+	}
+
 	@RequestMapping(value = "BRFValidations", method = { RequestMethod.GET, RequestMethod.POST })
 	public String BRFValidations(Model md, @RequestParam(value = "rptcode", required = false) String rptcode,
 			@RequestParam(value = "todate", required = false) String todate, HttpServletRequest req) {
@@ -435,16 +442,16 @@ public class NavigationController {
 		// md.addAttribute("rpt_date", todate);
 		return "BRF/BRFValidations";
 	}
-	@RequestMapping(value = "Quarterly-2", method = { RequestMethod.GET,RequestMethod.POST })
-	  public String Quarterly2(Model md, HttpServletRequest req)
-	  {
-	//String roleId = (String) req.getSession().getAttribute("ROLEID");
-	  //String domainid = (String) req.getSession().getAttribute("DOMAINID");
-	  md.addAttribute("menu", "Quarterly 2 - BRF Report");
-	System.out.println("count"+rrReportlist.getReportListQuarterly2().size());
-	  md.addAttribute("reportlist", rrReportlist.getReportListQuarterly2());
-	  
-	  return "BRF/RRReports";
-	  
-	  }
+
+	@RequestMapping(value = "Quarterly-2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String Quarterly2(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Quarterly 2 - BRF Report");
+		System.out.println("count" + rrReportlist.getReportListQuarterly2().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListQuarterly2());
+
+		return "BRF/RRReports";
+
+	}
 }
