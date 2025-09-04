@@ -549,7 +549,7 @@ public class CBUAE_BRF1_9_ReportService {
 
 					
 					writeRowData19(sheet, dataList, rowCodesPart19, fieldSuffixes, 92,4, numberStyle, textStyle);	
-					writeRowData18(sheet, dataList, rowCodesPart18, fieldSuffixes2, 92,11, numberStyle, textStyle);	
+					writeRowData19(sheet, dataList, rowCodesPart18, fieldSuffixes2, 92,11, numberStyle, textStyle);	
 
 					
 					writeRowData20(sheet, dataList2, rowCodesPart20, fieldSuffixes, 97,4, numberStyle, textStyle);
