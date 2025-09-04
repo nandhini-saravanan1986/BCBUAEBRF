@@ -445,7 +445,7 @@ public class CBUAE_BRF1_9_ReportService {
 			        	   "R0640", "R0650", "R0660", "R0670", "R0680" , "R0690"
 			        	};
 			        String[] rowCodesPart17 = {
-			        		 "R0710","R0730", "R0740", "R0750","R0760", "R0770"
+			        		 "R0710","R0720","R0730", "R0740", "R0750","R0760", "R0770"
 			        	};
 			        String[] rowCodesPart18 = {
 			        "R0790", "R0800", "R0810","R0820","R0830"
@@ -549,7 +549,7 @@ public class CBUAE_BRF1_9_ReportService {
 
 					
 					writeRowData19(sheet, dataList, rowCodesPart19, fieldSuffixes, 92,4, numberStyle, textStyle);	
-					writeRowData19(sheet, dataList, rowCodesPart18, fieldSuffixes2, 92,11, numberStyle, textStyle);	
+					writeRowData19(sheet, dataList, rowCodesPart19, fieldSuffixes2, 92,11, numberStyle, textStyle);	
 
 					
 					writeRowData20(sheet, dataList2, rowCodesPart20, fieldSuffixes, 97,4, numberStyle, textStyle);
