@@ -1289,6 +1289,26 @@ public class RegulatoryReportServices {
 					type, version);
 		}
 
+		
+		 else if (filename.equals("BRF9_1Detail")) {
+			 fileData = cbuae_brf9_1_reportservice.getBRF9_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+						version);
+		} 
+		 else if (filename.equals("BRF1_7Detail")) {
+			 fileData =  cbuae_brf1_7_reportservice.getBRF1_7DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+						version);
+			}
+		
+		 else if (filename.equals("BRF7_4Detail")) {
+			 fileData =  CBUAE_BRF7_4_ReportServices.getBRF7_4DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+						version);
+			}
+
+
+		
+
+
+
 		if (fileData == null) {
 			logger.warn("Excel generation failed or no data for jobId: {}", jobId);
 			jobStorage.put(jobId, "Nodata".getBytes());

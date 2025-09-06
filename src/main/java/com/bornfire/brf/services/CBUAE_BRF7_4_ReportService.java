@@ -90,6 +90,11 @@ public class CBUAE_BRF7_4_ReportService {
 	public ModelAndView getBRF7_4currentDtl(
 	        String reportId, String fromdate, String todate, String currency,
 	        String dtltype, Pageable pageable, String filter) {
+		
+		int pageSize = pageable.getPageSize();
+		int currentPage = pageable.getPageNumber();
+		int totalPages=0;
+		
 		ModelAndView mv = new ModelAndView();
 
 			List<CBUAE_BRF7_4_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF7_4_Detail_Entity>();
@@ -110,7 +115,10 @@ public class CBUAE_BRF7_4_ReportService {
 				if (rowId != null && columnId != null) {
 					T1Dt1 = CBUAE_BRF7_4_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId, dateformat.parse(todate));
 			} else {
-					T1Dt1 = CBUAE_BRF7_4_Detail_Repos.getdatabydateList(dateformat.parse(todate));
+
+					T1Dt1 = CBUAE_BRF7_4_Detail_Repos.getdatabydateList(dateformat.parse(todate),currentPage,pageSize);
+					totalPages=CBUAE_BRF7_4_Detail_Repos.getdatacount(dateformat.parse(todate));
+					mv.addObject("pagination","YES");
 			}
 
 				mv.addObject("reportdetails", T1Dt1);
@@ -122,6 +130,9 @@ public class CBUAE_BRF7_4_ReportService {
 			}
 
 		mv.setViewName("BRF/BRF7_4");
+		mv.addObject("displaymode", "Details");
+   	  	mv.addObject("currentPage", currentPage);
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
 		mv.addObject("displaymode", "Details");
 		mv.addObject("reportsflag", "reportsflag");
 		mv.addObject("menu", reportId);
