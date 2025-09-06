@@ -53,6 +53,7 @@ import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo3;
 import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo4;
 import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo5;
 import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo6;
+import com.bornfire.brf.entities.CBUAE_BRF1_10_Detail_Entity;
 
 
 
@@ -150,9 +151,10 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF16_1_Repor
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
+	    int totalPages=0;
 
 	    ModelAndView mv = new ModelAndView();
-	    List<CBUAE_BRF16_1_Detail_Entity> T1Dt1 = new ArrayList<>();
+	    List<CBUAE_BRF16_1_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF16_1_Detail_Entity>();
 
 	    try {
 	        Date d1 = dateformat.parse(todate);
@@ -174,6 +176,9 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF16_1_Repor
 	            T1Dt1 = BRF16_1_DETAIL_Repo.GetDataByRowIdAndColumnId(rowId, columnId,  dateformat.parse(todate));
 	        } else {
 	            T1Dt1 = BRF16_1_DETAIL_Repo.getdatabydateList(d1);
+	            T1Dt1 = BRF16_1_DETAIL_Repo.getdatabydateList(d1,currentPage,pageSize);
+	            totalPages=BRF16_1_DETAIL_Repo.getdatacount(dateformat.parse(todate));
+	            mv.addObject("pagination","YES");
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
@@ -183,12 +188,18 @@ private static final Logger logger = LoggerFactory.getLogger(CBUAE_BRF16_1_Repor
 	    }
 
 	    mv.setViewName("BRF/BRF16_1");
-	    mv.addObject("displaymode", "Details");
-	    mv.addObject("reportdetails", T1Dt1);
-	    mv.addObject("reportmaster12", T1Dt1);
-	    mv.addObject("reportsflag", "reportsflag");
-	    mv.addObject("menu", reportId);
-	    return mv;
+	  		mv.addObject("displaymode", "Details");
+	     	  	mv.addObject("currentPage", currentPage);
+	     	  	System.out.println("totalPages"+(int)Math.ceil((double)totalPages / 100));
+	     	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
+	  		
+	     	    mv.addObject("reportdetails", T1Dt1);
+
+	  		// mv.addObject("reportmaster1", qr);
+	  		// mv.addObject("singledetail", new T1CurProdDetail());
+	  		mv.addObject("reportsflag", "reportsflag");
+	  		mv.addObject("menu", reportId);
+	  		return mv;
 	}
 	
 	

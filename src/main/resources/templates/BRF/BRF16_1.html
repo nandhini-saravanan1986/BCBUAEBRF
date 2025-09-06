@@ -335,6 +335,15 @@ label.error {
 .white-text span {
 	color: white !important;
 }
+.table-cell tbody td:hover {
+        background-color: #f0f0f0; /* Hover color for cell */
+        cursor: pointer;           /* Optional: pointer cursor */
+    }
+    
+    .table-bordered td, 
+.table-bordered th {
+     border: 1px solid #000 !important;
+}
 
 </style>
 
@@ -373,7 +382,8 @@ label.error {
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -399,8 +409,10 @@ label.error {
 			 }); */
 		}
 
+
 		function showsummary() {
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
 			location.href = Callurl;
 
@@ -449,7 +461,8 @@ label.error {
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+								loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -516,115 +529,165 @@ label.error {
 
 	</script>
 
-	<script>
-
-		function downloadDetailfile(button) {
-			const filename = button.getAttribute('data-filename');
-			const fromdate = button.getAttribute('data-fromdate');
-			const todate = button.getAttribute('data-todate');
-			const currency = button.getAttribute('data-currency');
-			const dtltype = button.getAttribute('data-dtltype');
-			const type = button.getAttribute('data-type');
-			const version = button.getAttribute('data-version');
-
-			$('#loader').modal('show');
-
-			const baseUrl = '/BCDRS/Reports/';
-			const downloadUrl = baseUrl + 'downloadDetailExcel' +
-				'?filename=' + encodeURIComponent(filename) +
-				'&fromdate=' + encodeURIComponent(fromdate) +
-				'&todate=' + encodeURIComponent(todate) +
-				'&currency=' + encodeURIComponent(currency) +
-				'&dtltype=' + encodeURIComponent(dtltype) +
-				'&type=' + encodeURIComponent(type) +
-				'&version=' + encodeURIComponent(version);
-
-			$.ajax({
-				url: downloadUrl,
-				type: 'GET',
-				xhrFields: {
-					responseType: 'blob'
-				},
-				success: function (data) {
-					$('#loader').modal('hide');
-
-					if (data && data.size > 100) {
-						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-						const url = window.URL.createObjectURL(blob);
-						const a = document.createElement('a');
-						a.style.display = 'none';
-						a.href = url;
-						a.download = filename + '.xlsx';
-						document.body.appendChild(a);
-						a.click();
-						a.remove();
-						window.URL.revokeObjectURL(url);
-
-						showResultModal('Success', filename + ' downloaded successfully.');
-					} else {
-						showResultModal('Information', 'No data was available to create a download or file was empty.');
-					}
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					$('#loader').modal('hide');
-					console.error('Download error:', textStatus, errorThrown, jqXHR);
-
-					let errorMessage = 'An error occurred while downloading the file. Please try again.';
-					if (jqXHR.response) {
-						const reader = new FileReader();
-						reader.onload = function () {
-							errorMessage = reader.result;
-							showResultModal('Error', errorMessage);
-						};
-						reader.onerror = function () {
-							showResultModal('Error', 'An unknown error occurred during download.');
-						};
-						reader.readAsText(jqXHR.response);
-						return;
-					}
-					showResultModal('Error', errorMessage);
-				}
-			});
+	<style>
+		.table-bordered>:not(caption)>*>* {
+			border-width: 1px var(--bs-border-width) !important;
 		}
+	</style>
+
+		<script>
+
+		function startReport(button){
+				const alertMsg = document.getElementById("alertMessage");
+				const filename = button.getAttribute('data-filename');
+				const fromdate = button.getAttribute('data-fromdate');
+				const todate = button.getAttribute('data-todate');
+				const currency = button.getAttribute('data-currency');
+				const dtltype = button.getAttribute('data-dtltype');
+				const type = button.getAttribute('data-type');
+				const version = button.getAttribute('data-version');
+				const sessionfilename = sessionStorage.getItem("filename");
+				
+				if(sessionfilename==filename){
+					alertMsg.innerHTML ='Download request already Processing...';
+		       	 	showAlert();
+					return;
+				}
+				
+				alertMsg.innerHTML ='Download request Processing...';
+		   	 	showAlert();
+
+				const baseUrl = '/BCDRS/Reports/startreport';
+				const downloadUrl = baseUrl +
+					'?filename=' + encodeURIComponent(filename) +
+					'&fromdate=' + encodeURIComponent(fromdate) +
+					'&todate=' + encodeURIComponent(todate) +
+					'&currency=' + encodeURIComponent(currency) +
+					'&dtltype=' + encodeURIComponent(dtltype) +
+					'&type=' + encodeURIComponent(type) +
+					'&version=' + encodeURIComponent(version);
+			    fetch(downloadUrl)  // ✅ no invalid characters now
+			        .then(res => res.text())
+			        .then(jobId => {
+
+			        	alertMsg.innerHTML ='Download request received...'+jobId;
+			       	 	showAlert();
+			            sessionStorage.setItem("jobId", jobId);
+			            sessionStorage.setItem("filename", filename);
+			            checkReport(jobId);
+			        });
+			}
+
+			function checkReport(jobId) {
+				const alertMsg = document.getElementById("alertMessage");
+			    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+			        .then(res => res.text())
+			        .then(status => {
+			            if (status === "READY") {
+			            	alertMsg.innerHTML ='Report is ready! Downloading…';
+			           	 	showAlert();
+			                const filename = sessionStorage.getItem("filename");
+			                downloadDetailfile(jobId,filename)
+			                sessionStorage.removeItem("jobId");
+			                sessionStorage.removeItem("filename");                
+			                
+			            } else if(status ==="PROCESSING") {
+			                alertMsg.innerHTML ='Download Is Processing…';
+			            	showAlert();
+			                setTimeout(() => checkReport(jobId), 5000);
+			            }
+			            else if(status ==="ERROR") {
+			                alertMsg.innerHTML ='No data was available to create a download.';
+			            	showAlert();
+			            	sessionStorage.removeItem("jobId");
+			                sessionStorage.removeItem("filename");  
+			            }
+			        });
+			}
 
 
 
+			function downloadDetailfile(jobId, filename) {
+			    //$('#loader').modal('show');
+
+			    const params = new URLSearchParams({
+			        jobId: jobId,
+			        filename: filename
+			    });
+
+			    $.ajax({
+			        url: '/BCDRS/Reports/downloaddetailExcel?' + params.toString(),
+			        type: 'GET',
+			        xhrFields: {
+			            responseType: 'blob'
+			        },
+			        success: function (data) {
+			            $('#loader').modal('hide');
+
+			            if (data && data.size > 100) {
+			                const blob = new Blob([data], { type: 'application/vnd.ms-excel' });
+			                const url = window.URL.createObjectURL(blob);
+			                const a = document.createElement('a');
+			                a.style.display = 'none';
+			                a.href = url;
+			                a.download = filename;
+			                document.body.appendChild(a);
+			                a.click();
+			                window.URL.revokeObjectURL(url);
+			                document.body.removeChild(a);
+
+			                showResultModal('Success', filename + ' downloaded successfully.');
+			            } else {
+			                showResultModal('Information', 'No data was available to create a download.');
+			            }
+			        },
+			        error: function (jqXHR, textStatus, errorThrown) {
+			            $('#loader').modal('hide');
+			            console.error("Download failed:", textStatus, errorThrown);
+			            showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+			        }
+			    });
+			}
 	</script>
 
 
 	<script th:inline="javascript">
-		function showdetailsbyRowAndColumn(a) {
-			var rowId = a.getAttribute('RowId');
-			var columnId = a.getAttribute('ColumnId');
-			var cellValue = a.textContent || a.innerText;
+				function showdetailsbyRowAndColumn(a) {
+					var rowId = a.getAttribute('RowId');
+					var columnId = a.getAttribute('ColumnId');
+					var cellValue = a.textContent || a.innerText;
 
-			if (cellValue !== '0') {
-				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+					if (cellValue !== '0') {
+						// Set dynamic message
+						document.getElementById("cellresultModalLabel").innerText = 
+						    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+						// Show custom modal
+						$('#cellresultModal').modal('show');
 
-					if (!Callurl) {
-						alert("Error: Base URL not set.");
-						return;
-					}
+						// Handle Yes button
+						document.querySelector('.yes-btn').onclick = function() {
+							$('#cellresultModal').modal('hide');
+							var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+												loader.show();
 
-					const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+							var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+							Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
 
-					if (Callurl.includes("?")) {
-						Callurl += "&" + filterParam;
+							location.href = Callurl;
+						};
 					} else {
-						Callurl += "?" + filterParam;
+						showResultModal("Alert", "No Records available for this selected cell.");
 					}
-
-					console.log("Redirecting to:", Callurl);
-					location.href = Callurl;
 				}
-			} else {
-				alert("No Records available for this selected cell.");
-			}
-		}
-	</script>
+			</script>
+			
+			<style>
+    .right-align {
+        text-align: right;
+        padding-right: 8px;
+    }
+</style>
 
 
 
@@ -652,7 +715,7 @@ label.error {
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
-							 Bank Information, Consumers, Complaints, Retail Products, Additional Information & Islamic Banking- BRF16.1 (AED 000s) </h5>
+							BANK INFORMATION, CONSUMERS, COMPLAINTS, RETAIL PRODUCTS, ADDITIONAL INFORMATION & ISLAMIC BANKING- BRF16.1 (AED 000s) </h5>
 					</div>
 
 					<div class="custom-tab-btn-group nav-buttons"
@@ -682,7 +745,7 @@ label.error {
 							<i class="fa fa-download"></i>
 						</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
-							th:if="${displaymode == 'Details'}" onclick="downloadDetailfile(this);" th:attr="
+							th:if="${displaymode == 'Details'}" onclick="startReport(this);" th:attr="
 			    data-fromdate=${fromdate},
 			    data-todate=${todate},
 				data-currency=${currency},  
@@ -703,71 +766,70 @@ label.error {
 								class="table-wrapper table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6;">
 								<table id="BRFtable"
-									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
 									>
-									<thead class="thead-light">
+									<thead style="vertical-align: middle" class="thead-light">
 									    <tr>
 											<th rowspan="3"
-												style="text-align: center; background-color: #b3b6b9;">ROW</th>
+												style="text-align: center;vertical-align: middle; background-color: #b3b6b9;">ROW</th>
 											<th rowspan="3"
-												style="text-align: center; background-color: #b3b6b9">ID</th>
-											<th rowspan="3"
-												style="text-align: center; background-color: #b3b6b9">Product</th>
-											<th colspan = "26" style="text-align: center">Bank Information</th>
-											<th colspan = "56" style="text-align: center">Bank Consumers</th>
-											<th colspan = "40" style="text-align: center">Complaints</th>
-											<th colspan = "61" style="text-align: center">Retail Products</th>
-											<th colspan = "63" style="text-align: center">Additional Information</th>
-											<th colspan = "11" style="text-align: center">Islamic Banking</th>
+												style="text-align: center;vertical-align: middle; background-color: #b3b6b9">ID</th>
+												<th rowspan='3' Width='800' style="text-align: center;vertical-align: middle; background-color: #b3b6b9">Product</th>
+                                 <th colspan = "26" style="text-align: center;vertical-align: middle">Bank Information</th>
+											<th colspan = "56" style="text-align: center;vertical-align: middle">Bank Consumers</th>
+											<th colspan = "40" style="text-align: center;vertical-align: middle">Complaints</th>
+											<th colspan = "61" style="text-align: center;vertical-align: middle">Retail Products</th>
+											<th colspan = "63" style="text-align: center;vertical-align: middle">Additional Information</th>
+											<th colspan = "11" style="text-align: center;vertical-align: middle">Islamic Banking</th>
 										</tr>
 										
 										
 										<tr class="thead-widthset" id="BRFth">
-											<th style=" text-align:center;width:300px;">Product Applicable
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Product Applicable
 												(Yes/No)</th>
-											<th style="text-align: center;width:300px;">Number of employees as
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of employees as
 												of the specified time period</th>
-											<th style="text-align: center;width:300px;">Number of Consumers as
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of Consumers as
 												of the specified time period</th>
-											<th style="text-align: center;width:300px;">Average Number of
+											<th style="text-align: center;vertical-align: middle;width:300px;">Average Number of
 												employees as of the specified time period</th>
-											<th style="text-align: center;width:300px;">Number of branches as of
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of branches as of
 												the specified time period</th>
-											<th style="text-align: center;width:300px;">Total number of Bank
+											<th style="text-align: center;vertical-align: middle;width:300px;">Total number of Bank
 												branches designated for PoD or branches catering to the
 												needs of PoD during the specified time period</th>
-											<th style="text-align: center;width:300px;">Number of ATMs as of the
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of ATMs as of the
 												specified time period</th>
-											<th style="text-align: center;width:300px;">Number of ATMs having
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of ATMs having
 												People of Determination specified requirements as of the
 												specified time period</th>
-											<th style="text-align: center;width:300px;">Number of Authorized
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of Authorized
 												Agents as of the specified time period</th>
-											<th style="text-align: center;width:300px;">Number of instances,
+											<th style="text-align: center;vertical-align: middle;width:300px;">Number of instances,
 												wherein service interruptions to internet and mobile Banking
 												is either 1 hour or more than 1 hour during the specified
 												time period</th>
-											<th style="text-align: center;">Number of instances,
+											<th style="text-align: center;vertical-align: middle;">Number of instances,
 												wherein any scheduled or planned downtime for any critical
 												systems of the Bank extended over the scheduled or planned
 												downtime during the specified time period</th>
-											<th style="text-align: center;">Number of employees
+											<th style="text-align: center;vertical-align: middle;">Number of employees
 												within the second line of defense (Risk /Compliance or any
 												other function which is independent from business)
 												responsible for monitoring Conduct Risk of the Bank as of
 												the specified date</th>
-											<th style="text-align: center;">Number of external fraud
+											<th style="text-align: center;vertical-align: middle;">Number of external fraud
 												incidents during specified time period</th>
-											<th style="text-align: center;">Number of internal fraud
+											<th style="text-align: center;vertical-align: middle;">Number of internal fraud
 												incidents during specified time period</th>
-											<th style="text-align: center;">Number of fraud
+											<th style="text-align: center;vertical-align: middle;">Number of fraud
 												incidents during the specified time period</th>
-											<th style="text-align: center;">Number of fraud
+											<th style="text-align: center;vertical-align: middle;">Number of fraud
 												incidents during the previous period</th>
-											<th style="text-align: center;">Total number of reviews
+											<th style="text-align: center;vertical-align: middle;">Total number of reviews
 												conducted by the Bank on authorised agents during the
 												specified time period</th>
-											<th style="text-align: center;">Total number of
+											<th style="text-align: center;vertical-align: middle;">Total number of
 												instances of Unplanned service interruptions including
 												system downtime instances affecting the
 												internet/mobile/devise based instrument which resulted in
@@ -775,7 +837,7 @@ label.error {
 												terminals or failure to avail the services provided by the
 												Bank through its application/website/POS terminals during
 												the specified time period</th>
-											<th style="text-align: center;">Total number of hours of
+											<th style="text-align: center;vertical-align: middle;">Total number of hours of
 												Unplanned service interruptions including system downtime
 												(in hours) affecting the internet/mobile/devise based
 												instrument which resulted in consumer's failure to access
@@ -783,631 +845,631 @@ label.error {
 												the services provided by the Bank through its
 												application/website/POS terminals during the specified time
 												period</th>
-											<th style="text-align: center;">Total Number of
+											<th style="text-align: center;vertical-align: middle;">Total Number of
 												incidents of system security breaches leading to Consumer
 												data theft (e.g., hacker attacks, personal data leakage,
 												unauthorized access to digital wallets for data theft, etc.)
 												that have impacted consumers as of the specified time period</th>
-											<th style="text-align: center;">Total number of
+											<th style="text-align: center;vertical-align: middle;">Total number of
 												penetration and cyber-attack simulation testing conducted in
 												the last 4 quarters</th>
-											<th style="text-align: center;">Total Number of
+											<th style="text-align: center;vertical-align: middle;">Total Number of
 												Authorised Agents and outsourcing service providers
 												(including services or systems outsourced to authorised
 												agents) during the specified time period</th>
-											<th style="text-align: center;">Total Number of Point of
+											<th style="text-align: center;vertical-align: middle;">Total Number of Point of
 												Sale Terminals during the specified time period</th>
-											<th style="text-align: center;">Total Number of Merchant
+											<th style="text-align: center;vertical-align: middle;">Total Number of Merchant
 												tie ups during the specified time period</th>
-											<th style="text-align: center;">Number of Inquiries
+											<th style="text-align: center;vertical-align: middle;">Number of Inquiries
 												received raised during the specified time period</th>
-											<th style="text-align: center;">Number of service
+											<th style="text-align: center;vertical-align: middle;">Number of service
 												interruptions caused by authorised agents that have affected
 												consumers during the specified time period</th>
-											<th style="text-align: center;">Number of women
+											<th style="text-align: center;vertical-align: middle;">Number of women
 												Consumers as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												tagged as People of Determination (PoD) as of the specified
 												date</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												whose data has been accessed by unauthorized parties during
 												the specified time period</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												having DBR greater than and equal to 45% but less than 50%</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												having DBR greater than or equal to 50%</th>
-											<th style="text-align: center;">Number of new Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new Consumers
 												onboarded having disposable income less than 50% of their
 												total income</th>
-											<th style=" text-align:center;">Number of Consumers
+											<th style=" text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books that fall under the age bracket: less
 												than 18 years old as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books that fall under the age bracket: 18-25
 												years as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books that fall under the age bracket: 26-35
 												years as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books that fall under the age bracket: 36-50
 												years as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books that fall under the age bracket: Greater
 												than 50 years old as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books who's primary source of income is Salary as
 												of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books who's primary source of income is Income
 												from Business as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books who's primary source of income is from
 												other sources including Investment properties as of the
 												specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of monthly income as <=
 												5,000 AED as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of monthly income as
 												5,001-10,000 AED as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of monthly income as
 												10,001-20,000 AED as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of monthly income as
 												20,001-35,000 AED as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of monthly income as
 												>35,001 AED as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of education as Secondary
 												school or below as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of education as
 												Bachelor's degree as of the specified date</th>
-											<th style="text-align:center;">Number of Consumers
+											<th style="text-align:center;vertical-align: middle;">Number of Consumers
 												on the Bank's books with the level of education as Master's
 												degree or above as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Abu Dhabi (as per the KYC
 												document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Dubai (as per the KYC
 												document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Sharjah (as per the KYC
 												document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Ajman (as per the KYC
 												document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Fujairah (as per the KYC
 												document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Ras Al Khaimah (as per the
 												KYC document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books that reside in Umm Al Quwain (as per the
 												KYC document submitted to the Bank) as of the specified date</th>
-											<th style="text-align: center;">Number of Consumers on
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers on
 												the Bank's books tagged by the Bank as "Retired" as of the
 												specified date</th>
-											<th style="text-align: center;">Number of Consumers as
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers as
 												of a specified date who were provided a loan when stress
 												testing results revealed a breach of the CBUAE DBR limits
 												incase of a increased interest/profit rate scenario</th>
-											<th style="text-align: center;">Number of UAE national
+											<th style="text-align: center;vertical-align: middle;">Number of UAE national
 												Consumers during the specified time period</th>
-											<th style="text-align: center;">Number of UAE national
+											<th style="text-align: center;vertical-align: middle;">Number of UAE national
 												Consumers enrolled for National Loan Scheme during the
 												specified time period</th>
-											<th style="text-align: center;">Value of financial loss
+											<th style="text-align: center;vertical-align: middle;">Value of financial loss
 												suffered by Consumers due to fraud during the specified time
 												period (AED (000's))</th>
-											<th style="text-align: center;">Number of new consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new consumers
 												onboarded in the previous quarter who become delinquent and
 												were cured during this quarter</th>
-											<th style="text-align: center;">Number of new Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new Consumers
 												who have received balloon payment options by the Bank</th>
-											<th style="text-align: center;">Number of Consumers who
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers who
 												have received balloon payment options by the Bank during the
 												specified time period</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												receiving debt counseling services during the specified time
 												period</th>
-											<th style="text-align: center;">Number of new Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new Consumers
 												onboarded (including consumers onboarded through referrals)
 												during the specified time period</th>
-											<th style="text-align: center;">Number of new Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new Consumers
 												onboarded by Authorized Agents (including consumers
 												onboarded through referrals) during the specified time
 												period</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												affected by Unauthorized Transactions during the specified
 												time period</th>
-											<th style="text-align: center;">Number of accounts held
+											<th style="text-align: center;vertical-align: middle;">Number of accounts held
 												by POD</th>
-											<th style="text-align: center;">Number of Delinquent
+											<th style="text-align: center;vertical-align: middle;">Number of Delinquent
 												Consumers as of the specified date</th>
-											<th style="text-align: center;">Number of instances
+											<th style="text-align: center;vertical-align: middle;">Number of instances
 												where consumer funds are misdirected to an incorrect account
 												or recipient, or not reflected in the correct account, due
 												to errors made by the LFI during the specified time period.
 											</th>
-											<th style="text-align: center;">Number of customer who
+											<th style="text-align: center;vertical-align: middle;">Number of customer who
 												provided consent to waive off their cooling off periods for
 												financing products</th>
-											<th style="text-align: center;">Total number of new
+											<th style="text-align: center;vertical-align: middle;">Total number of new
 												customers who availed the financing products</th>
-											<th style="text-align: center;">Total number of
+											<th style="text-align: center;vertical-align: middle;">Total number of
 												consumers which were onboarded, without signed
 												acknowledgement of the receipt of Key Facts Statement</th>
-											<th style="text-align: center;">Number of consumers at
+											<th style="text-align: center;vertical-align: middle;">Number of consumers at
 												the start of the period</th>
-											<th style="text-align: center;">Number of new Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new Consumers
 												onboarded by the LFI in the revolving last 4 quarters</th>
-											<th style="text-align: center;">Number of contactable
+											<th style="text-align: center;vertical-align: middle;">Number of contactable
 												Consumers receiving debt counselling services during the
 												specified time period</th>
-											<th style="text-align: center;">Number of consumers who
+											<th style="text-align: center;vertical-align: middle;">Number of consumers who
 												become delinquent or tagged as NPA during the specified time
 												period</th>
-											<th style="text-align: center;">Number of Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers
 												(excluding government housing schemes consumers) having DBR
 												greater than or equal to 50% as of the specified date.</th>
-											<th style="text-align: center;">Number of SME consumers
+											<th style="text-align: center;vertical-align: middle;">Number of SME consumers
 												(including Sole proprietorships)</th>
-											<th style="text-align: center;">Number of consumers
+											<th style="text-align: center;vertical-align: middle;">Number of consumers
 												tagged as Vulnerable Consumers</th>
-											<th style="text-align: center;">Number of new customer
+											<th style="text-align: center;vertical-align: middle;">Number of new customer
 												onboarded in a given period</th>
-											<th style="text-align: center;">Number of consumers at
+											<th style="text-align: center;vertical-align: middle;">Number of consumers at
 												end of the period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												during the specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												pending in court</th>
-											<th style="text-align: center;">Amount of financial
+											<th style="text-align: center;vertical-align: middle;">Amount of financial
 												compensation provided to consumers as redressal for the
 												complaints raised (AED (000's))</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received by Bank on misleading or false advertisements such
 												as incomplete information or improper disclosure such as
 												annual fees/product features (excluding complaints against
 												Authorized Agents)</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												filed by People of Determination during the specified time
 												period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received on issues dealing with debt collection</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received against Authorized Agents during the specified time
 												period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												related to mis-selling by Authorized Agents during the
 												specified time period</th>
-											<th style="text-align: center;">Number of Consumers that
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers that
 												filed complaints during the specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												related to fees and charges on Bank's products and services
 												during the specified time period</th>
-											<th style="text-align: center;">Number of root cause
+											<th style="text-align: center;vertical-align: middle;">Number of root cause
 												analysis conducted on the complaints associated with each of
 												the following products during the specified time period</th>
-											<th style="text-align: center;">Number of Consumer
+											<th style="text-align: center;vertical-align: middle;">Number of Consumer
 												complaints received through a dedicated phone line during
 												the specified time period</th>
-											<th style="text-align: center;">Number of Consumer
+											<th style="text-align: center;vertical-align: middle;">Number of Consumer
 												complaints received through a secure web based portal system
 												during the specified time period</th>
-											<th style="text-align: center;">Number of Consumer
+											<th style="text-align: center;vertical-align: middle;">Number of Consumer
 												complaints received through the Bank's website during the
 												specified time period</th>
-											<th style="text-align: center;">Number of outstanding
+											<th style="text-align: center;vertical-align: middle;">Number of outstanding
 												complaints (unresolved complaints) during the specified time
 												period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												which were resolved in favor of the Consumers during the
 												specified time period</th>
-											<th style="text-align: center;">Number of resolved
+											<th style="text-align: center;vertical-align: middle;">Number of resolved
 												complaints after 30 days from the date of raising of
 												complaint as of the specified date</th>
-											<th style="text-align: center;">Average time taken to
+											<th style="text-align: center;vertical-align: middle;">Average time taken to
 												resolve complaints during the specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received on staff misconduct during the specified time
 												period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												filed by People of Determination Consumers on accessibility
 												(branches, ATMs, kiosk machines, website) during the
 												specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received by Consumers who have incurred financial loss
 												during the specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												resolved in favor of Consumers wherein financial loss is
 												involved during the specified time period</th>
-											<th style="text-align: center;">Number of complaints at
+											<th style="text-align: center;vertical-align: middle;">Number of complaints at
 												previous reporting period</th>
-											<th style="text-align: center;">Number of resolved
+											<th style="text-align: center;vertical-align: middle;">Number of resolved
 												Complaints</th>
-											<th style="text-align: center;">Number of steps a
+											<th style="text-align: center;vertical-align: middle;">Number of steps a
 												consumer needs to go through to report a complaint related
 												to loss, theft, fraud or misuse of consumer’s products and
 												services</th>
-											<th style="text-align: center;">Number of customer
+											<th style="text-align: center;vertical-align: middle;">Number of customer
 												complaints that evolved into legal cases during the
 												specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												related to failure to provide clear contractual terms raised
 												by consumers</th>
-											<th style="text-align: center;">(Number of complaints
+											<th style="text-align: center;vertical-align: middle;">(Number of complaints
 												related to not taking a expressed or explicit consent from
 												consumers</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												escalated to Sanadak</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												escalated by Sanadak to CBUAE Market Conduct Supervision
 												Department</th>
-											<th style="text-align: center;">Number of resolved
+											<th style="text-align: center;vertical-align: middle;">Number of resolved
 												complaints after 7 days from the date of raising the
 												complaint as of specified date</th>
-											<th style="text-align: center;">Number of resolved
+											<th style="text-align: center;vertical-align: middle;">Number of resolved
 												complaints (excluding disputed transactions through schemes)
 												after 15 days from the date of raising of complaint as of
 												the specified date</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												upheld (in favour of consumer)</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received against Bank's Staff during the specified time
 												period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received against inhouse Authorized agent staff during the
 												specified time period</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												acknowledged outside target time</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												related to Authorized agents on issues dealing with Debt
 												Collection</th>
-											<th style="text-align: center;">Number of instances of
+											<th style="text-align: center;vertical-align: middle;">Number of instances of
 												complaints or requests by consumers to change their credit
 												rating during the specified time period</th>
-											<th style="text-align: center;">Number of consumer
+											<th style="text-align: center;vertical-align: middle;">Number of consumer
 												complaints due to delayed remittance</th>
-											<th style="text-align: center;">Number of complaints at
+											<th style="text-align: center;vertical-align: middle;">Number of complaints at
 												reporting date</th>
-											<th style="text-align: center;">Average time taken to
+											<th style="text-align: center;vertical-align: middle;">Average time taken to
 												open an account for a consumer categorized as low risk
 												(Days)</th>
-											<th style="text-align: center;">Average number of days
+											<th style="text-align: center;vertical-align: middle;">Average number of days
 												taken to disburse a loan (Days)</th>
-											<th style="text-align: center;">Average number of days
+											<th style="text-align: center;vertical-align: middle;">Average number of days
 												taken to open low risk SME accounts (days)</th>
-											<th style="text-align: center;">Average number of days
+											<th style="text-align: center;vertical-align: middle;">Average number of days
 												taken to disburse SME loans (Days)</th>
-											<th style="text-align: center;">Number of requests for
+											<th style="text-align: center;vertical-align: middle;">Number of requests for
 												closure</th>
-											<th style="text-align: center;">Number of Product
+											<th style="text-align: center;vertical-align: middle;">Number of Product
 												Variants during the specified time period</th>
-											<th style="text-align: center;">Number of requests for
+											<th style="text-align: center;vertical-align: middle;">Number of requests for
 												restructuring/rescheduling received during the specified
 												time period</th>
-											<th style="text-align: center;">Number of requests for
+											<th style="text-align: center;vertical-align: middle;">Number of requests for
 												payment deferrals received during the specified time period</th>
-											<th style="text-align: center;">Average time taken to
+											<th style="text-align: center;vertical-align: middle;">Average time taken to
 												provide Consumers with revised repayment/payment arrangement
 												(Days)</th>
-											<th style="text-align: center;">Number of instances
+											<th style="text-align: center;vertical-align: middle;">Number of instances
 												where Bank trangressions (errors and omissions) affected the
 												balance reflection of Consumers</th>
-											<th style="text-align: center;">Net Non-Interest/Profit
+											<th style="text-align: center;vertical-align: middle;">Net Non-Interest/Profit
 												(such as fees and commissions) earned during the specified
 												time period (AED (000's))</th>
-											<th style="text-align: center;">Net Interest/Profit
+											<th style="text-align: center;vertical-align: middle;">Net Interest/Profit
 												earned during the specified time period (AED (000's))</th>
-											<th style="text-align: center;">Total number of accounts
+											<th style="text-align: center;vertical-align: middle;">Total number of accounts
 												or loans as of the specified date</th>
-											<th style="text-align: center;">Total number of accounts
+											<th style="text-align: center;vertical-align: middle;">Total number of accounts
 												that has been marked as Dormant Account</th>
-											<th style="text-align: center;">Total Number of new loan
+											<th style="text-align: center;vertical-align: middle;">Total Number of new loan
 												given during the specified time period</th>
-											<th style="text-align: center;">Total value associated
+											<th style="text-align: center;vertical-align: middle;">Total value associated
 												with new loan accounts given during the specified time
 												period (AED (000's))</th>
-											<th style="text-align: center;">Total number of account
+											<th style="text-align: center;vertical-align: middle;">Total number of account
 												or loan applications received as of the specified date</th>
-											<th style="text-align: center;">Total Number of request
+											<th style="text-align: center;vertical-align: middle;">Total Number of request
 												of transfer of loans from the Bank to another Bank during
 												the specified time period</th>
-											<th style="text-align: center;">Total number of loans
+											<th style="text-align: center;vertical-align: middle;">Total number of loans
 												transferred from the Bank to another Bank during the
 												specified time period</th>
-											<th style="text-align: center;">Number of credit card
+											<th style="text-align: center;vertical-align: middle;">Number of credit card
 												accounts where the Consumer paid only the minimum payment
 												(instead of full outstanding amount) during the specified
 												time period</th>
-											<th style="text-align: center;">Average time taken to
+											<th style="text-align: center;vertical-align: middle;">Average time taken to
 												close an account (other than credit cards and investment
 												accounts) (Days)</th>
-											<th style="text-align: center;">Number of Consumers that
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers that
 												received more than one (1) rescheduling of loans</th>
-											<th style="text-align: center;">Number of instances
+											<th style="text-align: center;vertical-align: middle;">Number of instances
 												where Consumers terminated their business relationship
 												(i.e., account closure) within 90 days of opening it with
 												the Bank during the specified time period</th>
-											<th style="text-align: center;">Total Gross Assets</th>
-											<th style="text-align: center;">Retail Asset/
+											<th style="text-align: center;vertical-align: middle;">Total Gross Assets</th>
+											<th style="text-align: center;vertical-align: middle;">Retail Asset/
 												liabilitySize as of the specified date (AED (000's))</th>
-											<th style="text-align: center;">Highest Annual
+											<th style="text-align: center;vertical-align: middle;">Highest Annual
 												Percentage Rates levied on each of the product category
 												during the specified time period*</th>
-											<th style="text-align: center;">Number of accounts
+											<th style="text-align: center;vertical-align: middle;">Number of accounts
 												tagged under NPA (Non Performing Assets)</th>
-											<th style="text-align: center;">Number of instances of
+											<th style="text-align: center;vertical-align: middle;">Number of instances of
 												change in fees and charges being greater than 5%</th>
-											<th style="text-align: center;">Number of Consumers with
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers with
 												loan accounts that have flexible interest rates as of the
 												specified date</th>
-											<th style="text-align: center;">Number of Consumers with
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers with
 												loan accounts that have fixed interest rates as of the
 												specified date</th>
-											<th style="text-align: center;">Number of loans
+											<th style="text-align: center;vertical-align: middle;">Number of loans
 												disbursed prior to May 2011 as of the specified date</th>
-											<th style="text-align: center;">Value of Legacy Loans
+											<th style="text-align: center;vertical-align: middle;">Value of Legacy Loans
 												(loans disbursed prior to May 2011) outstanding as of the
 												specified date (AED (000's))</th>
-											<th style="text-align: center;">Average number of days
+											<th style="text-align: center;vertical-align: middle;">Average number of days
 												taken to issue no liability letters (Days)</th>
-											<th style="text-align: center;">Percentage of dormant
+											<th style="text-align: center;vertical-align: middle;">Percentage of dormant
 												accounts</th>
-											<th style="text-align: center;">Interest income to
+											<th style="text-align: center;vertical-align: middle;">Interest income to
 												retail portfolio</th>
-											<th style="text-align: center;">Fees and commissions to
+											<th style="text-align: center;vertical-align: middle;">Fees and commissions to
 												retail portfolio</th>
-											<th style="text-align: center;">Total value of funds
+											<th style="text-align: center;vertical-align: middle;">Total value of funds
 												that become unclaimed (including unclaimed balances) in the
 												last 90 days</th>
-											<th style="text-align: center;">Total value of unclaimed
+											<th style="text-align: center;vertical-align: middle;">Total value of unclaimed
 												balances</th>
-											<th style="text-align: center;">Number of instances of
+											<th style="text-align: center;vertical-align: middle;">Number of instances of
 												contractual breaches related to consumer data protection by
 												the Authorized Agents during the specified time period</th>
-											<th style="text-align: center;">Total number of accounts
+											<th style="text-align: center;vertical-align: middle;">Total number of accounts
 												that has been marked as Dormant Account for which notice was
 												sent to consumer</th>
-											<th style="text-align: center;">Number of consumers who
+											<th style="text-align: center;vertical-align: middle;">Number of consumers who
 												have been issued liability or no liability letters within 7
 												days of request</th>
-											<th style="text-align: center;">Total Number of requests
+											<th style="text-align: center;vertical-align: middle;">Total Number of requests
 												received from consumers for liability and no liability
 												letters</th>
-											<th style="text-align: center;">Number of restructuring
+											<th style="text-align: center;vertical-align: middle;">Number of restructuring
 												and rescheduling requests by new Consumers onboarded by the
 												Bank in the revolving last 4 quarter</th>
-											<th style="text-align: center;">Total number of
+											<th style="text-align: center;vertical-align: middle;">Total number of
 												instances of delay in fund transfers as per Bank policy
 												defined TATs (other than AML reasons)</th>
-											<th style="text-align: center;">Total number of fund
+											<th style="text-align: center;vertical-align: middle;">Total number of fund
 												transfer transactions</th>
-											<th style="text-align: center;">Number of instances
+											<th style="text-align: center;vertical-align: middle;">Number of instances
 												where consumer funds are retained (unless funds are in
 												transit) for more than 24 hours</th>
-											<th style="text-align: center;">Number of failed
+											<th style="text-align: center;vertical-align: middle;">Number of failed
 												transactions due to Bank's system or technical error</th>
-											<th style="text-align: center;">Total number of
+											<th style="text-align: center;vertical-align: middle;">Total number of
 												instances in which funds transferred failed to reach the
 												beneficiary (where consumers successfully initiated
 												transaction) during the specified time period</th>
-											<th style="text-align: center;">Total consumer funds
+											<th style="text-align: center;vertical-align: middle;">Total consumer funds
 												(float) held in a segregated account by the SVF during the
 												specified time period</th>
-											<th style="text-align: center;">Total consumer funds
+											<th style="text-align: center;vertical-align: middle;">Total consumer funds
 												(float) held in a segregated account by the SVF during the
 												previous time period</th>
-											<th style="text-align: center;">Total number of credit
+											<th style="text-align: center;vertical-align: middle;">Total number of credit
 												and debit cards undelivered to the consumers that have been
 												issued during the specified period</th>
-											<th style="text-align: center;">Total Number of cards
+											<th style="text-align: center;vertical-align: middle;">Total Number of cards
 												issued during the specififed time period</th>
-											<th style="text-align: center;">Number of accounts
+											<th style="text-align: center;vertical-align: middle;">Number of accounts
 												blocked without informing consumers (other than AML,
 												financial crime or regulatory reasons or if prohibited by
 												regulatory authority)</th>
-											<th style="text-align: center;">Number of inquiries
+											<th style="text-align: center;vertical-align: middle;">Number of inquiries
 												regarding the available balance in the prepaid card</th>
-											<th style="text-align: center;">Total number of prepaid
+											<th style="text-align: center;vertical-align: middle;">Total number of prepaid
 												cards having positive balance that have expired during the
 												specified time period</th>
-											<th style="text-align: center;">Total number of prepaid
+											<th style="text-align: center;vertical-align: middle;">Total number of prepaid
 												cards as of the specified date</th>
-											<th style="text-align: center;">Total number of Accounts
+											<th style="text-align: center;vertical-align: middle;">Total number of Accounts
 												as of the specified date</th>
-											<th style="text-align: center;">Number of languages
+											<th style="text-align: center;vertical-align: middle;">Number of languages
 												available through the voice response system</th>
-											<th style="text-align: center;">Average number of days
+											<th style="text-align: center;vertical-align: middle;">Average number of days
 												taken to open low risk accounts</th>
-											<th style="text-align: center;">Number of consumers who
+											<th style="text-align: center;vertical-align: middle;">Number of consumers who
 												have been reissued liability letters</th>
-											<th style="text-align: center;">Number of instances of
+											<th style="text-align: center;vertical-align: middle;">Number of instances of
 												change in credit rating of consumers</th>
-											<th style="text-align: center;">Retail Asset Composition
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Composition
 												as of the specified date (Loan to Retail Consumers)</th>
-											<th style="text-align: center;">Retail Asset Composition
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Composition
 												as of the specified date (Loan to SME)</th>
-											<th style="text-align: center;">Retail Asset Composition
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Composition
 												as of the specified date (SME - Guarantees & Commitments )</th>
-											<th style="text-align: center;">Retail Asset Sales
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Sales
 												Composition - Loans disbursed to Retail Consumers - where
 												the request application originated through digital channels
 												such as loan application received through website or mobile
 												application etc.</th>
-											<th style="text-align: center;">Retail Asset Sales
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Sales
 												Composition - Loans disbursed to SME - where the request
 												application originated through digital channels such as loan
 												application received through website or mobile application
 												etc.</th>
-											<th style="text-align: center;">Percentage of Loans /
+											<th style="text-align: center;vertical-align: middle;">Percentage of Loans /
 												Financing disbursed to Retail Consumers - where the request
 												application originated through digital channels such as loan
 												application received through website or mobile application
 												etc.</th>
-											<th style="text-align: center;">Loans /
+											<th style="text-align: center;vertical-align: middle;">Loans /
 												Financingdisbursed to SMEs - where the request application
 												originated through digital channels such as loan application
 												received through website or mobile application etc.</th>
-											<th style="text-align: center;">Number of Complaints
+											<th style="text-align: center;vertical-align: middle;">Number of Complaints
 												received through digital channels such as complaints
 												received through website, mobile application etc.</th>
-											<th style="text-align: center;">Number of Complaints
+											<th style="text-align: center;vertical-align: middle;">Number of Complaints
 												received through traditional channels such as complaints
 												received through call centres etc.</th>
-											<th style="text-align: center;">Percentage of Complaints
+											<th style="text-align: center;vertical-align: middle;">Percentage of Complaints
 												received through digital channels such as complaints
 												received through website, mobile application etc.</th>
-											<th style="text-align: center;">Percentage of Complaints
+											<th style="text-align: center;vertical-align: middle;">Percentage of Complaints
 												received through traditional channels such as complaints
 												received consumer facing centers (e.g., through call
 												centres, branches etc).</th>
-											<th style="text-align: center;">Total Revenue from
+											<th style="text-align: center;vertical-align: middle;">Total Revenue from
 												Retail Portfolio (Previous Year)</th>
-											<th style="text-align: center;">Profits/Losses from
+											<th style="text-align: center;vertical-align: middle;">Profits/Losses from
 												Retail Portfolio (Previous Year)</th>
-											<th style="text-align: center;">Profit Margin (in
+											<th style="text-align: center;vertical-align: middle;">Profit Margin (in
 												percentage) from Retail Portfolio (Previous Year)</th>
-											<th style="text-align: center;">Total Retail Asset Size
+											<th style="text-align: center;vertical-align: middle;">Total Retail Asset Size
 												(Previous Year)</th>
-											<th style="text-align: center;">Non-Performing
+											<th style="text-align: center;vertical-align: middle;">Non-Performing
 												Loans/financing - Retail Portfolio (Previous Year)</th>
-											<th style="text-align: center;">Number of Consumers (as
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers (as
 												on the last day of the period) (Previous Year)</th>
-											<th style="text-align: center;">Total Number of Branches
+											<th style="text-align: center;vertical-align: middle;">Total Number of Branches
 												(Previous Year)</th>
-											<th style="text-align: center;">Total Revenue from
+											<th style="text-align: center;vertical-align: middle;">Total Revenue from
 												Retail Portfolio (Current Year)</th>
-											<th style="text-align: center;">Profits/Losses from
+											<th style="text-align: center;vertical-align: middle;">Profits/Losses from
 												Retail Portfolio (Current Year)</th>
-											<th style="text-align: center;">Profit Margin (in
+											<th style="text-align: center;vertical-align: middle;">Profit Margin (in
 												percentage) from Retail Portfolio (Current Year)</th>
-											<th style="text-align: center;">Total Retail Asset Size
+											<th style="text-align: center;vertical-align: middle;">Total Retail Asset Size
 												(Current Year)</th>
-											<th style="text-align: center;">Non-Performing
+											<th style="text-align: center;vertical-align: middle;">Non-Performing
 												Loans/financing - Retail Portfolio (Current Year)</th>
-											<th style="text-align: center;">Number of Consumers (as
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers (as
 												on the last day of the period) (Current Year)</th>
-											<th style="text-align: center;">Total Number of Branches
+											<th style="text-align: center;vertical-align: middle;">Total Number of Branches
 												(Current Year)</th>
-											<th style="text-align: center;">Total Revenue from
+											<th style="text-align: center;vertical-align: middle;">Total Revenue from
 												Retail Portfolio (Next Year - T+1)</th>
-											<th style="text-align: center;">Profits/Losses from
+											<th style="text-align: center;vertical-align: middle;">Profits/Losses from
 												Retail Portfolio (Next Year - T+1)</th>
-											<th style="text-align: center;">Profit Margin (in
+											<th style="text-align: center;vertical-align: middle;">Profit Margin (in
 												percentage) from Retail Portfolio (Next Year - T+1)</th>
-											<th style="text-align: center;">Total Retail Asset Size
+											<th style="text-align: center;vertical-align: middle;">Total Retail Asset Size
 												(Next Year - T+1)</th>
-											<th style="text-align: center;">Non-Performing
+											<th style="text-align: center;vertical-align: middle;">Non-Performing
 												Loans/financing - Retail Portfolio (Next Year - T+1)</th>
-											<th style="text-align: center;">Number of Consumers (as
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers (as
 												on the last day of the period) (Next Year - T+1)</th>
-											<th style="text-align: center;">Total Number of Branches
+											<th style="text-align: center;vertical-align: middle;">Total Number of Branches
 												(Next Year - T+1)</th>
-											<th style="text-align: center;">Total Revenue from
+											<th style="text-align: center;vertical-align: middle;">Total Revenue from
 												Retail Portfolio (Next Year - T+2)</th>
-											<th style="text-align: center;">Profits/Losses from
+											<th style="text-align: center;vertical-align: middle;">Profits/Losses from
 												Retail Portfolio (Next Year - T+2)</th>
-											<th style="text-align: center;">Profit Margin (in
+											<th style="text-align: center;vertical-align: middle;">Profit Margin (in
 												percentage) from Retail Portfolio (Next Year - T+2)</th>
-											<th style="text-align: center;">Total Retail Asset Size
+											<th style="text-align: center;vertical-align: middle;">Total Retail Asset Size
 												(Next Year - T+2)</th>
-											<th style="text-align: center;">Non-Performing
+											<th style="text-align: center;vertical-align: middle;">Non-Performing
 												Loans/financing - Retail Portfolio (Next Year - T+2)</th>
-											<th style="text-align: center;">Number of Consumers (as
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers (as
 												on the last day of the period) (Next Year - T+2)</th>
-											<th style="text-align: center;">Total Number of Branches
+											<th style="text-align: center;vertical-align: middle;">Total Number of Branches
 												(Next Year - T+2)</th>
-											<th style="text-align: center;">Total Revenue from
+											<th style="text-align: center;vertical-align: middle;">Total Revenue from
 												Retail Portfolio (Next Year - T+3)</th>
-											<th style="text-align: center;">Profits/Losses from
+											<th style="text-align: center;vertical-align: middle;">Profits/Losses from
 												Retail Portfolio (Next Year - T+3)</th>
-											<th style="text-align: center;">Profit Margin (in
+											<th style="text-align: center;vertical-align: middle;">Profit Margin (in
 												percentage) from Retail Portfolio (Next Year - T+3)</th>
-											<th style="text-align: center;">Total Retail Asset Size
+											<th style="text-align: center;vertical-align: middle;">Total Retail Asset Size
 												(Next Year - T+3)</th>
-											<th style="text-align: center;">Non-Performing
+											<th style="text-align: center;vertical-align: middle;">Non-Performing
 												Loans/financing - Retail Portfolio (Next Year - T+3)</th>
-											<th style="text-align: center;">Number of Consumers (as
+											<th style="text-align: center;vertical-align: middle;">Number of Consumers (as
 												on the last day of the period) (Next Year - T+3)</th>
-											<th style="text-align: center;">Total Number of Branches
+											<th style="text-align: center;vertical-align: middle;">Total Number of Branches
 												(Next Year - T+3)</th>
-											<th style="text-align: center;">NPLs as of the specified
+											<th style="text-align: center;vertical-align: middle;">NPLs as of the specified
 												date</th>
-											<th style="text-align: center;">Recoveries against NPLs
+											<th style="text-align: center;vertical-align: middle;">Recoveries against NPLs
 												/ Debt Collection as of the specified date</th>
-											<th style="text-align: center;">Number of new Consumers
+											<th style="text-align: center;vertical-align: middle;">Number of new Consumers
 												onboarded through digital channels during specified time
 												period</th>
-											<th style="text-align: center;">Number of Accounts
+											<th style="text-align: center;vertical-align: middle;">Number of Accounts
 												closed during specified time period (Other than AML reason)</th>
-											<th style="text-align: center;">Total number of account
+											<th style="text-align: center;vertical-align: middle;">Total number of account
 												or loan applications rejected for new Loans / Financing or
 												accounts applications (other than AML reasons) as of the
 												specified date</th>
-											<th style="text-align: center;">Total number of new
+											<th style="text-align: center;vertical-align: middle;">Total number of new
 												accounts opened or new Loans / Financing disbursed as of the
 												specified date</th>
-											<th style="text-align: center;">Total value associated
+											<th style="text-align: center;vertical-align: middle;">Total value associated
 												with new accounts opened or new Loans / Financing disbursed
 												as of the specified date</th>
-											<th style="text-align: center;">Number of Inquiries
+											<th style="text-align: center;vertical-align: middle;">Number of Inquiries
 												received through digital channels such as complaints
 												received through website, mobile application etc.</th>
-											<th style="text-align: center;">Number of Inquiries
+											<th style="text-align: center;vertical-align: middle;">Number of Inquiries
 												received through traditional channels such as complaints
 												received consumer facing centers (e.g., through call
 												centres, branches etc).</th>
-											<th style="text-align: center;">Number of retail
+											<th style="text-align: center;vertical-align: middle;">Number of retail
 												transactions through POS terminal/Payment Gateway</th>
-											<th style="text-align: center;">Amount of retail
+											<th style="text-align: center;vertical-align: middle;">Amount of retail
 												transactions through POS terminal/Payment Gateway</th>
-											<th style="text-align: center;">Number of retail
+											<th style="text-align: center;vertical-align: middle;">Number of retail
 												transactions through SVF Wallets of the Bank</th>
-											<th style="text-align: center;">Amount of retail
+											<th style="text-align: center;vertical-align: middle;">Amount of retail
 												transactions through SVF Wallets of the Bank</th>
-											<th style="text-align: center;">Total number of digital
+											<th style="text-align: center;vertical-align: middle;">Total number of digital
 												channels available such as website, mobile apps,
 												online/internet banking portals, chatbots, and virtual
 												assistants etc.</th>
-											<th style="text-align: center;">Value of Unclaimed
+											<th style="text-align: center;vertical-align: middle;">Value of Unclaimed
 												Balances (including unclaimed funds in SVF wallets, prepaid
 												and credit cards) during the specified period</th>
-											<th style="text-align: center;">Number of Conusmer from
+											<th style="text-align: center;vertical-align: middle;">Number of Conusmer from
 												countries categorised as low risk as per Bank's Policy</th>
-											<th style="text-align: center;">Number of Conusmer from
+											<th style="text-align: center;vertical-align: middle;">Number of Conusmer from
 												countries categorised as high risk as per Bank's Policy</th>
-											<th style="text-align: center;">Number of Retail
+											<th style="text-align: center;vertical-align: middle;">Number of Retail
 												Consumers (Conventional and Islamic) as of the specified
 												time period</th>
-											<th style="text-align: center;">Number of Retail
+											<th style="text-align: center;vertical-align: middle;">Number of Retail
 												Consumers (Islamic) as of the specified time period</th>
-											<th style="text-align: center;">Number of SME consumers
+											<th style="text-align: center;vertical-align: middle;">Number of SME consumers
 												(including Sole proprietorships) - Conventional and Islamic
 											</th>
-											<th style="text-align: center;">Number of SME consumers
+											<th style="text-align: center;vertical-align: middle;">Number of SME consumers
 												(including Sole proprietorships) - Islamic</th>
-											<th style="text-align: center;">Total Number of
+											<th style="text-align: center;vertical-align: middle;">Total Number of
 												Authorised Agents and outsourcing service providers
 												(including services or systems outsourced to authorised
 												agents)</th>
-											<th style="text-align: center;">Total Number of Point of
+											<th style="text-align: center;vertical-align: middle;">Total Number of Point of
 												Sale Terminals during the specified time period</th>
-											<th style="text-align: center;">Total Number of Merchant
+											<th style="text-align: center;vertical-align: middle;">Total Number of Merchant
 												tie ups during the specified time period</th>
-											<th style="text-align: center;">Retail Asset/liability
+											<th style="text-align: center;vertical-align: middle;">Retail Asset/liability
 												Size as of the specified date(Islamic Only) (AED (000's))</th>
-											<th style="text-align: center;">Retail Asset Composition
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Composition
 												as of the specified date (Loan to Retail Consumers)</th>
-											<th style="text-align: center;">Retail Asset Composition
+											<th style="text-align: center;vertical-align: middle;">Retail Asset Composition
 												as of the specified date (Loan to SME)</th>
-											<th style="text-align: center;">Number of complaints
+											<th style="text-align: center;vertical-align: middle;">Number of complaints
 												received during the specified time period (Islamic Only)</th>
 
 										</tr>
@@ -17234,25 +17296,25 @@ label.error {
 							</div>
 
 
-						</div>
-					</div>
-				</div>
+															</div>
+														</div>
+													</div>
 
-				<div th:if="${displaymode == 'Details'}">
+													<div th:if="${displaymode == 'Details'}">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="table-responsive scrollable-table-container"
 								style="border-right: 1px solid #dee2e6; ">
 								<table
 									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="BRFdet" style='margin-top:-30px'>
+									id="BRFdet" >
 									<thead class="thead-light">
 										<tr>
 											<th></th>
 											<th>CUST ID</th>
 											<th>ACCT NO</th>
 											<th>ACCT NAME</th>
-											<th style="text-align:right;">ACCT BALANCE</th>
+											<th style="text-align:right;" >ACCT BALANCE</th>
 											<th style="text-align:left;">ROWID</th>
 											<th>COLUMNID</th>
 											<th>REPORT_DATE</th>
@@ -17279,6 +17341,47 @@ label.error {
 										</tr>
 									</tbody>
 								</table>
+								
+								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									   
+									    
+									    
+									<a th:if="${currentPage > 0}"
+									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},                             
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage - 100},
+									    size=100
+									)}">
+									    Previous
+									</a>
+			
+									    
+									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+									
+									    
+									    <a th:if="${currentPage < (totalPages - 1) * 100}"
+									    	
+									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage + 100},
+									    size=100
+									)}">	
+									    Next
+									    </a>
+									</div>
+								
 							</div>
 
 
@@ -17295,19 +17398,38 @@ label.error {
 
 
 	</div>
+	<!-- Custom Cellresult Modal -->
+	<div class="modal fade" id="cellresultModal">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      
+	      <!-- Custom header -->
+	      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+	        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+	          Do you want to open the report?
+	        </div>
+	      </div>
+
+	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+	        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"  style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+	          Cancel
+	        </button>
+	        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+	          Yes
+	        </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
-
-	<div class="modal fade" id="loader" data-backdrop="static"
-		data-keyboard="false">
-		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+	<div class="modal fade" id="loader" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content" style="background: transparent;">
 				<div class="modal-body" style="text-align: center">
 					<div>
-						<img th:src=@{/images/loader.gif} id="bfirelogo"
-							style="width: 153px; height: auto; margin-left: 18px; background-color: transparent; border-color: transparent;"
-							alt="Bornfire">
+						<img th:src=@{/images/loader.gif} id="bfirelogo" style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
+								border-color: transparent;" alt="Bornfire">
 					</div>
 				</div>
 			</div>
@@ -17322,17 +17444,14 @@ label.error {
 			<div class="modal-content">
 				<!-- Your custom styled header -->
 				<div class="menu-title-header">
-					<div class="modal-title" id="resultModalLabel"
-						style="text-align: center; color: white;">
+					<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
 						<!-- Title will be set by JavaScript -->
 					</div>
 				</div>
-				<div class="modal-body"
-					style="text-align: center; font-size: 1.1rem;">
+				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
 					<p id="resultModalBody"></p>
 					<!-- Your custom styled button -->
-					<button type="button" class="custom-tab-btn" onclick="closemodel()"
-						data-dismiss="modal">OK</button>
+					<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
 				</div>
 			</div>
 		</div>
@@ -17340,36 +17459,9 @@ label.error {
 
 
 </body>
-<!-- <script>
-															  $(document).ready(function () {
-															    $('#BRFvalidation').DataTable({
-															      "paging": true,
-															      "pageLength": 10,
-															      "lengthChange": false,
-															      "searching": true,
-															      "ordering": true,
-															      "autoWidth": false,
-															      "language": {
-															        "search": "Search:"
-															      }
-															    });
-															  });
-															</script> -->
-<!-- <script>
-															  $(document).ready(function () {
-															    $('#BRFvalidation').DataTable({
-															      "paging": true,
-															      "info": false,       // turn off "Showing x of y"
-															      "searching": false,  // turn off search
-															      "ordering": false,   // turn off ordering
-															      "lengthChange": false // hide "Show x entries"
-															    });
-															  });
-															</script> -->
-
 <script>
   $(document).ready(function () {
-    $('#BRFdet').DataTable({
+    $('#BRFdets').DataTable({
       "paging": true,
       "pageLength": 100,
       "lengthChange": false,
@@ -17382,7 +17474,17 @@ label.error {
     });
   });
 </script>
-
+<!-- <script>
+  $(document).ready(function () {
+    $('#BRFvalidation').DataTable({
+      "paging": true,
+      "info": false,       // turn off "Showing x of y"
+      "searching": false,  // turn off search
+      "ordering": false,   // turn off ordering
+      "lengthChange": false // hide "Show x entries"
+    });
+  });
+</script> -->
 
 <style>
   #BRFdet td {
@@ -17397,110 +17499,111 @@ label.error {
 </style>
 
 
-
 <style>
-/* Your existing CSS - this is the correct approach */
-.scrollable-table-container {
-	/* This is the key: it creates the scroll context */
-	max-height: 620px;
-	/* Or a suitable height like 80vh for responsive design */
-	overflow-y: auto;
-	border: 1px solid #ccc;
-}
+	/* Your existing CSS - this is the correct approach */
+	.scrollable-table-container {
+		/* This is the key: it creates the scroll context */
+		max-height: 590px;
+		/* Or a suitable height like 80vh for responsive design */
+		overflow-y: auto;
+		border: 1px solid #ccc;
+	}
 
-/* Your existing sticky header CSS, targeting the tr elements within the thead */
-.scrollable-table-container thead tr:nth-child(1) {
-	position: sticky;
-	top: 0;
-	background-color: #b3b6b9;
-	z-index: 5;
-}
+	/* Your existing sticky header CSS, targeting the tr elements within the thead */
+	.scrollable-table-container thead tr:nth-child(1) {
+		position: sticky;
+		top: 0;
+		background-color: #b3b6b9;
+		z-index: 5;
+	}
 
-.scrollable-table-container thead tr:nth-child(2) {
-	position: sticky;
-	top: 36px; /* adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 4;
-}
+	.scrollable-table-container thead tr:nth-child(2) {
+		position: sticky;
+		top: 36px;
+		/* adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 4;
+	}
 
-.scrollable-table-container thead tr:nth-child(3) {
-	position: sticky;
-	top: 72px; /* Adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 3;
-}
 
-.scrollable-table-container thead tr:nth-child(4) {
-	position: sticky;
-	top: 100px; /* Adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 2;
-}
 
-.scrollable-table-container thead tr:nth-child(5) {
-	position: sticky;
-	top: 135px; /* Adjust based on row height */
-	background-color: #b3b6b9;
-	z-index: 1;
-}
+	.scrollable-table-container thead tr:nth-child(3) {
+		position: sticky;
+		top: 72px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 3;
+	}
+
+	.scrollable-table-container thead tr:nth-child(4) {
+		position: sticky;
+		top: 100px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 2;
+	}
+
+	.scrollable-table-container thead tr:nth-child(5) {
+		position: sticky;
+		top: 135px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 1;
+	}
 </style>
 
 
 <style>
-.inner {
-	max-height: 600px; /* Adjust height as needed */
-	overflow: auto;
-	border: 1px solid #dee2e6;
-}
+	.inner {
+		max-height: 600px;
+		/* Adjust height as needed */
+		overflow: auto;
+		border: 1px solid #dee2e6;
+	}
 
-/* Sticky thead */
-#reports thead th {
-	position: sticky;
-	top: 0;
-	background-color: #f8f9fa; /* Match Bootstrap thead-light */
-	z-index: 2;
-}
+	/* Sticky thead */
+	#reports thead th {
+		position: sticky;
+		top: 0;
+		background-color: #f8f9fa;
+		/* Match Bootstrap thead-light */
+		z-index: 2;
+	}
 
-div.dataTables_wrapper div.dataTables_paginate {
-	text-align: right !important;
-	float: right !important;
-	width: auto;
-	margin-top: 10px;
-}
+	div.dataTables_wrapper div.dataTables_paginate {
+		text-align: right !important;
+		float: right !important;
+		width: auto;
+		margin-top: 10px;
+	}
 
-/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
-div.dataTables_wrapper div.dataTables_info {
-	float: left !important;
-	margin-top: 10px;
-}
+	/* Ensure info text (e.g., "Showing 1 to X") stays on the left */
+	div.dataTables_wrapper div.dataTables_info {
+		float: left !important;
+		margin-top: 10px;
+	}
 
-.pagination {
-	margin: 0;
-}
+	.pagination {
+		margin: 0;
+	}
 
-.page-item.active .page-link {
-	background-color: #386276;
-	border-color: #386276;
-}
+	.page-item.active .page-link {
+		background-color: #386276;
+		border-color: #386276;
+	}
 
-.page-link {
-	color: #386276;
-}
+	.page-link {
+		color: #386276;
+	}
 
-.page-link:hover {
-	color: #2a4a5c;
-}
+	.page-link:hover {
+		color: #2a4a5c;
+	}
 
-.form-select {
-	display: inline-block;
-	width: auto;
-}
+	.form-select {
+		display: inline-block;
+		width: auto;
+	}
 </style>
-
-
-
-
-
 
 </html>
-									

@@ -48,6 +48,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.entities.CBUAE_BRF16_1_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF16_2_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF16_2_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF16_2_SUMMARY_REPO;
@@ -150,9 +151,11 @@ public class CBUAE_BRF16_2_Reportservice {
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
+	    int totalPages=0;
+
 
 	    ModelAndView mv = new ModelAndView();
-	    List<CBUAE_BRF16_2_Detail_Entity> T1Dt1 = new ArrayList<>();
+	    List<CBUAE_BRF16_2_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF16_2_Detail_Entity>();
 
 	    try {
 	        Date reportDate = dateformat.parse(todate);  // parse once
@@ -179,6 +182,9 @@ public class CBUAE_BRF16_2_Reportservice {
 	        } else {
 	            System.out.println("No Row/Column filter found, fetching full data for date: " + dateformat.format(reportDate));
 	            T1Dt1 = CBUAE_BRF16_2_Detail_Repos.getdatabydateList(reportDate);
+	            T1Dt1 = CBUAE_BRF16_2_Detail_Repos.getdatabydateList(reportDate,currentPage,pageSize);
+	            totalPages=CBUAE_BRF16_2_Detail_Repos.getdatacount(dateformat.parse(todate));
+	            mv.addObject("pagination","YES");
 	        }
 
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
@@ -192,15 +198,18 @@ public class CBUAE_BRF16_2_Reportservice {
 	    }
 
 	    mv.setViewName("BRF/BRF16_2");
-	    mv.addObject("displaymode", "Details");
-	    mv.addObject("reportid", reportId);
-	    mv.addObject("reportdetails", T1Dt1);
-	    mv.addObject("reportmaster12", T1Dt1);
-	    mv.addObject("reportsflag", "reportsflag");
-	    mv.addObject("menu", reportId);
-	    
+  		mv.addObject("displaymode", "Details");
+     	  	mv.addObject("currentPage", currentPage);
+     	  	System.out.println("totalPages"+(int)Math.ceil((double)totalPages / 100));
+     	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
+  		
+     	    mv.addObject("reportdetails", T1Dt1);
 
-	    return mv;
+  		// mv.addObject("reportmaster1", qr);
+  		// mv.addObject("singledetail", new T1CurProdDetail());
+  		mv.addObject("reportsflag", "reportsflag");
+  		mv.addObject("menu", reportId);
+  		return mv;
 	}
 
 
@@ -966,7 +975,8 @@ public class CBUAE_BRF16_2_Reportservice {
 	}
 
 	
-	public byte[] getBRF16_2DetailExcel(String filename, String fromdate, String todate) {
+	public byte[] getBRF16_2DetailExcel(String filename, String fromdate, String todate,
+			String currency, String dtltype,String type, String version) {
 	    try {
 	        logger.info("Generating Excel for BRF16_2 Details...");
 	        System.out.println("came to Detail download service");
