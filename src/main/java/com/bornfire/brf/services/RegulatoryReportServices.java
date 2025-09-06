@@ -271,15 +271,7 @@ public class RegulatoryReportServices {
 					pageable, type, version);
 			break;
 
-		case "BRF5_2":
-			repsummary = cbuae_brf5_2_reportservice.getBRF5_2View(reportId, fromdate, todate, currency, dtltype,
-					pageable, type, version);
-			break;
-
-		case "BRF5_3":
-			repsummary = cbuae_brf5_3_reportservice.getBRF5_3View(reportId, fromdate, todate, currency, dtltype,
-					pageable, type, version);
-			break;
+	
 
 		case "BRF5_5":
 			repsummary = cbuae_brf5_5_reportservice.getBRF5_5View(reportId, fromdate, todate, currency, dtltype,
@@ -1023,9 +1015,6 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF5_1Detail")) {
 			return cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
-		} else if (filename.equals("BRF5_1Detail")) {
-			return cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate, currency, dtltype, type,
-					version);
 		} else if (filename.equals("BRF5_2Detail")) {
 			return cbuae_brf5_2_reportservice.getBRF5_2DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
@@ -1166,7 +1155,8 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
-
+		
+			
 		}
 
 		return archivalData;
@@ -1280,10 +1270,17 @@ public class RegulatoryReportServices {
 		} else if (filename.equals("BRF16_4Detail")) {
 			fileData = CBUAE_BRF16_4_ReportServices.getBRF16_4DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
+
 		} else if (filename.equals("BRF16_5Detail")) {
 			fileData = CBUAE_BRF16_5_ReportServices.getBRF16_5DetailExcel(filename, fromdate, todate);
+		
 		}
 
+		else if (filename.equals("BRF1_8Detail")) {
+			fileData = CBUAE_BRF1_8_ReportService.getBRF1_8DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
+
+		}
 		else if (filename.equals("BRF9_1Detail")) {
 			fileData = cbuae_brf9_1_reportservice.getBRF9_1DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);

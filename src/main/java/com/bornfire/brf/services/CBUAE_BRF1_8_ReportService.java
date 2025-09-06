@@ -139,7 +139,7 @@ ModelAndView mv = new ModelAndView();
 
 	    int pageSize = pageable.getPageSize();
 	    int currentPage = pageable.getPageNumber();
-
+	    int totalPages=0;
 	    ModelAndView mv = new ModelAndView();
 	    List<CBUAE_BRF1_8_Detail_Entity> T1Dt1 = new ArrayList<>();
 
@@ -157,13 +157,21 @@ ModelAndView mv = new ModelAndView();
 	                columnId = parts[1];
 	            }
 	        }
-
 	        if (rowId != null && columnId != null) {
-	            T1Dt1 = BRF1_8_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId);
+	            T1Dt1 = BRF1_8_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId,  dateformat.parse(todate));
 	        } else {
-	            T1Dt1 = BRF1_8_Detail_Repo.getListbydate(d1);
+	            T1Dt1 = BRF1_8_Detail_Repo.getdatabydateList(d1,currentPage,pageSize);
+				totalPages=BRF1_8_Detail_Repo.getdatacount(dateformat.parse(todate));
+				mv.addObject("pagination","YES");
 	        }
-
+	        
+			/*
+			 * if (rowId != null && columnId != null) { T1Dt1 =
+			 * BRF1_8_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId); } else { T1Dt1
+			 * = BRF1_8_Detail_Repo.getdatabydateList(d1,currentPage,pageSize);
+			 * totalPages=BRF1_8_Detail_Repo.getdatacount(dateformat.parse(todate));
+			 * mv.addObject("pagination","YES"); }
+			 */
 	        System.out.println("LISTCOUNT: " + T1Dt1.size());
 
 	    } catch (ParseException e) {
@@ -172,6 +180,8 @@ ModelAndView mv = new ModelAndView();
 
 	    mv.setViewName("BRF/BRF1_8");
 	    mv.addObject("displaymode", "Details");
+	    mv.addObject("currentPage", currentPage);
+   	  	mv.addObject("totalPages",(int)Math.ceil((double)totalPages / 100)); 
 	    mv.addObject("reportdetails", T1Dt1);
 	    mv.addObject("reportmaster12", T1Dt1);
 	    mv.addObject("reportsflag", "reportsflag");
