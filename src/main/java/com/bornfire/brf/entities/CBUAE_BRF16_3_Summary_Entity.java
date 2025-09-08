@@ -20,10 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "CBUAE_BRF16_3_SUMMARYTABLE")
 public class CBUAE_BRF16_3_Summary_Entity {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
+
 	
 	private String	r0020_product;
 	private BigDecimal	r0020_lfi;
@@ -209,6 +206,9 @@ public class CBUAE_BRF16_3_Summary_Entity {
 	private BigDecimal	r0470_lfi;
 	private BigDecimal	r0470_evidence;
 	private BigDecimal	r0470_evidencebylfi;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Id
 	private Date	report_date;
 	private String	report_version;
 	private String	report_frequency;
@@ -217,12 +217,6 @@ public class CBUAE_BRF16_3_Summary_Entity {
 	private String	modify_flg;
 	private String	entity_flg;
 	private String	delete_flg;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getR0020_product() {
 		return r0020_product;
 	}
@@ -1375,11 +1369,255 @@ public class CBUAE_BRF16_3_Summary_Entity {
 	public void setDelete_flg(String delete_flg) {
 		this.delete_flg = delete_flg;
 	}
+	public CBUAE_BRF16_3_Summary_Entity(String r0020_product, BigDecimal r0020_lfi, BigDecimal r0020_evidence,
+			BigDecimal r0020_evidencebylfi, String r0030_product, BigDecimal r0030_lfi, BigDecimal r0030_evidence,
+			BigDecimal r0030_evidencebylfi, String r0040_product, BigDecimal r0040_lfi, BigDecimal r0040_evidence,
+			BigDecimal r0040_evidencebylfi, String r0050_product, BigDecimal r0050_lfi, BigDecimal r0050_evidence,
+			BigDecimal r0050_evidencebylfi, String r0060_product, BigDecimal r0060_lfi, BigDecimal r0060_evidence,
+			BigDecimal r0060_evidencebylfi, String r0070_product, BigDecimal r0070_lfi, BigDecimal r0070_evidence,
+			BigDecimal r0070_evidencebylfi, String r0080_product, BigDecimal r0080_lfi, BigDecimal r0080_evidence,
+			BigDecimal r0080_evidencebylfi, String r0090_product, BigDecimal r0090_lfi, BigDecimal r0090_evidence,
+			BigDecimal r0090_evidencebylfi, String r0100_product, BigDecimal r0100_lfi, BigDecimal r0100_evidence,
+			BigDecimal r0100_evidencebylfi, String r0110_product, BigDecimal r0110_lfi, BigDecimal r0110_evidence,
+			BigDecimal r0110_evidencebylfi, String r0120_product, BigDecimal r0120_lfi, BigDecimal r0120_evidence,
+			BigDecimal r0120_evidencebylfi, String r0130_product, BigDecimal r0130_lfi, BigDecimal r0130_evidence,
+			BigDecimal r0130_evidencebylfi, String r0140_product, BigDecimal r0140_lfi, BigDecimal r0140_evidence,
+			BigDecimal r0140_evidencebylfi, String r0150_product, BigDecimal r0150_lfi, BigDecimal r0150_evidence,
+			BigDecimal r0150_evidencebylfi, String r0160_product, BigDecimal r0160_lfi, BigDecimal r0160_evidence,
+			BigDecimal r0160_evidencebylfi, String r0170_product, BigDecimal r0170_lfi, BigDecimal r0170_evidence,
+			BigDecimal r0170_evidencebylfi, String r0180_product, BigDecimal r0180_lfi, BigDecimal r0180_evidence,
+			BigDecimal r0180_evidencebylfi, String r0190_product, BigDecimal r0190_lfi, BigDecimal r0190_evidence,
+			BigDecimal r0190_evidencebylfi, String r0200_product, BigDecimal r0200_lfi, BigDecimal r0200_evidence,
+			BigDecimal r0200_evidencebylfi, String r0210_product, BigDecimal r0210_lfi, BigDecimal r0210_evidence,
+			BigDecimal r0210_evidencebylfi, String r0220_product, BigDecimal r0220_lfi, BigDecimal r0220_evidence,
+			BigDecimal r0220_evidencebylfi, String r0230_product, BigDecimal r0230_lfi, BigDecimal r0230_evidence,
+			BigDecimal r0230_evidencebylfi, String r0240_product, BigDecimal r0240_lfi, BigDecimal r0240_evidence,
+			BigDecimal r0240_evidencebylfi, String r0250_product, BigDecimal r0250_lfi, BigDecimal r0250_evidence,
+			BigDecimal r0250_evidencebylfi, String r0260_product, BigDecimal r0260_lfi, BigDecimal r0260_evidence,
+			BigDecimal r0260_evidencebylfi, String r0270_product, BigDecimal r0270_lfi, BigDecimal r0270_evidence,
+			BigDecimal r0270_evidencebylfi, String r0280_product, BigDecimal r0280_lfi, BigDecimal r0280_evidence,
+			BigDecimal r0280_evidencebylfi, String r0290_product, BigDecimal r0290_lfi, BigDecimal r0290_evidence,
+			BigDecimal r0290_evidencebylfi, String r0300_product, BigDecimal r0300_lfi, BigDecimal r0300_evidence,
+			BigDecimal r0300_evidencebylfi, String r0310_product, BigDecimal r0310_lfi, BigDecimal r0310_evidence,
+			BigDecimal r0310_evidencebylfi, String r0320_product, BigDecimal r0320_lfi, BigDecimal r0320_evidence,
+			BigDecimal r0320_evidencebylfi, String r0330_product, BigDecimal r0330_lfi, BigDecimal r0330_evidence,
+			BigDecimal r0330_evidencebylfi, String r0340_product, BigDecimal r0340_lfi, BigDecimal r0340_evidence,
+			BigDecimal r0340_evidencebylfi, String r0350_product, BigDecimal r0350_lfi, BigDecimal r0350_evidence,
+			BigDecimal r0350_evidencebylfi, String r0360_product, BigDecimal r0360_lfi, BigDecimal r0360_evidence,
+			BigDecimal r0360_evidencebylfi, String r0370_product, BigDecimal r0370_lfi, BigDecimal r0370_evidence,
+			BigDecimal r0370_evidencebylfi, String r0380_product, BigDecimal r0380_lfi, BigDecimal r0380_evidence,
+			BigDecimal r0380_evidencebylfi, String r0390_product, BigDecimal r0390_lfi, BigDecimal r0390_evidence,
+			BigDecimal r0390_evidencebylfi, String r0400_product, BigDecimal r0400_lfi, BigDecimal r0400_evidence,
+			BigDecimal r0400_evidencebylfi, String r0410_product, BigDecimal r0410_lfi, BigDecimal r0410_evidence,
+			BigDecimal r0410_evidencebylfi, String r0420_product, BigDecimal r0420_lfi, BigDecimal r0420_evidence,
+			BigDecimal r0420_evidencebylfi, String r0430_product, BigDecimal r0430_lfi, BigDecimal r0430_evidence,
+			BigDecimal r0430_evidencebylfi, String r0440_product, BigDecimal r0440_lfi, BigDecimal r0440_evidence,
+			BigDecimal r0440_evidencebylfi, String r0450_product, BigDecimal r0450_lfi, BigDecimal r0450_evidence,
+			BigDecimal r0450_evidencebylfi, String r0460_product, BigDecimal r0460_lfi, BigDecimal r0460_evidence,
+			BigDecimal r0460_evidencebylfi, String r0470_product, BigDecimal r0470_lfi, BigDecimal r0470_evidence,
+			BigDecimal r0470_evidencebylfi, Date report_date, String report_version, String report_frequency,
+			String report_code, String report_desc, String modify_flg, String entity_flg, String delete_flg) {
+		super();
+		this.r0020_product = r0020_product;
+		this.r0020_lfi = r0020_lfi;
+		this.r0020_evidence = r0020_evidence;
+		this.r0020_evidencebylfi = r0020_evidencebylfi;
+		this.r0030_product = r0030_product;
+		this.r0030_lfi = r0030_lfi;
+		this.r0030_evidence = r0030_evidence;
+		this.r0030_evidencebylfi = r0030_evidencebylfi;
+		this.r0040_product = r0040_product;
+		this.r0040_lfi = r0040_lfi;
+		this.r0040_evidence = r0040_evidence;
+		this.r0040_evidencebylfi = r0040_evidencebylfi;
+		this.r0050_product = r0050_product;
+		this.r0050_lfi = r0050_lfi;
+		this.r0050_evidence = r0050_evidence;
+		this.r0050_evidencebylfi = r0050_evidencebylfi;
+		this.r0060_product = r0060_product;
+		this.r0060_lfi = r0060_lfi;
+		this.r0060_evidence = r0060_evidence;
+		this.r0060_evidencebylfi = r0060_evidencebylfi;
+		this.r0070_product = r0070_product;
+		this.r0070_lfi = r0070_lfi;
+		this.r0070_evidence = r0070_evidence;
+		this.r0070_evidencebylfi = r0070_evidencebylfi;
+		this.r0080_product = r0080_product;
+		this.r0080_lfi = r0080_lfi;
+		this.r0080_evidence = r0080_evidence;
+		this.r0080_evidencebylfi = r0080_evidencebylfi;
+		this.r0090_product = r0090_product;
+		this.r0090_lfi = r0090_lfi;
+		this.r0090_evidence = r0090_evidence;
+		this.r0090_evidencebylfi = r0090_evidencebylfi;
+		this.r0100_product = r0100_product;
+		this.r0100_lfi = r0100_lfi;
+		this.r0100_evidence = r0100_evidence;
+		this.r0100_evidencebylfi = r0100_evidencebylfi;
+		this.r0110_product = r0110_product;
+		this.r0110_lfi = r0110_lfi;
+		this.r0110_evidence = r0110_evidence;
+		this.r0110_evidencebylfi = r0110_evidencebylfi;
+		this.r0120_product = r0120_product;
+		this.r0120_lfi = r0120_lfi;
+		this.r0120_evidence = r0120_evidence;
+		this.r0120_evidencebylfi = r0120_evidencebylfi;
+		this.r0130_product = r0130_product;
+		this.r0130_lfi = r0130_lfi;
+		this.r0130_evidence = r0130_evidence;
+		this.r0130_evidencebylfi = r0130_evidencebylfi;
+		this.r0140_product = r0140_product;
+		this.r0140_lfi = r0140_lfi;
+		this.r0140_evidence = r0140_evidence;
+		this.r0140_evidencebylfi = r0140_evidencebylfi;
+		this.r0150_product = r0150_product;
+		this.r0150_lfi = r0150_lfi;
+		this.r0150_evidence = r0150_evidence;
+		this.r0150_evidencebylfi = r0150_evidencebylfi;
+		this.r0160_product = r0160_product;
+		this.r0160_lfi = r0160_lfi;
+		this.r0160_evidence = r0160_evidence;
+		this.r0160_evidencebylfi = r0160_evidencebylfi;
+		this.r0170_product = r0170_product;
+		this.r0170_lfi = r0170_lfi;
+		this.r0170_evidence = r0170_evidence;
+		this.r0170_evidencebylfi = r0170_evidencebylfi;
+		this.r0180_product = r0180_product;
+		this.r0180_lfi = r0180_lfi;
+		this.r0180_evidence = r0180_evidence;
+		this.r0180_evidencebylfi = r0180_evidencebylfi;
+		this.r0190_product = r0190_product;
+		this.r0190_lfi = r0190_lfi;
+		this.r0190_evidence = r0190_evidence;
+		this.r0190_evidencebylfi = r0190_evidencebylfi;
+		this.r0200_product = r0200_product;
+		this.r0200_lfi = r0200_lfi;
+		this.r0200_evidence = r0200_evidence;
+		this.r0200_evidencebylfi = r0200_evidencebylfi;
+		this.r0210_product = r0210_product;
+		this.r0210_lfi = r0210_lfi;
+		this.r0210_evidence = r0210_evidence;
+		this.r0210_evidencebylfi = r0210_evidencebylfi;
+		this.r0220_product = r0220_product;
+		this.r0220_lfi = r0220_lfi;
+		this.r0220_evidence = r0220_evidence;
+		this.r0220_evidencebylfi = r0220_evidencebylfi;
+		this.r0230_product = r0230_product;
+		this.r0230_lfi = r0230_lfi;
+		this.r0230_evidence = r0230_evidence;
+		this.r0230_evidencebylfi = r0230_evidencebylfi;
+		this.r0240_product = r0240_product;
+		this.r0240_lfi = r0240_lfi;
+		this.r0240_evidence = r0240_evidence;
+		this.r0240_evidencebylfi = r0240_evidencebylfi;
+		this.r0250_product = r0250_product;
+		this.r0250_lfi = r0250_lfi;
+		this.r0250_evidence = r0250_evidence;
+		this.r0250_evidencebylfi = r0250_evidencebylfi;
+		this.r0260_product = r0260_product;
+		this.r0260_lfi = r0260_lfi;
+		this.r0260_evidence = r0260_evidence;
+		this.r0260_evidencebylfi = r0260_evidencebylfi;
+		this.r0270_product = r0270_product;
+		this.r0270_lfi = r0270_lfi;
+		this.r0270_evidence = r0270_evidence;
+		this.r0270_evidencebylfi = r0270_evidencebylfi;
+		this.r0280_product = r0280_product;
+		this.r0280_lfi = r0280_lfi;
+		this.r0280_evidence = r0280_evidence;
+		this.r0280_evidencebylfi = r0280_evidencebylfi;
+		this.r0290_product = r0290_product;
+		this.r0290_lfi = r0290_lfi;
+		this.r0290_evidence = r0290_evidence;
+		this.r0290_evidencebylfi = r0290_evidencebylfi;
+		this.r0300_product = r0300_product;
+		this.r0300_lfi = r0300_lfi;
+		this.r0300_evidence = r0300_evidence;
+		this.r0300_evidencebylfi = r0300_evidencebylfi;
+		this.r0310_product = r0310_product;
+		this.r0310_lfi = r0310_lfi;
+		this.r0310_evidence = r0310_evidence;
+		this.r0310_evidencebylfi = r0310_evidencebylfi;
+		this.r0320_product = r0320_product;
+		this.r0320_lfi = r0320_lfi;
+		this.r0320_evidence = r0320_evidence;
+		this.r0320_evidencebylfi = r0320_evidencebylfi;
+		this.r0330_product = r0330_product;
+		this.r0330_lfi = r0330_lfi;
+		this.r0330_evidence = r0330_evidence;
+		this.r0330_evidencebylfi = r0330_evidencebylfi;
+		this.r0340_product = r0340_product;
+		this.r0340_lfi = r0340_lfi;
+		this.r0340_evidence = r0340_evidence;
+		this.r0340_evidencebylfi = r0340_evidencebylfi;
+		this.r0350_product = r0350_product;
+		this.r0350_lfi = r0350_lfi;
+		this.r0350_evidence = r0350_evidence;
+		this.r0350_evidencebylfi = r0350_evidencebylfi;
+		this.r0360_product = r0360_product;
+		this.r0360_lfi = r0360_lfi;
+		this.r0360_evidence = r0360_evidence;
+		this.r0360_evidencebylfi = r0360_evidencebylfi;
+		this.r0370_product = r0370_product;
+		this.r0370_lfi = r0370_lfi;
+		this.r0370_evidence = r0370_evidence;
+		this.r0370_evidencebylfi = r0370_evidencebylfi;
+		this.r0380_product = r0380_product;
+		this.r0380_lfi = r0380_lfi;
+		this.r0380_evidence = r0380_evidence;
+		this.r0380_evidencebylfi = r0380_evidencebylfi;
+		this.r0390_product = r0390_product;
+		this.r0390_lfi = r0390_lfi;
+		this.r0390_evidence = r0390_evidence;
+		this.r0390_evidencebylfi = r0390_evidencebylfi;
+		this.r0400_product = r0400_product;
+		this.r0400_lfi = r0400_lfi;
+		this.r0400_evidence = r0400_evidence;
+		this.r0400_evidencebylfi = r0400_evidencebylfi;
+		this.r0410_product = r0410_product;
+		this.r0410_lfi = r0410_lfi;
+		this.r0410_evidence = r0410_evidence;
+		this.r0410_evidencebylfi = r0410_evidencebylfi;
+		this.r0420_product = r0420_product;
+		this.r0420_lfi = r0420_lfi;
+		this.r0420_evidence = r0420_evidence;
+		this.r0420_evidencebylfi = r0420_evidencebylfi;
+		this.r0430_product = r0430_product;
+		this.r0430_lfi = r0430_lfi;
+		this.r0430_evidence = r0430_evidence;
+		this.r0430_evidencebylfi = r0430_evidencebylfi;
+		this.r0440_product = r0440_product;
+		this.r0440_lfi = r0440_lfi;
+		this.r0440_evidence = r0440_evidence;
+		this.r0440_evidencebylfi = r0440_evidencebylfi;
+		this.r0450_product = r0450_product;
+		this.r0450_lfi = r0450_lfi;
+		this.r0450_evidence = r0450_evidence;
+		this.r0450_evidencebylfi = r0450_evidencebylfi;
+		this.r0460_product = r0460_product;
+		this.r0460_lfi = r0460_lfi;
+		this.r0460_evidence = r0460_evidence;
+		this.r0460_evidencebylfi = r0460_evidencebylfi;
+		this.r0470_product = r0470_product;
+		this.r0470_lfi = r0470_lfi;
+		this.r0470_evidence = r0470_evidence;
+		this.r0470_evidencebylfi = r0470_evidencebylfi;
+		this.report_date = report_date;
+		this.report_version = report_version;
+		this.report_frequency = report_frequency;
+		this.report_code = report_code;
+		this.report_desc = report_desc;
+		this.modify_flg = modify_flg;
+		this.entity_flg = entity_flg;
+		this.delete_flg = delete_flg;
+	}
 	public CBUAE_BRF16_3_Summary_Entity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	
 
 
 
