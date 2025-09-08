@@ -253,7 +253,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_13":
 			repsummary = cbuae_brf2_13_reportservice.getBRF2_13View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF2_14":
@@ -460,7 +460,7 @@ public class RegulatoryReportServices {
 
 		case "BRF2_13":
 			repdetail = cbuae_brf2_13_reportservice.getBRF2_13currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF2_14":
@@ -764,7 +764,7 @@ public class RegulatoryReportServices {
 		case "BRF2_13":
 			try {
 				repfile = cbuae_brf2_13_reportservice.getBRF2_13Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype,type, version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1173,8 +1173,17 @@ public class RegulatoryReportServices {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			break;	
+			break;
 			
+		case "BRF2_13":
+			try {
+				archivalData = cbuae_brf2_13_reportservice.getBRF2_13Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;	
+									
 			
 		}
 
