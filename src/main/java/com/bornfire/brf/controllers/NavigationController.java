@@ -390,7 +390,19 @@ public class NavigationController {
 		return "BRF/BRFArchival";
 
 	}
-	
+
+	@RequestMapping(value = "Quarterly-2Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String Quarterly2Archival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Quarterly 2 - BRF ARCHIVAL");
+		System.out.println("count" + rrReportlist.getReportListQuarterly2().size());
+		md.addAttribute("reportlist", rrReportlist.getReportListQuarterly2());
+
+		return "BRF/BRFArchival";
+
+	}
+
 	@RequestMapping(value = "HalfYearly-1Archival", method = { RequestMethod.GET, RequestMethod.POST })
 	public String HalfYearly1Archival(Model md, HttpServletRequest req) {
 		// String roleId = (String) req.getSession().getAttribute("ROLEID");
@@ -401,8 +413,18 @@ public class NavigationController {
 		return "BRF/BRFArchival";
 
 	}
-	
-	
+
+	@RequestMapping(value = "Yearly-1Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String Yearly1Archival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Yearly1 - BRF ARCHIVAL");
+		System.out.println("count" + rrReportlist.getReportYearly1().size());
+		md.addAttribute("reportlist", rrReportlist.getReportYearly1());
+
+		return "BRF/BRFArchival";
+
+	}
 
 	@RequestMapping(value = "Archival", method = { RequestMethod.GET, RequestMethod.POST })
 	public String Archival(Model md, @RequestParam(value = "rptcode", required = false) String rptcode,
@@ -419,6 +441,8 @@ public class NavigationController {
 		md.addAttribute("reportlist", rrReportlist.getReportListmonthly1());
 		md.addAttribute("reportlist", rrReportlist.getReportListmonthly2());
 		md.addAttribute("reportlist", rrReportlist.getReportListmonthly3());
+		md.addAttribute("reportlist", rrReportlist.getReportListQuarterly2());
+		md.addAttribute("reportlist", rrReportlist.getReportYearly1());
 
 		return "BRF/BRFArchivalform";
 
