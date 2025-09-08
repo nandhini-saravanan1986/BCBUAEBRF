@@ -193,7 +193,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_7":
 			repsummary = cbuae_brf1_7_reportservice.getBRF1_7View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF9_1":
@@ -410,7 +410,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_7":
 			repdetail = cbuae_brf1_7_reportservice.getBRF1_7currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF1_3":
@@ -526,7 +526,7 @@ public class RegulatoryReportServices {
 
 		case "BRF7_4":
 			repdetail = CBUAE_BRF7_4_ReportServices.getBRF7_4currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter,type, version);
 			break;
 
 		case "BRF8_6":
@@ -654,7 +654,7 @@ public class RegulatoryReportServices {
 		case "BRF1_7":
 			try {
 				repfile = cbuae_brf1_7_reportservice.getBRF1_7Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype,type,version);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1157,7 +1157,25 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
-		
+			
+		case "BRF7_4":
+			try {
+				archivalData = CBUAE_BRF7_4_ReportServices.getBRF7_4Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;	
+			
+		case "BRF1_7":
+			try {
+				archivalData = cbuae_brf1_7_reportservice.getBRF1_7Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;	
+			
 			
 		}
 
@@ -1301,6 +1319,12 @@ public class RegulatoryReportServices {
 		 else if (filename.equals("BRF7_4Detail")) {
 			 fileData =  CBUAE_BRF7_4_ReportServices.getBRF7_4DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 						version);
+			}
+		
+		 else if (filename.equals("BRF1_8Detail")) {
+			 fileData = CBUAE_BRF1_8_ReportService.getBRF1_8DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+						version);
+
 			}
 
 

@@ -11,11 +11,10 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF1_7_ARCHIVALTABLE_DETAILTABLE")
-public class CBUAE_BRF1_7__Archival_Detail_Entity {
-	
+@Table(name = "CBUAE_BRF7_4_ARCHIVALTABLE_DETAILTABLE", schema = "CXBRL")
+public class CBUAE_BRF7_4_Detail_Archival_Entity {
 
-    @Column(name = "ROW_ID", length = 100)
+	@Column(name = "ROW_ID", length = 100)
     private String rowId;
     
     @Id
@@ -82,6 +81,9 @@ public class CBUAE_BRF1_7__Archival_Detail_Entity {
 
     @Column(name = "DEL_FLG", length = 1)
     private String delFlg;
+    
+    @Column(name = "REPORT_VERSION", length = 1)
+    private String REPORT_VERSION;
 
 	public String getRowId() {
 		return rowId;
@@ -251,10 +253,50 @@ public class CBUAE_BRF1_7__Archival_Detail_Entity {
 		this.delFlg = delFlg;
 	}
 
-	public CBUAE_BRF1_7__Archival_Detail_Entity() {
+	public String getREPORT_VERSION() {
+		return REPORT_VERSION;
+	}
+
+	public void setREPORT_VERSION(String rEPORT_VERSION) {
+		REPORT_VERSION = rEPORT_VERSION;
+	}
+
+	public CBUAE_BRF7_4_Detail_Archival_Entity(String rowId, String custId, String acctNumber, String acctName,
+			String dataType, String columnId, String reportRemarks, String modificationRemarks, String dataEntryVersion,
+			BigDecimal acctBalanceInAed, Date reportDate, String reportName, String createUser, Date createTime,
+			String modifyUser, Date modifyTime, String verifyUser, Date verifyTime, String entityFlg, String modifyFlg,
+			String delFlg, String rEPORT_VERSION) {
+		super();
+		this.rowId = rowId;
+		this.custId = custId;
+		this.acctNumber = acctNumber;
+		this.acctName = acctName;
+		this.dataType = dataType;
+		this.columnId = columnId;
+		this.reportRemarks = reportRemarks;
+		this.modificationRemarks = modificationRemarks;
+		this.dataEntryVersion = dataEntryVersion;
+		this.acctBalanceInAed = acctBalanceInAed;
+		this.reportDate = reportDate;
+		this.reportName = reportName;
+		this.createUser = createUser;
+		this.createTime = createTime;
+		this.modifyUser = modifyUser;
+		this.modifyTime = modifyTime;
+		this.verifyUser = verifyUser;
+		this.verifyTime = verifyTime;
+		this.entityFlg = entityFlg;
+		this.modifyFlg = modifyFlg;
+		this.delFlg = delFlg;
+		REPORT_VERSION = rEPORT_VERSION;
+	}
+
+	public CBUAE_BRF7_4_Detail_Archival_Entity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-    
 
+
+    
+    
 }

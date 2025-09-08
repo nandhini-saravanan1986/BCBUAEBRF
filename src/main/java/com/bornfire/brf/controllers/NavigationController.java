@@ -390,6 +390,19 @@ public class NavigationController {
 		return "BRF/BRFArchival";
 
 	}
+	
+	@RequestMapping(value = "HalfYearly-1Archival", method = { RequestMethod.GET, RequestMethod.POST })
+	public String HalfYearly1Archival(Model md, HttpServletRequest req) {
+		// String roleId = (String) req.getSession().getAttribute("ROLEID");
+		// String domainid = (String) req.getSession().getAttribute("DOMAINID");
+		md.addAttribute("menu", "Monthly 3 - BRF ARCHIVAL");
+		md.addAttribute("reportlist", rrReportlist.getReportHalfYearly1());
+
+		return "BRF/BRFArchival";
+
+	}
+	
+	
 
 	@RequestMapping(value = "Archival", method = { RequestMethod.GET, RequestMethod.POST })
 	public String Archival(Model md, @RequestParam(value = "rptcode", required = false) String rptcode,

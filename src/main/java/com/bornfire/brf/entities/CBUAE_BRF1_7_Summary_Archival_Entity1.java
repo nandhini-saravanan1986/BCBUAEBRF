@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF1_7_SUMMARYTABLE1")
+@Table(name = "CBUAE_BRF1_7_ARCHIVALTABLE_SUMMARYTABLE1")
 
 public class CBUAE_BRF1_7_Summary_Archival_Entity1 {
 
