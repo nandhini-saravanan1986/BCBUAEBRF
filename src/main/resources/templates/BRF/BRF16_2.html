@@ -947,8 +947,8 @@ function DetailDownload() {
 										<tr th:each="report, stat : ${reportsummary}">
 											<!--<td style="background-color: #b3b6b9;"><span th:text="${stat.index + 1}"></span></td>-->
 											<td style="background-color: #b3b6b9;">R0010</td>
-											<td style="background-color: #b3b6b9;" th:text="${report.id}"></td>
-											<td th:text="${report.r0010_product}"></td>
+										<td style="background-color: #b3b6b9;">1</td>
+                                            <td th:text="${report.r0010_product}"></td>
 											<td style="background-color: #696969;"
 												th:text="${report.r0010_no_consumerfacing_employees}"></td>
 											<td style="background-color: #696969;"

@@ -512,7 +512,7 @@ public class RegulatoryReportServices {
 
 		case "BRF16_2":
 			repdetail = CBUAE_BRF16_2_ReportServices.getBRF16_2currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 		case "BRF16_3":
 			repdetail = CBUAE_BRF16_3_ReportServices.getBRF16_3currentDtl(reportId, fromdate, todate, currency, dtltype,
@@ -885,7 +885,7 @@ public class RegulatoryReportServices {
 		case "BRF16_2":
 			try {
 				repfile = CBUAE_BRF16_2_ReportServices.getBRF16_2Excel(filename, reportId, fromdate, todate, currency,
-						dtltype);
+						dtltype, type, version);
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -1181,6 +1181,15 @@ public class RegulatoryReportServices {
 		case "BRF5_17":
 			try {
 				archivalData = cbuae_brf5_17_reportservice.getBRF5_17Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+		case "BRF16_2":
+			try {
+				archivalData = CBUAE_BRF16_2_ReportServices.getBRF16_2Archival();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
