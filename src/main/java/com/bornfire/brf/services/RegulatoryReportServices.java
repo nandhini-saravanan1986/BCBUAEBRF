@@ -1194,6 +1194,14 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF16_1":
+			try {
+				archivalData = cbuae_brf16_1_reportservice.getBRF16_1Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 
 		case "BRF16_2":
 			try {

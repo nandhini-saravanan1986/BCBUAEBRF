@@ -1,0 +1,2069 @@
+package com.bornfire.brf.entities;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name = "CBUAE_BRF16_1_ARCHIVALTABLE_SUMMARY_5")
+
+public class CBUAE_BRF16_1_Archival_Summary_Entity_5 {
+	
+	private String	r0160_product;
+	private String	r0160_product_applicable;
+	private BigDecimal	r0160_num_of_emp_as_spec_time_peri_bank_info;
+	private BigDecimal	r0160_num_of_consumers_as_spec_time_peri_bank_info;
+	private BigDecimal	r0160_average_num_of_emp_as_stp_bank_info;
+	private BigDecimal	r0160_num_of_branches_as_stp_bank_info;
+	private BigDecimal	r0160_tot_num_bank_branches_for_pod_bank_info;
+	private BigDecimal	r0160_num_of_atm_as_stp_bank_info;
+	private BigDecimal	r0160_num_of_atm_having_people_deter_as_stp_bank_info;
+	private BigDecimal	r0160_num_auth_agents_as_stp_bank_info;
+	private BigDecimal	r0160_num_of_instances_serv_interrup_bank_info;
+	private BigDecimal	r0160_num_of_instances_sche_downtime_bank_info;
+	private BigDecimal	r0160_num_of_emp_resp_conduct_risk_bank_info;
+	private BigDecimal	r0160_num_of_ext_fraud_incidents_bank_info;
+	private BigDecimal	r0160_num_of_inter_fraud_incidents_bank_info;
+	private BigDecimal	r0160_num_of_fraud_incidents_stp_bank_info;
+	private BigDecimal	r0160_num_of_fraud_incidents_prev_period_bank_info;
+	private BigDecimal	r0160_tot_num_of_reviews_conduct_stp_bank_info;
+	private BigDecimal	r0160_tot_num_of_inst_unplan_serv_interrup_bank_info;
+	private BigDecimal	r0160_tot_num_of_hours_unplan_serv_interrup_bank_info;
+	private BigDecimal	r0160_tot_num_of_inciden_sys_secur_breaches_bank_info;
+	private BigDecimal	r0160_tot_num_of_penet_cyberattack_testing_bank_info;
+	private BigDecimal	r0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info;
+	private BigDecimal	r0160_tot_num_of_point_sale_terminals_bank_info;
+	private BigDecimal	r0160_tot_num_of_merchant_tie_ups_bank_info;
+	private BigDecimal	r0160_num_of_inquiri_receive_raised_stp_bank_info;
+	private BigDecimal	r0160_num_of_serv_interrup_by_auth_agents_bank_info;
+	private BigDecimal	r0160_num_of_women_consumers_bank_consu;
+	private BigDecimal	r0160_num_consumers_as_people_deter_bank_consu;
+	private BigDecimal	r0160_num_consu_data_access_unauth_bank_consu;
+	private BigDecimal	r0160_num_consu_having_dbr_lt50perc_bank_consu;
+	private BigDecimal	r0160_num_consu_having_dbr_gt50perc_bank_consu;
+	private BigDecimal	r0160_num_new_consu_lt50perc_income_bank_consu;
+	private BigDecimal	r0160_num_consu_lt_18yo_bank_consu;
+	private BigDecimal	r0160_num_consu_18_to_25yo_bank_consu;
+	private BigDecimal	r0160_num_consu_26_to_35yo_bank_consu;
+	private BigDecimal	r0160_num_consu_36_to_50yo_bank_consu;
+	private BigDecimal	r0160_num_consu_gt_50yo_bank_consu;
+	private BigDecimal	r0160_num_consu_prim_sour_incom_salary_bank_consu;
+	private BigDecimal	r0160_num_consu_prim_sour_incom_business_bank_consu;
+	private BigDecimal	r0160_num_consu_prim_sour_incom_oth_sour_bank_consu;
+	private BigDecimal	r0160_num_consu_monthly_incom_lt5000aed_bank_consu;
+	private BigDecimal	r0160_num_consu_monthly_incom_5to10000aed_bank_consu;
+	private BigDecimal	r0160_num_consu_monthly_incom_10to20000aed_bank_consu;
+	private BigDecimal	r0160_num_consu_monthly_incom_20to35000aed_bank_consu;
+	private BigDecimal	r0160_num_consu_monthly_incom_gt35000aed_bank_consu;
+	private BigDecimal	r0160_num_consu_lev_edu_sec_schl_bank_consu;
+	private BigDecimal	r0160_num_consu_lev_edu_bach_degree_bank_consu;
+	private BigDecimal	r0160_num_consu_lev_edu_mast_degree_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_abu_dubai_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_dubai_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_sharjah_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_ajman_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_fujairah_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_ras_ai_khaimah_bank_consu;
+	private BigDecimal	r0160_num_consu_reside_umm_ai_quwain_bank_consu;
+	private BigDecimal	r0160_num_consu_tag_as_retired_bank_consu;
+	private BigDecimal	r0160_num_consu_prov_loan_breach_dbr_limi_bank_consu;
+	private BigDecimal	r0160_num_uae_national_consu_stp_bank_consu;
+	private BigDecimal	r0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu;
+	private BigDecimal	r0160_fin_loss_suf_cons_fraud_bank_consu;
+	private BigDecimal	r0160_num_new_consu_onboar_prev_quater_bank_consu;
+	private BigDecimal	r0160_num_consu_recv_balloon_pay_bank_consu;
+	private BigDecimal	r0160_num_consu_recv_balloon_pay_stp_bank_consu;
+	private BigDecimal	r0160_num_consu_recv_debt_couns_serv_bank_consu;
+	private BigDecimal	r0160_num_new_consu_onboard_stp_bank_consu;
+	private BigDecimal	r0160_num_new_consu_onboa_by_auth_agents_bank_consu;
+	private BigDecimal	r0160_num_consu_affec_unauth_transac_bank_consu;
+	private BigDecimal	r0160_num_acc_held_pod_bank_consu;
+	private BigDecimal	r0160_num_delinquent_consu_stp_bank_consu;
+	private BigDecimal	r0160_num_inst_funds_misdir_incor_acc_bank_consu;
+	private BigDecimal	r0160_num_cust_cons_waive_cool_peri_bank_consu;
+	private BigDecimal	r0160_tot_num_new_cust_avail_fin_prod_bank_consu;
+	private BigDecimal	r0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu;
+	private BigDecimal	r0160_num_consu_at_start_period_bank_consu;
+	private BigDecimal	r0160_num_new_consu_onboard_lfi_bank_consu;
+	private BigDecimal	r0160_num_contact_consu_recv_debt_coun_serv_bank_consu;
+	private BigDecimal	r0160_num_consu_tagged_npa_bank_consu;
+	private BigDecimal	r0160_num_consu_hav_dbr_gt50perc_bank_consu;
+	private BigDecimal	r0160_num_sme_consumers_bank_consu;
+	private BigDecimal	r0160_num_consu_tagged_vulnerable_consu_bank_consu;
+	private BigDecimal	r0160_num_new_cust_onboarded_gn_peri_bank_consu;
+	private BigDecimal	r0160_num_consu_at_end_period_bank_consu;
+	private BigDecimal	r0160_num_complaints_stp_complaints;
+	private BigDecimal	r0160_num_complaints_pending_court_complaints;
+	private BigDecimal	r0160_amt_fin_compen_prov_cons_complaints;
+	private BigDecimal	r0160_num_comp_recv_bank_false_adver_complaints;
+	private BigDecimal	r0160_num_comp_filed_people_determ_complaints;
+	private BigDecimal	r0160_num_comp_recv_issues_debt_collec_complaints;
+	private BigDecimal	r0160_num_comp_recv_agnst_auth_agents_stp_complaints;
+	private BigDecimal	r0160_num_comp_related_missell_auth_agents_complaints;
+	private BigDecimal	r0160_num_consu_filed_comp_stp_complaints;
+	private BigDecimal	r0160_num_comp_fees_char_bank_prod_complaints;
+	private BigDecimal	r0160_num_root_cause_analysis_conduct_complaints;
+	private BigDecimal	r0160_num_consu_comp_recv_phn_line_complaints;
+	private BigDecimal	r0160_num_consu_comp_recv_web_portal_sys_complaints;
+	private BigDecimal	r0160_num_consu_comp_recv_bank_website_complaints;
+	private BigDecimal	r0160_num_outstand_comp_stp_complaints;
+	private BigDecimal	r0160_num_comp_resolve_fav_consu_stp_complaints;
+	private BigDecimal	r0160_num_resolved_comp_aft30_days_raising_complaints;
+	private BigDecimal	r0160_avg_time_taken_resolve_comp_complaints;
+	private BigDecimal	r0160_num_comp_recv_staff_miscond_complaints;
+	private BigDecimal	r0160_num_comp_filed_deter_consu_complaints;
+	private BigDecimal	r0160_num_comp_recv_consu_incur_fin_loss_complaints;
+	private BigDecimal	r0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints;
+	private BigDecimal	r0160_num_comp_prev_report_period_complaints;
+	private BigDecimal	r0160_num_resolved_comp_complaints;
+	private BigDecimal	r0160_num_steps_cons_need_go_to_report_complaints;
+	private BigDecimal	r0160_num_cust_comp_evolv_legal_case_complaints;
+	private BigDecimal	r0160_num_comp_failure_prov_clear_contra_term_complaints;
+	private BigDecimal	r0160_num_comp_not_taking_expli_const_consu_complaints;
+	private BigDecimal	r0160_num_comp_escalated_to_sanadak_complaints;
+	private BigDecimal	r0160_num_comp_escalated_by_sanadak_to_cbuae_complaints;
+	private BigDecimal	r0160_num_resolv_comp_aft7_days_of_raising_complaints;
+	private BigDecimal	r0160_num_resolv_comp_aft15_days_of_raising_complaints;
+	private BigDecimal	r0160_num_comp_upheld_fav_consu_complaints;
+	private BigDecimal	r0160_num_comp_recv_against_bank_staff_complaints;
+	private BigDecimal	r0160_num_comp_recv_against_inhouse_auth_agnt_complaints;
+	private BigDecimal	r0160_num_comp_acknow_outside_targ_time_complaints;
+	private BigDecimal	r0160_num_comp_relat_auth_agents_debt_col_issue_complaints;
+	private BigDecimal	r0160_num_inst_comp_chg_credit_rate_complaints;
+	private BigDecimal	r0160_num_consu_comp_delay_remittance_complaints;
+	private BigDecimal	r0160_num_comp_report_date_complaints;
+	private BigDecimal	r0160_avg_time_opn_acc_consu_retail_prod;
+	private BigDecimal	r0160_avg_num_days_disburse_loan_retail_prod;
+	private BigDecimal	r0160_avg_num_days_opn_sme_acc_retail_prod;
+	private BigDecimal	r0160_avg_num_days_disburse_sme_loan_retail_prod;
+	private BigDecimal	r0160_num_requests_for_closure_retail_prod;
+	private BigDecimal	r0160_num_product_variants_stp_retail_prod;
+	private BigDecimal	r0160_num_req_resche_recv_stp_retail_prod;
+	private BigDecimal	r0160_num_req_paym_deferrals_recv_stp_retail_prod;
+	private BigDecimal	r0160_avg_time_prov_consu_revi_repayment_retail_prod;
+	private BigDecimal	r0160_num_inst_affect_balanc_reflec_consu_retail_prod;
+	private BigDecimal	r0160_net_non_interest_earned_during_stp_retail_prod;
+	private BigDecimal	r0160_net_interest_earned_during_stp_retail_prod;
+	private BigDecimal	r0160_tot_num_accounts_or_loans_stp_retail_prod;
+	private BigDecimal	r0160_tot_num_acc_marked_dormant_acc_retail_prod;
+	private BigDecimal	r0160_tot_num_new_loan_gn_stp_retail_prod;
+	private BigDecimal	r0160_tot_val_asso_new_loan_acc_stp_retail_prod;
+	private BigDecimal	r0160_tot_num_acc_recv_spec_date_retail_prod;
+	private BigDecimal	r0160_tot_num_req_transf_loans_retail_prod;
+	private BigDecimal	r0160_tot_num_loans_transf_bank_to_bank_retail_prod;
+	private BigDecimal	r0160_num_cred_card_acc_consu_paid_minpay_retail_prod;
+	private BigDecimal	r0160_avg_time_taken_close_acc_retail_prod;
+	private BigDecimal	r0160_num_consu_recv_mt1_resch_of_loans_retail_prod;
+	private BigDecimal	r0160_num_inst_consu_termin_busi_relati_retail_prod;
+	private BigDecimal	r0160_total_gross_assets_retail_prod;
+	private BigDecimal	r0160_retail_assets_spec_date_retail_prod;
+	private BigDecimal	r0160_high_annual_perc_rates_each_prod_retail_prod;
+	private BigDecimal	r0160_num_acc_tagged_under_npa_retail_prod;
+	private BigDecimal	r0160_num_inst_chng_fee_charg_gt5_perc_retail_prod;
+	private BigDecimal	r0160_num_consu_loan_acc_flex_inte_rate_retail_prod;
+	private BigDecimal	r0160_num_consu_loan_acc_fix_inte_rate_retail_prod;
+	private BigDecimal	r0160_num_loan_disbursed_prior_may2011_retail_prod;
+	private BigDecimal	r0160_val_legacy_loan_outstand_spec_date_retail_prod;
+	private BigDecimal	r0160_avg_num_days_to_issue_no_liab_letter_retail_prod;
+	private BigDecimal	r0160_percentage_dormant_accounts_retail_prod;
+	private BigDecimal	r0160_interest_income_to_retail_portfolio_retail_prod;
+	private BigDecimal	r0160_fees_commisisions_to_retail_portfolio_retail_prod;
+	private BigDecimal	r0160_total_val_funds_unclaim_last90_days_retail_prod;
+	private BigDecimal	r0160_total_value_unclaimed_balances_retail_prod;
+	private BigDecimal	r0160_num_instances_contract_breaches_retail_prod;
+	private BigDecimal	r0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod;
+	private BigDecimal	r0160_num_consu_issued_liab_within7_days_retail_prod;
+	private BigDecimal	r0160_tot_num_req_recv_consu_for_liab_retail_prod;
+	private BigDecimal	r0160_num_resche_req_consu_onboa_last4_quat_retail_prod;
+	private BigDecimal	r0160_tot_num_inst_delay_fund_transfer_retail_prod;
+	private BigDecimal	r0160_tot_num_fund_transfer_transactions_retail_prod;
+	private BigDecimal	r0160_num_inst_consu_funds_retained_mt24hrs_retail_prod;
+	private BigDecimal	r0160_num_failed_transac_due_bank_sys_retail_prod;
+	private BigDecimal	r0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod;
+	private BigDecimal	r0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod;
+	private BigDecimal	r0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod;
+	private BigDecimal	r0160_tot_num_cred_debit_card_undeliv_consu_retail_prod;
+	private BigDecimal	r0160_tot_num_cards_issued_spec_tiime_peri_retail_prod;
+	private BigDecimal	r0160_num_acc_blocked_wo_inform_consu_retail_prod;
+	private BigDecimal	r0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod;
+	private BigDecimal	r0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod;
+	private BigDecimal	r0160_tot_num_prepaid_card_spec_date_retail_prod;
+	private BigDecimal	r0160_tot_num_acc_spec_date_retail_prod;
+	private BigDecimal	r0160_num_lang_availa_voice_resp_sys_retail_prod;
+	private BigDecimal	r0160_avg_num_days_open_low_risk_acc_retail_prod;
+	private BigDecimal	r0160_num_consu_reissued_liab_letters_retail_prod;
+	private BigDecimal	r0160_num_inst_chng_credit_rate_consu_retail_prod;
+	private BigDecimal	r0160_retail_asset_compo_loan_to_retail_consu_addit_info;
+	private BigDecimal	r0160_retail_asset_compo_loan_to_sme_addit_info;
+	private BigDecimal	r0160_retail_asset_compo_sme_to_guar_commit_addit_info;
+	private BigDecimal	r0160_retail_asset_compo_loan_disbur_retail_consu_addit_info;
+	private BigDecimal	r0160_retail_asset_compo_loan_disbur_sme_addit_info;
+	private BigDecimal	r0160_perc_loans_disbur_retail_consu_addit_info;
+	private BigDecimal	r0160_loans_disbur_sme_orig_digi_channel_addit_info;
+	private BigDecimal	r0160_num_comp_recv_digital_channel_addit_info;
+	private BigDecimal	r0160_num_comp_recv_traditional_channel_addit_info;
+	private BigDecimal	r0160_perc_comp_recv_digital_channel_addit_info;
+	private BigDecimal	r0160_perc_comp_recv_traditional_channel_addit_info;
+	private BigDecimal	r0160_tot_revenue_from_retail_portfolio_addit_info;
+	private BigDecimal	r0160_profit_or_loss_from_retail_portfolio_addit_info;
+	private BigDecimal	r0160_profit_margin_from_retail_portfolio_addit_info;
+	private BigDecimal	r0160_tot_retail_asset_size_addit_info;
+	private BigDecimal	r0160_non_perfor_loan_retail_portfolio_addit_info;
+	private BigDecimal	r0160_num_consu_last_day_peri_prev_yr_addit_info;
+	private BigDecimal	r0160_tot_num_branches_prev_yr_addit_info;
+	private BigDecimal	r0160_tot_revenue_retail_portfolio_curr_yr_addit_info;
+	private BigDecimal	r0160_profit_or_loss_retail_portfolio_curr_yr_addit_info;
+	private BigDecimal	r0160_profit_margin_retail_portfolio_curr_yr_addit_info;
+	private BigDecimal	r0160_tot_retail_asset_size_curr_yr_addit_info;
+	private BigDecimal	r0160_non_perfor_loan_retail_portfo_curr_yr_addit_info;
+	private BigDecimal	r0160_num_consu_last_day_peri_curr_yr_addit_info;
+	private BigDecimal	r0160_tot_num_branches_current_yr_addit_info;
+	private BigDecimal	r0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_tot_retail_asset_size_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_num_consu_last_day_peri_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_tot_num_branches_nxt_yrt1_addit_info;
+	private BigDecimal	r0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_tot_retail_asset_size_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_num_consu_last_day_peri_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_tot_num_branches_nxt_yrt2_addit_info;
+	private BigDecimal	r0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_tot_retail_asset_size_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_num_consu_last_day_peri_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_tot_num_branches_nxt_yrt3_addit_info;
+	private BigDecimal	r0160_npl_as_specified_date_addit_info;
+	private BigDecimal	r0160_recov_against_npl_spec_date_addit_info;
+	private BigDecimal	r0160_num_new_consu_onboa_digi_channel_addit_info;
+	private BigDecimal	r0160_num_acc_closed_spec_time_period_addit_info;
+	private BigDecimal	r0160_tot_num_acc_rejec_new_loans_addit_info;
+	private BigDecimal	r0160_tot_num_new_acc_opened_spec_date_addit_info;
+	private BigDecimal	r0160_tot_value_associa_new_acc_opened_addit_info;
+	private BigDecimal	r0160_num_inquiri_recv_digital_channel_addit_info;
+	private BigDecimal	r0160_num_inquiri_recv_traditional_channel_addit_info;
+	private BigDecimal	r0160_num_retail_transac_pos_terminal_addit_info;
+	private BigDecimal	r0160_amt_retail_transac_pos_terminal_addit_info;
+	private BigDecimal	r0160_num_retail_transac_svf_wallets_addit_info;
+	private BigDecimal	r0160_amt_retail_transac_svf_wallets_addit_info;
+	private BigDecimal	r0160_tot_num_digi_channel_available_addit_info;
+	private BigDecimal	r0160_value_unclaimed_balance_spec_peri_addit_info;
+	private BigDecimal	r0160_num_consu_coun_categ_low_risk_addit_info;
+	private BigDecimal	r0160_num_consu_coun_categ_high_risk_addit_info;
+	private BigDecimal	r0160_num_retail_consu_conventi_islamic_islamic_banking;
+	private BigDecimal	r0160_num_retail_consu_islamic_islamic_banking;
+	private BigDecimal	r0160_num_sme_consu_conventi_islamic_islamic_banking;
+	private BigDecimal	r0160_num_sme_consu_islamic_islamic_banking;
+	private BigDecimal	r0160_tot_num_auth_agent_outsou_prov_islamic_banking;
+	private BigDecimal	r0160_tot_num_point_sale_terminals_islamic_banking;
+	private BigDecimal	r0160_tot_num_merchant_tie_ups_islamic_banking;
+	private BigDecimal	r0160_retail_asset_size_islamic_only_islamic_banking;
+	private BigDecimal	r0160_retail_asset_compo_loan_retail_consu_islamic_banking;
+	private BigDecimal	r0160_retail_asset_compo_loan_to_sme_islamic_banking;
+	private BigDecimal	r0160_num_complaints_recv_stp_islamic_banking;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Id
+	private Date report_date;
+	private String report_version;
+	private String report_frequency;
+	private String report_code;
+	private String report_desc;
+	private String modify_flg;
+	private String entity_flg;
+	private String delete_flg;
+	public String getR0160_product() {
+		return r0160_product;
+	}
+	public void setR0160_product(String r0160_product) {
+		this.r0160_product = r0160_product;
+	}
+	public String getR0160_product_applicable() {
+		return r0160_product_applicable;
+	}
+	public void setR0160_product_applicable(String r0160_product_applicable) {
+		this.r0160_product_applicable = r0160_product_applicable;
+	}
+	public BigDecimal getR0160_num_of_emp_as_spec_time_peri_bank_info() {
+		return r0160_num_of_emp_as_spec_time_peri_bank_info;
+	}
+	public void setR0160_num_of_emp_as_spec_time_peri_bank_info(BigDecimal r0160_num_of_emp_as_spec_time_peri_bank_info) {
+		this.r0160_num_of_emp_as_spec_time_peri_bank_info = r0160_num_of_emp_as_spec_time_peri_bank_info;
+	}
+	public BigDecimal getR0160_num_of_consumers_as_spec_time_peri_bank_info() {
+		return r0160_num_of_consumers_as_spec_time_peri_bank_info;
+	}
+	public void setR0160_num_of_consumers_as_spec_time_peri_bank_info(
+			BigDecimal r0160_num_of_consumers_as_spec_time_peri_bank_info) {
+		this.r0160_num_of_consumers_as_spec_time_peri_bank_info = r0160_num_of_consumers_as_spec_time_peri_bank_info;
+	}
+	public BigDecimal getR0160_average_num_of_emp_as_stp_bank_info() {
+		return r0160_average_num_of_emp_as_stp_bank_info;
+	}
+	public void setR0160_average_num_of_emp_as_stp_bank_info(BigDecimal r0160_average_num_of_emp_as_stp_bank_info) {
+		this.r0160_average_num_of_emp_as_stp_bank_info = r0160_average_num_of_emp_as_stp_bank_info;
+	}
+	public BigDecimal getR0160_num_of_branches_as_stp_bank_info() {
+		return r0160_num_of_branches_as_stp_bank_info;
+	}
+	public void setR0160_num_of_branches_as_stp_bank_info(BigDecimal r0160_num_of_branches_as_stp_bank_info) {
+		this.r0160_num_of_branches_as_stp_bank_info = r0160_num_of_branches_as_stp_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_bank_branches_for_pod_bank_info() {
+		return r0160_tot_num_bank_branches_for_pod_bank_info;
+	}
+	public void setR0160_tot_num_bank_branches_for_pod_bank_info(BigDecimal r0160_tot_num_bank_branches_for_pod_bank_info) {
+		this.r0160_tot_num_bank_branches_for_pod_bank_info = r0160_tot_num_bank_branches_for_pod_bank_info;
+	}
+	public BigDecimal getR0160_num_of_atm_as_stp_bank_info() {
+		return r0160_num_of_atm_as_stp_bank_info;
+	}
+	public void setR0160_num_of_atm_as_stp_bank_info(BigDecimal r0160_num_of_atm_as_stp_bank_info) {
+		this.r0160_num_of_atm_as_stp_bank_info = r0160_num_of_atm_as_stp_bank_info;
+	}
+	public BigDecimal getR0160_num_of_atm_having_people_deter_as_stp_bank_info() {
+		return r0160_num_of_atm_having_people_deter_as_stp_bank_info;
+	}
+	public void setR0160_num_of_atm_having_people_deter_as_stp_bank_info(
+			BigDecimal r0160_num_of_atm_having_people_deter_as_stp_bank_info) {
+		this.r0160_num_of_atm_having_people_deter_as_stp_bank_info = r0160_num_of_atm_having_people_deter_as_stp_bank_info;
+	}
+	public BigDecimal getR0160_num_auth_agents_as_stp_bank_info() {
+		return r0160_num_auth_agents_as_stp_bank_info;
+	}
+	public void setR0160_num_auth_agents_as_stp_bank_info(BigDecimal r0160_num_auth_agents_as_stp_bank_info) {
+		this.r0160_num_auth_agents_as_stp_bank_info = r0160_num_auth_agents_as_stp_bank_info;
+	}
+	public BigDecimal getR0160_num_of_instances_serv_interrup_bank_info() {
+		return r0160_num_of_instances_serv_interrup_bank_info;
+	}
+	public void setR0160_num_of_instances_serv_interrup_bank_info(
+			BigDecimal r0160_num_of_instances_serv_interrup_bank_info) {
+		this.r0160_num_of_instances_serv_interrup_bank_info = r0160_num_of_instances_serv_interrup_bank_info;
+	}
+	public BigDecimal getR0160_num_of_instances_sche_downtime_bank_info() {
+		return r0160_num_of_instances_sche_downtime_bank_info;
+	}
+	public void setR0160_num_of_instances_sche_downtime_bank_info(
+			BigDecimal r0160_num_of_instances_sche_downtime_bank_info) {
+		this.r0160_num_of_instances_sche_downtime_bank_info = r0160_num_of_instances_sche_downtime_bank_info;
+	}
+	public BigDecimal getR0160_num_of_emp_resp_conduct_risk_bank_info() {
+		return r0160_num_of_emp_resp_conduct_risk_bank_info;
+	}
+	public void setR0160_num_of_emp_resp_conduct_risk_bank_info(BigDecimal r0160_num_of_emp_resp_conduct_risk_bank_info) {
+		this.r0160_num_of_emp_resp_conduct_risk_bank_info = r0160_num_of_emp_resp_conduct_risk_bank_info;
+	}
+	public BigDecimal getR0160_num_of_ext_fraud_incidents_bank_info() {
+		return r0160_num_of_ext_fraud_incidents_bank_info;
+	}
+	public void setR0160_num_of_ext_fraud_incidents_bank_info(BigDecimal r0160_num_of_ext_fraud_incidents_bank_info) {
+		this.r0160_num_of_ext_fraud_incidents_bank_info = r0160_num_of_ext_fraud_incidents_bank_info;
+	}
+	public BigDecimal getR0160_num_of_inter_fraud_incidents_bank_info() {
+		return r0160_num_of_inter_fraud_incidents_bank_info;
+	}
+	public void setR0160_num_of_inter_fraud_incidents_bank_info(BigDecimal r0160_num_of_inter_fraud_incidents_bank_info) {
+		this.r0160_num_of_inter_fraud_incidents_bank_info = r0160_num_of_inter_fraud_incidents_bank_info;
+	}
+	public BigDecimal getR0160_num_of_fraud_incidents_stp_bank_info() {
+		return r0160_num_of_fraud_incidents_stp_bank_info;
+	}
+	public void setR0160_num_of_fraud_incidents_stp_bank_info(BigDecimal r0160_num_of_fraud_incidents_stp_bank_info) {
+		this.r0160_num_of_fraud_incidents_stp_bank_info = r0160_num_of_fraud_incidents_stp_bank_info;
+	}
+	public BigDecimal getR0160_num_of_fraud_incidents_prev_period_bank_info() {
+		return r0160_num_of_fraud_incidents_prev_period_bank_info;
+	}
+	public void setR0160_num_of_fraud_incidents_prev_period_bank_info(
+			BigDecimal r0160_num_of_fraud_incidents_prev_period_bank_info) {
+		this.r0160_num_of_fraud_incidents_prev_period_bank_info = r0160_num_of_fraud_incidents_prev_period_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_reviews_conduct_stp_bank_info() {
+		return r0160_tot_num_of_reviews_conduct_stp_bank_info;
+	}
+	public void setR0160_tot_num_of_reviews_conduct_stp_bank_info(
+			BigDecimal r0160_tot_num_of_reviews_conduct_stp_bank_info) {
+		this.r0160_tot_num_of_reviews_conduct_stp_bank_info = r0160_tot_num_of_reviews_conduct_stp_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_inst_unplan_serv_interrup_bank_info() {
+		return r0160_tot_num_of_inst_unplan_serv_interrup_bank_info;
+	}
+	public void setR0160_tot_num_of_inst_unplan_serv_interrup_bank_info(
+			BigDecimal r0160_tot_num_of_inst_unplan_serv_interrup_bank_info) {
+		this.r0160_tot_num_of_inst_unplan_serv_interrup_bank_info = r0160_tot_num_of_inst_unplan_serv_interrup_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_hours_unplan_serv_interrup_bank_info() {
+		return r0160_tot_num_of_hours_unplan_serv_interrup_bank_info;
+	}
+	public void setR0160_tot_num_of_hours_unplan_serv_interrup_bank_info(
+			BigDecimal r0160_tot_num_of_hours_unplan_serv_interrup_bank_info) {
+		this.r0160_tot_num_of_hours_unplan_serv_interrup_bank_info = r0160_tot_num_of_hours_unplan_serv_interrup_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_inciden_sys_secur_breaches_bank_info() {
+		return r0160_tot_num_of_inciden_sys_secur_breaches_bank_info;
+	}
+	public void setR0160_tot_num_of_inciden_sys_secur_breaches_bank_info(
+			BigDecimal r0160_tot_num_of_inciden_sys_secur_breaches_bank_info) {
+		this.r0160_tot_num_of_inciden_sys_secur_breaches_bank_info = r0160_tot_num_of_inciden_sys_secur_breaches_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_penet_cyberattack_testing_bank_info() {
+		return r0160_tot_num_of_penet_cyberattack_testing_bank_info;
+	}
+	public void setR0160_tot_num_of_penet_cyberattack_testing_bank_info(
+			BigDecimal r0160_tot_num_of_penet_cyberattack_testing_bank_info) {
+		this.r0160_tot_num_of_penet_cyberattack_testing_bank_info = r0160_tot_num_of_penet_cyberattack_testing_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info() {
+		return r0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info;
+	}
+	public void setR0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info(
+			BigDecimal r0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info) {
+		this.r0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info = r0160_tot_num_of_auth_agents_outsour_serv_prov_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_point_sale_terminals_bank_info() {
+		return r0160_tot_num_of_point_sale_terminals_bank_info;
+	}
+	public void setR0160_tot_num_of_point_sale_terminals_bank_info(
+			BigDecimal r0160_tot_num_of_point_sale_terminals_bank_info) {
+		this.r0160_tot_num_of_point_sale_terminals_bank_info = r0160_tot_num_of_point_sale_terminals_bank_info;
+	}
+	public BigDecimal getR0160_tot_num_of_merchant_tie_ups_bank_info() {
+		return r0160_tot_num_of_merchant_tie_ups_bank_info;
+	}
+	public void setR0160_tot_num_of_merchant_tie_ups_bank_info(BigDecimal r0160_tot_num_of_merchant_tie_ups_bank_info) {
+		this.r0160_tot_num_of_merchant_tie_ups_bank_info = r0160_tot_num_of_merchant_tie_ups_bank_info;
+	}
+	public BigDecimal getR0160_num_of_inquiri_receive_raised_stp_bank_info() {
+		return r0160_num_of_inquiri_receive_raised_stp_bank_info;
+	}
+	public void setR0160_num_of_inquiri_receive_raised_stp_bank_info(
+			BigDecimal r0160_num_of_inquiri_receive_raised_stp_bank_info) {
+		this.r0160_num_of_inquiri_receive_raised_stp_bank_info = r0160_num_of_inquiri_receive_raised_stp_bank_info;
+	}
+	public BigDecimal getR0160_num_of_serv_interrup_by_auth_agents_bank_info() {
+		return r0160_num_of_serv_interrup_by_auth_agents_bank_info;
+	}
+	public void setR0160_num_of_serv_interrup_by_auth_agents_bank_info(
+			BigDecimal r0160_num_of_serv_interrup_by_auth_agents_bank_info) {
+		this.r0160_num_of_serv_interrup_by_auth_agents_bank_info = r0160_num_of_serv_interrup_by_auth_agents_bank_info;
+	}
+	public BigDecimal getR0160_num_of_women_consumers_bank_consu() {
+		return r0160_num_of_women_consumers_bank_consu;
+	}
+	public void setR0160_num_of_women_consumers_bank_consu(BigDecimal r0160_num_of_women_consumers_bank_consu) {
+		this.r0160_num_of_women_consumers_bank_consu = r0160_num_of_women_consumers_bank_consu;
+	}
+	public BigDecimal getR0160_num_consumers_as_people_deter_bank_consu() {
+		return r0160_num_consumers_as_people_deter_bank_consu;
+	}
+	public void setR0160_num_consumers_as_people_deter_bank_consu(
+			BigDecimal r0160_num_consumers_as_people_deter_bank_consu) {
+		this.r0160_num_consumers_as_people_deter_bank_consu = r0160_num_consumers_as_people_deter_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_data_access_unauth_bank_consu() {
+		return r0160_num_consu_data_access_unauth_bank_consu;
+	}
+	public void setR0160_num_consu_data_access_unauth_bank_consu(BigDecimal r0160_num_consu_data_access_unauth_bank_consu) {
+		this.r0160_num_consu_data_access_unauth_bank_consu = r0160_num_consu_data_access_unauth_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_having_dbr_lt50perc_bank_consu() {
+		return r0160_num_consu_having_dbr_lt50perc_bank_consu;
+	}
+	public void setR0160_num_consu_having_dbr_lt50perc_bank_consu(
+			BigDecimal r0160_num_consu_having_dbr_lt50perc_bank_consu) {
+		this.r0160_num_consu_having_dbr_lt50perc_bank_consu = r0160_num_consu_having_dbr_lt50perc_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_having_dbr_gt50perc_bank_consu() {
+		return r0160_num_consu_having_dbr_gt50perc_bank_consu;
+	}
+	public void setR0160_num_consu_having_dbr_gt50perc_bank_consu(
+			BigDecimal r0160_num_consu_having_dbr_gt50perc_bank_consu) {
+		this.r0160_num_consu_having_dbr_gt50perc_bank_consu = r0160_num_consu_having_dbr_gt50perc_bank_consu;
+	}
+	public BigDecimal getR0160_num_new_consu_lt50perc_income_bank_consu() {
+		return r0160_num_new_consu_lt50perc_income_bank_consu;
+	}
+	public void setR0160_num_new_consu_lt50perc_income_bank_consu(
+			BigDecimal r0160_num_new_consu_lt50perc_income_bank_consu) {
+		this.r0160_num_new_consu_lt50perc_income_bank_consu = r0160_num_new_consu_lt50perc_income_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_lt_18yo_bank_consu() {
+		return r0160_num_consu_lt_18yo_bank_consu;
+	}
+	public void setR0160_num_consu_lt_18yo_bank_consu(BigDecimal r0160_num_consu_lt_18yo_bank_consu) {
+		this.r0160_num_consu_lt_18yo_bank_consu = r0160_num_consu_lt_18yo_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_18_to_25yo_bank_consu() {
+		return r0160_num_consu_18_to_25yo_bank_consu;
+	}
+	public void setR0160_num_consu_18_to_25yo_bank_consu(BigDecimal r0160_num_consu_18_to_25yo_bank_consu) {
+		this.r0160_num_consu_18_to_25yo_bank_consu = r0160_num_consu_18_to_25yo_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_26_to_35yo_bank_consu() {
+		return r0160_num_consu_26_to_35yo_bank_consu;
+	}
+	public void setR0160_num_consu_26_to_35yo_bank_consu(BigDecimal r0160_num_consu_26_to_35yo_bank_consu) {
+		this.r0160_num_consu_26_to_35yo_bank_consu = r0160_num_consu_26_to_35yo_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_36_to_50yo_bank_consu() {
+		return r0160_num_consu_36_to_50yo_bank_consu;
+	}
+	public void setR0160_num_consu_36_to_50yo_bank_consu(BigDecimal r0160_num_consu_36_to_50yo_bank_consu) {
+		this.r0160_num_consu_36_to_50yo_bank_consu = r0160_num_consu_36_to_50yo_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_gt_50yo_bank_consu() {
+		return r0160_num_consu_gt_50yo_bank_consu;
+	}
+	public void setR0160_num_consu_gt_50yo_bank_consu(BigDecimal r0160_num_consu_gt_50yo_bank_consu) {
+		this.r0160_num_consu_gt_50yo_bank_consu = r0160_num_consu_gt_50yo_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_prim_sour_incom_salary_bank_consu() {
+		return r0160_num_consu_prim_sour_incom_salary_bank_consu;
+	}
+	public void setR0160_num_consu_prim_sour_incom_salary_bank_consu(
+			BigDecimal r0160_num_consu_prim_sour_incom_salary_bank_consu) {
+		this.r0160_num_consu_prim_sour_incom_salary_bank_consu = r0160_num_consu_prim_sour_incom_salary_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_prim_sour_incom_business_bank_consu() {
+		return r0160_num_consu_prim_sour_incom_business_bank_consu;
+	}
+	public void setR0160_num_consu_prim_sour_incom_business_bank_consu(
+			BigDecimal r0160_num_consu_prim_sour_incom_business_bank_consu) {
+		this.r0160_num_consu_prim_sour_incom_business_bank_consu = r0160_num_consu_prim_sour_incom_business_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_prim_sour_incom_oth_sour_bank_consu() {
+		return r0160_num_consu_prim_sour_incom_oth_sour_bank_consu;
+	}
+	public void setR0160_num_consu_prim_sour_incom_oth_sour_bank_consu(
+			BigDecimal r0160_num_consu_prim_sour_incom_oth_sour_bank_consu) {
+		this.r0160_num_consu_prim_sour_incom_oth_sour_bank_consu = r0160_num_consu_prim_sour_incom_oth_sour_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_monthly_incom_lt5000aed_bank_consu() {
+		return r0160_num_consu_monthly_incom_lt5000aed_bank_consu;
+	}
+	public void setR0160_num_consu_monthly_incom_lt5000aed_bank_consu(
+			BigDecimal r0160_num_consu_monthly_incom_lt5000aed_bank_consu) {
+		this.r0160_num_consu_monthly_incom_lt5000aed_bank_consu = r0160_num_consu_monthly_incom_lt5000aed_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_monthly_incom_5to10000aed_bank_consu() {
+		return r0160_num_consu_monthly_incom_5to10000aed_bank_consu;
+	}
+	public void setR0160_num_consu_monthly_incom_5to10000aed_bank_consu(
+			BigDecimal r0160_num_consu_monthly_incom_5to10000aed_bank_consu) {
+		this.r0160_num_consu_monthly_incom_5to10000aed_bank_consu = r0160_num_consu_monthly_incom_5to10000aed_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_monthly_incom_10to20000aed_bank_consu() {
+		return r0160_num_consu_monthly_incom_10to20000aed_bank_consu;
+	}
+	public void setR0160_num_consu_monthly_incom_10to20000aed_bank_consu(
+			BigDecimal r0160_num_consu_monthly_incom_10to20000aed_bank_consu) {
+		this.r0160_num_consu_monthly_incom_10to20000aed_bank_consu = r0160_num_consu_monthly_incom_10to20000aed_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_monthly_incom_20to35000aed_bank_consu() {
+		return r0160_num_consu_monthly_incom_20to35000aed_bank_consu;
+	}
+	public void setR0160_num_consu_monthly_incom_20to35000aed_bank_consu(
+			BigDecimal r0160_num_consu_monthly_incom_20to35000aed_bank_consu) {
+		this.r0160_num_consu_monthly_incom_20to35000aed_bank_consu = r0160_num_consu_monthly_incom_20to35000aed_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_monthly_incom_gt35000aed_bank_consu() {
+		return r0160_num_consu_monthly_incom_gt35000aed_bank_consu;
+	}
+	public void setR0160_num_consu_monthly_incom_gt35000aed_bank_consu(
+			BigDecimal r0160_num_consu_monthly_incom_gt35000aed_bank_consu) {
+		this.r0160_num_consu_monthly_incom_gt35000aed_bank_consu = r0160_num_consu_monthly_incom_gt35000aed_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_lev_edu_sec_schl_bank_consu() {
+		return r0160_num_consu_lev_edu_sec_schl_bank_consu;
+	}
+	public void setR0160_num_consu_lev_edu_sec_schl_bank_consu(BigDecimal r0160_num_consu_lev_edu_sec_schl_bank_consu) {
+		this.r0160_num_consu_lev_edu_sec_schl_bank_consu = r0160_num_consu_lev_edu_sec_schl_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_lev_edu_bach_degree_bank_consu() {
+		return r0160_num_consu_lev_edu_bach_degree_bank_consu;
+	}
+	public void setR0160_num_consu_lev_edu_bach_degree_bank_consu(
+			BigDecimal r0160_num_consu_lev_edu_bach_degree_bank_consu) {
+		this.r0160_num_consu_lev_edu_bach_degree_bank_consu = r0160_num_consu_lev_edu_bach_degree_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_lev_edu_mast_degree_bank_consu() {
+		return r0160_num_consu_lev_edu_mast_degree_bank_consu;
+	}
+	public void setR0160_num_consu_lev_edu_mast_degree_bank_consu(
+			BigDecimal r0160_num_consu_lev_edu_mast_degree_bank_consu) {
+		this.r0160_num_consu_lev_edu_mast_degree_bank_consu = r0160_num_consu_lev_edu_mast_degree_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_abu_dubai_bank_consu() {
+		return r0160_num_consu_reside_abu_dubai_bank_consu;
+	}
+	public void setR0160_num_consu_reside_abu_dubai_bank_consu(BigDecimal r0160_num_consu_reside_abu_dubai_bank_consu) {
+		this.r0160_num_consu_reside_abu_dubai_bank_consu = r0160_num_consu_reside_abu_dubai_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_dubai_bank_consu() {
+		return r0160_num_consu_reside_dubai_bank_consu;
+	}
+	public void setR0160_num_consu_reside_dubai_bank_consu(BigDecimal r0160_num_consu_reside_dubai_bank_consu) {
+		this.r0160_num_consu_reside_dubai_bank_consu = r0160_num_consu_reside_dubai_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_sharjah_bank_consu() {
+		return r0160_num_consu_reside_sharjah_bank_consu;
+	}
+	public void setR0160_num_consu_reside_sharjah_bank_consu(BigDecimal r0160_num_consu_reside_sharjah_bank_consu) {
+		this.r0160_num_consu_reside_sharjah_bank_consu = r0160_num_consu_reside_sharjah_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_ajman_bank_consu() {
+		return r0160_num_consu_reside_ajman_bank_consu;
+	}
+	public void setR0160_num_consu_reside_ajman_bank_consu(BigDecimal r0160_num_consu_reside_ajman_bank_consu) {
+		this.r0160_num_consu_reside_ajman_bank_consu = r0160_num_consu_reside_ajman_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_fujairah_bank_consu() {
+		return r0160_num_consu_reside_fujairah_bank_consu;
+	}
+	public void setR0160_num_consu_reside_fujairah_bank_consu(BigDecimal r0160_num_consu_reside_fujairah_bank_consu) {
+		this.r0160_num_consu_reside_fujairah_bank_consu = r0160_num_consu_reside_fujairah_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_ras_ai_khaimah_bank_consu() {
+		return r0160_num_consu_reside_ras_ai_khaimah_bank_consu;
+	}
+	public void setR0160_num_consu_reside_ras_ai_khaimah_bank_consu(
+			BigDecimal r0160_num_consu_reside_ras_ai_khaimah_bank_consu) {
+		this.r0160_num_consu_reside_ras_ai_khaimah_bank_consu = r0160_num_consu_reside_ras_ai_khaimah_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_reside_umm_ai_quwain_bank_consu() {
+		return r0160_num_consu_reside_umm_ai_quwain_bank_consu;
+	}
+	public void setR0160_num_consu_reside_umm_ai_quwain_bank_consu(
+			BigDecimal r0160_num_consu_reside_umm_ai_quwain_bank_consu) {
+		this.r0160_num_consu_reside_umm_ai_quwain_bank_consu = r0160_num_consu_reside_umm_ai_quwain_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_tag_as_retired_bank_consu() {
+		return r0160_num_consu_tag_as_retired_bank_consu;
+	}
+	public void setR0160_num_consu_tag_as_retired_bank_consu(BigDecimal r0160_num_consu_tag_as_retired_bank_consu) {
+		this.r0160_num_consu_tag_as_retired_bank_consu = r0160_num_consu_tag_as_retired_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_prov_loan_breach_dbr_limi_bank_consu() {
+		return r0160_num_consu_prov_loan_breach_dbr_limi_bank_consu;
+	}
+	public void setR0160_num_consu_prov_loan_breach_dbr_limi_bank_consu(
+			BigDecimal r0160_num_consu_prov_loan_breach_dbr_limi_bank_consu) {
+		this.r0160_num_consu_prov_loan_breach_dbr_limi_bank_consu = r0160_num_consu_prov_loan_breach_dbr_limi_bank_consu;
+	}
+	public BigDecimal getR0160_num_uae_national_consu_stp_bank_consu() {
+		return r0160_num_uae_national_consu_stp_bank_consu;
+	}
+	public void setR0160_num_uae_national_consu_stp_bank_consu(BigDecimal r0160_num_uae_national_consu_stp_bank_consu) {
+		this.r0160_num_uae_national_consu_stp_bank_consu = r0160_num_uae_national_consu_stp_bank_consu;
+	}
+	public BigDecimal getR0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu() {
+		return r0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu;
+	}
+	public void setR0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu(
+			BigDecimal r0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu) {
+		this.r0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu = r0160_num_uae_natio_consu_enrol_nat_loan_sche_bank_consu;
+	}
+	public BigDecimal getR0160_fin_loss_suf_cons_fraud_bank_consu() {
+		return r0160_fin_loss_suf_cons_fraud_bank_consu;
+	}
+	public void setR0160_fin_loss_suf_cons_fraud_bank_consu(BigDecimal r0160_fin_loss_suf_cons_fraud_bank_consu) {
+		this.r0160_fin_loss_suf_cons_fraud_bank_consu = r0160_fin_loss_suf_cons_fraud_bank_consu;
+	}
+	public BigDecimal getR0160_num_new_consu_onboar_prev_quater_bank_consu() {
+		return r0160_num_new_consu_onboar_prev_quater_bank_consu;
+	}
+	public void setR0160_num_new_consu_onboar_prev_quater_bank_consu(
+			BigDecimal r0160_num_new_consu_onboar_prev_quater_bank_consu) {
+		this.r0160_num_new_consu_onboar_prev_quater_bank_consu = r0160_num_new_consu_onboar_prev_quater_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_recv_balloon_pay_bank_consu() {
+		return r0160_num_consu_recv_balloon_pay_bank_consu;
+	}
+	public void setR0160_num_consu_recv_balloon_pay_bank_consu(BigDecimal r0160_num_consu_recv_balloon_pay_bank_consu) {
+		this.r0160_num_consu_recv_balloon_pay_bank_consu = r0160_num_consu_recv_balloon_pay_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_recv_balloon_pay_stp_bank_consu() {
+		return r0160_num_consu_recv_balloon_pay_stp_bank_consu;
+	}
+	public void setR0160_num_consu_recv_balloon_pay_stp_bank_consu(
+			BigDecimal r0160_num_consu_recv_balloon_pay_stp_bank_consu) {
+		this.r0160_num_consu_recv_balloon_pay_stp_bank_consu = r0160_num_consu_recv_balloon_pay_stp_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_recv_debt_couns_serv_bank_consu() {
+		return r0160_num_consu_recv_debt_couns_serv_bank_consu;
+	}
+	public void setR0160_num_consu_recv_debt_couns_serv_bank_consu(
+			BigDecimal r0160_num_consu_recv_debt_couns_serv_bank_consu) {
+		this.r0160_num_consu_recv_debt_couns_serv_bank_consu = r0160_num_consu_recv_debt_couns_serv_bank_consu;
+	}
+	public BigDecimal getR0160_num_new_consu_onboard_stp_bank_consu() {
+		return r0160_num_new_consu_onboard_stp_bank_consu;
+	}
+	public void setR0160_num_new_consu_onboard_stp_bank_consu(BigDecimal r0160_num_new_consu_onboard_stp_bank_consu) {
+		this.r0160_num_new_consu_onboard_stp_bank_consu = r0160_num_new_consu_onboard_stp_bank_consu;
+	}
+	public BigDecimal getR0160_num_new_consu_onboa_by_auth_agents_bank_consu() {
+		return r0160_num_new_consu_onboa_by_auth_agents_bank_consu;
+	}
+	public void setR0160_num_new_consu_onboa_by_auth_agents_bank_consu(
+			BigDecimal r0160_num_new_consu_onboa_by_auth_agents_bank_consu) {
+		this.r0160_num_new_consu_onboa_by_auth_agents_bank_consu = r0160_num_new_consu_onboa_by_auth_agents_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_affec_unauth_transac_bank_consu() {
+		return r0160_num_consu_affec_unauth_transac_bank_consu;
+	}
+	public void setR0160_num_consu_affec_unauth_transac_bank_consu(
+			BigDecimal r0160_num_consu_affec_unauth_transac_bank_consu) {
+		this.r0160_num_consu_affec_unauth_transac_bank_consu = r0160_num_consu_affec_unauth_transac_bank_consu;
+	}
+	public BigDecimal getR0160_num_acc_held_pod_bank_consu() {
+		return r0160_num_acc_held_pod_bank_consu;
+	}
+	public void setR0160_num_acc_held_pod_bank_consu(BigDecimal r0160_num_acc_held_pod_bank_consu) {
+		this.r0160_num_acc_held_pod_bank_consu = r0160_num_acc_held_pod_bank_consu;
+	}
+	public BigDecimal getR0160_num_delinquent_consu_stp_bank_consu() {
+		return r0160_num_delinquent_consu_stp_bank_consu;
+	}
+	public void setR0160_num_delinquent_consu_stp_bank_consu(BigDecimal r0160_num_delinquent_consu_stp_bank_consu) {
+		this.r0160_num_delinquent_consu_stp_bank_consu = r0160_num_delinquent_consu_stp_bank_consu;
+	}
+	public BigDecimal getR0160_num_inst_funds_misdir_incor_acc_bank_consu() {
+		return r0160_num_inst_funds_misdir_incor_acc_bank_consu;
+	}
+	public void setR0160_num_inst_funds_misdir_incor_acc_bank_consu(
+			BigDecimal r0160_num_inst_funds_misdir_incor_acc_bank_consu) {
+		this.r0160_num_inst_funds_misdir_incor_acc_bank_consu = r0160_num_inst_funds_misdir_incor_acc_bank_consu;
+	}
+	public BigDecimal getR0160_num_cust_cons_waive_cool_peri_bank_consu() {
+		return r0160_num_cust_cons_waive_cool_peri_bank_consu;
+	}
+	public void setR0160_num_cust_cons_waive_cool_peri_bank_consu(
+			BigDecimal r0160_num_cust_cons_waive_cool_peri_bank_consu) {
+		this.r0160_num_cust_cons_waive_cool_peri_bank_consu = r0160_num_cust_cons_waive_cool_peri_bank_consu;
+	}
+	public BigDecimal getR0160_tot_num_new_cust_avail_fin_prod_bank_consu() {
+		return r0160_tot_num_new_cust_avail_fin_prod_bank_consu;
+	}
+	public void setR0160_tot_num_new_cust_avail_fin_prod_bank_consu(
+			BigDecimal r0160_tot_num_new_cust_avail_fin_prod_bank_consu) {
+		this.r0160_tot_num_new_cust_avail_fin_prod_bank_consu = r0160_tot_num_new_cust_avail_fin_prod_bank_consu;
+	}
+	public BigDecimal getR0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu() {
+		return r0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu;
+	}
+	public void setR0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu(
+			BigDecimal r0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu) {
+		this.r0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu = r0160_tot_num_consu_onboa_wo_sign_ackno_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_at_start_period_bank_consu() {
+		return r0160_num_consu_at_start_period_bank_consu;
+	}
+	public void setR0160_num_consu_at_start_period_bank_consu(BigDecimal r0160_num_consu_at_start_period_bank_consu) {
+		this.r0160_num_consu_at_start_period_bank_consu = r0160_num_consu_at_start_period_bank_consu;
+	}
+	public BigDecimal getR0160_num_new_consu_onboard_lfi_bank_consu() {
+		return r0160_num_new_consu_onboard_lfi_bank_consu;
+	}
+	public void setR0160_num_new_consu_onboard_lfi_bank_consu(BigDecimal r0160_num_new_consu_onboard_lfi_bank_consu) {
+		this.r0160_num_new_consu_onboard_lfi_bank_consu = r0160_num_new_consu_onboard_lfi_bank_consu;
+	}
+	public BigDecimal getR0160_num_contact_consu_recv_debt_coun_serv_bank_consu() {
+		return r0160_num_contact_consu_recv_debt_coun_serv_bank_consu;
+	}
+	public void setR0160_num_contact_consu_recv_debt_coun_serv_bank_consu(
+			BigDecimal r0160_num_contact_consu_recv_debt_coun_serv_bank_consu) {
+		this.r0160_num_contact_consu_recv_debt_coun_serv_bank_consu = r0160_num_contact_consu_recv_debt_coun_serv_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_tagged_npa_bank_consu() {
+		return r0160_num_consu_tagged_npa_bank_consu;
+	}
+	public void setR0160_num_consu_tagged_npa_bank_consu(BigDecimal r0160_num_consu_tagged_npa_bank_consu) {
+		this.r0160_num_consu_tagged_npa_bank_consu = r0160_num_consu_tagged_npa_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_hav_dbr_gt50perc_bank_consu() {
+		return r0160_num_consu_hav_dbr_gt50perc_bank_consu;
+	}
+	public void setR0160_num_consu_hav_dbr_gt50perc_bank_consu(BigDecimal r0160_num_consu_hav_dbr_gt50perc_bank_consu) {
+		this.r0160_num_consu_hav_dbr_gt50perc_bank_consu = r0160_num_consu_hav_dbr_gt50perc_bank_consu;
+	}
+	public BigDecimal getR0160_num_sme_consumers_bank_consu() {
+		return r0160_num_sme_consumers_bank_consu;
+	}
+	public void setR0160_num_sme_consumers_bank_consu(BigDecimal r0160_num_sme_consumers_bank_consu) {
+		this.r0160_num_sme_consumers_bank_consu = r0160_num_sme_consumers_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_tagged_vulnerable_consu_bank_consu() {
+		return r0160_num_consu_tagged_vulnerable_consu_bank_consu;
+	}
+	public void setR0160_num_consu_tagged_vulnerable_consu_bank_consu(
+			BigDecimal r0160_num_consu_tagged_vulnerable_consu_bank_consu) {
+		this.r0160_num_consu_tagged_vulnerable_consu_bank_consu = r0160_num_consu_tagged_vulnerable_consu_bank_consu;
+	}
+	public BigDecimal getR0160_num_new_cust_onboarded_gn_peri_bank_consu() {
+		return r0160_num_new_cust_onboarded_gn_peri_bank_consu;
+	}
+	public void setR0160_num_new_cust_onboarded_gn_peri_bank_consu(
+			BigDecimal r0160_num_new_cust_onboarded_gn_peri_bank_consu) {
+		this.r0160_num_new_cust_onboarded_gn_peri_bank_consu = r0160_num_new_cust_onboarded_gn_peri_bank_consu;
+	}
+	public BigDecimal getR0160_num_consu_at_end_period_bank_consu() {
+		return r0160_num_consu_at_end_period_bank_consu;
+	}
+	public void setR0160_num_consu_at_end_period_bank_consu(BigDecimal r0160_num_consu_at_end_period_bank_consu) {
+		this.r0160_num_consu_at_end_period_bank_consu = r0160_num_consu_at_end_period_bank_consu;
+	}
+	public BigDecimal getR0160_num_complaints_stp_complaints() {
+		return r0160_num_complaints_stp_complaints;
+	}
+	public void setR0160_num_complaints_stp_complaints(BigDecimal r0160_num_complaints_stp_complaints) {
+		this.r0160_num_complaints_stp_complaints = r0160_num_complaints_stp_complaints;
+	}
+	public BigDecimal getR0160_num_complaints_pending_court_complaints() {
+		return r0160_num_complaints_pending_court_complaints;
+	}
+	public void setR0160_num_complaints_pending_court_complaints(BigDecimal r0160_num_complaints_pending_court_complaints) {
+		this.r0160_num_complaints_pending_court_complaints = r0160_num_complaints_pending_court_complaints;
+	}
+	public BigDecimal getR0160_amt_fin_compen_prov_cons_complaints() {
+		return r0160_amt_fin_compen_prov_cons_complaints;
+	}
+	public void setR0160_amt_fin_compen_prov_cons_complaints(BigDecimal r0160_amt_fin_compen_prov_cons_complaints) {
+		this.r0160_amt_fin_compen_prov_cons_complaints = r0160_amt_fin_compen_prov_cons_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_bank_false_adver_complaints() {
+		return r0160_num_comp_recv_bank_false_adver_complaints;
+	}
+	public void setR0160_num_comp_recv_bank_false_adver_complaints(
+			BigDecimal r0160_num_comp_recv_bank_false_adver_complaints) {
+		this.r0160_num_comp_recv_bank_false_adver_complaints = r0160_num_comp_recv_bank_false_adver_complaints;
+	}
+	public BigDecimal getR0160_num_comp_filed_people_determ_complaints() {
+		return r0160_num_comp_filed_people_determ_complaints;
+	}
+	public void setR0160_num_comp_filed_people_determ_complaints(BigDecimal r0160_num_comp_filed_people_determ_complaints) {
+		this.r0160_num_comp_filed_people_determ_complaints = r0160_num_comp_filed_people_determ_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_issues_debt_collec_complaints() {
+		return r0160_num_comp_recv_issues_debt_collec_complaints;
+	}
+	public void setR0160_num_comp_recv_issues_debt_collec_complaints(
+			BigDecimal r0160_num_comp_recv_issues_debt_collec_complaints) {
+		this.r0160_num_comp_recv_issues_debt_collec_complaints = r0160_num_comp_recv_issues_debt_collec_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_agnst_auth_agents_stp_complaints() {
+		return r0160_num_comp_recv_agnst_auth_agents_stp_complaints;
+	}
+	public void setR0160_num_comp_recv_agnst_auth_agents_stp_complaints(
+			BigDecimal r0160_num_comp_recv_agnst_auth_agents_stp_complaints) {
+		this.r0160_num_comp_recv_agnst_auth_agents_stp_complaints = r0160_num_comp_recv_agnst_auth_agents_stp_complaints;
+	}
+	public BigDecimal getR0160_num_comp_related_missell_auth_agents_complaints() {
+		return r0160_num_comp_related_missell_auth_agents_complaints;
+	}
+	public void setR0160_num_comp_related_missell_auth_agents_complaints(
+			BigDecimal r0160_num_comp_related_missell_auth_agents_complaints) {
+		this.r0160_num_comp_related_missell_auth_agents_complaints = r0160_num_comp_related_missell_auth_agents_complaints;
+	}
+	public BigDecimal getR0160_num_consu_filed_comp_stp_complaints() {
+		return r0160_num_consu_filed_comp_stp_complaints;
+	}
+	public void setR0160_num_consu_filed_comp_stp_complaints(BigDecimal r0160_num_consu_filed_comp_stp_complaints) {
+		this.r0160_num_consu_filed_comp_stp_complaints = r0160_num_consu_filed_comp_stp_complaints;
+	}
+	public BigDecimal getR0160_num_comp_fees_char_bank_prod_complaints() {
+		return r0160_num_comp_fees_char_bank_prod_complaints;
+	}
+	public void setR0160_num_comp_fees_char_bank_prod_complaints(BigDecimal r0160_num_comp_fees_char_bank_prod_complaints) {
+		this.r0160_num_comp_fees_char_bank_prod_complaints = r0160_num_comp_fees_char_bank_prod_complaints;
+	}
+	public BigDecimal getR0160_num_root_cause_analysis_conduct_complaints() {
+		return r0160_num_root_cause_analysis_conduct_complaints;
+	}
+	public void setR0160_num_root_cause_analysis_conduct_complaints(
+			BigDecimal r0160_num_root_cause_analysis_conduct_complaints) {
+		this.r0160_num_root_cause_analysis_conduct_complaints = r0160_num_root_cause_analysis_conduct_complaints;
+	}
+	public BigDecimal getR0160_num_consu_comp_recv_phn_line_complaints() {
+		return r0160_num_consu_comp_recv_phn_line_complaints;
+	}
+	public void setR0160_num_consu_comp_recv_phn_line_complaints(BigDecimal r0160_num_consu_comp_recv_phn_line_complaints) {
+		this.r0160_num_consu_comp_recv_phn_line_complaints = r0160_num_consu_comp_recv_phn_line_complaints;
+	}
+	public BigDecimal getR0160_num_consu_comp_recv_web_portal_sys_complaints() {
+		return r0160_num_consu_comp_recv_web_portal_sys_complaints;
+	}
+	public void setR0160_num_consu_comp_recv_web_portal_sys_complaints(
+			BigDecimal r0160_num_consu_comp_recv_web_portal_sys_complaints) {
+		this.r0160_num_consu_comp_recv_web_portal_sys_complaints = r0160_num_consu_comp_recv_web_portal_sys_complaints;
+	}
+	public BigDecimal getR0160_num_consu_comp_recv_bank_website_complaints() {
+		return r0160_num_consu_comp_recv_bank_website_complaints;
+	}
+	public void setR0160_num_consu_comp_recv_bank_website_complaints(
+			BigDecimal r0160_num_consu_comp_recv_bank_website_complaints) {
+		this.r0160_num_consu_comp_recv_bank_website_complaints = r0160_num_consu_comp_recv_bank_website_complaints;
+	}
+	public BigDecimal getR0160_num_outstand_comp_stp_complaints() {
+		return r0160_num_outstand_comp_stp_complaints;
+	}
+	public void setR0160_num_outstand_comp_stp_complaints(BigDecimal r0160_num_outstand_comp_stp_complaints) {
+		this.r0160_num_outstand_comp_stp_complaints = r0160_num_outstand_comp_stp_complaints;
+	}
+	public BigDecimal getR0160_num_comp_resolve_fav_consu_stp_complaints() {
+		return r0160_num_comp_resolve_fav_consu_stp_complaints;
+	}
+	public void setR0160_num_comp_resolve_fav_consu_stp_complaints(
+			BigDecimal r0160_num_comp_resolve_fav_consu_stp_complaints) {
+		this.r0160_num_comp_resolve_fav_consu_stp_complaints = r0160_num_comp_resolve_fav_consu_stp_complaints;
+	}
+	public BigDecimal getR0160_num_resolved_comp_aft30_days_raising_complaints() {
+		return r0160_num_resolved_comp_aft30_days_raising_complaints;
+	}
+	public void setR0160_num_resolved_comp_aft30_days_raising_complaints(
+			BigDecimal r0160_num_resolved_comp_aft30_days_raising_complaints) {
+		this.r0160_num_resolved_comp_aft30_days_raising_complaints = r0160_num_resolved_comp_aft30_days_raising_complaints;
+	}
+	public BigDecimal getR0160_avg_time_taken_resolve_comp_complaints() {
+		return r0160_avg_time_taken_resolve_comp_complaints;
+	}
+	public void setR0160_avg_time_taken_resolve_comp_complaints(BigDecimal r0160_avg_time_taken_resolve_comp_complaints) {
+		this.r0160_avg_time_taken_resolve_comp_complaints = r0160_avg_time_taken_resolve_comp_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_staff_miscond_complaints() {
+		return r0160_num_comp_recv_staff_miscond_complaints;
+	}
+	public void setR0160_num_comp_recv_staff_miscond_complaints(BigDecimal r0160_num_comp_recv_staff_miscond_complaints) {
+		this.r0160_num_comp_recv_staff_miscond_complaints = r0160_num_comp_recv_staff_miscond_complaints;
+	}
+	public BigDecimal getR0160_num_comp_filed_deter_consu_complaints() {
+		return r0160_num_comp_filed_deter_consu_complaints;
+	}
+	public void setR0160_num_comp_filed_deter_consu_complaints(BigDecimal r0160_num_comp_filed_deter_consu_complaints) {
+		this.r0160_num_comp_filed_deter_consu_complaints = r0160_num_comp_filed_deter_consu_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_consu_incur_fin_loss_complaints() {
+		return r0160_num_comp_recv_consu_incur_fin_loss_complaints;
+	}
+	public void setR0160_num_comp_recv_consu_incur_fin_loss_complaints(
+			BigDecimal r0160_num_comp_recv_consu_incur_fin_loss_complaints) {
+		this.r0160_num_comp_recv_consu_incur_fin_loss_complaints = r0160_num_comp_recv_consu_incur_fin_loss_complaints;
+	}
+	public BigDecimal getR0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints() {
+		return r0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints;
+	}
+	public void setR0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints(
+			BigDecimal r0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints) {
+		this.r0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints = r0160_num_comp_resolv_fav_consu_fin_loss_invol_complaints;
+	}
+	public BigDecimal getR0160_num_comp_prev_report_period_complaints() {
+		return r0160_num_comp_prev_report_period_complaints;
+	}
+	public void setR0160_num_comp_prev_report_period_complaints(BigDecimal r0160_num_comp_prev_report_period_complaints) {
+		this.r0160_num_comp_prev_report_period_complaints = r0160_num_comp_prev_report_period_complaints;
+	}
+	public BigDecimal getR0160_num_resolved_comp_complaints() {
+		return r0160_num_resolved_comp_complaints;
+	}
+	public void setR0160_num_resolved_comp_complaints(BigDecimal r0160_num_resolved_comp_complaints) {
+		this.r0160_num_resolved_comp_complaints = r0160_num_resolved_comp_complaints;
+	}
+	public BigDecimal getR0160_num_steps_cons_need_go_to_report_complaints() {
+		return r0160_num_steps_cons_need_go_to_report_complaints;
+	}
+	public void setR0160_num_steps_cons_need_go_to_report_complaints(
+			BigDecimal r0160_num_steps_cons_need_go_to_report_complaints) {
+		this.r0160_num_steps_cons_need_go_to_report_complaints = r0160_num_steps_cons_need_go_to_report_complaints;
+	}
+	public BigDecimal getR0160_num_cust_comp_evolv_legal_case_complaints() {
+		return r0160_num_cust_comp_evolv_legal_case_complaints;
+	}
+	public void setR0160_num_cust_comp_evolv_legal_case_complaints(
+			BigDecimal r0160_num_cust_comp_evolv_legal_case_complaints) {
+		this.r0160_num_cust_comp_evolv_legal_case_complaints = r0160_num_cust_comp_evolv_legal_case_complaints;
+	}
+	public BigDecimal getR0160_num_comp_failure_prov_clear_contra_term_complaints() {
+		return r0160_num_comp_failure_prov_clear_contra_term_complaints;
+	}
+	public void setR0160_num_comp_failure_prov_clear_contra_term_complaints(
+			BigDecimal r0160_num_comp_failure_prov_clear_contra_term_complaints) {
+		this.r0160_num_comp_failure_prov_clear_contra_term_complaints = r0160_num_comp_failure_prov_clear_contra_term_complaints;
+	}
+	public BigDecimal getR0160_num_comp_not_taking_expli_const_consu_complaints() {
+		return r0160_num_comp_not_taking_expli_const_consu_complaints;
+	}
+	public void setR0160_num_comp_not_taking_expli_const_consu_complaints(
+			BigDecimal r0160_num_comp_not_taking_expli_const_consu_complaints) {
+		this.r0160_num_comp_not_taking_expli_const_consu_complaints = r0160_num_comp_not_taking_expli_const_consu_complaints;
+	}
+	public BigDecimal getR0160_num_comp_escalated_to_sanadak_complaints() {
+		return r0160_num_comp_escalated_to_sanadak_complaints;
+	}
+	public void setR0160_num_comp_escalated_to_sanadak_complaints(
+			BigDecimal r0160_num_comp_escalated_to_sanadak_complaints) {
+		this.r0160_num_comp_escalated_to_sanadak_complaints = r0160_num_comp_escalated_to_sanadak_complaints;
+	}
+	public BigDecimal getR0160_num_comp_escalated_by_sanadak_to_cbuae_complaints() {
+		return r0160_num_comp_escalated_by_sanadak_to_cbuae_complaints;
+	}
+	public void setR0160_num_comp_escalated_by_sanadak_to_cbuae_complaints(
+			BigDecimal r0160_num_comp_escalated_by_sanadak_to_cbuae_complaints) {
+		this.r0160_num_comp_escalated_by_sanadak_to_cbuae_complaints = r0160_num_comp_escalated_by_sanadak_to_cbuae_complaints;
+	}
+	public BigDecimal getR0160_num_resolv_comp_aft7_days_of_raising_complaints() {
+		return r0160_num_resolv_comp_aft7_days_of_raising_complaints;
+	}
+	public void setR0160_num_resolv_comp_aft7_days_of_raising_complaints(
+			BigDecimal r0160_num_resolv_comp_aft7_days_of_raising_complaints) {
+		this.r0160_num_resolv_comp_aft7_days_of_raising_complaints = r0160_num_resolv_comp_aft7_days_of_raising_complaints;
+	}
+	public BigDecimal getR0160_num_resolv_comp_aft15_days_of_raising_complaints() {
+		return r0160_num_resolv_comp_aft15_days_of_raising_complaints;
+	}
+	public void setR0160_num_resolv_comp_aft15_days_of_raising_complaints(
+			BigDecimal r0160_num_resolv_comp_aft15_days_of_raising_complaints) {
+		this.r0160_num_resolv_comp_aft15_days_of_raising_complaints = r0160_num_resolv_comp_aft15_days_of_raising_complaints;
+	}
+	public BigDecimal getR0160_num_comp_upheld_fav_consu_complaints() {
+		return r0160_num_comp_upheld_fav_consu_complaints;
+	}
+	public void setR0160_num_comp_upheld_fav_consu_complaints(BigDecimal r0160_num_comp_upheld_fav_consu_complaints) {
+		this.r0160_num_comp_upheld_fav_consu_complaints = r0160_num_comp_upheld_fav_consu_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_against_bank_staff_complaints() {
+		return r0160_num_comp_recv_against_bank_staff_complaints;
+	}
+	public void setR0160_num_comp_recv_against_bank_staff_complaints(
+			BigDecimal r0160_num_comp_recv_against_bank_staff_complaints) {
+		this.r0160_num_comp_recv_against_bank_staff_complaints = r0160_num_comp_recv_against_bank_staff_complaints;
+	}
+	public BigDecimal getR0160_num_comp_recv_against_inhouse_auth_agnt_complaints() {
+		return r0160_num_comp_recv_against_inhouse_auth_agnt_complaints;
+	}
+	public void setR0160_num_comp_recv_against_inhouse_auth_agnt_complaints(
+			BigDecimal r0160_num_comp_recv_against_inhouse_auth_agnt_complaints) {
+		this.r0160_num_comp_recv_against_inhouse_auth_agnt_complaints = r0160_num_comp_recv_against_inhouse_auth_agnt_complaints;
+	}
+	public BigDecimal getR0160_num_comp_acknow_outside_targ_time_complaints() {
+		return r0160_num_comp_acknow_outside_targ_time_complaints;
+	}
+	public void setR0160_num_comp_acknow_outside_targ_time_complaints(
+			BigDecimal r0160_num_comp_acknow_outside_targ_time_complaints) {
+		this.r0160_num_comp_acknow_outside_targ_time_complaints = r0160_num_comp_acknow_outside_targ_time_complaints;
+	}
+	public BigDecimal getR0160_num_comp_relat_auth_agents_debt_col_issue_complaints() {
+		return r0160_num_comp_relat_auth_agents_debt_col_issue_complaints;
+	}
+	public void setR0160_num_comp_relat_auth_agents_debt_col_issue_complaints(
+			BigDecimal r0160_num_comp_relat_auth_agents_debt_col_issue_complaints) {
+		this.r0160_num_comp_relat_auth_agents_debt_col_issue_complaints = r0160_num_comp_relat_auth_agents_debt_col_issue_complaints;
+	}
+	public BigDecimal getR0160_num_inst_comp_chg_credit_rate_complaints() {
+		return r0160_num_inst_comp_chg_credit_rate_complaints;
+	}
+	public void setR0160_num_inst_comp_chg_credit_rate_complaints(
+			BigDecimal r0160_num_inst_comp_chg_credit_rate_complaints) {
+		this.r0160_num_inst_comp_chg_credit_rate_complaints = r0160_num_inst_comp_chg_credit_rate_complaints;
+	}
+	public BigDecimal getR0160_num_consu_comp_delay_remittance_complaints() {
+		return r0160_num_consu_comp_delay_remittance_complaints;
+	}
+	public void setR0160_num_consu_comp_delay_remittance_complaints(
+			BigDecimal r0160_num_consu_comp_delay_remittance_complaints) {
+		this.r0160_num_consu_comp_delay_remittance_complaints = r0160_num_consu_comp_delay_remittance_complaints;
+	}
+	public BigDecimal getR0160_num_comp_report_date_complaints() {
+		return r0160_num_comp_report_date_complaints;
+	}
+	public void setR0160_num_comp_report_date_complaints(BigDecimal r0160_num_comp_report_date_complaints) {
+		this.r0160_num_comp_report_date_complaints = r0160_num_comp_report_date_complaints;
+	}
+	public BigDecimal getR0160_avg_time_opn_acc_consu_retail_prod() {
+		return r0160_avg_time_opn_acc_consu_retail_prod;
+	}
+	public void setR0160_avg_time_opn_acc_consu_retail_prod(BigDecimal r0160_avg_time_opn_acc_consu_retail_prod) {
+		this.r0160_avg_time_opn_acc_consu_retail_prod = r0160_avg_time_opn_acc_consu_retail_prod;
+	}
+	public BigDecimal getR0160_avg_num_days_disburse_loan_retail_prod() {
+		return r0160_avg_num_days_disburse_loan_retail_prod;
+	}
+	public void setR0160_avg_num_days_disburse_loan_retail_prod(BigDecimal r0160_avg_num_days_disburse_loan_retail_prod) {
+		this.r0160_avg_num_days_disburse_loan_retail_prod = r0160_avg_num_days_disburse_loan_retail_prod;
+	}
+	public BigDecimal getR0160_avg_num_days_opn_sme_acc_retail_prod() {
+		return r0160_avg_num_days_opn_sme_acc_retail_prod;
+	}
+	public void setR0160_avg_num_days_opn_sme_acc_retail_prod(BigDecimal r0160_avg_num_days_opn_sme_acc_retail_prod) {
+		this.r0160_avg_num_days_opn_sme_acc_retail_prod = r0160_avg_num_days_opn_sme_acc_retail_prod;
+	}
+	public BigDecimal getR0160_avg_num_days_disburse_sme_loan_retail_prod() {
+		return r0160_avg_num_days_disburse_sme_loan_retail_prod;
+	}
+	public void setR0160_avg_num_days_disburse_sme_loan_retail_prod(
+			BigDecimal r0160_avg_num_days_disburse_sme_loan_retail_prod) {
+		this.r0160_avg_num_days_disburse_sme_loan_retail_prod = r0160_avg_num_days_disburse_sme_loan_retail_prod;
+	}
+	public BigDecimal getR0160_num_requests_for_closure_retail_prod() {
+		return r0160_num_requests_for_closure_retail_prod;
+	}
+	public void setR0160_num_requests_for_closure_retail_prod(BigDecimal r0160_num_requests_for_closure_retail_prod) {
+		this.r0160_num_requests_for_closure_retail_prod = r0160_num_requests_for_closure_retail_prod;
+	}
+	public BigDecimal getR0160_num_product_variants_stp_retail_prod() {
+		return r0160_num_product_variants_stp_retail_prod;
+	}
+	public void setR0160_num_product_variants_stp_retail_prod(BigDecimal r0160_num_product_variants_stp_retail_prod) {
+		this.r0160_num_product_variants_stp_retail_prod = r0160_num_product_variants_stp_retail_prod;
+	}
+	public BigDecimal getR0160_num_req_resche_recv_stp_retail_prod() {
+		return r0160_num_req_resche_recv_stp_retail_prod;
+	}
+	public void setR0160_num_req_resche_recv_stp_retail_prod(BigDecimal r0160_num_req_resche_recv_stp_retail_prod) {
+		this.r0160_num_req_resche_recv_stp_retail_prod = r0160_num_req_resche_recv_stp_retail_prod;
+	}
+	public BigDecimal getR0160_num_req_paym_deferrals_recv_stp_retail_prod() {
+		return r0160_num_req_paym_deferrals_recv_stp_retail_prod;
+	}
+	public void setR0160_num_req_paym_deferrals_recv_stp_retail_prod(
+			BigDecimal r0160_num_req_paym_deferrals_recv_stp_retail_prod) {
+		this.r0160_num_req_paym_deferrals_recv_stp_retail_prod = r0160_num_req_paym_deferrals_recv_stp_retail_prod;
+	}
+	public BigDecimal getR0160_avg_time_prov_consu_revi_repayment_retail_prod() {
+		return r0160_avg_time_prov_consu_revi_repayment_retail_prod;
+	}
+	public void setR0160_avg_time_prov_consu_revi_repayment_retail_prod(
+			BigDecimal r0160_avg_time_prov_consu_revi_repayment_retail_prod) {
+		this.r0160_avg_time_prov_consu_revi_repayment_retail_prod = r0160_avg_time_prov_consu_revi_repayment_retail_prod;
+	}
+	public BigDecimal getR0160_num_inst_affect_balanc_reflec_consu_retail_prod() {
+		return r0160_num_inst_affect_balanc_reflec_consu_retail_prod;
+	}
+	public void setR0160_num_inst_affect_balanc_reflec_consu_retail_prod(
+			BigDecimal r0160_num_inst_affect_balanc_reflec_consu_retail_prod) {
+		this.r0160_num_inst_affect_balanc_reflec_consu_retail_prod = r0160_num_inst_affect_balanc_reflec_consu_retail_prod;
+	}
+	public BigDecimal getR0160_net_non_interest_earned_during_stp_retail_prod() {
+		return r0160_net_non_interest_earned_during_stp_retail_prod;
+	}
+	public void setR0160_net_non_interest_earned_during_stp_retail_prod(
+			BigDecimal r0160_net_non_interest_earned_during_stp_retail_prod) {
+		this.r0160_net_non_interest_earned_during_stp_retail_prod = r0160_net_non_interest_earned_during_stp_retail_prod;
+	}
+	public BigDecimal getR0160_net_interest_earned_during_stp_retail_prod() {
+		return r0160_net_interest_earned_during_stp_retail_prod;
+	}
+	public void setR0160_net_interest_earned_during_stp_retail_prod(
+			BigDecimal r0160_net_interest_earned_during_stp_retail_prod) {
+		this.r0160_net_interest_earned_during_stp_retail_prod = r0160_net_interest_earned_during_stp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_accounts_or_loans_stp_retail_prod() {
+		return r0160_tot_num_accounts_or_loans_stp_retail_prod;
+	}
+	public void setR0160_tot_num_accounts_or_loans_stp_retail_prod(
+			BigDecimal r0160_tot_num_accounts_or_loans_stp_retail_prod) {
+		this.r0160_tot_num_accounts_or_loans_stp_retail_prod = r0160_tot_num_accounts_or_loans_stp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_acc_marked_dormant_acc_retail_prod() {
+		return r0160_tot_num_acc_marked_dormant_acc_retail_prod;
+	}
+	public void setR0160_tot_num_acc_marked_dormant_acc_retail_prod(
+			BigDecimal r0160_tot_num_acc_marked_dormant_acc_retail_prod) {
+		this.r0160_tot_num_acc_marked_dormant_acc_retail_prod = r0160_tot_num_acc_marked_dormant_acc_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_new_loan_gn_stp_retail_prod() {
+		return r0160_tot_num_new_loan_gn_stp_retail_prod;
+	}
+	public void setR0160_tot_num_new_loan_gn_stp_retail_prod(BigDecimal r0160_tot_num_new_loan_gn_stp_retail_prod) {
+		this.r0160_tot_num_new_loan_gn_stp_retail_prod = r0160_tot_num_new_loan_gn_stp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_val_asso_new_loan_acc_stp_retail_prod() {
+		return r0160_tot_val_asso_new_loan_acc_stp_retail_prod;
+	}
+	public void setR0160_tot_val_asso_new_loan_acc_stp_retail_prod(
+			BigDecimal r0160_tot_val_asso_new_loan_acc_stp_retail_prod) {
+		this.r0160_tot_val_asso_new_loan_acc_stp_retail_prod = r0160_tot_val_asso_new_loan_acc_stp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_acc_recv_spec_date_retail_prod() {
+		return r0160_tot_num_acc_recv_spec_date_retail_prod;
+	}
+	public void setR0160_tot_num_acc_recv_spec_date_retail_prod(BigDecimal r0160_tot_num_acc_recv_spec_date_retail_prod) {
+		this.r0160_tot_num_acc_recv_spec_date_retail_prod = r0160_tot_num_acc_recv_spec_date_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_req_transf_loans_retail_prod() {
+		return r0160_tot_num_req_transf_loans_retail_prod;
+	}
+	public void setR0160_tot_num_req_transf_loans_retail_prod(BigDecimal r0160_tot_num_req_transf_loans_retail_prod) {
+		this.r0160_tot_num_req_transf_loans_retail_prod = r0160_tot_num_req_transf_loans_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_loans_transf_bank_to_bank_retail_prod() {
+		return r0160_tot_num_loans_transf_bank_to_bank_retail_prod;
+	}
+	public void setR0160_tot_num_loans_transf_bank_to_bank_retail_prod(
+			BigDecimal r0160_tot_num_loans_transf_bank_to_bank_retail_prod) {
+		this.r0160_tot_num_loans_transf_bank_to_bank_retail_prod = r0160_tot_num_loans_transf_bank_to_bank_retail_prod;
+	}
+	public BigDecimal getR0160_num_cred_card_acc_consu_paid_minpay_retail_prod() {
+		return r0160_num_cred_card_acc_consu_paid_minpay_retail_prod;
+	}
+	public void setR0160_num_cred_card_acc_consu_paid_minpay_retail_prod(
+			BigDecimal r0160_num_cred_card_acc_consu_paid_minpay_retail_prod) {
+		this.r0160_num_cred_card_acc_consu_paid_minpay_retail_prod = r0160_num_cred_card_acc_consu_paid_minpay_retail_prod;
+	}
+	public BigDecimal getR0160_avg_time_taken_close_acc_retail_prod() {
+		return r0160_avg_time_taken_close_acc_retail_prod;
+	}
+	public void setR0160_avg_time_taken_close_acc_retail_prod(BigDecimal r0160_avg_time_taken_close_acc_retail_prod) {
+		this.r0160_avg_time_taken_close_acc_retail_prod = r0160_avg_time_taken_close_acc_retail_prod;
+	}
+	public BigDecimal getR0160_num_consu_recv_mt1_resch_of_loans_retail_prod() {
+		return r0160_num_consu_recv_mt1_resch_of_loans_retail_prod;
+	}
+	public void setR0160_num_consu_recv_mt1_resch_of_loans_retail_prod(
+			BigDecimal r0160_num_consu_recv_mt1_resch_of_loans_retail_prod) {
+		this.r0160_num_consu_recv_mt1_resch_of_loans_retail_prod = r0160_num_consu_recv_mt1_resch_of_loans_retail_prod;
+	}
+	public BigDecimal getR0160_num_inst_consu_termin_busi_relati_retail_prod() {
+		return r0160_num_inst_consu_termin_busi_relati_retail_prod;
+	}
+	public void setR0160_num_inst_consu_termin_busi_relati_retail_prod(
+			BigDecimal r0160_num_inst_consu_termin_busi_relati_retail_prod) {
+		this.r0160_num_inst_consu_termin_busi_relati_retail_prod = r0160_num_inst_consu_termin_busi_relati_retail_prod;
+	}
+	public BigDecimal getR0160_total_gross_assets_retail_prod() {
+		return r0160_total_gross_assets_retail_prod;
+	}
+	public void setR0160_total_gross_assets_retail_prod(BigDecimal r0160_total_gross_assets_retail_prod) {
+		this.r0160_total_gross_assets_retail_prod = r0160_total_gross_assets_retail_prod;
+	}
+	public BigDecimal getR0160_retail_assets_spec_date_retail_prod() {
+		return r0160_retail_assets_spec_date_retail_prod;
+	}
+	public void setR0160_retail_assets_spec_date_retail_prod(BigDecimal r0160_retail_assets_spec_date_retail_prod) {
+		this.r0160_retail_assets_spec_date_retail_prod = r0160_retail_assets_spec_date_retail_prod;
+	}
+	public BigDecimal getR0160_high_annual_perc_rates_each_prod_retail_prod() {
+		return r0160_high_annual_perc_rates_each_prod_retail_prod;
+	}
+	public void setR0160_high_annual_perc_rates_each_prod_retail_prod(
+			BigDecimal r0160_high_annual_perc_rates_each_prod_retail_prod) {
+		this.r0160_high_annual_perc_rates_each_prod_retail_prod = r0160_high_annual_perc_rates_each_prod_retail_prod;
+	}
+	public BigDecimal getR0160_num_acc_tagged_under_npa_retail_prod() {
+		return r0160_num_acc_tagged_under_npa_retail_prod;
+	}
+	public void setR0160_num_acc_tagged_under_npa_retail_prod(BigDecimal r0160_num_acc_tagged_under_npa_retail_prod) {
+		this.r0160_num_acc_tagged_under_npa_retail_prod = r0160_num_acc_tagged_under_npa_retail_prod;
+	}
+	public BigDecimal getR0160_num_inst_chng_fee_charg_gt5_perc_retail_prod() {
+		return r0160_num_inst_chng_fee_charg_gt5_perc_retail_prod;
+	}
+	public void setR0160_num_inst_chng_fee_charg_gt5_perc_retail_prod(
+			BigDecimal r0160_num_inst_chng_fee_charg_gt5_perc_retail_prod) {
+		this.r0160_num_inst_chng_fee_charg_gt5_perc_retail_prod = r0160_num_inst_chng_fee_charg_gt5_perc_retail_prod;
+	}
+	public BigDecimal getR0160_num_consu_loan_acc_flex_inte_rate_retail_prod() {
+		return r0160_num_consu_loan_acc_flex_inte_rate_retail_prod;
+	}
+	public void setR0160_num_consu_loan_acc_flex_inte_rate_retail_prod(
+			BigDecimal r0160_num_consu_loan_acc_flex_inte_rate_retail_prod) {
+		this.r0160_num_consu_loan_acc_flex_inte_rate_retail_prod = r0160_num_consu_loan_acc_flex_inte_rate_retail_prod;
+	}
+	public BigDecimal getR0160_num_consu_loan_acc_fix_inte_rate_retail_prod() {
+		return r0160_num_consu_loan_acc_fix_inte_rate_retail_prod;
+	}
+	public void setR0160_num_consu_loan_acc_fix_inte_rate_retail_prod(
+			BigDecimal r0160_num_consu_loan_acc_fix_inte_rate_retail_prod) {
+		this.r0160_num_consu_loan_acc_fix_inte_rate_retail_prod = r0160_num_consu_loan_acc_fix_inte_rate_retail_prod;
+	}
+	public BigDecimal getR0160_num_loan_disbursed_prior_may2011_retail_prod() {
+		return r0160_num_loan_disbursed_prior_may2011_retail_prod;
+	}
+	public void setR0160_num_loan_disbursed_prior_may2011_retail_prod(
+			BigDecimal r0160_num_loan_disbursed_prior_may2011_retail_prod) {
+		this.r0160_num_loan_disbursed_prior_may2011_retail_prod = r0160_num_loan_disbursed_prior_may2011_retail_prod;
+	}
+	public BigDecimal getR0160_val_legacy_loan_outstand_spec_date_retail_prod() {
+		return r0160_val_legacy_loan_outstand_spec_date_retail_prod;
+	}
+	public void setR0160_val_legacy_loan_outstand_spec_date_retail_prod(
+			BigDecimal r0160_val_legacy_loan_outstand_spec_date_retail_prod) {
+		this.r0160_val_legacy_loan_outstand_spec_date_retail_prod = r0160_val_legacy_loan_outstand_spec_date_retail_prod;
+	}
+	public BigDecimal getR0160_avg_num_days_to_issue_no_liab_letter_retail_prod() {
+		return r0160_avg_num_days_to_issue_no_liab_letter_retail_prod;
+	}
+	public void setR0160_avg_num_days_to_issue_no_liab_letter_retail_prod(
+			BigDecimal r0160_avg_num_days_to_issue_no_liab_letter_retail_prod) {
+		this.r0160_avg_num_days_to_issue_no_liab_letter_retail_prod = r0160_avg_num_days_to_issue_no_liab_letter_retail_prod;
+	}
+	public BigDecimal getR0160_percentage_dormant_accounts_retail_prod() {
+		return r0160_percentage_dormant_accounts_retail_prod;
+	}
+	public void setR0160_percentage_dormant_accounts_retail_prod(BigDecimal r0160_percentage_dormant_accounts_retail_prod) {
+		this.r0160_percentage_dormant_accounts_retail_prod = r0160_percentage_dormant_accounts_retail_prod;
+	}
+	public BigDecimal getR0160_interest_income_to_retail_portfolio_retail_prod() {
+		return r0160_interest_income_to_retail_portfolio_retail_prod;
+	}
+	public void setR0160_interest_income_to_retail_portfolio_retail_prod(
+			BigDecimal r0160_interest_income_to_retail_portfolio_retail_prod) {
+		this.r0160_interest_income_to_retail_portfolio_retail_prod = r0160_interest_income_to_retail_portfolio_retail_prod;
+	}
+	public BigDecimal getR0160_fees_commisisions_to_retail_portfolio_retail_prod() {
+		return r0160_fees_commisisions_to_retail_portfolio_retail_prod;
+	}
+	public void setR0160_fees_commisisions_to_retail_portfolio_retail_prod(
+			BigDecimal r0160_fees_commisisions_to_retail_portfolio_retail_prod) {
+		this.r0160_fees_commisisions_to_retail_portfolio_retail_prod = r0160_fees_commisisions_to_retail_portfolio_retail_prod;
+	}
+	public BigDecimal getR0160_total_val_funds_unclaim_last90_days_retail_prod() {
+		return r0160_total_val_funds_unclaim_last90_days_retail_prod;
+	}
+	public void setR0160_total_val_funds_unclaim_last90_days_retail_prod(
+			BigDecimal r0160_total_val_funds_unclaim_last90_days_retail_prod) {
+		this.r0160_total_val_funds_unclaim_last90_days_retail_prod = r0160_total_val_funds_unclaim_last90_days_retail_prod;
+	}
+	public BigDecimal getR0160_total_value_unclaimed_balances_retail_prod() {
+		return r0160_total_value_unclaimed_balances_retail_prod;
+	}
+	public void setR0160_total_value_unclaimed_balances_retail_prod(
+			BigDecimal r0160_total_value_unclaimed_balances_retail_prod) {
+		this.r0160_total_value_unclaimed_balances_retail_prod = r0160_total_value_unclaimed_balances_retail_prod;
+	}
+	public BigDecimal getR0160_num_instances_contract_breaches_retail_prod() {
+		return r0160_num_instances_contract_breaches_retail_prod;
+	}
+	public void setR0160_num_instances_contract_breaches_retail_prod(
+			BigDecimal r0160_num_instances_contract_breaches_retail_prod) {
+		this.r0160_num_instances_contract_breaches_retail_prod = r0160_num_instances_contract_breaches_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod() {
+		return r0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod;
+	}
+	public void setR0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod(
+			BigDecimal r0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod) {
+		this.r0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod = r0160_tot_num_acc_marked_dormant_acc_notice_sent_retail_prod;
+	}
+	public BigDecimal getR0160_num_consu_issued_liab_within7_days_retail_prod() {
+		return r0160_num_consu_issued_liab_within7_days_retail_prod;
+	}
+	public void setR0160_num_consu_issued_liab_within7_days_retail_prod(
+			BigDecimal r0160_num_consu_issued_liab_within7_days_retail_prod) {
+		this.r0160_num_consu_issued_liab_within7_days_retail_prod = r0160_num_consu_issued_liab_within7_days_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_req_recv_consu_for_liab_retail_prod() {
+		return r0160_tot_num_req_recv_consu_for_liab_retail_prod;
+	}
+	public void setR0160_tot_num_req_recv_consu_for_liab_retail_prod(
+			BigDecimal r0160_tot_num_req_recv_consu_for_liab_retail_prod) {
+		this.r0160_tot_num_req_recv_consu_for_liab_retail_prod = r0160_tot_num_req_recv_consu_for_liab_retail_prod;
+	}
+	public BigDecimal getR0160_num_resche_req_consu_onboa_last4_quat_retail_prod() {
+		return r0160_num_resche_req_consu_onboa_last4_quat_retail_prod;
+	}
+	public void setR0160_num_resche_req_consu_onboa_last4_quat_retail_prod(
+			BigDecimal r0160_num_resche_req_consu_onboa_last4_quat_retail_prod) {
+		this.r0160_num_resche_req_consu_onboa_last4_quat_retail_prod = r0160_num_resche_req_consu_onboa_last4_quat_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_inst_delay_fund_transfer_retail_prod() {
+		return r0160_tot_num_inst_delay_fund_transfer_retail_prod;
+	}
+	public void setR0160_tot_num_inst_delay_fund_transfer_retail_prod(
+			BigDecimal r0160_tot_num_inst_delay_fund_transfer_retail_prod) {
+		this.r0160_tot_num_inst_delay_fund_transfer_retail_prod = r0160_tot_num_inst_delay_fund_transfer_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_fund_transfer_transactions_retail_prod() {
+		return r0160_tot_num_fund_transfer_transactions_retail_prod;
+	}
+	public void setR0160_tot_num_fund_transfer_transactions_retail_prod(
+			BigDecimal r0160_tot_num_fund_transfer_transactions_retail_prod) {
+		this.r0160_tot_num_fund_transfer_transactions_retail_prod = r0160_tot_num_fund_transfer_transactions_retail_prod;
+	}
+	public BigDecimal getR0160_num_inst_consu_funds_retained_mt24hrs_retail_prod() {
+		return r0160_num_inst_consu_funds_retained_mt24hrs_retail_prod;
+	}
+	public void setR0160_num_inst_consu_funds_retained_mt24hrs_retail_prod(
+			BigDecimal r0160_num_inst_consu_funds_retained_mt24hrs_retail_prod) {
+		this.r0160_num_inst_consu_funds_retained_mt24hrs_retail_prod = r0160_num_inst_consu_funds_retained_mt24hrs_retail_prod;
+	}
+	public BigDecimal getR0160_num_failed_transac_due_bank_sys_retail_prod() {
+		return r0160_num_failed_transac_due_bank_sys_retail_prod;
+	}
+	public void setR0160_num_failed_transac_due_bank_sys_retail_prod(
+			BigDecimal r0160_num_failed_transac_due_bank_sys_retail_prod) {
+		this.r0160_num_failed_transac_due_bank_sys_retail_prod = r0160_num_failed_transac_due_bank_sys_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod() {
+		return r0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod;
+	}
+	public void setR0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod(
+			BigDecimal r0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod) {
+		this.r0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod = r0160_tot_num_inst_fund_transf_fail_reach_benefi_retail_prod;
+	}
+	public BigDecimal getR0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod() {
+		return r0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod;
+	}
+	public void setR0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod(
+			BigDecimal r0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod) {
+		this.r0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod = r0160_tot_consu_funds_segre_acc_svf_spec_tp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod() {
+		return r0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod;
+	}
+	public void setR0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod(
+			BigDecimal r0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod) {
+		this.r0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod = r0160_tot_consu_funds_segre_acc_svf_prev_tp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_cred_debit_card_undeliv_consu_retail_prod() {
+		return r0160_tot_num_cred_debit_card_undeliv_consu_retail_prod;
+	}
+	public void setR0160_tot_num_cred_debit_card_undeliv_consu_retail_prod(
+			BigDecimal r0160_tot_num_cred_debit_card_undeliv_consu_retail_prod) {
+		this.r0160_tot_num_cred_debit_card_undeliv_consu_retail_prod = r0160_tot_num_cred_debit_card_undeliv_consu_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_cards_issued_spec_tiime_peri_retail_prod() {
+		return r0160_tot_num_cards_issued_spec_tiime_peri_retail_prod;
+	}
+	public void setR0160_tot_num_cards_issued_spec_tiime_peri_retail_prod(
+			BigDecimal r0160_tot_num_cards_issued_spec_tiime_peri_retail_prod) {
+		this.r0160_tot_num_cards_issued_spec_tiime_peri_retail_prod = r0160_tot_num_cards_issued_spec_tiime_peri_retail_prod;
+	}
+	public BigDecimal getR0160_num_acc_blocked_wo_inform_consu_retail_prod() {
+		return r0160_num_acc_blocked_wo_inform_consu_retail_prod;
+	}
+	public void setR0160_num_acc_blocked_wo_inform_consu_retail_prod(
+			BigDecimal r0160_num_acc_blocked_wo_inform_consu_retail_prod) {
+		this.r0160_num_acc_blocked_wo_inform_consu_retail_prod = r0160_num_acc_blocked_wo_inform_consu_retail_prod;
+	}
+	public BigDecimal getR0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod() {
+		return r0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod;
+	}
+	public void setR0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod(
+			BigDecimal r0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod) {
+		this.r0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod = r0160_num_inquir_reg_avail_balance_prepaid_card_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod() {
+		return r0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod;
+	}
+	public void setR0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod(
+			BigDecimal r0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod) {
+		this.r0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod = r0160_tot_num_prepaid_card_posi_bal_exp_stp_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_prepaid_card_spec_date_retail_prod() {
+		return r0160_tot_num_prepaid_card_spec_date_retail_prod;
+	}
+	public void setR0160_tot_num_prepaid_card_spec_date_retail_prod(
+			BigDecimal r0160_tot_num_prepaid_card_spec_date_retail_prod) {
+		this.r0160_tot_num_prepaid_card_spec_date_retail_prod = r0160_tot_num_prepaid_card_spec_date_retail_prod;
+	}
+	public BigDecimal getR0160_tot_num_acc_spec_date_retail_prod() {
+		return r0160_tot_num_acc_spec_date_retail_prod;
+	}
+	public void setR0160_tot_num_acc_spec_date_retail_prod(BigDecimal r0160_tot_num_acc_spec_date_retail_prod) {
+		this.r0160_tot_num_acc_spec_date_retail_prod = r0160_tot_num_acc_spec_date_retail_prod;
+	}
+	public BigDecimal getR0160_num_lang_availa_voice_resp_sys_retail_prod() {
+		return r0160_num_lang_availa_voice_resp_sys_retail_prod;
+	}
+	public void setR0160_num_lang_availa_voice_resp_sys_retail_prod(
+			BigDecimal r0160_num_lang_availa_voice_resp_sys_retail_prod) {
+		this.r0160_num_lang_availa_voice_resp_sys_retail_prod = r0160_num_lang_availa_voice_resp_sys_retail_prod;
+	}
+	public BigDecimal getR0160_avg_num_days_open_low_risk_acc_retail_prod() {
+		return r0160_avg_num_days_open_low_risk_acc_retail_prod;
+	}
+	public void setR0160_avg_num_days_open_low_risk_acc_retail_prod(
+			BigDecimal r0160_avg_num_days_open_low_risk_acc_retail_prod) {
+		this.r0160_avg_num_days_open_low_risk_acc_retail_prod = r0160_avg_num_days_open_low_risk_acc_retail_prod;
+	}
+	public BigDecimal getR0160_num_consu_reissued_liab_letters_retail_prod() {
+		return r0160_num_consu_reissued_liab_letters_retail_prod;
+	}
+	public void setR0160_num_consu_reissued_liab_letters_retail_prod(
+			BigDecimal r0160_num_consu_reissued_liab_letters_retail_prod) {
+		this.r0160_num_consu_reissued_liab_letters_retail_prod = r0160_num_consu_reissued_liab_letters_retail_prod;
+	}
+	public BigDecimal getR0160_num_inst_chng_credit_rate_consu_retail_prod() {
+		return r0160_num_inst_chng_credit_rate_consu_retail_prod;
+	}
+	public void setR0160_num_inst_chng_credit_rate_consu_retail_prod(
+			BigDecimal r0160_num_inst_chng_credit_rate_consu_retail_prod) {
+		this.r0160_num_inst_chng_credit_rate_consu_retail_prod = r0160_num_inst_chng_credit_rate_consu_retail_prod;
+	}
+	public BigDecimal getR0160_retail_asset_compo_loan_to_retail_consu_addit_info() {
+		return r0160_retail_asset_compo_loan_to_retail_consu_addit_info;
+	}
+	public void setR0160_retail_asset_compo_loan_to_retail_consu_addit_info(
+			BigDecimal r0160_retail_asset_compo_loan_to_retail_consu_addit_info) {
+		this.r0160_retail_asset_compo_loan_to_retail_consu_addit_info = r0160_retail_asset_compo_loan_to_retail_consu_addit_info;
+	}
+	public BigDecimal getR0160_retail_asset_compo_loan_to_sme_addit_info() {
+		return r0160_retail_asset_compo_loan_to_sme_addit_info;
+	}
+	public void setR0160_retail_asset_compo_loan_to_sme_addit_info(
+			BigDecimal r0160_retail_asset_compo_loan_to_sme_addit_info) {
+		this.r0160_retail_asset_compo_loan_to_sme_addit_info = r0160_retail_asset_compo_loan_to_sme_addit_info;
+	}
+	public BigDecimal getR0160_retail_asset_compo_sme_to_guar_commit_addit_info() {
+		return r0160_retail_asset_compo_sme_to_guar_commit_addit_info;
+	}
+	public void setR0160_retail_asset_compo_sme_to_guar_commit_addit_info(
+			BigDecimal r0160_retail_asset_compo_sme_to_guar_commit_addit_info) {
+		this.r0160_retail_asset_compo_sme_to_guar_commit_addit_info = r0160_retail_asset_compo_sme_to_guar_commit_addit_info;
+	}
+	public BigDecimal getR0160_retail_asset_compo_loan_disbur_retail_consu_addit_info() {
+		return r0160_retail_asset_compo_loan_disbur_retail_consu_addit_info;
+	}
+	public void setR0160_retail_asset_compo_loan_disbur_retail_consu_addit_info(
+			BigDecimal r0160_retail_asset_compo_loan_disbur_retail_consu_addit_info) {
+		this.r0160_retail_asset_compo_loan_disbur_retail_consu_addit_info = r0160_retail_asset_compo_loan_disbur_retail_consu_addit_info;
+	}
+	public BigDecimal getR0160_retail_asset_compo_loan_disbur_sme_addit_info() {
+		return r0160_retail_asset_compo_loan_disbur_sme_addit_info;
+	}
+	public void setR0160_retail_asset_compo_loan_disbur_sme_addit_info(
+			BigDecimal r0160_retail_asset_compo_loan_disbur_sme_addit_info) {
+		this.r0160_retail_asset_compo_loan_disbur_sme_addit_info = r0160_retail_asset_compo_loan_disbur_sme_addit_info;
+	}
+	public BigDecimal getR0160_perc_loans_disbur_retail_consu_addit_info() {
+		return r0160_perc_loans_disbur_retail_consu_addit_info;
+	}
+	public void setR0160_perc_loans_disbur_retail_consu_addit_info(
+			BigDecimal r0160_perc_loans_disbur_retail_consu_addit_info) {
+		this.r0160_perc_loans_disbur_retail_consu_addit_info = r0160_perc_loans_disbur_retail_consu_addit_info;
+	}
+	public BigDecimal getR0160_loans_disbur_sme_orig_digi_channel_addit_info() {
+		return r0160_loans_disbur_sme_orig_digi_channel_addit_info;
+	}
+	public void setR0160_loans_disbur_sme_orig_digi_channel_addit_info(
+			BigDecimal r0160_loans_disbur_sme_orig_digi_channel_addit_info) {
+		this.r0160_loans_disbur_sme_orig_digi_channel_addit_info = r0160_loans_disbur_sme_orig_digi_channel_addit_info;
+	}
+	public BigDecimal getR0160_num_comp_recv_digital_channel_addit_info() {
+		return r0160_num_comp_recv_digital_channel_addit_info;
+	}
+	public void setR0160_num_comp_recv_digital_channel_addit_info(
+			BigDecimal r0160_num_comp_recv_digital_channel_addit_info) {
+		this.r0160_num_comp_recv_digital_channel_addit_info = r0160_num_comp_recv_digital_channel_addit_info;
+	}
+	public BigDecimal getR0160_num_comp_recv_traditional_channel_addit_info() {
+		return r0160_num_comp_recv_traditional_channel_addit_info;
+	}
+	public void setR0160_num_comp_recv_traditional_channel_addit_info(
+			BigDecimal r0160_num_comp_recv_traditional_channel_addit_info) {
+		this.r0160_num_comp_recv_traditional_channel_addit_info = r0160_num_comp_recv_traditional_channel_addit_info;
+	}
+	public BigDecimal getR0160_perc_comp_recv_digital_channel_addit_info() {
+		return r0160_perc_comp_recv_digital_channel_addit_info;
+	}
+	public void setR0160_perc_comp_recv_digital_channel_addit_info(
+			BigDecimal r0160_perc_comp_recv_digital_channel_addit_info) {
+		this.r0160_perc_comp_recv_digital_channel_addit_info = r0160_perc_comp_recv_digital_channel_addit_info;
+	}
+	public BigDecimal getR0160_perc_comp_recv_traditional_channel_addit_info() {
+		return r0160_perc_comp_recv_traditional_channel_addit_info;
+	}
+	public void setR0160_perc_comp_recv_traditional_channel_addit_info(
+			BigDecimal r0160_perc_comp_recv_traditional_channel_addit_info) {
+		this.r0160_perc_comp_recv_traditional_channel_addit_info = r0160_perc_comp_recv_traditional_channel_addit_info;
+	}
+	public BigDecimal getR0160_tot_revenue_from_retail_portfolio_addit_info() {
+		return r0160_tot_revenue_from_retail_portfolio_addit_info;
+	}
+	public void setR0160_tot_revenue_from_retail_portfolio_addit_info(
+			BigDecimal r0160_tot_revenue_from_retail_portfolio_addit_info) {
+		this.r0160_tot_revenue_from_retail_portfolio_addit_info = r0160_tot_revenue_from_retail_portfolio_addit_info;
+	}
+	public BigDecimal getR0160_profit_or_loss_from_retail_portfolio_addit_info() {
+		return r0160_profit_or_loss_from_retail_portfolio_addit_info;
+	}
+	public void setR0160_profit_or_loss_from_retail_portfolio_addit_info(
+			BigDecimal r0160_profit_or_loss_from_retail_portfolio_addit_info) {
+		this.r0160_profit_or_loss_from_retail_portfolio_addit_info = r0160_profit_or_loss_from_retail_portfolio_addit_info;
+	}
+	public BigDecimal getR0160_profit_margin_from_retail_portfolio_addit_info() {
+		return r0160_profit_margin_from_retail_portfolio_addit_info;
+	}
+	public void setR0160_profit_margin_from_retail_portfolio_addit_info(
+			BigDecimal r0160_profit_margin_from_retail_portfolio_addit_info) {
+		this.r0160_profit_margin_from_retail_portfolio_addit_info = r0160_profit_margin_from_retail_portfolio_addit_info;
+	}
+	public BigDecimal getR0160_tot_retail_asset_size_addit_info() {
+		return r0160_tot_retail_asset_size_addit_info;
+	}
+	public void setR0160_tot_retail_asset_size_addit_info(BigDecimal r0160_tot_retail_asset_size_addit_info) {
+		this.r0160_tot_retail_asset_size_addit_info = r0160_tot_retail_asset_size_addit_info;
+	}
+	public BigDecimal getR0160_non_perfor_loan_retail_portfolio_addit_info() {
+		return r0160_non_perfor_loan_retail_portfolio_addit_info;
+	}
+	public void setR0160_non_perfor_loan_retail_portfolio_addit_info(
+			BigDecimal r0160_non_perfor_loan_retail_portfolio_addit_info) {
+		this.r0160_non_perfor_loan_retail_portfolio_addit_info = r0160_non_perfor_loan_retail_portfolio_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_last_day_peri_prev_yr_addit_info() {
+		return r0160_num_consu_last_day_peri_prev_yr_addit_info;
+	}
+	public void setR0160_num_consu_last_day_peri_prev_yr_addit_info(
+			BigDecimal r0160_num_consu_last_day_peri_prev_yr_addit_info) {
+		this.r0160_num_consu_last_day_peri_prev_yr_addit_info = r0160_num_consu_last_day_peri_prev_yr_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_branches_prev_yr_addit_info() {
+		return r0160_tot_num_branches_prev_yr_addit_info;
+	}
+	public void setR0160_tot_num_branches_prev_yr_addit_info(BigDecimal r0160_tot_num_branches_prev_yr_addit_info) {
+		this.r0160_tot_num_branches_prev_yr_addit_info = r0160_tot_num_branches_prev_yr_addit_info;
+	}
+	public BigDecimal getR0160_tot_revenue_retail_portfolio_curr_yr_addit_info() {
+		return r0160_tot_revenue_retail_portfolio_curr_yr_addit_info;
+	}
+	public void setR0160_tot_revenue_retail_portfolio_curr_yr_addit_info(
+			BigDecimal r0160_tot_revenue_retail_portfolio_curr_yr_addit_info) {
+		this.r0160_tot_revenue_retail_portfolio_curr_yr_addit_info = r0160_tot_revenue_retail_portfolio_curr_yr_addit_info;
+	}
+	public BigDecimal getR0160_profit_or_loss_retail_portfolio_curr_yr_addit_info() {
+		return r0160_profit_or_loss_retail_portfolio_curr_yr_addit_info;
+	}
+	public void setR0160_profit_or_loss_retail_portfolio_curr_yr_addit_info(
+			BigDecimal r0160_profit_or_loss_retail_portfolio_curr_yr_addit_info) {
+		this.r0160_profit_or_loss_retail_portfolio_curr_yr_addit_info = r0160_profit_or_loss_retail_portfolio_curr_yr_addit_info;
+	}
+	public BigDecimal getR0160_profit_margin_retail_portfolio_curr_yr_addit_info() {
+		return r0160_profit_margin_retail_portfolio_curr_yr_addit_info;
+	}
+	public void setR0160_profit_margin_retail_portfolio_curr_yr_addit_info(
+			BigDecimal r0160_profit_margin_retail_portfolio_curr_yr_addit_info) {
+		this.r0160_profit_margin_retail_portfolio_curr_yr_addit_info = r0160_profit_margin_retail_portfolio_curr_yr_addit_info;
+	}
+	public BigDecimal getR0160_tot_retail_asset_size_curr_yr_addit_info() {
+		return r0160_tot_retail_asset_size_curr_yr_addit_info;
+	}
+	public void setR0160_tot_retail_asset_size_curr_yr_addit_info(
+			BigDecimal r0160_tot_retail_asset_size_curr_yr_addit_info) {
+		this.r0160_tot_retail_asset_size_curr_yr_addit_info = r0160_tot_retail_asset_size_curr_yr_addit_info;
+	}
+	public BigDecimal getR0160_non_perfor_loan_retail_portfo_curr_yr_addit_info() {
+		return r0160_non_perfor_loan_retail_portfo_curr_yr_addit_info;
+	}
+	public void setR0160_non_perfor_loan_retail_portfo_curr_yr_addit_info(
+			BigDecimal r0160_non_perfor_loan_retail_portfo_curr_yr_addit_info) {
+		this.r0160_non_perfor_loan_retail_portfo_curr_yr_addit_info = r0160_non_perfor_loan_retail_portfo_curr_yr_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_last_day_peri_curr_yr_addit_info() {
+		return r0160_num_consu_last_day_peri_curr_yr_addit_info;
+	}
+	public void setR0160_num_consu_last_day_peri_curr_yr_addit_info(
+			BigDecimal r0160_num_consu_last_day_peri_curr_yr_addit_info) {
+		this.r0160_num_consu_last_day_peri_curr_yr_addit_info = r0160_num_consu_last_day_peri_curr_yr_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_branches_current_yr_addit_info() {
+		return r0160_tot_num_branches_current_yr_addit_info;
+	}
+	public void setR0160_tot_num_branches_current_yr_addit_info(BigDecimal r0160_tot_num_branches_current_yr_addit_info) {
+		this.r0160_tot_num_branches_current_yr_addit_info = r0160_tot_num_branches_current_yr_addit_info;
+	}
+	public BigDecimal getR0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info() {
+		return r0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info;
+	}
+	public void setR0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info(
+			BigDecimal r0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info) {
+		this.r0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info = r0160_tot_revenue_retail_portfolio_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info() {
+		return r0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info;
+	}
+	public void setR0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info(
+			BigDecimal r0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info) {
+		this.r0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info = r0160_profit_or_loss_retail_portfolio_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info() {
+		return r0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info;
+	}
+	public void setR0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info(
+			BigDecimal r0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info) {
+		this.r0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info = r0160_profit_margin_retail_portfolio_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_tot_retail_asset_size_nxt_yrt1_addit_info() {
+		return r0160_tot_retail_asset_size_nxt_yrt1_addit_info;
+	}
+	public void setR0160_tot_retail_asset_size_nxt_yrt1_addit_info(
+			BigDecimal r0160_tot_retail_asset_size_nxt_yrt1_addit_info) {
+		this.r0160_tot_retail_asset_size_nxt_yrt1_addit_info = r0160_tot_retail_asset_size_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info() {
+		return r0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info;
+	}
+	public void setR0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info(
+			BigDecimal r0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info) {
+		this.r0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info = r0160_non_perfor_loan_retail_portfo_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_last_day_peri_nxt_yrt1_addit_info() {
+		return r0160_num_consu_last_day_peri_nxt_yrt1_addit_info;
+	}
+	public void setR0160_num_consu_last_day_peri_nxt_yrt1_addit_info(
+			BigDecimal r0160_num_consu_last_day_peri_nxt_yrt1_addit_info) {
+		this.r0160_num_consu_last_day_peri_nxt_yrt1_addit_info = r0160_num_consu_last_day_peri_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_branches_nxt_yrt1_addit_info() {
+		return r0160_tot_num_branches_nxt_yrt1_addit_info;
+	}
+	public void setR0160_tot_num_branches_nxt_yrt1_addit_info(BigDecimal r0160_tot_num_branches_nxt_yrt1_addit_info) {
+		this.r0160_tot_num_branches_nxt_yrt1_addit_info = r0160_tot_num_branches_nxt_yrt1_addit_info;
+	}
+	public BigDecimal getR0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info() {
+		return r0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info;
+	}
+	public void setR0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info(
+			BigDecimal r0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info) {
+		this.r0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info = r0160_tot_revenue_retail_portfolio_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info() {
+		return r0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info;
+	}
+	public void setR0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info(
+			BigDecimal r0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info) {
+		this.r0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info = r0160_profit_or_loss_retail_portfolio_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info() {
+		return r0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info;
+	}
+	public void setR0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info(
+			BigDecimal r0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info) {
+		this.r0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info = r0160_profit_margin_retail_portfolio_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_tot_retail_asset_size_nxt_yrt2_addit_info() {
+		return r0160_tot_retail_asset_size_nxt_yrt2_addit_info;
+	}
+	public void setR0160_tot_retail_asset_size_nxt_yrt2_addit_info(
+			BigDecimal r0160_tot_retail_asset_size_nxt_yrt2_addit_info) {
+		this.r0160_tot_retail_asset_size_nxt_yrt2_addit_info = r0160_tot_retail_asset_size_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info() {
+		return r0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info;
+	}
+	public void setR0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info(
+			BigDecimal r0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info) {
+		this.r0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info = r0160_non_perfor_loan_retail_portfo_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_last_day_peri_nxt_yrt2_addit_info() {
+		return r0160_num_consu_last_day_peri_nxt_yrt2_addit_info;
+	}
+	public void setR0160_num_consu_last_day_peri_nxt_yrt2_addit_info(
+			BigDecimal r0160_num_consu_last_day_peri_nxt_yrt2_addit_info) {
+		this.r0160_num_consu_last_day_peri_nxt_yrt2_addit_info = r0160_num_consu_last_day_peri_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_branches_nxt_yrt2_addit_info() {
+		return r0160_tot_num_branches_nxt_yrt2_addit_info;
+	}
+	public void setR0160_tot_num_branches_nxt_yrt2_addit_info(BigDecimal r0160_tot_num_branches_nxt_yrt2_addit_info) {
+		this.r0160_tot_num_branches_nxt_yrt2_addit_info = r0160_tot_num_branches_nxt_yrt2_addit_info;
+	}
+	public BigDecimal getR0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info() {
+		return r0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info;
+	}
+	public void setR0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info(
+			BigDecimal r0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info) {
+		this.r0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info = r0160_tot_revenue_retail_portfolio_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info() {
+		return r0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info;
+	}
+	public void setR0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info(
+			BigDecimal r0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info) {
+		this.r0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info = r0160_profit_or_loss_retail_portfolio_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info() {
+		return r0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info;
+	}
+	public void setR0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info(
+			BigDecimal r0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info) {
+		this.r0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info = r0160_profit_margin_retail_portfolio_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_tot_retail_asset_size_nxt_yrt3_addit_info() {
+		return r0160_tot_retail_asset_size_nxt_yrt3_addit_info;
+	}
+	public void setR0160_tot_retail_asset_size_nxt_yrt3_addit_info(
+			BigDecimal r0160_tot_retail_asset_size_nxt_yrt3_addit_info) {
+		this.r0160_tot_retail_asset_size_nxt_yrt3_addit_info = r0160_tot_retail_asset_size_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info() {
+		return r0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info;
+	}
+	public void setR0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info(
+			BigDecimal r0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info) {
+		this.r0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info = r0160_non_perfor_loan_retail_portfo_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_last_day_peri_nxt_yrt3_addit_info() {
+		return r0160_num_consu_last_day_peri_nxt_yrt3_addit_info;
+	}
+	public void setR0160_num_consu_last_day_peri_nxt_yrt3_addit_info(
+			BigDecimal r0160_num_consu_last_day_peri_nxt_yrt3_addit_info) {
+		this.r0160_num_consu_last_day_peri_nxt_yrt3_addit_info = r0160_num_consu_last_day_peri_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_branches_nxt_yrt3_addit_info() {
+		return r0160_tot_num_branches_nxt_yrt3_addit_info;
+	}
+	public void setR0160_tot_num_branches_nxt_yrt3_addit_info(BigDecimal r0160_tot_num_branches_nxt_yrt3_addit_info) {
+		this.r0160_tot_num_branches_nxt_yrt3_addit_info = r0160_tot_num_branches_nxt_yrt3_addit_info;
+	}
+	public BigDecimal getR0160_npl_as_specified_date_addit_info() {
+		return r0160_npl_as_specified_date_addit_info;
+	}
+	public void setR0160_npl_as_specified_date_addit_info(BigDecimal r0160_npl_as_specified_date_addit_info) {
+		this.r0160_npl_as_specified_date_addit_info = r0160_npl_as_specified_date_addit_info;
+	}
+	public BigDecimal getR0160_recov_against_npl_spec_date_addit_info() {
+		return r0160_recov_against_npl_spec_date_addit_info;
+	}
+	public void setR0160_recov_against_npl_spec_date_addit_info(BigDecimal r0160_recov_against_npl_spec_date_addit_info) {
+		this.r0160_recov_against_npl_spec_date_addit_info = r0160_recov_against_npl_spec_date_addit_info;
+	}
+	public BigDecimal getR0160_num_new_consu_onboa_digi_channel_addit_info() {
+		return r0160_num_new_consu_onboa_digi_channel_addit_info;
+	}
+	public void setR0160_num_new_consu_onboa_digi_channel_addit_info(
+			BigDecimal r0160_num_new_consu_onboa_digi_channel_addit_info) {
+		this.r0160_num_new_consu_onboa_digi_channel_addit_info = r0160_num_new_consu_onboa_digi_channel_addit_info;
+	}
+	public BigDecimal getR0160_num_acc_closed_spec_time_period_addit_info() {
+		return r0160_num_acc_closed_spec_time_period_addit_info;
+	}
+	public void setR0160_num_acc_closed_spec_time_period_addit_info(
+			BigDecimal r0160_num_acc_closed_spec_time_period_addit_info) {
+		this.r0160_num_acc_closed_spec_time_period_addit_info = r0160_num_acc_closed_spec_time_period_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_acc_rejec_new_loans_addit_info() {
+		return r0160_tot_num_acc_rejec_new_loans_addit_info;
+	}
+	public void setR0160_tot_num_acc_rejec_new_loans_addit_info(BigDecimal r0160_tot_num_acc_rejec_new_loans_addit_info) {
+		this.r0160_tot_num_acc_rejec_new_loans_addit_info = r0160_tot_num_acc_rejec_new_loans_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_new_acc_opened_spec_date_addit_info() {
+		return r0160_tot_num_new_acc_opened_spec_date_addit_info;
+	}
+	public void setR0160_tot_num_new_acc_opened_spec_date_addit_info(
+			BigDecimal r0160_tot_num_new_acc_opened_spec_date_addit_info) {
+		this.r0160_tot_num_new_acc_opened_spec_date_addit_info = r0160_tot_num_new_acc_opened_spec_date_addit_info;
+	}
+	public BigDecimal getR0160_tot_value_associa_new_acc_opened_addit_info() {
+		return r0160_tot_value_associa_new_acc_opened_addit_info;
+	}
+	public void setR0160_tot_value_associa_new_acc_opened_addit_info(
+			BigDecimal r0160_tot_value_associa_new_acc_opened_addit_info) {
+		this.r0160_tot_value_associa_new_acc_opened_addit_info = r0160_tot_value_associa_new_acc_opened_addit_info;
+	}
+	public BigDecimal getR0160_num_inquiri_recv_digital_channel_addit_info() {
+		return r0160_num_inquiri_recv_digital_channel_addit_info;
+	}
+	public void setR0160_num_inquiri_recv_digital_channel_addit_info(
+			BigDecimal r0160_num_inquiri_recv_digital_channel_addit_info) {
+		this.r0160_num_inquiri_recv_digital_channel_addit_info = r0160_num_inquiri_recv_digital_channel_addit_info;
+	}
+	public BigDecimal getR0160_num_inquiri_recv_traditional_channel_addit_info() {
+		return r0160_num_inquiri_recv_traditional_channel_addit_info;
+	}
+	public void setR0160_num_inquiri_recv_traditional_channel_addit_info(
+			BigDecimal r0160_num_inquiri_recv_traditional_channel_addit_info) {
+		this.r0160_num_inquiri_recv_traditional_channel_addit_info = r0160_num_inquiri_recv_traditional_channel_addit_info;
+	}
+	public BigDecimal getR0160_num_retail_transac_pos_terminal_addit_info() {
+		return r0160_num_retail_transac_pos_terminal_addit_info;
+	}
+	public void setR0160_num_retail_transac_pos_terminal_addit_info(
+			BigDecimal r0160_num_retail_transac_pos_terminal_addit_info) {
+		this.r0160_num_retail_transac_pos_terminal_addit_info = r0160_num_retail_transac_pos_terminal_addit_info;
+	}
+	public BigDecimal getR0160_amt_retail_transac_pos_terminal_addit_info() {
+		return r0160_amt_retail_transac_pos_terminal_addit_info;
+	}
+	public void setR0160_amt_retail_transac_pos_terminal_addit_info(
+			BigDecimal r0160_amt_retail_transac_pos_terminal_addit_info) {
+		this.r0160_amt_retail_transac_pos_terminal_addit_info = r0160_amt_retail_transac_pos_terminal_addit_info;
+	}
+	public BigDecimal getR0160_num_retail_transac_svf_wallets_addit_info() {
+		return r0160_num_retail_transac_svf_wallets_addit_info;
+	}
+	public void setR0160_num_retail_transac_svf_wallets_addit_info(
+			BigDecimal r0160_num_retail_transac_svf_wallets_addit_info) {
+		this.r0160_num_retail_transac_svf_wallets_addit_info = r0160_num_retail_transac_svf_wallets_addit_info;
+	}
+	public BigDecimal getR0160_amt_retail_transac_svf_wallets_addit_info() {
+		return r0160_amt_retail_transac_svf_wallets_addit_info;
+	}
+	public void setR0160_amt_retail_transac_svf_wallets_addit_info(
+			BigDecimal r0160_amt_retail_transac_svf_wallets_addit_info) {
+		this.r0160_amt_retail_transac_svf_wallets_addit_info = r0160_amt_retail_transac_svf_wallets_addit_info;
+	}
+	public BigDecimal getR0160_tot_num_digi_channel_available_addit_info() {
+		return r0160_tot_num_digi_channel_available_addit_info;
+	}
+	public void setR0160_tot_num_digi_channel_available_addit_info(
+			BigDecimal r0160_tot_num_digi_channel_available_addit_info) {
+		this.r0160_tot_num_digi_channel_available_addit_info = r0160_tot_num_digi_channel_available_addit_info;
+	}
+	public BigDecimal getR0160_value_unclaimed_balance_spec_peri_addit_info() {
+		return r0160_value_unclaimed_balance_spec_peri_addit_info;
+	}
+	public void setR0160_value_unclaimed_balance_spec_peri_addit_info(
+			BigDecimal r0160_value_unclaimed_balance_spec_peri_addit_info) {
+		this.r0160_value_unclaimed_balance_spec_peri_addit_info = r0160_value_unclaimed_balance_spec_peri_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_coun_categ_low_risk_addit_info() {
+		return r0160_num_consu_coun_categ_low_risk_addit_info;
+	}
+	public void setR0160_num_consu_coun_categ_low_risk_addit_info(
+			BigDecimal r0160_num_consu_coun_categ_low_risk_addit_info) {
+		this.r0160_num_consu_coun_categ_low_risk_addit_info = r0160_num_consu_coun_categ_low_risk_addit_info;
+	}
+	public BigDecimal getR0160_num_consu_coun_categ_high_risk_addit_info() {
+		return r0160_num_consu_coun_categ_high_risk_addit_info;
+	}
+	public void setR0160_num_consu_coun_categ_high_risk_addit_info(
+			BigDecimal r0160_num_consu_coun_categ_high_risk_addit_info) {
+		this.r0160_num_consu_coun_categ_high_risk_addit_info = r0160_num_consu_coun_categ_high_risk_addit_info;
+	}
+	public BigDecimal getR0160_num_retail_consu_conventi_islamic_islamic_banking() {
+		return r0160_num_retail_consu_conventi_islamic_islamic_banking;
+	}
+	public void setR0160_num_retail_consu_conventi_islamic_islamic_banking(
+			BigDecimal r0160_num_retail_consu_conventi_islamic_islamic_banking) {
+		this.r0160_num_retail_consu_conventi_islamic_islamic_banking = r0160_num_retail_consu_conventi_islamic_islamic_banking;
+	}
+	public BigDecimal getR0160_num_retail_consu_islamic_islamic_banking() {
+		return r0160_num_retail_consu_islamic_islamic_banking;
+	}
+	public void setR0160_num_retail_consu_islamic_islamic_banking(
+			BigDecimal r0160_num_retail_consu_islamic_islamic_banking) {
+		this.r0160_num_retail_consu_islamic_islamic_banking = r0160_num_retail_consu_islamic_islamic_banking;
+	}
+	public BigDecimal getR0160_num_sme_consu_conventi_islamic_islamic_banking() {
+		return r0160_num_sme_consu_conventi_islamic_islamic_banking;
+	}
+	public void setR0160_num_sme_consu_conventi_islamic_islamic_banking(
+			BigDecimal r0160_num_sme_consu_conventi_islamic_islamic_banking) {
+		this.r0160_num_sme_consu_conventi_islamic_islamic_banking = r0160_num_sme_consu_conventi_islamic_islamic_banking;
+	}
+	public BigDecimal getR0160_num_sme_consu_islamic_islamic_banking() {
+		return r0160_num_sme_consu_islamic_islamic_banking;
+	}
+	public void setR0160_num_sme_consu_islamic_islamic_banking(BigDecimal r0160_num_sme_consu_islamic_islamic_banking) {
+		this.r0160_num_sme_consu_islamic_islamic_banking = r0160_num_sme_consu_islamic_islamic_banking;
+	}
+	public BigDecimal getR0160_tot_num_auth_agent_outsou_prov_islamic_banking() {
+		return r0160_tot_num_auth_agent_outsou_prov_islamic_banking;
+	}
+	public void setR0160_tot_num_auth_agent_outsou_prov_islamic_banking(
+			BigDecimal r0160_tot_num_auth_agent_outsou_prov_islamic_banking) {
+		this.r0160_tot_num_auth_agent_outsou_prov_islamic_banking = r0160_tot_num_auth_agent_outsou_prov_islamic_banking;
+	}
+	public BigDecimal getR0160_tot_num_point_sale_terminals_islamic_banking() {
+		return r0160_tot_num_point_sale_terminals_islamic_banking;
+	}
+	public void setR0160_tot_num_point_sale_terminals_islamic_banking(
+			BigDecimal r0160_tot_num_point_sale_terminals_islamic_banking) {
+		this.r0160_tot_num_point_sale_terminals_islamic_banking = r0160_tot_num_point_sale_terminals_islamic_banking;
+	}
+	public BigDecimal getR0160_tot_num_merchant_tie_ups_islamic_banking() {
+		return r0160_tot_num_merchant_tie_ups_islamic_banking;
+	}
+	public void setR0160_tot_num_merchant_tie_ups_islamic_banking(
+			BigDecimal r0160_tot_num_merchant_tie_ups_islamic_banking) {
+		this.r0160_tot_num_merchant_tie_ups_islamic_banking = r0160_tot_num_merchant_tie_ups_islamic_banking;
+	}
+	public BigDecimal getR0160_retail_asset_size_islamic_only_islamic_banking() {
+		return r0160_retail_asset_size_islamic_only_islamic_banking;
+	}
+	public void setR0160_retail_asset_size_islamic_only_islamic_banking(
+			BigDecimal r0160_retail_asset_size_islamic_only_islamic_banking) {
+		this.r0160_retail_asset_size_islamic_only_islamic_banking = r0160_retail_asset_size_islamic_only_islamic_banking;
+	}
+	public BigDecimal getR0160_retail_asset_compo_loan_retail_consu_islamic_banking() {
+		return r0160_retail_asset_compo_loan_retail_consu_islamic_banking;
+	}
+	public void setR0160_retail_asset_compo_loan_retail_consu_islamic_banking(
+			BigDecimal r0160_retail_asset_compo_loan_retail_consu_islamic_banking) {
+		this.r0160_retail_asset_compo_loan_retail_consu_islamic_banking = r0160_retail_asset_compo_loan_retail_consu_islamic_banking;
+	}
+	public BigDecimal getR0160_retail_asset_compo_loan_to_sme_islamic_banking() {
+		return r0160_retail_asset_compo_loan_to_sme_islamic_banking;
+	}
+	public void setR0160_retail_asset_compo_loan_to_sme_islamic_banking(
+			BigDecimal r0160_retail_asset_compo_loan_to_sme_islamic_banking) {
+		this.r0160_retail_asset_compo_loan_to_sme_islamic_banking = r0160_retail_asset_compo_loan_to_sme_islamic_banking;
+	}
+	public BigDecimal getR0160_num_complaints_recv_stp_islamic_banking() {
+		return r0160_num_complaints_recv_stp_islamic_banking;
+	}
+	public void setR0160_num_complaints_recv_stp_islamic_banking(BigDecimal r0160_num_complaints_recv_stp_islamic_banking) {
+		this.r0160_num_complaints_recv_stp_islamic_banking = r0160_num_complaints_recv_stp_islamic_banking;
+	}
+	public Date getReport_date() {
+		return report_date;
+	}
+	public void setReport_date(Date report_date) {
+		this.report_date = report_date;
+	}
+	public String getReport_version() {
+		return report_version;
+	}
+	public void setReport_version(String report_version) {
+		this.report_version = report_version;
+	}
+	public String getReport_frequency() {
+		return report_frequency;
+	}
+	public void setReport_frequency(String report_frequency) {
+		this.report_frequency = report_frequency;
+	}
+	public String getReport_code() {
+		return report_code;
+	}
+	public void setReport_code(String report_code) {
+		this.report_code = report_code;
+	}
+	public String getReport_desc() {
+		return report_desc;
+	}
+	public void setReport_desc(String report_desc) {
+		this.report_desc = report_desc;
+	}
+	public String getModify_flg() {
+		return modify_flg;
+	}
+	public void setModify_flg(String modify_flg) {
+		this.modify_flg = modify_flg;
+	}
+	public String getEntity_flg() {
+		return entity_flg;
+	}
+	public void setEntity_flg(String entity_flg) {
+		this.entity_flg = entity_flg;
+	}
+	public String getDelete_flg() {
+		return delete_flg;
+	}
+	public void setDelete_flg(String delete_flg) {
+		this.delete_flg = delete_flg;
+	}
+	public CBUAE_BRF16_1_Archival_Summary_Entity_5() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+}
