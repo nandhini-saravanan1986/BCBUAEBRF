@@ -1090,6 +1090,14 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF1_7":
+			try {
+				archivalData = cbuae_brf1_7_reportservice.getBRF1_7Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case "BRF1_12":
 			try {
 				archivalData = cbuae_brf1_12_reportservice.getBRF1_12Archival();
@@ -1146,9 +1154,25 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF2_13":
+			try {
+				archivalData = cbuae_brf2_13_reportservice.getBRF2_13Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case "BRF2_16":
 			try {
 				archivalData = cbuae_brf2_16_reportservice.getBRF2_16Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "BRF2_18":
+			try {
+				archivalData = cbuae_brf2_18_reportservice.getBRF2_18Archival();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1166,24 +1190,6 @@ public class RegulatoryReportServices {
 		case "BRF7_4":
 			try {
 				archivalData = CBUAE_BRF7_4_ReportServices.getBRF7_4Archival();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-
-		case "BRF1_7":
-			try {
-				archivalData = cbuae_brf1_7_reportservice.getBRF1_7Archival();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-
-		case "BRF2_13":
-			try {
-				archivalData = cbuae_brf2_13_reportservice.getBRF2_13Archival();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
