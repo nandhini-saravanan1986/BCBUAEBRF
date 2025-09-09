@@ -1178,6 +1178,14 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF5_1":
+			try {
+				archivalData = cbuae_brf5_1_reportservice.getBRF5_1Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case "BRF5_17":
 			try {
 				archivalData = cbuae_brf5_17_reportservice.getBRF5_17Archival();
@@ -1186,7 +1194,7 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case "BRF16_2":
 			try {
 				archivalData = CBUAE_BRF16_2_ReportServices.getBRF16_2Archival();
@@ -1350,6 +1358,9 @@ public class RegulatoryReportServices {
 			fileData = CBUAE_BRF1_8_ReportService.getBRF1_8DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
 
+		} else if (filename.equals("BRF5_1Detail")) {
+			fileData = cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
 		}
 
 		if (fileData == null) {
