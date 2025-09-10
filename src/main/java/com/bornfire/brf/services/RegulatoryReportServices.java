@@ -272,7 +272,14 @@ public class RegulatoryReportServices {
 			repsummary = cbuae_brf5_1_reportservice.getBRF5_1View(reportId, fromdate, todate, currency, dtltype,
 					pageable, type, version);
 			break;
-
+		case "BRF5_2":
+			repsummary = cbuae_brf5_2_reportservice.getBRF5_2View(reportId, fromdate, todate, currency, dtltype,
+					pageable, type, version);
+			break;
+		case "BRF5_3":
+			repsummary = cbuae_brf5_3_reportservice.getBRF5_3View(reportId, fromdate, todate, currency, dtltype,
+					pageable, type, version);
+			break;
 		case "BRF5_5":
 			repsummary = cbuae_brf5_5_reportservice.getBRF5_5View(reportId, fromdate, todate, currency, dtltype,
 					pageable);
