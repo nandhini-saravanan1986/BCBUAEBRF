@@ -14,7 +14,7 @@
 	import org.springframework.format.annotation.DateTimeFormat;
 
 	@Entity
-	@Table(name = "CBUAE_BRF5_3_ARCHIVALTABLE_SUMMARY1")
+	@Table(name = "CBUAE_BRF5_3_ARCHIVALTABLE_SUMMARY_1")
 
 	public class CBUAE_BRF5_3_Summary_Archival_Entity1 {
 
