@@ -1274,6 +1274,28 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+	
+		
+		case "BRF2_14":
+			try {
+				archivalData = cbuae_brf2_14_reportservice.getBRF2_14Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;	
+			
+		case "BRF2_15":
+			try {
+				archivalData = cbuae_brf2_15_reportservice.getBRF2_14Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;		
+															
+			
+
 		}
 
 		return archivalData;

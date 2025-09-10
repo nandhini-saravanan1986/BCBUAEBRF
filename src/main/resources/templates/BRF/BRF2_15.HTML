@@ -2720,93 +2720,94 @@ PURPOSE		: BRFREPORT
 														</div>
 													</div>
 
-													<div th:if="${displaymode == 'Details'}">
-														<div class="row">
-															<div class="col-sm-12">
-																<div class="table-responsive scrollable-table-container"
-																	style="border-right: 1px solid #dee2e6; ">
-																	<table
-																		class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-																		 style='margin-top:-30px'>
-																		<thead class="thead-light">
-																			<tr>
-																				<th></th>
-																				<th>CUST ID</th>
-																				<th>ACCT NO</th>
-																				<th>ACCT NAME</th>
-																				<th>ACCT BALANCE</th>
-																				<th style="text-align:left;">ROWID</th>
-																				<th>COLUMNID</th>
-																				<th>REPORT_DATE</th>
-																			</tr>
+				<div th:if="${displaymode == 'Details'}">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="table-responsive scrollable-table-container"
+								style="border-right: 1px solid #dee2e6; ">
+								<table
+									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
+									id="BRFdet" >
+									<thead class="thead-light">
+										<tr>
+											<th></th>
+											<th>CUST ID</th>
+											<th>ACCT NO</th>
+											<th>ACCT NAME</th>
+											<th style="text-align:right;" >ACCT BALANCE</th>
+											<th style="text-align:left;">ROWID</th>
+											<th>COLUMNID</th>
+											<th>REPORT_DATE</th>
+										</tr>
 
-																		</thead>
+									</thead>
 
-																		<tbody  style="font-family: Arial;">
-																			<tr th:each="report: ${reportdetails}">
-																				<td>
-																					<a data-toggle="tooltip" class="editrec"
-																						title="Click to Edit this Record">
-																						<i class="fas fa-edit" onclick="editRecord(this)"></i>
-																					</a>
-																				</td>
-																				<td th:text="${report.custId}"></td>
-																				<td th:text="${report.acctNumber}"></td>
-																				<td th:text="${report.acctName}"></td>
-																				<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
-																				<td style="text-align:left;" th:text="${report.rowId}"></td>
-																				<td th:text="${report.columnId}"></td>
-																				<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
+									<tbody  style="font-family: Arial;">
+										<tr th:each="report: ${reportdetails}">
+											<td>
+												<a data-toggle="tooltip" class="editrec"
+													title="Click to Edit this Record">
+													<i class="fas fa-edit" onclick="editRecord(this)"></i>
+												</a>
+											</td>
+											<td th:text="${report.custId}"></td>
+											<td th:text="${report.acctNumber}"></td>
+											<td th:text="${report.acctName}"></td>
+											<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
+											<td style="text-align:left;" th:text="${report.rowId}"></td>
+											<td th:text="${report.columnId}"></td>
+											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
 
-																			</tr>
-																		</tbody>
-																	</table>
-																	
-																	<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
-																																									   
-																																									    
-																																									    
-																																									<a th:if="${currentPage > 0}"
-																																									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																																									    asondate=${asondate},                             
-																																									    fromdate=${fromdate},
-																																									    todate=${todate},
-																																									    currency=${currency},
-																																									    dtltype=${dtltype},
-																																									    type=${type},
-																																									    version=${version},
-																																									    page=${currentPage - 100},
-																																									    size=100
-																																									)}">
-																																									    Previous
-																																									</a>
-																																			
-																																									    
-																																									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
-																																									
-																																									    
-																																									    <a th:if="${currentPage < (totalPages - 1) * 100}"
-																																									    	
-																																									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																																									    asondate=${asondate},
-																																									    fromdate=${fromdate},
-																																									    todate=${todate},
-																																									    currency=${currency},
-																																									    dtltype=${dtltype},
-																																									    type=${type},
-																																									    version=${version},
-																																									    page=${currentPage + 100},
-																																									    size=100
-																																									)}">	
-																																									    Next
-																																									    </a>
-																																									</div>
-																</div>
+										</tr>
+									</tbody>
+								</table>
+								
+								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									   
+									    
+									    
+									<a th:if="${currentPage > 0}"
+									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},                             
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage - 100},
+									    size=100
+									)}">
+									    Previous
+									</a>
+			
+									    
+									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+									
+									    
+									    <a th:if="${currentPage < (totalPages - 1) * 100}"
+									    	
+									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+									    asondate=${asondate},
+									    fromdate=${fromdate},
+									    todate=${todate},
+									    currency=${currency},
+									    dtltype=${dtltype},
+									    type=${type},
+									    version=${version},
+									    page=${currentPage + 100},
+									    size=100
+									)}">	
+									    Next
+									    </a>
+									</div>
+								
+							</div>
 
 
-															</div>
-														</div>
-													</div>
+						</div>
+					</div>
+				</div>
 
 												</div>
 
@@ -2880,7 +2881,7 @@ PURPOSE		: BRFREPORT
 									</body>
 									<script>
 									  $(document).ready(function () {
-									    $('#BRFdet').DataTable({
+									    $('#BRFdets').DataTable({
 									      "paging": true,
 									      "pageLength": 100,
 									      "lengthChange": false,
@@ -2922,7 +2923,7 @@ PURPOSE		: BRFREPORT
 										/* Your existing CSS - this is the correct approach */
 										.scrollable-table-container {
 											/* This is the key: it creates the scroll context */
-											max-height: 620px;
+											max-height: 590px;
 											/* Or a suitable height like 80vh for responsive design */
 											overflow-y: auto;
 											border: 1px solid #ccc;
@@ -2948,7 +2949,7 @@ PURPOSE		: BRFREPORT
 
 										.scrollable-table-container thead tr:nth-child(3) {
 											position: sticky;
-											top: 72px;
+											top: 306px;
 											/* Adjust based on row height */
 											background-color: #b3b6b9;
 											z-index: 3;
