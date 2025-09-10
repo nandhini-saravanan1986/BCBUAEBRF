@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF5_5_DETAILTABLE", schema = "CXBRL")
+@Table(name = "CBUAE_BRF1_8_DETAILTABLE", schema = "CXBRL")
 public class CBUAE_BRF1_8_Detail_Entity {
 	 	
 	    @Column(name = "ROW_ID", length = 100)
