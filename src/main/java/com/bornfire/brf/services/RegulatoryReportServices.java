@@ -23,7 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 @ConfigurationProperties("output")
 
 public class RegulatoryReportServices {
-
+	@Autowired
+	CBUAE_BRF5_19_ReportService CBUAE_BRF5_19_ReportServices;
+	
 	@Autowired
 	CBUAE_BRF7_4_ReportService CBUAE_BRF7_4_ReportServices;
 	@Autowired
@@ -333,7 +335,11 @@ public class RegulatoryReportServices {
 			repsummary = CBUAE_BRF1_8_ReportService.getBRF1_8View(reportId, fromdate, todate, currency, dtltype,
 					pageable, type, version);
 			break;
-
+		case "BRF5_19":
+			repsummary = CBUAE_BRF5_19_ReportServices.getBRF5_19View(reportId, fromdate, todate, currency, dtltype,
+					pageable, type, version);
+			break;
+			
 		}
 		return repsummary;
 	}
@@ -536,7 +542,10 @@ public class RegulatoryReportServices {
 			repdetail = CBUAE_BRF1_8_ReportService.getBRF1_8currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
 			break;
-
+		case "BRF5_19":
+			repdetail = CBUAE_BRF5_19_ReportServices.getBRF5_19currentDtl(reportId, fromdate, todate, currency, dtltype,
+					pageable, Filter);
+			break;
 		}
 
 		return repdetail;
@@ -931,7 +940,16 @@ public class RegulatoryReportServices {
 				e.printStackTrace();
 			}
 			break;
+		case "BRF5_19":
+			try {
+				repfile = CBUAE_BRF5_19_ReportServices.getBRF5_19Excel(filename, reportId, fromdate, todate, currency,
+						dtltype, type, version);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
 		}
+		
 
 		return repfile;
 	}
@@ -1057,6 +1075,9 @@ public class RegulatoryReportServices {
 			return cbuae_brf2_4_reportservice.getBRF2_4DetailExcel(filename, fromdate, todate, currency, dtltype, type,
 					version);
 
+		}else if (filename.equals("BRF5_19Detail")) {
+			return CBUAE_BRF5_19_ReportServices.getBRF5_19DetailExcel(filename, fromdate, todate, currency, dtltype, type,
+					version);
 		}
 		return new byte[0];
 	}
@@ -1368,6 +1389,9 @@ public class RegulatoryReportServices {
 
 		} else if (filename.equals("BRF5_1Detail")) {
 			fileData = cbuae_brf5_1_reportservice.getBRF5_1DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
+		}else if (filename.equals("BRF5_19Detail")) {
+			fileData = CBUAE_BRF5_19_ReportServices.getBRF5_19DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
 		}
 
