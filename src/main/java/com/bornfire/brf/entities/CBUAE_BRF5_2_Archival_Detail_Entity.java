@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF5_2ARCHIVALTABLE_DETAIL")
+@Table(name = "CBUAE_BRF5_2_ARCHIVALTABLE_DETAIL")
 public class CBUAE_BRF5_2_Archival_Detail_Entity {
 	
 
