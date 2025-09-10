@@ -9,8 +9,11 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,6 +29,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +41,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bornfire.brf.entities.CBUAE_BRF5_2_Detail_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF2_18_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_2_Archival_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF5_2_Archival_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF5_2_Detail_Entity;
@@ -83,95 +88,200 @@ public class CBUAE_BRF5_2_ReportService {
 
 	public ModelAndView getBRF5_2View(String reportId, String fromdate, String todate, String currency, String dtltype,
 			Pageable pageable, String type, String version) {
-		logger.info("Generating view for BRF5_2");
-		ModelAndView mv = new ModelAndView();
 
-		if ("ARCHIVAL".equals(type) && version != null) {
-			List<CBUAE_BRF5_2_Summary_Archival_Entity1> T1Master = new ArrayList<>();
-			List<CBUAE_BRF5_2_Summary_Archival_Entity2> T1Master1 = new ArrayList<>();
+		ModelAndView mv = new ModelAndView();
+		Session hs = sessionFactory.getCurrentSession();
+		int pageSize = pageable.getPageSize();
+		int currentPage = pageable.getPageNumber();
+		int startItem = currentPage * pageSize;
+		if (type.equals("ARCHIVAL") & version != null) {
+			List<CBUAE_BRF5_2_Summary_Archival_Entity1> T1Master = new ArrayList<CBUAE_BRF5_2_Summary_Archival_Entity1>();
+			List<CBUAE_BRF5_2_Summary_Archival_Entity2> T1Master1 = new ArrayList<CBUAE_BRF5_2_Summary_Archival_Entity2>();
 			try {
-				Date reportDate = dateformat.parse(todate);
-				T1Master = BRF5_2_Summary_Archival_Repo1.getdatabydateListarchival(reportDate, version);
-				T1Master1 = BRF5_2_Summary_Archival_Repo2.getdatabydateListarchival(reportDate, version);
+				Date d1 = dateformat.parse(todate);
+
+				T1Master = BRF5_2_Summary_Archival_Repo1.getdatabydateListarchival(dateformat.parse(todate), version);
+				T1Master1 = BRF5_2_Summary_Archival_Repo2.getdatabydateListarchival(dateformat.parse(todate), version);
+
 			} catch (ParseException e) {
-				logger.error("Error parsing date for archival view: {}", e.getMessage());
+				e.printStackTrace();
 			}
 			mv.addObject("reportsummary", T1Master);
 			mv.addObject("reportsummary1", T1Master1);
-		} else {
-			List<CBUAE_BRF5_2_Summary_Entity1> T1Master = new ArrayList<>();
-			List<CBUAE_BRF5_2_Summary_Entity2> T1Master1 = new ArrayList<>();
+		}
+
+		else {
+			List<CBUAE_BRF5_2_Summary_Entity1> T1Master = new ArrayList<CBUAE_BRF5_2_Summary_Entity1>();
+			List<CBUAE_BRF5_2_Summary_Entity2> T1Master1 = new ArrayList<CBUAE_BRF5_2_Summary_Entity2>();
 			try {
-				Date reportDate = dateformat.parse(todate);
-				T1Master = BRF5_2_Summary_Repo1.getdatabydateList(reportDate);
-				T1Master1 = BRF5_2_Summary_Repo2.getdatabydateList(reportDate);
+				Date d1 = dateformat.parse(todate);
+
+				T1Master = BRF5_2_Summary_Repo1.getdatabydateList(dateformat.parse(todate));
+				T1Master1 = BRF5_2_Summary_Repo2.getdatabydateList(dateformat.parse(todate));
+
 			} catch (ParseException e) {
-				logger.error("Error parsing date for current view: {}", e.getMessage());
+				e.printStackTrace();
 			}
 			mv.addObject("reportsummary", T1Master);
 			mv.addObject("reportsummary1", T1Master1);
 		}
 
 		mv.setViewName("BRF/BRF5_2");
+
 		mv.addObject("displaymode", "summary");
-		logger.info("View name set to: {}", mv.getViewName());
+		System.out.println("scv" + mv.getViewName());
+
 		return mv;
+
 	}
 
+	public List<Object> getBRF5_2Archival() {
+		try {
+			List<Object> merged = new ArrayList<>();
+			merged.addAll(BRF5_2_Summary_Archival_Repo1.getBRF5_2archival());
+			merged.addAll(BRF5_2_Summary_Archival_Repo2.getBRF5_2archival());
+			
+			Set<String> seen = new HashSet<>();
+			List<Object> uniqueList = new ArrayList<>();
+
+			for (Object obj : merged) {
+				Object[] row = (Object[]) obj;
+				String key = row[0] + "_" + row[1]; // unique by date+version
+				if (seen.add(key)) {
+					uniqueList.add(row);
+				}
+			}
+
+			System.out.println("Unique Count: " + uniqueList.size());
+			return uniqueList;
+
+		} catch (Exception e) {
+			System.err.println("Error fetching BRF5_2 Archival data: " + e.getMessage());
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
+	}
+	/*
+	 * public List<Object> getBRF2_6Archival() { List<Object> BRF2_6Archivallist =
+	 * new ArrayList<>(); try { BRF2_6Archivallist =
+	 * BRF2_6_Archival_Summary_Repo.getbrf2_6archival();
+	 * System.out.println("countser" + BRF2_6Archivallist.size()); } catch
+	 * (Exception e) { // Log the exception
+	 * System.err.println("Error fetching BRF2_6 Archival data: " + e.getMessage());
+	 * e.printStackTrace();
+	 * 
+	 * // Optionally, you can rethrow it or return empty list // throw new
+	 * RuntimeException("Failed to fetch data", e); } return BRF2_6Archivallist; }
+	 */
+	
 	public ModelAndView getBRF5_2currentDtl(String reportId, String fromdate, String todate, String currency,
 			String dtltype, Pageable pageable, String filter, String type, String version) {
 
+		int pageSize = pageable.getPageSize();
+		int currentPage = pageable.getPageNumber();
+		int totalPages = 0;
+
 		ModelAndView mv = new ModelAndView();
-		try {
-			Date reportDate = dateformat.parse(todate);
-			String rowId = null;
-			String columnId = null;
+		Session hs = sessionFactory.getCurrentSession();
+		if (type.equals("ARCHIVAL") & version != null) {
+			List<CBUAE_BRF5_2_Archival_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF5_2_Archival_Detail_Entity>();
+			try {
+				Date d1 = dateformat.parse(todate);
+				String rowId = null;
+				String columnId = null;
 
-			if (filter != null && filter.contains(",")) {
-				String[] parts = filter.split(",");
-				if (parts.length >= 2) {
-					rowId = parts[0];
-					columnId = parts[1];
+				// ✅ Split the filter string here
+				if (filter != null && filter.contains(",")) {
+					String[] parts = filter.split(",");
+					if (parts.length >= 2) {
+						rowId = parts[0];
+						columnId = parts[1];
+					}
 				}
+
+				if (rowId != null && columnId != null) {
+					T1Dt1 = BRF5_2_archival_detail_repo.GetDataByRowIdAndColumnId(rowId, columnId,
+							dateformat.parse(todate), version);
+
+					System.out.println("countavd" + T1Dt1.size());
+				} else {
+					T1Dt1 = BRF5_2_archival_detail_repo.getdatabydateList(d1, version, currentPage, pageSize);
+					totalPages = BRF5_2_archival_detail_repo.getdatacount(dateformat.parse(todate), version);
+					mv.addObject("pagination", "YES");
+				}
+
+				mv.addObject("reportdetails", T1Dt1);
+				mv.addObject("reportmaster12", T1Dt1);
+
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
 
-			if ("ARCHIVAL".equals(type) && version != null) {
-				List<CBUAE_BRF5_2_Archival_Detail_Entity> details;
-				if (rowId != null && columnId != null) {
-					details = BRF5_2_archival_detail_repo.GetDataByRowIdAndColumnId(rowId, columnId, reportDate, version);
-				} else {
-					details = BRF5_2_archival_detail_repo.getdatabydateList(reportDate, version);
+		} else {
+			System.out.println(type);
+			List<CBUAE_BRF5_2_Detail_Entity> T1Dt1 = new ArrayList<>();
+
+			try {
+				Date d1 = dateformat.parse(todate);
+
+				String rowId = null;
+				String columnId = null;
+
+				// ✅ Split the filter string here
+				if (filter != null && filter.contains(",")) {
+					String[] parts = filter.split(",");
+					if (parts.length >= 2) {
+						rowId = parts[0];
+						columnId = parts[1];
+					}
 				}
-				mv.addObject("reportdetails", details);
-			} else {
-				List<CBUAE_BRF5_2_Detail_Entity> details;
+
 				if (rowId != null && columnId != null) {
-					details = BRF5_2_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId, reportDate);
+					T1Dt1 = BRF5_2_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId,
+							dateformat.parse(todate));
 				} else {
-					details = BRF5_2_Detail_Repo.getdatabydateList(reportDate);
+					T1Dt1 = BRF5_2_Detail_Repo.getdatabydateList(d1, currentPage, pageSize);
+					totalPages = BRF5_2_Detail_Repo.getdatacount(dateformat.parse(todate));
+					mv.addObject("pagination", "YES");
 				}
-				mv.addObject("reportdetails", details);
+				mv.addObject("reportdetails", T1Dt1);
+				mv.addObject("reportmaster12", T1Dt1);
+
+				System.out.println("LISTCOUNT: " + T1Dt1.size());
+
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-		} catch (ParseException e) {
-			logger.error("Error parsing date for detail view: {}", e.getMessage());
 		}
-
 		mv.setViewName("BRF/BRF5_2");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("totalPages", (int) Math.ceil((double) totalPages / 100));
 		mv.addObject("displaymode", "Details");
+
 		mv.addObject("reportsflag", "reportsflag");
 		mv.addObject("menu", reportId);
 		return mv;
 	}
 
+
+			
 	public byte[] getBRF5_2Excel(String filename, String reportId, String fromdate, String todate, String currency,
 			String dtltype, String type, String version) throws Exception {
 
 		logger.info("Service: Starting Excel generation process in memory for type: {}", type);
 
-		if ("ARCHIVAL".equals(type) && version != null) {
-			return getBRF5_2ExcelARCHIVAL(filename, reportId, fromdate, todate, currency, dtltype, type, version);
-		}
+		/*
+		 * if ("ARCHIVAL".equals(type) && version != null) { return
+		 * getBRF5_2ExcelARCHIVAL(filename, reportId, fromdate, todate, currency,
+		 * dtltype, type, version); }
+		 */
 
+		
+		if (type.equals("ARCHIVAL") & version != null) {
+			byte[] ARCHIVALreport = getBRF5_2ExcelARCHIVAL(filename, reportId, fromdate, todate, currency, dtltype,
+					type, version);
+			return ARCHIVALreport;
+		}
 		List<CBUAE_BRF5_2_Summary_Entity1> dataList = BRF5_2_Summary_Repo1.getdatabydateList(dateformat.parse(todate));
 		List<CBUAE_BRF5_2_Summary_Entity2> dataList1 = BRF5_2_Summary_Repo2.getdatabydateList(dateformat.parse(todate));
 
@@ -14450,17 +14560,15 @@ public class CBUAE_BRF5_2_ReportService {
 
 
 	
-	public List<Object> getBRF5_2Archival() {
-		List<Object> brf5_2ArchivalList = new ArrayList<>();
-		try {
-			brf5_2ArchivalList.addAll(BRF5_2_Summary_Archival_Repo1.getBRF5_2archival());
-			brf5_2ArchivalList.addAll(BRF5_2_Summary_Archival_Repo2.getBRF5_2archival());
-			logger.info("Fetched {} archival records.", brf5_2ArchivalList.size());
-		} catch (Exception e) {
-			logger.error("Error fetching BRF5_2 Archival data: {}", e.getMessage(), e);
-		}
-		return brf5_2ArchivalList;
-	}
+			/*
+			 * public List<Object> getBRF5_2Archival() { List<Object> brf5_2ArchivalList =
+			 * new ArrayList<>(); try {
+			 * brf5_2ArchivalList.addAll(BRF5_2_Summary_Archival_Repo1.getBRF5_2archival());
+			 * brf5_2ArchivalList.addAll(BRF5_2_Summary_Archival_Repo2.getBRF5_2archival());
+			 * logger.info("Fetched {} archival records.", brf5_2ArchivalList.size()); }
+			 * catch (Exception e) { logger.error("Error fetching BRF5_2 Archival data: {}",
+			 * e.getMessage(), e); } return brf5_2ArchivalList; }
+			 */
 
 	public byte[] getBRF5_2ExcelARCHIVAL(String filename, String reportId, String fromdate, String todate,
 			String currency, String dtltype, String type, String version) throws Exception {

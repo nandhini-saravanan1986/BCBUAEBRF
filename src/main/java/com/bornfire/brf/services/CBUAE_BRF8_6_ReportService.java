@@ -30,6 +30,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +43,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.bornfire.brf.entities.CBUAE_BRF8_6_Detail_Archival_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF8_6_Detail_Archival_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF8_6_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF8_6_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF8_6_Summary_Archival_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF8_6_Summary_Archival_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF8_6_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF8_6_Summary_Repo;
 
@@ -64,22 +70,42 @@ public class CBUAE_BRF8_6_ReportService {
 	@Autowired
 	CBUAE_BRF8_6_Summary_Repo CBUAE_BRF8_6_Summary_Repos;
 	@Autowired
+	CBUAE_BRF8_6_Summary_Archival_Repo BRF8_6_Summary_Archival_Repo;
+	@Autowired
 	CBUAE_BRF8_6_Detail_Repo CBUAE_BRF8_6_Detail_Repos;
+	/*
+	 * @Autowired(required=true) CBUAE_BRF8_6_Detail_Archival_Repo
+	 * CBUAE_BRF8_6_Detail_Archival_Repo;
+	 */
+	
+	@Autowired
+    private CBUAE_BRF8_6_Detail_Archival_Repo archivalRepo;
+	
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 	public ModelAndView getBRF8_6View(String reportId, String fromdate, String todate, String currency, String dtltype,
 			Pageable pageable,String type,String version) {
 		logger.info("getBRF8_6View...");
 		ModelAndView mv = new ModelAndView();
-		if(type.equals("ARCHIVAL")&version!=null) {
-
-			logger.info("Enter if statement");
-			List<CBUAE_BRF8_6_Summary_Entity> T1Master = new ArrayList<CBUAE_BRF8_6_Summary_Entity>();
 		
-				 T1Master=CBUAE_BRF8_6_Summary_Repos.getdatabydateList();
-			
+		if (type.equals("ARCHIVAL") & version != null) {
+			List<CBUAE_BRF8_6_Summary_Archival_Entity> T1Master = new ArrayList<CBUAE_BRF8_6_Summary_Archival_Entity>();
+			try {
+				Date d1 = dateformat.parse(todate);
+
+				T1Master = BRF8_6_Summary_Archival_Repo.getdatabydateListarchival(dateformat.parse(todate), version);
+				 System.out.println("LISTCOUNT: " + T1Master.size());
+				 
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			
 			mv.addObject("reportsummary", T1Master);
+			System.out.println("BRF8_6 rows: " + T1Master.size());
+
 		}
+		
+		
+		
 		else {
 			List<CBUAE_BRF8_6_Summary_Entity> T1Master = new ArrayList<CBUAE_BRF8_6_Summary_Entity>();
 
@@ -103,51 +129,124 @@ public class CBUAE_BRF8_6_ReportService {
 		return mv;
 
 	}
-	public ModelAndView getBRF8_6currentDtl(
-	        String reportId, String fromdate, String todate, String currency,
-	        String dtltype, Pageable pageable, String filter) {
+	
+	public List<Object> getBRF8_6Archival() {
+		List<Object> BRF8_6Archivallist = new ArrayList<>();
+		try {
+			BRF8_6Archivallist = BRF8_6_Summary_Archival_Repo.getBRF8_6archival();
+			System.out.println("countser" + BRF8_6Archivallist.size());
+		} catch (Exception e) {
+			// Log the exception
+			System.err.println("Error fetching BRF8_6 Archival data: " + e.getMessage());
+			e.printStackTrace();
 
-
-	    ModelAndView mv = new ModelAndView();
-	    List<CBUAE_BRF8_6_Detail_Entity> T1Dt1 = new ArrayList<>();
-
-	    try {
-	        Date d1 = dateformat.parse(todate);
-
-	        String rowId = null;
-	        String columnId = null;
-
-	        // ✅ Split the filter string here
-	        if (filter != null && filter.contains(",")) {
-	            String[] parts = filter.split(",");
-	            if (parts.length >= 2) {
-	                rowId = parts[0];
-	                columnId = parts[1];
-	            }
-	        }
-
-	        if (rowId != null && columnId != null) {
-	        	logger.info("enter if block");
-	            T1Dt1 = CBUAE_BRF8_6_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId);
-	        } else {
-	        	logger.info("enter else block");
-	            T1Dt1 = CBUAE_BRF8_6_Detail_Repos.getdatabydateList(d1);
-	        }
-
-	        System.out.println("LISTCOUNT: " + T1Dt1.size());
-
-	    } catch (ParseException e) {
-	        e.printStackTrace();
-	    }
-
-	    mv.setViewName("BRF/BRF8_6");
-	    mv.addObject("displaymode", "Details");
-	    mv.addObject("reportdetails", T1Dt1);
-	    mv.addObject("reportmaster12", T1Dt1);
-	    mv.addObject("reportsflag", "reportsflag");
-	    mv.addObject("menu", reportId);
-	    return mv;
+			// Optionally, you can rethrow it or return empty list
+			// throw new RuntimeException("Failed to fetch data", e);
+		}
+		return BRF8_6Archivallist;
 	}
+	
+	/*
+	 * public ModelAndView getBRF8_6currentDtl( String reportId, String fromdate,
+	 * String todate, String currency, String dtltype, Pageable pageable, String
+	 * filter) {
+	 * 
+	 * 
+	 * ModelAndView mv = new ModelAndView(); List<CBUAE_BRF8_6_Detail_Entity> T1Dt1
+	 * = new ArrayList<>();
+	 * 
+	 * try { Date d1 = dateformat.parse(todate);
+	 * 
+	 * String rowId = null; String columnId = null;
+	 * 
+	 * // ✅ Split the filter string here if (filter != null && filter.contains(","))
+	 * { String[] parts = filter.split(","); if (parts.length >= 2) { rowId =
+	 * parts[0]; columnId = parts[1]; } }
+	 * 
+	 * if (rowId != null && columnId != null) { logger.info("enter if block"); T1Dt1
+	 * = CBUAE_BRF8_6_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId); }
+	 * else { logger.info("enter else block"); T1Dt1 =
+	 * CBUAE_BRF8_6_Detail_Repos.getdatabydateList(d1); }
+	 * 
+	 * System.out.println("LISTCOUNT: " + T1Dt1.size());
+	 * 
+	 * } catch (ParseException e) { e.printStackTrace(); }
+	 * 
+	 * mv.setViewName("BRF/BRF8_6"); mv.addObject("displaymode", "Details");
+	 * mv.addObject("reportdetails", T1Dt1); mv.addObject("reportmaster12", T1Dt1);
+	 * mv.addObject("reportsflag", "reportsflag"); mv.addObject("menu", reportId);
+	 * return mv; }
+	 */
+	
+	public ModelAndView getBRF8_6currentDtl(String reportId, String fromdate, String todate, String currency,
+            String dtltype, Pageable pageable, String filter, String type, String version) {
+
+int pageSize = (pageable != null) ? pageable.getPageSize() : 100;   // ✅ avoid NPE
+int currentPage = (pageable != null) ? pageable.getPageNumber() : 0;
+int totalPages = 0;
+
+ModelAndView mv = new ModelAndView();
+Session hs = sessionFactory.getCurrentSession();
+
+try {
+Date parsedDate = dateformat.parse(todate);
+
+String rowId = null;
+String columnId = null;
+
+// ✅ Extract rowId and columnId from filter
+if (filter != null && filter.contains(",")) {
+String[] parts = filter.split(",");
+if (parts.length >= 2) {
+rowId = parts[0];
+columnId = parts[1];
+}
+}
+
+// ✅ ARCHIVAL block
+if ("ARCHIVAL".equalsIgnoreCase(type) && version != null) {
+List<CBUAE_BRF8_6_Detail_Archival_Entity> T1Dt1;
+
+if (rowId != null && columnId != null) {
+T1Dt1 = archivalRepo.GetDataByRowIdAndColumnId(rowId, columnId, parsedDate, version);
+} else {
+T1Dt1 = archivalRepo.getdatabydateList(parsedDate, version);
+}
+
+mv.addObject("reportdetails", T1Dt1);
+System.out.println("ARCHIVAL COUNT: " + (T1Dt1 != null ? T1Dt1.size() : 0));
+
+} else {
+// ✅ NON-ARCHIVAL block
+List<CBUAE_BRF8_6_Detail_Entity> T1Dt1;
+
+if (rowId != null && columnId != null) {
+T1Dt1 = CBUAE_BRF8_6_Detail_Repos.GetDataByRowIdAndColumnId(rowId, columnId, parsedDate);
+} else {
+T1Dt1 = CBUAE_BRF8_6_Detail_Repos.getdatabydateList(parsedDate, currentPage, pageSize);
+totalPages = CBUAE_BRF8_6_Detail_Repos.getdatacount(parsedDate);
+mv.addObject("pagination", "YES");
+}
+
+mv.addObject("reportdetails", T1Dt1);
+System.out.println("DETAIL COUNT: " + (T1Dt1 != null ? T1Dt1.size() : 0));
+}
+
+} catch (ParseException e) {
+e.printStackTrace();
+}
+
+// ✅ Common attributes
+mv.setViewName("BRF/BRF8_6");
+mv.addObject("displaymode", "Details");
+mv.addObject("currentPage", currentPage);
+mv.addObject("totalPages", (int) Math.ceil((double) totalPages / 100));
+mv.addObject("reportsflag", "reportsflag");
+mv.addObject("menu", reportId);
+
+return mv;
+}
+
 	public byte[] getBRF8_6Excel(String filename, String reportId, String fromdate, String todate, String currency, String dtltype,
 			String type,String version) throws Exception {
 
@@ -282,7 +381,136 @@ public class CBUAE_BRF8_6_ReportService {
 	        throw e;
 	    }
 	}
+	public byte[] getBRF8_6ExcelARCHIVAL(String filename, String reportId, String fromdate, String todate,
+			String currency, String dtltype, String type, String version) throws Exception {
+		logger.info("Service: Starting Archival Excel generation process in memory.");
+		if (type.equals("ARCHIVAL") & version != null) {
 
+		}
+		List<CBUAE_BRF8_6_Summary_Archival_Entity> dataList = BRF8_6_Summary_Archival_Repo
+				.getdatabydateListarchival(dateformat.parse(todate), version);
+		if (dataList.isEmpty()) {
+			logger.warn("Service: No data found for BRF8.6 report. Returning empty result.");
+			return new byte[0];
+		}
+
+		String templateDir = env.getProperty("output.exportpathtemp");
+		String templateFileName = filename;
+		System.out.println(filename);
+		Path templatePath = Paths.get(templateDir, templateFileName);
+		System.out.println(templatePath);
+
+		logger.info("Service: Attempting to load template from path: {}", templatePath.toAbsolutePath());
+
+		if (!Files.exists(templatePath)) {
+			// This specific exception will be caught by the controller.
+			throw new FileNotFoundException("Template file not found at: " + templatePath.toAbsolutePath());
+		}
+		if (!Files.isReadable(templatePath)) {
+			// A specific exception for permission errors.
+			throw new SecurityException(
+					"Template file exists but is not readable (check permissions): " + templatePath.toAbsolutePath());
+		}
+
+		// This try-with-resources block is perfect. It guarantees all resources are
+		// closed automatically.
+		try (InputStream templateInputStream = Files.newInputStream(templatePath);
+				Workbook workbook = WorkbookFactory.create(templateInputStream);
+				ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+
+			Sheet sheet = workbook.getSheetAt(0);
+
+			// --- Style Definitions ---
+			CreationHelper createHelper = workbook.getCreationHelper();
+
+			CellStyle dateStyle = workbook.createCellStyle();
+			dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd-MM-yyyy"));
+			dateStyle.setBorderBottom(BorderStyle.THIN);
+			dateStyle.setBorderTop(BorderStyle.THIN);
+			dateStyle.setBorderLeft(BorderStyle.THIN);
+			dateStyle.setBorderRight(BorderStyle.THIN);
+
+			CellStyle textStyle = workbook.createCellStyle();
+			textStyle.setBorderBottom(BorderStyle.THIN);
+			textStyle.setBorderTop(BorderStyle.THIN);
+			textStyle.setBorderLeft(BorderStyle.THIN);
+			textStyle.setBorderRight(BorderStyle.THIN);
+
+			// Create the font
+			Font font = workbook.createFont();
+			font.setFontHeightInPoints((short) 8); // size 8
+			font.setFontName("Arial");
+
+			CellStyle numberStyle = workbook.createCellStyle();
+			// numberStyle.setDataFormat(createHelper.createDataFormat().getFormat("0.000"));
+			numberStyle.setBorderBottom(BorderStyle.THIN);
+			numberStyle.setBorderTop(BorderStyle.THIN);
+			numberStyle.setBorderLeft(BorderStyle.THIN);
+			numberStyle.setBorderRight(BorderStyle.THIN);
+			numberStyle.setFont(font);
+			// --- End of Style Definitions ---
+
+			int startRow = 9;
+
+			if (!dataList.isEmpty()) {
+				for (int i = 0; i < dataList.size(); i++) {
+					CBUAE_BRF8_6_Summary_Archival_Entity record = dataList.get(i);
+					System.out.println("rownumber=" + startRow + i);
+					Row row = sheet.getRow(startRow + i);
+					if (row == null) {
+						row = sheet.createRow(startRow + i);
+					}
+
+					// row10
+					// Column E
+					
+					/*
+					 * Cell cell4 = row.createCell(4); if
+					 * (record.getR0020_nonresi_aed_up_to_3_months() != null) {
+					 * cell4.setCellValue(record.getR0020_nonresi_aed_up_to_3_months().doubleValue()
+					 * ); cell4.setCellStyle(numberStyle); } else { cell4.setCellValue("");
+					 * cell4.setCellStyle(textStyle); } Cell cell5 = row.createCell(4); if
+					 * (record.getR0020_nonresi_aed_above_3_and_up_to_6_months() != null) {
+					 * cell5.setCellValue(record.getR0020_nonresi_aed_above_3_and_up_to_6_months().
+					 * doubleValue()); cell5.setCellStyle(numberStyle); } else {
+					 * cell5.setCellValue(""); cell5.setCellStyle(textStyle); }
+					 */
+					
+					// row11
+					//row = sheet.getRow(10);
+
+					// Column E
+					/*
+					 * cell4 = row.createCell(4); if (record.getR0030_year_to_date() != null) {
+					 * cell4.setCellValue(record.getR0030_year_to_date().doubleValue());
+					 * cell4.setCellStyle(numberStyle); } else { cell4.setCellValue("");
+					 * cell4.setCellStyle(textStyle); }
+					 */
+
+					// row12
+					//row = sheet.getRow(11);
+
+					// Column E
+					/*
+					 * cell4 = row.createCell(4); if (record.getR0040_year_to_date() != null) {
+					 * cell4.setCellValue(record.getR0040_year_to_date().doubleValue());
+					 * cell4.setCellStyle(numberStyle); } else { cell4.setCellValue("");
+					 * cell4.setCellStyle(textStyle); }
+					 */
+				}
+				workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
+			} else {
+
+			}
+
+			// Write the final workbook content to the in-memory stream.
+			workbook.write(out);
+
+			logger.info("Service: Excel data successfully written to memory buffer ({} bytes).", out.size());
+
+			return out.toByteArray();
+		}
+	}
 	
 	public byte[] getBRF8_6DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
 			String type, String version) {

@@ -9,8 +9,11 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -85,31 +88,34 @@ public class CBUAE_BRF5_3_ReportService {
 
 	public ModelAndView getBRF5_3View(String reportId, String fromdate, String todate, String currency, String dtltype,
 			Pageable pageable, String type, String version) {
-		System.out.println("getBRF5_3View");
+System.out.println("getBRF5_3View");
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;
-
 		if (type.equals("ARCHIVAL") & version != null) {
 			List<CBUAE_BRF5_3_Summary_Archival_Entity1> T1Master = new ArrayList<CBUAE_BRF5_3_Summary_Archival_Entity1>();
 			List<CBUAE_BRF5_3_Summary_Archival_Entity2> T1Master1 = new ArrayList<CBUAE_BRF5_3_Summary_Archival_Entity2>();
 			try {
 				Date d1 = dateformat.parse(todate);
+
 				T1Master = BRF5_3_Summary_Archival_Repo1.getdatabydateListarchival(dateformat.parse(todate), version);
 				T1Master1 = BRF5_3_Summary_Archival_Repo2.getdatabydateListarchival(dateformat.parse(todate), version);
 
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-
 			mv.addObject("reportsummary", T1Master);
-		} else {
+			mv.addObject("reportsummary1", T1Master1);
+		}
+
+		else {
 			List<CBUAE_BRF5_3_Summary_Entity1> T1Master = new ArrayList<CBUAE_BRF5_3_Summary_Entity1>();
 			List<CBUAE_BRF5_3_Summary_Entity2> T1Master1 = new ArrayList<CBUAE_BRF5_3_Summary_Entity2>();
 			try {
 				Date d1 = dateformat.parse(todate);
+
 				T1Master = BRF5_3_Summary_Repo1.getdatabydateList(dateformat.parse(todate));
 				T1Master1 = BRF5_3_Summary_Repo2.getdatabydateList(dateformat.parse(todate));
 
@@ -121,6 +127,7 @@ public class CBUAE_BRF5_3_ReportService {
 		}
 
 		mv.setViewName("BRF/BRF5_3");
+
 		mv.addObject("displaymode", "summary");
 		System.out.println("scv" + mv.getViewName());
 
@@ -133,15 +140,14 @@ public class CBUAE_BRF5_3_ReportService {
 
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
-		int startItem = currentPage * pageSize;
+		int totalPages = 0;
 
 		ModelAndView mv = new ModelAndView();
+		Session hs = sessionFactory.getCurrentSession();
 		if (type.equals("ARCHIVAL") & version != null) {
 			List<CBUAE_BRF5_3_Archival_Detail_Entity> T1Dt1 = new ArrayList<CBUAE_BRF5_3_Archival_Detail_Entity>();
-
 			try {
 				Date d1 = dateformat.parse(todate);
-
 				String rowId = null;
 				String columnId = null;
 
@@ -160,9 +166,9 @@ public class CBUAE_BRF5_3_ReportService {
 
 					System.out.println("countavd" + T1Dt1.size());
 				} else {
-
-					T1Dt1 = BRF5_3_archival_detail_repo.getdatabydateList(dateformat.parse(todate), version);
-					System.out.println("countavd" + T1Dt1.size());
+					T1Dt1 = BRF5_3_archival_detail_repo.getdatabydateList(d1, version, currentPage, pageSize);
+					totalPages = BRF5_3_archival_detail_repo.getdatacount(dateformat.parse(todate), version);
+					mv.addObject("pagination", "YES");
 				}
 
 				mv.addObject("reportdetails", T1Dt1);
@@ -171,6 +177,7 @@ public class CBUAE_BRF5_3_ReportService {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+
 		} else {
 			System.out.println(type);
 			List<CBUAE_BRF5_3_Detail_Entity> T1Dt1 = new ArrayList<>();
@@ -191,10 +198,15 @@ public class CBUAE_BRF5_3_ReportService {
 				}
 
 				if (rowId != null && columnId != null) {
-					T1Dt1 = BRF5_3_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId, d1);
+					T1Dt1 = BRF5_3_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId,
+							dateformat.parse(todate));
 				} else {
-					T1Dt1 = BRF5_3_Detail_Repo.getdatabydateList(d1);
+					T1Dt1 = BRF5_3_Detail_Repo.getdatabydateList(d1, currentPage, pageSize);
+					totalPages = BRF5_3_Detail_Repo.getdatacount(dateformat.parse(todate));
+					mv.addObject("pagination", "YES");
 				}
+				mv.addObject("reportdetails", T1Dt1);
+				mv.addObject("reportmaster12", T1Dt1);
 
 				System.out.println("LISTCOUNT: " + T1Dt1.size());
 
@@ -203,27 +215,66 @@ public class CBUAE_BRF5_3_ReportService {
 			}
 		}
 		mv.setViewName("BRF/BRF5_3");
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("totalPages", (int) Math.ceil((double) totalPages / 100));
 		mv.addObject("displaymode", "Details");
+
 		mv.addObject("reportsflag", "reportsflag");
 		mv.addObject("menu", reportId);
 		return mv;
 	}
 
+	public List<Object> getBRF5_3Archival() {
+		try {
+			List<Object> merged = new ArrayList<>();
+			merged.addAll(BRF5_3_Summary_Archival_Repo1.getBRF5_3archival());
+			merged.addAll(BRF5_3_Summary_Archival_Repo2.getBRF5_3archival());
+
+			
+			/*
+			 * public List<Object> getBRF1_2Archival() { try { List<Object> merged = new
+			 * ArrayList<>();
+			 * merged.addAll(BRF5_3_Summary_Archival_Repo1.getbrf1_2archival());
+			 * merged.addAll(BRF5_3_Summary_Archival_Repo1.getbrf1_2archival());
+			 */
+
+			Set<String> seen = new HashSet<>();
+			List<Object> uniqueList = new ArrayList<>();
+
+			for (Object obj : merged) {
+				Object[] row = (Object[]) obj;
+				String key = row[0] + "_" + row[1]; // unique by date+version
+				if (seen.add(key)) {
+					uniqueList.add(row);
+				}
+			}
+
+			System.out.println("Unique Count: " + uniqueList.size());
+			return uniqueList;
+
+		} catch (Exception e) {
+			System.err.println("Error fetching BRF5_3 Archival data: " + e.getMessage());
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
+	}
+	
+	
 	public byte[] getBRF5_3Excel(String filename, String reportId, String fromdate, String todate, String currency,
 			String dtltype, String type, String version) throws Exception {
 
 		logger.info("Service: Starting Excel generation process in memory.");
+		
 		if (type.equals("ARCHIVAL") & version != null) {
 			byte[] ARCHIVALreport = getBRF5_3ExcelARCHIVAL(filename, reportId, fromdate, todate, currency, dtltype,
 					type, version);
 			return ARCHIVALreport;
 		}
-
 		List<CBUAE_BRF5_3_Summary_Entity1> dataList = BRF5_3_Summary_Repo1.getdatabydateList(dateformat.parse(todate));
 		List<CBUAE_BRF5_3_Summary_Entity2> dataList1 = BRF5_3_Summary_Repo2.getdatabydateList(dateformat.parse(todate));
 
 		if (dataList.isEmpty()) {
-			logger.warn("Service: No data found for BRF5.2 report. Returning empty result.");
+			logger.warn("Service: No data found for BRF5.3 report. Returning empty result.");
 			return new byte[0];
 		}
 
@@ -15603,17 +15654,15 @@ public class CBUAE_BRF5_3_ReportService {
 
 	}
 
-	public List<Object> getBRF5_3Archival() {
-		List<Object> BRF5_3ArchivalList = new ArrayList<>();
-		try {
-			BRF5_3ArchivalList.addAll(BRF5_3_Summary_Archival_Repo1.getBRF5_3archival());
-			BRF5_3ArchivalList.addAll(BRF5_3_Summary_Archival_Repo2.getBRF5_3archival());
-			logger.info("Fetched {} archival records.", BRF5_3ArchivalList.size());
-		} catch (Exception e) {
-			logger.error("Error fetching BRF5_3 Archival data: {}", e.getMessage(), e);
-		}
-		return BRF5_3ArchivalList;
-	}
+	/*
+	 * public List<Object> getBRF5_3Archival() { List<Object> BRF5_3ArchivalList =
+	 * new ArrayList<>(); try {
+	 * BRF5_3ArchivalList.addAll(BRF5_3_Summary_Archival_Repo1.getBRF5_3archival());
+	 * BRF5_3ArchivalList.addAll(BRF5_3_Summary_Archival_Repo2.getBRF5_3archival());
+	 * logger.info("Fetched {} archival records.", BRF5_3ArchivalList.size()); }
+	 * catch (Exception e) { logger.error("Error fetching BRF5_3 Archival data: {}",
+	 * e.getMessage(), e); } return BRF5_3ArchivalList; }
+	 */
 
 	public byte[] getBRF5_3ExcelARCHIVAL(String filename, String reportId, String fromdate, String todate,
 			String currency, String dtltype, String type, String version) throws Exception {
@@ -15696,16 +15745,18 @@ public class CBUAE_BRF5_3_ReportService {
 	}
 
 // DetailExcel
-	public byte[] getBRF5_3DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
-			String type, String version) {
-		try {
-			logger.info("Generating Excel for BRF5_3 Details...");
-			System.out.println("came to Detail download service");
-			if (type.equals("ARCHIVAL") & version != null) {
-				byte[] ARCHIVALreport = getBRF5_3DetailExcelARCHIVAL(filename, fromdate, todate, currency, dtltype,
-						type, version);
-				return ARCHIVALreport;
-			}
+
+			public byte[] getBRF5_3DetailExcel(String filename, String fromdate, String todate, String currency, String dtltype,
+					String type, String version) {
+				try {
+					logger.info("Generating Excel for BRF5_3 Details...");
+					System.out.println("came to Detail download service");
+					if (type.equals("ARCHIVAL") & version != null) {
+						byte[] ARCHIVALreport = getBRF5_3DetailExcelARCHIVAL(filename, fromdate, todate, currency, dtltype,
+								type, version);
+						return ARCHIVALreport;
+					}
+
 			XSSFWorkbook workbook = new XSSFWorkbook();
 			XSSFSheet sheet = workbook.createSheet("BRF5_3Details");
 

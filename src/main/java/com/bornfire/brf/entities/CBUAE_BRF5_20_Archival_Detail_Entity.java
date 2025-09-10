@@ -7,11 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "CBUAE_BRF5_20ARCHIVALTABLE_DETAIL")
+@Table(name = "CBUAE_BRF5_20_ARCHIVALTABLE_DETAIL")
 public class CBUAE_BRF5_20_Archival_Detail_Entity {
 	
 
@@ -46,6 +49,9 @@ public class CBUAE_BRF5_20_Archival_Detail_Entity {
     @Column(name = "ACCT_BALANCE_IN_AED", precision = 24, scale = 3)
     private BigDecimal acctBalanceInAed;
     
+    
+    
+    @Temporal(TemporalType.DATE)
     @Column(name = "REPORT_DATE")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date reportDate;
