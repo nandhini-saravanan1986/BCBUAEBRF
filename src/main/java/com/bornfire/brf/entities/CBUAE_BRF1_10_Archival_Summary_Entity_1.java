@@ -1,0 +1,8158 @@
+package com.bornfire.brf.entities;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@Table(name = "CBUAE_BRF1_10_ARCHIVALTABLE_SUMMARY_1")
+
+public class CBUAE_BRF1_10_Archival_Summary_Entity_1 {
+
+	private String r0010_product;
+	private BigDecimal r0010_bank_operations;
+	private BigDecimal r0010_banking_subsidiaries_uae;
+	private BigDecimal r0010_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0010_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0010_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0010_gross_liab_capi_contingent_liab;
+	private BigDecimal r0010_elimination;
+	private BigDecimal r0010_reclassification;
+	private BigDecimal r0010_consolidated_liabilities;
+	private String r0020_product;
+	private BigDecimal r0020_bank_operations;
+	private BigDecimal r0020_banking_subsidiaries_uae;
+	private BigDecimal r0020_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0020_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0020_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0020_gross_liab_capi_contingent_liab;
+	private BigDecimal r0020_elimination;
+	private BigDecimal r0020_reclassification;
+	private BigDecimal r0020_consolidated_liabilities;
+	private String r0030_product;
+	private BigDecimal r0030_bank_operations;
+	private BigDecimal r0030_banking_subsidiaries_uae;
+	private BigDecimal r0030_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0030_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0030_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0030_gross_liab_capi_contingent_liab;
+	private BigDecimal r0030_elimination;
+	private BigDecimal r0030_reclassification;
+	private BigDecimal r0030_consolidated_liabilities;
+	private String r0040_product;
+	private BigDecimal r0040_bank_operations;
+	private BigDecimal r0040_banking_subsidiaries_uae;
+	private BigDecimal r0040_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0040_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0040_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0040_gross_liab_capi_contingent_liab;
+	private BigDecimal r0040_elimination;
+	private BigDecimal r0040_reclassification;
+	private BigDecimal r0040_consolidated_liabilities;
+	private String r0050_product;
+	private BigDecimal r0050_bank_operations;
+	private BigDecimal r0050_banking_subsidiaries_uae;
+	private BigDecimal r0050_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0050_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0050_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0050_gross_liab_capi_contingent_liab;
+	private BigDecimal r0050_elimination;
+	private BigDecimal r0050_reclassification;
+	private BigDecimal r0050_consolidated_liabilities;
+	private String r0060_product;
+	private BigDecimal r0060_bank_operations;
+	private BigDecimal r0060_banking_subsidiaries_uae;
+	private BigDecimal r0060_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0060_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0060_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0060_gross_liab_capi_contingent_liab;
+	private BigDecimal r0060_elimination;
+	private BigDecimal r0060_reclassification;
+	private BigDecimal r0060_consolidated_liabilities;
+	private String r0070_product;
+	private BigDecimal r0070_bank_operations;
+	private BigDecimal r0070_banking_subsidiaries_uae;
+	private BigDecimal r0070_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0070_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0070_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0070_gross_liab_capi_contingent_liab;
+	private BigDecimal r0070_elimination;
+	private BigDecimal r0070_reclassification;
+	private BigDecimal r0070_consolidated_liabilities;
+	private String r0080_product;
+	private BigDecimal r0080_bank_operations;
+	private BigDecimal r0080_banking_subsidiaries_uae;
+	private BigDecimal r0080_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0080_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0080_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0080_gross_liab_capi_contingent_liab;
+	private BigDecimal r0080_elimination;
+	private BigDecimal r0080_reclassification;
+	private BigDecimal r0080_consolidated_liabilities;
+	private String r0090_product;
+	private BigDecimal r0090_bank_operations;
+	private BigDecimal r0090_banking_subsidiaries_uae;
+	private BigDecimal r0090_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0090_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0090_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0090_gross_liab_capi_contingent_liab;
+	private BigDecimal r0090_elimination;
+	private BigDecimal r0090_reclassification;
+	private BigDecimal r0090_consolidated_liabilities;
+	private String r0100_product;
+	private BigDecimal r0100_bank_operations;
+	private BigDecimal r0100_banking_subsidiaries_uae;
+	private BigDecimal r0100_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0100_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0100_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0100_gross_liab_capi_contingent_liab;
+	private BigDecimal r0100_elimination;
+	private BigDecimal r0100_reclassification;
+	private BigDecimal r0100_consolidated_liabilities;
+	private String r0110_product;
+	private BigDecimal r0110_bank_operations;
+	private BigDecimal r0110_banking_subsidiaries_uae;
+	private BigDecimal r0110_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0110_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0110_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0110_gross_liab_capi_contingent_liab;
+	private BigDecimal r0110_elimination;
+	private BigDecimal r0110_reclassification;
+	private BigDecimal r0110_consolidated_liabilities;
+	private String r0120_product;
+	private BigDecimal r0120_bank_operations;
+	private BigDecimal r0120_banking_subsidiaries_uae;
+	private BigDecimal r0120_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0120_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0120_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0120_gross_liab_capi_contingent_liab;
+	private BigDecimal r0120_elimination;
+	private BigDecimal r0120_reclassification;
+	private BigDecimal r0120_consolidated_liabilities;
+	private String r0130_product;
+	private BigDecimal r0130_bank_operations;
+	private BigDecimal r0130_banking_subsidiaries_uae;
+	private BigDecimal r0130_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0130_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0130_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0130_gross_liab_capi_contingent_liab;
+	private BigDecimal r0130_elimination;
+	private BigDecimal r0130_reclassification;
+	private BigDecimal r0130_consolidated_liabilities;
+	private String r0140_product;
+	private BigDecimal r0140_bank_operations;
+	private BigDecimal r0140_banking_subsidiaries_uae;
+	private BigDecimal r0140_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0140_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0140_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0140_gross_liab_capi_contingent_liab;
+	private BigDecimal r0140_elimination;
+	private BigDecimal r0140_reclassification;
+	private BigDecimal r0140_consolidated_liabilities;
+	private String r0150_product;
+	private BigDecimal r0150_bank_operations;
+	private BigDecimal r0150_banking_subsidiaries_uae;
+	private BigDecimal r0150_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0150_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0150_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0150_gross_liab_capi_contingent_liab;
+	private BigDecimal r0150_elimination;
+	private BigDecimal r0150_reclassification;
+	private BigDecimal r0150_consolidated_liabilities;
+	private String r0160_product;
+	private BigDecimal r0160_bank_operations;
+	private BigDecimal r0160_banking_subsidiaries_uae;
+	private BigDecimal r0160_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0160_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0160_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0160_gross_liab_capi_contingent_liab;
+	private BigDecimal r0160_elimination;
+	private BigDecimal r0160_reclassification;
+	private BigDecimal r0160_consolidated_liabilities;
+	private String r0170_product;
+	private BigDecimal r0170_bank_operations;
+	private BigDecimal r0170_banking_subsidiaries_uae;
+	private BigDecimal r0170_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0170_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0170_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0170_gross_liab_capi_contingent_liab;
+	private BigDecimal r0170_elimination;
+	private BigDecimal r0170_reclassification;
+	private BigDecimal r0170_consolidated_liabilities;
+	private String r0180_product;
+	private BigDecimal r0180_bank_operations;
+	private BigDecimal r0180_banking_subsidiaries_uae;
+	private BigDecimal r0180_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0180_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0180_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0180_gross_liab_capi_contingent_liab;
+	private BigDecimal r0180_elimination;
+	private BigDecimal r0180_reclassification;
+	private BigDecimal r0180_consolidated_liabilities;
+	private String r0190_product;
+	private BigDecimal r0190_bank_operations;
+	private BigDecimal r0190_banking_subsidiaries_uae;
+	private BigDecimal r0190_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0190_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0190_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0190_gross_liab_capi_contingent_liab;
+	private BigDecimal r0190_elimination;
+	private BigDecimal r0190_reclassification;
+	private BigDecimal r0190_consolidated_liabilities;
+	private String r0200_product;
+	private BigDecimal r0200_bank_operations;
+	private BigDecimal r0200_banking_subsidiaries_uae;
+	private BigDecimal r0200_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0200_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0200_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0200_gross_liab_capi_contingent_liab;
+	private BigDecimal r0200_elimination;
+	private BigDecimal r0200_reclassification;
+	private BigDecimal r0200_consolidated_liabilities;
+	private String r0210_product;
+	private BigDecimal r0210_bank_operations;
+	private BigDecimal r0210_banking_subsidiaries_uae;
+	private BigDecimal r0210_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0210_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0210_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0210_gross_liab_capi_contingent_liab;
+	private BigDecimal r0210_elimination;
+	private BigDecimal r0210_reclassification;
+	private BigDecimal r0210_consolidated_liabilities;
+	private String r0220_product;
+	private BigDecimal r0220_bank_operations;
+	private BigDecimal r0220_banking_subsidiaries_uae;
+	private BigDecimal r0220_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0220_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0220_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0220_gross_liab_capi_contingent_liab;
+	private BigDecimal r0220_elimination;
+	private BigDecimal r0220_reclassification;
+	private BigDecimal r0220_consolidated_liabilities;
+	private String r0230_product;
+	private BigDecimal r0230_bank_operations;
+	private BigDecimal r0230_banking_subsidiaries_uae;
+	private BigDecimal r0230_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0230_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0230_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0230_gross_liab_capi_contingent_liab;
+	private BigDecimal r0230_elimination;
+	private BigDecimal r0230_reclassification;
+	private BigDecimal r0230_consolidated_liabilities;
+	private String r0240_product;
+	private BigDecimal r0240_bank_operations;
+	private BigDecimal r0240_banking_subsidiaries_uae;
+	private BigDecimal r0240_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0240_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0240_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0240_gross_liab_capi_contingent_liab;
+	private BigDecimal r0240_elimination;
+	private BigDecimal r0240_reclassification;
+	private BigDecimal r0240_consolidated_liabilities;
+	private String r0250_product;
+	private BigDecimal r0250_bank_operations;
+	private BigDecimal r0250_banking_subsidiaries_uae;
+	private BigDecimal r0250_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0250_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0250_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0250_gross_liab_capi_contingent_liab;
+	private BigDecimal r0250_elimination;
+	private BigDecimal r0250_reclassification;
+	private BigDecimal r0250_consolidated_liabilities;
+	private String r0260_product;
+	private BigDecimal r0260_bank_operations;
+	private BigDecimal r0260_banking_subsidiaries_uae;
+	private BigDecimal r0260_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0260_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0260_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0260_gross_liab_capi_contingent_liab;
+	private BigDecimal r0260_elimination;
+	private BigDecimal r0260_reclassification;
+	private BigDecimal r0260_consolidated_liabilities;
+	private String r0270_product;
+	private BigDecimal r0270_bank_operations;
+	private BigDecimal r0270_banking_subsidiaries_uae;
+	private BigDecimal r0270_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0270_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0270_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0270_gross_liab_capi_contingent_liab;
+	private BigDecimal r0270_elimination;
+	private BigDecimal r0270_reclassification;
+	private BigDecimal r0270_consolidated_liabilities;
+	private String r0280_product;
+	private BigDecimal r0280_bank_operations;
+	private BigDecimal r0280_banking_subsidiaries_uae;
+	private BigDecimal r0280_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0280_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0280_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0280_gross_liab_capi_contingent_liab;
+	private BigDecimal r0280_elimination;
+	private BigDecimal r0280_reclassification;
+	private BigDecimal r0280_consolidated_liabilities;
+	private String r0290_product;
+	private BigDecimal r0290_bank_operations;
+	private BigDecimal r0290_banking_subsidiaries_uae;
+	private BigDecimal r0290_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0290_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0290_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0290_gross_liab_capi_contingent_liab;
+	private BigDecimal r0290_elimination;
+	private BigDecimal r0290_reclassification;
+	private BigDecimal r0290_consolidated_liabilities;
+	private String r0300_product;
+	private BigDecimal r0300_bank_operations;
+	private BigDecimal r0300_banking_subsidiaries_uae;
+	private BigDecimal r0300_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0300_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0300_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0300_gross_liab_capi_contingent_liab;
+	private BigDecimal r0300_elimination;
+	private BigDecimal r0300_reclassification;
+	private BigDecimal r0300_consolidated_liabilities;
+	private String r0310_product;
+	private BigDecimal r0310_bank_operations;
+	private BigDecimal r0310_banking_subsidiaries_uae;
+	private BigDecimal r0310_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0310_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0310_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0310_gross_liab_capi_contingent_liab;
+	private BigDecimal r0310_elimination;
+	private BigDecimal r0310_reclassification;
+	private BigDecimal r0310_consolidated_liabilities;
+	private String r0320_product;
+	private BigDecimal r0320_bank_operations;
+	private BigDecimal r0320_banking_subsidiaries_uae;
+	private BigDecimal r0320_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0320_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0320_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0320_gross_liab_capi_contingent_liab;
+	private BigDecimal r0320_elimination;
+	private BigDecimal r0320_reclassification;
+	private BigDecimal r0320_consolidated_liabilities;
+	private String r0330_product;
+	private BigDecimal r0330_bank_operations;
+	private BigDecimal r0330_banking_subsidiaries_uae;
+	private BigDecimal r0330_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0330_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0330_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0330_gross_liab_capi_contingent_liab;
+	private BigDecimal r0330_elimination;
+	private BigDecimal r0330_reclassification;
+	private BigDecimal r0330_consolidated_liabilities;
+	private String r0340_product;
+	private BigDecimal r0340_bank_operations;
+	private BigDecimal r0340_banking_subsidiaries_uae;
+	private BigDecimal r0340_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0340_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0340_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0340_gross_liab_capi_contingent_liab;
+	private BigDecimal r0340_elimination;
+	private BigDecimal r0340_reclassification;
+	private BigDecimal r0340_consolidated_liabilities;
+	private String r0350_product;
+	private BigDecimal r0350_bank_operations;
+	private BigDecimal r0350_banking_subsidiaries_uae;
+	private BigDecimal r0350_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0350_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0350_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0350_gross_liab_capi_contingent_liab;
+	private BigDecimal r0350_elimination;
+	private BigDecimal r0350_reclassification;
+	private BigDecimal r0350_consolidated_liabilities;
+	private String r0360_product;
+	private BigDecimal r0360_bank_operations;
+	private BigDecimal r0360_banking_subsidiaries_uae;
+	private BigDecimal r0360_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0360_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0360_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0360_gross_liab_capi_contingent_liab;
+	private BigDecimal r0360_elimination;
+	private BigDecimal r0360_reclassification;
+	private BigDecimal r0360_consolidated_liabilities;
+	private String r0370_product;
+	private BigDecimal r0370_bank_operations;
+	private BigDecimal r0370_banking_subsidiaries_uae;
+	private BigDecimal r0370_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0370_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0370_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0370_gross_liab_capi_contingent_liab;
+	private BigDecimal r0370_elimination;
+	private BigDecimal r0370_reclassification;
+	private BigDecimal r0370_consolidated_liabilities;
+	private String r0380_product;
+	private BigDecimal r0380_bank_operations;
+	private BigDecimal r0380_banking_subsidiaries_uae;
+	private BigDecimal r0380_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0380_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0380_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0380_gross_liab_capi_contingent_liab;
+	private BigDecimal r0380_elimination;
+	private BigDecimal r0380_reclassification;
+	private BigDecimal r0380_consolidated_liabilities;
+	private String r0390_product;
+	private BigDecimal r0390_bank_operations;
+	private BigDecimal r0390_banking_subsidiaries_uae;
+	private BigDecimal r0390_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0390_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0390_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0390_gross_liab_capi_contingent_liab;
+	private BigDecimal r0390_elimination;
+	private BigDecimal r0390_reclassification;
+	private BigDecimal r0390_consolidated_liabilities;
+	private String r0400_product;
+	private BigDecimal r0400_bank_operations;
+	private BigDecimal r0400_banking_subsidiaries_uae;
+	private BigDecimal r0400_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0400_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0400_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0400_gross_liab_capi_contingent_liab;
+	private BigDecimal r0400_elimination;
+	private BigDecimal r0400_reclassification;
+	private BigDecimal r0400_consolidated_liabilities;
+	private String r0410_product;
+	private BigDecimal r0410_bank_operations;
+	private BigDecimal r0410_banking_subsidiaries_uae;
+	private BigDecimal r0410_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0410_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0410_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0410_gross_liab_capi_contingent_liab;
+	private BigDecimal r0410_elimination;
+	private BigDecimal r0410_reclassification;
+	private BigDecimal r0410_consolidated_liabilities;
+	private String r0420_product;
+	private BigDecimal r0420_bank_operations;
+	private BigDecimal r0420_banking_subsidiaries_uae;
+	private BigDecimal r0420_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0420_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0420_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0420_gross_liab_capi_contingent_liab;
+	private BigDecimal r0420_elimination;
+	private BigDecimal r0420_reclassification;
+	private BigDecimal r0420_consolidated_liabilities;
+	private String r0430_product;
+	private BigDecimal r0430_bank_operations;
+	private BigDecimal r0430_banking_subsidiaries_uae;
+	private BigDecimal r0430_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0430_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0430_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0430_gross_liab_capi_contingent_liab;
+	private BigDecimal r0430_elimination;
+	private BigDecimal r0430_reclassification;
+	private BigDecimal r0430_consolidated_liabilities;
+	private String r0440_product;
+	private BigDecimal r0440_bank_operations;
+	private BigDecimal r0440_banking_subsidiaries_uae;
+	private BigDecimal r0440_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0440_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0440_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0440_gross_liab_capi_contingent_liab;
+	private BigDecimal r0440_elimination;
+	private BigDecimal r0440_reclassification;
+	private BigDecimal r0440_consolidated_liabilities;
+	private String r0450_product;
+	private BigDecimal r0450_bank_operations;
+	private BigDecimal r0450_banking_subsidiaries_uae;
+	private BigDecimal r0450_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0450_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0450_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0450_gross_liab_capi_contingent_liab;
+	private BigDecimal r0450_elimination;
+	private BigDecimal r0450_reclassification;
+	private BigDecimal r0450_consolidated_liabilities;
+	private String r0460_product;
+	private BigDecimal r0460_bank_operations;
+	private BigDecimal r0460_banking_subsidiaries_uae;
+	private BigDecimal r0460_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0460_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0460_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0460_gross_liab_capi_contingent_liab;
+	private BigDecimal r0460_elimination;
+	private BigDecimal r0460_reclassification;
+	private BigDecimal r0460_consolidated_liabilities;
+	private String r0470_product;
+	private BigDecimal r0470_bank_operations;
+	private BigDecimal r0470_banking_subsidiaries_uae;
+	private BigDecimal r0470_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0470_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0470_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0470_gross_liab_capi_contingent_liab;
+	private BigDecimal r0470_elimination;
+	private BigDecimal r0470_reclassification;
+	private BigDecimal r0470_consolidated_liabilities;
+	private String r0480_product;
+	private BigDecimal r0480_bank_operations;
+	private BigDecimal r0480_banking_subsidiaries_uae;
+	private BigDecimal r0480_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0480_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0480_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0480_gross_liab_capi_contingent_liab;
+	private BigDecimal r0480_elimination;
+	private BigDecimal r0480_reclassification;
+	private BigDecimal r0480_consolidated_liabilities;
+	private String r0490_product;
+	private BigDecimal r0490_bank_operations;
+	private BigDecimal r0490_banking_subsidiaries_uae;
+	private BigDecimal r0490_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0490_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0490_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0490_gross_liab_capi_contingent_liab;
+	private BigDecimal r0490_elimination;
+	private BigDecimal r0490_reclassification;
+	private BigDecimal r0490_consolidated_liabilities;
+	private String r0500_product;
+	private BigDecimal r0500_bank_operations;
+	private BigDecimal r0500_banking_subsidiaries_uae;
+	private BigDecimal r0500_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0500_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0500_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0500_gross_liab_capi_contingent_liab;
+	private BigDecimal r0500_elimination;
+	private BigDecimal r0500_reclassification;
+	private BigDecimal r0500_consolidated_liabilities;
+	private String r0510_product;
+	private BigDecimal r0510_bank_operations;
+	private BigDecimal r0510_banking_subsidiaries_uae;
+	private BigDecimal r0510_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0510_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0510_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0510_gross_liab_capi_contingent_liab;
+	private BigDecimal r0510_elimination;
+	private BigDecimal r0510_reclassification;
+	private BigDecimal r0510_consolidated_liabilities;
+	private String r0520_product;
+	private BigDecimal r0520_bank_operations;
+	private BigDecimal r0520_banking_subsidiaries_uae;
+	private BigDecimal r0520_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0520_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0520_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0520_gross_liab_capi_contingent_liab;
+	private BigDecimal r0520_elimination;
+	private BigDecimal r0520_reclassification;
+	private BigDecimal r0520_consolidated_liabilities;
+	private String r0530_product;
+	private BigDecimal r0530_bank_operations;
+	private BigDecimal r0530_banking_subsidiaries_uae;
+	private BigDecimal r0530_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0530_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0530_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0530_gross_liab_capi_contingent_liab;
+	private BigDecimal r0530_elimination;
+	private BigDecimal r0530_reclassification;
+	private BigDecimal r0530_consolidated_liabilities;
+	private String r0540_product;
+	private BigDecimal r0540_bank_operations;
+	private BigDecimal r0540_banking_subsidiaries_uae;
+	private BigDecimal r0540_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0540_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0540_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0540_gross_liab_capi_contingent_liab;
+	private BigDecimal r0540_elimination;
+	private BigDecimal r0540_reclassification;
+	private BigDecimal r0540_consolidated_liabilities;
+	private String r0550_product;
+	private BigDecimal r0550_bank_operations;
+	private BigDecimal r0550_banking_subsidiaries_uae;
+	private BigDecimal r0550_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0550_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0550_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0550_gross_liab_capi_contingent_liab;
+	private BigDecimal r0550_elimination;
+	private BigDecimal r0550_reclassification;
+	private BigDecimal r0550_consolidated_liabilities;
+	private String r0560_product;
+	private BigDecimal r0560_bank_operations;
+	private BigDecimal r0560_banking_subsidiaries_uae;
+	private BigDecimal r0560_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0560_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0560_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0560_gross_liab_capi_contingent_liab;
+	private BigDecimal r0560_elimination;
+	private BigDecimal r0560_reclassification;
+	private BigDecimal r0560_consolidated_liabilities;
+	private String r0570_product;
+	private BigDecimal r0570_bank_operations;
+	private BigDecimal r0570_banking_subsidiaries_uae;
+	private BigDecimal r0570_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0570_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0570_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0570_gross_liab_capi_contingent_liab;
+	private BigDecimal r0570_elimination;
+	private BigDecimal r0570_reclassification;
+	private BigDecimal r0570_consolidated_liabilities;
+	private String r0580_product;
+	private BigDecimal r0580_bank_operations;
+	private BigDecimal r0580_banking_subsidiaries_uae;
+	private BigDecimal r0580_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0580_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0580_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0580_gross_liab_capi_contingent_liab;
+	private BigDecimal r0580_elimination;
+	private BigDecimal r0580_reclassification;
+	private BigDecimal r0580_consolidated_liabilities;
+	private String r0590_product;
+	private BigDecimal r0590_bank_operations;
+	private BigDecimal r0590_banking_subsidiaries_uae;
+	private BigDecimal r0590_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0590_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0590_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0590_gross_liab_capi_contingent_liab;
+	private BigDecimal r0590_elimination;
+	private BigDecimal r0590_reclassification;
+	private BigDecimal r0590_consolidated_liabilities;
+	private String r0600_product;
+	private BigDecimal r0600_bank_operations;
+	private BigDecimal r0600_banking_subsidiaries_uae;
+	private BigDecimal r0600_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0600_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0600_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0600_gross_liab_capi_contingent_liab;
+	private BigDecimal r0600_elimination;
+	private BigDecimal r0600_reclassification;
+	private BigDecimal r0600_consolidated_liabilities;
+	private String r0610_product;
+	private BigDecimal r0610_bank_operations;
+	private BigDecimal r0610_banking_subsidiaries_uae;
+	private BigDecimal r0610_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0610_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0610_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0610_gross_liab_capi_contingent_liab;
+	private BigDecimal r0610_elimination;
+	private BigDecimal r0610_reclassification;
+	private BigDecimal r0610_consolidated_liabilities;
+	private String r0620_product;
+	private BigDecimal r0620_bank_operations;
+	private BigDecimal r0620_banking_subsidiaries_uae;
+	private BigDecimal r0620_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0620_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0620_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0620_gross_liab_capi_contingent_liab;
+	private BigDecimal r0620_elimination;
+	private BigDecimal r0620_reclassification;
+	private BigDecimal r0620_consolidated_liabilities;
+	private String r0630_product;
+	private BigDecimal r0630_bank_operations;
+	private BigDecimal r0630_banking_subsidiaries_uae;
+	private BigDecimal r0630_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0630_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0630_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0630_gross_liab_capi_contingent_liab;
+	private BigDecimal r0630_elimination;
+	private BigDecimal r0630_reclassification;
+	private BigDecimal r0630_consolidated_liabilities;
+	private String r0640_product;
+	private BigDecimal r0640_bank_operations;
+	private BigDecimal r0640_banking_subsidiaries_uae;
+	private BigDecimal r0640_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0640_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0640_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0640_gross_liab_capi_contingent_liab;
+	private BigDecimal r0640_elimination;
+	private BigDecimal r0640_reclassification;
+	private BigDecimal r0640_consolidated_liabilities;
+	private String r0650_product;
+	private BigDecimal r0650_bank_operations;
+	private BigDecimal r0650_banking_subsidiaries_uae;
+	private BigDecimal r0650_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0650_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0650_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0650_gross_liab_capi_contingent_liab;
+	private BigDecimal r0650_elimination;
+	private BigDecimal r0650_reclassification;
+	private BigDecimal r0650_consolidated_liabilities;
+	private String r0660_product;
+	private BigDecimal r0660_bank_operations;
+	private BigDecimal r0660_banking_subsidiaries_uae;
+	private BigDecimal r0660_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0660_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0660_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0660_gross_liab_capi_contingent_liab;
+	private BigDecimal r0660_elimination;
+	private BigDecimal r0660_reclassification;
+	private BigDecimal r0660_consolidated_liabilities;
+	private String r0670_product;
+	private BigDecimal r0670_bank_operations;
+	private BigDecimal r0670_banking_subsidiaries_uae;
+	private BigDecimal r0670_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0670_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0670_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0670_gross_liab_capi_contingent_liab;
+	private BigDecimal r0670_elimination;
+	private BigDecimal r0670_reclassification;
+	private BigDecimal r0670_consolidated_liabilities;
+	private String r0680_product;
+	private BigDecimal r0680_bank_operations;
+	private BigDecimal r0680_banking_subsidiaries_uae;
+	private BigDecimal r0680_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0680_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0680_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0680_gross_liab_capi_contingent_liab;
+	private BigDecimal r0680_elimination;
+	private BigDecimal r0680_reclassification;
+	private BigDecimal r0680_consolidated_liabilities;
+	private String r0690_product;
+	private BigDecimal r0690_bank_operations;
+	private BigDecimal r0690_banking_subsidiaries_uae;
+	private BigDecimal r0690_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0690_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0690_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0690_gross_liab_capi_contingent_liab;
+	private BigDecimal r0690_elimination;
+	private BigDecimal r0690_reclassification;
+	private BigDecimal r0690_consolidated_liabilities;
+	private String r0700_product;
+	private BigDecimal r0700_bank_operations;
+	private BigDecimal r0700_banking_subsidiaries_uae;
+	private BigDecimal r0700_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0700_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0700_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0700_gross_liab_capi_contingent_liab;
+	private BigDecimal r0700_elimination;
+	private BigDecimal r0700_reclassification;
+	private BigDecimal r0700_consolidated_liabilities;
+	private String r0710_product;
+	private BigDecimal r0710_bank_operations;
+	private BigDecimal r0710_banking_subsidiaries_uae;
+	private BigDecimal r0710_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0710_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0710_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0710_gross_liab_capi_contingent_liab;
+	private BigDecimal r0710_elimination;
+	private BigDecimal r0710_reclassification;
+	private BigDecimal r0710_consolidated_liabilities;
+	private String r0720_product;
+	private BigDecimal r0720_bank_operations;
+	private BigDecimal r0720_banking_subsidiaries_uae;
+	private BigDecimal r0720_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0720_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0720_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0720_gross_liab_capi_contingent_liab;
+	private BigDecimal r0720_elimination;
+	private BigDecimal r0720_reclassification;
+	private BigDecimal r0720_consolidated_liabilities;
+	private String r0730_product;
+	private BigDecimal r0730_bank_operations;
+	private BigDecimal r0730_banking_subsidiaries_uae;
+	private BigDecimal r0730_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0730_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0730_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0730_gross_liab_capi_contingent_liab;
+	private BigDecimal r0730_elimination;
+	private BigDecimal r0730_reclassification;
+	private BigDecimal r0730_consolidated_liabilities;
+	private String r0740_product;
+	private BigDecimal r0740_bank_operations;
+	private BigDecimal r0740_banking_subsidiaries_uae;
+	private BigDecimal r0740_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0740_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0740_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0740_gross_liab_capi_contingent_liab;
+	private BigDecimal r0740_elimination;
+	private BigDecimal r0740_reclassification;
+	private BigDecimal r0740_consolidated_liabilities;
+	private String r0750_product;
+	private BigDecimal r0750_bank_operations;
+	private BigDecimal r0750_banking_subsidiaries_uae;
+	private BigDecimal r0750_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0750_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0750_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0750_gross_liab_capi_contingent_liab;
+	private BigDecimal r0750_elimination;
+	private BigDecimal r0750_reclassification;
+	private BigDecimal r0750_consolidated_liabilities;
+	private String r0760_product;
+	private BigDecimal r0760_bank_operations;
+	private BigDecimal r0760_banking_subsidiaries_uae;
+	private BigDecimal r0760_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0760_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0760_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0760_gross_liab_capi_contingent_liab;
+	private BigDecimal r0760_elimination;
+	private BigDecimal r0760_reclassification;
+	private BigDecimal r0760_consolidated_liabilities;
+	private String r0770_product;
+	private BigDecimal r0770_bank_operations;
+	private BigDecimal r0770_banking_subsidiaries_uae;
+	private BigDecimal r0770_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0770_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0770_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0770_gross_liab_capi_contingent_liab;
+	private BigDecimal r0770_elimination;
+	private BigDecimal r0770_reclassification;
+	private BigDecimal r0770_consolidated_liabilities;
+	private String r0780_product;
+	private BigDecimal r0780_bank_operations;
+	private BigDecimal r0780_banking_subsidiaries_uae;
+	private BigDecimal r0780_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0780_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0780_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0780_gross_liab_capi_contingent_liab;
+	private BigDecimal r0780_elimination;
+	private BigDecimal r0780_reclassification;
+	private BigDecimal r0780_consolidated_liabilities;
+	private String r0790_product;
+	private BigDecimal r0790_bank_operations;
+	private BigDecimal r0790_banking_subsidiaries_uae;
+	private BigDecimal r0790_fin_subsi_exclu_banking_subsi_uae;
+	private BigDecimal r0790_fin_subsi_exclu_banking_subsi_outside_uae;
+	private BigDecimal r0790_all_oth_subsi_ot_banking_fin_subsi_uae;
+	private BigDecimal r0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	private BigDecimal r0790_gross_liab_capi_contingent_liab;
+	private BigDecimal r0790_elimination;
+	private BigDecimal r0790_reclassification;
+	private BigDecimal r0790_consolidated_liabilities;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Id
+	private Date report_date;
+	private String report_version;
+	private String report_frequency;
+	private String report_code;
+	private String report_desc;
+	private String modify_flg;
+	private String entity_flg;
+	private String delete_flg;
+
+	public String getR0010_product() {
+		return r0010_product;
+	}
+
+	public void setR0010_product(String r0010_product) {
+		this.r0010_product = r0010_product;
+	}
+
+	public BigDecimal getR0010_bank_operations() {
+		return r0010_bank_operations;
+	}
+
+	public void setR0010_bank_operations(BigDecimal r0010_bank_operations) {
+		this.r0010_bank_operations = r0010_bank_operations;
+	}
+
+	public BigDecimal getR0010_banking_subsidiaries_uae() {
+		return r0010_banking_subsidiaries_uae;
+	}
+
+	public void setR0010_banking_subsidiaries_uae(BigDecimal r0010_banking_subsidiaries_uae) {
+		this.r0010_banking_subsidiaries_uae = r0010_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0010_fin_subsi_exclu_banking_subsi_uae() {
+		return r0010_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0010_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0010_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0010_fin_subsi_exclu_banking_subsi_uae = r0010_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0010_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0010_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0010_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0010_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0010_fin_subsi_exclu_banking_subsi_outside_uae = r0010_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0010_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0010_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0010_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0010_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0010_all_oth_subsi_ot_banking_fin_subsi_uae = r0010_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0010_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0010_gross_liab_capi_contingent_liab() {
+		return r0010_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0010_gross_liab_capi_contingent_liab(BigDecimal r0010_gross_liab_capi_contingent_liab) {
+		this.r0010_gross_liab_capi_contingent_liab = r0010_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0010_elimination() {
+		return r0010_elimination;
+	}
+
+	public void setR0010_elimination(BigDecimal r0010_elimination) {
+		this.r0010_elimination = r0010_elimination;
+	}
+
+	public BigDecimal getR0010_reclassification() {
+		return r0010_reclassification;
+	}
+
+	public void setR0010_reclassification(BigDecimal r0010_reclassification) {
+		this.r0010_reclassification = r0010_reclassification;
+	}
+
+	public BigDecimal getR0010_consolidated_liabilities() {
+		return r0010_consolidated_liabilities;
+	}
+
+	public void setR0010_consolidated_liabilities(BigDecimal r0010_consolidated_liabilities) {
+		this.r0010_consolidated_liabilities = r0010_consolidated_liabilities;
+	}
+
+	public String getR0020_product() {
+		return r0020_product;
+	}
+
+	public void setR0020_product(String r0020_product) {
+		this.r0020_product = r0020_product;
+	}
+
+	public BigDecimal getR0020_bank_operations() {
+		return r0020_bank_operations;
+	}
+
+	public void setR0020_bank_operations(BigDecimal r0020_bank_operations) {
+		this.r0020_bank_operations = r0020_bank_operations;
+	}
+
+	public BigDecimal getR0020_banking_subsidiaries_uae() {
+		return r0020_banking_subsidiaries_uae;
+	}
+
+	public void setR0020_banking_subsidiaries_uae(BigDecimal r0020_banking_subsidiaries_uae) {
+		this.r0020_banking_subsidiaries_uae = r0020_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0020_fin_subsi_exclu_banking_subsi_uae() {
+		return r0020_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0020_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0020_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0020_fin_subsi_exclu_banking_subsi_uae = r0020_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0020_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0020_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0020_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0020_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0020_fin_subsi_exclu_banking_subsi_outside_uae = r0020_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0020_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0020_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0020_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0020_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0020_all_oth_subsi_ot_banking_fin_subsi_uae = r0020_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0020_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0020_gross_liab_capi_contingent_liab() {
+		return r0020_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0020_gross_liab_capi_contingent_liab(BigDecimal r0020_gross_liab_capi_contingent_liab) {
+		this.r0020_gross_liab_capi_contingent_liab = r0020_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0020_elimination() {
+		return r0020_elimination;
+	}
+
+	public void setR0020_elimination(BigDecimal r0020_elimination) {
+		this.r0020_elimination = r0020_elimination;
+	}
+
+	public BigDecimal getR0020_reclassification() {
+		return r0020_reclassification;
+	}
+
+	public void setR0020_reclassification(BigDecimal r0020_reclassification) {
+		this.r0020_reclassification = r0020_reclassification;
+	}
+
+	public BigDecimal getR0020_consolidated_liabilities() {
+		return r0020_consolidated_liabilities;
+	}
+
+	public void setR0020_consolidated_liabilities(BigDecimal r0020_consolidated_liabilities) {
+		this.r0020_consolidated_liabilities = r0020_consolidated_liabilities;
+	}
+
+	public String getR0030_product() {
+		return r0030_product;
+	}
+
+	public void setR0030_product(String r0030_product) {
+		this.r0030_product = r0030_product;
+	}
+
+	public BigDecimal getR0030_bank_operations() {
+		return r0030_bank_operations;
+	}
+
+	public void setR0030_bank_operations(BigDecimal r0030_bank_operations) {
+		this.r0030_bank_operations = r0030_bank_operations;
+	}
+
+	public BigDecimal getR0030_banking_subsidiaries_uae() {
+		return r0030_banking_subsidiaries_uae;
+	}
+
+	public void setR0030_banking_subsidiaries_uae(BigDecimal r0030_banking_subsidiaries_uae) {
+		this.r0030_banking_subsidiaries_uae = r0030_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0030_fin_subsi_exclu_banking_subsi_uae() {
+		return r0030_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0030_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0030_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0030_fin_subsi_exclu_banking_subsi_uae = r0030_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0030_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0030_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0030_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0030_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0030_fin_subsi_exclu_banking_subsi_outside_uae = r0030_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0030_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0030_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0030_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0030_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0030_all_oth_subsi_ot_banking_fin_subsi_uae = r0030_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0030_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0030_gross_liab_capi_contingent_liab() {
+		return r0030_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0030_gross_liab_capi_contingent_liab(BigDecimal r0030_gross_liab_capi_contingent_liab) {
+		this.r0030_gross_liab_capi_contingent_liab = r0030_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0030_elimination() {
+		return r0030_elimination;
+	}
+
+	public void setR0030_elimination(BigDecimal r0030_elimination) {
+		this.r0030_elimination = r0030_elimination;
+	}
+
+	public BigDecimal getR0030_reclassification() {
+		return r0030_reclassification;
+	}
+
+	public void setR0030_reclassification(BigDecimal r0030_reclassification) {
+		this.r0030_reclassification = r0030_reclassification;
+	}
+
+	public BigDecimal getR0030_consolidated_liabilities() {
+		return r0030_consolidated_liabilities;
+	}
+
+	public void setR0030_consolidated_liabilities(BigDecimal r0030_consolidated_liabilities) {
+		this.r0030_consolidated_liabilities = r0030_consolidated_liabilities;
+	}
+
+	public String getR0040_product() {
+		return r0040_product;
+	}
+
+	public void setR0040_product(String r0040_product) {
+		this.r0040_product = r0040_product;
+	}
+
+	public BigDecimal getR0040_bank_operations() {
+		return r0040_bank_operations;
+	}
+
+	public void setR0040_bank_operations(BigDecimal r0040_bank_operations) {
+		this.r0040_bank_operations = r0040_bank_operations;
+	}
+
+	public BigDecimal getR0040_banking_subsidiaries_uae() {
+		return r0040_banking_subsidiaries_uae;
+	}
+
+	public void setR0040_banking_subsidiaries_uae(BigDecimal r0040_banking_subsidiaries_uae) {
+		this.r0040_banking_subsidiaries_uae = r0040_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0040_fin_subsi_exclu_banking_subsi_uae() {
+		return r0040_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0040_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0040_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0040_fin_subsi_exclu_banking_subsi_uae = r0040_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0040_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0040_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0040_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0040_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0040_fin_subsi_exclu_banking_subsi_outside_uae = r0040_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0040_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0040_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0040_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0040_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0040_all_oth_subsi_ot_banking_fin_subsi_uae = r0040_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0040_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0040_gross_liab_capi_contingent_liab() {
+		return r0040_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0040_gross_liab_capi_contingent_liab(BigDecimal r0040_gross_liab_capi_contingent_liab) {
+		this.r0040_gross_liab_capi_contingent_liab = r0040_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0040_elimination() {
+		return r0040_elimination;
+	}
+
+	public void setR0040_elimination(BigDecimal r0040_elimination) {
+		this.r0040_elimination = r0040_elimination;
+	}
+
+	public BigDecimal getR0040_reclassification() {
+		return r0040_reclassification;
+	}
+
+	public void setR0040_reclassification(BigDecimal r0040_reclassification) {
+		this.r0040_reclassification = r0040_reclassification;
+	}
+
+	public BigDecimal getR0040_consolidated_liabilities() {
+		return r0040_consolidated_liabilities;
+	}
+
+	public void setR0040_consolidated_liabilities(BigDecimal r0040_consolidated_liabilities) {
+		this.r0040_consolidated_liabilities = r0040_consolidated_liabilities;
+	}
+
+	public String getR0050_product() {
+		return r0050_product;
+	}
+
+	public void setR0050_product(String r0050_product) {
+		this.r0050_product = r0050_product;
+	}
+
+	public BigDecimal getR0050_bank_operations() {
+		return r0050_bank_operations;
+	}
+
+	public void setR0050_bank_operations(BigDecimal r0050_bank_operations) {
+		this.r0050_bank_operations = r0050_bank_operations;
+	}
+
+	public BigDecimal getR0050_banking_subsidiaries_uae() {
+		return r0050_banking_subsidiaries_uae;
+	}
+
+	public void setR0050_banking_subsidiaries_uae(BigDecimal r0050_banking_subsidiaries_uae) {
+		this.r0050_banking_subsidiaries_uae = r0050_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0050_fin_subsi_exclu_banking_subsi_uae() {
+		return r0050_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0050_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0050_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0050_fin_subsi_exclu_banking_subsi_uae = r0050_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0050_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0050_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0050_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0050_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0050_fin_subsi_exclu_banking_subsi_outside_uae = r0050_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0050_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0050_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0050_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0050_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0050_all_oth_subsi_ot_banking_fin_subsi_uae = r0050_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0050_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0050_gross_liab_capi_contingent_liab() {
+		return r0050_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0050_gross_liab_capi_contingent_liab(BigDecimal r0050_gross_liab_capi_contingent_liab) {
+		this.r0050_gross_liab_capi_contingent_liab = r0050_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0050_elimination() {
+		return r0050_elimination;
+	}
+
+	public void setR0050_elimination(BigDecimal r0050_elimination) {
+		this.r0050_elimination = r0050_elimination;
+	}
+
+	public BigDecimal getR0050_reclassification() {
+		return r0050_reclassification;
+	}
+
+	public void setR0050_reclassification(BigDecimal r0050_reclassification) {
+		this.r0050_reclassification = r0050_reclassification;
+	}
+
+	public BigDecimal getR0050_consolidated_liabilities() {
+		return r0050_consolidated_liabilities;
+	}
+
+	public void setR0050_consolidated_liabilities(BigDecimal r0050_consolidated_liabilities) {
+		this.r0050_consolidated_liabilities = r0050_consolidated_liabilities;
+	}
+
+	public String getR0060_product() {
+		return r0060_product;
+	}
+
+	public void setR0060_product(String r0060_product) {
+		this.r0060_product = r0060_product;
+	}
+
+	public BigDecimal getR0060_bank_operations() {
+		return r0060_bank_operations;
+	}
+
+	public void setR0060_bank_operations(BigDecimal r0060_bank_operations) {
+		this.r0060_bank_operations = r0060_bank_operations;
+	}
+
+	public BigDecimal getR0060_banking_subsidiaries_uae() {
+		return r0060_banking_subsidiaries_uae;
+	}
+
+	public void setR0060_banking_subsidiaries_uae(BigDecimal r0060_banking_subsidiaries_uae) {
+		this.r0060_banking_subsidiaries_uae = r0060_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0060_fin_subsi_exclu_banking_subsi_uae() {
+		return r0060_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0060_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0060_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0060_fin_subsi_exclu_banking_subsi_uae = r0060_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0060_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0060_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0060_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0060_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0060_fin_subsi_exclu_banking_subsi_outside_uae = r0060_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0060_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0060_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0060_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0060_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0060_all_oth_subsi_ot_banking_fin_subsi_uae = r0060_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0060_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0060_gross_liab_capi_contingent_liab() {
+		return r0060_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0060_gross_liab_capi_contingent_liab(BigDecimal r0060_gross_liab_capi_contingent_liab) {
+		this.r0060_gross_liab_capi_contingent_liab = r0060_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0060_elimination() {
+		return r0060_elimination;
+	}
+
+	public void setR0060_elimination(BigDecimal r0060_elimination) {
+		this.r0060_elimination = r0060_elimination;
+	}
+
+	public BigDecimal getR0060_reclassification() {
+		return r0060_reclassification;
+	}
+
+	public void setR0060_reclassification(BigDecimal r0060_reclassification) {
+		this.r0060_reclassification = r0060_reclassification;
+	}
+
+	public BigDecimal getR0060_consolidated_liabilities() {
+		return r0060_consolidated_liabilities;
+	}
+
+	public void setR0060_consolidated_liabilities(BigDecimal r0060_consolidated_liabilities) {
+		this.r0060_consolidated_liabilities = r0060_consolidated_liabilities;
+	}
+
+	public String getR0070_product() {
+		return r0070_product;
+	}
+
+	public void setR0070_product(String r0070_product) {
+		this.r0070_product = r0070_product;
+	}
+
+	public BigDecimal getR0070_bank_operations() {
+		return r0070_bank_operations;
+	}
+
+	public void setR0070_bank_operations(BigDecimal r0070_bank_operations) {
+		this.r0070_bank_operations = r0070_bank_operations;
+	}
+
+	public BigDecimal getR0070_banking_subsidiaries_uae() {
+		return r0070_banking_subsidiaries_uae;
+	}
+
+	public void setR0070_banking_subsidiaries_uae(BigDecimal r0070_banking_subsidiaries_uae) {
+		this.r0070_banking_subsidiaries_uae = r0070_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0070_fin_subsi_exclu_banking_subsi_uae() {
+		return r0070_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0070_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0070_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0070_fin_subsi_exclu_banking_subsi_uae = r0070_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0070_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0070_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0070_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0070_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0070_fin_subsi_exclu_banking_subsi_outside_uae = r0070_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0070_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0070_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0070_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0070_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0070_all_oth_subsi_ot_banking_fin_subsi_uae = r0070_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0070_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0070_gross_liab_capi_contingent_liab() {
+		return r0070_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0070_gross_liab_capi_contingent_liab(BigDecimal r0070_gross_liab_capi_contingent_liab) {
+		this.r0070_gross_liab_capi_contingent_liab = r0070_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0070_elimination() {
+		return r0070_elimination;
+	}
+
+	public void setR0070_elimination(BigDecimal r0070_elimination) {
+		this.r0070_elimination = r0070_elimination;
+	}
+
+	public BigDecimal getR0070_reclassification() {
+		return r0070_reclassification;
+	}
+
+	public void setR0070_reclassification(BigDecimal r0070_reclassification) {
+		this.r0070_reclassification = r0070_reclassification;
+	}
+
+	public BigDecimal getR0070_consolidated_liabilities() {
+		return r0070_consolidated_liabilities;
+	}
+
+	public void setR0070_consolidated_liabilities(BigDecimal r0070_consolidated_liabilities) {
+		this.r0070_consolidated_liabilities = r0070_consolidated_liabilities;
+	}
+
+	public String getR0080_product() {
+		return r0080_product;
+	}
+
+	public void setR0080_product(String r0080_product) {
+		this.r0080_product = r0080_product;
+	}
+
+	public BigDecimal getR0080_bank_operations() {
+		return r0080_bank_operations;
+	}
+
+	public void setR0080_bank_operations(BigDecimal r0080_bank_operations) {
+		this.r0080_bank_operations = r0080_bank_operations;
+	}
+
+	public BigDecimal getR0080_banking_subsidiaries_uae() {
+		return r0080_banking_subsidiaries_uae;
+	}
+
+	public void setR0080_banking_subsidiaries_uae(BigDecimal r0080_banking_subsidiaries_uae) {
+		this.r0080_banking_subsidiaries_uae = r0080_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0080_fin_subsi_exclu_banking_subsi_uae() {
+		return r0080_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0080_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0080_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0080_fin_subsi_exclu_banking_subsi_uae = r0080_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0080_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0080_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0080_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0080_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0080_fin_subsi_exclu_banking_subsi_outside_uae = r0080_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0080_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0080_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0080_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0080_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0080_all_oth_subsi_ot_banking_fin_subsi_uae = r0080_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0080_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0080_gross_liab_capi_contingent_liab() {
+		return r0080_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0080_gross_liab_capi_contingent_liab(BigDecimal r0080_gross_liab_capi_contingent_liab) {
+		this.r0080_gross_liab_capi_contingent_liab = r0080_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0080_elimination() {
+		return r0080_elimination;
+	}
+
+	public void setR0080_elimination(BigDecimal r0080_elimination) {
+		this.r0080_elimination = r0080_elimination;
+	}
+
+	public BigDecimal getR0080_reclassification() {
+		return r0080_reclassification;
+	}
+
+	public void setR0080_reclassification(BigDecimal r0080_reclassification) {
+		this.r0080_reclassification = r0080_reclassification;
+	}
+
+	public BigDecimal getR0080_consolidated_liabilities() {
+		return r0080_consolidated_liabilities;
+	}
+
+	public void setR0080_consolidated_liabilities(BigDecimal r0080_consolidated_liabilities) {
+		this.r0080_consolidated_liabilities = r0080_consolidated_liabilities;
+	}
+
+	public String getR0090_product() {
+		return r0090_product;
+	}
+
+	public void setR0090_product(String r0090_product) {
+		this.r0090_product = r0090_product;
+	}
+
+	public BigDecimal getR0090_bank_operations() {
+		return r0090_bank_operations;
+	}
+
+	public void setR0090_bank_operations(BigDecimal r0090_bank_operations) {
+		this.r0090_bank_operations = r0090_bank_operations;
+	}
+
+	public BigDecimal getR0090_banking_subsidiaries_uae() {
+		return r0090_banking_subsidiaries_uae;
+	}
+
+	public void setR0090_banking_subsidiaries_uae(BigDecimal r0090_banking_subsidiaries_uae) {
+		this.r0090_banking_subsidiaries_uae = r0090_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0090_fin_subsi_exclu_banking_subsi_uae() {
+		return r0090_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0090_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0090_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0090_fin_subsi_exclu_banking_subsi_uae = r0090_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0090_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0090_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0090_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0090_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0090_fin_subsi_exclu_banking_subsi_outside_uae = r0090_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0090_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0090_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0090_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0090_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0090_all_oth_subsi_ot_banking_fin_subsi_uae = r0090_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0090_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0090_gross_liab_capi_contingent_liab() {
+		return r0090_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0090_gross_liab_capi_contingent_liab(BigDecimal r0090_gross_liab_capi_contingent_liab) {
+		this.r0090_gross_liab_capi_contingent_liab = r0090_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0090_elimination() {
+		return r0090_elimination;
+	}
+
+	public void setR0090_elimination(BigDecimal r0090_elimination) {
+		this.r0090_elimination = r0090_elimination;
+	}
+
+	public BigDecimal getR0090_reclassification() {
+		return r0090_reclassification;
+	}
+
+	public void setR0090_reclassification(BigDecimal r0090_reclassification) {
+		this.r0090_reclassification = r0090_reclassification;
+	}
+
+	public BigDecimal getR0090_consolidated_liabilities() {
+		return r0090_consolidated_liabilities;
+	}
+
+	public void setR0090_consolidated_liabilities(BigDecimal r0090_consolidated_liabilities) {
+		this.r0090_consolidated_liabilities = r0090_consolidated_liabilities;
+	}
+
+	public String getR0100_product() {
+		return r0100_product;
+	}
+
+	public void setR0100_product(String r0100_product) {
+		this.r0100_product = r0100_product;
+	}
+
+	public BigDecimal getR0100_bank_operations() {
+		return r0100_bank_operations;
+	}
+
+	public void setR0100_bank_operations(BigDecimal r0100_bank_operations) {
+		this.r0100_bank_operations = r0100_bank_operations;
+	}
+
+	public BigDecimal getR0100_banking_subsidiaries_uae() {
+		return r0100_banking_subsidiaries_uae;
+	}
+
+	public void setR0100_banking_subsidiaries_uae(BigDecimal r0100_banking_subsidiaries_uae) {
+		this.r0100_banking_subsidiaries_uae = r0100_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0100_fin_subsi_exclu_banking_subsi_uae() {
+		return r0100_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0100_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0100_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0100_fin_subsi_exclu_banking_subsi_uae = r0100_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0100_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0100_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0100_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0100_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0100_fin_subsi_exclu_banking_subsi_outside_uae = r0100_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0100_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0100_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0100_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0100_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0100_all_oth_subsi_ot_banking_fin_subsi_uae = r0100_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0100_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0100_gross_liab_capi_contingent_liab() {
+		return r0100_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0100_gross_liab_capi_contingent_liab(BigDecimal r0100_gross_liab_capi_contingent_liab) {
+		this.r0100_gross_liab_capi_contingent_liab = r0100_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0100_elimination() {
+		return r0100_elimination;
+	}
+
+	public void setR0100_elimination(BigDecimal r0100_elimination) {
+		this.r0100_elimination = r0100_elimination;
+	}
+
+	public BigDecimal getR0100_reclassification() {
+		return r0100_reclassification;
+	}
+
+	public void setR0100_reclassification(BigDecimal r0100_reclassification) {
+		this.r0100_reclassification = r0100_reclassification;
+	}
+
+	public BigDecimal getR0100_consolidated_liabilities() {
+		return r0100_consolidated_liabilities;
+	}
+
+	public void setR0100_consolidated_liabilities(BigDecimal r0100_consolidated_liabilities) {
+		this.r0100_consolidated_liabilities = r0100_consolidated_liabilities;
+	}
+
+	public String getR0110_product() {
+		return r0110_product;
+	}
+
+	public void setR0110_product(String r0110_product) {
+		this.r0110_product = r0110_product;
+	}
+
+	public BigDecimal getR0110_bank_operations() {
+		return r0110_bank_operations;
+	}
+
+	public void setR0110_bank_operations(BigDecimal r0110_bank_operations) {
+		this.r0110_bank_operations = r0110_bank_operations;
+	}
+
+	public BigDecimal getR0110_banking_subsidiaries_uae() {
+		return r0110_banking_subsidiaries_uae;
+	}
+
+	public void setR0110_banking_subsidiaries_uae(BigDecimal r0110_banking_subsidiaries_uae) {
+		this.r0110_banking_subsidiaries_uae = r0110_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0110_fin_subsi_exclu_banking_subsi_uae() {
+		return r0110_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0110_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0110_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0110_fin_subsi_exclu_banking_subsi_uae = r0110_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0110_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0110_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0110_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0110_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0110_fin_subsi_exclu_banking_subsi_outside_uae = r0110_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0110_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0110_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0110_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0110_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0110_all_oth_subsi_ot_banking_fin_subsi_uae = r0110_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0110_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0110_gross_liab_capi_contingent_liab() {
+		return r0110_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0110_gross_liab_capi_contingent_liab(BigDecimal r0110_gross_liab_capi_contingent_liab) {
+		this.r0110_gross_liab_capi_contingent_liab = r0110_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0110_elimination() {
+		return r0110_elimination;
+	}
+
+	public void setR0110_elimination(BigDecimal r0110_elimination) {
+		this.r0110_elimination = r0110_elimination;
+	}
+
+	public BigDecimal getR0110_reclassification() {
+		return r0110_reclassification;
+	}
+
+	public void setR0110_reclassification(BigDecimal r0110_reclassification) {
+		this.r0110_reclassification = r0110_reclassification;
+	}
+
+	public BigDecimal getR0110_consolidated_liabilities() {
+		return r0110_consolidated_liabilities;
+	}
+
+	public void setR0110_consolidated_liabilities(BigDecimal r0110_consolidated_liabilities) {
+		this.r0110_consolidated_liabilities = r0110_consolidated_liabilities;
+	}
+
+	public String getR0120_product() {
+		return r0120_product;
+	}
+
+	public void setR0120_product(String r0120_product) {
+		this.r0120_product = r0120_product;
+	}
+
+	public BigDecimal getR0120_bank_operations() {
+		return r0120_bank_operations;
+	}
+
+	public void setR0120_bank_operations(BigDecimal r0120_bank_operations) {
+		this.r0120_bank_operations = r0120_bank_operations;
+	}
+
+	public BigDecimal getR0120_banking_subsidiaries_uae() {
+		return r0120_banking_subsidiaries_uae;
+	}
+
+	public void setR0120_banking_subsidiaries_uae(BigDecimal r0120_banking_subsidiaries_uae) {
+		this.r0120_banking_subsidiaries_uae = r0120_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0120_fin_subsi_exclu_banking_subsi_uae() {
+		return r0120_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0120_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0120_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0120_fin_subsi_exclu_banking_subsi_uae = r0120_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0120_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0120_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0120_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0120_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0120_fin_subsi_exclu_banking_subsi_outside_uae = r0120_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0120_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0120_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0120_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0120_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0120_all_oth_subsi_ot_banking_fin_subsi_uae = r0120_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0120_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0120_gross_liab_capi_contingent_liab() {
+		return r0120_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0120_gross_liab_capi_contingent_liab(BigDecimal r0120_gross_liab_capi_contingent_liab) {
+		this.r0120_gross_liab_capi_contingent_liab = r0120_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0120_elimination() {
+		return r0120_elimination;
+	}
+
+	public void setR0120_elimination(BigDecimal r0120_elimination) {
+		this.r0120_elimination = r0120_elimination;
+	}
+
+	public BigDecimal getR0120_reclassification() {
+		return r0120_reclassification;
+	}
+
+	public void setR0120_reclassification(BigDecimal r0120_reclassification) {
+		this.r0120_reclassification = r0120_reclassification;
+	}
+
+	public BigDecimal getR0120_consolidated_liabilities() {
+		return r0120_consolidated_liabilities;
+	}
+
+	public void setR0120_consolidated_liabilities(BigDecimal r0120_consolidated_liabilities) {
+		this.r0120_consolidated_liabilities = r0120_consolidated_liabilities;
+	}
+
+	public String getR0130_product() {
+		return r0130_product;
+	}
+
+	public void setR0130_product(String r0130_product) {
+		this.r0130_product = r0130_product;
+	}
+
+	public BigDecimal getR0130_bank_operations() {
+		return r0130_bank_operations;
+	}
+
+	public void setR0130_bank_operations(BigDecimal r0130_bank_operations) {
+		this.r0130_bank_operations = r0130_bank_operations;
+	}
+
+	public BigDecimal getR0130_banking_subsidiaries_uae() {
+		return r0130_banking_subsidiaries_uae;
+	}
+
+	public void setR0130_banking_subsidiaries_uae(BigDecimal r0130_banking_subsidiaries_uae) {
+		this.r0130_banking_subsidiaries_uae = r0130_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0130_fin_subsi_exclu_banking_subsi_uae() {
+		return r0130_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0130_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0130_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0130_fin_subsi_exclu_banking_subsi_uae = r0130_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0130_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0130_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0130_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0130_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0130_fin_subsi_exclu_banking_subsi_outside_uae = r0130_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0130_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0130_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0130_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0130_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0130_all_oth_subsi_ot_banking_fin_subsi_uae = r0130_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0130_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0130_gross_liab_capi_contingent_liab() {
+		return r0130_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0130_gross_liab_capi_contingent_liab(BigDecimal r0130_gross_liab_capi_contingent_liab) {
+		this.r0130_gross_liab_capi_contingent_liab = r0130_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0130_elimination() {
+		return r0130_elimination;
+	}
+
+	public void setR0130_elimination(BigDecimal r0130_elimination) {
+		this.r0130_elimination = r0130_elimination;
+	}
+
+	public BigDecimal getR0130_reclassification() {
+		return r0130_reclassification;
+	}
+
+	public void setR0130_reclassification(BigDecimal r0130_reclassification) {
+		this.r0130_reclassification = r0130_reclassification;
+	}
+
+	public BigDecimal getR0130_consolidated_liabilities() {
+		return r0130_consolidated_liabilities;
+	}
+
+	public void setR0130_consolidated_liabilities(BigDecimal r0130_consolidated_liabilities) {
+		this.r0130_consolidated_liabilities = r0130_consolidated_liabilities;
+	}
+
+	public String getR0140_product() {
+		return r0140_product;
+	}
+
+	public void setR0140_product(String r0140_product) {
+		this.r0140_product = r0140_product;
+	}
+
+	public BigDecimal getR0140_bank_operations() {
+		return r0140_bank_operations;
+	}
+
+	public void setR0140_bank_operations(BigDecimal r0140_bank_operations) {
+		this.r0140_bank_operations = r0140_bank_operations;
+	}
+
+	public BigDecimal getR0140_banking_subsidiaries_uae() {
+		return r0140_banking_subsidiaries_uae;
+	}
+
+	public void setR0140_banking_subsidiaries_uae(BigDecimal r0140_banking_subsidiaries_uae) {
+		this.r0140_banking_subsidiaries_uae = r0140_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0140_fin_subsi_exclu_banking_subsi_uae() {
+		return r0140_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0140_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0140_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0140_fin_subsi_exclu_banking_subsi_uae = r0140_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0140_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0140_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0140_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0140_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0140_fin_subsi_exclu_banking_subsi_outside_uae = r0140_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0140_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0140_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0140_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0140_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0140_all_oth_subsi_ot_banking_fin_subsi_uae = r0140_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0140_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0140_gross_liab_capi_contingent_liab() {
+		return r0140_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0140_gross_liab_capi_contingent_liab(BigDecimal r0140_gross_liab_capi_contingent_liab) {
+		this.r0140_gross_liab_capi_contingent_liab = r0140_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0140_elimination() {
+		return r0140_elimination;
+	}
+
+	public void setR0140_elimination(BigDecimal r0140_elimination) {
+		this.r0140_elimination = r0140_elimination;
+	}
+
+	public BigDecimal getR0140_reclassification() {
+		return r0140_reclassification;
+	}
+
+	public void setR0140_reclassification(BigDecimal r0140_reclassification) {
+		this.r0140_reclassification = r0140_reclassification;
+	}
+
+	public BigDecimal getR0140_consolidated_liabilities() {
+		return r0140_consolidated_liabilities;
+	}
+
+	public void setR0140_consolidated_liabilities(BigDecimal r0140_consolidated_liabilities) {
+		this.r0140_consolidated_liabilities = r0140_consolidated_liabilities;
+	}
+
+	public String getR0150_product() {
+		return r0150_product;
+	}
+
+	public void setR0150_product(String r0150_product) {
+		this.r0150_product = r0150_product;
+	}
+
+	public BigDecimal getR0150_bank_operations() {
+		return r0150_bank_operations;
+	}
+
+	public void setR0150_bank_operations(BigDecimal r0150_bank_operations) {
+		this.r0150_bank_operations = r0150_bank_operations;
+	}
+
+	public BigDecimal getR0150_banking_subsidiaries_uae() {
+		return r0150_banking_subsidiaries_uae;
+	}
+
+	public void setR0150_banking_subsidiaries_uae(BigDecimal r0150_banking_subsidiaries_uae) {
+		this.r0150_banking_subsidiaries_uae = r0150_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0150_fin_subsi_exclu_banking_subsi_uae() {
+		return r0150_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0150_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0150_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0150_fin_subsi_exclu_banking_subsi_uae = r0150_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0150_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0150_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0150_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0150_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0150_fin_subsi_exclu_banking_subsi_outside_uae = r0150_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0150_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0150_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0150_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0150_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0150_all_oth_subsi_ot_banking_fin_subsi_uae = r0150_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0150_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0150_gross_liab_capi_contingent_liab() {
+		return r0150_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0150_gross_liab_capi_contingent_liab(BigDecimal r0150_gross_liab_capi_contingent_liab) {
+		this.r0150_gross_liab_capi_contingent_liab = r0150_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0150_elimination() {
+		return r0150_elimination;
+	}
+
+	public void setR0150_elimination(BigDecimal r0150_elimination) {
+		this.r0150_elimination = r0150_elimination;
+	}
+
+	public BigDecimal getR0150_reclassification() {
+		return r0150_reclassification;
+	}
+
+	public void setR0150_reclassification(BigDecimal r0150_reclassification) {
+		this.r0150_reclassification = r0150_reclassification;
+	}
+
+	public BigDecimal getR0150_consolidated_liabilities() {
+		return r0150_consolidated_liabilities;
+	}
+
+	public void setR0150_consolidated_liabilities(BigDecimal r0150_consolidated_liabilities) {
+		this.r0150_consolidated_liabilities = r0150_consolidated_liabilities;
+	}
+
+	public String getR0160_product() {
+		return r0160_product;
+	}
+
+	public void setR0160_product(String r0160_product) {
+		this.r0160_product = r0160_product;
+	}
+
+	public BigDecimal getR0160_bank_operations() {
+		return r0160_bank_operations;
+	}
+
+	public void setR0160_bank_operations(BigDecimal r0160_bank_operations) {
+		this.r0160_bank_operations = r0160_bank_operations;
+	}
+
+	public BigDecimal getR0160_banking_subsidiaries_uae() {
+		return r0160_banking_subsidiaries_uae;
+	}
+
+	public void setR0160_banking_subsidiaries_uae(BigDecimal r0160_banking_subsidiaries_uae) {
+		this.r0160_banking_subsidiaries_uae = r0160_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0160_fin_subsi_exclu_banking_subsi_uae() {
+		return r0160_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0160_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0160_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0160_fin_subsi_exclu_banking_subsi_uae = r0160_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0160_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0160_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0160_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0160_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0160_fin_subsi_exclu_banking_subsi_outside_uae = r0160_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0160_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0160_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0160_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0160_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0160_all_oth_subsi_ot_banking_fin_subsi_uae = r0160_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0160_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0160_gross_liab_capi_contingent_liab() {
+		return r0160_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0160_gross_liab_capi_contingent_liab(BigDecimal r0160_gross_liab_capi_contingent_liab) {
+		this.r0160_gross_liab_capi_contingent_liab = r0160_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0160_elimination() {
+		return r0160_elimination;
+	}
+
+	public void setR0160_elimination(BigDecimal r0160_elimination) {
+		this.r0160_elimination = r0160_elimination;
+	}
+
+	public BigDecimal getR0160_reclassification() {
+		return r0160_reclassification;
+	}
+
+	public void setR0160_reclassification(BigDecimal r0160_reclassification) {
+		this.r0160_reclassification = r0160_reclassification;
+	}
+
+	public BigDecimal getR0160_consolidated_liabilities() {
+		return r0160_consolidated_liabilities;
+	}
+
+	public void setR0160_consolidated_liabilities(BigDecimal r0160_consolidated_liabilities) {
+		this.r0160_consolidated_liabilities = r0160_consolidated_liabilities;
+	}
+
+	public String getR0170_product() {
+		return r0170_product;
+	}
+
+	public void setR0170_product(String r0170_product) {
+		this.r0170_product = r0170_product;
+	}
+
+	public BigDecimal getR0170_bank_operations() {
+		return r0170_bank_operations;
+	}
+
+	public void setR0170_bank_operations(BigDecimal r0170_bank_operations) {
+		this.r0170_bank_operations = r0170_bank_operations;
+	}
+
+	public BigDecimal getR0170_banking_subsidiaries_uae() {
+		return r0170_banking_subsidiaries_uae;
+	}
+
+	public void setR0170_banking_subsidiaries_uae(BigDecimal r0170_banking_subsidiaries_uae) {
+		this.r0170_banking_subsidiaries_uae = r0170_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0170_fin_subsi_exclu_banking_subsi_uae() {
+		return r0170_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0170_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0170_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0170_fin_subsi_exclu_banking_subsi_uae = r0170_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0170_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0170_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0170_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0170_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0170_fin_subsi_exclu_banking_subsi_outside_uae = r0170_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0170_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0170_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0170_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0170_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0170_all_oth_subsi_ot_banking_fin_subsi_uae = r0170_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0170_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0170_gross_liab_capi_contingent_liab() {
+		return r0170_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0170_gross_liab_capi_contingent_liab(BigDecimal r0170_gross_liab_capi_contingent_liab) {
+		this.r0170_gross_liab_capi_contingent_liab = r0170_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0170_elimination() {
+		return r0170_elimination;
+	}
+
+	public void setR0170_elimination(BigDecimal r0170_elimination) {
+		this.r0170_elimination = r0170_elimination;
+	}
+
+	public BigDecimal getR0170_reclassification() {
+		return r0170_reclassification;
+	}
+
+	public void setR0170_reclassification(BigDecimal r0170_reclassification) {
+		this.r0170_reclassification = r0170_reclassification;
+	}
+
+	public BigDecimal getR0170_consolidated_liabilities() {
+		return r0170_consolidated_liabilities;
+	}
+
+	public void setR0170_consolidated_liabilities(BigDecimal r0170_consolidated_liabilities) {
+		this.r0170_consolidated_liabilities = r0170_consolidated_liabilities;
+	}
+
+	public String getR0180_product() {
+		return r0180_product;
+	}
+
+	public void setR0180_product(String r0180_product) {
+		this.r0180_product = r0180_product;
+	}
+
+	public BigDecimal getR0180_bank_operations() {
+		return r0180_bank_operations;
+	}
+
+	public void setR0180_bank_operations(BigDecimal r0180_bank_operations) {
+		this.r0180_bank_operations = r0180_bank_operations;
+	}
+
+	public BigDecimal getR0180_banking_subsidiaries_uae() {
+		return r0180_banking_subsidiaries_uae;
+	}
+
+	public void setR0180_banking_subsidiaries_uae(BigDecimal r0180_banking_subsidiaries_uae) {
+		this.r0180_banking_subsidiaries_uae = r0180_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0180_fin_subsi_exclu_banking_subsi_uae() {
+		return r0180_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0180_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0180_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0180_fin_subsi_exclu_banking_subsi_uae = r0180_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0180_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0180_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0180_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0180_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0180_fin_subsi_exclu_banking_subsi_outside_uae = r0180_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0180_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0180_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0180_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0180_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0180_all_oth_subsi_ot_banking_fin_subsi_uae = r0180_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0180_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0180_gross_liab_capi_contingent_liab() {
+		return r0180_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0180_gross_liab_capi_contingent_liab(BigDecimal r0180_gross_liab_capi_contingent_liab) {
+		this.r0180_gross_liab_capi_contingent_liab = r0180_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0180_elimination() {
+		return r0180_elimination;
+	}
+
+	public void setR0180_elimination(BigDecimal r0180_elimination) {
+		this.r0180_elimination = r0180_elimination;
+	}
+
+	public BigDecimal getR0180_reclassification() {
+		return r0180_reclassification;
+	}
+
+	public void setR0180_reclassification(BigDecimal r0180_reclassification) {
+		this.r0180_reclassification = r0180_reclassification;
+	}
+
+	public BigDecimal getR0180_consolidated_liabilities() {
+		return r0180_consolidated_liabilities;
+	}
+
+	public void setR0180_consolidated_liabilities(BigDecimal r0180_consolidated_liabilities) {
+		this.r0180_consolidated_liabilities = r0180_consolidated_liabilities;
+	}
+
+	public String getR0190_product() {
+		return r0190_product;
+	}
+
+	public void setR0190_product(String r0190_product) {
+		this.r0190_product = r0190_product;
+	}
+
+	public BigDecimal getR0190_bank_operations() {
+		return r0190_bank_operations;
+	}
+
+	public void setR0190_bank_operations(BigDecimal r0190_bank_operations) {
+		this.r0190_bank_operations = r0190_bank_operations;
+	}
+
+	public BigDecimal getR0190_banking_subsidiaries_uae() {
+		return r0190_banking_subsidiaries_uae;
+	}
+
+	public void setR0190_banking_subsidiaries_uae(BigDecimal r0190_banking_subsidiaries_uae) {
+		this.r0190_banking_subsidiaries_uae = r0190_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0190_fin_subsi_exclu_banking_subsi_uae() {
+		return r0190_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0190_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0190_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0190_fin_subsi_exclu_banking_subsi_uae = r0190_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0190_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0190_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0190_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0190_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0190_fin_subsi_exclu_banking_subsi_outside_uae = r0190_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0190_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0190_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0190_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0190_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0190_all_oth_subsi_ot_banking_fin_subsi_uae = r0190_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0190_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0190_gross_liab_capi_contingent_liab() {
+		return r0190_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0190_gross_liab_capi_contingent_liab(BigDecimal r0190_gross_liab_capi_contingent_liab) {
+		this.r0190_gross_liab_capi_contingent_liab = r0190_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0190_elimination() {
+		return r0190_elimination;
+	}
+
+	public void setR0190_elimination(BigDecimal r0190_elimination) {
+		this.r0190_elimination = r0190_elimination;
+	}
+
+	public BigDecimal getR0190_reclassification() {
+		return r0190_reclassification;
+	}
+
+	public void setR0190_reclassification(BigDecimal r0190_reclassification) {
+		this.r0190_reclassification = r0190_reclassification;
+	}
+
+	public BigDecimal getR0190_consolidated_liabilities() {
+		return r0190_consolidated_liabilities;
+	}
+
+	public void setR0190_consolidated_liabilities(BigDecimal r0190_consolidated_liabilities) {
+		this.r0190_consolidated_liabilities = r0190_consolidated_liabilities;
+	}
+
+	public String getR0200_product() {
+		return r0200_product;
+	}
+
+	public void setR0200_product(String r0200_product) {
+		this.r0200_product = r0200_product;
+	}
+
+	public BigDecimal getR0200_bank_operations() {
+		return r0200_bank_operations;
+	}
+
+	public void setR0200_bank_operations(BigDecimal r0200_bank_operations) {
+		this.r0200_bank_operations = r0200_bank_operations;
+	}
+
+	public BigDecimal getR0200_banking_subsidiaries_uae() {
+		return r0200_banking_subsidiaries_uae;
+	}
+
+	public void setR0200_banking_subsidiaries_uae(BigDecimal r0200_banking_subsidiaries_uae) {
+		this.r0200_banking_subsidiaries_uae = r0200_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0200_fin_subsi_exclu_banking_subsi_uae() {
+		return r0200_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0200_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0200_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0200_fin_subsi_exclu_banking_subsi_uae = r0200_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0200_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0200_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0200_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0200_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0200_fin_subsi_exclu_banking_subsi_outside_uae = r0200_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0200_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0200_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0200_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0200_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0200_all_oth_subsi_ot_banking_fin_subsi_uae = r0200_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0200_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0200_gross_liab_capi_contingent_liab() {
+		return r0200_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0200_gross_liab_capi_contingent_liab(BigDecimal r0200_gross_liab_capi_contingent_liab) {
+		this.r0200_gross_liab_capi_contingent_liab = r0200_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0200_elimination() {
+		return r0200_elimination;
+	}
+
+	public void setR0200_elimination(BigDecimal r0200_elimination) {
+		this.r0200_elimination = r0200_elimination;
+	}
+
+	public BigDecimal getR0200_reclassification() {
+		return r0200_reclassification;
+	}
+
+	public void setR0200_reclassification(BigDecimal r0200_reclassification) {
+		this.r0200_reclassification = r0200_reclassification;
+	}
+
+	public BigDecimal getR0200_consolidated_liabilities() {
+		return r0200_consolidated_liabilities;
+	}
+
+	public void setR0200_consolidated_liabilities(BigDecimal r0200_consolidated_liabilities) {
+		this.r0200_consolidated_liabilities = r0200_consolidated_liabilities;
+	}
+
+	public String getR0210_product() {
+		return r0210_product;
+	}
+
+	public void setR0210_product(String r0210_product) {
+		this.r0210_product = r0210_product;
+	}
+
+	public BigDecimal getR0210_bank_operations() {
+		return r0210_bank_operations;
+	}
+
+	public void setR0210_bank_operations(BigDecimal r0210_bank_operations) {
+		this.r0210_bank_operations = r0210_bank_operations;
+	}
+
+	public BigDecimal getR0210_banking_subsidiaries_uae() {
+		return r0210_banking_subsidiaries_uae;
+	}
+
+	public void setR0210_banking_subsidiaries_uae(BigDecimal r0210_banking_subsidiaries_uae) {
+		this.r0210_banking_subsidiaries_uae = r0210_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0210_fin_subsi_exclu_banking_subsi_uae() {
+		return r0210_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0210_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0210_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0210_fin_subsi_exclu_banking_subsi_uae = r0210_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0210_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0210_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0210_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0210_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0210_fin_subsi_exclu_banking_subsi_outside_uae = r0210_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0210_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0210_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0210_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0210_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0210_all_oth_subsi_ot_banking_fin_subsi_uae = r0210_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0210_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0210_gross_liab_capi_contingent_liab() {
+		return r0210_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0210_gross_liab_capi_contingent_liab(BigDecimal r0210_gross_liab_capi_contingent_liab) {
+		this.r0210_gross_liab_capi_contingent_liab = r0210_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0210_elimination() {
+		return r0210_elimination;
+	}
+
+	public void setR0210_elimination(BigDecimal r0210_elimination) {
+		this.r0210_elimination = r0210_elimination;
+	}
+
+	public BigDecimal getR0210_reclassification() {
+		return r0210_reclassification;
+	}
+
+	public void setR0210_reclassification(BigDecimal r0210_reclassification) {
+		this.r0210_reclassification = r0210_reclassification;
+	}
+
+	public BigDecimal getR0210_consolidated_liabilities() {
+		return r0210_consolidated_liabilities;
+	}
+
+	public void setR0210_consolidated_liabilities(BigDecimal r0210_consolidated_liabilities) {
+		this.r0210_consolidated_liabilities = r0210_consolidated_liabilities;
+	}
+
+	public String getR0220_product() {
+		return r0220_product;
+	}
+
+	public void setR0220_product(String r0220_product) {
+		this.r0220_product = r0220_product;
+	}
+
+	public BigDecimal getR0220_bank_operations() {
+		return r0220_bank_operations;
+	}
+
+	public void setR0220_bank_operations(BigDecimal r0220_bank_operations) {
+		this.r0220_bank_operations = r0220_bank_operations;
+	}
+
+	public BigDecimal getR0220_banking_subsidiaries_uae() {
+		return r0220_banking_subsidiaries_uae;
+	}
+
+	public void setR0220_banking_subsidiaries_uae(BigDecimal r0220_banking_subsidiaries_uae) {
+		this.r0220_banking_subsidiaries_uae = r0220_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0220_fin_subsi_exclu_banking_subsi_uae() {
+		return r0220_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0220_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0220_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0220_fin_subsi_exclu_banking_subsi_uae = r0220_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0220_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0220_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0220_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0220_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0220_fin_subsi_exclu_banking_subsi_outside_uae = r0220_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0220_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0220_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0220_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0220_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0220_all_oth_subsi_ot_banking_fin_subsi_uae = r0220_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0220_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0220_gross_liab_capi_contingent_liab() {
+		return r0220_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0220_gross_liab_capi_contingent_liab(BigDecimal r0220_gross_liab_capi_contingent_liab) {
+		this.r0220_gross_liab_capi_contingent_liab = r0220_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0220_elimination() {
+		return r0220_elimination;
+	}
+
+	public void setR0220_elimination(BigDecimal r0220_elimination) {
+		this.r0220_elimination = r0220_elimination;
+	}
+
+	public BigDecimal getR0220_reclassification() {
+		return r0220_reclassification;
+	}
+
+	public void setR0220_reclassification(BigDecimal r0220_reclassification) {
+		this.r0220_reclassification = r0220_reclassification;
+	}
+
+	public BigDecimal getR0220_consolidated_liabilities() {
+		return r0220_consolidated_liabilities;
+	}
+
+	public void setR0220_consolidated_liabilities(BigDecimal r0220_consolidated_liabilities) {
+		this.r0220_consolidated_liabilities = r0220_consolidated_liabilities;
+	}
+
+	public String getR0230_product() {
+		return r0230_product;
+	}
+
+	public void setR0230_product(String r0230_product) {
+		this.r0230_product = r0230_product;
+	}
+
+	public BigDecimal getR0230_bank_operations() {
+		return r0230_bank_operations;
+	}
+
+	public void setR0230_bank_operations(BigDecimal r0230_bank_operations) {
+		this.r0230_bank_operations = r0230_bank_operations;
+	}
+
+	public BigDecimal getR0230_banking_subsidiaries_uae() {
+		return r0230_banking_subsidiaries_uae;
+	}
+
+	public void setR0230_banking_subsidiaries_uae(BigDecimal r0230_banking_subsidiaries_uae) {
+		this.r0230_banking_subsidiaries_uae = r0230_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0230_fin_subsi_exclu_banking_subsi_uae() {
+		return r0230_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0230_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0230_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0230_fin_subsi_exclu_banking_subsi_uae = r0230_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0230_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0230_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0230_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0230_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0230_fin_subsi_exclu_banking_subsi_outside_uae = r0230_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0230_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0230_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0230_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0230_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0230_all_oth_subsi_ot_banking_fin_subsi_uae = r0230_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0230_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0230_gross_liab_capi_contingent_liab() {
+		return r0230_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0230_gross_liab_capi_contingent_liab(BigDecimal r0230_gross_liab_capi_contingent_liab) {
+		this.r0230_gross_liab_capi_contingent_liab = r0230_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0230_elimination() {
+		return r0230_elimination;
+	}
+
+	public void setR0230_elimination(BigDecimal r0230_elimination) {
+		this.r0230_elimination = r0230_elimination;
+	}
+
+	public BigDecimal getR0230_reclassification() {
+		return r0230_reclassification;
+	}
+
+	public void setR0230_reclassification(BigDecimal r0230_reclassification) {
+		this.r0230_reclassification = r0230_reclassification;
+	}
+
+	public BigDecimal getR0230_consolidated_liabilities() {
+		return r0230_consolidated_liabilities;
+	}
+
+	public void setR0230_consolidated_liabilities(BigDecimal r0230_consolidated_liabilities) {
+		this.r0230_consolidated_liabilities = r0230_consolidated_liabilities;
+	}
+
+	public String getR0240_product() {
+		return r0240_product;
+	}
+
+	public void setR0240_product(String r0240_product) {
+		this.r0240_product = r0240_product;
+	}
+
+	public BigDecimal getR0240_bank_operations() {
+		return r0240_bank_operations;
+	}
+
+	public void setR0240_bank_operations(BigDecimal r0240_bank_operations) {
+		this.r0240_bank_operations = r0240_bank_operations;
+	}
+
+	public BigDecimal getR0240_banking_subsidiaries_uae() {
+		return r0240_banking_subsidiaries_uae;
+	}
+
+	public void setR0240_banking_subsidiaries_uae(BigDecimal r0240_banking_subsidiaries_uae) {
+		this.r0240_banking_subsidiaries_uae = r0240_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0240_fin_subsi_exclu_banking_subsi_uae() {
+		return r0240_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0240_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0240_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0240_fin_subsi_exclu_banking_subsi_uae = r0240_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0240_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0240_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0240_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0240_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0240_fin_subsi_exclu_banking_subsi_outside_uae = r0240_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0240_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0240_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0240_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0240_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0240_all_oth_subsi_ot_banking_fin_subsi_uae = r0240_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0240_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0240_gross_liab_capi_contingent_liab() {
+		return r0240_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0240_gross_liab_capi_contingent_liab(BigDecimal r0240_gross_liab_capi_contingent_liab) {
+		this.r0240_gross_liab_capi_contingent_liab = r0240_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0240_elimination() {
+		return r0240_elimination;
+	}
+
+	public void setR0240_elimination(BigDecimal r0240_elimination) {
+		this.r0240_elimination = r0240_elimination;
+	}
+
+	public BigDecimal getR0240_reclassification() {
+		return r0240_reclassification;
+	}
+
+	public void setR0240_reclassification(BigDecimal r0240_reclassification) {
+		this.r0240_reclassification = r0240_reclassification;
+	}
+
+	public BigDecimal getR0240_consolidated_liabilities() {
+		return r0240_consolidated_liabilities;
+	}
+
+	public void setR0240_consolidated_liabilities(BigDecimal r0240_consolidated_liabilities) {
+		this.r0240_consolidated_liabilities = r0240_consolidated_liabilities;
+	}
+
+	public String getR0250_product() {
+		return r0250_product;
+	}
+
+	public void setR0250_product(String r0250_product) {
+		this.r0250_product = r0250_product;
+	}
+
+	public BigDecimal getR0250_bank_operations() {
+		return r0250_bank_operations;
+	}
+
+	public void setR0250_bank_operations(BigDecimal r0250_bank_operations) {
+		this.r0250_bank_operations = r0250_bank_operations;
+	}
+
+	public BigDecimal getR0250_banking_subsidiaries_uae() {
+		return r0250_banking_subsidiaries_uae;
+	}
+
+	public void setR0250_banking_subsidiaries_uae(BigDecimal r0250_banking_subsidiaries_uae) {
+		this.r0250_banking_subsidiaries_uae = r0250_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0250_fin_subsi_exclu_banking_subsi_uae() {
+		return r0250_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0250_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0250_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0250_fin_subsi_exclu_banking_subsi_uae = r0250_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0250_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0250_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0250_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0250_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0250_fin_subsi_exclu_banking_subsi_outside_uae = r0250_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0250_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0250_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0250_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0250_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0250_all_oth_subsi_ot_banking_fin_subsi_uae = r0250_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0250_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0250_gross_liab_capi_contingent_liab() {
+		return r0250_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0250_gross_liab_capi_contingent_liab(BigDecimal r0250_gross_liab_capi_contingent_liab) {
+		this.r0250_gross_liab_capi_contingent_liab = r0250_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0250_elimination() {
+		return r0250_elimination;
+	}
+
+	public void setR0250_elimination(BigDecimal r0250_elimination) {
+		this.r0250_elimination = r0250_elimination;
+	}
+
+	public BigDecimal getR0250_reclassification() {
+		return r0250_reclassification;
+	}
+
+	public void setR0250_reclassification(BigDecimal r0250_reclassification) {
+		this.r0250_reclassification = r0250_reclassification;
+	}
+
+	public BigDecimal getR0250_consolidated_liabilities() {
+		return r0250_consolidated_liabilities;
+	}
+
+	public void setR0250_consolidated_liabilities(BigDecimal r0250_consolidated_liabilities) {
+		this.r0250_consolidated_liabilities = r0250_consolidated_liabilities;
+	}
+
+	public String getR0260_product() {
+		return r0260_product;
+	}
+
+	public void setR0260_product(String r0260_product) {
+		this.r0260_product = r0260_product;
+	}
+
+	public BigDecimal getR0260_bank_operations() {
+		return r0260_bank_operations;
+	}
+
+	public void setR0260_bank_operations(BigDecimal r0260_bank_operations) {
+		this.r0260_bank_operations = r0260_bank_operations;
+	}
+
+	public BigDecimal getR0260_banking_subsidiaries_uae() {
+		return r0260_banking_subsidiaries_uae;
+	}
+
+	public void setR0260_banking_subsidiaries_uae(BigDecimal r0260_banking_subsidiaries_uae) {
+		this.r0260_banking_subsidiaries_uae = r0260_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0260_fin_subsi_exclu_banking_subsi_uae() {
+		return r0260_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0260_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0260_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0260_fin_subsi_exclu_banking_subsi_uae = r0260_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0260_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0260_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0260_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0260_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0260_fin_subsi_exclu_banking_subsi_outside_uae = r0260_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0260_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0260_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0260_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0260_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0260_all_oth_subsi_ot_banking_fin_subsi_uae = r0260_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0260_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0260_gross_liab_capi_contingent_liab() {
+		return r0260_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0260_gross_liab_capi_contingent_liab(BigDecimal r0260_gross_liab_capi_contingent_liab) {
+		this.r0260_gross_liab_capi_contingent_liab = r0260_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0260_elimination() {
+		return r0260_elimination;
+	}
+
+	public void setR0260_elimination(BigDecimal r0260_elimination) {
+		this.r0260_elimination = r0260_elimination;
+	}
+
+	public BigDecimal getR0260_reclassification() {
+		return r0260_reclassification;
+	}
+
+	public void setR0260_reclassification(BigDecimal r0260_reclassification) {
+		this.r0260_reclassification = r0260_reclassification;
+	}
+
+	public BigDecimal getR0260_consolidated_liabilities() {
+		return r0260_consolidated_liabilities;
+	}
+
+	public void setR0260_consolidated_liabilities(BigDecimal r0260_consolidated_liabilities) {
+		this.r0260_consolidated_liabilities = r0260_consolidated_liabilities;
+	}
+
+	public String getR0270_product() {
+		return r0270_product;
+	}
+
+	public void setR0270_product(String r0270_product) {
+		this.r0270_product = r0270_product;
+	}
+
+	public BigDecimal getR0270_bank_operations() {
+		return r0270_bank_operations;
+	}
+
+	public void setR0270_bank_operations(BigDecimal r0270_bank_operations) {
+		this.r0270_bank_operations = r0270_bank_operations;
+	}
+
+	public BigDecimal getR0270_banking_subsidiaries_uae() {
+		return r0270_banking_subsidiaries_uae;
+	}
+
+	public void setR0270_banking_subsidiaries_uae(BigDecimal r0270_banking_subsidiaries_uae) {
+		this.r0270_banking_subsidiaries_uae = r0270_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0270_fin_subsi_exclu_banking_subsi_uae() {
+		return r0270_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0270_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0270_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0270_fin_subsi_exclu_banking_subsi_uae = r0270_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0270_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0270_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0270_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0270_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0270_fin_subsi_exclu_banking_subsi_outside_uae = r0270_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0270_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0270_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0270_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0270_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0270_all_oth_subsi_ot_banking_fin_subsi_uae = r0270_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0270_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0270_gross_liab_capi_contingent_liab() {
+		return r0270_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0270_gross_liab_capi_contingent_liab(BigDecimal r0270_gross_liab_capi_contingent_liab) {
+		this.r0270_gross_liab_capi_contingent_liab = r0270_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0270_elimination() {
+		return r0270_elimination;
+	}
+
+	public void setR0270_elimination(BigDecimal r0270_elimination) {
+		this.r0270_elimination = r0270_elimination;
+	}
+
+	public BigDecimal getR0270_reclassification() {
+		return r0270_reclassification;
+	}
+
+	public void setR0270_reclassification(BigDecimal r0270_reclassification) {
+		this.r0270_reclassification = r0270_reclassification;
+	}
+
+	public BigDecimal getR0270_consolidated_liabilities() {
+		return r0270_consolidated_liabilities;
+	}
+
+	public void setR0270_consolidated_liabilities(BigDecimal r0270_consolidated_liabilities) {
+		this.r0270_consolidated_liabilities = r0270_consolidated_liabilities;
+	}
+
+	public String getR0280_product() {
+		return r0280_product;
+	}
+
+	public void setR0280_product(String r0280_product) {
+		this.r0280_product = r0280_product;
+	}
+
+	public BigDecimal getR0280_bank_operations() {
+		return r0280_bank_operations;
+	}
+
+	public void setR0280_bank_operations(BigDecimal r0280_bank_operations) {
+		this.r0280_bank_operations = r0280_bank_operations;
+	}
+
+	public BigDecimal getR0280_banking_subsidiaries_uae() {
+		return r0280_banking_subsidiaries_uae;
+	}
+
+	public void setR0280_banking_subsidiaries_uae(BigDecimal r0280_banking_subsidiaries_uae) {
+		this.r0280_banking_subsidiaries_uae = r0280_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0280_fin_subsi_exclu_banking_subsi_uae() {
+		return r0280_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0280_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0280_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0280_fin_subsi_exclu_banking_subsi_uae = r0280_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0280_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0280_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0280_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0280_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0280_fin_subsi_exclu_banking_subsi_outside_uae = r0280_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0280_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0280_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0280_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0280_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0280_all_oth_subsi_ot_banking_fin_subsi_uae = r0280_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0280_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0280_gross_liab_capi_contingent_liab() {
+		return r0280_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0280_gross_liab_capi_contingent_liab(BigDecimal r0280_gross_liab_capi_contingent_liab) {
+		this.r0280_gross_liab_capi_contingent_liab = r0280_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0280_elimination() {
+		return r0280_elimination;
+	}
+
+	public void setR0280_elimination(BigDecimal r0280_elimination) {
+		this.r0280_elimination = r0280_elimination;
+	}
+
+	public BigDecimal getR0280_reclassification() {
+		return r0280_reclassification;
+	}
+
+	public void setR0280_reclassification(BigDecimal r0280_reclassification) {
+		this.r0280_reclassification = r0280_reclassification;
+	}
+
+	public BigDecimal getR0280_consolidated_liabilities() {
+		return r0280_consolidated_liabilities;
+	}
+
+	public void setR0280_consolidated_liabilities(BigDecimal r0280_consolidated_liabilities) {
+		this.r0280_consolidated_liabilities = r0280_consolidated_liabilities;
+	}
+
+	public String getR0290_product() {
+		return r0290_product;
+	}
+
+	public void setR0290_product(String r0290_product) {
+		this.r0290_product = r0290_product;
+	}
+
+	public BigDecimal getR0290_bank_operations() {
+		return r0290_bank_operations;
+	}
+
+	public void setR0290_bank_operations(BigDecimal r0290_bank_operations) {
+		this.r0290_bank_operations = r0290_bank_operations;
+	}
+
+	public BigDecimal getR0290_banking_subsidiaries_uae() {
+		return r0290_banking_subsidiaries_uae;
+	}
+
+	public void setR0290_banking_subsidiaries_uae(BigDecimal r0290_banking_subsidiaries_uae) {
+		this.r0290_banking_subsidiaries_uae = r0290_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0290_fin_subsi_exclu_banking_subsi_uae() {
+		return r0290_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0290_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0290_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0290_fin_subsi_exclu_banking_subsi_uae = r0290_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0290_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0290_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0290_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0290_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0290_fin_subsi_exclu_banking_subsi_outside_uae = r0290_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0290_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0290_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0290_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0290_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0290_all_oth_subsi_ot_banking_fin_subsi_uae = r0290_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0290_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0290_gross_liab_capi_contingent_liab() {
+		return r0290_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0290_gross_liab_capi_contingent_liab(BigDecimal r0290_gross_liab_capi_contingent_liab) {
+		this.r0290_gross_liab_capi_contingent_liab = r0290_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0290_elimination() {
+		return r0290_elimination;
+	}
+
+	public void setR0290_elimination(BigDecimal r0290_elimination) {
+		this.r0290_elimination = r0290_elimination;
+	}
+
+	public BigDecimal getR0290_reclassification() {
+		return r0290_reclassification;
+	}
+
+	public void setR0290_reclassification(BigDecimal r0290_reclassification) {
+		this.r0290_reclassification = r0290_reclassification;
+	}
+
+	public BigDecimal getR0290_consolidated_liabilities() {
+		return r0290_consolidated_liabilities;
+	}
+
+	public void setR0290_consolidated_liabilities(BigDecimal r0290_consolidated_liabilities) {
+		this.r0290_consolidated_liabilities = r0290_consolidated_liabilities;
+	}
+
+	public String getR0300_product() {
+		return r0300_product;
+	}
+
+	public void setR0300_product(String r0300_product) {
+		this.r0300_product = r0300_product;
+	}
+
+	public BigDecimal getR0300_bank_operations() {
+		return r0300_bank_operations;
+	}
+
+	public void setR0300_bank_operations(BigDecimal r0300_bank_operations) {
+		this.r0300_bank_operations = r0300_bank_operations;
+	}
+
+	public BigDecimal getR0300_banking_subsidiaries_uae() {
+		return r0300_banking_subsidiaries_uae;
+	}
+
+	public void setR0300_banking_subsidiaries_uae(BigDecimal r0300_banking_subsidiaries_uae) {
+		this.r0300_banking_subsidiaries_uae = r0300_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0300_fin_subsi_exclu_banking_subsi_uae() {
+		return r0300_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0300_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0300_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0300_fin_subsi_exclu_banking_subsi_uae = r0300_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0300_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0300_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0300_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0300_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0300_fin_subsi_exclu_banking_subsi_outside_uae = r0300_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0300_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0300_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0300_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0300_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0300_all_oth_subsi_ot_banking_fin_subsi_uae = r0300_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0300_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0300_gross_liab_capi_contingent_liab() {
+		return r0300_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0300_gross_liab_capi_contingent_liab(BigDecimal r0300_gross_liab_capi_contingent_liab) {
+		this.r0300_gross_liab_capi_contingent_liab = r0300_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0300_elimination() {
+		return r0300_elimination;
+	}
+
+	public void setR0300_elimination(BigDecimal r0300_elimination) {
+		this.r0300_elimination = r0300_elimination;
+	}
+
+	public BigDecimal getR0300_reclassification() {
+		return r0300_reclassification;
+	}
+
+	public void setR0300_reclassification(BigDecimal r0300_reclassification) {
+		this.r0300_reclassification = r0300_reclassification;
+	}
+
+	public BigDecimal getR0300_consolidated_liabilities() {
+		return r0300_consolidated_liabilities;
+	}
+
+	public void setR0300_consolidated_liabilities(BigDecimal r0300_consolidated_liabilities) {
+		this.r0300_consolidated_liabilities = r0300_consolidated_liabilities;
+	}
+
+	public String getR0310_product() {
+		return r0310_product;
+	}
+
+	public void setR0310_product(String r0310_product) {
+		this.r0310_product = r0310_product;
+	}
+
+	public BigDecimal getR0310_bank_operations() {
+		return r0310_bank_operations;
+	}
+
+	public void setR0310_bank_operations(BigDecimal r0310_bank_operations) {
+		this.r0310_bank_operations = r0310_bank_operations;
+	}
+
+	public BigDecimal getR0310_banking_subsidiaries_uae() {
+		return r0310_banking_subsidiaries_uae;
+	}
+
+	public void setR0310_banking_subsidiaries_uae(BigDecimal r0310_banking_subsidiaries_uae) {
+		this.r0310_banking_subsidiaries_uae = r0310_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0310_fin_subsi_exclu_banking_subsi_uae() {
+		return r0310_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0310_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0310_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0310_fin_subsi_exclu_banking_subsi_uae = r0310_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0310_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0310_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0310_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0310_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0310_fin_subsi_exclu_banking_subsi_outside_uae = r0310_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0310_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0310_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0310_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0310_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0310_all_oth_subsi_ot_banking_fin_subsi_uae = r0310_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0310_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0310_gross_liab_capi_contingent_liab() {
+		return r0310_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0310_gross_liab_capi_contingent_liab(BigDecimal r0310_gross_liab_capi_contingent_liab) {
+		this.r0310_gross_liab_capi_contingent_liab = r0310_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0310_elimination() {
+		return r0310_elimination;
+	}
+
+	public void setR0310_elimination(BigDecimal r0310_elimination) {
+		this.r0310_elimination = r0310_elimination;
+	}
+
+	public BigDecimal getR0310_reclassification() {
+		return r0310_reclassification;
+	}
+
+	public void setR0310_reclassification(BigDecimal r0310_reclassification) {
+		this.r0310_reclassification = r0310_reclassification;
+	}
+
+	public BigDecimal getR0310_consolidated_liabilities() {
+		return r0310_consolidated_liabilities;
+	}
+
+	public void setR0310_consolidated_liabilities(BigDecimal r0310_consolidated_liabilities) {
+		this.r0310_consolidated_liabilities = r0310_consolidated_liabilities;
+	}
+
+	public String getR0320_product() {
+		return r0320_product;
+	}
+
+	public void setR0320_product(String r0320_product) {
+		this.r0320_product = r0320_product;
+	}
+
+	public BigDecimal getR0320_bank_operations() {
+		return r0320_bank_operations;
+	}
+
+	public void setR0320_bank_operations(BigDecimal r0320_bank_operations) {
+		this.r0320_bank_operations = r0320_bank_operations;
+	}
+
+	public BigDecimal getR0320_banking_subsidiaries_uae() {
+		return r0320_banking_subsidiaries_uae;
+	}
+
+	public void setR0320_banking_subsidiaries_uae(BigDecimal r0320_banking_subsidiaries_uae) {
+		this.r0320_banking_subsidiaries_uae = r0320_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0320_fin_subsi_exclu_banking_subsi_uae() {
+		return r0320_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0320_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0320_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0320_fin_subsi_exclu_banking_subsi_uae = r0320_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0320_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0320_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0320_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0320_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0320_fin_subsi_exclu_banking_subsi_outside_uae = r0320_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0320_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0320_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0320_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0320_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0320_all_oth_subsi_ot_banking_fin_subsi_uae = r0320_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0320_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0320_gross_liab_capi_contingent_liab() {
+		return r0320_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0320_gross_liab_capi_contingent_liab(BigDecimal r0320_gross_liab_capi_contingent_liab) {
+		this.r0320_gross_liab_capi_contingent_liab = r0320_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0320_elimination() {
+		return r0320_elimination;
+	}
+
+	public void setR0320_elimination(BigDecimal r0320_elimination) {
+		this.r0320_elimination = r0320_elimination;
+	}
+
+	public BigDecimal getR0320_reclassification() {
+		return r0320_reclassification;
+	}
+
+	public void setR0320_reclassification(BigDecimal r0320_reclassification) {
+		this.r0320_reclassification = r0320_reclassification;
+	}
+
+	public BigDecimal getR0320_consolidated_liabilities() {
+		return r0320_consolidated_liabilities;
+	}
+
+	public void setR0320_consolidated_liabilities(BigDecimal r0320_consolidated_liabilities) {
+		this.r0320_consolidated_liabilities = r0320_consolidated_liabilities;
+	}
+
+	public String getR0330_product() {
+		return r0330_product;
+	}
+
+	public void setR0330_product(String r0330_product) {
+		this.r0330_product = r0330_product;
+	}
+
+	public BigDecimal getR0330_bank_operations() {
+		return r0330_bank_operations;
+	}
+
+	public void setR0330_bank_operations(BigDecimal r0330_bank_operations) {
+		this.r0330_bank_operations = r0330_bank_operations;
+	}
+
+	public BigDecimal getR0330_banking_subsidiaries_uae() {
+		return r0330_banking_subsidiaries_uae;
+	}
+
+	public void setR0330_banking_subsidiaries_uae(BigDecimal r0330_banking_subsidiaries_uae) {
+		this.r0330_banking_subsidiaries_uae = r0330_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0330_fin_subsi_exclu_banking_subsi_uae() {
+		return r0330_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0330_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0330_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0330_fin_subsi_exclu_banking_subsi_uae = r0330_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0330_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0330_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0330_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0330_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0330_fin_subsi_exclu_banking_subsi_outside_uae = r0330_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0330_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0330_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0330_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0330_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0330_all_oth_subsi_ot_banking_fin_subsi_uae = r0330_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0330_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0330_gross_liab_capi_contingent_liab() {
+		return r0330_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0330_gross_liab_capi_contingent_liab(BigDecimal r0330_gross_liab_capi_contingent_liab) {
+		this.r0330_gross_liab_capi_contingent_liab = r0330_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0330_elimination() {
+		return r0330_elimination;
+	}
+
+	public void setR0330_elimination(BigDecimal r0330_elimination) {
+		this.r0330_elimination = r0330_elimination;
+	}
+
+	public BigDecimal getR0330_reclassification() {
+		return r0330_reclassification;
+	}
+
+	public void setR0330_reclassification(BigDecimal r0330_reclassification) {
+		this.r0330_reclassification = r0330_reclassification;
+	}
+
+	public BigDecimal getR0330_consolidated_liabilities() {
+		return r0330_consolidated_liabilities;
+	}
+
+	public void setR0330_consolidated_liabilities(BigDecimal r0330_consolidated_liabilities) {
+		this.r0330_consolidated_liabilities = r0330_consolidated_liabilities;
+	}
+
+	public String getR0340_product() {
+		return r0340_product;
+	}
+
+	public void setR0340_product(String r0340_product) {
+		this.r0340_product = r0340_product;
+	}
+
+	public BigDecimal getR0340_bank_operations() {
+		return r0340_bank_operations;
+	}
+
+	public void setR0340_bank_operations(BigDecimal r0340_bank_operations) {
+		this.r0340_bank_operations = r0340_bank_operations;
+	}
+
+	public BigDecimal getR0340_banking_subsidiaries_uae() {
+		return r0340_banking_subsidiaries_uae;
+	}
+
+	public void setR0340_banking_subsidiaries_uae(BigDecimal r0340_banking_subsidiaries_uae) {
+		this.r0340_banking_subsidiaries_uae = r0340_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0340_fin_subsi_exclu_banking_subsi_uae() {
+		return r0340_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0340_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0340_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0340_fin_subsi_exclu_banking_subsi_uae = r0340_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0340_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0340_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0340_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0340_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0340_fin_subsi_exclu_banking_subsi_outside_uae = r0340_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0340_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0340_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0340_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0340_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0340_all_oth_subsi_ot_banking_fin_subsi_uae = r0340_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0340_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0340_gross_liab_capi_contingent_liab() {
+		return r0340_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0340_gross_liab_capi_contingent_liab(BigDecimal r0340_gross_liab_capi_contingent_liab) {
+		this.r0340_gross_liab_capi_contingent_liab = r0340_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0340_elimination() {
+		return r0340_elimination;
+	}
+
+	public void setR0340_elimination(BigDecimal r0340_elimination) {
+		this.r0340_elimination = r0340_elimination;
+	}
+
+	public BigDecimal getR0340_reclassification() {
+		return r0340_reclassification;
+	}
+
+	public void setR0340_reclassification(BigDecimal r0340_reclassification) {
+		this.r0340_reclassification = r0340_reclassification;
+	}
+
+	public BigDecimal getR0340_consolidated_liabilities() {
+		return r0340_consolidated_liabilities;
+	}
+
+	public void setR0340_consolidated_liabilities(BigDecimal r0340_consolidated_liabilities) {
+		this.r0340_consolidated_liabilities = r0340_consolidated_liabilities;
+	}
+
+	public String getR0350_product() {
+		return r0350_product;
+	}
+
+	public void setR0350_product(String r0350_product) {
+		this.r0350_product = r0350_product;
+	}
+
+	public BigDecimal getR0350_bank_operations() {
+		return r0350_bank_operations;
+	}
+
+	public void setR0350_bank_operations(BigDecimal r0350_bank_operations) {
+		this.r0350_bank_operations = r0350_bank_operations;
+	}
+
+	public BigDecimal getR0350_banking_subsidiaries_uae() {
+		return r0350_banking_subsidiaries_uae;
+	}
+
+	public void setR0350_banking_subsidiaries_uae(BigDecimal r0350_banking_subsidiaries_uae) {
+		this.r0350_banking_subsidiaries_uae = r0350_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0350_fin_subsi_exclu_banking_subsi_uae() {
+		return r0350_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0350_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0350_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0350_fin_subsi_exclu_banking_subsi_uae = r0350_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0350_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0350_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0350_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0350_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0350_fin_subsi_exclu_banking_subsi_outside_uae = r0350_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0350_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0350_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0350_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0350_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0350_all_oth_subsi_ot_banking_fin_subsi_uae = r0350_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0350_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0350_gross_liab_capi_contingent_liab() {
+		return r0350_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0350_gross_liab_capi_contingent_liab(BigDecimal r0350_gross_liab_capi_contingent_liab) {
+		this.r0350_gross_liab_capi_contingent_liab = r0350_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0350_elimination() {
+		return r0350_elimination;
+	}
+
+	public void setR0350_elimination(BigDecimal r0350_elimination) {
+		this.r0350_elimination = r0350_elimination;
+	}
+
+	public BigDecimal getR0350_reclassification() {
+		return r0350_reclassification;
+	}
+
+	public void setR0350_reclassification(BigDecimal r0350_reclassification) {
+		this.r0350_reclassification = r0350_reclassification;
+	}
+
+	public BigDecimal getR0350_consolidated_liabilities() {
+		return r0350_consolidated_liabilities;
+	}
+
+	public void setR0350_consolidated_liabilities(BigDecimal r0350_consolidated_liabilities) {
+		this.r0350_consolidated_liabilities = r0350_consolidated_liabilities;
+	}
+
+	public String getR0360_product() {
+		return r0360_product;
+	}
+
+	public void setR0360_product(String r0360_product) {
+		this.r0360_product = r0360_product;
+	}
+
+	public BigDecimal getR0360_bank_operations() {
+		return r0360_bank_operations;
+	}
+
+	public void setR0360_bank_operations(BigDecimal r0360_bank_operations) {
+		this.r0360_bank_operations = r0360_bank_operations;
+	}
+
+	public BigDecimal getR0360_banking_subsidiaries_uae() {
+		return r0360_banking_subsidiaries_uae;
+	}
+
+	public void setR0360_banking_subsidiaries_uae(BigDecimal r0360_banking_subsidiaries_uae) {
+		this.r0360_banking_subsidiaries_uae = r0360_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0360_fin_subsi_exclu_banking_subsi_uae() {
+		return r0360_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0360_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0360_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0360_fin_subsi_exclu_banking_subsi_uae = r0360_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0360_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0360_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0360_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0360_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0360_fin_subsi_exclu_banking_subsi_outside_uae = r0360_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0360_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0360_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0360_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0360_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0360_all_oth_subsi_ot_banking_fin_subsi_uae = r0360_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0360_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0360_gross_liab_capi_contingent_liab() {
+		return r0360_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0360_gross_liab_capi_contingent_liab(BigDecimal r0360_gross_liab_capi_contingent_liab) {
+		this.r0360_gross_liab_capi_contingent_liab = r0360_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0360_elimination() {
+		return r0360_elimination;
+	}
+
+	public void setR0360_elimination(BigDecimal r0360_elimination) {
+		this.r0360_elimination = r0360_elimination;
+	}
+
+	public BigDecimal getR0360_reclassification() {
+		return r0360_reclassification;
+	}
+
+	public void setR0360_reclassification(BigDecimal r0360_reclassification) {
+		this.r0360_reclassification = r0360_reclassification;
+	}
+
+	public BigDecimal getR0360_consolidated_liabilities() {
+		return r0360_consolidated_liabilities;
+	}
+
+	public void setR0360_consolidated_liabilities(BigDecimal r0360_consolidated_liabilities) {
+		this.r0360_consolidated_liabilities = r0360_consolidated_liabilities;
+	}
+
+	public String getR0370_product() {
+		return r0370_product;
+	}
+
+	public void setR0370_product(String r0370_product) {
+		this.r0370_product = r0370_product;
+	}
+
+	public BigDecimal getR0370_bank_operations() {
+		return r0370_bank_operations;
+	}
+
+	public void setR0370_bank_operations(BigDecimal r0370_bank_operations) {
+		this.r0370_bank_operations = r0370_bank_operations;
+	}
+
+	public BigDecimal getR0370_banking_subsidiaries_uae() {
+		return r0370_banking_subsidiaries_uae;
+	}
+
+	public void setR0370_banking_subsidiaries_uae(BigDecimal r0370_banking_subsidiaries_uae) {
+		this.r0370_banking_subsidiaries_uae = r0370_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0370_fin_subsi_exclu_banking_subsi_uae() {
+		return r0370_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0370_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0370_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0370_fin_subsi_exclu_banking_subsi_uae = r0370_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0370_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0370_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0370_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0370_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0370_fin_subsi_exclu_banking_subsi_outside_uae = r0370_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0370_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0370_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0370_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0370_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0370_all_oth_subsi_ot_banking_fin_subsi_uae = r0370_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0370_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0370_gross_liab_capi_contingent_liab() {
+		return r0370_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0370_gross_liab_capi_contingent_liab(BigDecimal r0370_gross_liab_capi_contingent_liab) {
+		this.r0370_gross_liab_capi_contingent_liab = r0370_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0370_elimination() {
+		return r0370_elimination;
+	}
+
+	public void setR0370_elimination(BigDecimal r0370_elimination) {
+		this.r0370_elimination = r0370_elimination;
+	}
+
+	public BigDecimal getR0370_reclassification() {
+		return r0370_reclassification;
+	}
+
+	public void setR0370_reclassification(BigDecimal r0370_reclassification) {
+		this.r0370_reclassification = r0370_reclassification;
+	}
+
+	public BigDecimal getR0370_consolidated_liabilities() {
+		return r0370_consolidated_liabilities;
+	}
+
+	public void setR0370_consolidated_liabilities(BigDecimal r0370_consolidated_liabilities) {
+		this.r0370_consolidated_liabilities = r0370_consolidated_liabilities;
+	}
+
+	public String getR0380_product() {
+		return r0380_product;
+	}
+
+	public void setR0380_product(String r0380_product) {
+		this.r0380_product = r0380_product;
+	}
+
+	public BigDecimal getR0380_bank_operations() {
+		return r0380_bank_operations;
+	}
+
+	public void setR0380_bank_operations(BigDecimal r0380_bank_operations) {
+		this.r0380_bank_operations = r0380_bank_operations;
+	}
+
+	public BigDecimal getR0380_banking_subsidiaries_uae() {
+		return r0380_banking_subsidiaries_uae;
+	}
+
+	public void setR0380_banking_subsidiaries_uae(BigDecimal r0380_banking_subsidiaries_uae) {
+		this.r0380_banking_subsidiaries_uae = r0380_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0380_fin_subsi_exclu_banking_subsi_uae() {
+		return r0380_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0380_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0380_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0380_fin_subsi_exclu_banking_subsi_uae = r0380_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0380_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0380_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0380_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0380_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0380_fin_subsi_exclu_banking_subsi_outside_uae = r0380_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0380_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0380_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0380_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0380_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0380_all_oth_subsi_ot_banking_fin_subsi_uae = r0380_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0380_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0380_gross_liab_capi_contingent_liab() {
+		return r0380_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0380_gross_liab_capi_contingent_liab(BigDecimal r0380_gross_liab_capi_contingent_liab) {
+		this.r0380_gross_liab_capi_contingent_liab = r0380_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0380_elimination() {
+		return r0380_elimination;
+	}
+
+	public void setR0380_elimination(BigDecimal r0380_elimination) {
+		this.r0380_elimination = r0380_elimination;
+	}
+
+	public BigDecimal getR0380_reclassification() {
+		return r0380_reclassification;
+	}
+
+	public void setR0380_reclassification(BigDecimal r0380_reclassification) {
+		this.r0380_reclassification = r0380_reclassification;
+	}
+
+	public BigDecimal getR0380_consolidated_liabilities() {
+		return r0380_consolidated_liabilities;
+	}
+
+	public void setR0380_consolidated_liabilities(BigDecimal r0380_consolidated_liabilities) {
+		this.r0380_consolidated_liabilities = r0380_consolidated_liabilities;
+	}
+
+	public String getR0390_product() {
+		return r0390_product;
+	}
+
+	public void setR0390_product(String r0390_product) {
+		this.r0390_product = r0390_product;
+	}
+
+	public BigDecimal getR0390_bank_operations() {
+		return r0390_bank_operations;
+	}
+
+	public void setR0390_bank_operations(BigDecimal r0390_bank_operations) {
+		this.r0390_bank_operations = r0390_bank_operations;
+	}
+
+	public BigDecimal getR0390_banking_subsidiaries_uae() {
+		return r0390_banking_subsidiaries_uae;
+	}
+
+	public void setR0390_banking_subsidiaries_uae(BigDecimal r0390_banking_subsidiaries_uae) {
+		this.r0390_banking_subsidiaries_uae = r0390_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0390_fin_subsi_exclu_banking_subsi_uae() {
+		return r0390_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0390_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0390_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0390_fin_subsi_exclu_banking_subsi_uae = r0390_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0390_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0390_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0390_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0390_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0390_fin_subsi_exclu_banking_subsi_outside_uae = r0390_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0390_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0390_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0390_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0390_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0390_all_oth_subsi_ot_banking_fin_subsi_uae = r0390_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0390_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0390_gross_liab_capi_contingent_liab() {
+		return r0390_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0390_gross_liab_capi_contingent_liab(BigDecimal r0390_gross_liab_capi_contingent_liab) {
+		this.r0390_gross_liab_capi_contingent_liab = r0390_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0390_elimination() {
+		return r0390_elimination;
+	}
+
+	public void setR0390_elimination(BigDecimal r0390_elimination) {
+		this.r0390_elimination = r0390_elimination;
+	}
+
+	public BigDecimal getR0390_reclassification() {
+		return r0390_reclassification;
+	}
+
+	public void setR0390_reclassification(BigDecimal r0390_reclassification) {
+		this.r0390_reclassification = r0390_reclassification;
+	}
+
+	public BigDecimal getR0390_consolidated_liabilities() {
+		return r0390_consolidated_liabilities;
+	}
+
+	public void setR0390_consolidated_liabilities(BigDecimal r0390_consolidated_liabilities) {
+		this.r0390_consolidated_liabilities = r0390_consolidated_liabilities;
+	}
+
+	public String getR0400_product() {
+		return r0400_product;
+	}
+
+	public void setR0400_product(String r0400_product) {
+		this.r0400_product = r0400_product;
+	}
+
+	public BigDecimal getR0400_bank_operations() {
+		return r0400_bank_operations;
+	}
+
+	public void setR0400_bank_operations(BigDecimal r0400_bank_operations) {
+		this.r0400_bank_operations = r0400_bank_operations;
+	}
+
+	public BigDecimal getR0400_banking_subsidiaries_uae() {
+		return r0400_banking_subsidiaries_uae;
+	}
+
+	public void setR0400_banking_subsidiaries_uae(BigDecimal r0400_banking_subsidiaries_uae) {
+		this.r0400_banking_subsidiaries_uae = r0400_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0400_fin_subsi_exclu_banking_subsi_uae() {
+		return r0400_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0400_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0400_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0400_fin_subsi_exclu_banking_subsi_uae = r0400_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0400_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0400_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0400_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0400_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0400_fin_subsi_exclu_banking_subsi_outside_uae = r0400_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0400_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0400_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0400_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0400_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0400_all_oth_subsi_ot_banking_fin_subsi_uae = r0400_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0400_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0400_gross_liab_capi_contingent_liab() {
+		return r0400_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0400_gross_liab_capi_contingent_liab(BigDecimal r0400_gross_liab_capi_contingent_liab) {
+		this.r0400_gross_liab_capi_contingent_liab = r0400_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0400_elimination() {
+		return r0400_elimination;
+	}
+
+	public void setR0400_elimination(BigDecimal r0400_elimination) {
+		this.r0400_elimination = r0400_elimination;
+	}
+
+	public BigDecimal getR0400_reclassification() {
+		return r0400_reclassification;
+	}
+
+	public void setR0400_reclassification(BigDecimal r0400_reclassification) {
+		this.r0400_reclassification = r0400_reclassification;
+	}
+
+	public BigDecimal getR0400_consolidated_liabilities() {
+		return r0400_consolidated_liabilities;
+	}
+
+	public void setR0400_consolidated_liabilities(BigDecimal r0400_consolidated_liabilities) {
+		this.r0400_consolidated_liabilities = r0400_consolidated_liabilities;
+	}
+
+	public String getR0410_product() {
+		return r0410_product;
+	}
+
+	public void setR0410_product(String r0410_product) {
+		this.r0410_product = r0410_product;
+	}
+
+	public BigDecimal getR0410_bank_operations() {
+		return r0410_bank_operations;
+	}
+
+	public void setR0410_bank_operations(BigDecimal r0410_bank_operations) {
+		this.r0410_bank_operations = r0410_bank_operations;
+	}
+
+	public BigDecimal getR0410_banking_subsidiaries_uae() {
+		return r0410_banking_subsidiaries_uae;
+	}
+
+	public void setR0410_banking_subsidiaries_uae(BigDecimal r0410_banking_subsidiaries_uae) {
+		this.r0410_banking_subsidiaries_uae = r0410_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0410_fin_subsi_exclu_banking_subsi_uae() {
+		return r0410_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0410_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0410_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0410_fin_subsi_exclu_banking_subsi_uae = r0410_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0410_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0410_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0410_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0410_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0410_fin_subsi_exclu_banking_subsi_outside_uae = r0410_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0410_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0410_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0410_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0410_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0410_all_oth_subsi_ot_banking_fin_subsi_uae = r0410_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0410_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0410_gross_liab_capi_contingent_liab() {
+		return r0410_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0410_gross_liab_capi_contingent_liab(BigDecimal r0410_gross_liab_capi_contingent_liab) {
+		this.r0410_gross_liab_capi_contingent_liab = r0410_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0410_elimination() {
+		return r0410_elimination;
+	}
+
+	public void setR0410_elimination(BigDecimal r0410_elimination) {
+		this.r0410_elimination = r0410_elimination;
+	}
+
+	public BigDecimal getR0410_reclassification() {
+		return r0410_reclassification;
+	}
+
+	public void setR0410_reclassification(BigDecimal r0410_reclassification) {
+		this.r0410_reclassification = r0410_reclassification;
+	}
+
+	public BigDecimal getR0410_consolidated_liabilities() {
+		return r0410_consolidated_liabilities;
+	}
+
+	public void setR0410_consolidated_liabilities(BigDecimal r0410_consolidated_liabilities) {
+		this.r0410_consolidated_liabilities = r0410_consolidated_liabilities;
+	}
+
+	public String getR0420_product() {
+		return r0420_product;
+	}
+
+	public void setR0420_product(String r0420_product) {
+		this.r0420_product = r0420_product;
+	}
+
+	public BigDecimal getR0420_bank_operations() {
+		return r0420_bank_operations;
+	}
+
+	public void setR0420_bank_operations(BigDecimal r0420_bank_operations) {
+		this.r0420_bank_operations = r0420_bank_operations;
+	}
+
+	public BigDecimal getR0420_banking_subsidiaries_uae() {
+		return r0420_banking_subsidiaries_uae;
+	}
+
+	public void setR0420_banking_subsidiaries_uae(BigDecimal r0420_banking_subsidiaries_uae) {
+		this.r0420_banking_subsidiaries_uae = r0420_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0420_fin_subsi_exclu_banking_subsi_uae() {
+		return r0420_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0420_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0420_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0420_fin_subsi_exclu_banking_subsi_uae = r0420_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0420_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0420_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0420_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0420_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0420_fin_subsi_exclu_banking_subsi_outside_uae = r0420_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0420_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0420_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0420_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0420_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0420_all_oth_subsi_ot_banking_fin_subsi_uae = r0420_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0420_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0420_gross_liab_capi_contingent_liab() {
+		return r0420_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0420_gross_liab_capi_contingent_liab(BigDecimal r0420_gross_liab_capi_contingent_liab) {
+		this.r0420_gross_liab_capi_contingent_liab = r0420_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0420_elimination() {
+		return r0420_elimination;
+	}
+
+	public void setR0420_elimination(BigDecimal r0420_elimination) {
+		this.r0420_elimination = r0420_elimination;
+	}
+
+	public BigDecimal getR0420_reclassification() {
+		return r0420_reclassification;
+	}
+
+	public void setR0420_reclassification(BigDecimal r0420_reclassification) {
+		this.r0420_reclassification = r0420_reclassification;
+	}
+
+	public BigDecimal getR0420_consolidated_liabilities() {
+		return r0420_consolidated_liabilities;
+	}
+
+	public void setR0420_consolidated_liabilities(BigDecimal r0420_consolidated_liabilities) {
+		this.r0420_consolidated_liabilities = r0420_consolidated_liabilities;
+	}
+
+	public String getR0430_product() {
+		return r0430_product;
+	}
+
+	public void setR0430_product(String r0430_product) {
+		this.r0430_product = r0430_product;
+	}
+
+	public BigDecimal getR0430_bank_operations() {
+		return r0430_bank_operations;
+	}
+
+	public void setR0430_bank_operations(BigDecimal r0430_bank_operations) {
+		this.r0430_bank_operations = r0430_bank_operations;
+	}
+
+	public BigDecimal getR0430_banking_subsidiaries_uae() {
+		return r0430_banking_subsidiaries_uae;
+	}
+
+	public void setR0430_banking_subsidiaries_uae(BigDecimal r0430_banking_subsidiaries_uae) {
+		this.r0430_banking_subsidiaries_uae = r0430_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0430_fin_subsi_exclu_banking_subsi_uae() {
+		return r0430_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0430_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0430_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0430_fin_subsi_exclu_banking_subsi_uae = r0430_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0430_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0430_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0430_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0430_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0430_fin_subsi_exclu_banking_subsi_outside_uae = r0430_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0430_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0430_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0430_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0430_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0430_all_oth_subsi_ot_banking_fin_subsi_uae = r0430_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0430_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0430_gross_liab_capi_contingent_liab() {
+		return r0430_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0430_gross_liab_capi_contingent_liab(BigDecimal r0430_gross_liab_capi_contingent_liab) {
+		this.r0430_gross_liab_capi_contingent_liab = r0430_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0430_elimination() {
+		return r0430_elimination;
+	}
+
+	public void setR0430_elimination(BigDecimal r0430_elimination) {
+		this.r0430_elimination = r0430_elimination;
+	}
+
+	public BigDecimal getR0430_reclassification() {
+		return r0430_reclassification;
+	}
+
+	public void setR0430_reclassification(BigDecimal r0430_reclassification) {
+		this.r0430_reclassification = r0430_reclassification;
+	}
+
+	public BigDecimal getR0430_consolidated_liabilities() {
+		return r0430_consolidated_liabilities;
+	}
+
+	public void setR0430_consolidated_liabilities(BigDecimal r0430_consolidated_liabilities) {
+		this.r0430_consolidated_liabilities = r0430_consolidated_liabilities;
+	}
+
+	public String getR0440_product() {
+		return r0440_product;
+	}
+
+	public void setR0440_product(String r0440_product) {
+		this.r0440_product = r0440_product;
+	}
+
+	public BigDecimal getR0440_bank_operations() {
+		return r0440_bank_operations;
+	}
+
+	public void setR0440_bank_operations(BigDecimal r0440_bank_operations) {
+		this.r0440_bank_operations = r0440_bank_operations;
+	}
+
+	public BigDecimal getR0440_banking_subsidiaries_uae() {
+		return r0440_banking_subsidiaries_uae;
+	}
+
+	public void setR0440_banking_subsidiaries_uae(BigDecimal r0440_banking_subsidiaries_uae) {
+		this.r0440_banking_subsidiaries_uae = r0440_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0440_fin_subsi_exclu_banking_subsi_uae() {
+		return r0440_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0440_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0440_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0440_fin_subsi_exclu_banking_subsi_uae = r0440_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0440_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0440_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0440_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0440_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0440_fin_subsi_exclu_banking_subsi_outside_uae = r0440_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0440_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0440_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0440_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0440_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0440_all_oth_subsi_ot_banking_fin_subsi_uae = r0440_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0440_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0440_gross_liab_capi_contingent_liab() {
+		return r0440_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0440_gross_liab_capi_contingent_liab(BigDecimal r0440_gross_liab_capi_contingent_liab) {
+		this.r0440_gross_liab_capi_contingent_liab = r0440_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0440_elimination() {
+		return r0440_elimination;
+	}
+
+	public void setR0440_elimination(BigDecimal r0440_elimination) {
+		this.r0440_elimination = r0440_elimination;
+	}
+
+	public BigDecimal getR0440_reclassification() {
+		return r0440_reclassification;
+	}
+
+	public void setR0440_reclassification(BigDecimal r0440_reclassification) {
+		this.r0440_reclassification = r0440_reclassification;
+	}
+
+	public BigDecimal getR0440_consolidated_liabilities() {
+		return r0440_consolidated_liabilities;
+	}
+
+	public void setR0440_consolidated_liabilities(BigDecimal r0440_consolidated_liabilities) {
+		this.r0440_consolidated_liabilities = r0440_consolidated_liabilities;
+	}
+
+	public String getR0450_product() {
+		return r0450_product;
+	}
+
+	public void setR0450_product(String r0450_product) {
+		this.r0450_product = r0450_product;
+	}
+
+	public BigDecimal getR0450_bank_operations() {
+		return r0450_bank_operations;
+	}
+
+	public void setR0450_bank_operations(BigDecimal r0450_bank_operations) {
+		this.r0450_bank_operations = r0450_bank_operations;
+	}
+
+	public BigDecimal getR0450_banking_subsidiaries_uae() {
+		return r0450_banking_subsidiaries_uae;
+	}
+
+	public void setR0450_banking_subsidiaries_uae(BigDecimal r0450_banking_subsidiaries_uae) {
+		this.r0450_banking_subsidiaries_uae = r0450_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0450_fin_subsi_exclu_banking_subsi_uae() {
+		return r0450_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0450_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0450_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0450_fin_subsi_exclu_banking_subsi_uae = r0450_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0450_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0450_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0450_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0450_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0450_fin_subsi_exclu_banking_subsi_outside_uae = r0450_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0450_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0450_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0450_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0450_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0450_all_oth_subsi_ot_banking_fin_subsi_uae = r0450_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0450_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0450_gross_liab_capi_contingent_liab() {
+		return r0450_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0450_gross_liab_capi_contingent_liab(BigDecimal r0450_gross_liab_capi_contingent_liab) {
+		this.r0450_gross_liab_capi_contingent_liab = r0450_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0450_elimination() {
+		return r0450_elimination;
+	}
+
+	public void setR0450_elimination(BigDecimal r0450_elimination) {
+		this.r0450_elimination = r0450_elimination;
+	}
+
+	public BigDecimal getR0450_reclassification() {
+		return r0450_reclassification;
+	}
+
+	public void setR0450_reclassification(BigDecimal r0450_reclassification) {
+		this.r0450_reclassification = r0450_reclassification;
+	}
+
+	public BigDecimal getR0450_consolidated_liabilities() {
+		return r0450_consolidated_liabilities;
+	}
+
+	public void setR0450_consolidated_liabilities(BigDecimal r0450_consolidated_liabilities) {
+		this.r0450_consolidated_liabilities = r0450_consolidated_liabilities;
+	}
+
+	public String getR0460_product() {
+		return r0460_product;
+	}
+
+	public void setR0460_product(String r0460_product) {
+		this.r0460_product = r0460_product;
+	}
+
+	public BigDecimal getR0460_bank_operations() {
+		return r0460_bank_operations;
+	}
+
+	public void setR0460_bank_operations(BigDecimal r0460_bank_operations) {
+		this.r0460_bank_operations = r0460_bank_operations;
+	}
+
+	public BigDecimal getR0460_banking_subsidiaries_uae() {
+		return r0460_banking_subsidiaries_uae;
+	}
+
+	public void setR0460_banking_subsidiaries_uae(BigDecimal r0460_banking_subsidiaries_uae) {
+		this.r0460_banking_subsidiaries_uae = r0460_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0460_fin_subsi_exclu_banking_subsi_uae() {
+		return r0460_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0460_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0460_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0460_fin_subsi_exclu_banking_subsi_uae = r0460_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0460_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0460_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0460_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0460_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0460_fin_subsi_exclu_banking_subsi_outside_uae = r0460_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0460_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0460_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0460_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0460_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0460_all_oth_subsi_ot_banking_fin_subsi_uae = r0460_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0460_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0460_gross_liab_capi_contingent_liab() {
+		return r0460_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0460_gross_liab_capi_contingent_liab(BigDecimal r0460_gross_liab_capi_contingent_liab) {
+		this.r0460_gross_liab_capi_contingent_liab = r0460_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0460_elimination() {
+		return r0460_elimination;
+	}
+
+	public void setR0460_elimination(BigDecimal r0460_elimination) {
+		this.r0460_elimination = r0460_elimination;
+	}
+
+	public BigDecimal getR0460_reclassification() {
+		return r0460_reclassification;
+	}
+
+	public void setR0460_reclassification(BigDecimal r0460_reclassification) {
+		this.r0460_reclassification = r0460_reclassification;
+	}
+
+	public BigDecimal getR0460_consolidated_liabilities() {
+		return r0460_consolidated_liabilities;
+	}
+
+	public void setR0460_consolidated_liabilities(BigDecimal r0460_consolidated_liabilities) {
+		this.r0460_consolidated_liabilities = r0460_consolidated_liabilities;
+	}
+
+	public String getR0470_product() {
+		return r0470_product;
+	}
+
+	public void setR0470_product(String r0470_product) {
+		this.r0470_product = r0470_product;
+	}
+
+	public BigDecimal getR0470_bank_operations() {
+		return r0470_bank_operations;
+	}
+
+	public void setR0470_bank_operations(BigDecimal r0470_bank_operations) {
+		this.r0470_bank_operations = r0470_bank_operations;
+	}
+
+	public BigDecimal getR0470_banking_subsidiaries_uae() {
+		return r0470_banking_subsidiaries_uae;
+	}
+
+	public void setR0470_banking_subsidiaries_uae(BigDecimal r0470_banking_subsidiaries_uae) {
+		this.r0470_banking_subsidiaries_uae = r0470_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0470_fin_subsi_exclu_banking_subsi_uae() {
+		return r0470_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0470_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0470_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0470_fin_subsi_exclu_banking_subsi_uae = r0470_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0470_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0470_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0470_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0470_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0470_fin_subsi_exclu_banking_subsi_outside_uae = r0470_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0470_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0470_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0470_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0470_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0470_all_oth_subsi_ot_banking_fin_subsi_uae = r0470_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0470_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0470_gross_liab_capi_contingent_liab() {
+		return r0470_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0470_gross_liab_capi_contingent_liab(BigDecimal r0470_gross_liab_capi_contingent_liab) {
+		this.r0470_gross_liab_capi_contingent_liab = r0470_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0470_elimination() {
+		return r0470_elimination;
+	}
+
+	public void setR0470_elimination(BigDecimal r0470_elimination) {
+		this.r0470_elimination = r0470_elimination;
+	}
+
+	public BigDecimal getR0470_reclassification() {
+		return r0470_reclassification;
+	}
+
+	public void setR0470_reclassification(BigDecimal r0470_reclassification) {
+		this.r0470_reclassification = r0470_reclassification;
+	}
+
+	public BigDecimal getR0470_consolidated_liabilities() {
+		return r0470_consolidated_liabilities;
+	}
+
+	public void setR0470_consolidated_liabilities(BigDecimal r0470_consolidated_liabilities) {
+		this.r0470_consolidated_liabilities = r0470_consolidated_liabilities;
+	}
+
+	public String getR0480_product() {
+		return r0480_product;
+	}
+
+	public void setR0480_product(String r0480_product) {
+		this.r0480_product = r0480_product;
+	}
+
+	public BigDecimal getR0480_bank_operations() {
+		return r0480_bank_operations;
+	}
+
+	public void setR0480_bank_operations(BigDecimal r0480_bank_operations) {
+		this.r0480_bank_operations = r0480_bank_operations;
+	}
+
+	public BigDecimal getR0480_banking_subsidiaries_uae() {
+		return r0480_banking_subsidiaries_uae;
+	}
+
+	public void setR0480_banking_subsidiaries_uae(BigDecimal r0480_banking_subsidiaries_uae) {
+		this.r0480_banking_subsidiaries_uae = r0480_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0480_fin_subsi_exclu_banking_subsi_uae() {
+		return r0480_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0480_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0480_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0480_fin_subsi_exclu_banking_subsi_uae = r0480_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0480_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0480_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0480_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0480_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0480_fin_subsi_exclu_banking_subsi_outside_uae = r0480_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0480_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0480_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0480_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0480_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0480_all_oth_subsi_ot_banking_fin_subsi_uae = r0480_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0480_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0480_gross_liab_capi_contingent_liab() {
+		return r0480_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0480_gross_liab_capi_contingent_liab(BigDecimal r0480_gross_liab_capi_contingent_liab) {
+		this.r0480_gross_liab_capi_contingent_liab = r0480_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0480_elimination() {
+		return r0480_elimination;
+	}
+
+	public void setR0480_elimination(BigDecimal r0480_elimination) {
+		this.r0480_elimination = r0480_elimination;
+	}
+
+	public BigDecimal getR0480_reclassification() {
+		return r0480_reclassification;
+	}
+
+	public void setR0480_reclassification(BigDecimal r0480_reclassification) {
+		this.r0480_reclassification = r0480_reclassification;
+	}
+
+	public BigDecimal getR0480_consolidated_liabilities() {
+		return r0480_consolidated_liabilities;
+	}
+
+	public void setR0480_consolidated_liabilities(BigDecimal r0480_consolidated_liabilities) {
+		this.r0480_consolidated_liabilities = r0480_consolidated_liabilities;
+	}
+
+	public String getR0490_product() {
+		return r0490_product;
+	}
+
+	public void setR0490_product(String r0490_product) {
+		this.r0490_product = r0490_product;
+	}
+
+	public BigDecimal getR0490_bank_operations() {
+		return r0490_bank_operations;
+	}
+
+	public void setR0490_bank_operations(BigDecimal r0490_bank_operations) {
+		this.r0490_bank_operations = r0490_bank_operations;
+	}
+
+	public BigDecimal getR0490_banking_subsidiaries_uae() {
+		return r0490_banking_subsidiaries_uae;
+	}
+
+	public void setR0490_banking_subsidiaries_uae(BigDecimal r0490_banking_subsidiaries_uae) {
+		this.r0490_banking_subsidiaries_uae = r0490_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0490_fin_subsi_exclu_banking_subsi_uae() {
+		return r0490_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0490_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0490_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0490_fin_subsi_exclu_banking_subsi_uae = r0490_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0490_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0490_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0490_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0490_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0490_fin_subsi_exclu_banking_subsi_outside_uae = r0490_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0490_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0490_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0490_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0490_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0490_all_oth_subsi_ot_banking_fin_subsi_uae = r0490_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0490_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0490_gross_liab_capi_contingent_liab() {
+		return r0490_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0490_gross_liab_capi_contingent_liab(BigDecimal r0490_gross_liab_capi_contingent_liab) {
+		this.r0490_gross_liab_capi_contingent_liab = r0490_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0490_elimination() {
+		return r0490_elimination;
+	}
+
+	public void setR0490_elimination(BigDecimal r0490_elimination) {
+		this.r0490_elimination = r0490_elimination;
+	}
+
+	public BigDecimal getR0490_reclassification() {
+		return r0490_reclassification;
+	}
+
+	public void setR0490_reclassification(BigDecimal r0490_reclassification) {
+		this.r0490_reclassification = r0490_reclassification;
+	}
+
+	public BigDecimal getR0490_consolidated_liabilities() {
+		return r0490_consolidated_liabilities;
+	}
+
+	public void setR0490_consolidated_liabilities(BigDecimal r0490_consolidated_liabilities) {
+		this.r0490_consolidated_liabilities = r0490_consolidated_liabilities;
+	}
+
+	public String getR0500_product() {
+		return r0500_product;
+	}
+
+	public void setR0500_product(String r0500_product) {
+		this.r0500_product = r0500_product;
+	}
+
+	public BigDecimal getR0500_bank_operations() {
+		return r0500_bank_operations;
+	}
+
+	public void setR0500_bank_operations(BigDecimal r0500_bank_operations) {
+		this.r0500_bank_operations = r0500_bank_operations;
+	}
+
+	public BigDecimal getR0500_banking_subsidiaries_uae() {
+		return r0500_banking_subsidiaries_uae;
+	}
+
+	public void setR0500_banking_subsidiaries_uae(BigDecimal r0500_banking_subsidiaries_uae) {
+		this.r0500_banking_subsidiaries_uae = r0500_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0500_fin_subsi_exclu_banking_subsi_uae() {
+		return r0500_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0500_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0500_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0500_fin_subsi_exclu_banking_subsi_uae = r0500_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0500_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0500_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0500_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0500_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0500_fin_subsi_exclu_banking_subsi_outside_uae = r0500_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0500_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0500_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0500_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0500_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0500_all_oth_subsi_ot_banking_fin_subsi_uae = r0500_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0500_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0500_gross_liab_capi_contingent_liab() {
+		return r0500_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0500_gross_liab_capi_contingent_liab(BigDecimal r0500_gross_liab_capi_contingent_liab) {
+		this.r0500_gross_liab_capi_contingent_liab = r0500_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0500_elimination() {
+		return r0500_elimination;
+	}
+
+	public void setR0500_elimination(BigDecimal r0500_elimination) {
+		this.r0500_elimination = r0500_elimination;
+	}
+
+	public BigDecimal getR0500_reclassification() {
+		return r0500_reclassification;
+	}
+
+	public void setR0500_reclassification(BigDecimal r0500_reclassification) {
+		this.r0500_reclassification = r0500_reclassification;
+	}
+
+	public BigDecimal getR0500_consolidated_liabilities() {
+		return r0500_consolidated_liabilities;
+	}
+
+	public void setR0500_consolidated_liabilities(BigDecimal r0500_consolidated_liabilities) {
+		this.r0500_consolidated_liabilities = r0500_consolidated_liabilities;
+	}
+
+	public String getR0510_product() {
+		return r0510_product;
+	}
+
+	public void setR0510_product(String r0510_product) {
+		this.r0510_product = r0510_product;
+	}
+
+	public BigDecimal getR0510_bank_operations() {
+		return r0510_bank_operations;
+	}
+
+	public void setR0510_bank_operations(BigDecimal r0510_bank_operations) {
+		this.r0510_bank_operations = r0510_bank_operations;
+	}
+
+	public BigDecimal getR0510_banking_subsidiaries_uae() {
+		return r0510_banking_subsidiaries_uae;
+	}
+
+	public void setR0510_banking_subsidiaries_uae(BigDecimal r0510_banking_subsidiaries_uae) {
+		this.r0510_banking_subsidiaries_uae = r0510_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0510_fin_subsi_exclu_banking_subsi_uae() {
+		return r0510_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0510_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0510_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0510_fin_subsi_exclu_banking_subsi_uae = r0510_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0510_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0510_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0510_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0510_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0510_fin_subsi_exclu_banking_subsi_outside_uae = r0510_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0510_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0510_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0510_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0510_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0510_all_oth_subsi_ot_banking_fin_subsi_uae = r0510_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0510_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0510_gross_liab_capi_contingent_liab() {
+		return r0510_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0510_gross_liab_capi_contingent_liab(BigDecimal r0510_gross_liab_capi_contingent_liab) {
+		this.r0510_gross_liab_capi_contingent_liab = r0510_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0510_elimination() {
+		return r0510_elimination;
+	}
+
+	public void setR0510_elimination(BigDecimal r0510_elimination) {
+		this.r0510_elimination = r0510_elimination;
+	}
+
+	public BigDecimal getR0510_reclassification() {
+		return r0510_reclassification;
+	}
+
+	public void setR0510_reclassification(BigDecimal r0510_reclassification) {
+		this.r0510_reclassification = r0510_reclassification;
+	}
+
+	public BigDecimal getR0510_consolidated_liabilities() {
+		return r0510_consolidated_liabilities;
+	}
+
+	public void setR0510_consolidated_liabilities(BigDecimal r0510_consolidated_liabilities) {
+		this.r0510_consolidated_liabilities = r0510_consolidated_liabilities;
+	}
+
+	public String getR0520_product() {
+		return r0520_product;
+	}
+
+	public void setR0520_product(String r0520_product) {
+		this.r0520_product = r0520_product;
+	}
+
+	public BigDecimal getR0520_bank_operations() {
+		return r0520_bank_operations;
+	}
+
+	public void setR0520_bank_operations(BigDecimal r0520_bank_operations) {
+		this.r0520_bank_operations = r0520_bank_operations;
+	}
+
+	public BigDecimal getR0520_banking_subsidiaries_uae() {
+		return r0520_banking_subsidiaries_uae;
+	}
+
+	public void setR0520_banking_subsidiaries_uae(BigDecimal r0520_banking_subsidiaries_uae) {
+		this.r0520_banking_subsidiaries_uae = r0520_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0520_fin_subsi_exclu_banking_subsi_uae() {
+		return r0520_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0520_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0520_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0520_fin_subsi_exclu_banking_subsi_uae = r0520_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0520_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0520_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0520_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0520_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0520_fin_subsi_exclu_banking_subsi_outside_uae = r0520_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0520_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0520_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0520_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0520_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0520_all_oth_subsi_ot_banking_fin_subsi_uae = r0520_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0520_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0520_gross_liab_capi_contingent_liab() {
+		return r0520_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0520_gross_liab_capi_contingent_liab(BigDecimal r0520_gross_liab_capi_contingent_liab) {
+		this.r0520_gross_liab_capi_contingent_liab = r0520_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0520_elimination() {
+		return r0520_elimination;
+	}
+
+	public void setR0520_elimination(BigDecimal r0520_elimination) {
+		this.r0520_elimination = r0520_elimination;
+	}
+
+	public BigDecimal getR0520_reclassification() {
+		return r0520_reclassification;
+	}
+
+	public void setR0520_reclassification(BigDecimal r0520_reclassification) {
+		this.r0520_reclassification = r0520_reclassification;
+	}
+
+	public BigDecimal getR0520_consolidated_liabilities() {
+		return r0520_consolidated_liabilities;
+	}
+
+	public void setR0520_consolidated_liabilities(BigDecimal r0520_consolidated_liabilities) {
+		this.r0520_consolidated_liabilities = r0520_consolidated_liabilities;
+	}
+
+	public String getR0530_product() {
+		return r0530_product;
+	}
+
+	public void setR0530_product(String r0530_product) {
+		this.r0530_product = r0530_product;
+	}
+
+	public BigDecimal getR0530_bank_operations() {
+		return r0530_bank_operations;
+	}
+
+	public void setR0530_bank_operations(BigDecimal r0530_bank_operations) {
+		this.r0530_bank_operations = r0530_bank_operations;
+	}
+
+	public BigDecimal getR0530_banking_subsidiaries_uae() {
+		return r0530_banking_subsidiaries_uae;
+	}
+
+	public void setR0530_banking_subsidiaries_uae(BigDecimal r0530_banking_subsidiaries_uae) {
+		this.r0530_banking_subsidiaries_uae = r0530_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0530_fin_subsi_exclu_banking_subsi_uae() {
+		return r0530_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0530_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0530_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0530_fin_subsi_exclu_banking_subsi_uae = r0530_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0530_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0530_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0530_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0530_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0530_fin_subsi_exclu_banking_subsi_outside_uae = r0530_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0530_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0530_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0530_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0530_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0530_all_oth_subsi_ot_banking_fin_subsi_uae = r0530_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0530_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0530_gross_liab_capi_contingent_liab() {
+		return r0530_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0530_gross_liab_capi_contingent_liab(BigDecimal r0530_gross_liab_capi_contingent_liab) {
+		this.r0530_gross_liab_capi_contingent_liab = r0530_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0530_elimination() {
+		return r0530_elimination;
+	}
+
+	public void setR0530_elimination(BigDecimal r0530_elimination) {
+		this.r0530_elimination = r0530_elimination;
+	}
+
+	public BigDecimal getR0530_reclassification() {
+		return r0530_reclassification;
+	}
+
+	public void setR0530_reclassification(BigDecimal r0530_reclassification) {
+		this.r0530_reclassification = r0530_reclassification;
+	}
+
+	public BigDecimal getR0530_consolidated_liabilities() {
+		return r0530_consolidated_liabilities;
+	}
+
+	public void setR0530_consolidated_liabilities(BigDecimal r0530_consolidated_liabilities) {
+		this.r0530_consolidated_liabilities = r0530_consolidated_liabilities;
+	}
+
+	public String getR0540_product() {
+		return r0540_product;
+	}
+
+	public void setR0540_product(String r0540_product) {
+		this.r0540_product = r0540_product;
+	}
+
+	public BigDecimal getR0540_bank_operations() {
+		return r0540_bank_operations;
+	}
+
+	public void setR0540_bank_operations(BigDecimal r0540_bank_operations) {
+		this.r0540_bank_operations = r0540_bank_operations;
+	}
+
+	public BigDecimal getR0540_banking_subsidiaries_uae() {
+		return r0540_banking_subsidiaries_uae;
+	}
+
+	public void setR0540_banking_subsidiaries_uae(BigDecimal r0540_banking_subsidiaries_uae) {
+		this.r0540_banking_subsidiaries_uae = r0540_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0540_fin_subsi_exclu_banking_subsi_uae() {
+		return r0540_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0540_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0540_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0540_fin_subsi_exclu_banking_subsi_uae = r0540_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0540_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0540_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0540_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0540_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0540_fin_subsi_exclu_banking_subsi_outside_uae = r0540_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0540_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0540_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0540_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0540_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0540_all_oth_subsi_ot_banking_fin_subsi_uae = r0540_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0540_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0540_gross_liab_capi_contingent_liab() {
+		return r0540_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0540_gross_liab_capi_contingent_liab(BigDecimal r0540_gross_liab_capi_contingent_liab) {
+		this.r0540_gross_liab_capi_contingent_liab = r0540_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0540_elimination() {
+		return r0540_elimination;
+	}
+
+	public void setR0540_elimination(BigDecimal r0540_elimination) {
+		this.r0540_elimination = r0540_elimination;
+	}
+
+	public BigDecimal getR0540_reclassification() {
+		return r0540_reclassification;
+	}
+
+	public void setR0540_reclassification(BigDecimal r0540_reclassification) {
+		this.r0540_reclassification = r0540_reclassification;
+	}
+
+	public BigDecimal getR0540_consolidated_liabilities() {
+		return r0540_consolidated_liabilities;
+	}
+
+	public void setR0540_consolidated_liabilities(BigDecimal r0540_consolidated_liabilities) {
+		this.r0540_consolidated_liabilities = r0540_consolidated_liabilities;
+	}
+
+	public String getR0550_product() {
+		return r0550_product;
+	}
+
+	public void setR0550_product(String r0550_product) {
+		this.r0550_product = r0550_product;
+	}
+
+	public BigDecimal getR0550_bank_operations() {
+		return r0550_bank_operations;
+	}
+
+	public void setR0550_bank_operations(BigDecimal r0550_bank_operations) {
+		this.r0550_bank_operations = r0550_bank_operations;
+	}
+
+	public BigDecimal getR0550_banking_subsidiaries_uae() {
+		return r0550_banking_subsidiaries_uae;
+	}
+
+	public void setR0550_banking_subsidiaries_uae(BigDecimal r0550_banking_subsidiaries_uae) {
+		this.r0550_banking_subsidiaries_uae = r0550_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0550_fin_subsi_exclu_banking_subsi_uae() {
+		return r0550_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0550_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0550_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0550_fin_subsi_exclu_banking_subsi_uae = r0550_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0550_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0550_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0550_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0550_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0550_fin_subsi_exclu_banking_subsi_outside_uae = r0550_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0550_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0550_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0550_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0550_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0550_all_oth_subsi_ot_banking_fin_subsi_uae = r0550_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0550_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0550_gross_liab_capi_contingent_liab() {
+		return r0550_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0550_gross_liab_capi_contingent_liab(BigDecimal r0550_gross_liab_capi_contingent_liab) {
+		this.r0550_gross_liab_capi_contingent_liab = r0550_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0550_elimination() {
+		return r0550_elimination;
+	}
+
+	public void setR0550_elimination(BigDecimal r0550_elimination) {
+		this.r0550_elimination = r0550_elimination;
+	}
+
+	public BigDecimal getR0550_reclassification() {
+		return r0550_reclassification;
+	}
+
+	public void setR0550_reclassification(BigDecimal r0550_reclassification) {
+		this.r0550_reclassification = r0550_reclassification;
+	}
+
+	public BigDecimal getR0550_consolidated_liabilities() {
+		return r0550_consolidated_liabilities;
+	}
+
+	public void setR0550_consolidated_liabilities(BigDecimal r0550_consolidated_liabilities) {
+		this.r0550_consolidated_liabilities = r0550_consolidated_liabilities;
+	}
+
+	public String getR0560_product() {
+		return r0560_product;
+	}
+
+	public void setR0560_product(String r0560_product) {
+		this.r0560_product = r0560_product;
+	}
+
+	public BigDecimal getR0560_bank_operations() {
+		return r0560_bank_operations;
+	}
+
+	public void setR0560_bank_operations(BigDecimal r0560_bank_operations) {
+		this.r0560_bank_operations = r0560_bank_operations;
+	}
+
+	public BigDecimal getR0560_banking_subsidiaries_uae() {
+		return r0560_banking_subsidiaries_uae;
+	}
+
+	public void setR0560_banking_subsidiaries_uae(BigDecimal r0560_banking_subsidiaries_uae) {
+		this.r0560_banking_subsidiaries_uae = r0560_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0560_fin_subsi_exclu_banking_subsi_uae() {
+		return r0560_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0560_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0560_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0560_fin_subsi_exclu_banking_subsi_uae = r0560_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0560_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0560_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0560_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0560_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0560_fin_subsi_exclu_banking_subsi_outside_uae = r0560_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0560_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0560_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0560_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0560_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0560_all_oth_subsi_ot_banking_fin_subsi_uae = r0560_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0560_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0560_gross_liab_capi_contingent_liab() {
+		return r0560_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0560_gross_liab_capi_contingent_liab(BigDecimal r0560_gross_liab_capi_contingent_liab) {
+		this.r0560_gross_liab_capi_contingent_liab = r0560_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0560_elimination() {
+		return r0560_elimination;
+	}
+
+	public void setR0560_elimination(BigDecimal r0560_elimination) {
+		this.r0560_elimination = r0560_elimination;
+	}
+
+	public BigDecimal getR0560_reclassification() {
+		return r0560_reclassification;
+	}
+
+	public void setR0560_reclassification(BigDecimal r0560_reclassification) {
+		this.r0560_reclassification = r0560_reclassification;
+	}
+
+	public BigDecimal getR0560_consolidated_liabilities() {
+		return r0560_consolidated_liabilities;
+	}
+
+	public void setR0560_consolidated_liabilities(BigDecimal r0560_consolidated_liabilities) {
+		this.r0560_consolidated_liabilities = r0560_consolidated_liabilities;
+	}
+
+	public String getR0570_product() {
+		return r0570_product;
+	}
+
+	public void setR0570_product(String r0570_product) {
+		this.r0570_product = r0570_product;
+	}
+
+	public BigDecimal getR0570_bank_operations() {
+		return r0570_bank_operations;
+	}
+
+	public void setR0570_bank_operations(BigDecimal r0570_bank_operations) {
+		this.r0570_bank_operations = r0570_bank_operations;
+	}
+
+	public BigDecimal getR0570_banking_subsidiaries_uae() {
+		return r0570_banking_subsidiaries_uae;
+	}
+
+	public void setR0570_banking_subsidiaries_uae(BigDecimal r0570_banking_subsidiaries_uae) {
+		this.r0570_banking_subsidiaries_uae = r0570_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0570_fin_subsi_exclu_banking_subsi_uae() {
+		return r0570_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0570_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0570_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0570_fin_subsi_exclu_banking_subsi_uae = r0570_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0570_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0570_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0570_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0570_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0570_fin_subsi_exclu_banking_subsi_outside_uae = r0570_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0570_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0570_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0570_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0570_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0570_all_oth_subsi_ot_banking_fin_subsi_uae = r0570_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0570_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0570_gross_liab_capi_contingent_liab() {
+		return r0570_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0570_gross_liab_capi_contingent_liab(BigDecimal r0570_gross_liab_capi_contingent_liab) {
+		this.r0570_gross_liab_capi_contingent_liab = r0570_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0570_elimination() {
+		return r0570_elimination;
+	}
+
+	public void setR0570_elimination(BigDecimal r0570_elimination) {
+		this.r0570_elimination = r0570_elimination;
+	}
+
+	public BigDecimal getR0570_reclassification() {
+		return r0570_reclassification;
+	}
+
+	public void setR0570_reclassification(BigDecimal r0570_reclassification) {
+		this.r0570_reclassification = r0570_reclassification;
+	}
+
+	public BigDecimal getR0570_consolidated_liabilities() {
+		return r0570_consolidated_liabilities;
+	}
+
+	public void setR0570_consolidated_liabilities(BigDecimal r0570_consolidated_liabilities) {
+		this.r0570_consolidated_liabilities = r0570_consolidated_liabilities;
+	}
+
+	public String getR0580_product() {
+		return r0580_product;
+	}
+
+	public void setR0580_product(String r0580_product) {
+		this.r0580_product = r0580_product;
+	}
+
+	public BigDecimal getR0580_bank_operations() {
+		return r0580_bank_operations;
+	}
+
+	public void setR0580_bank_operations(BigDecimal r0580_bank_operations) {
+		this.r0580_bank_operations = r0580_bank_operations;
+	}
+
+	public BigDecimal getR0580_banking_subsidiaries_uae() {
+		return r0580_banking_subsidiaries_uae;
+	}
+
+	public void setR0580_banking_subsidiaries_uae(BigDecimal r0580_banking_subsidiaries_uae) {
+		this.r0580_banking_subsidiaries_uae = r0580_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0580_fin_subsi_exclu_banking_subsi_uae() {
+		return r0580_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0580_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0580_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0580_fin_subsi_exclu_banking_subsi_uae = r0580_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0580_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0580_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0580_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0580_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0580_fin_subsi_exclu_banking_subsi_outside_uae = r0580_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0580_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0580_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0580_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0580_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0580_all_oth_subsi_ot_banking_fin_subsi_uae = r0580_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0580_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0580_gross_liab_capi_contingent_liab() {
+		return r0580_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0580_gross_liab_capi_contingent_liab(BigDecimal r0580_gross_liab_capi_contingent_liab) {
+		this.r0580_gross_liab_capi_contingent_liab = r0580_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0580_elimination() {
+		return r0580_elimination;
+	}
+
+	public void setR0580_elimination(BigDecimal r0580_elimination) {
+		this.r0580_elimination = r0580_elimination;
+	}
+
+	public BigDecimal getR0580_reclassification() {
+		return r0580_reclassification;
+	}
+
+	public void setR0580_reclassification(BigDecimal r0580_reclassification) {
+		this.r0580_reclassification = r0580_reclassification;
+	}
+
+	public BigDecimal getR0580_consolidated_liabilities() {
+		return r0580_consolidated_liabilities;
+	}
+
+	public void setR0580_consolidated_liabilities(BigDecimal r0580_consolidated_liabilities) {
+		this.r0580_consolidated_liabilities = r0580_consolidated_liabilities;
+	}
+
+	public String getR0590_product() {
+		return r0590_product;
+	}
+
+	public void setR0590_product(String r0590_product) {
+		this.r0590_product = r0590_product;
+	}
+
+	public BigDecimal getR0590_bank_operations() {
+		return r0590_bank_operations;
+	}
+
+	public void setR0590_bank_operations(BigDecimal r0590_bank_operations) {
+		this.r0590_bank_operations = r0590_bank_operations;
+	}
+
+	public BigDecimal getR0590_banking_subsidiaries_uae() {
+		return r0590_banking_subsidiaries_uae;
+	}
+
+	public void setR0590_banking_subsidiaries_uae(BigDecimal r0590_banking_subsidiaries_uae) {
+		this.r0590_banking_subsidiaries_uae = r0590_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0590_fin_subsi_exclu_banking_subsi_uae() {
+		return r0590_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0590_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0590_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0590_fin_subsi_exclu_banking_subsi_uae = r0590_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0590_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0590_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0590_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0590_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0590_fin_subsi_exclu_banking_subsi_outside_uae = r0590_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0590_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0590_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0590_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0590_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0590_all_oth_subsi_ot_banking_fin_subsi_uae = r0590_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0590_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0590_gross_liab_capi_contingent_liab() {
+		return r0590_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0590_gross_liab_capi_contingent_liab(BigDecimal r0590_gross_liab_capi_contingent_liab) {
+		this.r0590_gross_liab_capi_contingent_liab = r0590_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0590_elimination() {
+		return r0590_elimination;
+	}
+
+	public void setR0590_elimination(BigDecimal r0590_elimination) {
+		this.r0590_elimination = r0590_elimination;
+	}
+
+	public BigDecimal getR0590_reclassification() {
+		return r0590_reclassification;
+	}
+
+	public void setR0590_reclassification(BigDecimal r0590_reclassification) {
+		this.r0590_reclassification = r0590_reclassification;
+	}
+
+	public BigDecimal getR0590_consolidated_liabilities() {
+		return r0590_consolidated_liabilities;
+	}
+
+	public void setR0590_consolidated_liabilities(BigDecimal r0590_consolidated_liabilities) {
+		this.r0590_consolidated_liabilities = r0590_consolidated_liabilities;
+	}
+
+	public String getR0600_product() {
+		return r0600_product;
+	}
+
+	public void setR0600_product(String r0600_product) {
+		this.r0600_product = r0600_product;
+	}
+
+	public BigDecimal getR0600_bank_operations() {
+		return r0600_bank_operations;
+	}
+
+	public void setR0600_bank_operations(BigDecimal r0600_bank_operations) {
+		this.r0600_bank_operations = r0600_bank_operations;
+	}
+
+	public BigDecimal getR0600_banking_subsidiaries_uae() {
+		return r0600_banking_subsidiaries_uae;
+	}
+
+	public void setR0600_banking_subsidiaries_uae(BigDecimal r0600_banking_subsidiaries_uae) {
+		this.r0600_banking_subsidiaries_uae = r0600_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0600_fin_subsi_exclu_banking_subsi_uae() {
+		return r0600_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0600_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0600_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0600_fin_subsi_exclu_banking_subsi_uae = r0600_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0600_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0600_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0600_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0600_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0600_fin_subsi_exclu_banking_subsi_outside_uae = r0600_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0600_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0600_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0600_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0600_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0600_all_oth_subsi_ot_banking_fin_subsi_uae = r0600_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0600_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0600_gross_liab_capi_contingent_liab() {
+		return r0600_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0600_gross_liab_capi_contingent_liab(BigDecimal r0600_gross_liab_capi_contingent_liab) {
+		this.r0600_gross_liab_capi_contingent_liab = r0600_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0600_elimination() {
+		return r0600_elimination;
+	}
+
+	public void setR0600_elimination(BigDecimal r0600_elimination) {
+		this.r0600_elimination = r0600_elimination;
+	}
+
+	public BigDecimal getR0600_reclassification() {
+		return r0600_reclassification;
+	}
+
+	public void setR0600_reclassification(BigDecimal r0600_reclassification) {
+		this.r0600_reclassification = r0600_reclassification;
+	}
+
+	public BigDecimal getR0600_consolidated_liabilities() {
+		return r0600_consolidated_liabilities;
+	}
+
+	public void setR0600_consolidated_liabilities(BigDecimal r0600_consolidated_liabilities) {
+		this.r0600_consolidated_liabilities = r0600_consolidated_liabilities;
+	}
+
+	public String getR0610_product() {
+		return r0610_product;
+	}
+
+	public void setR0610_product(String r0610_product) {
+		this.r0610_product = r0610_product;
+	}
+
+	public BigDecimal getR0610_bank_operations() {
+		return r0610_bank_operations;
+	}
+
+	public void setR0610_bank_operations(BigDecimal r0610_bank_operations) {
+		this.r0610_bank_operations = r0610_bank_operations;
+	}
+
+	public BigDecimal getR0610_banking_subsidiaries_uae() {
+		return r0610_banking_subsidiaries_uae;
+	}
+
+	public void setR0610_banking_subsidiaries_uae(BigDecimal r0610_banking_subsidiaries_uae) {
+		this.r0610_banking_subsidiaries_uae = r0610_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0610_fin_subsi_exclu_banking_subsi_uae() {
+		return r0610_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0610_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0610_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0610_fin_subsi_exclu_banking_subsi_uae = r0610_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0610_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0610_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0610_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0610_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0610_fin_subsi_exclu_banking_subsi_outside_uae = r0610_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0610_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0610_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0610_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0610_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0610_all_oth_subsi_ot_banking_fin_subsi_uae = r0610_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0610_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0610_gross_liab_capi_contingent_liab() {
+		return r0610_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0610_gross_liab_capi_contingent_liab(BigDecimal r0610_gross_liab_capi_contingent_liab) {
+		this.r0610_gross_liab_capi_contingent_liab = r0610_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0610_elimination() {
+		return r0610_elimination;
+	}
+
+	public void setR0610_elimination(BigDecimal r0610_elimination) {
+		this.r0610_elimination = r0610_elimination;
+	}
+
+	public BigDecimal getR0610_reclassification() {
+		return r0610_reclassification;
+	}
+
+	public void setR0610_reclassification(BigDecimal r0610_reclassification) {
+		this.r0610_reclassification = r0610_reclassification;
+	}
+
+	public BigDecimal getR0610_consolidated_liabilities() {
+		return r0610_consolidated_liabilities;
+	}
+
+	public void setR0610_consolidated_liabilities(BigDecimal r0610_consolidated_liabilities) {
+		this.r0610_consolidated_liabilities = r0610_consolidated_liabilities;
+	}
+
+	public String getR0620_product() {
+		return r0620_product;
+	}
+
+	public void setR0620_product(String r0620_product) {
+		this.r0620_product = r0620_product;
+	}
+
+	public BigDecimal getR0620_bank_operations() {
+		return r0620_bank_operations;
+	}
+
+	public void setR0620_bank_operations(BigDecimal r0620_bank_operations) {
+		this.r0620_bank_operations = r0620_bank_operations;
+	}
+
+	public BigDecimal getR0620_banking_subsidiaries_uae() {
+		return r0620_banking_subsidiaries_uae;
+	}
+
+	public void setR0620_banking_subsidiaries_uae(BigDecimal r0620_banking_subsidiaries_uae) {
+		this.r0620_banking_subsidiaries_uae = r0620_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0620_fin_subsi_exclu_banking_subsi_uae() {
+		return r0620_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0620_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0620_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0620_fin_subsi_exclu_banking_subsi_uae = r0620_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0620_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0620_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0620_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0620_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0620_fin_subsi_exclu_banking_subsi_outside_uae = r0620_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0620_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0620_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0620_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0620_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0620_all_oth_subsi_ot_banking_fin_subsi_uae = r0620_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0620_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0620_gross_liab_capi_contingent_liab() {
+		return r0620_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0620_gross_liab_capi_contingent_liab(BigDecimal r0620_gross_liab_capi_contingent_liab) {
+		this.r0620_gross_liab_capi_contingent_liab = r0620_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0620_elimination() {
+		return r0620_elimination;
+	}
+
+	public void setR0620_elimination(BigDecimal r0620_elimination) {
+		this.r0620_elimination = r0620_elimination;
+	}
+
+	public BigDecimal getR0620_reclassification() {
+		return r0620_reclassification;
+	}
+
+	public void setR0620_reclassification(BigDecimal r0620_reclassification) {
+		this.r0620_reclassification = r0620_reclassification;
+	}
+
+	public BigDecimal getR0620_consolidated_liabilities() {
+		return r0620_consolidated_liabilities;
+	}
+
+	public void setR0620_consolidated_liabilities(BigDecimal r0620_consolidated_liabilities) {
+		this.r0620_consolidated_liabilities = r0620_consolidated_liabilities;
+	}
+
+	public String getR0630_product() {
+		return r0630_product;
+	}
+
+	public void setR0630_product(String r0630_product) {
+		this.r0630_product = r0630_product;
+	}
+
+	public BigDecimal getR0630_bank_operations() {
+		return r0630_bank_operations;
+	}
+
+	public void setR0630_bank_operations(BigDecimal r0630_bank_operations) {
+		this.r0630_bank_operations = r0630_bank_operations;
+	}
+
+	public BigDecimal getR0630_banking_subsidiaries_uae() {
+		return r0630_banking_subsidiaries_uae;
+	}
+
+	public void setR0630_banking_subsidiaries_uae(BigDecimal r0630_banking_subsidiaries_uae) {
+		this.r0630_banking_subsidiaries_uae = r0630_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0630_fin_subsi_exclu_banking_subsi_uae() {
+		return r0630_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0630_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0630_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0630_fin_subsi_exclu_banking_subsi_uae = r0630_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0630_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0630_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0630_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0630_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0630_fin_subsi_exclu_banking_subsi_outside_uae = r0630_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0630_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0630_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0630_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0630_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0630_all_oth_subsi_ot_banking_fin_subsi_uae = r0630_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0630_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0630_gross_liab_capi_contingent_liab() {
+		return r0630_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0630_gross_liab_capi_contingent_liab(BigDecimal r0630_gross_liab_capi_contingent_liab) {
+		this.r0630_gross_liab_capi_contingent_liab = r0630_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0630_elimination() {
+		return r0630_elimination;
+	}
+
+	public void setR0630_elimination(BigDecimal r0630_elimination) {
+		this.r0630_elimination = r0630_elimination;
+	}
+
+	public BigDecimal getR0630_reclassification() {
+		return r0630_reclassification;
+	}
+
+	public void setR0630_reclassification(BigDecimal r0630_reclassification) {
+		this.r0630_reclassification = r0630_reclassification;
+	}
+
+	public BigDecimal getR0630_consolidated_liabilities() {
+		return r0630_consolidated_liabilities;
+	}
+
+	public void setR0630_consolidated_liabilities(BigDecimal r0630_consolidated_liabilities) {
+		this.r0630_consolidated_liabilities = r0630_consolidated_liabilities;
+	}
+
+	public String getR0640_product() {
+		return r0640_product;
+	}
+
+	public void setR0640_product(String r0640_product) {
+		this.r0640_product = r0640_product;
+	}
+
+	public BigDecimal getR0640_bank_operations() {
+		return r0640_bank_operations;
+	}
+
+	public void setR0640_bank_operations(BigDecimal r0640_bank_operations) {
+		this.r0640_bank_operations = r0640_bank_operations;
+	}
+
+	public BigDecimal getR0640_banking_subsidiaries_uae() {
+		return r0640_banking_subsidiaries_uae;
+	}
+
+	public void setR0640_banking_subsidiaries_uae(BigDecimal r0640_banking_subsidiaries_uae) {
+		this.r0640_banking_subsidiaries_uae = r0640_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0640_fin_subsi_exclu_banking_subsi_uae() {
+		return r0640_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0640_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0640_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0640_fin_subsi_exclu_banking_subsi_uae = r0640_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0640_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0640_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0640_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0640_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0640_fin_subsi_exclu_banking_subsi_outside_uae = r0640_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0640_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0640_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0640_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0640_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0640_all_oth_subsi_ot_banking_fin_subsi_uae = r0640_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0640_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0640_gross_liab_capi_contingent_liab() {
+		return r0640_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0640_gross_liab_capi_contingent_liab(BigDecimal r0640_gross_liab_capi_contingent_liab) {
+		this.r0640_gross_liab_capi_contingent_liab = r0640_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0640_elimination() {
+		return r0640_elimination;
+	}
+
+	public void setR0640_elimination(BigDecimal r0640_elimination) {
+		this.r0640_elimination = r0640_elimination;
+	}
+
+	public BigDecimal getR0640_reclassification() {
+		return r0640_reclassification;
+	}
+
+	public void setR0640_reclassification(BigDecimal r0640_reclassification) {
+		this.r0640_reclassification = r0640_reclassification;
+	}
+
+	public BigDecimal getR0640_consolidated_liabilities() {
+		return r0640_consolidated_liabilities;
+	}
+
+	public void setR0640_consolidated_liabilities(BigDecimal r0640_consolidated_liabilities) {
+		this.r0640_consolidated_liabilities = r0640_consolidated_liabilities;
+	}
+
+	public String getR0650_product() {
+		return r0650_product;
+	}
+
+	public void setR0650_product(String r0650_product) {
+		this.r0650_product = r0650_product;
+	}
+
+	public BigDecimal getR0650_bank_operations() {
+		return r0650_bank_operations;
+	}
+
+	public void setR0650_bank_operations(BigDecimal r0650_bank_operations) {
+		this.r0650_bank_operations = r0650_bank_operations;
+	}
+
+	public BigDecimal getR0650_banking_subsidiaries_uae() {
+		return r0650_banking_subsidiaries_uae;
+	}
+
+	public void setR0650_banking_subsidiaries_uae(BigDecimal r0650_banking_subsidiaries_uae) {
+		this.r0650_banking_subsidiaries_uae = r0650_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0650_fin_subsi_exclu_banking_subsi_uae() {
+		return r0650_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0650_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0650_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0650_fin_subsi_exclu_banking_subsi_uae = r0650_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0650_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0650_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0650_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0650_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0650_fin_subsi_exclu_banking_subsi_outside_uae = r0650_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0650_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0650_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0650_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0650_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0650_all_oth_subsi_ot_banking_fin_subsi_uae = r0650_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0650_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0650_gross_liab_capi_contingent_liab() {
+		return r0650_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0650_gross_liab_capi_contingent_liab(BigDecimal r0650_gross_liab_capi_contingent_liab) {
+		this.r0650_gross_liab_capi_contingent_liab = r0650_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0650_elimination() {
+		return r0650_elimination;
+	}
+
+	public void setR0650_elimination(BigDecimal r0650_elimination) {
+		this.r0650_elimination = r0650_elimination;
+	}
+
+	public BigDecimal getR0650_reclassification() {
+		return r0650_reclassification;
+	}
+
+	public void setR0650_reclassification(BigDecimal r0650_reclassification) {
+		this.r0650_reclassification = r0650_reclassification;
+	}
+
+	public BigDecimal getR0650_consolidated_liabilities() {
+		return r0650_consolidated_liabilities;
+	}
+
+	public void setR0650_consolidated_liabilities(BigDecimal r0650_consolidated_liabilities) {
+		this.r0650_consolidated_liabilities = r0650_consolidated_liabilities;
+	}
+
+	public String getR0660_product() {
+		return r0660_product;
+	}
+
+	public void setR0660_product(String r0660_product) {
+		this.r0660_product = r0660_product;
+	}
+
+	public BigDecimal getR0660_bank_operations() {
+		return r0660_bank_operations;
+	}
+
+	public void setR0660_bank_operations(BigDecimal r0660_bank_operations) {
+		this.r0660_bank_operations = r0660_bank_operations;
+	}
+
+	public BigDecimal getR0660_banking_subsidiaries_uae() {
+		return r0660_banking_subsidiaries_uae;
+	}
+
+	public void setR0660_banking_subsidiaries_uae(BigDecimal r0660_banking_subsidiaries_uae) {
+		this.r0660_banking_subsidiaries_uae = r0660_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0660_fin_subsi_exclu_banking_subsi_uae() {
+		return r0660_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0660_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0660_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0660_fin_subsi_exclu_banking_subsi_uae = r0660_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0660_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0660_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0660_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0660_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0660_fin_subsi_exclu_banking_subsi_outside_uae = r0660_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0660_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0660_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0660_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0660_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0660_all_oth_subsi_ot_banking_fin_subsi_uae = r0660_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0660_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0660_gross_liab_capi_contingent_liab() {
+		return r0660_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0660_gross_liab_capi_contingent_liab(BigDecimal r0660_gross_liab_capi_contingent_liab) {
+		this.r0660_gross_liab_capi_contingent_liab = r0660_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0660_elimination() {
+		return r0660_elimination;
+	}
+
+	public void setR0660_elimination(BigDecimal r0660_elimination) {
+		this.r0660_elimination = r0660_elimination;
+	}
+
+	public BigDecimal getR0660_reclassification() {
+		return r0660_reclassification;
+	}
+
+	public void setR0660_reclassification(BigDecimal r0660_reclassification) {
+		this.r0660_reclassification = r0660_reclassification;
+	}
+
+	public BigDecimal getR0660_consolidated_liabilities() {
+		return r0660_consolidated_liabilities;
+	}
+
+	public void setR0660_consolidated_liabilities(BigDecimal r0660_consolidated_liabilities) {
+		this.r0660_consolidated_liabilities = r0660_consolidated_liabilities;
+	}
+
+	public String getR0670_product() {
+		return r0670_product;
+	}
+
+	public void setR0670_product(String r0670_product) {
+		this.r0670_product = r0670_product;
+	}
+
+	public BigDecimal getR0670_bank_operations() {
+		return r0670_bank_operations;
+	}
+
+	public void setR0670_bank_operations(BigDecimal r0670_bank_operations) {
+		this.r0670_bank_operations = r0670_bank_operations;
+	}
+
+	public BigDecimal getR0670_banking_subsidiaries_uae() {
+		return r0670_banking_subsidiaries_uae;
+	}
+
+	public void setR0670_banking_subsidiaries_uae(BigDecimal r0670_banking_subsidiaries_uae) {
+		this.r0670_banking_subsidiaries_uae = r0670_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0670_fin_subsi_exclu_banking_subsi_uae() {
+		return r0670_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0670_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0670_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0670_fin_subsi_exclu_banking_subsi_uae = r0670_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0670_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0670_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0670_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0670_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0670_fin_subsi_exclu_banking_subsi_outside_uae = r0670_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0670_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0670_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0670_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0670_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0670_all_oth_subsi_ot_banking_fin_subsi_uae = r0670_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0670_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0670_gross_liab_capi_contingent_liab() {
+		return r0670_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0670_gross_liab_capi_contingent_liab(BigDecimal r0670_gross_liab_capi_contingent_liab) {
+		this.r0670_gross_liab_capi_contingent_liab = r0670_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0670_elimination() {
+		return r0670_elimination;
+	}
+
+	public void setR0670_elimination(BigDecimal r0670_elimination) {
+		this.r0670_elimination = r0670_elimination;
+	}
+
+	public BigDecimal getR0670_reclassification() {
+		return r0670_reclassification;
+	}
+
+	public void setR0670_reclassification(BigDecimal r0670_reclassification) {
+		this.r0670_reclassification = r0670_reclassification;
+	}
+
+	public BigDecimal getR0670_consolidated_liabilities() {
+		return r0670_consolidated_liabilities;
+	}
+
+	public void setR0670_consolidated_liabilities(BigDecimal r0670_consolidated_liabilities) {
+		this.r0670_consolidated_liabilities = r0670_consolidated_liabilities;
+	}
+
+	public String getR0680_product() {
+		return r0680_product;
+	}
+
+	public void setR0680_product(String r0680_product) {
+		this.r0680_product = r0680_product;
+	}
+
+	public BigDecimal getR0680_bank_operations() {
+		return r0680_bank_operations;
+	}
+
+	public void setR0680_bank_operations(BigDecimal r0680_bank_operations) {
+		this.r0680_bank_operations = r0680_bank_operations;
+	}
+
+	public BigDecimal getR0680_banking_subsidiaries_uae() {
+		return r0680_banking_subsidiaries_uae;
+	}
+
+	public void setR0680_banking_subsidiaries_uae(BigDecimal r0680_banking_subsidiaries_uae) {
+		this.r0680_banking_subsidiaries_uae = r0680_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0680_fin_subsi_exclu_banking_subsi_uae() {
+		return r0680_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0680_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0680_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0680_fin_subsi_exclu_banking_subsi_uae = r0680_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0680_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0680_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0680_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0680_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0680_fin_subsi_exclu_banking_subsi_outside_uae = r0680_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0680_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0680_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0680_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0680_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0680_all_oth_subsi_ot_banking_fin_subsi_uae = r0680_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0680_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0680_gross_liab_capi_contingent_liab() {
+		return r0680_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0680_gross_liab_capi_contingent_liab(BigDecimal r0680_gross_liab_capi_contingent_liab) {
+		this.r0680_gross_liab_capi_contingent_liab = r0680_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0680_elimination() {
+		return r0680_elimination;
+	}
+
+	public void setR0680_elimination(BigDecimal r0680_elimination) {
+		this.r0680_elimination = r0680_elimination;
+	}
+
+	public BigDecimal getR0680_reclassification() {
+		return r0680_reclassification;
+	}
+
+	public void setR0680_reclassification(BigDecimal r0680_reclassification) {
+		this.r0680_reclassification = r0680_reclassification;
+	}
+
+	public BigDecimal getR0680_consolidated_liabilities() {
+		return r0680_consolidated_liabilities;
+	}
+
+	public void setR0680_consolidated_liabilities(BigDecimal r0680_consolidated_liabilities) {
+		this.r0680_consolidated_liabilities = r0680_consolidated_liabilities;
+	}
+
+	public String getR0690_product() {
+		return r0690_product;
+	}
+
+	public void setR0690_product(String r0690_product) {
+		this.r0690_product = r0690_product;
+	}
+
+	public BigDecimal getR0690_bank_operations() {
+		return r0690_bank_operations;
+	}
+
+	public void setR0690_bank_operations(BigDecimal r0690_bank_operations) {
+		this.r0690_bank_operations = r0690_bank_operations;
+	}
+
+	public BigDecimal getR0690_banking_subsidiaries_uae() {
+		return r0690_banking_subsidiaries_uae;
+	}
+
+	public void setR0690_banking_subsidiaries_uae(BigDecimal r0690_banking_subsidiaries_uae) {
+		this.r0690_banking_subsidiaries_uae = r0690_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0690_fin_subsi_exclu_banking_subsi_uae() {
+		return r0690_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0690_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0690_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0690_fin_subsi_exclu_banking_subsi_uae = r0690_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0690_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0690_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0690_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0690_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0690_fin_subsi_exclu_banking_subsi_outside_uae = r0690_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0690_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0690_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0690_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0690_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0690_all_oth_subsi_ot_banking_fin_subsi_uae = r0690_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0690_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0690_gross_liab_capi_contingent_liab() {
+		return r0690_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0690_gross_liab_capi_contingent_liab(BigDecimal r0690_gross_liab_capi_contingent_liab) {
+		this.r0690_gross_liab_capi_contingent_liab = r0690_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0690_elimination() {
+		return r0690_elimination;
+	}
+
+	public void setR0690_elimination(BigDecimal r0690_elimination) {
+		this.r0690_elimination = r0690_elimination;
+	}
+
+	public BigDecimal getR0690_reclassification() {
+		return r0690_reclassification;
+	}
+
+	public void setR0690_reclassification(BigDecimal r0690_reclassification) {
+		this.r0690_reclassification = r0690_reclassification;
+	}
+
+	public BigDecimal getR0690_consolidated_liabilities() {
+		return r0690_consolidated_liabilities;
+	}
+
+	public void setR0690_consolidated_liabilities(BigDecimal r0690_consolidated_liabilities) {
+		this.r0690_consolidated_liabilities = r0690_consolidated_liabilities;
+	}
+
+	public String getR0700_product() {
+		return r0700_product;
+	}
+
+	public void setR0700_product(String r0700_product) {
+		this.r0700_product = r0700_product;
+	}
+
+	public BigDecimal getR0700_bank_operations() {
+		return r0700_bank_operations;
+	}
+
+	public void setR0700_bank_operations(BigDecimal r0700_bank_operations) {
+		this.r0700_bank_operations = r0700_bank_operations;
+	}
+
+	public BigDecimal getR0700_banking_subsidiaries_uae() {
+		return r0700_banking_subsidiaries_uae;
+	}
+
+	public void setR0700_banking_subsidiaries_uae(BigDecimal r0700_banking_subsidiaries_uae) {
+		this.r0700_banking_subsidiaries_uae = r0700_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0700_fin_subsi_exclu_banking_subsi_uae() {
+		return r0700_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0700_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0700_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0700_fin_subsi_exclu_banking_subsi_uae = r0700_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0700_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0700_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0700_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0700_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0700_fin_subsi_exclu_banking_subsi_outside_uae = r0700_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0700_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0700_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0700_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0700_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0700_all_oth_subsi_ot_banking_fin_subsi_uae = r0700_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0700_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0700_gross_liab_capi_contingent_liab() {
+		return r0700_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0700_gross_liab_capi_contingent_liab(BigDecimal r0700_gross_liab_capi_contingent_liab) {
+		this.r0700_gross_liab_capi_contingent_liab = r0700_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0700_elimination() {
+		return r0700_elimination;
+	}
+
+	public void setR0700_elimination(BigDecimal r0700_elimination) {
+		this.r0700_elimination = r0700_elimination;
+	}
+
+	public BigDecimal getR0700_reclassification() {
+		return r0700_reclassification;
+	}
+
+	public void setR0700_reclassification(BigDecimal r0700_reclassification) {
+		this.r0700_reclassification = r0700_reclassification;
+	}
+
+	public BigDecimal getR0700_consolidated_liabilities() {
+		return r0700_consolidated_liabilities;
+	}
+
+	public void setR0700_consolidated_liabilities(BigDecimal r0700_consolidated_liabilities) {
+		this.r0700_consolidated_liabilities = r0700_consolidated_liabilities;
+	}
+
+	public String getR0710_product() {
+		return r0710_product;
+	}
+
+	public void setR0710_product(String r0710_product) {
+		this.r0710_product = r0710_product;
+	}
+
+	public BigDecimal getR0710_bank_operations() {
+		return r0710_bank_operations;
+	}
+
+	public void setR0710_bank_operations(BigDecimal r0710_bank_operations) {
+		this.r0710_bank_operations = r0710_bank_operations;
+	}
+
+	public BigDecimal getR0710_banking_subsidiaries_uae() {
+		return r0710_banking_subsidiaries_uae;
+	}
+
+	public void setR0710_banking_subsidiaries_uae(BigDecimal r0710_banking_subsidiaries_uae) {
+		this.r0710_banking_subsidiaries_uae = r0710_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0710_fin_subsi_exclu_banking_subsi_uae() {
+		return r0710_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0710_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0710_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0710_fin_subsi_exclu_banking_subsi_uae = r0710_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0710_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0710_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0710_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0710_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0710_fin_subsi_exclu_banking_subsi_outside_uae = r0710_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0710_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0710_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0710_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0710_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0710_all_oth_subsi_ot_banking_fin_subsi_uae = r0710_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0710_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0710_gross_liab_capi_contingent_liab() {
+		return r0710_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0710_gross_liab_capi_contingent_liab(BigDecimal r0710_gross_liab_capi_contingent_liab) {
+		this.r0710_gross_liab_capi_contingent_liab = r0710_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0710_elimination() {
+		return r0710_elimination;
+	}
+
+	public void setR0710_elimination(BigDecimal r0710_elimination) {
+		this.r0710_elimination = r0710_elimination;
+	}
+
+	public BigDecimal getR0710_reclassification() {
+		return r0710_reclassification;
+	}
+
+	public void setR0710_reclassification(BigDecimal r0710_reclassification) {
+		this.r0710_reclassification = r0710_reclassification;
+	}
+
+	public BigDecimal getR0710_consolidated_liabilities() {
+		return r0710_consolidated_liabilities;
+	}
+
+	public void setR0710_consolidated_liabilities(BigDecimal r0710_consolidated_liabilities) {
+		this.r0710_consolidated_liabilities = r0710_consolidated_liabilities;
+	}
+
+	public String getR0720_product() {
+		return r0720_product;
+	}
+
+	public void setR0720_product(String r0720_product) {
+		this.r0720_product = r0720_product;
+	}
+
+	public BigDecimal getR0720_bank_operations() {
+		return r0720_bank_operations;
+	}
+
+	public void setR0720_bank_operations(BigDecimal r0720_bank_operations) {
+		this.r0720_bank_operations = r0720_bank_operations;
+	}
+
+	public BigDecimal getR0720_banking_subsidiaries_uae() {
+		return r0720_banking_subsidiaries_uae;
+	}
+
+	public void setR0720_banking_subsidiaries_uae(BigDecimal r0720_banking_subsidiaries_uae) {
+		this.r0720_banking_subsidiaries_uae = r0720_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0720_fin_subsi_exclu_banking_subsi_uae() {
+		return r0720_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0720_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0720_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0720_fin_subsi_exclu_banking_subsi_uae = r0720_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0720_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0720_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0720_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0720_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0720_fin_subsi_exclu_banking_subsi_outside_uae = r0720_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0720_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0720_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0720_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0720_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0720_all_oth_subsi_ot_banking_fin_subsi_uae = r0720_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0720_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0720_gross_liab_capi_contingent_liab() {
+		return r0720_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0720_gross_liab_capi_contingent_liab(BigDecimal r0720_gross_liab_capi_contingent_liab) {
+		this.r0720_gross_liab_capi_contingent_liab = r0720_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0720_elimination() {
+		return r0720_elimination;
+	}
+
+	public void setR0720_elimination(BigDecimal r0720_elimination) {
+		this.r0720_elimination = r0720_elimination;
+	}
+
+	public BigDecimal getR0720_reclassification() {
+		return r0720_reclassification;
+	}
+
+	public void setR0720_reclassification(BigDecimal r0720_reclassification) {
+		this.r0720_reclassification = r0720_reclassification;
+	}
+
+	public BigDecimal getR0720_consolidated_liabilities() {
+		return r0720_consolidated_liabilities;
+	}
+
+	public void setR0720_consolidated_liabilities(BigDecimal r0720_consolidated_liabilities) {
+		this.r0720_consolidated_liabilities = r0720_consolidated_liabilities;
+	}
+
+	public String getR0730_product() {
+		return r0730_product;
+	}
+
+	public void setR0730_product(String r0730_product) {
+		this.r0730_product = r0730_product;
+	}
+
+	public BigDecimal getR0730_bank_operations() {
+		return r0730_bank_operations;
+	}
+
+	public void setR0730_bank_operations(BigDecimal r0730_bank_operations) {
+		this.r0730_bank_operations = r0730_bank_operations;
+	}
+
+	public BigDecimal getR0730_banking_subsidiaries_uae() {
+		return r0730_banking_subsidiaries_uae;
+	}
+
+	public void setR0730_banking_subsidiaries_uae(BigDecimal r0730_banking_subsidiaries_uae) {
+		this.r0730_banking_subsidiaries_uae = r0730_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0730_fin_subsi_exclu_banking_subsi_uae() {
+		return r0730_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0730_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0730_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0730_fin_subsi_exclu_banking_subsi_uae = r0730_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0730_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0730_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0730_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0730_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0730_fin_subsi_exclu_banking_subsi_outside_uae = r0730_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0730_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0730_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0730_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0730_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0730_all_oth_subsi_ot_banking_fin_subsi_uae = r0730_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0730_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0730_gross_liab_capi_contingent_liab() {
+		return r0730_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0730_gross_liab_capi_contingent_liab(BigDecimal r0730_gross_liab_capi_contingent_liab) {
+		this.r0730_gross_liab_capi_contingent_liab = r0730_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0730_elimination() {
+		return r0730_elimination;
+	}
+
+	public void setR0730_elimination(BigDecimal r0730_elimination) {
+		this.r0730_elimination = r0730_elimination;
+	}
+
+	public BigDecimal getR0730_reclassification() {
+		return r0730_reclassification;
+	}
+
+	public void setR0730_reclassification(BigDecimal r0730_reclassification) {
+		this.r0730_reclassification = r0730_reclassification;
+	}
+
+	public BigDecimal getR0730_consolidated_liabilities() {
+		return r0730_consolidated_liabilities;
+	}
+
+	public void setR0730_consolidated_liabilities(BigDecimal r0730_consolidated_liabilities) {
+		this.r0730_consolidated_liabilities = r0730_consolidated_liabilities;
+	}
+
+	public String getR0740_product() {
+		return r0740_product;
+	}
+
+	public void setR0740_product(String r0740_product) {
+		this.r0740_product = r0740_product;
+	}
+
+	public BigDecimal getR0740_bank_operations() {
+		return r0740_bank_operations;
+	}
+
+	public void setR0740_bank_operations(BigDecimal r0740_bank_operations) {
+		this.r0740_bank_operations = r0740_bank_operations;
+	}
+
+	public BigDecimal getR0740_banking_subsidiaries_uae() {
+		return r0740_banking_subsidiaries_uae;
+	}
+
+	public void setR0740_banking_subsidiaries_uae(BigDecimal r0740_banking_subsidiaries_uae) {
+		this.r0740_banking_subsidiaries_uae = r0740_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0740_fin_subsi_exclu_banking_subsi_uae() {
+		return r0740_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0740_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0740_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0740_fin_subsi_exclu_banking_subsi_uae = r0740_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0740_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0740_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0740_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0740_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0740_fin_subsi_exclu_banking_subsi_outside_uae = r0740_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0740_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0740_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0740_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0740_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0740_all_oth_subsi_ot_banking_fin_subsi_uae = r0740_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0740_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0740_gross_liab_capi_contingent_liab() {
+		return r0740_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0740_gross_liab_capi_contingent_liab(BigDecimal r0740_gross_liab_capi_contingent_liab) {
+		this.r0740_gross_liab_capi_contingent_liab = r0740_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0740_elimination() {
+		return r0740_elimination;
+	}
+
+	public void setR0740_elimination(BigDecimal r0740_elimination) {
+		this.r0740_elimination = r0740_elimination;
+	}
+
+	public BigDecimal getR0740_reclassification() {
+		return r0740_reclassification;
+	}
+
+	public void setR0740_reclassification(BigDecimal r0740_reclassification) {
+		this.r0740_reclassification = r0740_reclassification;
+	}
+
+	public BigDecimal getR0740_consolidated_liabilities() {
+		return r0740_consolidated_liabilities;
+	}
+
+	public void setR0740_consolidated_liabilities(BigDecimal r0740_consolidated_liabilities) {
+		this.r0740_consolidated_liabilities = r0740_consolidated_liabilities;
+	}
+
+	public String getR0750_product() {
+		return r0750_product;
+	}
+
+	public void setR0750_product(String r0750_product) {
+		this.r0750_product = r0750_product;
+	}
+
+	public BigDecimal getR0750_bank_operations() {
+		return r0750_bank_operations;
+	}
+
+	public void setR0750_bank_operations(BigDecimal r0750_bank_operations) {
+		this.r0750_bank_operations = r0750_bank_operations;
+	}
+
+	public BigDecimal getR0750_banking_subsidiaries_uae() {
+		return r0750_banking_subsidiaries_uae;
+	}
+
+	public void setR0750_banking_subsidiaries_uae(BigDecimal r0750_banking_subsidiaries_uae) {
+		this.r0750_banking_subsidiaries_uae = r0750_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0750_fin_subsi_exclu_banking_subsi_uae() {
+		return r0750_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0750_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0750_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0750_fin_subsi_exclu_banking_subsi_uae = r0750_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0750_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0750_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0750_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0750_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0750_fin_subsi_exclu_banking_subsi_outside_uae = r0750_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0750_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0750_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0750_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0750_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0750_all_oth_subsi_ot_banking_fin_subsi_uae = r0750_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0750_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0750_gross_liab_capi_contingent_liab() {
+		return r0750_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0750_gross_liab_capi_contingent_liab(BigDecimal r0750_gross_liab_capi_contingent_liab) {
+		this.r0750_gross_liab_capi_contingent_liab = r0750_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0750_elimination() {
+		return r0750_elimination;
+	}
+
+	public void setR0750_elimination(BigDecimal r0750_elimination) {
+		this.r0750_elimination = r0750_elimination;
+	}
+
+	public BigDecimal getR0750_reclassification() {
+		return r0750_reclassification;
+	}
+
+	public void setR0750_reclassification(BigDecimal r0750_reclassification) {
+		this.r0750_reclassification = r0750_reclassification;
+	}
+
+	public BigDecimal getR0750_consolidated_liabilities() {
+		return r0750_consolidated_liabilities;
+	}
+
+	public void setR0750_consolidated_liabilities(BigDecimal r0750_consolidated_liabilities) {
+		this.r0750_consolidated_liabilities = r0750_consolidated_liabilities;
+	}
+
+	public String getR0760_product() {
+		return r0760_product;
+	}
+
+	public void setR0760_product(String r0760_product) {
+		this.r0760_product = r0760_product;
+	}
+
+	public BigDecimal getR0760_bank_operations() {
+		return r0760_bank_operations;
+	}
+
+	public void setR0760_bank_operations(BigDecimal r0760_bank_operations) {
+		this.r0760_bank_operations = r0760_bank_operations;
+	}
+
+	public BigDecimal getR0760_banking_subsidiaries_uae() {
+		return r0760_banking_subsidiaries_uae;
+	}
+
+	public void setR0760_banking_subsidiaries_uae(BigDecimal r0760_banking_subsidiaries_uae) {
+		this.r0760_banking_subsidiaries_uae = r0760_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0760_fin_subsi_exclu_banking_subsi_uae() {
+		return r0760_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0760_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0760_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0760_fin_subsi_exclu_banking_subsi_uae = r0760_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0760_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0760_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0760_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0760_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0760_fin_subsi_exclu_banking_subsi_outside_uae = r0760_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0760_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0760_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0760_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0760_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0760_all_oth_subsi_ot_banking_fin_subsi_uae = r0760_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0760_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0760_gross_liab_capi_contingent_liab() {
+		return r0760_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0760_gross_liab_capi_contingent_liab(BigDecimal r0760_gross_liab_capi_contingent_liab) {
+		this.r0760_gross_liab_capi_contingent_liab = r0760_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0760_elimination() {
+		return r0760_elimination;
+	}
+
+	public void setR0760_elimination(BigDecimal r0760_elimination) {
+		this.r0760_elimination = r0760_elimination;
+	}
+
+	public BigDecimal getR0760_reclassification() {
+		return r0760_reclassification;
+	}
+
+	public void setR0760_reclassification(BigDecimal r0760_reclassification) {
+		this.r0760_reclassification = r0760_reclassification;
+	}
+
+	public BigDecimal getR0760_consolidated_liabilities() {
+		return r0760_consolidated_liabilities;
+	}
+
+	public void setR0760_consolidated_liabilities(BigDecimal r0760_consolidated_liabilities) {
+		this.r0760_consolidated_liabilities = r0760_consolidated_liabilities;
+	}
+
+	public String getR0770_product() {
+		return r0770_product;
+	}
+
+	public void setR0770_product(String r0770_product) {
+		this.r0770_product = r0770_product;
+	}
+
+	public BigDecimal getR0770_bank_operations() {
+		return r0770_bank_operations;
+	}
+
+	public void setR0770_bank_operations(BigDecimal r0770_bank_operations) {
+		this.r0770_bank_operations = r0770_bank_operations;
+	}
+
+	public BigDecimal getR0770_banking_subsidiaries_uae() {
+		return r0770_banking_subsidiaries_uae;
+	}
+
+	public void setR0770_banking_subsidiaries_uae(BigDecimal r0770_banking_subsidiaries_uae) {
+		this.r0770_banking_subsidiaries_uae = r0770_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0770_fin_subsi_exclu_banking_subsi_uae() {
+		return r0770_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0770_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0770_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0770_fin_subsi_exclu_banking_subsi_uae = r0770_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0770_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0770_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0770_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0770_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0770_fin_subsi_exclu_banking_subsi_outside_uae = r0770_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0770_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0770_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0770_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0770_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0770_all_oth_subsi_ot_banking_fin_subsi_uae = r0770_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0770_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0770_gross_liab_capi_contingent_liab() {
+		return r0770_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0770_gross_liab_capi_contingent_liab(BigDecimal r0770_gross_liab_capi_contingent_liab) {
+		this.r0770_gross_liab_capi_contingent_liab = r0770_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0770_elimination() {
+		return r0770_elimination;
+	}
+
+	public void setR0770_elimination(BigDecimal r0770_elimination) {
+		this.r0770_elimination = r0770_elimination;
+	}
+
+	public BigDecimal getR0770_reclassification() {
+		return r0770_reclassification;
+	}
+
+	public void setR0770_reclassification(BigDecimal r0770_reclassification) {
+		this.r0770_reclassification = r0770_reclassification;
+	}
+
+	public BigDecimal getR0770_consolidated_liabilities() {
+		return r0770_consolidated_liabilities;
+	}
+
+	public void setR0770_consolidated_liabilities(BigDecimal r0770_consolidated_liabilities) {
+		this.r0770_consolidated_liabilities = r0770_consolidated_liabilities;
+	}
+
+	public String getR0780_product() {
+		return r0780_product;
+	}
+
+	public void setR0780_product(String r0780_product) {
+		this.r0780_product = r0780_product;
+	}
+
+	public BigDecimal getR0780_bank_operations() {
+		return r0780_bank_operations;
+	}
+
+	public void setR0780_bank_operations(BigDecimal r0780_bank_operations) {
+		this.r0780_bank_operations = r0780_bank_operations;
+	}
+
+	public BigDecimal getR0780_banking_subsidiaries_uae() {
+		return r0780_banking_subsidiaries_uae;
+	}
+
+	public void setR0780_banking_subsidiaries_uae(BigDecimal r0780_banking_subsidiaries_uae) {
+		this.r0780_banking_subsidiaries_uae = r0780_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0780_fin_subsi_exclu_banking_subsi_uae() {
+		return r0780_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0780_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0780_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0780_fin_subsi_exclu_banking_subsi_uae = r0780_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0780_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0780_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0780_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0780_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0780_fin_subsi_exclu_banking_subsi_outside_uae = r0780_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0780_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0780_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0780_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0780_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0780_all_oth_subsi_ot_banking_fin_subsi_uae = r0780_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0780_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0780_gross_liab_capi_contingent_liab() {
+		return r0780_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0780_gross_liab_capi_contingent_liab(BigDecimal r0780_gross_liab_capi_contingent_liab) {
+		this.r0780_gross_liab_capi_contingent_liab = r0780_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0780_elimination() {
+		return r0780_elimination;
+	}
+
+	public void setR0780_elimination(BigDecimal r0780_elimination) {
+		this.r0780_elimination = r0780_elimination;
+	}
+
+	public BigDecimal getR0780_reclassification() {
+		return r0780_reclassification;
+	}
+
+	public void setR0780_reclassification(BigDecimal r0780_reclassification) {
+		this.r0780_reclassification = r0780_reclassification;
+	}
+
+	public BigDecimal getR0780_consolidated_liabilities() {
+		return r0780_consolidated_liabilities;
+	}
+
+	public void setR0780_consolidated_liabilities(BigDecimal r0780_consolidated_liabilities) {
+		this.r0780_consolidated_liabilities = r0780_consolidated_liabilities;
+	}
+
+	public String getR0790_product() {
+		return r0790_product;
+	}
+
+	public void setR0790_product(String r0790_product) {
+		this.r0790_product = r0790_product;
+	}
+
+	public BigDecimal getR0790_bank_operations() {
+		return r0790_bank_operations;
+	}
+
+	public void setR0790_bank_operations(BigDecimal r0790_bank_operations) {
+		this.r0790_bank_operations = r0790_bank_operations;
+	}
+
+	public BigDecimal getR0790_banking_subsidiaries_uae() {
+		return r0790_banking_subsidiaries_uae;
+	}
+
+	public void setR0790_banking_subsidiaries_uae(BigDecimal r0790_banking_subsidiaries_uae) {
+		this.r0790_banking_subsidiaries_uae = r0790_banking_subsidiaries_uae;
+	}
+
+	public BigDecimal getR0790_fin_subsi_exclu_banking_subsi_uae() {
+		return r0790_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public void setR0790_fin_subsi_exclu_banking_subsi_uae(BigDecimal r0790_fin_subsi_exclu_banking_subsi_uae) {
+		this.r0790_fin_subsi_exclu_banking_subsi_uae = r0790_fin_subsi_exclu_banking_subsi_uae;
+	}
+
+	public BigDecimal getR0790_fin_subsi_exclu_banking_subsi_outside_uae() {
+		return r0790_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public void setR0790_fin_subsi_exclu_banking_subsi_outside_uae(
+			BigDecimal r0790_fin_subsi_exclu_banking_subsi_outside_uae) {
+		this.r0790_fin_subsi_exclu_banking_subsi_outside_uae = r0790_fin_subsi_exclu_banking_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0790_all_oth_subsi_ot_banking_fin_subsi_uae() {
+		return r0790_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public void setR0790_all_oth_subsi_ot_banking_fin_subsi_uae(
+			BigDecimal r0790_all_oth_subsi_ot_banking_fin_subsi_uae) {
+		this.r0790_all_oth_subsi_ot_banking_fin_subsi_uae = r0790_all_oth_subsi_ot_banking_fin_subsi_uae;
+	}
+
+	public BigDecimal getR0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae() {
+		return r0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public void setR0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae(
+			BigDecimal r0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae) {
+		this.r0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae = r0790_all_oth_subsi_ot_banking_fin_subsi_outside_uae;
+	}
+
+	public BigDecimal getR0790_gross_liab_capi_contingent_liab() {
+		return r0790_gross_liab_capi_contingent_liab;
+	}
+
+	public void setR0790_gross_liab_capi_contingent_liab(BigDecimal r0790_gross_liab_capi_contingent_liab) {
+		this.r0790_gross_liab_capi_contingent_liab = r0790_gross_liab_capi_contingent_liab;
+	}
+
+	public BigDecimal getR0790_elimination() {
+		return r0790_elimination;
+	}
+
+	public void setR0790_elimination(BigDecimal r0790_elimination) {
+		this.r0790_elimination = r0790_elimination;
+	}
+
+	public BigDecimal getR0790_reclassification() {
+		return r0790_reclassification;
+	}
+
+	public void setR0790_reclassification(BigDecimal r0790_reclassification) {
+		this.r0790_reclassification = r0790_reclassification;
+	}
+
+	public BigDecimal getR0790_consolidated_liabilities() {
+		return r0790_consolidated_liabilities;
+	}
+
+	public void setR0790_consolidated_liabilities(BigDecimal r0790_consolidated_liabilities) {
+		this.r0790_consolidated_liabilities = r0790_consolidated_liabilities;
+	}
+
+	public Date getReport_date() {
+		return report_date;
+	}
+
+	public void setReport_date(Date report_date) {
+		this.report_date = report_date;
+	}
+
+	public String getReport_version() {
+		return report_version;
+	}
+
+	public void setReport_version(String report_version) {
+		this.report_version = report_version;
+	}
+
+	public String getReport_frequency() {
+		return report_frequency;
+	}
+
+	public void setReport_frequency(String report_frequency) {
+		this.report_frequency = report_frequency;
+	}
+
+	public String getReport_code() {
+		return report_code;
+	}
+
+	public void setReport_code(String report_code) {
+		this.report_code = report_code;
+	}
+
+	public String getReport_desc() {
+		return report_desc;
+	}
+
+	public void setReport_desc(String report_desc) {
+		this.report_desc = report_desc;
+	}
+
+	public String getModify_flg() {
+		return modify_flg;
+	}
+
+	public void setModify_flg(String modify_flg) {
+		this.modify_flg = modify_flg;
+	}
+
+	public String getEntity_flg() {
+		return entity_flg;
+	}
+
+	public void setEntity_flg(String entity_flg) {
+		this.entity_flg = entity_flg;
+	}
+
+	public String getDelete_flg() {
+		return delete_flg;
+	}
+
+	public void setDelete_flg(String delete_flg) {
+		this.delete_flg = delete_flg;
+	}
+
+	public CBUAE_BRF1_10_Archival_Summary_Entity_1() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+}
