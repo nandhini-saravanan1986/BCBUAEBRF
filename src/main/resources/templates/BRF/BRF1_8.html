@@ -86,7 +86,7 @@ PURPOSE		: BRFREPORT
 
 
 
-	</style>
+	
 
 	<style>
 		.btns {
@@ -6017,42 +6017,34 @@ PURPOSE		: BRFREPORT
 										</tr>
 									</tbody>
 								</table>
-								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+									<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
 
+										<a th:if="${currentPage > 0}" th:href="@{'/Reports/' + ${reportid} + '/Details'( 
+											asondate=${asondate},                             
+											fromdate=${fromdate},
+											todate=${todate},
+											currency=${currency},
+											dtltype=${dtltype},
+											type=${type},
+											version=${version},
+											page=${currentPage - 100},
+											size=100)}">Previous</a>
+											
+										<span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
 
-
-																	<a th:if="${currentPage > 0}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																																											 asondate=${asondate},                             
-																																                      			          fromdate=${fromdate},
-																																											todate=${todate},
-																																											currency=${currency},
-																																											dtltype=${dtltype},
-																																										   type=${type},
-																																											version=${version},
-																																										 page=${currentPage - 100},
-																																										 size=100
-																																											)}">
-																		Previous
-																	</a>
-
-
-																	<span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
-
-
-																	<a th:if="${currentPage < (totalPages - 1) * 100}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																																					    asondate=${asondate},
-																													                			    fromdate=${fromdate},
-																																			      todate=${todate},
-																													                              currency=${currency},
-																																				  dtltype=${dtltype},
-																																				  type=${type},
-																																				 version=${version},
-																																				 page=${currentPage + 100},
-																																				  size=100
-																																				)}">
-																		Next
-																	</a>
-																</div>
+										<a th:if="${currentPage < (totalPages - 1) * 100}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
+											asondate=${asondate},
+			                			    fromdate=${fromdate},
+									        todate=${todate},
+			                                currency=${currency},
+										    dtltype=${dtltype},
+										    type=${type},
+										    version=${version},
+										    page=${currentPage + 100},
+										    size=100)}">Next</a>
+										    
+									</div>
+							
 							</div>
 
 
@@ -6134,36 +6126,10 @@ PURPOSE		: BRFREPORT
 		</div>
 	</div>
 </body>
-<!-- <script>
-															  $(document).ready(function () {
-															    $('#BRFvalidation').DataTable({
-															      "paging": true,
-															      "pageLength": 10,
-															      "lengthChange": false,
-															      "searching": true,
-															      "ordering": true,
-															      "autoWidth": false,
-															      "language": {
-															        "search": "Search:"
-															      }
-															    });
-															  });
-															</script> -->
-<!-- <script>
-															  $(document).ready(function () {
-															    $('#BRFvalidation').DataTable({
-															      "paging": true,
-															      "info": false,       // turn off "Showing x of y"
-															      "searching": false,  // turn off search
-															      "ordering": false,   // turn off ordering
-															      "lengthChange": false // hide "Show x entries"
-															    });
-															  });
-															</script> -->
 
 <script>
 	$(document).ready(function () {
-		$('#BRFdet').DataTable({
+		$('#BRFdetss').DataTable({
 			"paging": true,
 			"pageLength": 100,
 			"lengthChange": false,
@@ -6196,7 +6162,7 @@ PURPOSE		: BRFREPORT
 	/* Your existing CSS - this is the correct approach */
 	.scrollable-table-container {
 		/* This is the key: it creates the scroll context */
-		max-height: 620px;
+		max-height: 590px;
 		/* Or a suitable height like 80vh for responsive design */
 		overflow-y: auto;
 		border: 1px solid #ccc;
@@ -6212,7 +6178,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(2) {
 		position: sticky;
-		top: 36px;
+		top: 34px;
 		/* adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 4;
@@ -6220,7 +6186,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(3) {
 		position: sticky;
-		top: 72px;
+		top: 67px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 3;
@@ -6228,7 +6194,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(4) {
 		position: sticky;
-		top: 100px;
+		top: 99px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 2;
@@ -6315,9 +6281,6 @@ PURPOSE		: BRFREPORT
 		border: 1px solid #000 !important;
 	}
 </style>
-
-
-
 
 
 
