@@ -380,12 +380,10 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			const loader = bootstrap.Modal.getOrCreateInstance(document.getElementById('loader'), {
-		        backdrop: 'static',
-		        keyboard: false
-		    });
-			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
-			location.href = Callurl;
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
+			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
+				location.href = Callurl;
 
 		}
 	</script>
