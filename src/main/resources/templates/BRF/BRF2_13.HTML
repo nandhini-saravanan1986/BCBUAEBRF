@@ -357,12 +357,16 @@
 		}
 
 		function showsummary() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
-			loader.show();
-			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
-				location.href = Callurl;
+			//$('#loader').modal('show');
+			//var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
+			//location.href = Callurl;
 
-		}
+		//}
+		
+		var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+					loader.show();
+					var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
+						location.href = Callurl;
 	</script>
 
 	<script>
@@ -591,35 +595,60 @@
 
 
 	<script th:inline="javascript">
-					function showdetailsbyRowAndColumn(a) {
-						var rowId = a.getAttribute('RowId');
-						var columnId = a.getAttribute('ColumnId');
-						var cellValue = a.textContent || a.innerText;
+	function showdetailsbyRowAndColumn(a) {
+	    var rowId = a.getAttribute('rowid');
+	    var columnId = a.getAttribute('columnid');
+	    var cellValue = (a.textContent || a.innerText).trim();
 
-						if (cellValue !== '0') {
-							// Set dynamic message
-							document.getElementById("cellresultModalLabel").innerText = 
-							    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+	    if (cellValue !== '0' && cellValue !== '') {
+	        // Set modal content
+	        document.getElementById("cellresultModalLabel").innerText =
+	            "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+	        document.getElementById("cellresultModalBody").innerText =
+	            "Click Yes to open details or Cancel to close.";
 
-							// Show custom modal
-							$('#cellresultModal').modal('show');
+	        var confirmModal = new bootstrap.Modal(document.getElementById('cellresultModal'));
+	        confirmModal.show();
 
-							// Handle Yes button
-							document.querySelector('.yes-btn').onclick = function() {
-								$('#cellresultModal').modal('hide');
-								var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
-													loader.show();
+	        // Reset Yes button listener
+	        const yesBtn = document.querySelector('#cellresultModal .yes-btn');
+	        yesBtn.onclick = function () {
+	            confirmModal.hide();
 
-								var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
-								Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+	            var loader = new bootstrap.Modal(document.getElementById('loader'), {
+	                backdrop: 'static',
+	                keyboard: false
+	            });
+	            loader.show();
 
-								location.href = Callurl;
-							};
-						} else {
-							showResultModal("Alert", "No Records available for this selected cell.");
-						}
-					}
-				</script>
+	            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
+
+	            if (!Callurl) {
+	                showResultModal("Error", "Base URL not set.");
+	                return;
+	            }
+
+	            const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
+	            Callurl += (Callurl.includes("?") ? "&" : "?") + filterParam;
+
+	            console.log("Redirecting to:", Callurl);
+	            location.href = Callurl;
+	        };
+
+	        // Cancel button
+	        document.querySelector('#cellresultModal .cancel-btn').onclick = function () {
+	            confirmModal.hide();
+	        };
+
+	        // Make sure Yes button is visible
+	        yesBtn.style.display = "inline-block";
+
+	    } else {
+	        showResultModal("Alert", "No Records available for this selected cell.");
+	    }
+	}
+	</script>
+
 
 
 
@@ -703,28 +732,28 @@
 									id="reports">
 									<thead class="thead-light">
 										<tr style="background-color: #b3b6b9">
-											<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ROW</th>
-											<th rowspan="4" style="text-align: center; background-color: #b3b6b9">ID</th>
-											<th rowspan="4" style="text-align: center; background-color: #b3b6b9; width: 450px;">Item</th>
-											<th colspan="3" style="text-align: center">	INTEREST RATE-WISE DISTRIBUTION OF DEPOSITS (Excluding Interbank) AND LOANS</th>
-											<th colspan="5" style="text-align: center">	SEGMENT-WISE DISTRIBUTION OF THE TOTAL AMOUNT</th>
-											<th rowspan="3" style="text-align: center; background-color: #b3b6b9">Minimum Rate</th>
-											<th rowspan="3" style="text-align: center; background-color: #b3b6b9">Maximum Rate</th>
-											<th rowspan="3" style="text-align: center; background-color: #b3b6b9">Average Rate</th>
+											<th rowspan="4" style="text-align: center; background-color: #b3b6b9; VERTICAL-ALIGN: middle">ROW</th>
+											<th rowspan="4" style="text-align: center; background-color: #b3b6b9; VERTICAL-ALIGN: middle">ID</th>
+											<th rowspan="4" style="text-align: center; background-color: #b3b6b9; width: 450px; VERTICAL-ALIGN: middle">Item</th>
+											<th colspan="3" style="text-align: center; VERTICAL-ALIGN: middle">	INTEREST RATE-WISE DISTRIBUTION OF DEPOSITS (Excluding Interbank) AND LOANS</th>
+											<th colspan="5" style="text-align: center; VERTICAL-ALIGN: middle">	SEGMENT-WISE DISTRIBUTION OF THE TOTAL AMOUNT</th>
+											<th rowspan="3" style="text-align: center; background-color: #b3b6b9; VERTICAL-ALIGN: middle;">Minimum Rate/th>
+											<th rowspan="3" style="text-align: center; background-color: #b3b6b9; VERTICAL-ALIGN: middle">Maximum Rate</th>
+											<th rowspan="3" style="text-align: center; background-color: #b3b6b9; VERTICAL-ALIGN: middle">Average Rate</th>
 										</tr>
 										<tr style="background-color: #b3b6b9">
 
-											<th colspan="3" style="text-align: center">AMOUNT</th>
-											<th style="text-align: center">Federal & Emirates Govt & Its Non Commercial Entities</th>
-											<th style="text-align: center">(Federal & Emirates) Govt Commercial Entities (GRE)</th>
-											<th style="text-align: center">Private Corporates (including HNIs and NBFIs)</th>
-											<th style="text-align: center">SME</th>
-											<th style="text-align: center">Individuals</th>
+											<th colspan="3" style="text-align: center; VERTICAL-ALIGN: middle">AMOUNT</th>
+											<th style="text-align: center; VERTICAL-ALIGN: middle">Federal & Emirates Govt & Its Non Commercial Entities</th>
+											<th style="text-align: center; VERTICAL-ALIGN: middle">(Federal & Emirates) Govt Commercial Entities (GRE)</th>
+											<th style="text-align: center; VERTICAL-ALIGN: middle">Private Corporates (including HNIs and NBFIs)</th>
+											<th style="text-align: center; VERTICAL-ALIGN: middle">SME</th>
+											<th style="text-align: center; VERTICAL-ALIGN: middle">Individuals</th>
 										</tr>
 										<tr style="background-color: #b3b6b9">
-											<th colspan="2" style="text-align: center">In AED </th>
-											<th colspan="2" style="text-align: center">In FCY (AED Eq)</th>
-											<th colspan="2" style="text-align: center">TOTAL</th>
+											<th colspan="2" style="text-align: center; VERTICAL-ALIGN: middle">In AED </th>
+											<th colspan="2" style="text-align: center; VERTICAL-ALIGN: middle">In FCY (AED Eq)</th>
+											<th colspan="2" style="text-align: center; VERTICAL-ALIGN: middle">TOTAL</th>
 											
 										</tr>
 										<tr style="background-color: #b3b6b9">
@@ -782,16 +811,34 @@
 					<td style="text-align: right; background-color: #b3b6b9">1.1.1.1</td>
 					<th th:text="${report.r0040_product}"></th>
 					<td style="text-align: right; "
-																						th:text="${report.r0040_aed_amount}"
-																						th:attr="RowId='R0040', ColumnId='C0010'"
-																						onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
-					<!--<td style="text-align: right;" th:text="${report.r0040_aed_amount}" th:attr="RowId='R0040', ColumnId='C0010'" ></td>-->
-					<td style="text-align: right;" th:text="${report.r0040_fcy_amount}" th:attr="RowId='R0040', ColumnId='C0020'" ></td>
-					<td style="text-align: right;background-color: #b3b6b0" th:text="${report.r0040_total}"  ></td>
-					<td style="text-align: right;" th:text="${report.r0040_non_commercial_entities}" th:attr="RowId='R0040', ColumnId='C0040'" ></td>
-					<td style="text-align: right;" th:text="${report.r0040_commercial_entities}" th:attr="RowId='R0040', ColumnId='C0050'" ></td>
-					<td style="text-align: right;" th:text="${report.r0040_private_corporates}" th:attr="RowId='R0040', ColumnId='C0060'" ></td>
-					<td style="text-align: right;" th:text="${report.r0040_sme}" th:attr="RowId='R0040', ColumnId='C0070'" ></td>
+				    th:text="${report.r0040_aed_amount}"
+					th:attr="rowid='R0040', columnid='C0010'"
+			    	onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
+					
+					<td style="text-align: right; "
+									    th:text="${report.r0040_fcy_amount}"
+										th:attr="rowid='R0040', columnid='C0020'"
+								    	onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
+				
+			<td style="text-align: right; background-color: #b3b6b9" th:text="${report.r0040_total}" th:attr="RowId='R0040', ColumnId='C0030'" ></td>
+					<td style="text-align: right; "
+					    th:text="${report.r0040_non_commercial_entities}"
+						th:attr="rowid='R0040', columnid='C0040'"
+					onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
+					<td style="text-align: right; "
+										    th:text="${report.r0040_commercial_entities}"
+											th:attr="rowid='R0040', columnid='C0050'"
+										onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
+					<td style="text-align: right; "
+									    th:text="${report.r0040_private_corporates}"
+										th:attr="rowid='R0040', columnid='C0060'"
+										onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
+					<td style="text-align: right; "
+									    th:text="${report.r0040_sme}"
+										th:attr="rowid='R0040', columnid='C0070'"
+										onclick="showdetailsbyRowAndColumn(this)"   class="right-align "></td>
+					<!--<td style="text-align: right;" th:text="${report.r0040_private_corporates}" th:attr="RowId='R0040', ColumnId='C0060'" ></td>
+					<td style="text-align: right;" th:text="${report.r0040_sme}" th:attr="RowId='R0040', ColumnId='C0070'" ></td>-->
 					<td style="text-align: right;" th:text="${report.r0040_individuals}" th:attr="RowId='R0040', ColumnId='C0080'" ></td>
 					<td style="text-align: right; background-color: #b3b6b9"></td>
 					<td style="text-align: right; background-color: #b3b6b9"></td>
@@ -3548,30 +3595,42 @@
 			</div>
 		</div>
 	</div>
-
+		
 	<!-- Custom Cellresult Modal -->
-				<div class="modal fade" id="cellresultModal">
-				  <div class="modal-dialog modal-dialog-centered">
-				    <div class="modal-content">
-				      
-				      <!-- Custom header -->
-				      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
-				        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
-				          Do you want to open the report?
-				        </div>
-				      </div>
+	<div class="modal fade" id="cellresultModal" 
+	     data-backdrop="static" data-keyboard="false">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      
+	      <!-- Custom header -->
+	      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+	        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+	          Do you want to open the report?
+	        </div>
+	      </div>
 
-				      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-				        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal" style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
-				          Cancel
-				        </button>
-				        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
-				          Yes
-				        </button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+	      <!-- Modal body -->
+	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+	        <!-- Dynamic message goes here -->
+	        <div id="cellresultModalBody" style="margin-bottom:15px; color:#333;">
+	          <!-- JS will update this -->
+	        </div>
+
+	        <!-- Buttons -->
+	        <button type="button" class="custom-tab-btn cancel-btn" 
+	                style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+	          Cancel
+	        </button>
+	        <button type="button" class="custom-tab-btn yes-btn" 
+	                style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+	          Yes
+	        </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 </body>
 <!-- <script>
 															  $(document).ready(function () {
@@ -3606,7 +3665,7 @@
 	/* Your existing CSS - this is the correct approach */
 	.scrollable-table-container {
 		/* This is the key: it creates the scroll context */
-		max-height: 590px;
+		max-height: 620px;
 		/* Or a suitable height like 80vh for responsive design */
 		overflow-y: auto;
 		border: 1px solid #ccc;
@@ -3622,7 +3681,7 @@
 
 	.scrollable-table-container thead tr:nth-child(2) {
 		position: sticky;
-		top: 105px;
+		top: 36px;
 		/* adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 4;
@@ -3632,7 +3691,7 @@
 
 	.scrollable-table-container thead tr:nth-child(3) {
 		position: sticky;
-		top: 234px;
+		top: 72px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 3;
@@ -3640,7 +3699,7 @@
 
 	.scrollable-table-container thead tr:nth-child(4) {
 		position: sticky;
-		top: 266px;
+		top: 100px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 2;
