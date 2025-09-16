@@ -1,7 +1,6 @@
 package com.bornfire.brf.services;
 
 import java.io.ByteArrayOutputStream;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -70,10 +69,6 @@ import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo3;
 import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo4;
 import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo5;
 import com.bornfire.brf.entities.CBUAE_BRF16_1_Summary_Repo6;
-import com.bornfire.brf.entities.CBUAE_BRF1_10_Detail_Entity;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_Archival_Detail_Repo;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_Archival_Summary_Entity_1;
-import com.bornfire.brf.entities.CBUAE_BRF1_2_Archival_Summary_Entity_2;
 
 @Component
 @Service
@@ -136,64 +131,62 @@ public class CBUAE_BRF16_1_ReportService {
 
 		ModelAndView mv = new ModelAndView();
 		Session hs = sessionFactory.getCurrentSession();
+
 		int pageSize = pageable.getPageSize();
 		int currentPage = pageable.getPageNumber();
 		int startItem = currentPage * pageSize;
-		if (type.equals("ARCHIVAL") & version != null) {
-			List<CBUAE_BRF16_1_Archival_Summary_Entity_1> T1Master = new ArrayList<CBUAE_BRF16_1_Archival_Summary_Entity_1>();
-			List<CBUAE_BRF16_1_Archival_Summary_Entity_2> T1Master1 = new ArrayList<CBUAE_BRF16_1_Archival_Summary_Entity_2>();
-			List<CBUAE_BRF16_1_Archival_Summary_Entity_3> T1Master2 = new ArrayList<CBUAE_BRF16_1_Archival_Summary_Entity_3>();
-			List<CBUAE_BRF16_1_Archival_Summary_Entity_4> T1Master3 = new ArrayList<CBUAE_BRF16_1_Archival_Summary_Entity_4>();
-			List<CBUAE_BRF16_1_Archival_Summary_Entity_5> T1Master4 = new ArrayList<CBUAE_BRF16_1_Archival_Summary_Entity_5>();
-			List<CBUAE_BRF16_1_Archival_Summary_Entity_6> T1Master5 = new ArrayList<CBUAE_BRF16_1_Archival_Summary_Entity_6>();
+
+		if (type.equals("ARCHIVAL") && version != null) {
+			List<CBUAE_BRF16_1_Archival_Summary_Entity_1> T1Master = new ArrayList<>();
+			List<CBUAE_BRF16_1_Archival_Summary_Entity_2> T1Master1 = new ArrayList<>();
+			List<CBUAE_BRF16_1_Archival_Summary_Entity_3> T1Master2 = new ArrayList<>();
+			List<CBUAE_BRF16_1_Archival_Summary_Entity_4> T1Master3 = new ArrayList<>();
+			List<CBUAE_BRF16_1_Archival_Summary_Entity_5> T1Master4 = new ArrayList<>();
+			List<CBUAE_BRF16_1_Archival_Summary_Entity_6> T1Master5 = new ArrayList<>();
 
 			try {
 				Date d1 = dateformat.parse(todate);
 
-				T1Master = BRF16_1_Archival_Summary_Repo_1.getdatabydateListarchival(dateformat.parse(todate), version);
-				T1Master1 = BRF16_1_Archival_Summary_Repo_2.getdatabydateListarchival(dateformat.parse(todate),
-						version);
-				T1Master2 = BRF16_1_Archival_Summary_Repo_3.getdatabydateListarchival(dateformat.parse(todate),
-						version);
-				T1Master3 = BRF16_1_Archival_Summary_Repo_4.getdatabydateListarchival(dateformat.parse(todate),
-						version);
-				T1Master4 = BRF16_1_Archival_Summary_Repo_5.getdatabydateListarchival(dateformat.parse(todate),
-						version);
-				T1Master5 = BRF16_1_Archival_Summary_Repo_6.getdatabydateListarchival(dateformat.parse(todate),
-						version);
+				T1Master = BRF16_1_Archival_Summary_Repo_1.getdatabydateListarchival(d1, version);
+				T1Master1 = BRF16_1_Archival_Summary_Repo_2.getdatabydateListarchival(d1, version);
+				T1Master2 = BRF16_1_Archival_Summary_Repo_3.getdatabydateListarchival(d1, version);
+				T1Master3 = BRF16_1_Archival_Summary_Repo_4.getdatabydateListarchival(d1, version);
+				T1Master4 = BRF16_1_Archival_Summary_Repo_5.getdatabydateListarchival(d1, version);
+				T1Master5 = BRF16_1_Archival_Summary_Repo_6.getdatabydateListarchival(d1, version);
 
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			mv.addObject("reportsummary", T1Master);
-			mv.addObject("reportsummary1", T1Master1);
-		}
 
-		else {
+			mv.addObject("reportsummary1", T1Master);
+			mv.addObject("reportsummary2", T1Master1);
+			mv.addObject("reportsummary3", T1Master2);
+			mv.addObject("reportsummary4", T1Master3);
+			mv.addObject("reportsummary5", T1Master4);
+			mv.addObject("reportsummary6", T1Master5);
 
-			List<CBUAE_BRF16_1_Summary_Entity1> T1Master = new ArrayList<CBUAE_BRF16_1_Summary_Entity1>();
-			List<CBUAE_BRF16_1_Summary_Entity2> T2Master = new ArrayList<CBUAE_BRF16_1_Summary_Entity2>();
-			List<CBUAE_BRF16_1_Summary_Entity3> T3Master = new ArrayList<CBUAE_BRF16_1_Summary_Entity3>();
-			List<CBUAE_BRF16_1_Summary_Entity4> T4Master = new ArrayList<CBUAE_BRF16_1_Summary_Entity4>();
-			List<CBUAE_BRF16_1_Summary_Entity5> T5Master = new ArrayList<CBUAE_BRF16_1_Summary_Entity5>();
-			List<CBUAE_BRF16_1_Summary_Entity6> T6Master = new ArrayList<CBUAE_BRF16_1_Summary_Entity6>();
+		} else {
+			List<CBUAE_BRF16_1_Summary_Entity1> T1Master = new ArrayList<>();
+			List<CBUAE_BRF16_1_Summary_Entity2> T2Master = new ArrayList<>();
+			List<CBUAE_BRF16_1_Summary_Entity3> T3Master = new ArrayList<>();
+			List<CBUAE_BRF16_1_Summary_Entity4> T4Master = new ArrayList<>();
+			List<CBUAE_BRF16_1_Summary_Entity5> T5Master = new ArrayList<>();
+			List<CBUAE_BRF16_1_Summary_Entity6> T6Master = new ArrayList<>();
+
 			try {
 				Date d1 = dateformat.parse(todate);
-				// T1rep = t1CurProdServiceRepo.getT1CurProdServices(d1);
 
-				// T1Master = hs.createQuery("from BRF1_REPORT_ENTITY a where a.report_date = ?1
-				// ", BRF1_REPORT_ENTITY.class)
-				// .setParameter(1, df.parse(todate)).getResultList();
-				T1Master = BRF16_1_Summary_Repo1.getdatabydateList(dateformat.parse(todate));
-				T2Master = BRF16_1_Summary_Repo2.getdatabydateList(dateformat.parse(todate));
-				T3Master = BRF16_1_Summary_Repo3.getdatabydateList(dateformat.parse(todate));
-				T4Master = BRF16_1_Summary_Repo4.getdatabydateList(dateformat.parse(todate));
-				T5Master = BRF16_1_Summary_Repo5.getdatabydateList(dateformat.parse(todate));
-				T6Master = BRF16_1_Summary_Repo6.getdatabydateList(dateformat.parse(todate));
+				T1Master = BRF16_1_Summary_Repo1.getdatabydateList(d1);
+				T2Master = BRF16_1_Summary_Repo2.getdatabydateList(d1);
+				T3Master = BRF16_1_Summary_Repo3.getdatabydateList(d1);
+				T4Master = BRF16_1_Summary_Repo4.getdatabydateList(d1);
+				T5Master = BRF16_1_Summary_Repo5.getdatabydateList(d1);
+				T6Master = BRF16_1_Summary_Repo6.getdatabydateList(d1);
 
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+
 			mv.addObject("reportsummary1", T1Master);
 			mv.addObject("reportsummary2", T2Master);
 			mv.addObject("reportsummary3", T3Master);
@@ -203,12 +196,11 @@ public class CBUAE_BRF16_1_ReportService {
 		}
 
 		mv.setViewName("BRF/BRF16_1");
-
 		mv.addObject("displaymode", "summary");
-		System.out.println("scv" + mv.getViewName());
+
+		System.out.println("scv " + mv.getViewName());
 
 		return mv;
-
 	}
 
 	public ModelAndView getBRF16_1currentDtl(String reportId, String fromdate, String todate, String currency,
@@ -61921,31 +61913,32 @@ public class CBUAE_BRF16_1_ReportService {
 		Date parsedDate = dateformat.parse(todate);
 		logger.info("Service: Parsed date for query: {}", parsedDate);
 
-		List<CBUAE_BRF16_1_Archival_Summary_Entity_1> dataList = BRF16_1_Archival_Summary_Repo_1
+		List<CBUAE_BRF16_1_Archival_Summary_Entity_1> dataList1 = BRF16_1_Archival_Summary_Repo_1
 				.getdatabydateListarchival(parsedDate, version);
-		logger.info("Service: dataList (Repo 1) size: {}", dataList.size());
+		logger.info("Service: dataList (Repo 1) size: {}", dataList1.size());
 
-		List<CBUAE_BRF16_1_Archival_Summary_Entity_2> dataList1 = BRF16_1_Archival_Summary_Repo_2
+		List<CBUAE_BRF16_1_Archival_Summary_Entity_2> dataList2 = BRF16_1_Archival_Summary_Repo_2
 				.getdatabydateListarchival(parsedDate, version);
-		logger.info("Service: dataList1 (Repo 2) size: {}", dataList1.size());
+		logger.info("Service: dataList1 (Repo 2) size: {}", dataList2.size());
 
-		List<CBUAE_BRF16_1_Archival_Summary_Entity_3> dataList2 = BRF16_1_Archival_Summary_Repo_3
+		List<CBUAE_BRF16_1_Archival_Summary_Entity_3> dataList3 = BRF16_1_Archival_Summary_Repo_3
 				.getdatabydateListarchival(parsedDate, version);
-		logger.info("Service: dataList2 (Repo 2) size: {}", dataList1.size());
+		logger.info("Service: dataList2 (Repo 2) size: {}", dataList3.size());
 
-		List<CBUAE_BRF16_1_Archival_Summary_Entity_4> dataList3 = BRF16_1_Archival_Summary_Repo_4
+		List<CBUAE_BRF16_1_Archival_Summary_Entity_4> dataList4 = BRF16_1_Archival_Summary_Repo_4
 				.getdatabydateListarchival(parsedDate, version);
-		logger.info("Service: dataList3 (Repo 2) size: {}", dataList1.size());
+		logger.info("Service: dataList3 (Repo 2) size: {}", dataList4.size());
 
-		List<CBUAE_BRF16_1_Archival_Summary_Entity_5> dataList4 = BRF16_1_Archival_Summary_Repo_5
+		List<CBUAE_BRF16_1_Archival_Summary_Entity_5> dataList5 = BRF16_1_Archival_Summary_Repo_5
 				.getdatabydateListarchival(parsedDate, version);
-		logger.info("Service: dataList4 (Repo 2) size: {}", dataList1.size());
+		logger.info("Service: dataList4 (Repo 2) size: {}", dataList5.size());
 
-		List<CBUAE_BRF16_1_Archival_Summary_Entity_6> dataList5 = BRF16_1_Archival_Summary_Repo_6
+		List<CBUAE_BRF16_1_Archival_Summary_Entity_6> dataList6 = BRF16_1_Archival_Summary_Repo_6
 				.getdatabydateListarchival(parsedDate, version);
-		logger.info("Service: dataList5 (Repo 2) size: {}", dataList1.size());
+		logger.info("Service: dataList5 (Repo 2) size: {}", dataList6.size());
 
-		if (dataList.isEmpty() && dataList1.isEmpty()) {
+		if (dataList1.isEmpty() && dataList2.isEmpty() && dataList3.isEmpty() && dataList4.isEmpty()
+				&& dataList5.isEmpty() && dataList6.isEmpty()) {
 			logger.warn(
 					"Service: No data found in both BRF16.1 summary repositories for report_date={} and version={}. Returning empty result.",
 					parsedDate, version);
@@ -62010,14 +62003,11 @@ public class CBUAE_BRF16_1_ReportService {
 
 			int startRow = 9;
 
-			/*
-			 * fillEntity1DataArchiv(dataList1, dataList2, sheet, startRow, textStyle,
-			 * numberStyle); fillEntity2DataArchiv(dataList2, dataList3, sheet, startRow,
-			 * textStyle, numberStyle); fillEntity3DataArchiv(dataList3, dataList4, sheet,
-			 * startRow, textStyle, numberStyle); fillEntity4DataArchiv(dataList4, sheet,
-			 * startRow, textStyle, numberStyle); fillEntity5Data(dataList5, sheet,
-			 * startRow, textStyle, numberStyle); 
-			 */
+			fillEntity1DataArchiv(dataList1, dataList2, sheet, startRow, textStyle, numberStyle);
+			fillEntity2DataArchiv(dataList2, dataList3, sheet, startRow, textStyle, numberStyle);
+			fillEntity3DataArchiv(dataList3, dataList4, sheet, startRow, textStyle, numberStyle);
+			fillEntity4DataArchiv(dataList4, sheet, startRow, textStyle, numberStyle);
+			fillEntity6DataArchiv(dataList6, sheet, startRow, textStyle, numberStyle);
 
 			workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 			workbook.write(out);
