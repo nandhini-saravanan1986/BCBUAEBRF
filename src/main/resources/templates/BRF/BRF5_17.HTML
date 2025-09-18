@@ -1294,8 +1294,8 @@ PURPOSE		: BRFREPORT
 
 										<tr style="background-color: #b3b6b9">
 											<td style="text-align: center; background-color: #b3b6b9">0050</td>
-											<td style="text-align: right; font-weight:bold; background-color: #b3b6b9">3</td>
-											<td style="font-weight:bold; background-color: #b3b6b9"
+											<td style="text-align: right; font-weight:bold; background-color: #b3b6b9">2.1</td>
+											<td
 												th:text="${report.r0050_product}"></td>
 
 											<td style="text-align: right; "
@@ -3868,7 +3868,7 @@ PURPOSE		: BRFREPORT
 								style="border-right: 1px solid #dee2e6; ">
 								<table
 									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="BRFdet" style='margin-top:-30px'>
+									id="BRFdet" >
 									<thead class="thead-light">
 										<tr>
 											<th></th>
@@ -4022,7 +4022,7 @@ PURPOSE		: BRFREPORT
 </body>
 <script>
 	$(document).ready(function () {
-		$('#BRFdet').DataTable({
+		$('#BRFdetS').DataTable({
 			"paging": true,
 			"pageLength": 100,
 			"lengthChange": false,
@@ -4098,7 +4098,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(4) {
 		position: sticky;
-		top: 100px;
+		top: 147px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 2;
