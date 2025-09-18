@@ -8,36 +8,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface CBUAE_BRF16_3_Detail_Repo  extends JpaRepository<CBUAE_BRF16_3_Detail_Entity, String> {
-
-	/*
-	 * @Query(value = "select * from CBUAE_BRF1_3_SUMMARYTABLE  ", nativeQuery =
-	 * true) List<CBUAE_BRF1_3_Summary_Entity> getdatabydateList(Date reportdate);
-	 */
-
-	/*
-	 * @Query(value =
-	 * "select * from CBUAE_BRF16_2_DETAILTABLE where ROW_ID =?1 and COLUMN_ID=?2",
-	 * nativeQuery = true) List<CBUAE_BRF16_2_Detail_Entity>
-	 * GetDataByRowIdAndColumnId(String rowId,String ColumnId);
-	 */
-	
-	/*
-	 * @Query(value = "select * from CBUAE_BRF16_3_DETAILTABLE  ", nativeQuery =
-	 * true) List<CBUAE_BRF16_3_Detail_Entity> getdatabydateList(Date reportdate);
-	 * 
-	 * 
-	 * @Query(value =
-	 * "select * from CBUAE_BRF16_3_DETAILTABLE where ROW_ID =?1 and COLUMN_ID=?2 AND REPORT_DATE=?3"
-	 * , nativeQuery = true) List<CBUAE_BRF16_3_Detail_Entity>
-	 * GetDataByRowIdAndColumnId(String rowId,String ColumnId,Date reportdate);
-	 */
-	
 	
 	@Query(value = "select * from CBUAE_BRF16_3_DETAILTABLE where REPORT_DATE=?1", nativeQuery = true)
 	List<CBUAE_BRF16_3_Detail_Entity> getdatabydateList(Date reportdate);
 	
+	//@Query(value = "select * from CBUAE_BRF16_3_DETAILTABLE where REPORT_DATE=?1 offset ?2 rows fetch next ?3 rows only", nativeQuery = true)
+	//List<CBUAE_BRF16_3_Detail_Entity> getdatabydateList(Date reportdate,int startpage,int endpage);
+	
 	@Query(value = "select * from CBUAE_BRF16_3_DETAILTABLE where REPORT_DATE=?1 offset ?2 rows fetch next ?3 rows only", nativeQuery = true)
-	List<CBUAE_BRF16_3_Detail_Entity> getdatabydateList(Date reportdate,int startpage,int endpage);
+	List<CBUAE_BRF16_3_Detail_Entity> getdatabydateList(Date reportdate,int offset,int limit);
+
 	
 	@Query(value = "select count(*) from CBUAE_BRF16_3_DETAILTABLE where REPORT_DATE=?1", nativeQuery = true)
 	int getdatacount(Date reportdate);

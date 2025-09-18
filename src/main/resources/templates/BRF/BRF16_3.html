@@ -323,13 +323,17 @@ PURPOSE		: COMPLAINTS DATA - 16.2
 		}
 
 		//to fetch summary from the database - called from the summary button
-		function showdetails() {
-
-			var Callurl;
-			$('#loader').modal('show');
-			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype})}]]*/
-				location.href = Callurl;
-			console.log(Callurl);
+		
+			
+			function showdetails() {
+				const loader = bootstrap.Modal.getOrCreateInstance(document.getElementById('loader'), {
+			        backdrop: 'static',
+			        keyboard: false
+			    });
+				var Callurl;
+				Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
+					location.href = Callurl;
+				console.log(Callurl);
 			/*  $.ajax({
 				 type: 'get',
 				 url: Callurl,
@@ -400,7 +404,8 @@ PURPOSE		: COMPLAINTS DATA - 16.2
 			var dtltype = button.getAttribute('data-dtltype');
 			var filename = button.getAttribute('data-filename');
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+					loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -583,7 +588,8 @@ function DetailDownload() {
 			const type = button.getAttribute('data-type');
 			const version = button.getAttribute('data-version');
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+					loader.show();
 
 			const baseUrl = '/BCDRS/Reports/';
 			const downloadUrl = baseUrl + 'downloadDetailExcel' +
@@ -659,7 +665,8 @@ function DetailDownload() {
 
 			if (cellValue.trim() == '0') {
 				if (confirm('Do you want to open details for Row: ' + rowId + ' and Column: ' + columnId + '?')) {
-					$('#loader').modal('show');
+					var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+							loader.show();
 
 					// ✅ Properly build base URL using Thymeleaf
 					let baseUrl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype}, type=${type}, version=${version})}]]*/ '';
@@ -699,7 +706,7 @@ function DetailDownload() {
 						<!-- Title -->
 						<h5
 							style="font-family: arial; font-size: 20px; padding-top: 10px; font-weight: bold; color: white;">
-							Conduct Culture Assessment- BRF16.3
+							CONDUCT CULTURE ASSESSMENT - BRF16.3 
 						</h5>
 					</div>
 
@@ -714,7 +721,7 @@ function DetailDownload() {
 						<!-- Buttons -->
 						<input type="hidden" id="selectedTab" th:value="${displaymode}">
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnSummary" onclick="showsummary();"
-							th:if="${displaymode == 'Details'}">Summary</button>
+							th:if="${displaymode == 'Details'}">7Summary</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnDetails" onclick="showdetails();"
 							th:if="${displaymode == 'summary'}">Details</button>
 						<button type="button" class="custom-tab-btn" id="custom-tab-btnAdd"
@@ -764,12 +771,12 @@ function DetailDownload() {
 
 										<!-- First Header Row -->
 										<tr style="background-color: #b3b6b9; text-align: center;">
-											<th rowspan="2" style="background-color: #b3b6b9;">ROW</th>
-											<th rowspan="2" style="background-color: #b3b6b9;">ID</th>
-											<th rowspan="2" style="background-color: #b3b6b9;width: 150px;">Assessment Clarification</th>
-											<th colspan="1" style="background-color: #b3b6b9;">LFI Response</th>
-											<th colspan="1" style="background-color: #b3b6b9;">Evidence</th>
-											<th colspan="1" style="background-color: #b3b6b9;">Evidence to be provided
+											<th rowspan="2" style="background-color: #b3b6b9; vertical-align: middle; ">ROW</th>
+											<th rowspan="2" style="background-color: #b3b6b9; vertical-align: middle; ">ID</th>
+											<th rowspan="2" style="background-color: #b3b6b9; width: 150px; vertical-align: middle; ">Assessment Clarification</th>
+											<th colspan="1" style="background-color: #b3b6b9; vertical-align: middle; ">LFI Response</th>
+											<th colspan="1" style="background-color: #b3b6b9; vertical-align: middle; ">Evidence</th>
+											<th colspan="1" style="background-color: #b3b6b9; vertical-align: middle; ">Evidence to be provided
 												by LFI</th>
 										</tr>
 
@@ -1909,6 +1916,45 @@ function DetailDownload() {
 										</tr>
 									</tbody>
 								</table>
+								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
+																	   
+																	    
+																	    
+																								<a th:if="${currentPage > 0}"
+																								 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+																								    asondate=${asondate},                             
+																								    fromdate=${fromdate},
+																								    todate=${todate},
+																								    currency=${currency},
+																								    dtltype=${dtltype},
+																								    type=${type},
+																								    version=${version},
+																								    page=${currentPage - 100},
+																								    size=100
+																								)}">
+																								    Previous
+																								</a>
+																		
+																								    
+																								    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+																								
+																								    
+																								    <a th:if="${currentPage < (totalPages - 1) * 100}"
+																								    	
+																								    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+																								    asondate=${asondate},
+																								    fromdate=${fromdate},
+																								    todate=${todate},
+																								    currency=${currency},
+																								    dtltype=${dtltype},
+																								    type=${type},
+																								    version=${version},
+																								    page=${currentPage + 100},
+																								    size=100
+																								)}">	
+																								    Next
+																								    </a>
+																								</div>
 							</div>
 
 

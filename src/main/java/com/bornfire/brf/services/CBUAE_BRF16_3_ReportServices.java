@@ -191,15 +191,26 @@ public class CBUAE_BRF16_3_ReportServices {
 					}
 				}
 
+				/*
+				 * if (rowId != null && columnId != null) { T1Dt1 =
+				 * CBUAE_BRF16_3_Archival_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId,
+				 * dateformat.parse(todate), version);
+				 * 
+				 * System.out.println("countavd" + T1Dt1.size()); } else { T1Dt1 =
+				 * CBUAE_BRF16_3_Archival_Detail_Repo.getdatabydateList(d1, version,
+				 * currentPage, pageSize); totalPages =
+				 * CBUAE_BRF16_3_Archival_Detail_Repo.getdatacount(dateformat.parse(todate),
+				 * version); mv.addObject("pagination", "YES"); }
+				 */
 				if (rowId != null && columnId != null) {
-					T1Dt1 = CBUAE_BRF16_3_Archival_Detail_Repo.GetDataByRowIdAndColumnId(rowId, columnId,
-							dateformat.parse(todate), version);
-
-					System.out.println("countavd" + T1Dt1.size());
+				    T1Dt1 = CBUAE_BRF16_3_Archival_Detail_Repo.GetDataByRowIdAndColumnId(
+				                rowId, columnId, dateformat.parse(todate), version);
 				} else {
-					T1Dt1 = CBUAE_BRF16_3_Archival_Detail_Repo.getdatabydateList(d1, version, currentPage, pageSize);
-					totalPages = CBUAE_BRF16_3_Archival_Detail_Repo.getdatacount(dateformat.parse(todate), version);
-					mv.addObject("pagination", "YES");
+				    T1Dt1 = CBUAE_BRF16_3_Archival_Detail_Repo.getdatabydateList(
+				                d1, version, currentPage, pageSize);
+				    totalPages = CBUAE_BRF16_3_Archival_Detail_Repo.getdatacount(
+				                dateformat.parse(todate), version);
+				    mv.addObject("pagination", "YES");
 				}
 
 				mv.addObject("reportdetails", T1Dt1);
@@ -240,6 +251,7 @@ public class CBUAE_BRF16_3_ReportServices {
 				mv.addObject("reportmaster12", T1Dt1);
 
 				System.out.println("LISTCOUNT: " + T1Dt1.size());
+				System.out.println("Repo null check: " + (CBUAE_BRF16_3_Detail_Repos == null));
 
 			} catch (ParseException e) {
 				e.printStackTrace();

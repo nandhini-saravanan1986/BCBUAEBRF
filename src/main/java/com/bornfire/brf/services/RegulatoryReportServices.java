@@ -287,7 +287,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_9":
 			repsummary = cbuae_brf1_9_reportservice.getBRF1_9View(reportId, fromdate, todate, currency, dtltype,
-					pageable);
+					pageable, type, version);
 			break;
 
 		case "BRF1_11":
@@ -412,7 +412,7 @@ public class RegulatoryReportServices {
 
 		case "BRF1_9":
 			repdetail = cbuae_brf1_9_reportservice.getBRF1_9currentDtl(reportId, fromdate, todate, currency, dtltype,
-					pageable, Filter);
+					pageable, Filter, type, version);
 			break;
 
 		case "BRF1_2":
@@ -531,6 +531,8 @@ public class RegulatoryReportServices {
 		case "BRF16_3":
 			repdetail = CBUAE_BRF16_3_ReportServices.getBRF16_3currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter, type, version);
+			break;
+			
 		case "BRF5_6":
 			repdetail = cbuae_brf5_6_reportservice.getBRF5_6currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
@@ -1132,6 +1134,14 @@ public class RegulatoryReportServices {
 		case "BRF1_8":
 			try {
 				archivalData = CBUAE_BRF1_8_ReportService.getBRF1_8Archival();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case "BRF1_9":
+			try {
+				archivalData = cbuae_brf1_9_reportservice.getBRF1_9Archival();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
