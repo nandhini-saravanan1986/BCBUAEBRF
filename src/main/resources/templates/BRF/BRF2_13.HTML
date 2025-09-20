@@ -330,7 +330,8 @@
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+								loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -357,16 +358,12 @@
 		}
 
 		function showsummary() {
-			//$('#loader').modal('show');
-			//var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type}, asondate=${asondate})}]]*/;
-			//location.href = Callurl;
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			loader.show();
+			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
+				location.href = Callurl;
 
-		//}
-		
-		var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
-					loader.show();
-					var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
-						location.href = Callurl;
+		}
 	</script>
 
 	<script>
@@ -411,7 +408,8 @@
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+								loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -481,47 +479,44 @@
 	<script>
 
 		function startReport(button){
-						const alertMsg = document.getElementById("alertMessage");
-						const filename = button.getAttribute('data-filename');
-						const fromdate = button.getAttribute('data-fromdate');
-						const todate = button.getAttribute('data-todate');
-						const currency = button.getAttribute('data-currency');
-						const dtltype = button.getAttribute('data-dtltype');
-						const type = button.getAttribute('data-type');
-						const version = button.getAttribute('data-version');
-						const sessionfilename = sessionStorage.getItem("filename");
-						
-						if(sessionfilename==filename){
-							alertMsg.innerHTML ='Download request already Processing...';
-				       	 	showAlert();
-							return;
-						}
-						
-						alertMsg.innerHTML ='Download request Processing...';
-				   	 	showAlert();
+			const alertMsg = document.getElementById("alertMessage");
+			const filename = button.getAttribute('data-filename');
+			const fromdate = button.getAttribute('data-fromdate');
+			const todate = button.getAttribute('data-todate');
+			const currency = button.getAttribute('data-currency');
+			const dtltype = button.getAttribute('data-dtltype');
+			const type = button.getAttribute('data-type');
+			const version = button.getAttribute('data-version');
+			const sessionfilename = sessionStorage.getItem("filename");
+			
+			if(sessionfilename==filename){
+				alertMsg.innerHTML ='Download request already Processing...';
+		   	 	showAlert();
+				return;
+			}
 
-						const baseUrl = '/BCDRS/Reports/startreport';
-						const downloadUrl = baseUrl +
-							'?filename=' + encodeURIComponent(filename) +
-							'&fromdate=' + encodeURIComponent(fromdate) +
-							'&todate=' + encodeURIComponent(todate) +
-							'&currency=' + encodeURIComponent(currency) +
-							'&dtltype=' + encodeURIComponent(dtltype) +
-							'&type=' + encodeURIComponent(type) +
-							'&version=' + encodeURIComponent(version);
-					    fetch(downloadUrl)  // ✅ no invalid characters now
-					        .then(res => res.text())
-					        .then(jobId => {
+			const baseUrl = '/BCDRS/Reports/startreport';
+			const downloadUrl = baseUrl +
+				'?filename=' + encodeURIComponent(filename) +
+				'&fromdate=' + encodeURIComponent(fromdate) +
+				'&todate=' + encodeURIComponent(todate) +
+				'&currency=' + encodeURIComponent(currency) +
+				'&dtltype=' + encodeURIComponent(dtltype) +
+				'&type=' + encodeURIComponent(type) +
+				'&version=' + encodeURIComponent(version);
+		    fetch(downloadUrl)  // ✅ no invalid characters now
+		        .then(res => res.text())
+		        .then(jobId => {
 
-					        	alertMsg.innerHTML ='Download request received...'+jobId;
-					       	 	showAlert();
-					            sessionStorage.setItem("jobId", jobId);
-					            sessionStorage.setItem("filename", filename);
-					            checkReport(jobId);
-					        });
-					}
+		        	alertMsg.innerHTML ='Download request received...'+jobId;
+		       	 	showAlert();
+		            sessionStorage.setItem("jobId", jobId);
+		            sessionStorage.setItem("filename", filename);
+		            checkReport(jobId);
+		        });
+		}
 
-					function checkReport(jobId) {
+		function checkReport(jobId) {
 						const alertMsg = document.getElementById("alertMessage");
 					    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 					        .then(res => res.text())
@@ -547,113 +542,83 @@
 					            }
 					        });
 					}
+		function downloadDetailfile(jobId,filename) {
+			
+			//$('#loader').modal('show');
+			
+			$.ajax({
+				url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+					'&filename=' + filename,
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				success: function (data) {
+					$('#loader').modal('hide');
 
+					if (data && data.size > 100) {
+						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+						const url = window.URL.createObjectURL(blob);
+						const a = document.createElement('a');
+						a.style.display = 'none';
+						a.href = url;
+						a.download = filename;
+						document.body.appendChild(a);
+						a.click();
+						window.URL.revokeObjectURL(url);
+						document.body.removeChild(a);
 
-
-					function downloadDetailfile(jobId, filename) {
-					    //$('#loader').modal('show');
-
-					    const params = new URLSearchParams({
-					        jobId: jobId,
-					        filename: filename
-					    });
-
-					    $.ajax({
-					        url: '/BCDRS/Reports/downloaddetailExcel?' + params.toString(),
-					        type: 'GET',
-					        xhrFields: {
-					            responseType: 'blob'
-					        },
-					        success: function (data) {
-					            $('#loader').modal('hide');
-
-					            if (data && data.size > 100) {
-					                const blob = new Blob([data], { type: 'application/vnd.ms-excel' });
-					                const url = window.URL.createObjectURL(blob);
-					                const a = document.createElement('a');
-					                a.style.display = 'none';
-					                a.href = url;
-					                a.download = filename;
-					                document.body.appendChild(a);
-					                a.click();
-					                window.URL.revokeObjectURL(url);
-					                document.body.removeChild(a);
-
-					                showResultModal('Success', filename + ' downloaded successfully.');
-					            } else {
-					                showResultModal('Information', 'No data was available to create a download.');
-					            }
-					        },
-					        error: function (jqXHR, textStatus, errorThrown) {
-					            $('#loader').modal('hide');
-					            console.error("Download failed:", textStatus, errorThrown);
-					            showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
-					        }
-					    });
+						showResultModal('Success', filename + ' downloaded successfully.');
+					} else {
+						showResultModal('Information', 'No data was available to create a download.');
 					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$('#loader').modal('hide');
+					console.error("Download failed:", textStatus, errorThrown);
+					showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+				}
+			});
+		}
 	</script>
 
 
 	<script th:inline="javascript">
-	function showdetailsbyRowAndColumn(a) {
-	    var rowId = a.getAttribute('rowid');
-	    var columnId = a.getAttribute('columnid');
-	    var cellValue = (a.textContent || a.innerText).trim();
+				function showdetailsbyRowAndColumn(a) {
+					var rowId = a.getAttribute('RowId');
+					var columnId = a.getAttribute('ColumnId');
+					var cellValue = a.textContent || a.innerText;
 
-	    if (cellValue !== '0' && cellValue !== '') {
-	        // Set modal content
-	        document.getElementById("cellresultModalLabel").innerText =
-	            "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
-	        document.getElementById("cellresultModalBody").innerText =
-	            "Click Yes to open details or Cancel to close.";
+					if (cellValue !== '0') {
+						// Set dynamic message
+						document.getElementById("cellresultModalLabel").innerText = 
+						    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
-	        var confirmModal = new bootstrap.Modal(document.getElementById('cellresultModal'));
-	        confirmModal.show();
+						// Show custom modal
+						$('#cellresultModal').modal('show');
 
-	        // Reset Yes button listener
-	        const yesBtn = document.querySelector('#cellresultModal .yes-btn');
-	        yesBtn.onclick = function () {
-	            confirmModal.hide();
+						// Handle Yes button
+						document.querySelector('.yes-btn').onclick = function() {
+							$('#cellresultModal').modal('hide');
+							var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+												loader.show();
 
-	            var loader = new bootstrap.Modal(document.getElementById('loader'), {
-	                backdrop: 'static',
-	                keyboard: false
-	            });
-	            loader.show();
+							var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+							Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
 
-	            var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype})}]]*/ "";
-
-	            if (!Callurl) {
-	                showResultModal("Error", "Base URL not set.");
-	                return;
-	            }
-
-	            const filterParam = "filter=" + encodeURIComponent(rowId + "," + columnId);
-	            Callurl += (Callurl.includes("?") ? "&" : "?") + filterParam;
-
-	            console.log("Redirecting to:", Callurl);
-	            location.href = Callurl;
-	        };
-
-	        // Cancel button
-	        document.querySelector('#cellresultModal .cancel-btn').onclick = function () {
-	            confirmModal.hide();
-	        };
-
-	        // Make sure Yes button is visible
-	        yesBtn.style.display = "inline-block";
-
-	    } else {
-	        showResultModal("Alert", "No Records available for this selected cell.");
-	    }
-	}
-	</script>
-
+							location.href = Callurl;
+						};
+					} else {
+						showResultModal("Alert", "No Records available for this selected cell.");
+					}
+				}
+			</script>
 
 
 
 
 </head>
+
 
 
 
@@ -744,16 +709,16 @@
 										<tr style="background-color: #b3b6b9">
 
 											<th colspan="3" style="text-align: center; VERTICAL-ALIGN: middle">AMOUNT</th>
-											<th style="text-align: center; VERTICAL-ALIGN: middle">Federal & Emirates Govt & Its Non Commercial Entities</th>
-											<th style="text-align: center; VERTICAL-ALIGN: middle">(Federal & Emirates) Govt Commercial Entities (GRE)</th>
-											<th style="text-align: center; VERTICAL-ALIGN: middle">Private Corporates (including HNIs and NBFIs)</th>
-											<th style="text-align: center; VERTICAL-ALIGN: middle">SME</th>
-											<th style="text-align: center; VERTICAL-ALIGN: middle">Individuals</th>
+											<th rowspan="2" style="text-align: center; VERTICAL-ALIGN: middle">Federal & Emirates Govt & Its Non Commercial Entities</th>
+											<th rowspan="2" style="text-align: center; VERTICAL-ALIGN: middle">(Federal & Emirates) Govt Commercial Entities (GRE)</th>
+											<th rowspan="2"  style="text-align: center; VERTICAL-ALIGN: middle">Private Corporates (including HNIs and NBFIs)</th>
+											<th rowspan="2" style="text-align: center; VERTICAL-ALIGN: middle">SME</th>
+											<th  rowspan="2" style="text-align: center; VERTICAL-ALIGN: middle">Individuals</th>
 										</tr>
 										<tr style="background-color: #b3b6b9">
-											<th colspan="2" style="text-align: center; VERTICAL-ALIGN: middle">In AED </th>
-											<th colspan="2" style="text-align: center; VERTICAL-ALIGN: middle">In FCY (AED Eq)</th>
-											<th colspan="2" style="text-align: center; VERTICAL-ALIGN: middle">TOTAL</th>
+											<th  style="text-align: center; VERTICAL-ALIGN: middle">In AED </th>
+											<th  style="text-align: center; VERTICAL-ALIGN: middle">In FCY (AED Eq)</th>
+											<th  style="text-align: center; VERTICAL-ALIGN: middle">TOTAL</th>
 											
 										</tr>
 										<tr style="background-color: #b3b6b9">
