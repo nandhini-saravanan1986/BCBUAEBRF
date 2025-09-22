@@ -593,35 +593,35 @@ PURPOSE		: BRFREPORT
 
 
 	<script th:inline="javascript">
-		function showdetailsbyRowAndColumn(a) {
-			var rowId = a.getAttribute('RowId');
-			var columnId = a.getAttribute('ColumnId');
-			var cellValue = a.textContent || a.innerText;
+					function showdetailsbyRowAndColumn(a) {
+						var rowId = a.getAttribute('RowId');
+						var columnId = a.getAttribute('ColumnId');
+						var cellValue = a.textContent || a.innerText;
 
-			if (cellValue !== '0') {
-				// Set dynamic message
-				document.getElementById("cellresultModalLabel").innerText =
-					"Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+						if (cellValue !== '0') {
+							// Set dynamic message
+							document.getElementById("cellresultModalLabel").innerText = 
+							    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
-				// Show custom modal
-				$('#cellresultModal').modal('show');
+							// Show custom modal
+							$('#cellresultModal').modal('show');
 
-				// Handle Yes button
-				document.querySelector('.yes-btn').onclick = function () {
-					$('#cellresultModal').modal('hide');
-					var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
-					loader.show();
+							// Handle Yes button
+							document.querySelector('.yes-btn').onclick = function() {
+								$('#cellresultModal').modal('hide');
+								var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+													loader.show();
 
-					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
-					Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
+								var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
+								Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
 
-					location.href = Callurl;
-				};
-			} else {
-				showResultModal("Alert", "No Records available for this selected cell.");
-			}
-		}
-	</script>
+								location.href = Callurl;
+							};
+						} else {
+							showResultModal("Alert", "No Records available for this selected cell.");
+						}
+					}
+				</script>
 
 </head>
 
@@ -1323,42 +1323,44 @@ PURPOSE		: BRFREPORT
 									</tbody>
 								</table>
 								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
-
-
-
-									<a th:if="${currentPage > 0}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																																												    asondate=${asondate},                             
-																																												    fromdate=${fromdate},
-																																												    todate=${todate},
-																																												    currency=${currency},
-																																												    dtltype=${dtltype},
-																																												    type=${type},
-																																												    version=${version},
-																																												    page=${currentPage - 100},
-																																												    size=100
-																																												)}">
-										Previous
-									</a>
-
-
-									<span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
-
-
-									<a th:if="${currentPage < (totalPages - 1) * 100}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
-										asondate=${asondate},
-																																																						    fromdate=${fromdate},
-																																																						    todate=${todate},
-																																																						    currency=${currency},
-																																																						    dtltype=${dtltype},
-																																																						    type=${type},
-																																																						    version=${version},
-																																																						    page=${currentPage + 100},
-																																																						    size=100
-																																																						)}">
-
-										Next
-									</a>
-								</div>
+																	   
+																	    
+																	    
+																	<a th:if="${currentPage > 0}"
+																	 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+																	    asondate=${asondate},                             
+																	    fromdate=${fromdate},
+																	    todate=${todate},
+																	    currency=${currency},
+																	    dtltype=${dtltype},
+																	    type=${type},
+																	    version=${version},
+																	    page=${currentPage - 100},
+																	    size=100
+																	)}">
+																	    Previous
+																	</a>
+											
+																	    
+																	    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+																	
+																	    
+																	    <a th:if="${currentPage < (totalPages - 1) * 100}"
+																	    	
+																	    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+																	    asondate=${asondate},
+																	    fromdate=${fromdate},
+																	    todate=${todate},
+																	    currency=${currency},
+																	    dtltype=${dtltype},
+																	    type=${type},
+																	    version=${version},
+																	    page=${currentPage + 100},
+																	    size=100
+																	)}">	
+																	    Next
+																	    </a>
+																	</div>
 							</div>
 
 
@@ -1414,29 +1416,26 @@ PURPOSE		: BRFREPORT
 
 	<!-- Custom Cellresult Modal -->
 	<div class="modal fade" id="cellresultModal">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      
+	      <!-- Custom header -->
+	      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+	        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+	          Do you want to open the report?
+	        </div>
+	      </div>
 
-				<!-- Custom header -->
-				<div class="menu-title-header"
-					style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
-					<div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
-						Do you want to open the report?
-					</div>
-				</div>
-
-				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-					<button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"
-						style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
-						Cancel
-					</button>
-					<button type="button" class="custom-tab-btn yes-btn"
-						style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
-						Yes
-					</button>
-				</div>
-			</div>
-		</div>
+	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+	        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"  style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+	          Cancel
+	        </button>
+	        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+	          Yes
+	        </button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </body>
 <script>
