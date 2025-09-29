@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "CBUAE_BRF16_2_SUMMARYTABLE")
 public class CBUAE_BRF16_2_Summary_Entity {
 	
-	@Id
+	
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
@@ -324,7 +324,7 @@ public class CBUAE_BRF16_2_Summary_Entity {
 	private BigDecimal	r0150_nmarketconduct_training;
 	private BigDecimal	r0150_to_consumerprotection_training;
 	private BigDecimal	r0150_to_ombudsman_training;
-	
+	@Id
 	@Column(name = "REPORT_DATE")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

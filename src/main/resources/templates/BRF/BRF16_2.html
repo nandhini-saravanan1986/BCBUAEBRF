@@ -886,36 +886,36 @@ function DetailDownload() {
 									<thead class="thead-light">
 
 										<tr style="background-color: #b3b6b9; text-align: center;">
-											<th rowspan="3" style="background-color: #b3b6b9;">ROW</th>
-											<th rowspan="3" style="background-color: #b3b6b9;">ID</th>
-											<th rowspan="3" style="background-color: #b3b6b9;">ITEM</th>
+											<th rowspan="3" style="background-color: #b3b6b9;text-align: center;vertical-align: middle;">ROW</th>
+											<th rowspan="3" style="background-color: #b3b6b9;text-align: center;vertical-align: middle;">ID</th>
+											<th rowspan="3" style="background-color: #b3b6b9;text-align: center;vertical-align: middle;">ITEM</th>
 											<th colspan="2" style="background-color: #b3b6b9;"></th>
 											<th colspan="13" style="background-color: #b3b6b9;">Bank Employee</th>
 											<th colspan="7" style="background-color: #b3b6b9;">Trainings</th>
 										</tr>
 										<tr style="background-color: #b3b6b9; text-align: center;">
-											<th>Number of Consumer facing employees as of the specified date</th>
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of Consumer facing employees as of the specified date</th>
 											<!-- 0010 -->
-											<th>Number of employees who resigned or have been dismissed</th>
+											<th style=" text-align:center;vertical-align: middle;width:300px;" >Number of employees who resigned or have been dismissed from the LFI during the specified time period</th>
 											<!-- 0020 -->
-											<th>Dismissed due to poor conduct</th> <!-- 0030 -->
-											<th>Contractual breaches by Authorized Agents</th> <!-- 0040 -->
-											<th>Number of Sales Staff Employees (including authorized agents)</th>
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of employees who have been dismissed due to poor conduct/behaviour from the Bank during the specified time period</th> <!-- 0030 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of instances of contractual breaches by the Authorized Agents during the specified time period</th> <!-- 0040 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of Sales Staff Employees (including authorized agents) as of the specified date</th>
 											<!-- 0050 -->
-											<th>Sales Staff - Fixed Remuneration Only</th> <!-- 0060 -->
-											<th>Sales Staff - Variable Component ≥ 50%</th> <!-- 0070 -->
-											<th>Avg Performance Bonuses (AED '000s)</th> <!-- 0080 -->
-											<th>Employees in Disciplinary Actions</th> <!-- 0090 -->
-											<th>Number of Complaints Received</th> <!-- 0100 -->
-											<th>Breaches to Bank Code of Conduct</th> <!-- 0110 -->
-											<th>Whistleblower Reports</th> <!-- 0120 -->
-											<th>Trainings for Senior Management</th> <!-- 0130 -->
-											<th>Trainings for Bank Employees</th> <!-- 0140 -->
-											<th>Consumer Awareness - Vulnerable Consumers</th> <!-- 0150 -->
-											<th>Consumer Awareness - Fraud/Scams</th> <!-- 0160 -->
-											<th>Market Conduct Campaigns</th> <!-- 0170 -->
-											<th>CBUAE Training - Consumer Protection</th> <!-- 0180 -->
-											<th>CBUAE Training - Ombudsman Regulations</th> <!-- 0190 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of Sales Staff Employees (including authorized agents) having fixed remuneration with no variable component as of the specified date</th> <!-- 0060 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of Sales Staff Employees (including authorized agents) having a variable component of their remuneration greater than or equal to 50% of their salary as of the specified date</th> <!-- 0070 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Average value of performance bonuses received by consumer facing employees (AED (000's))</th> <!-- 0080 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of complaints undergoing Disciplinary actions for conduct breaches</th> <!-- 0090 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of complaints received during the specified time period</th> <!-- 0100 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of instances of breaches to the Code of Conduct of the Bank during the specified time period</th> <!-- 0110 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of whistleblower reports in the period related to conduct risk</th> <!-- 0120 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of trainings provided to senior management on the mentioned topics</th> <!-- 0130 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of trainings sessions arranged for Bank employees other than Senior Management  on the mentioned topics during the specified time period</th> <!-- 0140 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of consumer awareness initiatives for VC on the topic related to them</th> <!-- 0150 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of consumer awareness initiatives or campaign on the topic of frauds and scams only</th> <!-- 0160 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Number of consumer awareness initiatives or campaign on market conduct issues (excluding awareness sessions on fraud) </th> <!-- 0170 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Total number of trainings arranged on the topic "consumer protection regulations", issued by CBUAE</th> <!-- 0180 -->
+											<th style=" text-align:center;vertical-align: middle;width:300px;">Total number of trainings arranged on the topic "Ombudsman regulations", issued by CBUAE</th> <!-- 0190 -->
 										</tr>
 
 										<!-- Header Row 2: Codes -->
@@ -949,44 +949,33 @@ function DetailDownload() {
 											<td style="background-color: #b3b6b9;">R0010</td>
 										<td style="background-color: #b3b6b9;">1</td>
                                             <td th:text="${report.r0010_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_whistleblower_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0010_to_ombudsman_training}"></td>
+                                         <td style="text-align: right; background-color: #666666;"></td>
+                                         <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                         <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                          <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
+
+
+
+
+
+
+											
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0020</td>
@@ -1036,578 +1025,433 @@ function DetailDownload() {
 
 											<!--<td th:text="${report.r0020_no_remuneration50per_employees}"></td>-->
 
-											<td th:text="${report.r0020_aveperformance_employees}" th:attr="RowId='R0020', ColumnId='C0080'"
+											<td  style="text-align: right;"   th:text="${report.r0020_aveperformance_employees}" th:attr="RowId='R0020', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0020_conduct_breaches_employees}" th:attr="RowId='R0020', ColumnId='C0090'"
+											<td style="text-align: right;"  th:text="${report.r0020_conduct_breaches_employees}" th:attr="RowId='R0020', ColumnId='C0090'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0020_no_complaints_employees}"th:attr="RowId='R0020', ColumnId='C0100'"
+											<td style="text-align: right;"  th:text="${report.r0020_no_complaints_employees}"th:attr="RowId='R0020', ColumnId='C0100'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0020_no_instancesbreaches_employees}"th:attr="RowId='R0020', ColumnId='C0110'"
+											<td style="text-align: right;"  th:text="${report.r0020_no_instancesbreaches_employees}"th:attr="RowId='R0020', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0020_no_whistleblower_employees}"th:attr="RowId='R0020', ColumnId='C0120'"
+											<td style="text-align: right;"  th:text="${report.r0020_no_whistleblower_employees}"th:attr="RowId='R0020', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0020_to_ombudsman_training}"></td>
+											 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0030</td>
 											<td style="background-color: #b3b6b9;">1.2</td>
 											<td th:text="${report.r0030_product}"></td>
-											<td th:text="${report.r0030_no_consumerfacing_employees}"th:attr="RowId='R0030', ColumnId='C0010'"
+											<td style="text-align: right;" th:text="${report.r0030_no_consumerfacing_employees}"th:attr="RowId='R0030', ColumnId='C0010'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_resigned_employees}"th:attr="RowId='R0030', ColumnId='C0020'"
+											<td  style="text-align: right;"th:text="${report.r0030_no_resigned_employees}"th:attr="RowId='R0030', ColumnId='C0020'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_dismissed_employees}"th:attr="RowId='R0030', ColumnId='C0030'"
+											<td  style="text-align: right;"th:text="${report.r0030_no_dismissed_employees}"th:attr="RowId='R0030', ColumnId='C0030'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_contractual_breaches_employees}"th:attr="RowId='R0030', ColumnId='C0040'"
+											<td  style="text-align: right;"th:text="${report.r0030_contractual_breaches_employees}"th:attr="RowId='R0030', ColumnId='C0040'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_salesstaff_employees}"th:attr="RowId='R0030', ColumnId='C0050'"
+											<td style="text-align: right;" th:text="${report.r0030_no_salesstaff_employees}"th:attr="RowId='R0030', ColumnId='C0050'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_remuneration_employees}"th:attr="RowId='R0030', ColumnId='C0060'"
+											<td style="text-align: right;" th:text="${report.r0030_no_remuneration_employees}"th:attr="RowId='R0030', ColumnId='C0060'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_remuneration50per_employees}"th:attr="RowId='R0030', ColumnId='C0070'"
+											<td style="text-align: right;" th:text="${report.r0030_no_remuneration50per_employees}"th:attr="RowId='R0030', ColumnId='C0070'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_aveperformance_employees}"th:attr="RowId='R0030', ColumnId='C0080'"
+											<td style="text-align: right;" th:text="${report.r0030_aveperformance_employees}"th:attr="RowId='R0030', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_conduct_breaches_employees}"th:attr="RowId='R0030', ColumnId='C0090'"
+											<td  style="text-align: right;"th:text="${report.r0030_conduct_breaches_employees}"th:attr="RowId='R0030', ColumnId='C0090'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_complaints_employees}"th:attr="RowId='R0030', ColumnId='C0100'"
+											<td style="text-align: right;"th:text="${report.r0030_no_complaints_employees}"th:attr="RowId='R0030', ColumnId='C0100'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_instancesbreaches_employees}"th:attr="RowId='R0030', ColumnId='C0110'"
+											<td style="text-align: right;" th:text="${report.r0030_no_instancesbreaches_employees}"th:attr="RowId='R0030', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0030_no_whistleblower_employees}"th:attr="RowId='R0030', ColumnId='C0120'"
+											<td style="text-align: right;" th:text="${report.r0030_no_whistleblower_employees}"th:attr="RowId='R0030', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0030_to_ombudsman_training}"></td>
+											 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0040</td>
 											<td style="background-color: #b3b6b9;">1.3</td>
 											<td th:text="${report.r0040_product}"></td>
-											<td th:text="${report.r0040_no_consumerfacing_employees}"th:attr="RowId='R0040', ColumnId='C0010'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_consumerfacing_employees}"th:attr="RowId='R0040', ColumnId='C0010'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_resigned_employees}"th:attr="RowId='R0040', ColumnId='C0020'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_resigned_employees}"th:attr="RowId='R0040', ColumnId='C0020'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_dismissed_employees}"th:attr="RowId='R0040', ColumnId='C0030'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_dismissed_employees}"th:attr="RowId='R0040', ColumnId='C0030'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_contractual_breaches_employees}" th:attr="RowId='R0040', ColumnId='C0040'"
+											<td style="text-align: right;"  th:text="${report.r0040_contractual_breaches_employees}" th:attr="RowId='R0040', ColumnId='C0040'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_salesstaff_employees}" th:attr="RowId='R0040', ColumnId='C0050'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_salesstaff_employees}" th:attr="RowId='R0040', ColumnId='C0050'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_remuneration_employees}" th:attr="RowId='R0040', ColumnId='C0060'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_remuneration_employees}" th:attr="RowId='R0040', ColumnId='C0060'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_remuneration50per_employees}" th:attr="RowId='R0040', ColumnId='C0070'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_remuneration50per_employees}" th:attr="RowId='R0040', ColumnId='C0070'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_aveperformance_employees}" th:attr="RowId='R0040', ColumnId='C0080'"
+											<td style="text-align: right;"  th:text="${report.r0040_aveperformance_employees}" th:attr="RowId='R0040', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_conduct_breaches_employees}" th:attr="RowId='R0040', ColumnId='C0090'"
+											<td style="text-align: right;"  th:text="${report.r0040_conduct_breaches_employees}" th:attr="RowId='R0040', ColumnId='C0090'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_complaints_employees}"th:attr="RowId='R0040', ColumnId='C0100'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_complaints_employees}"th:attr="RowId='R0040', ColumnId='C0100'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_instancesbreaches_employees}" th:attr="RowId='R0040', ColumnId='C0110'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_instancesbreaches_employees}" th:attr="RowId='R0040', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0040_no_whistleblower_employees}" th:attr="RowId='R0040', ColumnId='C0120'"
+											<td style="text-align: right;"  th:text="${report.r0040_no_whistleblower_employees}" th:attr="RowId='R0040', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0040_to_ombudsman_training}"></td>
+											 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0050</td>
 											<td style="background-color: #b3b6b9;">1.4</td>
 											<td th:text="${report.r0050_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_complaints_employees}"></td>
-											<td th:text="${report.r0050_no_instancesbreaches_employees}"th:attr="RowId='R0050', ColumnId='C0110'"
+										 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                                 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+											<td  style="text-align: right;" th:text="${report.r0050_no_instancesbreaches_employees}"th:attr="RowId='R0050', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0050_no_whistleblower_employees}"th:attr="RowId='R0050', ColumnId='C0120'"
+											<td style="text-align: right;"  th:text="${report.r0050_no_whistleblower_employees}"th:attr="RowId='R0050', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0050_to_ombudsman_training}"></td>
+										        <td style="text-align: right; background-color: #666666;"></td>
+                                          <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                         <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0060</td>
 											<td style="background-color: #b3b6b9;">1.5</td>
 											<td th:text="${report.r0060_product}"></td>
-											<td th:text="${report.r0060_no_consumerfacing_employees}" th:attr="RowId='R0060', ColumnId='C0010'"
+											<td style="text-align: right;"  th:text="${report.r0060_no_consumerfacing_employees}" th:attr="RowId='R0060', ColumnId='C0010'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_resigned_employees}" th:attr="RowId='R0060', ColumnId='C0020'"
+											<td  style="text-align: right;" th:text="${report.r0060_no_resigned_employees}" th:attr="RowId='R0060', ColumnId='C0020'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_dismissed_employees}" th:attr="RowId='R0060', ColumnId='C0030'"
+											<td style="text-align: right;"  th:text="${report.r0060_no_dismissed_employees}" th:attr="RowId='R0060', ColumnId='C0030'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_contractual_breaches_employees}" th:attr="RowId='R0060', ColumnId='C0040'"
+											<td style="text-align: right;"  th:text="${report.r0060_contractual_breaches_employees}" th:attr="RowId='R0060', ColumnId='C0040'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_salesstaff_employees}"th:attr="RowId='R0060', ColumnId='C0050'"
+											<td style="text-align: right;"  th:text="${report.r0060_no_salesstaff_employees}"th:attr="RowId='R0060', ColumnId='C0050'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_remuneration_employees}" th:attr="RowId='R0060', ColumnId='C0060'"
+											<td  style="text-align: right;" th:text="${report.r0060_no_remuneration_employees}" th:attr="RowId='R0060', ColumnId='C0060'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_remuneration50per_employees}"th:attr="RowId='R0060', ColumnId='C0070'"
+											<td style="text-align: right;"   th:text="${report.r0060_no_remuneration50per_employees}"th:attr="RowId='R0060', ColumnId='C0070'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_aveperformance_employees}" th:attr="RowId='R0060', ColumnId='C0080'"
+											<td style="text-align: right;"  th:text="${report.r0060_aveperformance_employees}" th:attr="RowId='R0060', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_conduct_breaches_employees}" th:attr="RowId='R0060', ColumnId='C0090'"
+											<td style="text-align: right;"  th:text="${report.r0060_conduct_breaches_employees}" th:attr="RowId='R0060', ColumnId='C0090'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_complaints_employees}" th:attr="RowId='R0060', ColumnId='C0100'"
+											<td style="text-align: right;"   th:text="${report.r0060_no_complaints_employees}" th:attr="RowId='R0060', ColumnId='C0100'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_instancesbreaches_employees}"th:attr="RowId='R0060', ColumnId='C0110'"
+											<td style="text-align: right;"  th:text="${report.r0060_no_instancesbreaches_employees}"th:attr="RowId='R0060', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0060_no_whistleblower_employees}" th:attr="RowId='R0060', ColumnId='C0120'"
+											<td style="text-align: right;"  th:text="${report.r0060_no_whistleblower_employees}" th:attr="RowId='R0060', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0060_to_ombudsman_training}"></td>
+											      <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                                 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                               <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0070</td>
 											<td style="background-color: #b3b6b9;">1.6</td>
 											<td th:text="${report.r0070_product}"></td>
-											<td th:text="${report.r0070_no_consumerfacing_employees}"th:attr="RowId='R0070', ColumnId='C0010'"
+											<td  style="text-align: right;" th:text="${report.r0070_no_consumerfacing_employees}"th:attr="RowId='R0070', ColumnId='C0010'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_resigned_employees}" th:attr="RowId='R0070', ColumnId='C0020'"
+											<td style="text-align: right;"  th:text="${report.r0070_no_resigned_employees}" th:attr="RowId='R0070', ColumnId='C0020'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_dismissed_employees}" th:attr="RowId='R0070', ColumnId='C0030'"
+											<td style="text-align: right;"  th:text="${report.r0070_no_dismissed_employees}" th:attr="RowId='R0070', ColumnId='C0030'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_contractual_breaches_employees}" th:attr="RowId='R0070', ColumnId='C0040'"
+											<td style="text-align: right;"  th:text="${report.r0070_contractual_breaches_employees}" th:attr="RowId='R0070', ColumnId='C0040'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_salesstaff_employees}"th:attr="RowId='R0070', ColumnId='C0050'"
+											<td style="text-align: right;"  th:text="${report.r0070_no_salesstaff_employees}"th:attr="RowId='R0070', ColumnId='C0050'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_remuneration_employees}" th:attr="RowId='R0070', ColumnId='C0060'"
+											<td style="text-align: right;"   th:text="${report.r0070_no_remuneration_employees}" th:attr="RowId='R0070', ColumnId='C0060'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_remuneration50per_employees}" th:attr="RowId='R0070', ColumnId='C0070'"
+											<td style="text-align: right;"  th:text="${report.r0070_no_remuneration50per_employees}" th:attr="RowId='R0070', ColumnId='C0070'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_aveperformance_employees}" th:attr="RowId='R0070', ColumnId='C0080'"
+											<td style="text-align: right;"  th:text="${report.r0070_aveperformance_employees}" th:attr="RowId='R0070', ColumnId='C0080'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_conduct_breaches_employees}" th:attr="RowId='R0070', ColumnId='C0090'"
+											<td style="text-align: right;"  th:text="${report.r0070_conduct_breaches_employees}" th:attr="RowId='R0070', ColumnId='C0090'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_complaints_employees}" th:attr="RowId='R0070', ColumnId='C0100'"
+											<td style="text-align: right;"  th:text="${report.r0070_no_complaints_employees}" th:attr="RowId='R0070', ColumnId='C0100'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_instancesbreaches_employees}" th:attr="RowId='R0070', ColumnId='C0110'"
+											<td  style="text-align: right;" th:text="${report.r0070_no_instancesbreaches_employees}" th:attr="RowId='R0070', ColumnId='C0110'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0070_no_whistleblower_employees}" th:attr="RowId='R0070', ColumnId='C0120'"
+											<td  style="text-align: right;" th:text="${report.r0070_no_whistleblower_employees}" th:attr="RowId='R0070', ColumnId='C0120'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_seniormanagement_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_bankemployee_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_nmarketconduct_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0070_to_ombudsman_training}"></td>
+											 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                                 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                               <td style="text-align: right; background-color: #666666;"></td>
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0080</td>
 											<td style="background-color: #b3b6b9;">2</td>
 											<td th:text="${report.r0080_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_whistleblower_employees}" ></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_seniormanagement_training}" th:attr="RowId='R0080', ColumnId='C0130'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_bankemployee_training}" th:attr="RowId='R0080', ColumnId='C0140'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_fraudsandscam_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_nmarketconduct_training}"th:attr="RowId='R0080', ColumnId='C0170'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_to_consumerprotection_training}" th:attr="RowId='R0080', ColumnId='C0180'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0080_to_ombudsman_training}"></td>
+											  <td style="text-align: right; background-color: #666666;"></td>
+                                         <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                           <td style="text-align: right; background-color: #666666;"></td>
+                                         <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                          <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0090</td>
 											<td style="background-color: #b3b6b9;">2.1</td>
 											<td th:text="${report.r0090_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0090_seniormanagement_training}" th:attr="RowId='R0090', ColumnId='C0130'"
+											<td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0090_seniormanagement_training}" th:attr="RowId='R0090', ColumnId='C0130'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0090_bankemployee_training}" th:attr="RowId='R0090', ColumnId='C0140'"
+											<td style="text-align: right;"  th:text="${report.r0090_bankemployee_training}" th:attr="RowId='R0090', ColumnId='C0140'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_no_cavc_training}" th:attr="RowId='R0090', ColumnId='C0150'"
+											       <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0090_nmarketconduct_training}"th:attr="RowId='R0090', ColumnId='C0170'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_fraudsandscam_training}"></td>
-											<td th:text="${report.r0090_nmarketconduct_training}"th:attr="RowId='R0090', ColumnId='C0170'"
-												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0090_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0090_to_ombudsman_training}"></td>
+											<td  style="text-align: right;" th:text="${report.r0090_to_consumerprotection_training}"></td>
+											                                        <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0100</td>
 											<td style="background-color: #b3b6b9;">2.2</td>
 											<td th:text="${report.r0100_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0100_seniormanagement_training}" th:attr="RowId='R0100', ColumnId='C0130'"
+									  <td style="text-align: right; background-color: #666666;"></td>
+
+									  <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                          <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                                                                <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0100_seniormanagement_training}" th:attr="RowId='R0100', ColumnId='C0130'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0100_bankemployee_training}" th:attr="RowId='R0100', ColumnId='C0140'"
+											<td style="text-align: right;"   th:text="${report.r0100_bankemployee_training}" th:attr="RowId='R0100', ColumnId='C0140'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0100_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_fraudsandscam_training}"></td>
-											<td th:text="${report.r0100_nmarketconduct_training}"th:attr="RowId='R0100', ColumnId='C0170'"
+											<td style="text-align: right;"  th:text="${report.r0100_no_cavc_training}"></td>
+											                                        <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0100_nmarketconduct_training}"th:attr="RowId='R0100', ColumnId='C0170'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0100_to_ombudsman_training}"></td>
+				      <td style="text-align: right; background-color: #666666;"></td>
+
+				                                              <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0110</td>
 											<td style="background-color: #b3b6b9;">2.3</td>
 											<td th:text="${report.r0110_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0110_seniormanagement_training}" th:attr="RowId='R0110', ColumnId='C0130'"
+										 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0110_seniormanagement_training}" th:attr="RowId='R0110', ColumnId='C0130'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0110_bankemployee_training}" th:attr="RowId='R0110', ColumnId='C0140'"
+											<td style="text-align: right;"  th:text="${report.r0110_bankemployee_training}" th:attr="RowId='R0110', ColumnId='C0140'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_fraudsandscam_training}"></td>
-											<td th:text="${report.r0110_nmarketconduct_training}" th:attr="RowId='R0110', ColumnId='C0170'"
+									 <td style="text-align: right; background-color: #666666;"></td>
+
+								 <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0110_nmarketconduct_training}" th:attr="RowId='R0110', ColumnId='C0170'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0110_to_ombudsman_training}"></td>
+											  <td style="text-align: right; background-color: #666666;"></td>
+                    <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0120</td>
 											<td style="background-color: #b3b6b9;">2.4</td>
 											<td th:text="${report.r0120_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0120_seniormanagement_training}" th:attr="RowId='R0120', ColumnId='C0130'"
+											 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+											<td style="text-align: right;"  th:text="${report.r0120_seniormanagement_training}" th:attr="RowId='R0120', ColumnId='C0130'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0120_bankemployee_training}" th:attr="RowId='R0120', ColumnId='C0140'"
+											<td style="text-align: right;"  th:text="${report.r0120_bankemployee_training}" th:attr="RowId='R0120', ColumnId='C0140'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_fraudsandscam_training}"></td>
-											<td th:text="${report.r0120_nmarketconduct_training}" th:attr="RowId='R0120', ColumnId='C0170'"
+											   <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
+											<td style="text-align: right;"  th:text="${report.r0120_nmarketconduct_training}" th:attr="RowId='R0120', ColumnId='C0170'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0120_to_ombudsman_training}"></td>
+							   <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0130</td>
 											<td style="background-color: #b3b6b9;">2.5</td>
 											<td th:text="${report.r0130_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0130_seniormanagement_training}" th:attr="RowId='R0130', ColumnId='C0130'"
+											 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+											<td style="text-align: right;"  th:text="${report.r0130_seniormanagement_training}" th:attr="RowId='R0130', ColumnId='C0130'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td th:text="${report.r0130_bankemployee_training}" th:attr="RowId='R0130', ColumnId='C0140'"
+											<td style="text-align: right;"  th:text="${report.r0130_bankemployee_training}" th:attr="RowId='R0130', ColumnId='C0140'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_no_cavc_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_fraudsandscam_training}"></td>
-											<td th:text="${report.r0130_nmarketconduct_training}" th:attr="RowId='R0130', ColumnId='C0170'"
+											               <td style="text-align: right; background-color: #666666;"></td>
+                                                   <td style="text-align: right; background-color: #666666;"></td>
+
+											<td  style="text-align: right;" th:text="${report.r0130_nmarketconduct_training}" th:attr="RowId='R0130', ColumnId='C0170'"
 												onclick="showdetailsbyRowAndColumn(this)"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_to_consumerprotection_training}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0130_to_ombudsman_training}"></td>
+										<td style="text-align: right; background-color: #666666;"></td>
+                         <td style="text-align: right; background-color: #666666;"></td>
+
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0140</td>
 											<td style="background-color: #b3b6b9;">2.6</td>
 											<td th:text="${report.r0140_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0140_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0140_seniormanagement_training}"></td>
-											<td th:text="${report.r0140_bankemployee_training}"></td>
-											<td th:text="${report.r0140_no_cavc_training}"></td>
-											<td th:text="${report.r0140_fraudsandscam_training}"></td>
-											<td th:text="${report.r0140_nmarketconduct_training}"></td>
-											<td th:text="${report.r0140_to_consumerprotection_training}"></td>
-											<td th:text="${report.r0140_to_ombudsman_training}"></td>
+										 <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_seniormanagement_training}"  th:attr="RowId='R0140', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_bankemployee_training}" th:attr="RowId='R0140', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_no_cavc_training}" th:attr="RowId='R0140', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_fraudsandscam_training}" th:attr="RowId='R0140', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_nmarketconduct_training}" th:attr="RowId='R0140', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_to_consumerprotection_training}" th:attr="RowId='R0140', ColumnId='C0180'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0140_to_ombudsman_training}" th:attr="RowId='R0140', ColumnId='C0190'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 										</tr>
 										<tr th:each="report, stat : ${reportsummary}">
 											<td style="background-color: #b3b6b9;">R0150</td>
 											<td style="background-color: #b3b6b9;">2.7</td>
 											<td th:text="${report.r0150_product}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_consumerfacing_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_resigned_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_dismissed_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_contractual_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_salesstaff_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_remuneration_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_remuneration50per_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_aveperformance_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_conduct_breaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_complaints_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_instancesbreaches_employees}"></td>
-											<td style="background-color: #696969;"
-												th:text="${report.r0150_no_whistleblower_employees}"></td>
-											<td th:text="${report.r0150_seniormanagement_training}"></td>
-											<td th:text="${report.r0150_bankemployee_training}"></td>
-											<td th:text="${report.r0150_no_cavc_training}"></td>
-											<td th:text="${report.r0150_fraudsandscam_training}"></td>
-											<td th:text="${report.r0150_nmarketconduct_training}"></td>
-											<td th:text="${report.r0150_to_consumerprotection_training}"></td>
-											<td th:text="${report.r0150_to_ombudsman_training}"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+                                        <td style="text-align: right; background-color: #666666;"></td>
+											<td style="text-align: right;"  th:text="${report.r0150_seniormanagement_training}" th:attr="RowId='R0150', ColumnId='C0130'"
+												onclick="showdetailsbyRowAndColumn(this)" ></td>
+											<td style="text-align: right;"  th:text="${report.r0150_bankemployee_training}"  th:attr="RowId='R0150', ColumnId='C0140'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"   th:text="${report.r0150_no_cavc_training}"  th:attr="RowId='R0150', ColumnId='C0150'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0150_fraudsandscam_training}"  th:attr="RowId='R0150', ColumnId='C0160'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0150_nmarketconduct_training}"  th:attr="RowId='R0150', ColumnId='C0170'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td style="text-align: right;"  th:text="${report.r0150_to_consumerprotection_training}"  th:attr="RowId='R0150', ColumnId='C0180'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
+											<td  style="text-align: right;" th:text="${report.r0150_to_ombudsman_training}"  th:attr="RowId='R0150', ColumnId='C0190'"
+												onclick="showdetailsbyRowAndColumn(this)"></td>
 										</tr>
 
 									</tbody>
