@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
-@Table(name = "CBUAE_BRF1_9_ARCHIVALTABLE_SUMMARY_1", schema = "CXBRL")
+@Table(name = "CBUAE_BRF1_9_ARCHIVALTABLE_SUMMARY_1")
 public class CBUAE_BRF1_9_ARCHIVAL_Summary_Entity1 {
 	private String	r0010_asstes;
 	private BigDecimal	r0010_banking_operations;

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CBUAE_BRF5_6_DETAILTABLE", schema = "CXBRL")
+@Table(name = "CBUAE_BRF5_6_DETAILTABLE")
 public class CBUAE_BRF5_6_Detail_Entity {
 
     @Column(name = "CUST_ID")
