@@ -75,8 +75,8 @@ PURPOSE		: BRFREPORT
 			border-color: #0c0c0c;
 		}
 
-		.btn-primary:not (:disabled):not (.disabled).active,
-		.btn-primary:not (:disabled):not (.disabled):active,
+		.btn-primary:not(:disabled):not(.disabled).active,
+		.btn-primary:not(:disabled):not(.disabled):active,
 		.show>.btn-primary.dropdown-toggle {
 			color: #fff;
 			background-color: #cc000000;
@@ -296,6 +296,18 @@ PURPOSE		: BRFREPORT
 		.white-text span {
 			color: white !important;
 		}
+
+		.table-cell tbody td:hover {
+			background-color: #f0f0f0;
+			/* Hover color for cell */
+			cursor: pointer;
+			/* Optional: pointer cursor */
+		}
+
+		.table-bordered td,
+		.table-bordered th {
+			border: 1px solid #000 !important;
+		}
 	</style>
 
 
@@ -319,12 +331,14 @@ PURPOSE		: BRFREPORT
 
 
 		function home() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
+			loader.show();
 			location.href = 'Dashboard'
 		}
 
 		function back() {
-			$("#loader").modal("toggle");
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
+			loader.show();
 
 			window.history.back();
 		}
@@ -333,7 +347,8 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
+			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
 			console.log(Callurl);
@@ -360,7 +375,7 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
 				location.href = Callurl;
@@ -410,7 +425,8 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			$('#loader').modal('show');
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
+			loader.show();
 
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
@@ -477,7 +493,6 @@ PURPOSE		: BRFREPORT
 	</script>
 
 	<script>
-
 		function startReport(button) {
 			const alertMsg = document.getElementById("alertMessage");
 			const filename = button.getAttribute('data-filename');
@@ -498,7 +513,7 @@ PURPOSE		: BRFREPORT
 			alertMsg.innerHTML = 'Download request Processing...';
 			showAlert();
 
-			const baseUrl = '/BCDRS/Reports/startreport';
+			const baseUrl = '/BRF/Reports/startreport';
 			const downloadUrl = baseUrl +
 				'?filename=' + encodeURIComponent(filename) +
 				'&fromdate=' + encodeURIComponent(fromdate) +
@@ -521,7 +536,7 @@ PURPOSE		: BRFREPORT
 
 		function checkReport(jobId) {
 			const alertMsg = document.getElementById("alertMessage");
-			fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+			fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 				.then(res => res.text())
 				.then(status => {
 					if (status === "READY") {
@@ -549,15 +564,12 @@ PURPOSE		: BRFREPORT
 
 
 		function downloadDetailfile(jobId, filename) {
+
 			//$('#loader').modal('show');
 
-			const params = new URLSearchParams({
-				jobId: jobId,
-				filename: filename
-			});
-
 			$.ajax({
-				url: '/BCDRS/Reports/downloaddetailExcel?' + params.toString(),
+				url: '/BRF/Reports/downloaddetailExcel?jobId=' + jobId +
+					'&filename=' + filename,
 				type: 'GET',
 				xhrFields: {
 					responseType: 'blob'
@@ -589,6 +601,8 @@ PURPOSE		: BRFREPORT
 				}
 			});
 		}
+
+
 	</script>
 
 	<script th:inline="javascript">
@@ -608,8 +622,11 @@ PURPOSE		: BRFREPORT
 				// Handle Yes button
 				document.querySelector('.yes-btn').onclick = function () {
 					$('#cellresultModal').modal('hide');
-					var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
-					loader.show();
+					const loader = bootstrap.Modal.getOrCreateInstance(document.getElementById('loader'), {
+						backdrop: 'static',
+						keyboard: false
+					});
+					$('#loader').modal('show');
 
 					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
 					Callurl += "&filter=" + encodeURIComponent(rowId + "," + columnId);
@@ -646,8 +663,8 @@ PURPOSE		: BRFREPORT
 
 						<!-- Title -->
 						<h5
-							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">		
-					TOP 15 ACCOUNTS UNDER EACH IFRS9 STAGE - BRF 5.2 (AED 000)																																			
+							style="font-family: arial; font-size: 20px; padding-top:10px; font-weight: bold; color: white;">
+							TOP 15 ACCOUNTS UNDER EACH IFRS9 STAGE - BRF 5.2 (AED 000)
 
 						</h5>
 					</div>
@@ -4698,14 +4715,14 @@ PURPOSE		: BRFREPORT
 								style="border-right: 1px solid #dee2e6; ">
 								<table
 									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="BRFdet" style='margin-top:-30px'>
+									id="BRFdet">
 									<thead class="thead-light">
 										<tr>
 											<th></th>
 											<th>CUST ID</th>
 											<th>ACCT NO</th>
 											<th>ACCT NAME</th>
-											<th>ACCT BALANCE</th>
+											<th style="text-align:right;">ACCT BALANCE</th>
 											<th style="text-align:left;">ROWID</th>
 											<th>COLUMNID</th>
 											<th>REPORT_DATE</th>
@@ -4733,21 +4750,22 @@ PURPOSE		: BRFREPORT
 										</tr>
 									</tbody>
 								</table>
+
 								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
 
 
 
 									<a th:if="${currentPage > 0}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																																			 asondate=${asondate},                             
-																								                      			          fromdate=${fromdate},
-																																			todate=${todate},
-																																			currency=${currency},
-																																			dtltype=${dtltype},
-																																		   type=${type},
-																																			version=${version},
-																																		 page=${currentPage - 100},
-																																		 size=100
-																																			)}">
+													    asondate=${asondate},                             
+													    fromdate=${fromdate},
+													    todate=${todate},
+													    currency=${currency},
+													    dtltype=${dtltype},
+													    type=${type},
+													    version=${version},
+													    page=${currentPage - 100},
+													    size=100
+													)}">
 										Previous
 									</a>
 
@@ -4756,19 +4774,22 @@ PURPOSE		: BRFREPORT
 
 
 									<a th:if="${currentPage < (totalPages - 1) * 100}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
-																													    asondate=${asondate},
-																					                			    fromdate=${fromdate},
-																											      todate=${todate},
-																					                              currency=${currency},
-																												  dtltype=${dtltype},
-																												  type=${type},
-																												 version=${version},
-																												 page=${currentPage + 100},
-																												  size=100
-																												)}">
+													    asondate=${asondate},
+													    fromdate=${fromdate},
+													    todate=${todate},
+													    currency=${currency},
+													    dtltype=${dtltype},
+													    type=${type},
+													    version=${version},
+													    page=${currentPage + 100},
+													    size=100
+													)}">
 										Next
 									</a>
 								</div>
+
+
+
 							</div>
 
 
@@ -4794,29 +4815,8 @@ PURPOSE		: BRFREPORT
 				<div class="modal-body" style="text-align: center">
 					<div>
 						<img th:src=@{/images/loader.gif} id="bfirelogo" style="width: 153px; height: auto; margin-left: 18px; background-color: transparent;
-								border-color: transparent;" alt="Bornfire">
+									border-color: transparent;" alt="Bornfire">
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<!-- Custom Alert/Result Modal (Matches your existing style) -->
-	<div class="modal fade" id="resultModal">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<!-- Your custom styled header -->
-				<div class="menu-title-header">
-					<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
-						<!-- Title will be set by JavaScript -->
-					</div>
-				</div>
-				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-					<p id="resultModalBody"></p>
-					<!-- Your custom styled button -->
-					<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
 				</div>
 			</div>
 		</div>
@@ -4848,11 +4848,34 @@ PURPOSE		: BRFREPORT
 			</div>
 		</div>
 	</div>
+
+
+
+	<!-- Custom Alert/Result Modal (Matches your existing style) -->
+	<div class="modal fade" id="resultModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- Your custom styled header -->
+				<div class="menu-title-header">
+					<div class="modal-title" id="resultModalLabel" style="text-align: center; color: white;">
+						<!-- Title will be set by JavaScript -->
+					</div>
+				</div>
+				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+					<p id="resultModalBody"></p>
+					<!-- Your custom styled button -->
+					<button type="button" class="custom-tab-btn" onclick="closemodel()" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 <script>
 	$(document).ready(function () {
-		$('#BRFdet').DataTable({
-			"paging": false,
+		$('#BRFdets').DataTable({
+			"paging": true,
 			"pageLength": 100,
 			"lengthChange": false,
 			"searching": false,
@@ -4864,17 +4887,7 @@ PURPOSE		: BRFREPORT
 		});
 	});
 </script>
-<!-- <script>
-  $(document).ready(function () {
-    $('#BRFvalidation').DataTable({
-      "paging": true,
-      "info": false,       // turn off "Showing x of y"
-      "searching": false,  // turn off search
-      "ordering": false,   // turn off ordering
-      "lengthChange": false // hide "Show x entries"
-    });
-  });
-</script> -->
+
 
 <style>
 	#BRFdet td {
@@ -4893,7 +4906,7 @@ PURPOSE		: BRFREPORT
 	/* Your existing CSS - this is the correct approach */
 	.scrollable-table-container {
 		/* This is the key: it creates the scroll context */
-		max-height: 620px;
+		max-height: 590px;
 		/* Or a suitable height like 80vh for responsive design */
 		overflow-y: auto;
 		border: 1px solid #ccc;
@@ -4909,7 +4922,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(2) {
 		position: sticky;
-		top: 36px;
+		top: 34px;
 		/* adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 4;
@@ -4919,7 +4932,7 @@ PURPOSE		: BRFREPORT
 
 	.scrollable-table-container thead tr:nth-child(3) {
 		position: sticky;
-		top: 72px;
+		top: 68px;
 		/* Adjust based on row height */
 		background-color: #b3b6b9;
 		z-index: 3;
@@ -4993,18 +5006,6 @@ PURPOSE		: BRFREPORT
 	.form-select {
 		display: inline-block;
 		width: auto;
-	}
-
-	.table-cell tbody td:hover {
-		background-color: #e4e0d7;
-		/* Hover color for cell */
-		cursor: pointer;
-		/* Optional: pointer cursor */
-	}
-
-	.table-bordered td,
-	.table-bordered th {
-		border: 1px solid #000 !important;
 	}
 </style>
 

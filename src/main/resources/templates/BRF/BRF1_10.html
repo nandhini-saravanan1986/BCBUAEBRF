@@ -516,7 +516,7 @@ var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: '
 				alertMsg.innerHTML ='Download request Processing...';
 		   	 	showAlert();
 
-				const baseUrl = '/BCDRS/Reports/startreport';
+				const baseUrl = '/BRF/Reports/startreport';
 				const downloadUrl = baseUrl +
 					'?filename=' + encodeURIComponent(filename) +
 					'&fromdate=' + encodeURIComponent(fromdate) +
@@ -539,7 +539,7 @@ var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: '
 
 			function checkReport(jobId) {
 				const alertMsg = document.getElementById("alertMessage");
-			    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+			    fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 			        .then(res => res.text())
 			        .then(status => {
 			            if (status === "READY") {
@@ -575,7 +575,7 @@ var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: '
 			    });
 
 			    $.ajax({
-			        url: '/BCDRS/Reports/downloaddetailExcel?' + params.toString(),
+			        url: '/BRF/Reports/downloaddetailExcel?' + params.toString(),
 			        type: 'GET',
 			        xhrFields: {
 			            responseType: 'blob'

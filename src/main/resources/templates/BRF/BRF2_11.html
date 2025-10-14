@@ -502,7 +502,7 @@ PURPOSE		: INTERBANK COUNTERPARTIES- FOREIGN BRF 2.11 (AED 000)
 		alertMsg.innerHTML ='Download request Processing...';
    	 	showAlert();
 
-		const baseUrl = '/BCDRS/Reports/startreport';
+		const baseUrl = '/BRF/Reports/startreport';
 		const downloadUrl = baseUrl +
 			'?filename=' + encodeURIComponent(filename) +
 			'&fromdate=' + encodeURIComponent(fromdate) +
@@ -525,7 +525,7 @@ PURPOSE		: INTERBANK COUNTERPARTIES- FOREIGN BRF 2.11 (AED 000)
 
 	function checkReport(jobId) {
 		const alertMsg = document.getElementById("alertMessage");
-	    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+	    fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 	        .then(res => res.text())
 	        .then(status => {
 	            if (status === "READY") {
@@ -557,7 +557,7 @@ PURPOSE		: INTERBANK COUNTERPARTIES- FOREIGN BRF 2.11 (AED 000)
 		//$('#loader').modal('show');
 		
 		$.ajax({
-			url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+			url: '/BRF/Reports/downloaddetailExcel?jobId='+ jobId +
 				'&filename=' + filename,
 			type: 'GET',
 			xhrFields: {

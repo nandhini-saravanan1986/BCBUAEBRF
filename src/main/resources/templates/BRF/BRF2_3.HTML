@@ -524,7 +524,7 @@ table tr td:nth-child(n+4):nth-child(-n+15):hover {
 			return;
 		}
 
-		const baseUrl = '/BCDRS/Reports/startreport';
+		const baseUrl = '/BRF/Reports/startreport';
 		const downloadUrl = baseUrl +
 			'?filename=' + encodeURIComponent(filename) +
 			'&fromdate=' + encodeURIComponent(fromdate) +
@@ -547,7 +547,7 @@ table tr td:nth-child(n+4):nth-child(-n+15):hover {
 
 	function checkReport(jobId) {
 		const alertMsg = document.getElementById("alertMessage");
-	    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+	    fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 	        .then(res => res.text())
 	        .then(status => {
 	            if (status === "READY") {
@@ -573,7 +573,7 @@ table tr td:nth-child(n+4):nth-child(-n+15):hover {
 		//$('#loader').modal('show');
 		
 		$.ajax({
-			url: '/BCDRS/Reports/downloaddetailExcel?jobId='+ jobId +
+			url: '/BRF/Reports/downloaddetailExcel?jobId='+ jobId +
 				'&filename=' + filename,
 			type: 'GET',
 			xhrFields: {

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>BCDRS</title>
+	<title>BRF</title>
 
 	<!-- CSS Dependencies -->
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -901,7 +901,7 @@
 		function startPolling(jobId) {
 			const alertMsg = document.getElementById("alertMessage");
 			function checkReport() {
-				fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+				fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 					.then(res => res.text())
 					.then(status => {
 						if (status === "READY") {
@@ -938,7 +938,7 @@
 
 			//$('#loader').modal('show');
 			$.ajax({
-				url: '/BCDRS/Reports/downloaddetailExcel?jobId=' + jobId +
+				url: '/BRF/Reports/downloaddetailExcel?jobId=' + jobId +
 					'&filename=' + filename,
 				type: 'GET',
 				xhrFields: {
@@ -979,9 +979,9 @@
 	<nav class="navbar full-navbar">
 		<div class="navbar-container d-flex" style="width:100%">
 			<!-- Logo -->
-			<div class="logo-container">
+			<!--<div class="logo-container">
 				<img th:src="@{/images/bob.jpeg}" alt="Bornfire" class="logo-img">
-			</div>
+			</div>-->
 
 			<!-- Right content -->
 			<div class="right-content flex-grow-1">
@@ -1256,7 +1256,7 @@
 
 		// Delay navigation slightly so the loader is visible
 		setTimeout(function () {
-			location.href = "/BCDRS/" + a.id;
+			location.href = "/BRF/" + a.id;
 		}, 300); // You can increase this delay if needed
 	}
 

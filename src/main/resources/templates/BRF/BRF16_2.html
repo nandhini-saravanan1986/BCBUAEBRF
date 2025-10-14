@@ -664,7 +664,7 @@ function DetailDownload() {
 				alertMsg.innerHTML ='Download request Processing...';
 		   	 	showAlert();
 
-				const baseUrl = '/BCDRS/Reports/startreport';
+				const baseUrl = '/BRF/Reports/startreport';
 				const downloadUrl = baseUrl +
 					'?filename=' + encodeURIComponent(filename) +
 					'&fromdate=' + encodeURIComponent(fromdate) +
@@ -687,7 +687,7 @@ function DetailDownload() {
 
 			function checkReport(jobId) {
 				const alertMsg = document.getElementById("alertMessage");
-			    fetch('/BCDRS/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+			    fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
 			        .then(res => res.text())
 			        .then(status => {
 			            if (status === "READY") {
@@ -723,7 +723,7 @@ function DetailDownload() {
 			    });
 
 			    $.ajax({
-			        url: '/BCDRS/Reports/downloaddetailExcel?' + params.toString(),
+			        url: '/BRF/Reports/downloaddetailExcel?' + params.toString(),
 			        type: 'GET',
 			        xhrFields: {
 			            responseType: 'blob'
