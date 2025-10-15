@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.bornfire.xbrl.repositories")
+@EnableJpaRepositories(basePackages = "com.bornfire.xbrl.entities")
 @Configuration
 @EnableScheduling
 public class BrfApplication  extends SpringBootServletInitializer{
