@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bornfire.brf.entities.AccessAndRoles;
 import com.bornfire.brf.entities.AccessandRolesRepository;
+import com.bornfire.brf.entities.BaseMappingParameterRepository;
 import com.bornfire.brf.entities.CBUAE_BRFValidationsRepo;
 import com.bornfire.brf.entities.RRReport;
 import com.bornfire.brf.entities.RRReportRepo;
@@ -64,6 +65,9 @@ public class NavigationController {
 
 	@Autowired
 	AccessandRolesRepository accessandrolesrepository;
+	
+	@Autowired
+	BaseMappingParameterRepository basemappingparameterrepository;
 
 	private String pagesize;
 
@@ -135,6 +139,27 @@ public class NavigationController {
 
 		return "AccessandRoles";
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "BasemappingParameter", method = { RequestMethod.GET, RequestMethod.POST })
+	public String BasemappingParameter(@RequestParam(required = false) String formmode,
+			@RequestParam(required = false) String userid, @RequestParam(required = false) Optional<Integer> page,
+			@RequestParam(value = "size", required = false) Optional<Integer> size, Model md, HttpServletRequest req) {
+
+		String account_id_bacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
+		 System.out.println("account_id_bacid id is : " + account_id_bacid);
+		//md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(account_id_bacid));
+
+		if (formmode == null || formmode.equals("list")) {
+			md.addAttribute("formmode", "list");
+			md.addAttribute("menuname", "BASE MAPPING PARAMETER");
+           md.addAttribute("Basemappingparameter", basemappingparameterrepository.getBaseMappingParameter(account_id_bacid));		}
+		return "BaseMappingParameter";
+	}
+
+	
 
 	@RequestMapping(value = "createAccessRole", method = RequestMethod.POST)
 	@ResponseBody
