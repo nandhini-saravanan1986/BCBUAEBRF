@@ -891,6 +891,14 @@
 		}
 	</style>
 	<script>
+		$(document).ready(function () {
+			$('.dropdown-submenu a.dropdown-toggle').on("click", function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				$(this).next('ul').toggle();
+			});
+		});
+
 		window.onload = function () {
 			const jobId = sessionStorage.getItem("jobId");
 			if (jobId) {
@@ -998,7 +1006,7 @@
 							</li>
 							<li class="nav-item dropdown" style="text-align: center;"
 								th:if="${session.DOMAINID != null and #strings.containsIgnoreCase(session.DOMAINID, 'admin')}">
-								<a href="#" class="dropdown-toggle">Admin</a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin</a>
 								<ul class="dropdown-menu">
 									<li>
 										<a href="#" class="nav-link" id="UserProfile" onclick="contentLoad(this)">User
@@ -1008,9 +1016,24 @@
 										<a href="#" class="nav-link" id="AccessandRoles"
 											onclick="contentLoad(this)">Access And Roles</a>
 									</li>
+
+									<!-- Nested Menu -->
+									<li class="dropdown-submenu">
+										<a href="#" class="nav-link dropdown-toggle">Report Parameter</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="#" class="nav-link" id="DailyReport"
+													onclick="contentLoad(this)">Daily Report</a>
+											</li>
+											<li>
+												<a href="#" class="nav-link" id="ReportCodeMapping"
+													onclick="contentLoad(this)">Report Code Mapping</a>
+											</li>
+
+										</ul>
+									</li>
 								</ul>
 							</li>
-
 
 							<li class="nav-item dropdown" style=" text-align: center;"
 								th:if="${session.DOMAINID != null and #strings.containsIgnoreCase(session.DOMAINID, 'BRF_Reports')}">
