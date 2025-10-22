@@ -891,13 +891,34 @@
 		}
 	</style>
 	<script>
-		$(document).ready(function () {
-			$('.dropdown-submenu a.dropdown-toggle').on("click", function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-				$(this).next('ul').toggle();
-			});
-		});
+	$(document).ready(function () {
+	  $('.dropdown-submenu > a.dropdown-toggle').on("click", function (e) {
+	    e.preventDefault();
+	    e.stopPropagation();
+
+	    var submenu = $(this).next('.dropdown-menu');
+
+	    // If submenu is already visible, close it
+	    if (submenu.is(':visible')) {
+	      submenu.hide();
+	    } else {
+	      // Hide all other open submenus first
+	      $('.dropdown-submenu .dropdown-menu').hide();
+	      submenu.show();
+	    }
+	  });
+
+	  // Hide submenu when clicking anywhere else
+	  $(document).on("click", function (e) {
+	    if (!$(e.target).closest('.dropdown-submenu').length) {
+	      $('.dropdown-submenu .dropdown-menu').hide();
+	    }
+	  });
+	});
+	</script>
+
+	<script>
+		
 
 		window.onload = function () {
 			const jobId = sessionStorage.getItem("jobId");

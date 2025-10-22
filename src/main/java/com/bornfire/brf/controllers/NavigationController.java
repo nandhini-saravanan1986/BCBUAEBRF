@@ -1,6 +1,6 @@
 package com.bornfire.brf.controllers;
 
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +19,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bornfire.brf.dto.ReportLineItemDTO;
 import com.bornfire.brf.entities.AccessAndRoles;
 import com.bornfire.brf.entities.AccessandRolesRepository;
 import com.bornfire.brf.entities.BaseMappingParameter;
@@ -37,6 +39,7 @@ import com.bornfire.brf.services.AccessAndRolesServices;
 import com.bornfire.brf.services.BaseMappingParameterServices;
 import com.bornfire.brf.services.LoginServices;
 import com.bornfire.brf.services.RegulatoryReportServices;
+import com.bornfire.brf.services.ReportCodeMappingService;
 
 
 @Controller
@@ -74,6 +77,10 @@ public class NavigationController {
 	
 	@Autowired
 	BaseMappingParameterServices basemappingparameterservice;
+	
+
+	@Autowired
+	private ReportCodeMappingService reportCodeMappingService;
 
 	private String pagesize;
 
@@ -357,6 +364,60 @@ public class NavigationController {
 			}
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND");
+		}
+	}
+	@RequestMapping(value = "/ReportCodeMapping", method = { RequestMethod.GET, RequestMethod.POST })
+	public String ReportCodeMapping(Model md, HttpServletRequest req) {
+		md.addAttribute("menu", "Report Code Mapping");
+		md.addAttribute("menuname", "ReportCodeMapping");
+		md.addAttribute("formmode", "list");
+
+
+		// Populate the ReportCode dropdown
+		List<String> rptCodes = reportCodeMappingService.getAllReportCodes();
+		md.addAttribute("RptCodes", rptCodes);
+		md.addAttribute("item", new BaseMappingParameter()); // For the mapping form
+
+		System.out.println("Enter in ReportCodeMapping controller - displaying list view");
+		return "ReportCodeMapping";
+	}
+
+	@GetMapping("/getReportDataByCode")
+	@ResponseBody
+	public List<ReportLineItemDTO> getReportDataByCode(@RequestParam("reportCode") String reportCode) {
+		System.out.println("Controller received request for report code: " + reportCode);
+		System.out.println("reportCodeMappingService object: " + reportCodeMappingService);
+
+		try {
+			List<ReportLineItemDTO> data = reportCodeMappingService.getReportDataByCode(reportCode);
+			System.out.println("Service call succeeded, records fetched: " + data.size());
+			return data;
+		} catch (Exception e) {
+			System.err.println("Error fetching report data for " + reportCode + ": " + e.getMessage());
+			return Collections.emptyList();
+		} finally {
+			System.out.println("Controller finished processing request for report code: " + reportCode);
+		}
+	}
+
+	@GetMapping("/getRptName")
+	@ResponseBody
+	public String getRptName(@RequestParam("rptCode") String rptCode) {
+		System.out.println("Controller received request for report name for code: " + rptCode);
+		return reportCodeMappingService.getReportNameByCode(rptCode);
+	}
+
+	@PostMapping("/saveMapping")
+	@ResponseBody
+	public String saveMapping(@RequestBody BaseMappingParameter mapping) {
+		System.out.println("Controller received mapping data for saving: " + mapping.getReport_code() + " - "
+				+ mapping.getAccount_id_bacid());
+		try {
+			reportCodeMappingService.saveMapping(mapping);
+			return "Mapping saved successfully!";
+		} catch (Exception e) {
+			System.err.println("Error saving mapping: " + e.getMessage());
+			return "Error saving mapping: " + e.getMessage();
 		}
 	}
 

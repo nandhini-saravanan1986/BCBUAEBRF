@@ -32,7 +32,8 @@ public class BaseMappingParameter {
 	private Date	report_date;
 	private String	report_version;
 	private String	report_frequency;
-	private String	report_code;
+	@Column(name = "REPORT_CODE")
+	private String reportCode;
 	private String	report_desc;
 	public String getGl_head() {
 		return gl_head;
@@ -149,10 +150,10 @@ public class BaseMappingParameter {
 		this.report_frequency = report_frequency;
 	}
 	public String getReport_code() {
-		return report_code;
+		return reportCode;
 	}
 	public void setReport_code(String report_code) {
-		this.report_code = report_code;
+		this.reportCode = report_code;
 	}
 	public String getReport_desc() {
 		return report_desc;
@@ -185,7 +186,7 @@ public class BaseMappingParameter {
 		this.report_date = report_date;
 		this.report_version = report_version;
 		this.report_frequency = report_frequency;
-		this.report_code = report_code;
+		this.reportCode = report_code;
 		this.report_desc = report_desc;
 	}
 	public BaseMappingParameter() {
