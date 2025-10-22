@@ -154,7 +154,7 @@ PURPOSE		: Access the Modules by Role
 			window.history.back();
 		}
 
-		function submitform(a) {
+		function submitform1(a) {
 			var formmode = a.getAttribute("data-formmode");
 			console.log('Form mode:', formmode);
 
@@ -338,13 +338,34 @@ PURPOSE		: Access the Modules by Role
 
 	</script>
 	<script>
-		function addrole(a) {
-			location.href = 'AccessandRoles?formmode=add';
-		}
+function submitForm() {
+    const form = document.getElementById("fxriskForm");
+    const formData = new FormData(form);
+    $.ajax({
+        url: './createBaseMappingParameter',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            alert(response);
+        },
+        error: function() {
+            alert('Error saving data');
+        }
+    });
+}
+</script>
+
+	<script>
+		function addrole() {
+    location.href = 'createBaseMappingParameter?formmode=add';
+}
+		
 		function edit_btn_submit(a) {
 
-			var srlno = a.getAttribute("data-roleId");
-			location.href = 'AccessandRoles?formmode=edit&userid=' + srlno;
+			var account_id_bacid = a.getAttribute("data-roleId");
+			location.href = 'BasemappingParameter?formmode=edit&userid=' + account_id_bacid;
 		}
 
 		function list() {
@@ -365,9 +386,45 @@ PURPOSE		: Access the Modules by Role
 		}
 		function delete_btn_submit(a) {
 			var rollID = a.getAttribute("data-roleId");
-			location.href = 'AccessandRoles?formmode=delete&userid=' + rollID;
+			location.href = 'BasemappingParameter?formmode=delete&userid=' + rollID;
 		}
 	</script>
+	
+	<script>
+function deleteuser() {
+    // Show confirmation modal instead of alert
+    $('#Deletemodel').modal('show');
+
+    // Handle YES button click
+    document.querySelector('#Deletemodel .yes-btn').onclick = function () {
+        $('#Deletemodel').modal('hide');
+        $("#loader1").modal("show");
+
+        var userid = document.getElementById("userId").value;
+
+        $.ajax({
+            type: 'post',
+            url: './deleteuser?formmode=' + userid,
+            success: function (response) {
+                $("#loader1").modal("hide");
+                $("#alertmsg").text('User Deleted');
+                $('#alert').modal("show");
+            },
+            error: function (xhr, status, error) {
+                $("#loader1").modal("hide");
+                $("#alertmsg").text('Not able to delete, contact administrator');
+                $('#alert').modal("show");
+            }
+        });
+    };
+
+    // Handle CANCEL button click
+    document.querySelector('#Deletemodel .cancel-btn').onclick = function () {
+        $('#Deletemodel').modal('hide');
+    };
+}
+
+</script>
 </head>
 <title>BRF</title>
 
@@ -434,14 +491,275 @@ PURPOSE		: Access the Modules by Role
 												<td th:text="${data.account_description}"></td>
 												<td th:text="${data.currency}"></td>
 												<td th:text="${data.data_type}"></td>
+												            <td class="text-left">
+              <!-- Modify Icon -->
+              <i class="fa fa-edit action-icon modify"
+                 title="Modify"
+                 th:attr="data-account_id_bacid=${BasemappingParameter?.account_id_bacid}"
+                 onclick="edit_btn_submit(this)"></i>
+               <!-- Delete Icon -->
+              <i class="fa fa-trash action-icon delete"
+                 title="Delete"
+                 th:attr="data-account_id_bacid=${BasemappingParameter?.account_id_bacid}"
+                 onclick="delete_btn_submit(this)"></i>
+
+              
+            </td>
+
                                                
 
 							</tr>
 							
       </tbody>
     </table>
-        
-        
+    </div>
+
+    <div class="card-footer text-center">
+      <button type="button" class="custom-tab-btn" id="btnHome" onclick="home();">Home</button>
+      <button type="button" class="custom-tab-btn" id="btnBack" onclick="back();">Back</button>
+    </div>
+  </div>
+</div>
+
+					</div>
+				</div>
+				
+				
+				
+				
+<div class="tab-content" id="myTabContent" style="margin-top: 15px;" th:if="${formmode == 'add'}">
+	
+	
+  <div class="tab-pane fade show active" id="datacontrols" role="tabpanel">
+    <div class="row">
+<div class="card-header"style="background-color: rgb(166,0,0);">
+							<div class="float-left">
+								<h3 style="font-family: verdana;color: white !important; font-size: 24px; font-weight: bold;">BASE MAPPING PARAMETER -ADD</h3>
+							</div>
+							
+						</div>
+      <div class="col-sm-12 finuserapply">
+<form id="fxriskForm" method="post" action="createBaseMappingParameter">
+          <div class="card-body" style="max-height:450px; overflow-y:auto">
+
+            <input autocomplete="false" name="hidden" type="text" style="display: none;">
+
+            <!-- Name Field (Label + Input in Same Line) -->
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+              <div class="col-sm-4">
+                <input type="text" id="gl_head" name="gl_head" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Gl Sub Head Code</label>
+              <div class="col-sm-4">
+                <input type="text" id="gl_subhead_code" name="gl_subhead_code" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Account ID/Bacid</label>
+              <div class="col-sm-4">
+<input type="text" id="account_id_bacid" name="account_id_bacid" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Account Description</label>
+              <div class="col-sm-4">
+                <input type="text" id="account_description" name="account_description" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Currency</label>
+              <div class="col-sm-4">
+                <input type="text" id="currency" name="currency" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Data Type</label>
+              <div class="col-sm-4">
+                <input type="text" id="data_type" name="data_type" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            
+            
+
+          </div> <!-- card-body -->
+        </form>
+
+        <div class="card-footer text-center"
+          style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); padding: 10px; border-top: 2px solid #ccc;">
+          <button type="button" class="custom-tab-btn" onclick="home();">
+            <i class="fa fa-home"></i> Home
+          </button>
+
+          <button type="button" class="custom-tab-btn" onclick="submitForm();">
+            Submit
+          </button>
+
+          <button type="button" class="custom-tab-btn" onclick="back();">
+            <i class="fa fa-arrow-left"></i> 
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+      				
+<div class="tab-content" id="myTabContent" style="margin-top: 15px;" th:if="${formmode == 'delete'}">
+	
+	
+  <div class="tab-pane fade show active" id="datacontrols" role="tabpanel">
+    <div class="row">
+<div class="card-header"style="background-color: rgb(166,0,0);">
+							<div class="float-left">
+								<h3 style="font-family: verdana;color: white !important; font-size: 24px; font-weight: bold;">BASE MAPPING PARAMETER -DELETE</h3>
+							</div>
+							
+						</div>
+      <div class="col-sm-12 finuserapply">
+<form id="fxriskForm" method="post" action="createBaseMappingParameter">
+          <div class="card-body" style="max-height:450px; overflow-y:auto">
+
+            <input autocomplete="false" name="hidden" type="text" style="display: none;">
+
+            <!-- Name Field (Label + Input in Same Line) -->
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+              <div class="col-sm-4">
+                <input type="text" id="gl_head" name="gl_head" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Gl Sub Head Code</label>
+              <div class="col-sm-4">
+                <input type="text" id="gl_subhead_code" name="gl_subhead_code" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Account ID/Bacid</label>
+              <div class="col-sm-4">
+<input type="text" id="account_id_bacid" name="account_id_bacid" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Account Description</label>
+              <div class="col-sm-4">
+                <input type="text" id="account_description" name="account_description" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Currency</label>
+              <div class="col-sm-4">
+                <input type="text" id="currency" name="currency" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Data Type</label>
+              <div class="col-sm-4">
+                <input type="text" id="data_type" name="data_type" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            
+            
+
+          </div> <!-- card-body -->
+        </form>
+
+        <div class="card-footer text-center"
+          style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); padding: 10px; border-top: 2px solid #ccc;">
+         <!-- <button type="button" class="custom-tab-btn" onclick="home();">
+            <i class="fa fa-home"></i> Home
+          </button-->
+
+          <button type="button" class="custom-tab-btn" onclick="submitForm1();">
+            Delete
+          </button>
+
+          <button type="button" class="custom-tab-btn" onclick="back();">
+            <i class="fa fa-arrow-left"></i> Back
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+<div class="tab-content" id="myTabContent" style="margin-top: 15px;" th:if="${formmode == 'edit'}">
+	
+	
+  <div class="tab-pane fade show active" id="datacontrols" role="tabpanel">
+    <div class="row">
+<div class="card-header"style="background-color: rgb(166,0,0);">
+							<div class="float-left">
+								<h3 style="font-family: verdana;color: white !important; font-size: 24px; font-weight: bold;">BASE MAPPING PARAMETER -DELETE</h3>
+							</div>
+							
+						</div>
+      <div class="col-sm-12 finuserapply">
+<form id="fxriskForm" method="post" action="createBaseMappingParameter">
+          <div class="card-body" style="max-height:450px; overflow-y:auto">
+
+            <input autocomplete="false" name="hidden" type="text" style="display: none;">
+
+            <!-- Name Field (Label + Input in Same Line) -->
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+              <div class="col-sm-4">
+                <input type="text" id="gl_head" name="gl_head" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Gl Sub Head Code</label>
+              <div class="col-sm-4">
+                <input type="text" id="gl_subhead_code" name="gl_subhead_code" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Account ID/Bacid</label>
+              <div class="col-sm-4">
+<input type="text" id="account_id_bacid" name="account_id_bacid" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Account Description</label>
+              <div class="col-sm-4">
+                <input type="text" id="account_description" name="account_description" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            <div class="form-group row align-items-center">
+              <label for="gl_head" class="col-sm-2 col-form-label">Currency</label>
+              <div class="col-sm-4">
+                <input type="text" id="currency" name="currency" class="form-control" placeholder="" required />
+              </div>
+               <label for="gl_head" class="col-sm-2 col-form-label">Data Type</label>
+              <div class="col-sm-4">
+                <input type="text" id="data_type" name="data_type" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            
+            
+            
+
+          </div> <!-- card-body -->
+        </form>
+
+        <div class="card-footer text-center"
+          style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); padding: 10px; border-top: 2px solid #ccc;">
+         <!-- <button type="button" class="custom-tab-btn" onclick="home();">
+            <i class="fa fa-home"></i> Home
+          </button-->
+
+          <button type="button" class="custom-tab-btn" onclick="submitForm1();">
+            Delete
+          </button>
+
+          <button type="button" class="custom-tab-btn" onclick="back();">
+            <i class="fa fa-arrow-left"></i> Back
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>  
+
 </body>
 
 <Script>

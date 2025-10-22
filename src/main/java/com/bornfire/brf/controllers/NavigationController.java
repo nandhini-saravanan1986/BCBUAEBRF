@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bornfire.brf.entities.AccessAndRoles;
 import com.bornfire.brf.entities.AccessandRolesRepository;
+import com.bornfire.brf.entities.BaseMappingParameter;
 import com.bornfire.brf.entities.BaseMappingParameterRepository;
 import com.bornfire.brf.entities.CBUAE_BRFValidationsRepo;
 import com.bornfire.brf.entities.RRReport;
@@ -33,8 +34,10 @@ import com.bornfire.brf.entities.RRReportRepo;
 import com.bornfire.brf.entities.UserProfile;
 import com.bornfire.brf.entities.UserProfileRep;
 import com.bornfire.brf.services.AccessAndRolesServices;
+import com.bornfire.brf.services.BaseMappingParameterServices;
 import com.bornfire.brf.services.LoginServices;
 import com.bornfire.brf.services.RegulatoryReportServices;
+
 
 @Controller
 @ConfigurationProperties("default")
@@ -68,6 +71,9 @@ public class NavigationController {
 	
 	@Autowired
 	BaseMappingParameterRepository basemappingparameterrepository;
+	
+	@Autowired
+	BaseMappingParameterServices basemappingparameterservice;
 
 	private String pagesize;
 
@@ -145,21 +151,62 @@ public class NavigationController {
 	
 	@RequestMapping(value = "BasemappingParameter", method = { RequestMethod.GET, RequestMethod.POST })
 	public String BasemappingParameter(@RequestParam(required = false) String formmode,
-			@RequestParam(required = false) String userid, @RequestParam(required = false) Optional<Integer> page,
-			@RequestParam(value = "size", required = false) Optional<Integer> size, Model md, HttpServletRequest req) {
+	                                  
+	                                   Model md, HttpServletRequest req) {
 
-		String account_id_bacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
-		 System.out.println("account_id_bacid id is : " + account_id_bacid);
-		//md.addAttribute("IPSRoleMenu", AccessRoleService.getRoleMenu(account_id_bacid));
+	    String account_id_bacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
+	    String userid = (String) req.getSession().getAttribute("USERID");
 
-		if (formmode == null || formmode.equals("list")) {
-			md.addAttribute("formmode", "list");
-			md.addAttribute("menuname", "BASE MAPPING PARAMETER");
-           md.addAttribute("Basemappingparameter", basemappingparameterrepository.getBaseMappingParameter(account_id_bacid));		}
-		return "BaseMappingParameter";
+	    if (formmode == null || formmode.equals("list")) {
+	        md.addAttribute("formmode", "list");
+	        md.addAttribute("menuname", "BASE MAPPING PARAMETER");
+	        md.addAttribute("Basemappingparameter", basemappingparameterrepository.getBaseMappingParameter(account_id_bacid));
+	    } else if (formmode.equals("add")) {
+	        md.addAttribute("menuname", "BASE MAPPING PARAMETER - ADD");
+	        md.addAttribute("formmode", "add");
+	    }else if (formmode.equals("delete")) {
+             md.addAttribute("formmode", formmode);
+			md.addAttribute("userProfile", loginServices.getUser(userid));
+
+		}else if ("edit".equalsIgnoreCase(formmode) && account_id_bacid != null) {
+            md.addAttribute("formmode", "edit");
+            md.addAttribute("basemappingparameter", basemappingparameterrepository.findById(account_id_bacid)
+                .orElse(new BaseMappingParameter()));
+        }
+
+	    return "BaseMappingParameter"; // your Thymeleaf page
 	}
 
+	@GetMapping("/createBaseMappingParameter")
+	public String showCreateForm(@RequestParam(name = "formmode", required = false, defaultValue = "add") String formmode,
+	                             Model md, HttpServletRequest req) {
+	    String account_id_bacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
+	    md.addAttribute("formmode", "add");
+	    md.addAttribute("menuname", "BASE MAPPING PARAMETER - ADD");
+	    return "BaseMappingParameter"; // Thymeleaf template
+	}
 	
+	@RequestMapping(value = "deletebasemappingparameter", method = RequestMethod.POST)
+	@ResponseBody
+	public String deletebasemappingparameter(@RequestParam("formmode") String userid, Model md, HttpServletRequest rq) {
+		System.out.println("came to Delete user nav controller");
+		String msg = basemappingparameterservice.deleteuser(userid);
+
+		return msg;
+
+	}
+	
+	@PostMapping("/updateBasemappingParameter")
+	@ResponseBody
+	public String updateBasemappingParameter(@ModelAttribute BaseMappingParameter basemappingparameter) {
+		boolean updated = basemappingparameterservice.updatebasemappingparameter(basemappingparameter);
+
+		if (updated) {
+			return "Updated successful";
+		} else {
+			return "Record not found for update";
+		}
+	}
 
 	@RequestMapping(value = "createAccessRole", method = RequestMethod.POST)
 	@ResponseBody
@@ -285,7 +332,7 @@ public class NavigationController {
 		return msg;
 
 	}
-
+	
 	@RequestMapping(value = "verifyUser", method = RequestMethod.POST)
 	@ResponseBody
 	public String verifyUser(@ModelAttribute UserProfile userprofile, Model md, HttpServletRequest rq) {
