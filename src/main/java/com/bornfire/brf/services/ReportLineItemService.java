@@ -6,11 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,144 +16,136 @@ import com.bornfire.brf.dto.ReportLineItemDTO;
 @Service
 public class ReportLineItemService {
 
-	@Value("${output.exportpathtemp}")
-	private String baseExportPath;
+    @Value("${output.exportpathtemp}")
+    private String baseExportPath;
 
-	public List<ReportLineItemDTO> getReportData(String reportCode) throws Exception {
-		// Support both XLS and XLSX
-		String filePathXlsx = baseExportPath + reportCode.toUpperCase() + ".xlsx";
-		String filePathXls = baseExportPath + reportCode.toUpperCase() + ".xls";
+    public List<ReportLineItemDTO> getReportData(String reportCode) throws Exception {
+        String filePathXlsx = baseExportPath + reportCode.toUpperCase() + ".xlsx";
+        String filePathXls = baseExportPath + reportCode.toUpperCase() + ".xls";
 
-		File file = new File(filePathXlsx);
-		if (!file.exists())
-			file = new File(filePathXls);
-		if (!file.exists())
-			throw new Exception("File not found for report code " + reportCode);
+        File file = new File(filePathXlsx);
+        if (!file.exists())
+            file = new File(filePathXls);
+        if (!file.exists())
+            throw new Exception("File not found for report code " + reportCode);
 
-		List<ReportLineItemDTO> reportData = new ArrayList<>();
+        List<ReportLineItemDTO> reportData = new ArrayList<>();
 
-		try (FileInputStream fis = new FileInputStream(file); Workbook workbook = getWorkbook(fis, file.getName())) {
+        try (FileInputStream fis = new FileInputStream(file);
+             Workbook workbook = getWorkbook(fis, file.getName())) {
 
-			Sheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
+            int descColIndex = detectDescriptionColumn(sheet, workbook);
+            int startRowIndex = detectStartRow(sheet, workbook);
+            int endRowIndex = sheet.getLastRowNum();
 
-			// Detect description column dynamically
-			int descColIndex = detectDescriptionColumn(sheet, workbook);
+            int srlNo = 1;
 
-			// Start from the first row that has a valid ID in Column C
-			int startRowIndex = detectStartRow(sheet, workbook);
+            for (int r = startRowIndex; r <= endRowIndex; r++) {
+                Row row = sheet.getRow(r);
+                if (row == null) continue;
 
-			int endRowIndex = sheet.getLastRowNum();
+                Cell descCell = row.getCell(descColIndex);
+                if (descCell == null) continue;
 
-			List<String> allIds = new ArrayList<>();
+                String desc = getCellValueAsString(descCell, workbook);
+                if (desc == null || desc.trim().isEmpty()) continue;
 
-			// First pass → collect all IDs (from Column C index=2)
-			for (int r = startRowIndex; r <= endRowIndex; r++) {
-				Row row = sheet.getRow(r);
-				if (row == null)
-					continue;
-				String idVal = getCellValueAsString(row.getCell(2), workbook);
-				if (idVal != null && idVal.trim().matches("^\\d+(\\.\\d+)*$")) {
-					allIds.add(idVal.trim());
-				}
-			}
+                String idVal = getCellValueAsString(row.getCell(2), workbook);
+                if (idVal == null || idVal.trim().isEmpty()) continue;
 
-			int srlNo = 1;
+                idVal = idVal.trim();
 
-			// Second pass → build DTOs with header detection
-			for (int r = startRowIndex; r <= endRowIndex; r++) {
-				Row row = sheet.getRow(r);
-				if (row == null)
-					continue;
+                // Header detection: row has formula not repeated in all rows of that column
+                boolean isHeader = isFormulaHeaderRow(row, sheet);
 
-				Cell descCell = row.getCell(descColIndex);
-				if (descCell == null)
-					continue;
+                ReportLineItemDTO dto = new ReportLineItemDTO();
+                dto.setSrlNo(srlNo);
+                dto.setFieldDescription(desc.trim());
+                dto.setReportLabel(String.format("R%04d", srlNo * 10));
+                dto.setHeader(isHeader ? "Y" : " ");
+                dto.setRemarks("");
 
-				String desc = getCellValueAsString(descCell, workbook);
-				if (desc == null || desc.trim().isEmpty())
-					continue;
+                reportData.add(dto);
+                srlNo++;
+            }
 
-				String idVal = getCellValueAsString(row.getCell(2), workbook);
-				if (idVal == null || idVal.trim().isEmpty())
-					continue;
+        } catch (Exception e) {
+            throw new Exception("Failed to read Excel for " + reportCode, e);
+        }
 
-				idVal = idVal.trim();
-				boolean isHeader = isHeaderId(idVal, allIds);
+        return reportData;
+    }
 
-				ReportLineItemDTO dto = new ReportLineItemDTO();
-				dto.setSrlNo(srlNo++);
-				dto.setFieldDescription(desc.trim());
-				dto.setReportLabel(String.format("R%04d", (srlNo - 1) * 10));
-				dto.setHeader(isHeader ? "Y" : " ");
-				dto.setRemarks("");
+    // ---------- HEADER LOGIC ----------
+    private boolean isFormulaHeaderRow(Row row, Sheet sheet) {
+        short lastCol = row.getLastCellNum();
 
-				reportData.add(dto);
-			}
+        for (int c = 0; c < lastCol; c++) {
+            Cell cell = row.getCell(c);
+            if (cell == null) continue;
 
-		} catch (Exception e) {
-			throw new Exception("Failed to read Excel for " + reportCode, e);
-		}
+            if (cell.getCellType() == Cell.CELL_TYPE_FORMULA) {
+                // Check if formula is not in the majority of next rows (2 rows ahead)
+                boolean formulaRepeatsBelow = true;
+                for (int r = row.getRowNum() + 1; r <= row.getRowNum() + 2 && r <= sheet.getLastRowNum(); r++) {
+                    Row nextRow = sheet.getRow(r);
+                    if (nextRow == null) continue;
 
-		return reportData;
-	}
+                    Cell nextCell = nextRow.getCell(c);
+                    if (nextCell == null || nextCell.getCellType() != Cell.CELL_TYPE_FORMULA) {
+                        formulaRepeatsBelow = false;
+                        break;
+                    }
+                }
 
-	// ---------- HEADER LOGIC ----------
-	private boolean isHeaderId(String id, List<String> allIds) {
-		// Top-level IDs like "1", "2", "3", etc.
-		if (!id.contains("."))
-			return true;
+                if (!formulaRepeatsBelow) {
+                    return true; // Unique formula → header
+                }
+            }
+        }
+        return false;
+    }
 
-		// IDs with children
-		for (String other : allIds) {
-			if (other.startsWith(id + ".")) {
-				return true;
-			}
-		}
 
-		// Child IDs without children
-		return false;
-	}
+    // ---------- HELPER METHODS ----------
+    private Workbook getWorkbook(FileInputStream fis, String fileName) throws Exception {
+        if (fileName.toLowerCase().endsWith(".xlsx"))
+            return new XSSFWorkbook(fis);
+        else if (fileName.toLowerCase().endsWith(".xls"))
+            return new HSSFWorkbook(fis);
+        else
+            throw new Exception("Unsupported file: " + fileName);
+    }
 
-	// ---------- HELPER METHODS ----------
-	private Workbook getWorkbook(FileInputStream fis, String fileName) throws Exception {
-		if (fileName.toLowerCase().endsWith(".xlsx"))
-			return new XSSFWorkbook(fis);
-		else if (fileName.toLowerCase().endsWith(".xls"))
-			return new HSSFWorkbook(fis);
-		else
-			throw new Exception("Unsupported file: " + fileName);
-	}
+    private String getCellValueAsString(Cell cell, Workbook workbook) {
+        if (cell == null)
+            return "";
+        DataFormatter df = new DataFormatter();
+        try {
+            return df.formatCellValue(cell, workbook.getCreationHelper().createFormulaEvaluator()).trim();
+        } catch (Exception e) {
+            return df.formatCellValue(cell).trim();
+        }
+    }
 
-	private String getCellValueAsString(Cell cell, Workbook workbook) {
-		if (cell == null)
-			return "";
-		DataFormatter df = new DataFormatter();
-		try {
-			return df.formatCellValue(cell, workbook.getCreationHelper().createFormulaEvaluator()).trim();
-		} catch (Exception e) {
-			return df.formatCellValue(cell).trim();
-		}
-	}
+    private int detectDescriptionColumn(Sheet sheet, Workbook workbook) {
+        return 3; // Default column D for description
+    }
 
-	private int detectDescriptionColumn(Sheet sheet, Workbook workbook) {
-		// Default Column D (index 3) for description
-		return 3;
-	}
+    private int detectStartRow(Sheet sheet, Workbook workbook) {
+        for (int r = 0; r <= sheet.getLastRowNum(); r++) {
+            Row row = sheet.getRow(r);
+            if (row == null) continue;
 
-	private int detectStartRow(Sheet sheet, Workbook workbook) {
-		// Find the first row with a valid ID in Column C (index 2)
-		for (int r = 0; r <= sheet.getLastRowNum(); r++) {
-			Row row = sheet.getRow(r);
-			if (row == null)
-				continue;
-			Cell cell = row.getCell(2);
-			if (cell != null) {
-				String idVal = getCellValueAsString(cell, workbook).trim();
-				if (idVal.matches("^\\d+(\\.\\d+)*$")) {
-					return r; // Start from this row
-				}
-			}
-		}
-		return 0; // fallback
-	}
+            Cell cell = row.getCell(2); // Column C
+            if (cell != null) {
+                String idVal = getCellValueAsString(cell, workbook).trim();
+                if (idVal.matches("^\\d+(\\.\\d+)*$")) {
+                    return r; // Start from this row
+                }
+            }
+        }
+        return 0;
+    }
 }
