@@ -41,7 +41,6 @@ import com.bornfire.brf.services.LoginServices;
 import com.bornfire.brf.services.RegulatoryReportServices;
 import com.bornfire.brf.services.ReportCodeMappingService;
 
-
 @Controller
 @ConfigurationProperties("default")
 public class NavigationController {
@@ -71,13 +70,12 @@ public class NavigationController {
 
 	@Autowired
 	AccessandRolesRepository accessandrolesrepository;
-	
+
 	@Autowired
 	BaseMappingParameterRepository basemappingparameterrepository;
-	
+
 	@Autowired
 	BaseMappingParameterServices basemappingparameterservice;
-	
 
 	@Autowired
 	private ReportCodeMappingService reportCodeMappingService;
@@ -152,67 +150,105 @@ public class NavigationController {
 
 		return "AccessandRoles";
 	}
-	
-	
-	
-	
+
 	@RequestMapping(value = "BasemappingParameter", method = { RequestMethod.GET, RequestMethod.POST })
 	public String BasemappingParameter(@RequestParam(required = false) String formmode,
-	                                  
-	                                   Model md, HttpServletRequest req) {
+			@RequestParam(required = false) String account_id_bacid, // Added account_id_bacid for direct access
+			Model md, HttpServletRequest req) {
 
-	    String account_id_bacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
-	    String userid = (String) req.getSession().getAttribute("USERID");
+		String loggedInUserAccountIDBacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
+		String userid = (String) req.getSession().getAttribute("USERID"); // Assuming USERID is also in session
 
-	    if (formmode == null || formmode.equals("list")) {
-	        md.addAttribute("formmode", "list");
-	        md.addAttribute("menuname", "BASE MAPPING PARAMETER");
-	        md.addAttribute("Basemappingparameter", basemappingparameterrepository.getBaseMappingParameter(account_id_bacid));
-	    } else if (formmode.equals("add")) {
-	        md.addAttribute("menuname", "BASE MAPPING PARAMETER - ADD");
-	        md.addAttribute("formmode", "add");
-	    }else if (formmode.equals("delete")) {
-             md.addAttribute("formmode", formmode);
-			md.addAttribute("userProfile", loginServices.getUser(userid));
-
-		}else if ("edit".equalsIgnoreCase(formmode) && account_id_bacid != null) {
-            md.addAttribute("formmode", "edit");
-            md.addAttribute("basemappingparameter", basemappingparameterrepository.findById(account_id_bacid)
-                .orElse(new BaseMappingParameter()));
-        }
-
-	    return "BaseMappingParameter"; // your Thymeleaf page
+		if (formmode == null || formmode.isEmpty() || formmode.equals("list")) {
+			md.addAttribute("formmode", "list");
+			md.addAttribute("menu", "BASE MAPPING PARAMETER"); // Changed "menuname" to "menu" to match HTML
+			md.addAttribute("Basemappingparameter", basemappingparameterrepository.findAllBaseMappingParameters()); // Use
+																													// findAll
+		} else if (formmode.equals("add")) {
+			md.addAttribute("menu", "BASE MAPPING PARAMETER - ADD");
+			md.addAttribute("formmode", "add");
+			md.addAttribute("basemappingparameter", new BaseMappingParameter()); // Provide empty object for form
+																					// binding
+		} else if (formmode.equals("edit")) {
+			md.addAttribute("formmode", "edit");
+			md.addAttribute("menu", "BASE MAPPING PARAMETER - EDIT");
+			if (account_id_bacid != null && !account_id_bacid.isEmpty()) {
+				Optional<BaseMappingParameter> record = basemappingparameterrepository.findById(account_id_bacid);
+				if (record.isPresent()) {
+					md.addAttribute("basemappingparameter", record.get());
+				} else {
+					md.addAttribute("basemappingparameter", new BaseMappingParameter());
+					md.addAttribute("alertmsg", "Record not found for ID: " + account_id_bacid); // Add alert
+					// You might want to redirect to list or show error on page
+				}
+			} else {
+				md.addAttribute("alertmsg", "Account ID/Bacid is required for editing.");
+				md.addAttribute("basemappingparameter", new BaseMappingParameter());
+			}
+		} else if (formmode.equals("view")) {
+			md.addAttribute("formmode", "view");
+			md.addAttribute("menu", "BASE MAPPING PARAMETER - VIEW");
+			if (account_id_bacid != null && !account_id_bacid.isEmpty()) {
+				Optional<BaseMappingParameter> record = basemappingparameterrepository.findById(account_id_bacid);
+				if (record.isPresent()) {
+					md.addAttribute("basemappingparameter", record.get());
+				} else {
+					md.addAttribute("basemappingparameter", new BaseMappingParameter());
+					md.addAttribute("alertmsg", "Record not found for ID: " + account_id_bacid);
+				}
+			} else {
+				md.addAttribute("alertmsg", "Account ID/Bacid is required for viewing.");
+				md.addAttribute("basemappingparameter", new BaseMappingParameter());
+			}
+		} else if (formmode.equals("delete")) {
+			md.addAttribute("formmode", "delete");
+			md.addAttribute("menu", "BASE MAPPING PARAMETER - DELETE");
+			if (account_id_bacid != null && !account_id_bacid.isEmpty()) {
+				Optional<BaseMappingParameter> record = basemappingparameterrepository.findById(account_id_bacid);
+				if (record.isPresent()) {
+					md.addAttribute("basemappingparameter", record.get());
+				} else {
+					md.addAttribute("basemappingparameter", new BaseMappingParameter());
+					md.addAttribute("alertmsg", "Record not found for ID: " + account_id_bacid);
+				}
+			} else {
+				md.addAttribute("alertmsg", "Account ID/Bacid is required for deletion.");
+				md.addAttribute("basemappingparameter", new BaseMappingParameter());
+			}
+		}
+		return "BaseMappingParameter"; // your Thymeleaf page
 	}
 
-	@GetMapping("/createBaseMappingParameter")
-	public String showCreateForm(@RequestParam(name = "formmode", required = false, defaultValue = "add") String formmode,
-	                             Model md, HttpServletRequest req) {
-	    String account_id_bacid = (String) req.getSession().getAttribute("ACCOUNT_ID_BACID");
-	    md.addAttribute("formmode", "add");
-	    md.addAttribute("menuname", "BASE MAPPING PARAMETER - ADD");
-	    return "BaseMappingParameter"; // Thymeleaf template
-	}
-	
-	@RequestMapping(value = "deletebasemappingparameter", method = RequestMethod.POST)
+	// Handles the POST request for adding a new BaseMappingParameter
+	@PostMapping("/createBaseMappingParameter")
 	@ResponseBody
-	public String deletebasemappingparameter(@RequestParam("formmode") String userid, Model md, HttpServletRequest rq) {
-		System.out.println("came to Delete user nav controller");
-		String msg = basemappingparameterservice.deleteuser(userid);
-
-		return msg;
-
+	public String createBaseMappingParameter(@ModelAttribute BaseMappingParameter basemappingparameter) {
+		System.out.println("Received for creation: " + basemappingparameter.getAccount_id_bacid());
+		return basemappingparameterservice.createOrUpdate(basemappingparameter, "add");
 	}
-	
+
+	// Handles the POST request for updating an existing BaseMappingParameter
 	@PostMapping("/updateBasemappingParameter")
 	@ResponseBody
 	public String updateBasemappingParameter(@ModelAttribute BaseMappingParameter basemappingparameter) {
+		System.out.println("Received for update: " + basemappingparameter.getAccount_id_bacid());
 		boolean updated = basemappingparameterservice.updatebasemappingparameter(basemappingparameter);
 
 		if (updated) {
-			return "Updated successful";
+			return "Updated successfully.";
 		} else {
-			return "Record not found for update";
+			return "Record not found for update.";
 		}
+	}
+
+	// Handles the POST request for deleting a BaseMappingParameter
+	@PostMapping("/deletebasemappingparameter") // Changed from GET to POST for delete operation best practice
+	@ResponseBody
+	public String deletebasemappingparameter(@RequestParam("formmode") String accountIdBacid) { // Renamed param for
+																								// clarity
+		System.out.println("Came to deletebasemappingparameter controller for ID: " + accountIdBacid);
+		String msg = basemappingparameterservice.deleteBaseMappingParameter(accountIdBacid);
+		return msg;
 	}
 
 	@RequestMapping(value = "createAccessRole", method = RequestMethod.POST)
@@ -339,7 +375,7 @@ public class NavigationController {
 		return msg;
 
 	}
-	
+
 	@RequestMapping(value = "verifyUser", method = RequestMethod.POST)
 	@ResponseBody
 	public String verifyUser(@ModelAttribute UserProfile userprofile, Model md, HttpServletRequest rq) {
@@ -366,12 +402,12 @@ public class NavigationController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND");
 		}
 	}
+
 	@RequestMapping(value = "/ReportCodeMapping", method = { RequestMethod.GET, RequestMethod.POST })
 	public String ReportCodeMapping(Model md, HttpServletRequest req) {
 		md.addAttribute("menu", "Report Code Mapping");
 		md.addAttribute("menuname", "ReportCodeMapping");
 		md.addAttribute("formmode", "list");
-
 
 		// Populate the ReportCode dropdown
 		List<String> rptCodes = reportCodeMappingService.getAllReportCodes();

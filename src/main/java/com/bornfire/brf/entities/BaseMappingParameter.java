@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BRF_NEW_ACCESS_AND_ROLES_TABLE")
+@Table(name = "CBUAE_BASE_MAPPING_TABLE")
 
 public class BaseMappingParameter {
 	private String	gl_head;

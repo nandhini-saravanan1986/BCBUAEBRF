@@ -1,11 +1,4 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-
-<!-- 
-CREATED BY	: KRISHNAPANDI MG 
-CREATED ON	: 25.05.2025
-PURPOSE		: Access the Modules by Role
- -->
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -105,47 +98,56 @@ PURPOSE		: Access the Modules by Role
 		}
 	</style>
 	<style>
-	/* Make table fully responsive */
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-}
+		/* Make table fully responsive */
+		.table-container {
+			width: 100%;
+			overflow-x: auto;
+		}
 
-/* Table cell styling */
-#usertable th, #usertable td {
-  vertical-align: middle;
-  text-align: left;
-  font-size: 16px;
-  padding: 8px 10px;
-}
+		/* Table cell styling */
+		#usertable th,
+		#usertable td {
+			vertical-align: middle;
+			text-align: left;
+			font-size: 16px;
+			padding: 8px 10px;
+		}
 
-/* Icon styling */
-.action-icon {
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
-  transition: transform 0.2s, color 0.2s;
-}
+		/* Icon styling */
+		.action-icon {
+			font-size: 16px;
+			cursor: pointer;
+			margin-right: 10px;
+			transition: transform 0.2s, color 0.2s;
+		}
 
-.action-icon:hover {
-  transform: scale(1.2);
-}
+		.action-icon:hover {
+			transform: scale(1.2);
+		}
 
-/* Specific colors */
-.action-icon.modify { color: blue; }
-.action-icon.view { color: green; }
-.action-icon.delete { color: red; }
-.action-icon.verify { color: orange; }
+		/* Specific colors */
+		.action-icon.modify {
+			color: blue;
+		}
 
-/* Ensure word break for long menu lists */
-#usertable td {
-  word-break: break-word;
-}
+		.action-icon.view {
+			color: green;
+		}
 
-</style>
+		.action-icon.delete {
+			color: red;
+		}
+
+		.action-icon.verify {
+			color: orange;
+		}
+
+		/* Ensure word break for long menu lists */
+		#usertable td {
+			word-break: break-word;
+		}
+	</style>
 	<script th:inline="javascript">
-
-
 		function home() {
 			location.href = 'Dashboard'
 		}
@@ -154,6 +156,8 @@ PURPOSE		: Access the Modules by Role
 			window.history.back();
 		}
 
+		// This function is no longer needed in this form, assuming direct AJAX calls for add/edit/delete
+		/*
 		function submitform1(a) {
 			var formmode = a.getAttribute("data-formmode");
 			console.log('Form mode:', formmode);
@@ -207,224 +211,283 @@ PURPOSE		: Access the Modules by Role
 
 			return false;
 		}
+		*/
 
+		// This block related to role ID and description auto-fill seems unrelated to BaseMappingParameter.
+		// Keeping it for now but might need removal if it's dead code.
 		document.addEventListener("DOMContentLoaded", function () {
-		    const roleIdSelect = document.getElementById("roleId");
-		    const roleDescInput = document.getElementById("roleDesc");
-		    const workClassSelect = document.getElementById("workClass");
+			const roleIdSelect = document.getElementById("roleId");
+			const roleDescInput = document.getElementById("roleDesc");
+			const workClassSelect = document.getElementById("workClass");
 
-		    // Mapping of Role ID to Description
-		    const roleMap = {
-		        "MGR": "MANAGER",
-		        "ADM-M": "ADMIN-MAKER",
-		        "ADM-C": "ADMIN-CHECKER",
-		        "USR-M": "USER-MAKER",
-		        "USR-C": "USER CHECKER"
-		    };
+			const roleMap = {
+				"MGR": "MANAGER",
+				"ADM-M": "ADMIN-MAKER",
+				"ADM-C": "ADMIN-CHECKER",
+				"USR-M": "USER-MAKER",
+				"USR-C": "USER CHECKER"
+			};
 
-		    if (roleIdSelect) {
-		        roleIdSelect.addEventListener("change", function () {
-		            const selectedRoleId = roleIdSelect.value;
+			if (roleIdSelect) {
+				roleIdSelect.addEventListener("change", function () {
+					const selectedRoleId = roleIdSelect.value;
 
-		            if (selectedRoleId) {
-		                // Step 1: Check if role ID exists in DB
-		                $.ajax({
-		                    url: "./checkRoleExists",
-		                    type: "GET",
-		                    data: { roleId: selectedRoleId },
-		                    success: function (response) {
-		                        if (response === "exists") {
-		                            $("#alertmsg").text("Role ID already exists. Please select a different one.");
-		                            $('#alert').modal("toggle");
+					if (selectedRoleId) {
+						$.ajax({
+							url: "./checkRoleExists",
+							type: "GET",
+							data: {roleId: selectedRoleId},
+							success: function (response) {
+								if (response === "exists") {
+									$("#alertmsg").text("Role ID already exists. Please select a different one.");
+									$('#alert').modal("toggle");
 
-		                            // Reset fields
-		                            roleIdSelect.value = "";
-		                            if (roleDescInput) roleDescInput.value = "";
-		                            if (workClassSelect) workClassSelect.value = "";
-		                        } else {
-		                            // Step 2: Auto-fill roleDesc input
-		                            if (roleDescInput) {
-		                                const mappedDesc = roleMap[selectedRoleId] || "";
-		                                roleDescInput.value = mappedDesc;
-		                            }
+									roleIdSelect.value = "";
+									if (roleDescInput) roleDescInput.value = "";
+									if (workClassSelect) workClassSelect.value = "";
+								} else {
+									if (roleDescInput) {
+										const mappedDesc = roleMap[selectedRoleId] || "";
+										roleDescInput.value = mappedDesc;
+									}
 
-		                            // Step 3: Set workClass based on Role ID
-		                            if (workClassSelect) {
-		                                if (selectedRoleId.endsWith("-M")) {
-		                                    workClassSelect.value = "M"; // Maker
-		                                } else if (selectedRoleId.endsWith("-C")) {
-		                                    workClassSelect.value = "C"; // Checker
-		                                } else {
-		                                    workClassSelect.value = ""; // Reset if no match
-		                                }
-		                            }
-		                        }
-		                    },
-		                    error: function (xhr, status, error) {
-		                        console.error("Error checking role ID:", error);
-		                    }
-		                });
-		            } else {
-		                // Reset if no role selected
-		                if (roleDescInput) roleDescInput.value = "";
-		                if (workClassSelect) workClassSelect.value = "";
-		            }
-		        });
-		    }
+									if (workClassSelect) {
+										if (selectedRoleId.endsWith("-M")) {
+											workClassSelect.value = "M"; // Maker
+										} else if (selectedRoleId.endsWith("-C")) {
+											workClassSelect.value = "C"; // Checker
+										} else {
+											workClassSelect.value = ""; // Reset if no match
+										}
+									}
+								}
+							},
+							error: function (xhr, status, error) {
+								console.error("Error checking role ID:", error);
+							}
+						});
+					} else {
+						if (roleDescInput) roleDescInput.value = "";
+						if (workClassSelect) workClassSelect.value = "";
+					}
+				});
+			}
 		});
 
+		// This verifySubmit function appears to be for "AccessRole" not BaseMappingParameter
+		/*
 		function verifySubmit(a) {
-		    var roleId = document.getElementById("roleId").value;
+			var roleId = document.getElementById("roleId").value;
 
-		    if (!roleId) {
-		        $("#alertmsg").text("Role ID is required.");
-		        $('#alert').modal("toggle");
-		        return false;
-		    }
+			if (!roleId) {
+				$("#alertmsg").text("Role ID is required.");
+				$('#alert').modal("toggle");
+				return false;
+			}
 
-		    // Create FormData (so it binds to @ModelAttribute AccessAndRoles)
-		    var formData = new FormData();
-		    formData.append("roleId", roleId);       // important for alertparam.getRoleId()
-		    formData.append("formmode", "verify");   // tells backend to run verify block
+			var formData = new FormData();
+			formData.append("roleId", roleId);
+			formData.append("formmode", "verify");
 
-		    $.ajax({
-		        url: "./createAccessRole",
-		        type: "POST",
-		        data: formData,
-		        processData: false,
-		        contentType: false,
-		        success: function (response) {
-		            $("#alertmsg").text(response);
-		            $('#alert').modal("toggle");
-		        },
-		        error: function (xhr, status, error) {
-		            $("#alertmsg").text("Error occurred: " + error);
-		            $('#alert').modal("toggle");
-		        }
-		    });
+			$.ajax({
+				url: "./createAccessRole",
+				type: "POST",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function (response) {
+					$("#alertmsg").text(response);
+					$('#alert').modal("toggle");
+				},
+				error: function (xhr, status, error) {
+					$("#alertmsg").text("Error occurred: " + error);
+					$('#alert').modal("toggle");
+				}
+			});
 
-		    return false;
+			return false;
 		}
+		*/
 
-
-
+		// This deleteSubmit function appears to be for "AccessRole" not BaseMappingParameter
+		/*
 		function deleteSubmit(a) {
-		    console.log('Delete action initiated');
-		    var formmode = a.getAttribute("data-formmode");
-		    var roleid = a.getAttribute("data-roleId");  // get roleId
+			console.log('Delete action initiated');
+			var formmode = a.getAttribute("data-formmode");
+			var roleid = a.getAttribute("data-roleId");
 
-		    var formData = new FormData(document.getElementById("IPSAccessRole"));
-		    formData.append("roleId", roleid);  // attach it manually
+			var formData = new FormData(document.getElementById("IPSAccessRole"));
+			formData.append("roleId", roleid);
 
-		    $.ajax({
-		        url: "./createAccessRole?formmode=" + encodeURIComponent(formmode),
-		        type: "POST",
-		        data: formData,
-		        processData: false,
-		        contentType: false,
-		        success: function (response) {
-		            $("#alertmsg").text(response);
-		            $('#alert').modal("toggle");
-		        },
-		        error: function (xhr, status, error) {
-		            console.error('AJAX error:', status, error);
-		            $("#alertmsg").text("Error occurred: " + error);
-		            $('#alert').modal("toggle");
-		        }
-		    });
+			$.ajax({
+				url: "./createAccessRole?formmode=" + encodeURIComponent(formmode),
+				type: "POST",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function (response) {
+					$("#alertmsg").text(response);
+					$('#alert').modal("toggle");
+				},
+				error: function (xhr, status, error) {
+					console.error('AJAX error:', status, error);
+					$("#alertmsg").text("Error occurred: " + error);
+					$('#alert').modal("toggle");
+				}
+			});
 
-		    return false;
+			return false;
 		}
-
+		*/
 	</script>
 	<script>
-function submitForm() {
-    const form = document.getElementById("fxriskForm");
-    const formData = new FormData(form);
-    $.ajax({
-        url: './createBaseMappingParameter',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-            alert(response);
-        },
-        error: function() {
-            alert('Error saving data');
-        }
-    });
-}
-</script>
+		// Submit for Add mode
+		function submitForm() {
+			const form = document.getElementById("fxriskForm");
+			const formData = new FormData(form);
+
+			$.ajax({
+				url: './createBaseMappingParameter',
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function (response) {
+					$("#alertmsg").text(response);
+					$('#alert').modal("toggle");
+					// Optionally, redirect to list page or clear form
+					if (response.includes("successfully")) {
+						form.reset(); // Clear form on success
+					}
+				},
+				error: function () {
+					$("#alertmsg").text('Error saving data');
+					$('#alert').modal("toggle");
+				}
+			});
+		}
+
+		// Submit for Edit mode
+		function submitFormEdit() {
+			const form = document.getElementById("fxriskForm");
+			const formData = new FormData(form);
+
+			$.ajax({
+				url: './updateBasemappingParameter', // Corrected URL from the controller
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function (response) {
+					$("#alertmsg").text(response);
+					$('#alert').modal("toggle");
+					// Optionally, redirect to list page after update
+					if (response.includes("Updated successful")) {
+						// location.href = 'BasemappingParameter?formmode=list'; // Uncomment to redirect
+					}
+				},
+				error: function () {
+					$("#alertmsg").text('Error updating data');
+					$('#alert').modal("toggle");
+				}
+			});
+		}
+
+		// Submit for Delete mode
+		function submitFormDelete() {
+			// Show confirmation modal instead of alert
+			$('#Deletemodel').modal('show');
+
+			// Handle YES button click
+			document.querySelector('#Deletemodel .yes-btn').onclick = function () {
+				$('#Deletemodel').modal('hide');
+				$("#loader1").modal("show"); // Assuming a loader modal exists
+
+				var accountIdBacidToDelete = document.getElementById("account_id_bacid").value; // Get from readonly input
+
+				$.ajax({
+					type: 'post',
+					url: './deletebasemappingparameter?formmode=' + encodeURIComponent(accountIdBacidToDelete), // Pass account_id_bacid as formmode param
+					success: function (response) {
+						$("#loader1").modal("hide");
+						$("#alertmsg").text(response); // Display response from backend
+						$('#alert').modal("show");
+						if (response.includes("successfully") || response.includes("Deleted")) {
+							// location.href = 'BasemappingParameter?formmode=list'; // Uncomment to redirect
+						}
+					},
+					error: function (xhr, status, error) {
+						$("#loader1").modal("hide");
+						$("#alertmsg").text('Error deleting record: ' + error);
+						$('#alert').modal("show");
+					}
+				});
+			};
+
+			// Handle CANCEL button click
+			document.querySelector('#Deletemodel .cancel-btn').onclick = function () {
+				$('#Deletemodel').modal('hide');
+			};
+		}
+	</script>
 
 	<script>
 		function addrole() {
-    location.href = 'createBaseMappingParameter?formmode=add';
-}
-		
-		function edit_btn_submit(a) {
+			location.href = 'BasemappingParameter?formmode=add';
+		}
 
-			var account_id_bacid = a.getAttribute("data-roleId");
-			location.href = 'BasemappingParameter?formmode=edit&userid=' + account_id_bacid;
+		function edit_btn_submit(a) {
+			var account_id_bacid = a.getAttribute("data-account_id_bacid");
+			location.href = 'BasemappingParameter?formmode=edit&account_id_bacid=' + account_id_bacid;
 		}
 
 		function list() {
-			location.href = 'AccessandRoles?formmode=list';
+			location.href = 'BasemappingParameter?formmode=list';
 		}
+
 		function view_btn_submit(a) {
-			var srlno = a.getAttribute("data-roleId");
-
-			location.href = 'AccessandRoles?formmode=view&userid=' + srlno;
-
+			var srlno = a.getAttribute("data-account_id_bacid");
+			location.href = 'BasemappingParameter?formmode=view&account_id_bacid=' + srlno;
 		}
 
-		function verify_btn_submit(a) {
-			var srlno = a.getAttribute("data-roleId");
-
-			location.href = 'AccessandRoles?formmode=verify&userid=' + srlno;
-
-		}
 		function delete_btn_submit(a) {
-			var rollID = a.getAttribute("data-roleId");
-			location.href = 'BasemappingParameter?formmode=delete&userid=' + rollID;
+			var account_id_bacid = a.getAttribute("data-account_id_bacid");
+			location.href = 'BasemappingParameter?formmode=delete&account_id_bacid=' + account_id_bacid;
 		}
 	</script>
-	
-	<script>
-function deleteuser() {
-    // Show confirmation modal instead of alert
-    $('#Deletemodel').modal('show');
 
-    // Handle YES button click
-    document.querySelector('#Deletemodel .yes-btn').onclick = function () {
-        $('#Deletemodel').modal('hide');
-        $("#loader1").modal("show");
+	<!-- This deleteuser function needs to be renamed or removed as it's not the primary delete for BaseMappingParameter -->
+	<!-- <script>
+		function deleteuser() {
+			$('#Deletemodel').modal('show');
 
-        var userid = document.getElementById("userId").value;
+			document.querySelector('#Deletemodel .yes-btn').onclick = function () {
+				$('#Deletemodel').modal('hide');
+				$("#loader1").modal("show");
 
-        $.ajax({
-            type: 'post',
-            url: './deleteuser?formmode=' + userid,
-            success: function (response) {
-                $("#loader1").modal("hide");
-                $("#alertmsg").text('User Deleted');
-                $('#alert').modal("show");
-            },
-            error: function (xhr, status, error) {
-                $("#loader1").modal("hide");
-                $("#alertmsg").text('Not able to delete, contact administrator');
-                $('#alert').modal("show");
-            }
-        });
-    };
+				var userid = document.getElementById("userId").value;
 
-    // Handle CANCEL button click
-    document.querySelector('#Deletemodel .cancel-btn').onclick = function () {
-        $('#Deletemodel').modal('hide');
-    };
-}
+				$.ajax({
+					type: 'post',
+					url: './deleteuser?formmode=' + userid,
+					success: function (response) {
+						$("#loader1").modal("hide");
+						$("#alertmsg").text('User Deleted');
+						$('#alert').modal("show");
+					},
+					error: function (xhr, status, error) {
+						$("#loader1").modal("hide");
+						$("#alertmsg").text('Not able to delete, contact administrator');
+						$('#alert').modal("show");
+					}
+				});
+			};
 
-</script>
+			document.querySelector('#Deletemodel .cancel-btn').onclick = function () {
+				$('#Deletemodel').modal('hide');
+			};
+		}
+	</script> -->
 </head>
 <title>BRF</title>
 
@@ -438,373 +501,565 @@ function deleteuser() {
 				<div style="padding-right: 0px;padding-left: 0px;" th:if="${formmode}=='list'">
 
 					<div class="card" style="margin-left:10px;margin-right: 10px;">
-						<div class="card-header" 
-     style="background-color: #376275; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+						<div class="card-header"
+							style="background-color: #376275; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
 
-    <!-- Left: Back Icon + Title -->
-    <div style="display: flex; align-items: center;" onclick="back();">
-        <!-- Back Icon -->
-        <div class="left-arrow-circle">
-            <i class="fa fa-arrow-left"></i>
-        </div>
-        <!-- Dynamic Title -->
-        <h5 th:text="${menu}" 
-            style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
-        </h5>
-        								
-     <h5 style="font-family: verdana;color: white !important; font-size: 24px; font-weight: bold;">BASE MAPPING PARAMETER</h5>
+							<!-- Left: Back Icon + Title -->
+							<div style="display: flex; align-items: center;" onclick="back();">
+								<!-- Back Icon -->
+								<div class="left-arrow-circle">
+									<i class="fa fa-arrow-left"></i>
+								</div>
+								<!-- Dynamic Title -->
+								<h5 th:text="${menu}"
+									style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
+								</h5>
 
-    </div>
+								<h5
+									style="font-family: verdana;color: white !important; font-size: 24px; font-weight: bold;">
+									</h5>
 
-    <!-- Right: Add Button -->
-    <div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
-        <button type="button" class="custom-tab-btn" onclick="addrole();">Add</button>
-    </div>
-</div>
+							</div>
+
+							<!-- Right: Add Button -->
+							<div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
+								<button type="button" class="custom-tab-btn" onclick="addrole();">Add</button>
+							</div>
+						</div>
 
 
 
 						<div class="row">
-  <div class="col-12">
-    <div class="table-container" style="max-height: 620px; overflow-y: auto;">
-      <table class="table table-striped table-bordered table-hover" id="usertable">
-        <thead class="thead-light" style="background-color:#e9ecf0; font-family: verdana; font-size: 14px;">
-          <tr>
-            <th style="width: 10%">Gl Head</th>
-            <th style="width: 10%">Gl Sub Head Code</th>
-            <th style="width: 10%">Account ID/Bacid</th>
-            <th style="width: 20%">Account Description</th>
-             <th style="width: 10%">Currency</th>
-            <th style="width: 10%">Data Type</th>
-            <th style="width: 10%">Select</th>
-          </tr>
-        </thead>
-        
-         <tbody style="font-size: 9px;">
-      
-        <tr th:each="data : ${Basemappingparameter}">
+							<div class="col-12">
+								<div class="table-container" style="max-height: 620px; overflow-y: auto;">
+									<table class="table table-striped table-bordered table-hover" id="usertable">
+										<thead class="thead-light"
+											style="background-color:#e9ecf0; font-family: verdana; font-size: 14px;">
+											<tr>
+												<th style="width: 10%">Gl Head</th>
+												<th style="width: 10%">Gl Sub Head Code</th>
+												<th style="width: 10%">Account ID/Bacid</th>
+												<th style="width: 20%">Account Description</th>
+												<th style="width: 10%">Currency</th>
+												<th style="width: 10%">Data Type</th>
+												<th style="width: 10%">Action</th> <!-- Changed "Select" to "Action" -->
+											</tr>
+										</thead>
 
-								
+										<tbody style="font-size: 9px;">
+
+											<tr th:each="data : ${Basemappingparameter}">
+
+
 												<td th:text="${data.gl_head}"></td>
 												<td th:text="${data.gl_subhead_code}"></td>
 												<td th:text="${data.account_id_bacid}"></td>
 												<td th:text="${data.account_description}"></td>
 												<td th:text="${data.currency}"></td>
 												<td th:text="${data.data_type}"></td>
-												            <td class="text-left">
-              <!-- Modify Icon -->
-              <i class="fa fa-edit action-icon modify"
-                 title="Modify"
-                 th:attr="data-account_id_bacid=${BasemappingParameter?.account_id_bacid}"
-                 onclick="edit_btn_submit(this)"></i>
-               <!-- Delete Icon -->
-              <i class="fa fa-trash action-icon delete"
-                 title="Delete"
-                 th:attr="data-account_id_bacid=${BasemappingParameter?.account_id_bacid}"
-                 onclick="delete_btn_submit(this)"></i>
+												<td class="text-left">
+													<!-- View Icon -->
+													<i class="fa fa-eye action-icon view" title="View"
+														th:attr="data-account_id_bacid=${data.account_id_bacid}"
+														onclick="view_btn_submit(this)"></i>
+													<!-- Modify Icon -->
+													<i class="fa fa-edit action-icon modify" title="Modify"
+														th:attr="data-account_id_bacid=${data.account_id_bacid}"
+														onclick="edit_btn_submit(this)"></i>
+													<!-- Delete Icon -->
+													<i class="fa fa-trash action-icon delete" title="Delete"
+														th:attr="data-account_id_bacid=${data.account_id_bacid}"
+														onclick="delete_btn_submit(this)"></i>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 
-              
-            </td>
-
-                                               
-
-							</tr>
-							
-      </tbody>
-    </table>
-    </div>
-
-    <div class="card-footer text-center">
-      <button type="button" class="custom-tab-btn" id="btnHome" onclick="home();">Home</button>
-      <button type="button" class="custom-tab-btn" id="btnBack" onclick="back();">Back</button>
-    </div>
-  </div>
-</div>
+								<div class="card-footer text-center">
+									<button type="button" class="custom-tab-btn" id="btnHome"
+										onclick="home();">Home</button>
+									<button type="button" class="custom-tab-btn" id="btnBack"
+										onclick="back();">Back</button>
+								</div>
+							</div>
+						</div>
 
 					</div>
 				</div>
-				
-				
-				
-				
 
-<!-- ADD MODE -->
-<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='add'">
-  <div class="card" style="margin-left:10px; margin-right:10px;">
 
-    <!-- Card Header -->
-    <div class="card-header"
-      style="background-color: #376275; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
 
-      <!-- Left: Back Icon + Title -->
-      <div style="display: flex; align-items: center;" onclick="back();">
-        <div class="left-arrow-circle">
-          <i class="fa fa-arrow-left"></i>
-        </div>
-        <h5 th:text="${menu}"
-          style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
-        </h5>
+				<!-- ADD MODE -->
+				<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='add'">
+					<div class="card" style="margin-left:10px; margin-right:10px;">
 
-        <h5 style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
-          BASE MAPPING PARAMETER - ADD
-        </h5>
-      </div>
+						<!-- Card Header -->
+						<div class="card-header"
+							style="background-color: #376275; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
 
-      <!-- Right: Action Buttons -->
-      <div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
-<!--        <button type="button" class="custom-tab-btn" onclick="home();">Home</button>
--->      </div>
-    </div>
+							<!-- Left: Back Icon + Title -->
+							<div style="display: flex; align-items: center;" onclick="back();">
+								<div class="left-arrow-circle">
+									<i class="fa fa-arrow-left"></i>
+								</div>
+								<h5 th:text="${menu}"
+									style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
+								</h5>
 
-    <!-- Card Body -->
-    <div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
-      <form id="fxriskForm" method="post" action="createBaseMappingParameter">
-        <input autocomplete="false" name="hidden" type="text" style="display: none;">
+								<h5
+									style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
 
-        <!-- Row 1 -->
-        <div class="form-group row align-items-center">
-          <label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
-          <div class="col-sm-4">
-            <input type="text" id="gl_head" name="gl_head" class="form-control" placeholder="" required />
-          </div>
+								</h5>
+							</div>
 
-          <label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head Code</label>
-          <div class="col-sm-4">
-            <input type="text" id="gl_subhead_code" name="gl_subhead_code" class="form-control" placeholder=""
-              required />
-          </div>
-        </div>
+							<!-- Right: Action Buttons -->
+							<div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
+								<!--        <button type="button" class="custom-tab-btn" onclick="home();">Home</button>
+-->
+							</div>
+						</div>
 
-        <!-- Row 2 -->
-        <div class="form-group row align-items-center">
-          <label for="account_id_bacid" class="col-sm-2 col-form-label">Account ID/Bacid</label>
-          <div class="col-sm-4">
-            <input type="text" id="account_id_bacid" name="account_id_bacid" class="form-control" placeholder=""
-              required />
-          </div>
+						<!-- Card Body -->
+						<div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
+							<form id="fxriskForm" method="post" action="createBaseMappingParameter">
+								<input autocomplete="false" name="hidden" type="text" style="display: none;">
 
-          <label for="account_description" class="col-sm-2 col-form-label">Account Description</label>
-          <div class="col-sm-4">
-            <input type="text" id="account_description" name="account_description" class="form-control" placeholder=""
-              required />
-          </div>
-        </div>
+								<!-- Row 1 -->
+								<div class="form-group row align-items-center">
+									<label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_head" name="gl_head" class="form-control"
+											placeholder="" required />
+									</div>
 
-        <!-- Row 3 -->
-        <div class="form-group row align-items-center">
-          <label for="currency" class="col-sm-2 col-form-label">Currency</label>
-          <div class="col-sm-4">
-            <input type="text" id="currency" name="currency" class="form-control" placeholder="" required />
-          </div>
+									<label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head
+										Code</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_subhead_code" name="gl_subhead_code"
+											class="form-control" placeholder="" required />
+									</div>
+								</div>
 
-          <label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
-          <div class="col-sm-4">
-            <input type="text" id="data_type" name="data_type" class="form-control" placeholder="" required />
-          </div>
-        </div>
+								<!-- Row 2 -->
+								<div class="form-group row align-items-center">
+									<label for="account_id_bacid" class="col-sm-2 col-form-label">Account
+										ID/Bacid</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_id_bacid" name="account_id_bacid"
+											class="form-control" placeholder="" required />
+									</div>
 
-      </form>
-    </div>
+									<label for="account_description" class="col-sm-2 col-form-label">Account
+										Description</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_description" name="account_description"
+											class="form-control" placeholder="" required />
+									</div>
+								</div>
 
-    <!-- Footer Buttons -->
-    <div class="card-footer text-center"
-      style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
-      <!--<button type="button" class="custom-tab-btn" onclick="home();">
+								<!-- Row 3 -->
+								<div class="form-group row align-items-center">
+									<label for="currency" class="col-sm-2 col-form-label">Currency</label>
+									<div class="col-sm-4">
+										<input type="text" id="currency" name="currency" class="form-control"
+											placeholder="" required />
+									</div>
+
+									<label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
+									<div class="col-sm-4">
+										<input type="text" id="data_type" name="data_type" class="form-control"
+											placeholder="" required />
+									</div>
+								</div>
+
+							</form>
+						</div>
+
+						<!-- Footer Buttons -->
+						<div class="card-footer text-center"
+							style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
+							<!--<button type="button" class="custom-tab-btn" onclick="home();">
         <i class="fa fa-home"></i> Home
       </button>-->
-      <button type="button" class="custom-tab-btn" onclick="submitForm();">
-        <i ></i> Submit
-      </button>
-      <!--<button type="button" class="custom-tab-btn" onclick="back();">
+							<button type="button" class="custom-tab-btn" onclick="submitForm();">
+								<i></i> Submit
+							</button>
+							<!--<button type="button" class="custom-tab-btn" onclick="back();">
         <i class="fa fa-arrow-left"></i> Back
       </button>-->
-    </div>
+						</div>
 
-  </div>
-</div>
+					</div>
+				</div>
 
-      				
-<!-- DELETE MODE -->
-<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='delete'">
-  <div class="card" style="margin-left:10px; margin-right:10px;">
+				<!-- VIEW MODE -->
+				<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='view'">
+					<div class="card" style="margin-left:10px; margin-right:10px;">
 
-    <!-- Card Header -->
-    <div class="card-header"
-      style="background-color: #b30000; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+						<!-- Card Header -->
+						<div class="card-header"
+							style="background-color: #007bff; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
 
-      <!-- Left: Back Icon + Title -->
-      <div style="display: flex; align-items: center;" onclick="back();">
-        <div class="left-arrow-circle">
-          <i class="fa fa-arrow-left"></i>
-        </div>
-        <h5 th:text="${menu}"
-          style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
-        </h5>
+							<!-- Left: Back Icon + Title -->
+							<div style="display: flex; align-items: center;" onclick="back();">
+								<div class="left-arrow-circle">
+									<i class="fa fa-arrow-left"></i>
+								</div>
+								<h5 th:text="${menu}"
+									style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
+								</h5>
 
-        <h5 style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
-          BASE MAPPING PARAMETER - DELETE
-        </h5>
-      </div>
+								<h5
+									style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
 
-      <!-- Right: Action Buttons -->
-      <div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
-<!--        <button type="button" class="custom-tab-btn" onclick="home();">Home</button>
--->      </div>
-    </div>
+								</h5>
+							</div>
 
-    <!-- Card Body -->
-    <div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
-      <form id="fxriskForm" method="post" action="deleteBaseMappingParameter">
-        <input autocomplete="false" name="hidden" type="text" style="display: none;">
+							<!-- Right: Action Buttons -->
+							<div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
+							</div>
+						</div>
 
-        <!-- Row 1 -->
-        <div class="form-group row align-items-center">
-          <label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
-          <div class="col-sm-4">
-            <input type="text" id="gl_head" name="gl_head" class="form-control" readonly />
-          </div>
+						<!-- Card Body -->
+						<div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
+							<form id="fxriskFormView">
+								<!-- Readonly inputs to display data -->
+								<!-- Row 1 -->
+								<div class="form-group row align-items-center">
+									<label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_head" name="gl_head" class="form-control"
+											th:value="${basemappingparameter.gl_head}" readonly />
+									</div>
 
-          <label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head Code</label>
-          <div class="col-sm-4">
-            <input type="text" id="gl_subhead_code" name="gl_subhead_code" class="form-control" readonly />
-          </div>
-        </div>
+									<label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head
+										Code</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_subhead_code" name="gl_subhead_code"
+											class="form-control" th:value="${basemappingparameter.gl_subhead_code}"
+											readonly />
+									</div>
+								</div>
 
-        <!-- Row 2 -->
-        <div class="form-group row align-items-center">
-          <label for="account_id_bacid" class="col-sm-2 col-form-label">Account ID/Bacid</label>
-          <div class="col-sm-4">
-            <input type="text" id="account_id_bacid" name="account_id_bacid" class="form-control" readonly />
-          </div>
+								<!-- Row 2 -->
+								<div class="form-group row align-items-center">
+									<label for="account_id_bacid" class="col-sm-2 col-form-label">Account
+										ID/Bacid</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_id_bacid" name="account_id_bacid"
+											class="form-control" th:value="${basemappingparameter.account_id_bacid}"
+											readonly />
+									</div>
 
-          <label for="account_description" class="col-sm-2 col-form-label">Account Description</label>
-          <div class="col-sm-4">
-            <input type="text" id="account_description" name="account_description" class="form-control" readonly />
-          </div>
-        </div>
+									<label for="account_description" class="col-sm-2 col-form-label">Account
+										Description</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_description" name="account_description"
+											class="form-control" th:value="${basemappingparameter.account_description}"
+											readonly />
+									</div>
+								</div>
 
-        <!-- Row 3 -->
-        <div class="form-group row align-items-center">
-          <label for="currency" class="col-sm-2 col-form-label">Currency</label>
-          <div class="col-sm-4">
-            <input type="text" id="currency" name="currency" class="form-control" readonly />
-          </div>
+								<!-- Row 3 -->
+								<div class="form-group row align-items-center">
+									<label for="currency" class="col-sm-2 col-form-label">Currency</label>
+									<div class="col-sm-4">
+										<input type="text" id="currency" name="currency" class="form-control"
+											th:value="${basemappingparameter.currency}" readonly />
+									</div>
 
-          <label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
-          <div class="col-sm-4">
-            <input type="text" id="data_type" name="data_type" class="form-control" readonly />
-          </div>
-        </div>
-      </form>
-    </div>
+									<label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
+									<div class="col-sm-4">
+										<input type="text" id="data_type" name="data_type" class="form-control"
+											th:value="${basemappingparameter.data_type}" readonly />
+									</div>
+								</div>
+							</form>
+						</div>
 
-    <!-- Footer Buttons -->
-    <div class="card-footer text-center"
-      style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
-      <button type="button" class="custom-tab-btn" onclick="submitForm1();"
-        style=" font-weight: bold;">
-        <i ></i> Delete
-      </button>
-      <!--<button type="button" class="custom-tab-btn" onclick="back();">
+						<!-- Footer Buttons -->
+						<div class="card-footer text-center"
+							style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
+							<button type="button" class="custom-tab-btn" onclick="back();">
+								<i class="fa fa-arrow-left"></i> Back
+							</button>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- DELETE MODE -->
+				<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='delete'">
+					<div class="card" style="margin-left:10px; margin-right:10px;">
+
+						<!-- Card Header -->
+						<div class="card-header"
+							style="background-color: #b30000; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+
+							<!-- Left: Back Icon + Title -->
+							<div style="display: flex; align-items: center;" onclick="back();">
+								<div class="left-arrow-circle">
+									<i class="fa fa-arrow-left"></i>
+								</div>
+								<h5 th:text="${menu}"
+									style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
+								</h5>
+
+								<h5
+									style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
+
+								</h5>
+							</div>
+
+							<!-- Right: Action Buttons -->
+							<div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
+								<!--        <button type="button" class="custom-tab-btn" onclick="home();">Home</button>
+-->
+							</div>
+						</div>
+
+						<!-- Card Body -->
+						<div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
+							<form id="fxriskFormDelete" method="post" action="deleteBaseMappingParameter">
+								<input autocomplete="false" name="hidden" type="text" style="display: none;">
+
+								<!-- Row 1 -->
+								<div class="form-group row align-items-center">
+									<label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_head" name="gl_head" class="form-control"
+											th:value="${basemappingparameter.gl_head}" readonly />
+									</div>
+
+									<label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head
+										Code</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_subhead_code" name="gl_subhead_code"
+											class="form-control" th:value="${basemappingparameter.gl_subhead_code}"
+											readonly />
+									</div>
+								</div>
+
+								<!-- Row 2 -->
+								<div class="form-group row align-items-center">
+									<label for="account_id_bacid" class="col-sm-2 col-form-label">Account
+										ID/Bacid</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_id_bacid" name="account_id_bacid"
+											class="form-control" th:value="${basemappingparameter.account_id_bacid}"
+											readonly />
+									</div>
+
+									<label for="account_description" class="col-sm-2 col-form-label">Account
+										Description</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_description" name="account_description"
+											class="form-control" th:value="${basemappingparameter.account_description}"
+											readonly />
+									</div>
+								</div>
+
+								<!-- Row 3 -->
+								<div class="form-group row align-items-center">
+									<label for="currency" class="col-sm-2 col-form-label">Currency</label>
+									<div class="col-sm-4">
+										<input type="text" id="currency" name="currency" class="form-control"
+											th:value="${basemappingparameter.currency}" readonly />
+									</div>
+
+									<label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
+									<div class="col-sm-4">
+										<input type="text" id="data_type" name="data_type" class="form-control"
+											th:value="${basemappingparameter.data_type}" readonly />
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Footer Buttons -->
+						<div class="card-footer text-center"
+							style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
+							<button type="button" class="custom-tab-btn" onclick="submitFormDelete();"
+								style="background-color: #b30000; color: white; font-weight: bold;">
+								<i></i> Delete
+							</button>
+							<!--<button type="button" class="custom-tab-btn" onclick="back();">
         <i class="fa fa-arrow-left"></i> Back
       </button>-->
-    </div>
+						</div>
 
-  </div>
-</div>
+					</div>
+				</div>
 
 
-<!-- EDIT MODE -->
-<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='edit'">
-  <div class="card" style="margin-left:10px; margin-right:10px;">
+				<!-- EDIT MODE -->
+				<div style="padding-right: 0px; padding-left: 0px;" th:if="${formmode}=='edit'">
+					<div class="card" style="margin-left:10px; margin-right:10px;">
 
-    <!-- Card Header -->
-    <div class="card-header"
-      style="background-color: #2b547e; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+						<!-- Card Header -->
+						<div class="card-header"
+							style="background-color: #2b547e; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
 
-      <!-- Left: Back Icon + Title -->
-      <div style="display: flex; align-items: center;" onclick="back();">
-        <div class="left-arrow-circle">
-          <i class="fa fa-arrow-left"></i>
-        </div>
-        <h5 th:text="${menu}"
-          style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
-        </h5>
+							<!-- Left: Back Icon + Title -->
+							<div style="display: flex; align-items: center;" onclick="back();">
+								<div class="left-arrow-circle">
+									<i class="fa fa-arrow-left"></i>
+								</div>
+								<h5 th:text="${menu}"
+									style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
+								</h5>
 
-        <h5 style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
-          BASE MAPPING PARAMETER - EDIT
-        </h5>
-      </div>
+								<h5
+									style="font-family: verdana; color: white !important; font-size: 24px; font-weight: bold;">
 
-      <!-- Right: Action Buttons -->
-      <div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
-<!--        <button type="button" class="custom-tab-btn" onclick="home();">Home</button>
--->      </div>
-    </div>
+								</h5>
+							</div>
 
-    <!-- Card Body -->
-    <div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
-      <form id="fxriskForm" method="post" action="updateBaseMappingParameter">
-        <input autocomplete="false" name="hidden" type="text" style="display: none;">
+							<!-- Right: Action Buttons -->
+							<div class="custom-tab-btn-group nav-buttons" style="display: flex; align-items: center;">
+								<!--        <button type="button" class="custom-tab-btn" onclick="home();">Home</button>
+-->
+							</div>
+						</div>
 
-        <!-- Row 1 -->
-        <div class="form-group row align-items-center">
-          <label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
-          <div class="col-sm-4">
-            <input type="text" id="gl_head" name="gl_head" class="form-control" required />
-          </div>
+						<!-- Card Body -->
+						<div class="card-body" style="max-height: 550px; overflow-y: auto; background-color: #f9fafb;">
+							<form id="fxriskForm" method="post" action="updateBaseMappingParameter">
+								<input autocomplete="false" name="hidden" type="text" style="display: none;">
 
-          <label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head Code</label>
-          <div class="col-sm-4">
-            <input type="text" id="gl_subhead_code" name="gl_subhead_code" class="form-control" required />
-          </div>
-        </div>
+								<!-- Row 1 -->
+								<div class="form-group row align-items-center">
+									<label for="gl_head" class="col-sm-2 col-form-label">Gl Head</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_head" name="gl_head" class="form-control"
+											th:value="${basemappingparameter.gl_head}" required />
+									</div>
 
-        <!-- Row 2 -->
-        <div class="form-group row align-items-center">
-          <label for="account_id_bacid" class="col-sm-2 col-form-label">Account ID/Bacid</label>
-          <div class="col-sm-4">
-            <input type="text" id="account_id_bacid" name="account_id_bacid" class="form-control" readonly />
-          </div>
+									<label for="gl_subhead_code" class="col-sm-2 col-form-label">Gl Sub Head
+										Code</label>
+									<div class="col-sm-4">
+										<input type="text" id="gl_subhead_code" name="gl_subhead_code"
+											class="form-control" th:value="${basemappingparameter.gl_subhead_code}"
+											required />
+									</div>
+								</div>
 
-          <label for="account_description" class="col-sm-2 col-form-label">Account Description</label>
-          <div class="col-sm-4">
-            <input type="text" id="account_description" name="account_description" class="form-control" required />
-          </div>
-        </div>
+								<!-- Row 2 -->
+								<div class="form-group row align-items-center">
+									<label for="account_id_bacid" class="col-sm-2 col-form-label">Account
+										ID/Bacid</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_id_bacid" name="account_id_bacid"
+											class="form-control" th:value="${basemappingparameter.account_id_bacid}"
+											readonly />
+									</div>
 
-        <!-- Row 3 -->
-        <div class="form-group row align-items-center">
-          <label for="currency" class="col-sm-2 col-form-label">Currency</label>
-          <div class="col-sm-4">
-            <input type="text" id="currency" name="currency" class="form-control" required />
-          </div>
+									<label for="account_description" class="col-sm-2 col-form-label">Account
+										Description</label>
+									<div class="col-sm-4">
+										<input type="text" id="account_description" name="account_description"
+											class="form-control" th:value="${basemappingparameter.account_description}"
+											required />
+									</div>
+								</div>
 
-          <label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
-          <div class="col-sm-4">
-            <input type="text" id="data_type" name="data_type" class="form-control" required />
-          </div>
-        </div>
+								<!-- Row 3 -->
+								<div class="form-group row align-items-center">
+									<label for="currency" class="col-sm-2 col-form-label">Currency</label>
+									<div class="col-sm-4">
+										<input type="text" id="currency" name="currency" class="form-control"
+											th:value="${basemappingparameter.currency}" required />
+									</div>
 
-      </form>
-    </div>
+									<label for="data_type" class="col-sm-2 col-form-label">Data Type</label>
+									<div class="col-sm-4">
+										<input type="text" id="data_type" name="data_type" class="form-control"
+											th:value="${basemappingparameter.data_type}" required />
+									</div>
+								</div>
 
-    <!-- Footer Buttons -->
-    <div class="card-footer text-center"
-      style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
-      <button type="button" class="custom-tab-btn" onclick="submitFormEdit();"
-        style="background-color: #2b547e; color: white; font-weight: bold;">
-        <i class="fa fa-save"></i> Update
-      </button>
-     <!-- <button type="button" class="custom-tab-btn" onclick="back();">
+							</form>
+						</div>
+
+						<!-- Footer Buttons -->
+						<div class="card-footer text-center"
+							style="background-color: #f1f3f5; border-top: 2px solid #ccc; padding: 15px; display: flex; justify-content: center; gap: 10px;">
+							<button type="button" class="custom-tab-btn" onclick="submitFormEdit();"
+								style="background-color: #2b547e; color: white; font-weight: bold;">
+								<i class="fa fa-save"></i> Update
+							</button>
+							<!-- <button type="button" class="custom-tab-btn" onclick="back();">
         <i class="fa fa-arrow-left"></i> Back
       </button>-->
-    </div>
+						</div>
 
-  </div>
-</div>
+					</div>
+				</div>
+				<!-- Alert Modal -->
+				<div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="alertModalLabel">Alert</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<span id="alertmsg"></span>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Delete Confirmation Modal -->
+				<div class="modal fade" id="Deletemodel" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								Are you sure you want to delete this record?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary cancel-btn"
+									data-dismiss="modal">Cancel</button>
+								<button type="button" class="btn btn-danger yes-btn">Delete</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Loader Modal (if you have one) -->
+				<div class="modal fade" id="loader1" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-body text-center">
+								<div class="spinner-border text-primary" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+								<p class="mt-2">Processing...</p>
+							</div>
+						</div>
+					</div>
+				</div>
 
 
+			</div>
+		</div>
+	</div>
 </body>
 
 <Script>
@@ -822,32 +1077,33 @@ function deleteuser() {
 	}
 </script>
 <style>
-.left-arrow-circle {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    transition: background-color 0.3s, transform 0.2s;
-}
+	.left-arrow-circle {
+		width: 35px;
+		height: 35px;
+		border-radius: 50%;
+		background-color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 10px;
+		transition: background-color 0.3s, transform 0.2s;
+	}
 
-.left-arrow-circle i {
-    color: rgb(107, 122, 143);
-    font-size: 16px;
-}
+	.left-arrow-circle i {
+		color: rgb(107, 122, 143);
+		font-size: 16px;
+	}
 
-.left-arrow-circle:hover {
-    background-color: rgb(107, 122, 143);
-    cursor: pointer;
-    transform: scale(1.05);
-    border: 2px solid white;
-}
+	.left-arrow-circle:hover {
+		background-color: rgb(107, 122, 143);
+		cursor: pointer;
+		transform: scale(1.05);
+		border: 2px solid white;
+	}
 
-.left-arrow-circle:hover i {
-    color: white;
-}
+	.left-arrow-circle:hover i {
+		color: white;
+	}
 </style>
+
 </html>

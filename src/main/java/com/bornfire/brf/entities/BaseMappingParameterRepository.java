@@ -12,11 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface BaseMappingParameterRepository extends JpaRepository<BaseMappingParameter, String> {
 
-	@Query(value = "SELECT * FROM CBUAE_BASE_MAPPING_TABLE", nativeQuery = true)
-	List<BaseMappingParameter> getBaseMappingParameter(String accountIdBacid);
+	// This query is redundant if using findById(String accountIdBacid)
+	// @Query(value = "SELECT * FROM CBUAE_BASE_MAPPING_TABLE", nativeQuery = true)
+	// List<BaseMappingParameter> getBaseMappingParameter(String accountIdBacid); // Parameter makes this confusing, should be findAll or specific.
 
-	@Query(value = "SELECT * FROM CBUAE_BASE_MAPPING_TABLE where accountIdBacid =?1 ", nativeQuery = true)
-	BaseMappingParameter getParticularDataByAccount_id_bacid(String accountIdBacid);
+	// Adjusted the method name to reflect its behavior more accurately if it's meant to fetch all
+	@Query(value = "SELECT * FROM CBUAE_BASE_MAPPING_TABLE", nativeQuery = true)
+	List<BaseMappingParameter> findAllBaseMappingParameters();
+
+	// This is effectively covered by JpaRepository's findById(String id)
+	// @Query(value = "SELECT * FROM CBUAE_BASE_MAPPING_TABLE where account_id_bacid =?1 ", nativeQuery = true)
+	// BaseMappingParameter getParticularDataByAccount_id_bacid(String accountIdBacid);
 
 	List<BaseMappingParameter> findByReportCode(String reportCode);
 
