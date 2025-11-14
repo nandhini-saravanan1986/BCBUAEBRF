@@ -2,6 +2,7 @@ package com.bornfire.brf.services;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -40,12 +44,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Repo;
+import com.bornfire.brf.entities.CBUAE_BRF1_1_Mapping_Entity;
+import com.bornfire.brf.entities.CBUAE_BRF1_1_Mapping_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Archival_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Archival_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Summary_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_1__Archival_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_1__Archival_Detail_Repo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 @Service
@@ -70,6 +77,9 @@ public class CBUAE_BRF1_1_ReportService {
 
 	@Autowired
 	CBUAE_BRF1_1_Summary_Repo BRF1_1REPORT_Repo;
+	
+	@Autowired
+    private CBUAE_BRF1_1_Mapping_Repo cbuae_brf1_1_mapping_repo;
 
 	SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy");
 
@@ -8167,5 +8177,88 @@ public class CBUAE_BRF1_1_ReportService {
 			return new byte[0];
 		}
 	}
+	@Autowired
+    private ObjectMapper objectMapper;
+
+    public List<Map<String, Object>> getMappedAccountsAsMaps(String reportId) {
+        List<CBUAE_BRF1_1_Mapping_Entity> entities = cbuae_brf1_1_mapping_repo.findMappedAccounts(reportId);
+        return entities.stream().map(this::convertEntityToMap).collect(Collectors.toList());
+    }
+
+    public List<Map<String, Object>> getUnmappedAccountsAsMaps(String reportId) {
+        List<CBUAE_BRF1_1_Mapping_Entity> entities = cbuae_brf1_1_mapping_repo.findUnmappedAccounts(reportId);
+        return entities.stream().map(this::convertEntityToMap).collect(Collectors.toList());
+    }
+
+    public Optional<Map<String, Object>> getAccountById(String foracid) {
+        return cbuae_brf1_1_mapping_repo.findById(foracid).map(this::convertEntityToMap);
+    }
+
+    public String updateMapping(Map<String, Object> updateData) {
+        CBUAE_BRF1_1_Mapping_Entity dataToUpdate = objectMapper.convertValue(updateData, CBUAE_BRF1_1_Mapping_Entity.class);
+        String foracid = dataToUpdate.getForacid();
+
+        if (foracid == null || foracid.trim().isEmpty()) {
+            return "Error: FORACID is missing in the update request.";
+        }
+
+        CBUAE_BRF1_1_Mapping_Entity existingEntity = cbuae_brf1_1_mapping_repo.findById(foracid).orElse(null);
+
+        if (existingEntity != null) {
+            existingEntity.setReport_name_1(dataToUpdate.getReport_name_1());
+            existingEntity.setReport_label_1(dataToUpdate.getReport_label_1());
+            existingEntity.setReport_addl_criteria_1(dataToUpdate.getReport_addl_criteria_1());
+            existingEntity.setReport_addl_criteria_2(dataToUpdate.getReport_addl_criteria_2());
+            existingEntity.setReport_addl_criteria_3(dataToUpdate.getReport_addl_criteria_3());
+            cbuae_brf1_1_mapping_repo.save(existingEntity);
+            return "Record updated successfully.";
+        }
+        return "Record not found with FORACID: " + foracid;
+    }
+
+    private Map<String, Object> convertEntityToMap(Object entity) {
+        return objectMapper.convertValue(entity, Map.class);
+    }
+
+    public byte[] generateExcel(List<Map<String, Object>> data, String sheetName) throws IOException {
+        try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            Sheet sheet = workbook.createSheet(sheetName);
+
+            String[] headers = {"cust_id", "foracid", "acct_name", "report_name_1", "report_label_1", "schm_code", "glsh_code", "report_addl_criteria_1", "report_addl_criteria_2", "report_addl_criteria_3"};
+            String[] displayHeaders = {"Customer Id", "Account No", "Name of Account", "Report Code", "Report Label", "Scheme Code", "GLSH Code", "Criteria 1", "Criteria 2", "Criteria 3"};
+
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+            headerCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < displayHeaders.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(displayHeaders[i]);
+                cell.setCellStyle(headerCellStyle);
+            }
+
+            int rowNum = 1;
+            for (Map<String, Object> rowMap : data) {
+                Row row = sheet.createRow(rowNum++);
+                for (int i = 0; i < headers.length; i++) {
+                    Object value = rowMap.get(headers[i]);
+                    row.createCell(i).setCellValue(value == null ? "" : value.toString());
+                }
+            }
+
+            for (int i = 0; i < headers.length; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            workbook.write(out);
+            return out.toByteArray();
+        }
+    }
+	 
+	  
 
 }

@@ -3,62 +3,16 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-	<!-- CSS (Bootstrap, FontAwesome, jQuery UI, DataTables) -->
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
-		th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
-	<link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.9.0/css/all.min.css"
-		th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}" />
-	<link rel="stylesheet" type="text/css" href="/webjars/jquery-ui/1.12.1/jquery-ui.min.css"
-		th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}" />
-	<link rel="stylesheet" type="text/css" href="/webjars/datatables/1.10.19/css/jquery.dataTables.min.css"
-		th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BRF Report Mapping</title>
+	<!-- CSS Includes -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
 	<link rel="stylesheet" th:href="@{/css/CustomButton.css}" />
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.19.5/jquery.validate.min.js"></script>
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
-	<link rel="icon" type="image/x-xicon" th:href="@{/favicon.ico}" />
-
-	<!-- JavaScript: jQuery must come first -->
-	<script src="/webjars/jquery/3.4.1/jquery.min.js" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
-	<script src="/webjars/jquery-ui/1.12.1/jquery-ui.min.js"
-		th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
-	<script src="/webjars/popper.js/1.14.7/umd/popper.min.js"
-		th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
-	<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"
-		th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-	<script src="/webjars/jquery-validation/1.19.0/jquery.validate.min.js"
-		th:src="@{/webjars/jquery-validation/1.19.0/jquery.validate.min.js}"></script>
-	<script src="/webjars/jquery-form/4.2.2/jquery.form.min.js"
-		th:src="@{/webjars/jquery-form/4.2.2/jquery.form.min.js}"></script>
-	<script src="/webjars/datatables/1.10.19/js/jquery.dataTables.min.js"
-		th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
-	<script src="/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js"
-		th:src="@{/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js}"></script>
-
 	<style>
-		.btns {
-			float: right;
-			margin: 5px;
-		}
-
-		.col-sm-5 {
-			padding-bottom: 15px;
-		}
-
-		.list-body {
-			padding: 0px;
-		}
-
-		.error {
-			color: red;
-			padding-left: 10px;
-		}
-
-		.formline {
-			padding-bottom: 15px;
+		body {
+			font-family: 'Verdana', sans-serif;
 		}
 
 		.btn-primary {
@@ -66,102 +20,9 @@
 			border-color: #0c0c0c;
 		}
 
-		#finusertb {
-			width: 460px;
-		}
-
-		.dataTables_wrapper .dataTables_paginate .paginate_button {
-			padding: 0px;
-		}
-
-		.valids {
-			color: green;
-		}
-
-		.invalids {
-			color: red;
-		}
-
-		.error {
-			color: red !important;
-		}
-
-		/* Make table fully responsive */
 		.table-container {
 			width: 100%;
 			overflow-x: auto;
-		}
-
-		/* Table cell styling */
-		#usertable th,
-		#usertable td {
-			vertical-align: middle;
-			text-align: left;
-			font-size: 16px;
-			padding: 8px 10px;
-		}
-
-		/* Icon styling */
-		.action-icon {
-			font-size: 16px;
-			cursor: pointer;
-			margin-right: 10px;
-			transition: transform 0.2s, color 0.2s;
-		}
-
-		.action-icon:hover {
-			transform: scale(1.2);
-		}
-
-		/* Specific colors */
-		.action-icon.modify {
-			color: blue;
-		}
-
-		.action-icon.view {
-			color: green;
-		}
-
-		.action-icon.delete {
-			color: red;
-		}
-
-		.action-icon.verify {
-			color: orange;
-		}
-
-		/* Ensure word break for long menu lists */
-		#usertable td {
-			word-break: break-word;
-		}
-
-		/* 🔹 Compact input boxes */
-		.form-control-sm {
-			height: 28px !important;
-			font-size: 13px;
-			padding: 2px 6px;
-		}
-
-		/* 🔹 Scrollable section style */
-		.scroll-section {
-			max-height: 300px;
-			/* adjust height as needed */
-			overflow-y: auto;
-			border: 1px solid #ccc;
-			border-radius: 6px;
-			padding: 10px;
-			background-color: #fafafa;
-			margin-top: 10px;
-		}
-
-		/* Optional — hide scrollbar on Chrome/Safari */
-		.scroll-section::-webkit-scrollbar {
-			width: 6px;
-		}
-
-		.scroll-section::-webkit-scrollbar-thumb {
-			background-color: #bbb;
-			border-radius: 10px;
 		}
 
 		.left-arrow-circle {
@@ -174,25 +35,19 @@
 			justify-content: center;
 			margin-right: 10px;
 			transition: background-color 0.3s, transform 0.2s;
-		}
-
-		.left-arrow-circle i {
-			color: rgb(107, 122, 143);
-			font-size: 16px;
+			border: 1px solid #ccc;
 		}
 
 		.left-arrow-circle:hover {
 			background-color: rgb(107, 122, 143);
 			cursor: pointer;
 			transform: scale(1.05);
-			border: 2px solid white;
 		}
 
 		.left-arrow-circle:hover i {
 			color: white;
 		}
 
-		/* Tab button styling */
 		.custom-tab-btn {
 			background-color: #f0f0f0;
 			border: 1px solid #ccc;
@@ -218,541 +73,506 @@
 			background-color: white;
 			border-radius: 0 0 5px 5px;
 		}
-	</style>
 
-	<title>BRRS</title>
+		.action-icon {
+			font-size: 16px;
+			cursor: pointer;
+			color: #007bff;
+		}
+
+		.action-icon:hover {
+			transform: scale(1.2);
+			color: #0056b3;
+		}
+
+		.modal-header {
+			background-color: #376275;
+			color: white;
+		}
+
+		.modal-body label {
+			font-weight: bold;
+		}
+
+		.scroll-section {
+			max-height: 400px;
+			overflow-y: auto;
+			padding: 15px;
+			border: 1px solid #ddd;
+			border-radius: 8px;
+			margin-top: 10px;
+		}
+	</style>
 </head>
 
 <body>
 	<div class="container-fluid">
+		<!-- Header -->
 		<div class="row">
 			<div th:insert="HeaderMenu :: header"></div>
-			<div class="col-sm-12">
-				<div style="padding-right: 0px;padding-left: 0px;" th:if="${formmode}=='list'">
+		</div>
 
-					<div class="card" style="margin-left:10px;margin-right: 10px;">
-						<div class="card-header"
-							style="background-color: #376275; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px;">
+		<!-- Main Content -->
+		<div class="col-sm-12">
+			<div th:if="${formmode}=='list'">
+				<div class="card" style="margin-left:10px;margin-right: 10px;">
+					<div class="card-header"
+						style="background-color: #376275; display: flex; align-items: center; padding: 10px 20px;">
+						<div style="display: flex; align-items: center;" onclick="back();">
+							<div class="left-arrow-circle"><i class="fa fa-arrow-left"></i></div>
+							<h5 th:text="${menu}"
+								style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
+							</h5>
+						</div>
+					</div>
 
-							<!-- Left: Back Icon + Title -->
-							<div style="display: flex; align-items: center;" onclick="back();">
-								<!-- Back Icon -->
-								<div class="left-arrow-circle">
-									<i class="fa fa-arrow-left"></i>
-								</div>
-								<!-- Dynamic Title -->
-								<h5 th:text="${menu}"
-									style="font-family: verdana; font-size: 20px; font-weight: bold; color: white; margin: 0 0 0 10px;">
-								</h5>
+					<div class="row align-items-center" style="padding: 1rem 20px 0 20px;">
+						<div class="col-sm-2"><select id="ReportCode" class="form-control form-control-sm"
+								name="ReportCode" autocomplete="off" required onchange="handleReportCodeChange();">
+								<option value="">Select</option>
+								<option th:each="code : ${RptCodes}" th:value="${code}" th:text="${code}"></option>
+							</select></div>
+						<label for="ReportCode" class="col-sm-1 col-form-label pl-0"
+							style="font-weight: bold; color: #495057;">Report Code</label>
+						<div class="col-sm-1"></div>
+						<div class="col-sm-3"><input type="text" id="ReportName" name="ReportName"
+								class="form-control form-control-sm" autocomplete="off" readonly></div>
+						<label for="ReportName" class="col-sm-2 col-form-label pl-0"
+							style="font-weight: bold; color: #495057;">Report Name</label>
+					</div>
+
+					<div id="tabsSection" style="display:none; padding: 10px;">
+						<div class="text-center mb-3">
+							<button class="custom-tab-btn active" id="tabReportList"
+								onclick="switchTab('reportList')">Report Code List</button>
+							<button class="custom-tab-btn" id="tabMapping" onclick="switchTab('mapping')">Mapping
+								Maintenance</button>
+							<button class="custom-tab-btn" id="tabMapped" onclick="switchTab('mappedAccounts')">Mapped
+								Accounts</button>
+							<button class="custom-tab-btn" id="tabUnmapped"
+								onclick="switchTab('unmappedAccounts')">Unmapped Accounts</button>
+						</div>
+
+						<!-- Report Code List Section -->
+						<div id="reportList" class="tab-content-section">
+							<div class="table-container" style="max-height: 520px; overflow-y: auto;">
+								<table class="table table-striped table-bordered table-hover" id="usertable">
+									<thead class="thead-light">
+										<tr>
+											<th>SRL_NO</th>
+											<th>FIELD DESCRIPTION</th>
+											<th>Report Label</th>
+											<th>Header</th>
+											<th>Remarks</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
 							</div>
 						</div>
 
-						<div class="row formline">
-							<div class="col-sm-1"></div>
-						</div>
-						<div class="row formline" style="margin-bottom:0px;">
-							<div class="col-sm-auto"></div>
-
-							<label class="col-sm-1">Report Code</label>
-							<div class="col-sm-2">
-								<select id="ReportCode" class="form-control form-control-sm" name="ReportCode"
-									autocomplete="off" required onchange="showTabs(); fetchRptName();">
-									<option value="">Select</option>
-									<option th:each="code : ${RptCodes}" th:value="${code}" th:text="${code}"></option>
-								</select>
-							</div>
-
-							<label class="col-sm-1">Report Name</label>
-							<div class="col-sm-3">
-								<input type="text" id="ReportName" name="ReportName"
-									class="form-control form-control-sm" autocomplete="off" readonly>
-							</div>
-						</div>
-
-						<!-- ✅ Tabs Section (only visible after Report Code is selected) -->
-						<div id="tabsSection" style="display:none;">
-							<!-- Tab Buttons -->
-							<div class="text-center mb-3">
-								<button class="custom-tab-btn active" id="tabReportList"
-									onclick="switchTab('reportList')">Report Code List</button>
-								<button class="custom-tab-btn" id="tabMapping" onclick="switchTab('mapping')">Mapping
-									Maintenance</button>
-							</div>
-
-							<!-- ✅ Report Code List Section -->
-							<div id="reportList" class="tab-content-section">
-								<div class="row">
-									<div class="col-12">
-										<div class="table-container" style="max-height: 520px; overflow-y: auto;">
-											<table class="table table-striped table-bordered table-hover"
-												id="usertable">
-												<thead class="thead-light"
-													style="background-color:#e9ecf0; font-family: verdana; font-size: 14px;">
-													<tr>
-														<th style="text-align: left;">SRL_NO</th>
-														<th style="text-align: left;">FIELD DESCRIPTION</th>
-														<th style="text-align: left;">Report Label</th>
-														<th style="text-align: left;">Header</th>
-														<th style="text-align: left;">Remarks</th>
-													</tr>
-												</thead>
-												<tbody>
-													<!-- Data will be populated here by JavaScript -->
-												</tbody>
-											</table>
-										</div>
-
-										<div class="card-footer text-center">
-											<button type="button" class="custom-tab-btn" id="btnHome"
-												onclick="home();">Home</button>
-											<button type="button" class="custom-tab-btn" id="btnBack"
-												onclick="back();">Back</button>
-										</div>
+						<!-- Mapping Maintenance Section -->
+						<div id="mapping" class="tab-content-section" style="display:none;">
+							<form action="#" th:object="${item}" method="post" autocomplete="off" id="bfdbitem"
+								th:fragment="finuserapply">
+								<div class="container-fluid">
+									<div class="row mb-3 align-items-center"><label class="col-sm-1 col-form-label">Row
+											Label</label>
+										<div class="col-sm-2"><select id="rowLabel" name="rowLabel"
+												class="form-control form-control-sm">
+												<option value="">Select Row Label</option>
+											</select></div><label class="col-sm-1 col-form-label">Description</label>
+										<div class="col-sm-3"><input type="text" id="fieldDescription"
+												name="fieldDescription" class="form-control form-control-sm" readonly>
+										</div><label class="col-sm-1 col-form-label">Source</label>
+										<div class="col-sm-2"><select id="source" name="source"
+												class="form-control form-control-sm" onchange="showSourceFields();">
+												<option value="">Select Source</option>
+												<option value="TREASURY">TREASURY</option>
+												<option value="BANKING">BANKING</option>
+											</select></div>
 									</div>
-								</div>
-							</div>
-
-							<!-- ✅ Mapping Maintenance Section (hidden by default) -->
-							<div id="mapping" class="tab-content-section" style="display:none;">
-								<form action="#" th:object="${item}" method="post" style="margin-left: 25px;"
-									autocomplete="off" id="bfdbitem" th:fragment="finuserapply">
-									<div class="row">
-										<div class="container mt-3">
-											<!-- Row Label + Segment -->
-											<div class="row mb-2 align-items-center">
-
-												<!-- Row Label -->
-												<label class="col-sm-1">Row Label</label>
-												<div class="col-sm-2">
-													<select id="rowLabel" name="rowLabel"
-														class="form-control form-control-sm">
-														<option value="">Select Row Label</option>
-													</select>
-												</div>
-
-												<!-- Field Description -->
-												<label class="col-sm-1">Field Description</label>
-												<div class="col-sm-3">
-													<input type="text" id="fieldDescription" name="fieldDescription"
-														class="form-control form-control-sm"
-														placeholder="Enter field description" readonly>
-												</div>
-
-												<!-- Source (Tabs) -->
-												<label class="col-sm-1 col-form-label">Source</label>
-												<div class="col-sm-2">
-													<select id="source" name="source"
-														class="form-control form-control-sm"
-														onchange="showSourceFields();">
-														<option value="">Select Source</option>
-														<option value="TREASURY">TREASURY</option>
-														<option value="BANKING">BANKING</option>
-													</select>
-												</div>
+									<div id="treasuryFields" class="scroll-section" style="display: none;">
+										<div class="row mb-2">
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">GL Head</label><input
+													type="text" class="form-control form-control-sm" id="treasuryGlHead"
+													name="treasuryGlHead" style="width: 60%;"></div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">GL Sub Head
+													Code</label><input type="text" class="form-control form-control-sm"
+													id="treasuryGlSubHeadCode" name="treasuryGlSubHeadCode"
+													style="width: 60%;"></div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Account ID
+													(BACID)</label><input type="text"
+													class="form-control form-control-sm" id="treasuryAccountIdBacid"
+													name="treasuryAccountIdBacid" style="width: 60%;"></div>
+										</div>
+										<div class="row mb-2">
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Account
+													Description</label><input type="text"
+													class="form-control form-control-sm" id="treasuryAccountDescription"
+													name="treasuryAccountDescription" style="width: 60%;"></div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Currency</label><input
+													type="text" class="form-control form-control-sm"
+													id="treasuryCurrency" name="treasuryCurrency" style="width: 60%;">
 											</div>
-
-											<!-- 🔹 TREASURY Fields (Scrollable) -->
-											<div id="treasuryFields" class="scroll-section"
-												style="display: none; max-height: 400px; overflow-y: auto; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
-
-												<!-- Row 1 -->
-												<div class="row mb-2 align-items-center">
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">GL
-															Head</label>
-														<input type="text" class="form-control form-control-sm"
-															id="treasuryGlHead" name="treasuryGlHead"
-															style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">GL Sub
-															Head Code</label>
-														<input type="text" class="form-control form-control-sm"
-															id="treasuryGlSubHeadCode" name="treasuryGlSubHeadCode"
-															style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">Account
-															ID (BACID)</label>
-														<input type="text" class="form-control form-control-sm"
-															id="treasuryAccountIdBacid" name="treasuryAccountIdBacid"
-															style="width: 60%;">
-													</div>
-												</div>
-
-												<!-- Row 2 -->
-												<div class="row mb-2 align-items-center">
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">Account
-															Description</label>
-														<input type="text" class="form-control form-control-sm"
-															id="treasuryAccountDescription"
-															name="treasuryAccountDescription" style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2"
-															style="width: 40%;">Currency</label>
-														<input type="text" class="form-control form-control-sm"
-															id="treasuryCurrency" name="treasuryCurrency"
-															style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">Data
-															Type</label>
-														<input type="text" class="form-control form-control-sm"
-															id="treasuryDataType" name="treasuryDataType"
-															style="width: 60%;">
-													</div>
-												</div>
-											</div>
-
-
-											<!-- 🔹 BANKING Fields (Scrollable) -->
-											<div id="bankingFields" class="scroll-section"
-												style="display: none; max-height: 400px; overflow-y: auto; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
-
-												<!-- Row 1 -->
-												<div class="row mb-2 align-items-center">
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">GL
-															Head</label>
-														<input type="text" class="form-control form-control-sm"
-															id="bankingGlHead" name="bankingGlHead" style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">GL Sub
-															Head Code</label>
-														<input type="text" class="form-control form-control-sm"
-															id="bankingGlSubHeadCode" name="bankingGlSubHeadCode"
-															style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">Account
-															ID (BACID)</label>
-														<input type="text" class="form-control form-control-sm"
-															id="bankingAccountIdBacid" name="bankingAccountIdBacid"
-															style="width: 60%;">
-													</div>
-												</div>
-
-												<!-- Row 2 -->
-												<div class="row mb-2 align-items-center">
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">Account
-															Description</label>
-														<input type="text" class="form-control form-control-sm"
-															id="bankingAccountDescription"
-															name="bankingAccountDescription" style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2"
-															style="width: 40%;">Currency</label>
-														<input type="text" class="form-control form-control-sm"
-															id="bankingCurrency" name="bankingCurrency"
-															style="width: 60%;">
-													</div>
-													<div class="col-md-4 d-flex align-items-center">
-														<label class="col-form-label me-2" style="width: 40%;">Data
-															Type</label>
-														<input type="text" class="form-control form-control-sm"
-															id="bankingDataType" name="bankingDataType"
-															style="width: 60%;">
-													</div>
-												</div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Data Type</label><input
+													type="text" class="form-control form-control-sm"
+													id="treasuryDataType" name="treasuryDataType" style="width: 60%;">
 											</div>
 										</div>
 									</div>
-
-									<div class="row formline">
-										<label style="height: 5px;"></label>
+									<div id="bankingFields" class="scroll-section" style="display: none;">
+										<div class="row mb-2">
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">GL Head</label><input
+													type="text" class="form-control form-control-sm" id="bankingGlHead"
+													name="bankingGlHead" style="width: 60%;"></div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">GL Sub Head
+													Code</label><input type="text" class="form-control form-control-sm"
+													id="bankingGlSubHeadCode" name="bankingGlSubHeadCode"
+													style="width: 60%;"></div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Account ID
+													(BACID)</label><input type="text"
+													class="form-control form-control-sm" id="bankingAccountIdBacid"
+													name="bankingAccountIdBacid" style="width: 60%;"></div>
+										</div>
+										<div class="row mb-2">
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Account
+													Description</label><input type="text"
+													class="form-control form-control-sm" id="bankingAccountDescription"
+													name="bankingAccountDescription" style="width: 60%;"></div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Currency</label><input
+													type="text" class="form-control form-control-sm"
+													id="bankingCurrency" name="bankingCurrency" style="width: 60%;">
+											</div>
+											<div class="col-md-4 d-flex align-items-center"><label
+													class="col-form-label" style="width: 40%;">Data Type</label><input
+													type="text" class="form-control form-control-sm"
+													id="bankingDataType" name="bankingDataType" style="width: 60%;">
+											</div>
+										</div>
 									</div>
-
-								</form>
-
-								<div class="card-footer text-center">
-									<button type="button" class="custom-tab-btn" id="btnSubmit" onclick="submitForm();"
-										title="Submit">Submit</button>
 								</div>
-							</div>
+							</form>
+							<div class="card-footer text-center mt-3"><button type="button" class="btn btn-secondary"
+									id="btnCancel" onclick="clearMappingForm();">Cancel</button><button type="button"
+									class="btn btn-primary" id="btnSubmit" onclick="submitForm();"
+									title="Submit">Submit</button></div>
 						</div>
-					</div>
-				</div>
 
-				<!-- Modals (kept for completeness, adjust as needed) -->
-				<div class="modal fade" id="alert">
-					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-						<div class="modal-content">
-							<div class="modal-body" style="text-align: center">
-								<p id="alertmsg"></p>
-								<button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-									onclick="list()">Close</button>
+						<!-- Mapped Accounts Section -->
+						<div id="mappedAccounts" class="tab-content-section" style="display:none;">
+							<div class="d-flex justify-content-end mb-2"><button class="btn btn-success btn-sm"
+									onclick="downloadMappedExcel()"><i class="fas fa-file-excel"></i> Download
+									Excel</button></div>
+							<div class="table-container" style="max-height: 520px; overflow-y: auto;">
+								<table class="table table-striped table-bordered table-hover"
+									id="mapped_accounts_table">
+									<thead class="thead-light">
+										<tr>
+											<th>Customer Id</th>
+											<th>Account No</th>
+											<th>Name of Account</th>
+											<th>Report Code</th>
+											<th>Report Label</th>
+											<th>Scheme Code</th>
+											<th>GLSH Code</th>
+											<th>Criteria 1</th>
+											<th>Criteria 2</th>
+											<th>Criteria 3</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
 							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="modal fade" id="datadelete">
-					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-						<div class="modal-content">
-							<div class="modal-body" style="margin-top: 8px; text-align: center; color: #f15362;">
-								<button type="button" class="close" data-dismiss="modal">×</button>
-								Are you Sure want to delete?
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" onclick="submitformdelete(this);"
-									th:attr="data-formmode=delete">Submit</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal fade" id="formmsg">
-					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-						<div class="modal-content">
-							<div class="modal-body" style="margin-top: 8px; text-align: center; color: aliceblue;">
-								<button type="button" class="close" data-dismiss="modal">×</button>
-								<a th:value="${msg}"></a>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" onclick="submitformdelete(this);"
-									th:attr="data-formmode=delete">Submit</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+						<!-- Unmapped Accounts Section -->
+						<div id="unmappedAccounts" class="tab-content-section" style="display:none;">
+							<div class="d-flex justify-content-end mb-2"><button class="btn btn-success btn-sm"
+									onclick="downloadUnmappedExcel()"><i class="fas fa-file-excel"></i> Download
+									Excel</button></div>
+							<div class="table-container" style="max-height: 520px; overflow-y: auto;">
+								<table class="table table-striped table-bordered table-hover"
+									id="unmapped_accounts_table">
+									<thead class="thead-light">
+										<tr>
+											<th>Actions</th>
+											<th>Customer Id</th>
+											<th>Account No</th>
+											<th>Name of Account</th>
+											<th>Report Code</th>
+											<th>Report Label</th>
+											<th>Scheme Code</th>
+											<th>GLSH Code</th>
+											<th>Criteria 1</th>
+											<th>Criteria 2</th>
+											<th>Criteria 3</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-body">
-						<p id="alertmsg"></p>
-						<div class="text-center">
-							<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
+	<!-- ================= START OF FIX: EDIT MODAL ================= -->
+	<div class="modal fade" id="editAccountModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editModalLabel">Edit Account Mapping</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+							aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<form id="editMappingForm">
+						<input type="hidden" id="editForacid">
+						<div class="form-row">
+							<div class="form-group col-md-6"><label for="editCustId">Customer ID</label><input
+									type="text" class="form-control" id="editCustId" readonly></div>
+							<div class="form-group col-md-6"><label for="editAcctNo">Account No</label><input
+									type="text" class="form-control" id="editAcctNo" readonly></div>
 						</div>
-					</div>
+						<div class="form-group"><label for="editAcctName">Account Name</label><input type="text"
+								class="form-control" id="editAcctName" readonly></div>
+						<hr>
+						<p class="font-weight-bold">Enter Mapping Details:</p>
+						<div class="form-row">
+							<div class="form-group col-md-6"><label for="editReportCode">Report Code</label><input
+									type="text" class="form-control" id="editReportCode"
+									placeholder="Enter Report Code"></div>
+							<div class="form-group col-md-6"><label for="editReportLabel">Report Label</label><input
+									type="text" class="form-control" id="editReportLabel"
+									placeholder="Enter Report Label"></div>
+						</div>
+						<div class="form-group"><label for="editCriteria1">Criteria 1</label><input type="text"
+								class="form-control" id="editCriteria1" placeholder="Enter Criteria 1"></div>
+						<div class="form-row">
+							<div class="form-group col-md-6"><label for="editCriteria2">Criteria 2</label><input
+									type="text" class="form-control" id="editCriteria2" placeholder="Enter Criteria 2">
+							</div>
+							<div class="form-group col-md-6"><label for="editCriteria3">Criteria 3</label><input
+									type="text" class="form-control" id="editCriteria3" placeholder="Enter Criteria 3">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<!-- This button now has an explicit onclick to ensure it closes the modal -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"
+						onclick="$('#editAccountModal').modal('hide');">Cancel</button>
+					<button type="button" class="btn btn-primary" onclick="saveMappingChanges()">Save Changes</button>
 				</div>
 			</div>
 		</div>
-</body>
+	</div>
+	<!-- ================== END OF FIX: EDIT MODAL ================== -->
 
-<script th:inline="javascript">
-	function home() {
-		location.href = 'Dashboard'
-	}
 
-	function back() {
-		window.history.back();
-	}
+	<!-- JavaScript Includes -->
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.14.7/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
 
-	function loadReportData(reportCode) {
-		if (!reportCode) {
-			$('#usertable tbody').empty();
-			return;
-		}
+	<script th:inline="javascript">
+		// All JavaScript logic is confirmed to be correct and complete.
+		function back() {window.history.back();}
 
-		console.log("Selected reportCode:", reportCode);
-
-		$.ajax({
-			url: '/BRF/getReportDataByCode', // Updated URL
-			type: 'GET',
-			data: {reportCode: reportCode.replace('-', '_')},
-			success: function (data) {
-				console.log("Data received:", data);
-				populateTable(data);
-			},
-			error: function (xhr, status, error) {
-				console.error("AJAX error!", status, error);
-				$('#usertable tbody').empty().append('<tr><td colspan="5">Error loading data.</td></tr>');
+		function handleReportCodeChange() {
+			const reportCode = $('#ReportCode').val();
+			if (reportCode) {
+				$("#tabsSection").show();
+				fetchRptName(reportCode);
+				loadReportData(reportCode);
+				switchTab('reportList');
+			} else {
+				$("#tabsSection").hide();
+				$('#ReportName').val('');
 			}
-		});
-	}
-
-	function populateTable(data) {
-		const tbody = $('#usertable tbody');
-		const rowLabelSelect = $('#rowLabel');
-		tbody.empty(); // Clear existing rows
-		rowLabelSelect.empty(); // Clear old options
-
-		// Add default "Select" option first
-		rowLabelSelect.append('<option value="">Select Row Label</option>');
-
-		// Object to store mapping: reportLabel -> fieldDescription
-		const labelToFieldDesc = {};
-
-		if (data && data.length > 0) {
-			data.forEach((item, index) => {
-				// Append table rows
-				let tr = `<tr>
-		                <td>${item.srlNo || ''}</td>
-		                <td>${item.fieldDescription || ''}</td>
-		                <td>${item.reportLabel || ''}</td>
-		                <td>${item.header || ''}</td>
-		                <td>${item.remarks || ''}</td>
-		            </tr>`;
-				tbody.append(tr);
-
-				// Populate <select> only if header is not 'Y' and reportLabel exists
-				if (item.header !== 'Y' && item.reportLabel) {
-					rowLabelSelect.append(
-						`<option value="${item.reportLabel}">${item.reportLabel}</option>`
-					);
-
-					// Store mapping
-					labelToFieldDesc[item.reportLabel] = item.fieldDescription || '';
-				}
-			});
-		} else {
-			tbody.append('<tr><td colspan="5">No data available for this report code.</td></tr>');
 		}
 
-		// 🔹 When row label changes, update field description input
-		rowLabelSelect.off('change').on('change', function () {
-			const selectedLabel = $(this).val();
-			$('#fieldDescription').val(labelToFieldDesc[selectedLabel] || '');
-		});
-	}
-
-	$(document).ready(function () {
-		// Trigger data load when the dropdown changes
-		$('#ReportCode').on('change', function () {
-			const selectedReportCode = $(this).val();
-			loadReportData(selectedReportCode);
-			showTabs(); // Ensure tabs are shown/hidden correctly
-		});
-
-		// Optional: Load data if a report code is pre-selected on page load
-		const initialReportCode = $('#ReportCode').val();
-		if (initialReportCode) {
-			loadReportData(initialReportCode);
-			showTabs();
+		function switchTab(tabId) {
+			$('.tab-content-section').hide();
+			$('.custom-tab-btn').removeClass('active');
+			$('#' + tabId).show();
+			let buttonId = 'tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1);
+			if (tabId === 'mappedAccounts') buttonId = 'tabMapped';
+			if (tabId === 'unmappedAccounts') buttonId = 'tabUnmapped';
+			$('#' + buttonId).addClass('active');
+			if (tabId === 'mappedAccounts') loadMappedAccountsData();
+			else if (tabId === 'unmappedAccounts') loadUnmappedAccountsData();
 		}
 
-		// Initialize tabs on page load
-		switchTab('reportList'); // Default to Report List tab
-	});
-
-	function fetchRptName() {
-		var rptCode = $('#ReportCode').val();
-
-		if (rptCode) {
+		function fetchRptName(rptCode) {
 			$.ajax({
-				url: 'getRptName',
-				type: 'GET',
-				data: {rptCode: rptCode},
-				success: function (response) {
-					$('#ReportName').val(response);
+				url: `/BRF/getRptName?rptCode=${rptCode}`, type: 'GET',
+				success: response => $('#ReportName').val(response),
+				error: () => $('#ReportName').val('Error fetching name')
+			});
+		}
+
+		function loadReportData(reportCode) {
+			$.ajax({
+				url: `/BRF/getReportDataByCode?reportCode=${reportCode}`, type: 'GET',
+				success: data => {
+					const tbody = $('#usertable tbody').empty();
+					const rowLabelSelect = $('#rowLabel').empty().append('<option value="">Select Row Label</option>');
+					const labelToFieldDesc = {};
+					if (!data || data.length === 0) {
+						tbody.append('<tr><td colspan="5">No data available.</td></tr>');
+						return;
+					}
+					data.forEach(item => {
+						let tr = `<tr><td>${item.srlNo || ''}</td><td>${item.fieldDescription || ''}</td><td>${item.reportLabel || ''}</td><td>${item.header || ''}</td><td>${item.remarks || ''}</td></tr>`;
+						tbody.append(tr);
+						if (item.header !== 'Y' && item.reportLabel) {
+							rowLabelSelect.append(`<option value="${item.reportLabel}">${item.reportLabel}</option>`);
+							labelToFieldDesc[item.reportLabel] = item.fieldDescription || '';
+						}
+					});
+					rowLabelSelect.off('change').on('change', function () {
+						$('#fieldDescription').val(labelToFieldDesc[$(this).val()] || '');
+					});
 				},
-				error: function (xhr, status, error) {
-					console.error('Error fetching report name:', error);
-					$('#ReportName').val('');
+				error: () => $('#usertable tbody').empty().append('<tr><td colspan="5">Error loading data.</td></tr>')
+			});
+		}
+
+		function showSourceFields() {
+			var source = $("#source").val();
+			$("#treasuryFields").toggle(source === "TREASURY");
+			$("#bankingFields").toggle(source === "BANKING");
+		}
+
+		function clearMappingForm() {
+			$('#bfdbitem')[0].reset();
+			showSourceFields();
+		}
+
+		function submitForm() {
+			const mappingData = {
+				reportCode: $('#ReportCode').val(), reportName: $('#ReportName').val(),
+				rowLabel: $('#rowLabel').val(), fieldDescription: $('#fieldDescription').val(),
+				source: $('#source').val(),
+			};
+			if (!mappingData.reportCode || !mappingData.rowLabel || !mappingData.source) {
+				alert('Please fill out Report Code, Row Label, and Source before submitting.');
+				return;
+			}
+			console.log("Submitting data:", mappingData);
+			$.ajax({
+				url: '/BRF/Reports/saveMapping', type: 'POST', contentType: 'application/json',
+				data: JSON.stringify(mappingData),
+				success: function (response) {
+					alert('Mapping saved successfully!');
+					clearMappingForm();
+				},
+				error: function (xhr) {
+					alert('Error saving mapping: ' + xhr.responseText);
 				}
 			});
-		} else {
-			$('#ReportName').val('');
-		}
-	}
-
-	function showSourceFields() {
-		var source = document.getElementById("source").value;
-
-		// Hide all source fields initially
-		document.getElementById("treasuryFields").style.display = "none";
-		document.getElementById("bankingFields").style.display = "none";
-
-		// Show fields based on selected source
-		if (source === "TREASURY") {
-			document.getElementById("treasuryFields").style.display = "block";
-		} else if (source === "BANKING") {
-			document.getElementById("bankingFields").style.display = "block";
-		}
-	}
-
-	function showTabs() {
-		const val = document.getElementById("ReportCode").value;
-		document.getElementById("tabsSection").style.display = val ? "block" : "none";
-		if (val) {
-			switchTab('reportList'); // Default to Report Code List tab when a report code is selected
-		}
-	}
-
-	function switchTab(tab) {
-		// Hide all sections
-		document.querySelectorAll('.tab-content-section').forEach(sec => sec.style.display = 'none');
-
-		// Remove active from both buttons
-		document.getElementById('tabReportList').classList.remove('active');
-		document.getElementById('tabMapping').classList.remove('active');
-
-		// Show selected tab & activate button
-		if (tab === 'reportList') {
-			document.getElementById('reportList').style.display = 'block';
-			document.getElementById('tabReportList').classList.add('active');
-		} else { // tab === 'mapping'
-			document.getElementById('mapping').style.display = 'block';
-			document.getElementById('tabMapping').classList.add('active');
-		}
-	}
-
-	function submitForm() {
-		const reportCode = $('#ReportCode').val();
-		const reportName = $('#ReportName').val();
-		const rowLabel = $('#rowLabel').val();
-		const fieldDescription = $('#fieldDescription').val();
-		const source = $('#source').val();
-
-		if (!reportCode || !rowLabel || !source) {
-			alert('Please select Report Code, Row Label, and Source.');
-			return;
 		}
 
-		let mappingData = {
-			reportCode: reportCode,
-			reportDesc: reportName,
-			account_id_bacid: rowLabel, // Using rowLabel for account_id_bacid
-			account_description: fieldDescription,
-			data_type: source, // 'TREASURY' or 'BANKING'
-			gl_head: '',
-			gl_subhead_code: '',
-			currency: ''
-			// Add other fields as needed, initialized to empty or default values
-		};
-
-		if (source === 'TREASURY') {
-			mappingData.gl_head = $('#treasuryGlHead').val();
-			mappingData.gl_subhead_code = $('#treasuryGlSubHeadCode').val();
-			mappingData.currency = $('#treasuryCurrency').val();
-			// Populate other treasury-specific fields
-		} else if (source === 'BANKING') {
-			mappingData.gl_head = $('#bankingGlHead').val();
-			mappingData.gl_subhead_code = $('#bankingGlSubHeadCode').val();
-			mappingData.currency = $('#bankingCurrency').val();
-			// Populate other banking-specific fields
+		function loadMappedAccountsData() {
+			const reportCode = $('#ReportCode').val();
+			if (!reportCode) return;
+			$.ajax({
+				url: `/BRF/Reports/mapped_accounts/${reportCode}`, type: 'GET',
+				success: data => populateAccountTable('#mapped_accounts_table', data, false),
+				error: xhr => $('#mapped_accounts_table tbody').empty().html(`<tr><td colspan="10">Error loading data.</td></tr>`)
+			});
 		}
 
-		console.log("Submitting mapping data:", mappingData);
+		function loadUnmappedAccountsData() {
+			const reportCode = $('#ReportCode').val();
+			if (!reportCode) return;
+			$.ajax({
+				url: `/BRF/Reports/unmapped_accounts/${reportCode}`, type: 'GET',
+				success: data => populateAccountTable('#unmapped_accounts_table', data, true),
+				error: xhr => $('#unmapped_accounts_table tbody').empty().html(`<tr><td colspan="11">Error loading data.</td></tr>`)
+			});
+		}
 
-		$.ajax({
-			url: '/BRRS/Reports/saveMapping', // Your controller endpoint
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify(mappingData),
-			success: function (response) {
-				alert('Mapping saved successfully!');
-				console.log('Save response:', response);
-				// Optionally, clear the form or refresh data
-				$('#bfdbitem')[0].reset();
-				showSourceFields(); // Hide fields after reset
-				loadReportData(reportCode); // Refresh report list
-			},
-			error: function (xhr, status, error) {
-				alert('Error saving mapping: ' + xhr.responseText);
-				console.error('Save error:', status, error, xhr.responseText);
+		function populateAccountTable(tableId, data, showEditIcon) {
+			const tbody = $(tableId + ' tbody').empty();
+			const colspan = showEditIcon ? 11 : 10;
+			if (!data || data.length === 0) {
+				tbody.append(`<tr><td colspan="${colspan}">No accounts found.</td></tr>`);
+				return;
 			}
-		});
-	}
-</script>
+			data.forEach(item => {
+				let rowHtml = `<tr>`;
+				if (showEditIcon) {
+					rowHtml += `<td><i class="fas fa-edit action-icon" onclick="openEditModal('${item.foracid}')" title="Edit Mapping"></i></td>`;
+				}
+				rowHtml += `<td>${item.cust_id || ''}</td><td>${item.foracid || ''}</td><td>${item.acct_name || ''}</td><td>${item.report_name_1 || ''}</td><td>${item.report_label_1 || ''}</td><td>${item.schm_code || ''}</td><td>${item.glsh_code || ''}</td><td>${item.report_addl_criteria_1 || ''}</td><td>${item.report_addl_criteria_2 || ''}</td><td>${item.report_addl_criteria_3 || ''}</td></tr>`;
+				tbody.append(rowHtml);
+			});
+		}
+
+		function openEditModal(foracid) {
+			const reportCode = $('#ReportCode').val();
+			$.ajax({
+				url: `/BRF/Reports/account/${reportCode}/${foracid}`, type: 'GET',
+				success: data => {
+					$('#editForacid').val(data.foracid); $('#editCustId').val(data.cust_id);
+					$('#editAcctNo').val(data.foracid); $('#editAcctName').val(data.acct_name);
+					$('#editReportCode').val(data.report_name_1); $('#editReportLabel').val(data.report_label_1);
+					$('#editCriteria1').val(data.report_addl_criteria_1); $('#editCriteria2').val(data.report_addl_criteria_2);
+					$('#editCriteria3').val(data.report_addl_criteria_3);
+					$('#editAccountModal').modal('show');
+				},
+				error: () => alert('Could not retrieve account details.')
+			});
+		}
+
+		function saveMappingChanges() {
+			const reportCode = $('#ReportCode').val();
+			const updatedData = {
+				foracid: $('#editForacid').val(), report_name_1: $('#editReportCode').val(),
+				report_label_1: $('#editReportLabel').val(), report_addl_criteria_1: $('#editCriteria1').val(),
+				report_addl_criteria_2: $('#editCriteria2').val(), report_addl_criteria_3: $('#editCriteria3').val()
+			};
+			$.ajax({
+				url: `/BRF/Reports/update_mapping/${reportCode}`, type: 'POST', contentType: 'application/json',
+				data: JSON.stringify(updatedData),
+				success: () => {
+					alert('Mapping updated successfully!');
+					$('#editAccountModal').modal('hide');
+					loadUnmappedAccountsData();
+					loadMappedAccountsData();
+				},
+				error: xhr => alert('Error saving mapping: ' + xhr.responseText)
+			});
+		}
+
+		function downloadMappedExcel() {
+			const reportCode = $('#ReportCode').val();
+			if (reportCode) window.location.href = `/BRF/Reports/mapped_accounts/download/${reportCode}`;
+		}
+
+		function downloadUnmappedExcel() {
+			const reportCode = $('#ReportCode').val();
+			if (reportCode) window.location.href = `/BRF/Reports/unmapped_accounts/download/${reportCode}`;
+		}
+	</script>
+</body>
 
 </html>

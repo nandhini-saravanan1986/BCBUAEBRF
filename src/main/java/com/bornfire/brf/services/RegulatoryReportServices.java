@@ -1,8 +1,12 @@
 package com.bornfire.brf.services;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.transaction.Transactional;
@@ -532,7 +536,7 @@ public class RegulatoryReportServices {
 			repdetail = CBUAE_BRF16_3_ReportServices.getBRF16_3currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter, type, version);
 			break;
-			
+
 		case "BRF5_6":
 			repdetail = cbuae_brf5_6_reportservice.getBRF5_6currentDtl(reportId, fromdate, todate, currency, dtltype,
 					pageable, Filter);
@@ -1351,11 +1355,9 @@ public class RegulatoryReportServices {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			break;	
-			
+			break;
 
 		}
-			
 
 		return archivalData;
 	}
@@ -1531,9 +1533,9 @@ public class RegulatoryReportServices {
 			fileData = cbuae_brf16_1_reportservice.getBRF16_1DetailExcel(filename, fromdate, todate, currency, dtltype,
 					type, version);
 
-		}
-		else if (filename.equals("BRF5_19Detail")) {
-			fileData = CBUAE_BRF5_19_ReportServices.getBRF5_19DetailExcel(filename, fromdate, todate, currency, dtltype,type, version);
+		} else if (filename.equals("BRF5_19Detail")) {
+			fileData = CBUAE_BRF5_19_ReportServices.getBRF5_19DetailExcel(filename, fromdate, todate, currency, dtltype,
+					type, version);
 		}
 
 		if (fileData == null) {
@@ -1549,6 +1551,80 @@ public class RegulatoryReportServices {
 	public byte[] getReport(String jobId) {
 		// System.out.println("Report generation completed for: " + jobId);
 		return jobStorage.get(jobId);
+	}
+
+	public List<Map<String, Object>> getMappedAccounts(String reportId) {
+		switch (reportId) {
+		case "BRF1_1":
+			return cbuae_brf1_1_reportservice.getMappedAccountsAsMaps(reportId);
+		case "BRF1_2":
+			return cbuae_brf1_2_reportservice.getMappedAccountsAsMaps(reportId);
+		default:
+			return Collections.emptyList();
+		}
+	}
+
+	public List<Map<String, Object>> getUnmappedAccounts(String reportId) {
+		switch (reportId) {
+		case "BRF1_1":
+			return cbuae_brf1_1_reportservice.getUnmappedAccountsAsMaps(reportId);
+		case "BRF1_2":
+			return cbuae_brf1_2_reportservice.getUnmappedAccountsAsMaps(reportId);
+		default:
+			return Collections.emptyList();
+		}
+	}
+
+	public Optional<Map<String, Object>> getAccountById(String reportId, String foracid) {
+		switch (reportId) {
+		case "BRF1_1":
+			return cbuae_brf1_1_reportservice.getAccountById(foracid);
+		case "BRF1_2":
+			return cbuae_brf1_2_reportservice.getAccountById(foracid);
+		default:
+			return Optional.empty();
+		}
+	}
+
+	public String updateMapping(String reportId, Map<String, Object> updateData) {
+		switch (reportId) {
+		case "BRF1_1":
+			return cbuae_brf1_1_reportservice.updateMapping(updateData);
+		case "BRF1_2":
+			return cbuae_brf1_2_reportservice.updateMapping(updateData);
+		default:
+			return "Error: No service found for report ID: " + reportId;
+		}
+	}
+
+	public byte[] generateExcelForMappedAccounts(String reportId) throws IOException {
+		List<Map<String, Object>> data = getMappedAccounts(reportId);
+		if (data.isEmpty())
+			return new byte[0];
+
+		switch (reportId) {
+		case "BRF1_1":
+			return cbuae_brf1_1_reportservice.generateExcel(data, "Mapped Accounts");
+		case "BRF1_2":
+			return cbuae_brf1_2_reportservice.generateExcel(data, "Mapped Accounts");
+		default:
+			return new byte[0];
+		}
+	}
+
+	public byte[] generateExcelForUnmappedAccounts(String reportId) throws IOException {
+		List<Map<String, Object>> data = getUnmappedAccounts(reportId);
+		if (data.isEmpty())
+			return new byte[0];
+
+		switch (reportId) {
+		case "BRF1_1":
+			return cbuae_brf1_1_reportservice.generateExcel(data, "Unmapped Accounts");
+		case "BRF1_2":
+			return cbuae_brf1_2_reportservice.generateExcel(data, "Unmapped Accounts");
+		default:
+			return new byte[0];
+		}
 	}
 
 }

@@ -1,7 +1,9 @@
 package com.bornfire.brf.controllers;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -660,4 +665,53 @@ public class NavigationController {
 		return "BRF/RRReports";
 
 	}
+	 @GetMapping("/mapped_accounts/{reportId}")
+	    @ResponseBody
+	    public ResponseEntity<List<Map<String, Object>>> getMappedAccounts(@PathVariable String reportId) {
+	        List<Map<String, Object>> data = regulatoryreportservices.getMappedAccounts(reportId);
+	        return ResponseEntity.ok(data);
+	    }
+
+	    @GetMapping("/unmapped_accounts/{reportId}")
+	    @ResponseBody
+	    public ResponseEntity<List<Map<String, Object>>> getUnmappedAccounts(@PathVariable String reportId) {
+	        List<Map<String, Object>> data = regulatoryreportservices.getUnmappedAccounts(reportId);
+	        return ResponseEntity.ok(data);
+	    }
+
+	    // Pass reportId to find the correct service to handle the request
+	    @GetMapping("/account/{reportId}/{foracid}")
+	    @ResponseBody
+	    public ResponseEntity<Map<String, Object>> getAccountById(@PathVariable String reportId, @PathVariable String foracid) {
+	        return regulatoryreportservices.getAccountById(reportId, foracid)
+	                .map(ResponseEntity::ok)
+	                .orElse(ResponseEntity.notFound().build());
+	    }
+
+	    @PostMapping("/update_mapping/{reportId}")
+	    @ResponseBody
+	    public ResponseEntity<String> updateMapping(@PathVariable String reportId, @RequestBody Map<String, Object> entityData) {
+	        String response = regulatoryreportservices.updateMapping(reportId, entityData);
+	        return ResponseEntity.ok(response);
+	    }
+
+	    @GetMapping("/mapped_accounts/download/{reportId}")
+	    public ResponseEntity<byte[]> downloadMappedAccounts(@PathVariable String reportId) throws IOException {
+	        byte[] excelData = regulatoryreportservices.generateExcelForMappedAccounts(reportId);
+	        // ... headers and response ...
+	        return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Mapped_Accounts.xlsx")
+	                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+	                .body(excelData);
+	    }
+
+	    @GetMapping("/unmapped_accounts/download/{reportId}")
+	    public ResponseEntity<byte[]> downloadUnmappedAccounts(@PathVariable String reportId) throws IOException {
+	        byte[] excelData = regulatoryreportservices.generateExcelForUnmappedAccounts(reportId);
+	        // ... headers and response ...
+	        return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Unmapped_Accounts.xlsx")
+	                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+	                .body(excelData);
+	    }
 }
