@@ -1,23 +1,28 @@
 package com.bornfire.brf.dto;
 
 public class ReportLineItemDTO {
+	// Fields for Row Data
 	private int srlNo;
 	private String fieldDescription;
 	private String reportLabel;
 	private String header;
 	private String remarks;
+    
+    // Fields for Column Data
+    private String columnId;
+    private String columnName;
 
+	// Constructor for Row Data
 	public ReportLineItemDTO() {
 	}
 
-	public ReportLineItemDTO(int srlNo, String fieldDescription, String reportLabel, String header, String remarks) {
-		this.srlNo = srlNo;
-		this.fieldDescription = fieldDescription;
-		this.reportLabel = reportLabel;
-		this.header = header;
-		this.remarks = remarks;
+	// Constructor for Column Data
+	public ReportLineItemDTO(String columnId, String columnName) {
+		this.columnId = columnId;
+		this.columnName = columnName;
 	}
 
+	// --- Getters and Setters for ALL fields ---
 	public int getSrlNo() {
 		return srlNo;
 	}
@@ -57,11 +62,20 @@ public class ReportLineItemDTO {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+    
+    public String getColumnId() {
+        return columnId;
+    }
 
-	@Override
-	public String toString() {
-		return "ReportLineItemDTO{" + "srlNo=" + srlNo + ", fieldDescription='" + fieldDescription + '\''
-				+ ", reportLabel='" + reportLabel + '\'' + ", header='" + header + '\'' + ", remarks='" + remarks + '\''
-				+ '}';
-	}
+    public void setColumnId(String columnId) {
+        this.columnId = columnId;
+    }
+
+    public String getColumnName() {
+        return columnName;
+    }
+
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
+    }
 }

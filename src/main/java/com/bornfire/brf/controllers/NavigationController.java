@@ -167,7 +167,7 @@ public class NavigationController {
 		if (formmode == null || formmode.isEmpty() || formmode.equals("list")) {
 			md.addAttribute("formmode", "list");
 			md.addAttribute("menu", "BASE MAPPING PARAMETER"); // Changed "menuname" to "menu" to match HTML
-			md.addAttribute("Basemappingparameter", basemappingparameterrepository.findAllBaseMappingParameters()); // Use
+			md.addAttribute("Basemappingparameter", basemappingparameterrepository.getAllBaseMappingParameters()); // Use
 																													// findAll
 		} else if (formmode.equals("add")) {
 			md.addAttribute("menu", "BASE MAPPING PARAMETER - ADD");
@@ -411,56 +411,72 @@ public class NavigationController {
 	@RequestMapping(value = "/ReportCodeMapping", method = { RequestMethod.GET, RequestMethod.POST })
 	public String ReportCodeMapping(Model md, HttpServletRequest req) {
 		md.addAttribute("menu", "Report Code Mapping");
-		md.addAttribute("menuname", "ReportCodeMapping");
 		md.addAttribute("formmode", "list");
-
-		// Populate the ReportCode dropdown
 		List<String> rptCodes = reportCodeMappingService.getAllReportCodes();
 		md.addAttribute("RptCodes", rptCodes);
-		md.addAttribute("item", new BaseMappingParameter()); // For the mapping form
-
-		System.out.println("Enter in ReportCodeMapping controller - displaying list view");
+		md.addAttribute("item", new BaseMappingParameter());
 		return "ReportCodeMapping";
 	}
 
 	@GetMapping("/getReportDataByCode")
 	@ResponseBody
 	public List<ReportLineItemDTO> getReportDataByCode(@RequestParam("reportCode") String reportCode) {
-		System.out.println("Controller received request for report code: " + reportCode);
-		System.out.println("reportCodeMappingService object: " + reportCodeMappingService);
-
 		try {
-			List<ReportLineItemDTO> data = reportCodeMappingService.getReportDataByCode(reportCode);
-			System.out.println("Service call succeeded, records fetched: " + data.size());
-			return data;
+			return reportCodeMappingService.getReportDataByCode(reportCode);
 		} catch (Exception e) {
-			System.err.println("Error fetching report data for " + reportCode + ": " + e.getMessage());
+			System.err.println("Error fetching report row data for " + reportCode + ": " + e.getMessage());
 			return Collections.emptyList();
-		} finally {
-			System.out.println("Controller finished processing request for report code: " + reportCode);
+		}
+	}
+
+	// This endpoint now returns a list of the MODIFIED DTO
+	@GetMapping("/getReportColumnsByCode")
+	@ResponseBody
+	public List<ReportLineItemDTO> getReportColumnsByCode(@RequestParam("reportCode") String reportCode) {
+		try {
+			return reportCodeMappingService.getReportColumnsByCode(reportCode);
+		} catch (Exception e) {
+			System.err.println("Error fetching report column data for " + reportCode + ": " + e.getMessage());
+			return Collections.emptyList();
 		}
 	}
 
 	@GetMapping("/getRptName")
 	@ResponseBody
 	public String getRptName(@RequestParam("rptCode") String rptCode) {
-		System.out.println("Controller received request for report name for code: " + rptCode);
 		return reportCodeMappingService.getReportNameByCode(rptCode);
 	}
 
-	@PostMapping("/saveMapping")
-	@ResponseBody
-	public String saveMapping(@RequestBody BaseMappingParameter mapping) {
-		System.out.println("Controller received mapping data for saving: " + mapping.getReport_code() + " - "
-				+ mapping.getAccount_id_bacid());
-		try {
-			reportCodeMappingService.saveMapping(mapping);
-			return "Mapping saved successfully!";
-		} catch (Exception e) {
-			System.err.println("Error saving mapping: " + e.getMessage());
-			return "Error saving mapping: " + e.getMessage();
-		}
-	}
+	  @GetMapping("/getGlHeads")
+	    @ResponseBody
+	    public List<String> getGlHeads(@RequestParam String dataType) {
+	        return reportCodeMappingService.getGlHeadsByDataType(dataType);
+	    }
+
+	    @GetMapping("/getGlSubHeads")
+	    @ResponseBody
+	    public List<String> getGlSubHeads(@RequestParam String glHead) {
+	        return reportCodeMappingService.getGlSubHeadsByGlHead(glHead);
+	    }
+
+	    @PostMapping("/getAccountDetails")
+	    @ResponseBody
+	    public List<Map<String, Object>> getAccountDetails(@RequestBody List<String> glSubHeadCodes) {
+	        return reportCodeMappingService.getAccountDetails(glSubHeadCodes);
+	    }
+
+	    @PostMapping("/saveMapping")
+	    @ResponseBody
+	    public ResponseEntity<String> saveMapping(@RequestBody BaseMappingParameter mapping) {
+	        try {
+	            reportCodeMappingService.saveMapping(mapping);
+	            return ResponseEntity.ok("Mapping saved successfully!");
+	        } catch (Exception e) {
+	            System.err.println("Error saving mapping: " + e.getMessage());
+	            return ResponseEntity.status(500).body("Error saving mapping: " + e.getMessage());
+	        }
+	    }
+	    
 
 	@RequestMapping(value = "Monthly-1", method = { RequestMethod.GET, RequestMethod.POST })
 	public String monthly1(Model md, HttpServletRequest req) {
@@ -665,53 +681,52 @@ public class NavigationController {
 		return "BRF/RRReports";
 
 	}
-	 @GetMapping("/mapped_accounts/{reportId}")
-	    @ResponseBody
-	    public ResponseEntity<List<Map<String, Object>>> getMappedAccounts(@PathVariable String reportId) {
-	        List<Map<String, Object>> data = regulatoryreportservices.getMappedAccounts(reportId);
-	        return ResponseEntity.ok(data);
-	    }
 
-	    @GetMapping("/unmapped_accounts/{reportId}")
-	    @ResponseBody
-	    public ResponseEntity<List<Map<String, Object>>> getUnmappedAccounts(@PathVariable String reportId) {
-	        List<Map<String, Object>> data = regulatoryreportservices.getUnmappedAccounts(reportId);
-	        return ResponseEntity.ok(data);
-	    }
+	@GetMapping("/mapped_accounts/{reportId}")
+	@ResponseBody
+	public ResponseEntity<List<Map<String, Object>>> getMappedAccounts(@PathVariable String reportId) {
+		List<Map<String, Object>> data = regulatoryreportservices.getMappedAccounts(reportId);
+		return ResponseEntity.ok(data);
+	}
 
-	    // Pass reportId to find the correct service to handle the request
-	    @GetMapping("/account/{reportId}/{foracid}")
-	    @ResponseBody
-	    public ResponseEntity<Map<String, Object>> getAccountById(@PathVariable String reportId, @PathVariable String foracid) {
-	        return regulatoryreportservices.getAccountById(reportId, foracid)
-	                .map(ResponseEntity::ok)
-	                .orElse(ResponseEntity.notFound().build());
-	    }
+	@GetMapping("/unmapped_accounts/{reportId}")
+	@ResponseBody
+	public ResponseEntity<List<Map<String, Object>>> getUnmappedAccounts(@PathVariable String reportId) {
+		List<Map<String, Object>> data = regulatoryreportservices.getUnmappedAccounts(reportId);
+		return ResponseEntity.ok(data);
+	}
 
-	    @PostMapping("/update_mapping/{reportId}")
-	    @ResponseBody
-	    public ResponseEntity<String> updateMapping(@PathVariable String reportId, @RequestBody Map<String, Object> entityData) {
-	        String response = regulatoryreportservices.updateMapping(reportId, entityData);
-	        return ResponseEntity.ok(response);
-	    }
+	// Pass reportId to find the correct service to handle the request
+	@GetMapping("/account/{reportId}/{foracid}")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> getAccountById(@PathVariable String reportId,
+			@PathVariable String foracid) {
+		return regulatoryreportservices.getAccountById(reportId, foracid).map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
 
-	    @GetMapping("/mapped_accounts/download/{reportId}")
-	    public ResponseEntity<byte[]> downloadMappedAccounts(@PathVariable String reportId) throws IOException {
-	        byte[] excelData = regulatoryreportservices.generateExcelForMappedAccounts(reportId);
-	        // ... headers and response ...
-	        return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Mapped_Accounts.xlsx")
-	                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-	                .body(excelData);
-	    }
+	@PostMapping("/update_mapping/{reportId}")
+	@ResponseBody
+	public ResponseEntity<String> updateMapping(@PathVariable String reportId,
+			@RequestBody Map<String, Object> entityData) {
+		String response = regulatoryreportservices.updateMapping(reportId, entityData);
+		return ResponseEntity.ok(response);
+	}
 
-	    @GetMapping("/unmapped_accounts/download/{reportId}")
-	    public ResponseEntity<byte[]> downloadUnmappedAccounts(@PathVariable String reportId) throws IOException {
-	        byte[] excelData = regulatoryreportservices.generateExcelForUnmappedAccounts(reportId);
-	        // ... headers and response ...
-	        return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Unmapped_Accounts.xlsx")
-	                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-	                .body(excelData);
-	    }
+	@GetMapping("/mapped_accounts/download/{reportId}")
+	public ResponseEntity<byte[]> downloadMappedAccounts(@PathVariable String reportId) throws IOException {
+		byte[] excelData = regulatoryreportservices.generateExcelForMappedAccounts(reportId);
+		// ... headers and response ...
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Mapped_Accounts.xlsx")
+				.contentType(MediaType.APPLICATION_OCTET_STREAM).body(excelData);
+	}
+
+	@GetMapping("/unmapped_accounts/download/{reportId}")
+	public ResponseEntity<byte[]> downloadUnmappedAccounts(@PathVariable String reportId) throws IOException {
+		byte[] excelData = regulatoryreportservices.generateExcelForUnmappedAccounts(reportId);
+		// ... headers and response ...
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Unmapped_Accounts.xlsx")
+				.contentType(MediaType.APPLICATION_OCTET_STREAM).body(excelData);
+	}
 }
