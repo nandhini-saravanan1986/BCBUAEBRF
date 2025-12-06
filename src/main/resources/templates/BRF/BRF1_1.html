@@ -14,7 +14,7 @@ PURPOSE		: BRFREPORT
 
 	<!-- CSS -->
 	<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
-	<link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
+	<link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.9.0/css/all.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}">
@@ -297,17 +297,23 @@ PURPOSE		: BRFREPORT
 		.white-text span {
 			color: white !important;
 		}
-		
-		 .table-cell tbody td:hover {
-        background-color: #f0f0f0; /* Hover color for cell */
-        cursor: pointer;           /* Optional: pointer cursor */
-    }
-    
-    .table-bordered td, 
-.table-bordered th {
-     border: 1px solid #000 !important;
-}
-    
+
+		.table-cell tbody td:hover {
+			background-color: #f0f0f0;
+			/* Hover color for cell */
+			cursor: pointer;
+			/* Optional: pointer cursor */
+		}
+
+		.table-bordered td,
+		.table-bordered th {
+			border: 1px solid #000 !important;
+		}
+		.form-control:read-only {
+		    background-color: #e9ecef !important;
+		    opacity: 1;
+		    cursor: not-allowed; /* Optional: shows a 'stop' symbol on hover */
+		}
 	</style>
 
 
@@ -336,7 +342,7 @@ PURPOSE		: BRFREPORT
 		}
 
 		function back() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 
 			window.history.back();
@@ -346,7 +352,7 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
@@ -374,7 +380,7 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
 				location.href = Callurl;
@@ -424,7 +430,7 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 
 			$.ajax({
@@ -470,10 +476,6 @@ PURPOSE		: BRFREPORT
 			});
 		}
 
-		function editRecord() {
-			showResultModal('Alert', 'Development in progress');
-
-		}
 		function closemodel() {
 			$('#alert').modal('hide');
 			$('#resultModal').modal('hide');
@@ -492,118 +494,9 @@ PURPOSE		: BRFREPORT
 	</script>
 
 	<script>
-	
-	function startReport(button){
-		const alertMsg = document.getElementById("alertMessage");
-		const filename = button.getAttribute('data-filename');
-		const fromdate = button.getAttribute('data-fromdate');
-		const todate = button.getAttribute('data-todate');
-		const currency = button.getAttribute('data-currency');
-		const dtltype = button.getAttribute('data-dtltype');
-		const type = button.getAttribute('data-type');
-		const version = button.getAttribute('data-version');
-		const sessionfilename = sessionStorage.getItem("filename");
-		
-		if(sessionfilename==filename){
-			alertMsg.innerHTML ='Download request already Processing...';
-       	 	showAlert();
-			return;
-		}
-		
-		alertMsg.innerHTML ='Download request Processing...';
-   	 	showAlert();
 
-		const baseUrl = '/BRF/Reports/startreport';
-		const downloadUrl = baseUrl +
-			'?filename=' + encodeURIComponent(filename) +
-			'&fromdate=' + encodeURIComponent(fromdate) +
-			'&todate=' + encodeURIComponent(todate) +
-			'&currency=' + encodeURIComponent(currency) +
-			'&dtltype=' + encodeURIComponent(dtltype) +
-			'&type=' + encodeURIComponent(type) +
-			'&version=' + encodeURIComponent(version);
-	    fetch(downloadUrl)  // ✅ no invalid characters now
-	        .then(res => res.text())
-	        .then(jobId => {
-
-	        	alertMsg.innerHTML ='Download request received...'+jobId;
-	       	 	showAlert();
-	            sessionStorage.setItem("jobId", jobId);
-	            sessionStorage.setItem("filename", filename);
-	            checkReport(jobId);
-	        });
-	}
-
-	function checkReport(jobId) {
-		const alertMsg = document.getElementById("alertMessage");
-	    fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
-	        .then(res => res.text())
-	        .then(status => {
-	            if (status === "READY") {
-	            	alertMsg.innerHTML ='Report is ready! Downloading…';
-	           	 	showAlert();
-	                const filename = sessionStorage.getItem("filename");
-	                downloadDetailfile(jobId,filename)
-	                sessionStorage.removeItem("jobId");
-	                sessionStorage.removeItem("filename");                
-	                
-	            } else if(status ==="PROCESSING") {
-	                alertMsg.innerHTML ='Download Is Processing…';
-	            	showAlert();
-	                setTimeout(() => checkReport(jobId), 5000);
-	            }
-	            else if(status ==="ERROR") {
-	                alertMsg.innerHTML ='No data was available to create a download.';
-	            	showAlert();
-	            	sessionStorage.removeItem("jobId");
-	                sessionStorage.removeItem("filename");  
-	            }
-	        });
-	}
-
-
-
-	function downloadDetailfile(jobId,filename) {
-		
-		//$('#loader').modal('show');
-		
-		$.ajax({
-			url: '/BRF/Reports/downloaddetailExcel?jobId='+ jobId +
-				'&filename=' + filename,
-			type: 'GET',
-			xhrFields: {
-				responseType: 'blob'
-			},
-			success: function (data) {
-				$('#loader').modal('hide');
-
-				if (data && data.size > 100) {
-					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-					const url = window.URL.createObjectURL(blob);
-					const a = document.createElement('a');
-					a.style.display = 'none';
-					a.href = url;
-					a.download = filename;
-					document.body.appendChild(a);
-					a.click();
-					window.URL.revokeObjectURL(url);
-					document.body.removeChild(a);
-
-					showResultModal('Success', filename + ' downloaded successfully.');
-				} else {
-					showResultModal('Information', 'No data was available to create a download.');
-				}
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				$('#loader').modal('hide');
-				console.error("Download failed:", textStatus, errorThrown);
-				showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
-			}
-		});
-	}
-	
-/* 
-		function downloadDetailfile(button) {
+		function startReport(button) {
+			const alertMsg = document.getElementById("alertMessage");
 			const filename = button.getAttribute('data-filename');
 			const fromdate = button.getAttribute('data-fromdate');
 			const todate = button.getAttribute('data-todate');
@@ -611,11 +504,19 @@ PURPOSE		: BRFREPORT
 			const dtltype = button.getAttribute('data-dtltype');
 			const type = button.getAttribute('data-type');
 			const version = button.getAttribute('data-version');
+			const sessionfilename = sessionStorage.getItem("filename");
 
-			$('#loader').modal('show');
+			if (sessionfilename == filename) {
+				alertMsg.innerHTML = 'Download request already Processing...';
+				showAlert();
+				return;
+			}
 
-			const baseUrl = '/BRF/Reports/';
-			const downloadUrl = baseUrl + 'downloadDetailExcel' +
+			alertMsg.innerHTML = 'Download request Processing...';
+			showAlert();
+
+			const baseUrl = '/BRF/Reports/startreport';
+			const downloadUrl = baseUrl +
 				'?filename=' + encodeURIComponent(filename) +
 				'&fromdate=' + encodeURIComponent(fromdate) +
 				'&todate=' + encodeURIComponent(todate) +
@@ -623,59 +524,160 @@ PURPOSE		: BRFREPORT
 				'&dtltype=' + encodeURIComponent(dtltype) +
 				'&type=' + encodeURIComponent(type) +
 				'&version=' + encodeURIComponent(version);
+			fetch(downloadUrl)  // ✅ no invalid characters now
+				.then(res => res.text())
+				.then(jobId => {
+
+					alertMsg.innerHTML = 'Download request received...' + jobId;
+					showAlert();
+					sessionStorage.setItem("jobId", jobId);
+					sessionStorage.setItem("filename", filename);
+					checkReport(jobId);
+				});
+		}
+
+		function checkReport(jobId) {
+			const alertMsg = document.getElementById("alertMessage");
+			fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+				.then(res => res.text())
+				.then(status => {
+					if (status === "READY") {
+						alertMsg.innerHTML = 'Report is ready! Downloading…';
+						showAlert();
+						const filename = sessionStorage.getItem("filename");
+						downloadDetailfile(jobId, filename)
+						sessionStorage.removeItem("jobId");
+						sessionStorage.removeItem("filename");
+
+					} else if (status === "PROCESSING") {
+						alertMsg.innerHTML = 'Download Is Processing…';
+						showAlert();
+						setTimeout(() => checkReport(jobId), 5000);
+					}
+					else if (status === "ERROR") {
+						alertMsg.innerHTML = 'No data was available to create a download.';
+						showAlert();
+						sessionStorage.removeItem("jobId");
+						sessionStorage.removeItem("filename");
+					}
+				});
+		}
+
+
+
+		function downloadDetailfile(jobId, filename) {
+
+			//$('#loader').modal('show');
 
 			$.ajax({
-				url: downloadUrl,
+				url: '/BRF/Reports/downloaddetailExcel?jobId=' + jobId +
+					'&filename=' + filename,
 				type: 'GET',
 				xhrFields: {
 					responseType: 'blob'
 				},
 				success: function (data) {
 					$('#loader').modal('hide');
+
 					if (data && data.size > 100) {
 						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
 						const url = window.URL.createObjectURL(blob);
 						const a = document.createElement('a');
 						a.style.display = 'none';
 						a.href = url;
-						a.download = filename + '.xls';
+						a.download = filename;
 						document.body.appendChild(a);
 						a.click();
-						a.remove();
 						window.URL.revokeObjectURL(url);
+						document.body.removeChild(a);
 
 						showResultModal('Success', filename + ' downloaded successfully.');
 					} else {
-						showResultModal('Information', 'No data was available to create a download or file was empty.');
+						showResultModal('Information', 'No data was available to create a download.');
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 					$('#loader').modal('hide');
-					console.error('Download error:', textStatus, errorThrown, jqXHR);
-
-					let errorMessage = 'An error occurred while downloading the file. Please try again.';
-					if (jqXHR.response) {
-						const reader = new FileReader();
-						reader.onload = function () {
-							errorMessage = reader.result;
-							showResultModal('Error', errorMessage);
-						};
-						reader.onerror = function () {
-							showResultModal('Error', 'An unknown error occurred during download.');
-						};
-						reader.readAsText(jqXHR.response);
-						return;
-					}
-					showResultModal('Error', errorMessage);
+					console.error("Download failed:", textStatus, errorThrown);
+					showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
 				}
 			});
 		}
- */
+
+		/* 
+				function downloadDetailfile(button) {
+					const filename = button.getAttribute('data-filename');
+					const fromdate = button.getAttribute('data-fromdate');
+					const todate = button.getAttribute('data-todate');
+					const currency = button.getAttribute('data-currency');
+					const dtltype = button.getAttribute('data-dtltype');
+					const type = button.getAttribute('data-type');
+					const version = button.getAttribute('data-version');
+		
+					$('#loader').modal('show');
+		
+					const baseUrl = '/BRF/Reports/';
+					const downloadUrl = baseUrl + 'downloadDetailExcel' +
+						'?filename=' + encodeURIComponent(filename) +
+						'&fromdate=' + encodeURIComponent(fromdate) +
+						'&todate=' + encodeURIComponent(todate) +
+						'&currency=' + encodeURIComponent(currency) +
+						'&dtltype=' + encodeURIComponent(dtltype) +
+						'&type=' + encodeURIComponent(type) +
+						'&version=' + encodeURIComponent(version);
+		
+					$.ajax({
+						url: downloadUrl,
+						type: 'GET',
+						xhrFields: {
+							responseType: 'blob'
+						},
+						success: function (data) {
+							$('#loader').modal('hide');
+							if (data && data.size > 100) {
+								const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+								const url = window.URL.createObjectURL(blob);
+								const a = document.createElement('a');
+								a.style.display = 'none';
+								a.href = url;
+								a.download = filename + '.xls';
+								document.body.appendChild(a);
+								a.click();
+								a.remove();
+								window.URL.revokeObjectURL(url);
+		
+								showResultModal('Success', filename + ' downloaded successfully.');
+							} else {
+								showResultModal('Information', 'No data was available to create a download or file was empty.');
+							}
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							$('#loader').modal('hide');
+							console.error('Download error:', textStatus, errorThrown, jqXHR);
+		
+							let errorMessage = 'An error occurred while downloading the file. Please try again.';
+							if (jqXHR.response) {
+								const reader = new FileReader();
+								reader.onload = function () {
+									errorMessage = reader.result;
+									showResultModal('Error', errorMessage);
+								};
+								reader.onerror = function () {
+									showResultModal('Error', 'An unknown error occurred during download.');
+								};
+								reader.readAsText(jqXHR.response);
+								return;
+							}
+							showResultModal('Error', errorMessage);
+						}
+					});
+				}
+		 */
 
 	</script>
 
 	<script th:inline="javascript">
-		
+
 		function showdetailsbyRowAndColumn(a) {
 			var rowId = a.getAttribute('RowId');
 			var columnId = a.getAttribute('ColumnId');
@@ -683,19 +685,19 @@ PURPOSE		: BRFREPORT
 
 			if (cellValue !== '0') {
 				// Set dynamic message
-				document.getElementById("cellresultModalLabel").innerText = 
-				    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+				document.getElementById("cellresultModalLabel").innerText =
+					"Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
 				// Show custom modal
 				$('#cellresultModal').modal('show');
 
 				// Handle Yes button
-				document.querySelector('.yes-btn').onclick = function() {
+				document.querySelector('.yes-btn').onclick = function () {
 					$('#cellresultModal').modal('hide');
 					const loader = bootstrap.Modal.getOrCreateInstance(document.getElementById('loader'), {
-				        backdrop: 'static',
-				        keyboard: false
-				    });
+						backdrop: 'static',
+						keyboard: false
+					});
 					$('#loader').modal('show');
 
 					var Callurl = /*[[@{'/Reports/' + ${reportid} + '/Details'(asondate=${asondate}, fromdate=${fromdate}, todate=${todate}, currency=${currency}, dtltype=${dtltype},type=${type},version=${version})}]]*/ "";
@@ -707,11 +709,108 @@ PURPOSE		: BRFREPORT
 				showResultModal("Alert", "No Records available for this selected cell.");
 			}
 		}
-		
-		
+
+
 	</script>
+	<script>
+			function editRecord(icon) {
+				const row = icon.closest('tr');
+				const provisionInput = row.querySelector('.acctBalanceInAed-field');
+
+				// Enable only provision field for editing
+				provisionInput.removeAttribute('readonly');
+				provisionInput.focus();
+
+				// Highlight editable cell
+				provisionInput.style.backgroundColor = '#fff8e1';
+
+				// Show submit button
+				document.getElementById('submitButton').style.display = 'inline-block';
+			}
 
 
+
+		</script>
+		<script th:inline="javascript">
+		    /*<![CDATA[*/
+		    const reportId = /*[[${reportid}]]*/ null;
+		    /*]]>*/
+		</script>
+
+	<script>
+		function openBRF1Detail(elem, mode) {
+		    
+		    // 1. Get reportId from the element
+		    var reportId = elem.getAttribute('data-reportid'); 
+		    
+		    var type = elem.getAttribute('data-type');   
+
+		    if (type === "ARCHIVAL") {
+		        showResultModal('BRF', "Archived Data cannot be modified");
+		        return;
+		    }           
+
+		    const acctNo = elem.getAttribute("data-acctNo");
+		    const asondate = elem.getAttribute("data-asondate");
+
+		    // 2. Now reportId is defined and can be used in the URL
+		    location.href = `/BRF/Reports/${reportId}/Detailspage?formmode=${mode}&acctNo=${acctNo}&asondate=${asondate}`;
+		
+		    }
+		</script>
+		<script>
+				function submitBRF1Update() {
+					const formData = $('#DetailForm').serialize(); // Ensure correct form ID
+
+					// ✅ Store the previous page URL
+					const previousUrl = document.referrer; // same as going back once in history
+
+					// Show loader while processing
+					$('#loader').modal('show');
+
+					$.ajax({
+						url: `/BRF/Reports/${reportId}/update`,
+						type: 'POST',
+						data: formData,
+						success: function (response) {
+							$('#loader').modal('hide');
+
+							// Show message via modal
+							if (response && response.toLowerCase().includes('success')) {
+								showResultModal('BRRS', response);
+							} else {
+								showResultModal('Information', response || 'No data updated.');
+							}
+
+							// ✅ Redirect back to the previous page after short delay
+							setTimeout(() => {
+								if (previousUrl) {
+									window.location.href = previousUrl;
+								} else {
+									// fallback: just go back if referrer not found
+									window.history.back();
+								}
+							}, 1500);
+						},
+						error: function (xhr, status, error) {
+							$('#loader').modal('hide');
+							console.error("Update error:", error);
+
+							showResultModal('Error', 'Failed to update record. Please try again.');
+
+							// ✅ On error also return to previous page after delay
+							setTimeout(() => {
+								if (previousUrl) {
+									window.location.href = previousUrl;
+								} else {
+									window.history.back();
+								}
+							}, 1500);
+						}
+					});
+				}
+
+			</script>
 </head>
 
 
@@ -3135,14 +3234,14 @@ PURPOSE		: BRFREPORT
 								style="border-right: 1px solid #dee2e6; ">
 								<table
 									class="sticky-header-table table table-bordered table-hover table-sm table-condensed"
-									id="BRFdet" >
+									id="reportdetails">
 									<thead class="thead-light">
 										<tr>
 											<th></th>
 											<th>CUST ID</th>
 											<th>ACCT NO</th>
 											<th>ACCT NAME</th>
-											<th style="text-align:right;" >ACCT BALANCE</th>
+											<th style="text-align:right;">ACCT BALANCE</th>
 											<th style="text-align:left;">ROWID</th>
 											<th>COLUMNID</th>
 											<th>REPORT_DATE</th>
@@ -3150,18 +3249,24 @@ PURPOSE		: BRFREPORT
 
 									</thead>
 
-									<tbody  style="font-family: Arial;">
+									<tbody style="font-family: Arial;">
 										<tr th:each="report: ${reportdetails}">
 											<td>
-												<a data-toggle="tooltip" class="editrec"
-													title="Click to Edit this Record">
-													<i class="fas fa-edit" onclick="editRecord(this)"></i>
-												</a>
+											    <a data-toggle="tooltip" class="editrec" title="Click to Edit this Record">
+											        <i class="fas fa-edit" style="color: black; cursor:pointer;"
+											           th:attr="data-reportid=${reportid}, 
+											                    data-acctNo=${report.acctNumber}, 
+											                    data-asondate=${#dates.format(report.reportDate, 'dd-MM-yyyy')},
+											                    data-type=${type}"
+											           onclick="openBRF1Detail(this, 'edit')">
+											        </i>
+											    </a>
 											</td>
 											<td th:text="${report.custId}"></td>
 											<td th:text="${report.acctNumber}"></td>
 											<td th:text="${report.acctName}"></td>
-											<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
+											<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}"
+												style="text-align: right;"></td>
 											<td style="text-align:left;" th:text="${report.rowId}"></td>
 											<td th:text="${report.columnId}"></td>
 											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
@@ -3169,51 +3274,82 @@ PURPOSE		: BRFREPORT
 										</tr>
 									</tbody>
 								</table>
-								
-								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
-									   
-									    
-									    
-									<a th:if="${currentPage > 0}"
-									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
-									    asondate=${asondate},                             
-									    fromdate=${fromdate},
-									    todate=${todate},
-									    currency=${currency},
-									    dtltype=${dtltype},
-									    type=${type},
-									    version=${version},
-									    page=${currentPage - 100},
-									    size=100
-									)}">
-									    Previous
-									</a>
-			
-									    
-									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
-									
-									    
-									    <a th:if="${currentPage < (totalPages - 1) * 100}"
-									    	
-									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
-									    asondate=${asondate},
-									    fromdate=${fromdate},
-									    todate=${todate},
-									    currency=${currency},
-									    dtltype=${dtltype},
-									    type=${type},
-									    version=${version},
-									    page=${currentPage + 100},
-									    size=100
-									)}">	
-									    Next
-									    </a>
-									</div>
-								
+
+				
+
 							</div>
 
 
 						</div>
+					</div>
+				</div>
+				<div th:if="${formmode == 'edit'}" class="card">
+
+
+					<div class="card-body">
+						<form th:object="${BRF1}" method="post" id="DetailForm">
+							<div class="row formline" style="margin-top:10px;">
+								<label class="col-sm-2">Customer ID</label>
+								<div class="col-sm-3">
+									<input type="text" th:field="*{custId}" class="form-control form-control-sm"
+										readonly />
+								</div>
+
+								<div class="col-sm-1"></div>
+
+								<label class="col-sm-2">Account Number</label>
+								<div class="col-sm-3">
+									<input type="text" th:field="*{acctNumber}" name="acctNumber"
+										class="form-control form-control-sm" readonly />
+								</div>
+							</div>
+
+							<div class="row formline" style="margin-top:10px;">
+								<label class="col-sm-2">Account Name</label>
+								<div class="col-sm-3">
+									<input type="text" th:field="*{acctName}" class="form-control form-control-sm"
+										readonly />
+								</div>
+
+								<div class="col-sm-1"></div>
+
+								<label class="col-sm-2">Account Balance</label>
+								<div class="col-sm-3">
+									<input type="number" step="0.01" name="acctBalanceInAed" th:field="*{acctBalanceInAed}"
+										class="form-control form-control-sm" style="text-align:right;" />
+								</div>
+							</div>
+
+							<div class="row formline" style="margin-top:10px;">
+								<label class="col-sm-2">Row ID</label>
+								<div class="col-sm-3">
+									<input type="text" th:field="*{rowId}" class="form-control form-control-sm"
+										readonly />
+								</div>
+
+								<div class="col-sm-1"></div>
+
+								<label class="col-sm-2">Column ID</label>
+								<div class="col-sm-3">
+									<input type="text" th:field="*{columnId}" class="form-control form-control-sm"
+										readonly />
+								</div>
+							</div>
+
+							<div class="row formline" style="margin-top:10px;">
+								<label class="col-sm-2">Report Date</label>
+								<div class="col-sm-3">
+									<input type="date" name="reportDate" class="form-control form-control-sm" readonly
+										th:value="${#dates.format(BRF1.reportDate, 'yyyy-MM-dd')}" />
+								</div>
+							</div>
+
+							<div style="text-align:center; margin-top:20px;">
+								<button type="button" class="custom-tab-btn" th:if="${formmode == 'edit'}"
+									onclick="submitBRF1Update()">Update</button>
+
+							</div>
+						</form>
 					</div>
 				</div>
 
@@ -3228,26 +3364,29 @@ PURPOSE		: BRFREPORT
 	</div>
 	<!-- Custom Cellresult Modal -->
 	<div class="modal fade" id="cellresultModal">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      
-	      <!-- Custom header -->
-	      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
-	        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
-	          Do you want to open the report?
-	        </div>
-	      </div>
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
 
-	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-	        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"  style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
-	          Cancel
-	        </button>
-	        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
-	          Yes
-	        </button>
-	      </div>
-	    </div>
-	  </div>
+				<!-- Custom header -->
+				<div class="menu-title-header"
+					style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+					<div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+						Do you want to open the report?
+					</div>
+				</div>
+
+				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+					<button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"
+						style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+						Cancel
+					</button>
+					<button type="button" class="custom-tab-btn yes-btn"
+						style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+						Yes
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
@@ -3287,21 +3426,87 @@ PURPOSE		: BRFREPORT
 
 
 </body>
-<script>
-  $(document).ready(function () {
-    $('#BRFdets').DataTable({
-      "paging": true,
-      "pageLength": 100,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": false,
-      "autoWidth": false,
-      "language": {
-        "search": "Search:"
-      }
-    });
-  });
-</script>
+<style>
+					/* Keep the header fixed and aligned */
+					.dataTables_scrollHeadInner,
+					.dataTables_scrollBody table {
+					  width: 100% !important;
+					}
+
+					/* Prevent thead shrinking at zoom */
+					.dataTables_scrollHeadInner table {
+					  width: 100% !important;
+					  min-width: 100% !important;
+					}
+
+					#reportdetails {
+					  width: 100% !important;
+					  table-layout: fixed !important;
+					}
+
+					#reportdetails th, 
+					#reportdetails td {
+					  white-space: nowrap;
+					}
+					table.dataTable th.dt-type-numeric,
+						table.dataTable th.dt-type-date,
+						table.dataTable td.dt-type-numeric,
+						table.dataTable td.dt-type-date {
+						    text-align: left !important;
+						}
+						
+						/* Right-align header (6th column = ACCT BALANCE) */
+															table.dataTable th.dt-type-numeric:nth-child(6) {
+															  text-align: right !important;
+															}
+															
+															/* Right-align data (6th column = ACCT BALANCE) */
+																									#reportdetails td:nth-child(6),
+																									.dataTables_scrollHeadInner table th:nth-child(6) {
+																									 text-align: right !important;
+																									 padding-right: 10px !important;
+																										}
+						
+				
+
+
+
+						  
+						</style>
+<script th:inline="javascript">
+				  $(document).ready(function () {
+				    var table = $('#reportdetails').DataTable({
+				      scrollY: "550px",
+				      scrollX: true,
+				      scrollCollapse: true,
+				      autoWidth: false,
+				      paging: true,
+				      searching: true,
+				      lengthChange: false,
+				      ordering: true,
+				      pageLength: 100,
+				      fixedHeader: true, // ✅ You can simply set it to true
+					  // ✅ Column width settings
+					   columnDefs: [
+					     { width: "60px", targets: 0 },   // Edit icon column
+					     { width: "150px", targets: 1 }  ,  // S No column
+						 { width: "300px", targets: 7 }    // S No column
+					   ],
+
+				      dom: '<"d-flex justify-content-between align-items-center mb-2"f p>t'
+				    });
+
+				    // ✅ Fix alignment on resize / zoom
+				    $(window).on('resize', function () {
+				      table.columns.adjust().draw(false);
+				    });
+
+				    // ✅ Fix initial misalignment if loaded at non-100% zoom
+				    setTimeout(function () {
+				      table.columns.adjust().draw(false);
+				    }, 500);
+				  });
+				</script>
 <!-- <script>
   $(document).ready(function () {
     $('#BRFvalidation').DataTable({
@@ -3315,15 +3520,60 @@ PURPOSE		: BRFREPORT
 </script> -->
 
 <style>
-  #BRFdet td {
-    border: 1px solid #ccc;
-    padding: 8px;
-  }
+	.dataTables_scrollHeadInner,
+	table.dataTable {
+		width: 100% !important;
+	}
 
-  #BRFdet {
-    border-collapse: collapse;
-    width: 100%;
-  }
+	/* Your existing CSS - this is the correct approach */
+	.scrollable-table-container {
+		/* This is the key: it creates the scroll context */
+		max-height: 700px;
+		/* Or a suitable height like 80vh for responsive design */
+		overflow-y: auto;
+		overflow-x: hidden;
+		border: 1px solid #ccc;
+	}
+
+	/* Your existing sticky header CSS, targeting the tr elements within the thead */
+	.scrollable-table-container thead tr:nth-child(1) {
+		position: sticky;
+		top: 0;
+		background-color: #b3b6b9;
+		z-index: 5;
+	}
+
+	.scrollable-table-container thead tr:nth-child(2) {
+		position: sticky;
+		top: 36px;
+		/* adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 4;
+	}
+
+	.scrollable-table-container thead tr:nth-child(3) {
+		position: sticky;
+		top: 72px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 3;
+	}
+
+	.scrollable-table-container thead tr:nth-child(4) {
+		position: sticky;
+		top: 100px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 2;
+	}
+
+	.scrollable-table-container thead tr:nth-child(5) {
+		position: sticky;
+		top: 135px;
+		/* Adjust based on row height */
+		background-color: #b3b6b9;
+		z-index: 1;
+	}
 </style>
 
 

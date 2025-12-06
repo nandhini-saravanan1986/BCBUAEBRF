@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -16,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -1625,6 +1628,62 @@ public class RegulatoryReportServices {
 		default:
 			return new byte[0];
 		}
+	}
+	public ModelAndView getReportDetails(String reportId, HttpServletRequest request) {
+		logger.info("Routing GET detail request for Report ID: {}", reportId);
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		try {
+		    switch (reportId) {
+		    case "BRF1_1":
+		        modelAndView = cbuae_brf1_1_reportservice.getViewOrEditPage(
+		                request.getParameter("acctNo"),
+		                request.getParameter("formmode"));
+		        break;
+
+		    default:
+				logger.warn("No detail service found for reportId: {}", reportId);
+				modelAndView = new ModelAndView("error/report_not_found");
+				modelAndView.addObject("errorMessage",
+						"Details view for report '" + reportId + "' is not implemented.");
+				break;
+		    }
+
+		} catch (Exception e) {
+		    logger.error("Error processing details for reportId: {}", reportId, e);
+		    modelAndView.setViewName("error/internal_error");
+		    modelAndView.addObject("errorMessage",
+		            "An internal server error occurred: " + e.getMessage());
+		}
+
+		return modelAndView;
+	}
+	public ResponseEntity<?> updateReportDetails(String reportId, HttpServletRequest request) {
+		logger.info("Routing POST update request for Report ID: {}", reportId);
+
+		ResponseEntity<?> response; // Declare once
+
+		try {
+			switch (reportId) {
+				case "BRF1_1":
+					response = cbuae_brf1_1_reportservice.updateDetailEdit(request);
+					break;
+
+				default:
+					logger.warn("Unsupported report ID: {}", reportId);
+					response = ResponseEntity.badRequest()
+							.body("Update functionality is not implemented for this report ID: " + reportId);
+					break;
+			}
+
+		} catch (Exception e) {
+			logger.error("Error processing update for reportId: {}", reportId, e);
+			response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("An internal server error occurred during the update: " + e.getMessage());
+		}
+
+		return response;
 	}
 
 }

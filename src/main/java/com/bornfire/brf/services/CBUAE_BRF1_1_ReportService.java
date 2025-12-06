@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +16,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -38,8 +42,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
@@ -8258,7 +8267,96 @@ public class CBUAE_BRF1_1_ReportService {
             return out.toByteArray();
         }
     }
-	 
+    public ModelAndView getViewOrEditPage(String acctNo, String formMode) {
+		ModelAndView mv = new ModelAndView("BRF/BRF1_1");
+
+		if (acctNo != null) {
+			CBUAE_BRF1_1_Detail_Entity brf1Entity = BRF1_1_DETAIL_Repo.findByAcctNumber(acctNo);
+			if (brf1Entity != null && brf1Entity.getReportDate() != null) {
+				String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(brf1Entity.getReportDate());
+				mv.addObject("asondate", formattedDate);
+			}
+			mv.addObject("BRF1", brf1Entity);
+		}
+
+		mv.addObject("displaymode", "edit");
+		mv.addObject("formmode", formMode != null ? formMode : "edit");
+		return mv;
+	}
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	@Transactional
+	public ResponseEntity<?> updateDetailEdit(HttpServletRequest request) {
+		try {
+			String acctNo = request.getParameter("acctNumber");
+			String balanceStr = request.getParameter("acctBalanceInAed");
+			String acctName = request.getParameter("acctName");
+			String reportDateStr = request.getParameter("reportDate");
+
+			logger.info("Received update for ACCT_NO: {}", acctNo);
+
+			CBUAE_BRF1_1_Detail_Entity existing = BRF1_1_DETAIL_Repo.findByAcctNumber(acctNo);
+			if (existing == null) {
+				logger.warn("No record found for ACCT_NO: {}", acctNo);
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Record not found for update.");
+			}
+
+			boolean isChanged = false;
+
+			if (acctName != null && !acctName.isEmpty()) {
+				if (existing.getAcctName() == null || !existing.getAcctName().equals(acctName)) {
+					existing.setAcctName(acctName);
+					isChanged = true;
+					logger.info("Account name updated to {}", acctName);
+				}
+			}
+			if (balanceStr != null && !balanceStr.isEmpty()) {
+				BigDecimal newBalance = new BigDecimal(balanceStr);
+				if (existing.getAcctBalanceInAed() == null
+						|| existing.getAcctBalanceInAed().compareTo(newBalance) != 0) {
+					existing.setAcctBalanceInAed(newBalance);
+					isChanged = true;
+					logger.info("Provision updated to {}", newBalance);
+				}
+			}
+
+			if (isChanged) {
+				BRF1_1_DETAIL_Repo.save(existing);
+				logger.info("Record updated successfully for account {}", acctNo);
+
+				// Format date for procedure
+				String formattedDate = new SimpleDateFormat("dd-MM-yyyy")
+						.format(new SimpleDateFormat("yyyy-MM-dd").parse(reportDateStr));
+
+				// Run summary procedure after commit
+				TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+					@Override
+					public void afterCommit() {
+						try {
+							logger.info("Transaction committed — calling CBUAE_BRF1_1_SUMMARY_PROCEDURE({})",
+									formattedDate);
+							jdbcTemplate.update("BEGIN CBUAE_BRF1_1_SUMMARY_PROCEDURE(?); END;", formattedDate);
+							logger.info("Procedure executed successfully after commit.");
+						} catch (Exception e) {
+							logger.error("Error executing procedure after commit", e);
+						}
+					}
+				});
+
+				return ResponseEntity.ok("Record updated successfully!");
+			} else {
+				logger.info("No changes detected for ACCT_NO: {}", acctNo);
+				return ResponseEntity.ok("No changes were made.");
+			}
+
+		} catch (Exception e) {
+			logger.error("Error updating M_PLL record", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error updating record: " + e.getMessage());
+		}
+	}
 	  
 
 }

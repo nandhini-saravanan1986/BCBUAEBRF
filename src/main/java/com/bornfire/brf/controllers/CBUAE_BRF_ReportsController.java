@@ -352,5 +352,17 @@ public class CBUAE_BRF_ReportsController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Unmapped_Accounts_" + reportId + ".xlsx")
 				.contentType(MediaType.APPLICATION_OCTET_STREAM).body(excelData);
 	}
+	@RequestMapping(value = "/{reportid}/Detailspage", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView reportDetail(@PathVariable("reportid") String reportid,
+			@RequestParam(value = "asondate", required = false) String asondate, HttpServletRequest request) {
 
+		logger.info("Report Details request: reportId={}, asondate={}", reportid, asondate);
+		return regreportServices.getReportDetails(reportid, request);
+	}
+
+	@RequestMapping(value = "/{reportid}/update", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public ResponseEntity<?> updateDetail(@PathVariable("reportid") String reportid, HttpServletRequest request) {
+		return regreportServices.updateReportDetails(reportid, request);
+	}
 }
