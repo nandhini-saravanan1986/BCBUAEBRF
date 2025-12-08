@@ -20,4 +20,6 @@ public interface CBUAE_BRF2_2_Detail_Repo extends JpaRepository<CBUAE_BRF2_2_Det
 	@Query(value = "select * from CBUAE_BRF2_2_DETAILTABLE where ROW_ID =?1 and COLUMN_ID=?2 AND REPORT_DATE=?3", nativeQuery = true)
 	List<CBUAE_BRF2_2_Detail_Entity> GetDataByRowIdAndColumnId(String rowId,String ColumnId,Date reportdate);
 
+	CBUAE_BRF2_2_Detail_Entity findByAcctNumber(String acctNo);
+
 }

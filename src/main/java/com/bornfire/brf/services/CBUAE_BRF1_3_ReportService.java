@@ -3172,85 +3172,100 @@ public class CBUAE_BRF1_3_ReportService {
 	}
     
     @Autowired
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;    
     
-
     @Transactional
-    public ResponseEntity<?> updateDetailEdit(HttpServletRequest request) {
-        try {
-            String custId = request.getParameter("custId");
-            String acctNo = request.getParameter("acctNumber");
-            String balanceStr = request.getParameter("acctBalanceInAed");
-            String acctName = request.getParameter("acctName");
-            String reportDateStr = request.getParameter("reportDate");
+	public ResponseEntity<?> updateDetailEdit(HttpServletRequest request) {
+		try {
+			
+			  String custId = request.getParameter("custId");
+			String acctNo = request.getParameter("acctNumber");
+			String balanceStr = request.getParameter("acctBalanceInAed");
+			String acctName = request.getParameter("acctName");
+			String reportDateStr = request.getParameter("reportDate");
 
-            logger.info("Received update for ACCT_NO: {}", acctNo);
-            logger.info("reportDate received: {}", reportDateStr);
+			logger.info("Received update for ACCT_NO: {}", acctNo);
+			
+			 logger.info("reportDate received: {}", reportDateStr);
 
-            if (acctNo == null || acctNo.isEmpty()) {
-                return ResponseEntity.badRequest().body("Account number missing!");
-            }
+			CBUAE_BRF1_3_Detail_Entity existing = BRF1_3_DETAIL_Repo.findByAcctNumber(acctNo);
+			if (existing == null) {
+				logger.warn("No record found for ACCT_NO: {}", acctNo);
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Record not found for update.");
+			}
 
-            CBUAE_BRF1_3_Detail_Entity existing =
-                    BRF1_3_DETAIL_Repo.findByAcctNumber(acctNo);
+			
+			/*
+			 * if (acctNo == null || acctNo.isEmpty()) { return
+			 * ResponseEntity.badRequest().body("Account number missing!"); }
+			 * 
+			 * CBUAE_BRF1_3_Detail_Entity existing =
+			 * BRF1_3_DETAIL_Repo.findByAcctNumber(acctNo);
+			 * 
+			 * if (existing == null) { return ResponseEntity.status(HttpStatus.NOT_FOUND)
+			 * .body("Record not found for ACCT_NO: " + acctNo); }
+			 */
+            
+			boolean isChanged = false;
 
-            if (existing == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("Record not found for ACCT_NO: " + acctNo);
-            }
+			if (acctName != null && !acctName.isEmpty()) {
+				if (existing.getAcctName() == null || !existing.getAcctName().equals(acctName)) {
+					existing.setAcctName(acctName);
+					isChanged = true;
+					logger.info("Account name updated to {}", acctName);
+				}
+			}
+			
+			
+			if (balanceStr != null && !balanceStr.isEmpty()) {
+				BigDecimal newBalance = new BigDecimal(balanceStr);
+				if (existing.getAcctBalanceInAed() == null
+						|| existing.getAcctBalanceInAed().compareTo(newBalance) != 0) {
+					existing.setAcctBalanceInAed(newBalance);
+					isChanged = true;
+					logger.info("Provision updated to {}", newBalance);
+				}
+			}
 
-            boolean isChanged = false;
+			if (isChanged) {
+				BRF1_3_DETAIL_Repo.save(existing);
+				logger.info("Record updated successfully for account {}", acctNo);
 
-            if (acctName != null && !acctName.isEmpty() &&
-                    !acctName.equals(existing.getAcctName())) {
+				// Format date for procedure
+				String formattedDate = new SimpleDateFormat("dd-MM-yyyy")
+						.format(new SimpleDateFormat("yyyy-MM-dd").parse(reportDateStr));
 
-                existing.setAcctName(acctName);
-                isChanged = true;
-            }
+				/*
+				 * Date reportDate = new SimpleDateFormat("yyyy-MM-dd").parse(reportDateStr);
+				 * String formatted = new SimpleDateFormat("dd-MM-yyyy").format(reportDate);
+				 */
+				
+				// Run summary procedure after commit
+				TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+					@Override
+					public void afterCommit() {
+						try {
+							logger.info("Transaction committed — calling CBUAE_BRF1_12_SUMMARY_PROCEDURE({})",
+									formattedDate);
+							jdbcTemplate.update("BEGIN CBUAE_BRF1_3_SUMMARY_PROCEDURE(?); END;", formattedDate);
+							logger.info("Procedure executed successfully after commit.");
+						} catch (Exception e) {
+							logger.error("Error executing procedure after commit", e);
+						}
+					}
+				});
 
-            if (balanceStr != null && !balanceStr.isEmpty()) {
-                BigDecimal newBalance = new BigDecimal(balanceStr);
+				return ResponseEntity.ok("Record updated successfully!");
+			} else {
+				logger.info("No changes detected for ACCT_NO: {}", acctNo);
+				return ResponseEntity.ok("No changes were made.");
+			}
 
-                if (existing.getAcctBalanceInAed() == null ||
-                    existing.getAcctBalanceInAed().compareTo(newBalance) != 0) {
-
-                    existing.setAcctBalanceInAed(newBalance);
-                    isChanged = true;
-                }
-            }
-
-            if (isChanged) {
-                BRF1_3_DETAIL_Repo.save(existing);
-
-                // Convert date safely
-                Date reportDate = new SimpleDateFormat("yyyy-MM-dd").parse(reportDateStr);
-                String formatted = new SimpleDateFormat("dd-MM-yyyy").format(reportDate);
-
-                TransactionSynchronizationManager.registerSynchronization(
-                    new TransactionSynchronizationAdapter() {
-                        @Override
-                        public void afterCommit() {
-                            try {
-                                jdbcTemplate.update(
-                                    "BEGIN CBUAE_BRF1_3_SUMMARY_PROCEDURE(?); END;",
-                                    formatted);
-                            } catch (Exception e) {
-                                logger.error("Procedure failed", e);
-                            }
-                        }
-                    }
-                );
-
-                return ResponseEntity.ok("Record updated successfully!");
-            }
-
-            return ResponseEntity.ok("No changes were made.");
-
-        } catch (Exception e) {
-            logger.error("Error updating BRF1_3 record", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error updating: " + e.getMessage());
-        }
-    }
+		} catch (Exception e) {
+			logger.error("Error updating BRF1_3 record", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error updating record: " + e.getMessage());
+		}
+	}
 
 }
