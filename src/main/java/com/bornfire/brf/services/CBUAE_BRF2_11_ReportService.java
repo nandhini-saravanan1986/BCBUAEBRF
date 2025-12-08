@@ -12,8 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -38,12 +40,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.entities.CBUAE_BRF1_1_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_11_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF2_11_Detail_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF2_11_Summary_Entity;
@@ -176,8 +184,6 @@ public class CBUAE_BRF2_11_ReportService {
 	    return mv;
 	}
 
-
-	
 	public byte[] getBRF2_11Excel(String filename, String reportId, String fromdate, String todate, String currency, String dtltype) throws Exception {
 	    try {
 	        List<CBUAE_BRF2_11_Summary_Entity> dataList = CBUAE_BRF2_11_Summary_Repos.getdatabydateList();
@@ -445,5 +451,122 @@ public class CBUAE_BRF2_11_ReportService {
 	}
 
 
+	public ModelAndView getViewOrEditPage(String custId, String acctNo, String formMode) {
+
+	    ModelAndView mv = new ModelAndView("BRF/BRF2_11");
+
+	    // Load data using acctNo (NOT custId)
+	    if (acctNo != null && !acctNo.isEmpty()) {
+
+	        CBUAE_BRF2_11_Detail_Entity brf2_11Entity =
+	                CBUAE_BRF2_11_Detail_Repos.findByAcctNumber(acctNo);
+
+	        if (brf2_11Entity != null && brf2_11Entity.getReportDate() != null) {
+	            String formattedDate =
+	                    new SimpleDateFormat("dd/MM/yyyy").format(brf2_11Entity.getReportDate());
+	            mv.addObject("asondate", formattedDate);
+	        }
+
+	        mv.addObject("BRF2_11", brf2_11Entity);
+	    }
+
+	    mv.addObject("custId", custId);                      // keep if needed
+	    mv.addObject("acctNo", acctNo);
+	    mv.addObject("displaymode", "edit");
+	    mv.addObject("formmode", (formMode != null ? formMode : "edit"));
+
+	    return mv;
+	}
+
+	
+	 @Autowired
+		private JdbcTemplate jdbcTemplate;
+	 
+	 @Transactional
+	 public ResponseEntity<?> updateDetailEdit(HttpServletRequest request) {
+	     try {
+
+	         String custId = request.getParameter("custId");
+	         String acctNo = request.getParameter("acctNumber");
+	         String balanceStr = request.getParameter("acctBalanceInAed");
+	         String acctName = request.getParameter("acctName");
+	         String reportDateStr = request.getParameter("reportDate");
+
+	         logger.info("Received update request for custId: {}", custId);
+
+	         // ---- Fetch existing record (Optional fix) ----
+	         Optional<CBUAE_BRF2_11_Detail_Entity> existingOpt = 
+	                 CBUAE_BRF2_11_Detail_Repos.findById(custId);
+
+	         if (!existingOpt.isPresent()) {
+	             logger.warn("No record found for CUST_ID: {}", custId);
+	             return ResponseEntity.status(HttpStatus.NOT_FOUND)
+	                     .body("Record not found for update.");
+	         }
+
+	         CBUAE_BRF2_11_Detail_Entity existing = existingOpt.get();
+	         boolean isChanged = false;
+
+	         // ---- Update Account Name ----
+	         if (acctName != null && !acctName.isEmpty()) {
+	             if (existing.getAcctName() == null || !existing.getAcctName().equals(acctName)) {
+	                 existing.setAcctName(acctName);
+	                 isChanged = true;
+	                 logger.info("Account name updated: {}", acctName);
+	             }
+	         }
+
+	         // ---- Update Balance ----
+	         if (balanceStr != null && !balanceStr.isEmpty()) {
+	             BigDecimal newBalance = new BigDecimal(balanceStr);
+
+	             if (existing.getAcctBalanceInAed() == null ||
+	                 existing.getAcctBalanceInAed().compareTo(newBalance) != 0) {
+
+	                 existing.setAcctBalanceInAed(newBalance);
+	                 isChanged = true;
+	                 logger.info("Balance updated: {}", newBalance);
+	             }
+	         }
+
+	         // ---- If any change then save ----
+	         if (isChanged) {
+
+	             CBUAE_BRF2_11_Detail_Repos.save(existing);
+	             logger.info("Record saved successfully for custId {}", custId);
+
+	             // ---- Format date for procedure ----
+	             String formattedDate = new SimpleDateFormat("dd-MM-yyyy")
+	                     .format(new SimpleDateFormat("yyyy-MM-dd").parse(reportDateStr));
+
+	             // ---- Register callback after commit ----
+	             TransactionSynchronizationManager.registerSynchronization(
+	                 new TransactionSynchronizationAdapter() {
+	                     @Override
+	                     public void afterCommit() {
+	                         try {
+	                             logger.info("Calling summary procedure with date {}", formattedDate);
+	                             jdbcTemplate.update("BEGIN CBUAE_BRF2_11_SUMMARY_PROCEDURE(?); END;",
+	                                     formattedDate);
+	                             logger.info("Procedure executed successfully");
+	                         } catch (Exception e) {
+	                             logger.error("Error executing summary procedure", e);
+	                         }
+	                     }
+	                 }
+	             );
+
+	             return ResponseEntity.ok("Record updated successfully!");
+	         }
+
+	         return ResponseEntity.ok("No changes were made.");
+
+	     } catch (Exception e) {
+	         logger.error("Error updating BRF2_11 record", e);
+	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                 .body("Error updating record: " + e.getMessage());
+	     }
+	 }
 
 }
+    

@@ -3,6 +3,7 @@ package com.bornfire.brf.services;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -34,10 +38,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bornfire.brf.entities.CBUAE_BRF1_12_Detail_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_3_Archival_Summary_Entity;
 import com.bornfire.brf.entities.CBUAE_BRF1_3_Archival_Summary_Repo;
 import com.bornfire.brf.entities.CBUAE_BRF1_3_Detail_Entity;
@@ -3132,4 +3142,115 @@ public class CBUAE_BRF1_3_ReportService {
 			return new byte[0];
 		}
 	}
+	
+
+    public ModelAndView getViewOrEditPage(String custId, String acctNo, String formMode) {
+
+	    ModelAndView mv = new ModelAndView("BRF/BRF1_3");
+
+	    // Load data using acctNo (NOT custId)
+	    if (acctNo != null && !acctNo.isEmpty()) {
+
+	    	CBUAE_BRF1_3_Detail_Entity brf1_3Entity =
+	    			BRF1_3_DETAIL_Repo.findByAcctNumber(acctNo);
+
+	        if (brf1_3Entity != null && brf1_3Entity.getReportDate() != null) {
+	            String formattedDate =
+	                    new SimpleDateFormat("dd/MM/yyyy").format(brf1_3Entity.getReportDate());
+	            mv.addObject("asondate", formattedDate);
+	        }
+
+	        mv.addObject("BRF1_3", brf1_3Entity);
+	    }
+
+	    mv.addObject("custId", custId);                      // keep if needed
+	    mv.addObject("acctNo", acctNo);
+	    mv.addObject("displaymode", "edit");
+	    mv.addObject("formmode", (formMode != null ? formMode : "edit"));
+
+	    return mv;
+	}
+    
+    @Autowired
+	private JdbcTemplate jdbcTemplate;
+    
+
+    @Transactional
+    public ResponseEntity<?> updateDetailEdit(HttpServletRequest request) {
+        try {
+            String custId = request.getParameter("custId");
+            String acctNo = request.getParameter("acctNumber");
+            String balanceStr = request.getParameter("acctBalanceInAed");
+            String acctName = request.getParameter("acctName");
+            String reportDateStr = request.getParameter("reportDate");
+
+            logger.info("Received update for ACCT_NO: {}", acctNo);
+            logger.info("reportDate received: {}", reportDateStr);
+
+            if (acctNo == null || acctNo.isEmpty()) {
+                return ResponseEntity.badRequest().body("Account number missing!");
+            }
+
+            CBUAE_BRF1_3_Detail_Entity existing =
+                    BRF1_3_DETAIL_Repo.findByAcctNumber(acctNo);
+
+            if (existing == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Record not found for ACCT_NO: " + acctNo);
+            }
+
+            boolean isChanged = false;
+
+            if (acctName != null && !acctName.isEmpty() &&
+                    !acctName.equals(existing.getAcctName())) {
+
+                existing.setAcctName(acctName);
+                isChanged = true;
+            }
+
+            if (balanceStr != null && !balanceStr.isEmpty()) {
+                BigDecimal newBalance = new BigDecimal(balanceStr);
+
+                if (existing.getAcctBalanceInAed() == null ||
+                    existing.getAcctBalanceInAed().compareTo(newBalance) != 0) {
+
+                    existing.setAcctBalanceInAed(newBalance);
+                    isChanged = true;
+                }
+            }
+
+            if (isChanged) {
+                BRF1_3_DETAIL_Repo.save(existing);
+
+                // Convert date safely
+                Date reportDate = new SimpleDateFormat("yyyy-MM-dd").parse(reportDateStr);
+                String formatted = new SimpleDateFormat("dd-MM-yyyy").format(reportDate);
+
+                TransactionSynchronizationManager.registerSynchronization(
+                    new TransactionSynchronizationAdapter() {
+                        @Override
+                        public void afterCommit() {
+                            try {
+                                jdbcTemplate.update(
+                                    "BEGIN CBUAE_BRF1_3_SUMMARY_PROCEDURE(?); END;",
+                                    formatted);
+                            } catch (Exception e) {
+                                logger.error("Procedure failed", e);
+                            }
+                        }
+                    }
+                );
+
+                return ResponseEntity.ok("Record updated successfully!");
+            }
+
+            return ResponseEntity.ok("No changes were made.");
+
+        } catch (Exception e) {
+            logger.error("Error updating BRF1_3 record", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error updating: " + e.getMessage());
+        }
+    }
+
 }

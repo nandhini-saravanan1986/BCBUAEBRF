@@ -26,4 +26,6 @@ public interface CBUAE_BRF2_11_Detail_Repo extends JpaRepository<CBUAE_BRF2_11_D
 
 	@Query(value = "select * from CBUAE_BRF2_11_DETAILTABLE where REPORT_DATE=?1", nativeQuery = true)
 	List<CBUAE_BRF2_11_Detail_Entity> getListbydate(Date reportdate);
+
+	CBUAE_BRF2_11_Detail_Entity findByAcctNumber(String custId);
 }

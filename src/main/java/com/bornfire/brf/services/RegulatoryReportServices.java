@@ -1641,6 +1641,30 @@ public class RegulatoryReportServices {
 		                request.getParameter("acctNo"),
 		                request.getParameter("formmode"));
 		        break;
+		    case "BRF1_2":
+		        modelAndView = cbuae_brf1_2_reportservice.getViewOrEditPage(
+		        		request.getParameter("custId"),
+		        		request.getParameter("acctNo"),
+		                request.getParameter("formmode"));
+		        break;
+		    case "BRF2_11":
+		        modelAndView = CBUAE_BRF2_11_ReportServices.getViewOrEditPage(
+		        		 request.getParameter("custId"),
+		        		request.getParameter("acctNo"),
+		                request.getParameter("formmode"));
+		        break;
+		    case "BRF1_12":
+		        modelAndView = cbuae_brf1_12_reportservice.getViewOrEditPage(
+		        		request.getParameter("custId"),
+		        		request.getParameter("acctNo"),
+		                request.getParameter("formmode"));
+		        break;
+		    case "BRF1_3":
+		        modelAndView = cbuae_brf1_3_reportservice.getViewOrEditPage(
+		        		request.getParameter("custId"),
+		        		request.getParameter("acctNo"),
+		                request.getParameter("formmode"));
+		        break;
 
 		    default:
 				logger.warn("No detail service found for reportId: {}", reportId);
@@ -1668,6 +1692,19 @@ public class RegulatoryReportServices {
 			switch (reportId) {
 				case "BRF1_1":
 					response = cbuae_brf1_1_reportservice.updateDetailEdit(request);
+					break;
+				case "BRF1_2":
+					response = cbuae_brf1_2_reportservice.updateDetailEdit(request);
+					break;
+				case "BRF2_11":
+					response = CBUAE_BRF2_11_ReportServices.updateDetailEdit(request);
+					break;
+				case "BRF1_12":
+					response = cbuae_brf1_12_reportservice.updateDetailEdit(request);
+					break;
+					
+				case "BRF1_3":
+					response = cbuae_brf1_3_reportservice.updateDetailEdit(request);
 					break;
 
 				default:

@@ -293,10 +293,10 @@ label.error {
 		location.href = 'Dashboard'
 	}
 
-	function back() {
-        $("#loader").modal("toggle");
 
-		window.history.back();
+	function back() {
+	    $('#loader').modal('hide');  // force close loader always
+	    window.history.back();       // go to previous page
 	}
 
 
@@ -385,9 +385,9 @@ function getVali(a) {
 			<div class="card" >
 						
 					<div class="card-header" style="background-color: rgb(107, 122, 143); display: flex; align-items: center; justify-content: space-between;">
-					    <div style="display: flex; align-items: center;" onclick="back();">
+					    <div style="display: flex; align-items: center;" >
 					        <!-- ⬅️ Left circular arrow -->
-					        <div class="left-arrow-circle">
+					        <div class="left-arrow-circle" onclick="back();">
 					    		<i class="fa fa-arrow-left"></i>
 							</div>
 					        <!-- Title -->

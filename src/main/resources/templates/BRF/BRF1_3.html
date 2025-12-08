@@ -296,16 +296,18 @@ PURPOSE		: BRFREPORT
 		.white-text span {
 			color: white !important;
 		}
-		
-		 .table-cell tbody td:hover {
-        background-color: #f0f0f0; /* Hover color for cell */
-        cursor: pointer;           /* Optional: pointer cursor */
-    }
-    
-    .table-bordered td, 
-	.table-bordered th {
-     border: 1px solid #000 !important;
-	}
+
+		.table-cell tbody td:hover {
+			background-color: #f0f0f0;
+			/* Hover color for cell */
+			cursor: pointer;
+			/* Optional: pointer cursor */
+		}
+
+		.table-bordered td,
+		.table-bordered th {
+			border: 1px solid #000 !important;
+		}
 	</style>
 
 
@@ -329,13 +331,13 @@ PURPOSE		: BRFREPORT
 
 
 		function home() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			location.href = 'Dashboard'
 		}
 
 		function back() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			window.history.back();
 		}
@@ -344,7 +346,7 @@ PURPOSE		: BRFREPORT
 		function showdetails() {
 
 			var Callurl;
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			Callurl = /*[[@{'/Reports/'+${reportid}+'/Details'(asondate=${asondate},fromdate=${fromdate},todate=${todate},currency=${currency},dtltype=${dtltype},type=${type},version=${version})}]]*/
 				location.href = Callurl;
@@ -372,14 +374,93 @@ PURPOSE		: BRFREPORT
 		}
 
 		function showsummary() {
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
 			var Callurl = /*[[@{'/Reports/' + ${reportid} (dtltype='report', fromdate=${fromdate}, todate=${todate}, type=${type},version=${version}, asondate=${asondate})}]]*/
 				location.href = Callurl;
 
 		}
 	</script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		const reportId = /*[[${reportid}]]*/ null;
+		/*]]>*/
+	</script>
 
+	<script>
+		function openBRF1_3Detail(elem, mode) {
+
+			// 1. Get reportId from the element
+			var reportId = elem.getAttribute('data-reportid');
+
+			var type = elem.getAttribute('data-type');
+
+			if (type === "ARCHIVAL") {
+				showResultModal('BRF', "Archived Data cannot be modified");
+				return;
+			}
+
+			const acctNo = elem.getAttribute("data-acctNo");
+			const asondate = elem.getAttribute("data-asondate");
+
+			// 2. Now reportId is defined and can be used in the URL
+			location.href = `/BRF/Reports/${reportId}/Detailspage?formmode=${mode}&acctNo=${acctNo}&asondate=${asondate}`;
+
+		}
+	</script>
+	<script>
+		function submitBRF1_3Update() {
+			const formData = $('#DetailForm').serialize(); // Ensure correct form ID
+
+			// ✅ Store the previous page URL
+			const previousUrl = document.referrer; // same as going back once in history
+
+			// Show loader while processing
+			$('#loader').modal('show');
+
+			$.ajax({
+				url: `/BRF/Reports/${reportId}/update`,
+				type: 'POST',
+				data: formData,
+				success: function (response) {
+					$('#loader').modal('hide');
+
+					// Show message via modal
+					if (response && response.toLowerCase().includes('success')) {
+						showResultModal('BRRS', response);
+					} else {
+						showResultModal('Information', response || 'No data updated.');
+					}
+
+					// ✅ Redirect back to the previous page after short delay
+					setTimeout(() => {
+						if (previousUrl) {
+							window.location.href = previousUrl;
+						} else {
+							// fallback: just go back if referrer not found
+							window.history.back();
+						}
+					}, 1500);
+				},
+				error: function (xhr, status, error) {
+					$('#loader').modal('hide');
+					console.error("Update error:", error);
+
+					showResultModal('Error', 'Failed to update record. Please try again.');
+
+					// ✅ On error also return to previous page after delay
+					setTimeout(() => {
+						if (previousUrl) {
+							window.location.href = previousUrl;
+						} else {
+							window.history.back();
+						}
+					}, 1500);
+				}
+			});
+		}
+
+	</script>
 	<script>
 
 		function activateTab(tabName) {
@@ -422,9 +503,9 @@ PURPOSE		: BRFREPORT
 			var version = button.getAttribute('data-version');
 
 
-			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static',keyboard: false});
+			var loader = new bootstrap.Modal(document.getElementById('loader'), {backdrop: 'static', keyboard: false});
 			loader.show();
-			
+
 			$.ajax({
 				url: './downloadExcel?reportid=' + reportid +
 					'&fromdate=' + fromdate +
@@ -494,119 +575,119 @@ PURPOSE		: BRFREPORT
 		}
 	</style>
 	<script>
-	
-	
-	
-	function startReport(button){
-		const alertMsg = document.getElementById("alertMessage");
-		const filename = button.getAttribute('data-filename');
-		const fromdate = button.getAttribute('data-fromdate');
-		const todate = button.getAttribute('data-todate');
-		const currency = button.getAttribute('data-currency');
-		const dtltype = button.getAttribute('data-dtltype');
-		const type = button.getAttribute('data-type');
-		const version = button.getAttribute('data-version');
-		const sessionfilename = sessionStorage.getItem("filename");
-		
-		if(sessionfilename==filename){
-			alertMsg.innerHTML ='Download request already Processing...';
-       	 	showAlert();
-			return;
-		}
-		
-		alertMsg.innerHTML ='Download request Processing...';
-   	 	showAlert();
-
-		const baseUrl = '/BRF/Reports/startreport';
-		const downloadUrl = baseUrl +
-			'?filename=' + encodeURIComponent(filename) +
-			'&fromdate=' + encodeURIComponent(fromdate) +
-			'&todate=' + encodeURIComponent(todate) +
-			'&currency=' + encodeURIComponent(currency) +
-			'&dtltype=' + encodeURIComponent(dtltype) +
-			'&type=' + encodeURIComponent(type) +
-			'&version=' + encodeURIComponent(version);
-	    fetch(downloadUrl)  // ✅ no invalid characters now
-	        .then(res => res.text())
-	        .then(jobId => {
-
-	        	alertMsg.innerHTML ='Download request received...'+jobId;
-	       	 	showAlert();
-	            sessionStorage.setItem("jobId", jobId);
-	            sessionStorage.setItem("filename", filename);
-	            checkReport(jobId);
-	        });
-	}
-
-	function checkReport(jobId) {
-		const alertMsg = document.getElementById("alertMessage");
-	    fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
-	        .then(res => res.text())
-	        .then(status => {
-	            if (status === "READY") {
-	            	alertMsg.innerHTML ='Report is ready! Downloading…';
-	           	 	showAlert();
-	                const filename = sessionStorage.getItem("filename");
-	                downloadDetailfile(jobId,filename)
-	                sessionStorage.removeItem("jobId");
-	                sessionStorage.removeItem("filename");                
-	                
-	            } else if(status ==="PROCESSING") {
-	                alertMsg.innerHTML ='Download Is Processing…';
-	            	showAlert();
-	                setTimeout(() => checkReport(jobId), 5000);
-	            }
-	            else if(status ==="ERROR") {
-	                alertMsg.innerHTML ='No data was available to create a download.';
-	            	showAlert();
-	            	sessionStorage.removeItem("jobId");
-	                sessionStorage.removeItem("filename");  
-	            }
-	        });
-	}
 
 
 
-	function downloadDetailfile(jobId,filename) {
-		
-		//$('#loader').modal('show');
-		
-		$.ajax({
-			url: '/BRF/Reports/downloaddetailExcel?jobId='+ jobId +
-				'&filename=' + filename,
-			type: 'GET',
-			xhrFields: {
-				responseType: 'blob'
-			},
-			success: function (data) {
-				$('#loader').modal('hide');
+		function startReport(button) {
+			const alertMsg = document.getElementById("alertMessage");
+			const filename = button.getAttribute('data-filename');
+			const fromdate = button.getAttribute('data-fromdate');
+			const todate = button.getAttribute('data-todate');
+			const currency = button.getAttribute('data-currency');
+			const dtltype = button.getAttribute('data-dtltype');
+			const type = button.getAttribute('data-type');
+			const version = button.getAttribute('data-version');
+			const sessionfilename = sessionStorage.getItem("filename");
 
-				if (data && data.size > 100) {
-					const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
-					const url = window.URL.createObjectURL(blob);
-					const a = document.createElement('a');
-					a.style.display = 'none';
-					a.href = url;
-					a.download = filename;
-					document.body.appendChild(a);
-					a.click();
-					window.URL.revokeObjectURL(url);
-					document.body.removeChild(a);
-
-					showResultModal('Success', filename + ' downloaded successfully.');
-				} else {
-					showResultModal('Information', 'No data was available to create a download.');
-				}
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				$('#loader').modal('hide');
-				console.error("Download failed:", textStatus, errorThrown);
-				showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+			if (sessionfilename == filename) {
+				alertMsg.innerHTML = 'Download request already Processing...';
+				showAlert();
+				return;
 			}
-		});
-	}
 
-		
+			alertMsg.innerHTML = 'Download request Processing...';
+			showAlert();
+
+			const baseUrl = '/BRF/Reports/startreport';
+			const downloadUrl = baseUrl +
+				'?filename=' + encodeURIComponent(filename) +
+				'&fromdate=' + encodeURIComponent(fromdate) +
+				'&todate=' + encodeURIComponent(todate) +
+				'&currency=' + encodeURIComponent(currency) +
+				'&dtltype=' + encodeURIComponent(dtltype) +
+				'&type=' + encodeURIComponent(type) +
+				'&version=' + encodeURIComponent(version);
+			fetch(downloadUrl)  // ✅ no invalid characters now
+				.then(res => res.text())
+				.then(jobId => {
+
+					alertMsg.innerHTML = 'Download request received...' + jobId;
+					showAlert();
+					sessionStorage.setItem("jobId", jobId);
+					sessionStorage.setItem("filename", filename);
+					checkReport(jobId);
+				});
+		}
+
+		function checkReport(jobId) {
+			const alertMsg = document.getElementById("alertMessage");
+			fetch('/BRF/Reports/checkreport?jobId=' + encodeURIComponent(jobId))
+				.then(res => res.text())
+				.then(status => {
+					if (status === "READY") {
+						alertMsg.innerHTML = 'Report is ready! Downloading…';
+						showAlert();
+						const filename = sessionStorage.getItem("filename");
+						downloadDetailfile(jobId, filename)
+						sessionStorage.removeItem("jobId");
+						sessionStorage.removeItem("filename");
+
+					} else if (status === "PROCESSING") {
+						alertMsg.innerHTML = 'Download Is Processing…';
+						showAlert();
+						setTimeout(() => checkReport(jobId), 5000);
+					}
+					else if (status === "ERROR") {
+						alertMsg.innerHTML = 'No data was available to create a download.';
+						showAlert();
+						sessionStorage.removeItem("jobId");
+						sessionStorage.removeItem("filename");
+					}
+				});
+		}
+
+
+
+		function downloadDetailfile(jobId, filename) {
+
+			//$('#loader').modal('show');
+
+			$.ajax({
+				url: '/BRF/Reports/downloaddetailExcel?jobId=' + jobId +
+					'&filename=' + filename,
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				success: function (data) {
+					$('#loader').modal('hide');
+
+					if (data && data.size > 100) {
+						const blob = new Blob([data], {type: 'application/vnd.ms-excel'});
+						const url = window.URL.createObjectURL(blob);
+						const a = document.createElement('a');
+						a.style.display = 'none';
+						a.href = url;
+						a.download = filename;
+						document.body.appendChild(a);
+						a.click();
+						window.URL.revokeObjectURL(url);
+						document.body.removeChild(a);
+
+						showResultModal('Success', filename + ' downloaded successfully.');
+					} else {
+						showResultModal('Information', 'No data was available to create a download.');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					$('#loader').modal('hide');
+					console.error("Download failed:", textStatus, errorThrown);
+					showResultModal('Error', 'An error occurred while downloading the file. Please try again.');
+				}
+			});
+		}
+
+
 
 	</script>
 
@@ -619,14 +700,14 @@ PURPOSE		: BRFREPORT
 
 			if (cellValue !== '0') {
 				// Set dynamic message
-				document.getElementById("cellresultModalLabel").innerText = 
-				    "Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
+				document.getElementById("cellresultModalLabel").innerText =
+					"Do you want to open details for Row: " + rowId + " and Column: " + columnId + "?";
 
 				// Show custom modal
 				$('#cellresultModal').modal('show');
 
 				// Handle Yes button
-				document.querySelector('.yes-btn').onclick = function() {
+				document.querySelector('.yes-btn').onclick = function () {
 					$('#cellresultModal').modal('hide');
 					$('#loader').modal('show');
 
@@ -640,7 +721,7 @@ PURPOSE		: BRFREPORT
 			}
 		}
 	</script>
-	
+
 </head>
 
 
@@ -720,8 +801,8 @@ PURPOSE		: BRFREPORT
 									class="sticky-header-table table table-bordered table-cell table-sm table-condensed"
 									id="reports">
 									<thead class="thead-light">
-										
-										
+
+
 										<tr style="background-color: #b3b6b9">
 											<th rowspan="2" style="text-align: center; background-color: #b3b6b9">ROW
 											</th>
@@ -763,7 +844,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0020_product}"></td>
 											<td th:text="${report.r0020_year_to_date}"
 												th:attr="RowId='R0020', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" style="text-align: right;" class="right-align clickable-cell">
+												onclick="showdetailsbyRowAndColumn(this)" style="text-align: right;"
+												class="right-align clickable-cell">
 											</td>
 										</tr>
 
@@ -773,7 +855,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0030_product}"></td>
 											<td th:text="${report.r0030_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0030', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -782,7 +865,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0040_product}"></td>
 											<td th:text="${report.r0040_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0040', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -799,7 +883,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0060_product}"></td>
 											<td th:text="${report.r0060_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0060', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -808,7 +893,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0070_product}"></td>
 											<td th:text="${report.r0070_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0070', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -817,7 +903,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0080_product}"></td>
 											<td th:text="${report.r0080_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0080', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -826,7 +913,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0090_product}"></td>
 											<td th:text="${report.r0090_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0090', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -835,7 +923,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0100_product}"></td>
 											<td th:text="${report.r0100_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0100', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -844,7 +933,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0110_product}"></td>
 											<td th:text="${report.r0110_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0110', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -853,7 +943,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0120_product}"></td>
 											<td th:text="${report.r0120_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0120', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -862,7 +953,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0130_product}"></td>
 											<td th:text="${report.r0130_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0130', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -871,7 +963,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0140_product}"></td>
 											<td th:text="${report.r0140_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0140', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -888,7 +981,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0160_product}"></td>
 											<td th:text="${report.r0160_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0160', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -897,7 +991,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0170_product}"></td>
 											<td th:text="${report.r0170_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0170', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -906,7 +1001,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0180_product}"></td>
 											<td th:text="${report.r0180_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0180', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -915,7 +1011,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0190_product}"></td>
 											<td th:text="${report.r0190_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0190', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -924,7 +1021,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0200_product}"></td>
 											<td th:text="${report.r0200_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0200', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -933,7 +1031,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0210_product}"></td>
 											<td th:text="${report.r0210_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0210', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -953,7 +1052,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0230_product}"></td>
 											<td th:text="${report.r0230_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0230', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -962,7 +1062,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0240_product}"></td>
 											<td th:text="${report.r0240_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0240', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -971,7 +1072,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0250_product}"></td>
 											<td th:text="${report.r0250_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0250', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -988,7 +1090,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0270_product}"></td>
 											<td th:text="${report.r0270_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0270', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -997,7 +1100,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0280_product}"></td>
 											<td th:text="${report.r0280_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0280', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1006,7 +1110,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0290_product}"></td>
 											<td th:text="${report.r0290_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0290', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1015,7 +1120,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0300_product}"></td>
 											<td th:text="${report.r0300_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0300', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1024,7 +1130,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0310_product}"></td>
 											<td th:text="${report.r0310_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0310', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1063,7 +1170,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0350_product}"></td>
 											<td th:text="${report.r0350_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0350', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1072,7 +1180,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0360_product}"></td>
 											<td th:text="${report.r0360_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0360', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1081,7 +1190,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0370_product}"></td>
 											<td th:text="${report.r0370_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0370', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1090,7 +1200,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0380_product}"></td>
 											<td th:text="${report.r0380_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0380', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1107,7 +1218,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0400_product}"></td>
 											<td th:text="${report.r0400_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0400', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1116,7 +1228,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0410_product}"></td>
 											<td th:text="${report.r0410_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0410', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1125,7 +1238,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0420_product}"></td>
 											<td th:text="${report.r0420_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0420', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1134,7 +1248,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0430_product}"></td>
 											<td th:text="${report.r0430_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0430', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1143,7 +1258,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0440_product}"></td>
 											<td th:text="${report.r0440_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0440', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1163,7 +1279,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0460_product}"></td>
 											<td th:text="${report.r0460_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0460', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1180,7 +1297,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0480_product}"></td>
 											<td th:text="${report.r0480_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0480', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1189,7 +1307,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0490_product}"></td>
 											<td th:text="${report.r0490_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0490', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1198,7 +1317,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0500_product}"></td>
 											<td th:text="${report.r0500_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0500', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1207,7 +1327,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0510_product}"></td>
 											<td th:text="${report.r0510_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0510', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1216,7 +1337,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0520_product}"></td>
 											<td th:text="${report.r0520_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0520', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1225,7 +1347,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0530_product}"></td>
 											<td th:text="${report.r0530_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0530', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1234,7 +1357,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0540_product}"></td>
 											<td th:text="${report.r0540_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0540', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1243,7 +1367,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0550_product}"></td>
 											<td th:text="${report.r0550_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0550', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1252,7 +1377,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0560_product}"></td>
 											<td th:text="${report.r0560_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0560', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1269,7 +1395,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0580_product}"></td>
 											<td th:text="${report.r0580_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0580', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1278,7 +1405,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0590_product}"></td>
 											<td th:text="${report.r0590_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0590', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1287,7 +1415,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0600_product}"></td>
 											<td th:text="${report.r0600_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0600', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1296,7 +1425,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0610_product}"></td>
 											<td th:text="${report.r0610_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0610', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1305,7 +1435,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0620_product}"></td>
 											<td th:text="${report.r0620_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0620', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1314,7 +1445,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0630_product}"></td>
 											<td th:text="${report.r0630_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0630', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1323,7 +1455,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0640_product}"></td>
 											<td th:text="${report.r0640_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0640', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1332,7 +1465,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0650_product}"></td>
 											<td th:text="${report.r0650_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0650', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1349,7 +1483,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0670_product}"></td>
 											<td th:text="${report.r0670_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0670', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1358,7 +1493,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0680_product}"></td>
 											<td th:text="${report.r0680_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0680', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1367,7 +1503,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0690_product}"></td>
 											<td th:text="${report.r0690_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0690', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1376,7 +1513,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0700_product}"></td>
 											<td th:text="${report.r0700_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0700', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1385,7 +1523,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0710_product}"></td>
 											<td th:text="${report.r0710_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0710', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1394,7 +1533,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0720_product}"></td>
 											<td th:text="${report.r0720_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0720', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1403,7 +1543,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0730_product}"></td>
 											<td th:text="${report.r0730_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0730', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1430,7 +1571,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0760_product}"></td>
 											<td th:text="${report.r0760_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0760', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1439,7 +1581,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0770_product}"></td>
 											<td th:text="${report.r0770_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0770', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1448,7 +1591,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0780_product}"></td>
 											<td th:text="${report.r0780_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0780', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1457,7 +1601,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0790_product}"></td>
 											<td th:text="${report.r0790_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0790', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1466,7 +1611,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0800_product}"></td>
 											<td th:text="${report.r0800_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0800', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1475,7 +1621,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0810_product}"></td>
 											<td th:text="${report.r0810_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0810', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1484,7 +1631,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0820_product}"></td>
 											<td th:text="${report.r0820_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0820', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1493,7 +1641,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0830_product}"></td>
 											<td th:text="${report.r0830_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0830', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1524,7 +1673,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0860_product}"></td>
 											<td th:text="${report.r0860_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0860', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1533,7 +1683,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0870_product}"></td>
 											<td th:text="${report.r0870_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0870', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1542,7 +1693,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0880_product}"></td>
 											<td th:text="${report.r0880_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0880', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1551,7 +1703,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0890_product}"></td>
 											<td th:text="${report.r0890_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0890', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1560,7 +1713,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0900_product}"></td>
 											<td th:text="${report.r0900_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0900', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1569,7 +1723,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0910_product}"></td>
 											<td th:text="${report.r0910_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0910', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1578,7 +1733,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0920_product}"></td>
 											<td th:text="${report.r0920_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0920', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1587,7 +1743,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0930_product}"></td>
 											<td th:text="${report.r0930_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0930', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1596,7 +1753,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0940_product}"></td>
 											<td th:text="${report.r0940_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0940', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1613,7 +1771,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0960_product}"></td>
 											<td th:text="${report.r0960_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0960', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1622,7 +1781,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 40px;" th:text="${report.r0970_product}"></td>
 											<td th:text="${report.r0970_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0970', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1631,7 +1791,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r0980_product}"></td>
 											<td th:text="${report.r0980_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R0980', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1662,7 +1823,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1010_product}"></td>
 											<td th:text="${report.r1010_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1010', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1671,7 +1833,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1020_product}"></td>
 											<td th:text="${report.r1020_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1020', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1680,7 +1843,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1030_product}"></td>
 											<td th:text="${report.r1030_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1030', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1698,7 +1862,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1050_product}"></td>
 											<td th:text="${report.r1050_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1050', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1707,7 +1872,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1060_product}"></td>
 											<td th:text="${report.r1060_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1060', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1716,7 +1882,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1070_product}"></td>
 											<td th:text="${report.r1070_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1070', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1725,7 +1892,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1080_product}"></td>
 											<td th:text="${report.r1080_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1080', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1734,7 +1902,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1090_product}"></td>
 											<td th:text="${report.r1090_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1090', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1743,7 +1912,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1100_product}"></td>
 											<td th:text="${report.r1100_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1100', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1752,7 +1922,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1110_product}"></td>
 											<td th:text="${report.r1110_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1110', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1761,7 +1932,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1120_product}"></td>
 											<td th:text="${report.r1120_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1120', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1770,7 +1942,8 @@ PURPOSE		: BRFREPORT
 											<td style="padding-left: 20px;" th:text="${report.r1130_product}"></td>
 											<td th:text="${report.r1130_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1130', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1782,7 +1955,8 @@ PURPOSE		: BRFREPORT
 												th:text="${report.r1140_product}"></td>
 											<td th:text="${report.r1140_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1140', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1805,7 +1979,8 @@ PURPOSE		: BRFREPORT
 												th:text="${report.r1160_product}"></td>
 											<td th:text="${report.r1160_year_to_date}" style="text-align: right;"
 												th:attr="RowId='R1160', ColumnId='C0010'"
-												onclick="showdetailsbyRowAndColumn(this)" class="right-align clickable-cell"></td>
+												onclick="showdetailsbyRowAndColumn(this)"
+												class="right-align clickable-cell"></td>
 										</tr>
 
 										<tr>
@@ -1857,13 +2032,19 @@ PURPOSE		: BRFREPORT
 											<td>
 												<a data-toggle="tooltip" class="editrec"
 													title="Click to Edit this Record">
-													<i class="fas fa-edit" onclick="editRecord(this)"></i>
+													<i class="fas fa-edit" style="color: black; cursor:pointer;"
+														th:attr="data-reportid=${reportid}, 
+																													                    data-acctNo=${report.acctNumber}, 
+																															            data-asondate=${#dates.format(report.reportDate, 'dd-MM-yyyy')},
+																														               data-type=${type}" onclick="openBRF1_3Detail(this, 'edit')">
+													</i>
 												</a>
 											</td>
 											<td th:text="${report.custId}"></td>
 											<td th:text="${report.acctNumber}"></td>
 											<td th:text="${report.acctName}"></td>
-											<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}" style="text-align: right;"></td>
+											<td th:text="${#numbers.formatDecimal(report.acctBalanceInAed, 1, 3, 'POINT')}"
+												style="text-align: right;"></td>
 											<td style="text-align:left;" th:text="${report.rowId}"></td>
 											<td th:text="${report.columnId}"></td>
 											<td th:text="${#dates.format(report.reportDate, 'dd-MM-yyyy')}"></td>
@@ -1871,12 +2052,11 @@ PURPOSE		: BRFREPORT
 										</tr>
 									</tbody>
 								</table>
-								
+
 								<div style="margin-top:20px; text-align:center;" th:if="${pagination=='YES'}">
-									   
-									    									    
-									<a th:if="${currentPage > 0}"
-									 th:href="@{'/Reports/' + ${reportid} + '/Details'(
+
+
+									<a th:if="${currentPage > 0}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
 									    asondate=${asondate},                             
 									    fromdate=${fromdate},
 									    todate=${todate},
@@ -1887,16 +2067,14 @@ PURPOSE		: BRFREPORT
 									    page=${currentPage - 100},
 									    size=100
 									)}">
-									    Previous
+										Previous
 									</a>
-			
-									    
-									    <span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
-									
-									    
-									    <a th:if="${currentPage < (totalPages - 1) * 100}"
-									    	
-									    th:href="@{'/Reports/' + ${reportid} + '/Details'(
+
+
+									<span>Page [[${currentPage / 100 + 1}]] of [[${totalPages}]]</span>
+
+
+									<a th:if="${currentPage < (totalPages - 1) * 100}" th:href="@{'/Reports/' + ${reportid} + '/Details'(
 									    asondate=${asondate},
 									    fromdate=${fromdate},
 									    todate=${todate},
@@ -1906,18 +2084,88 @@ PURPOSE		: BRFREPORT
 									    version=${version},
 									    page=${currentPage + 100},
 									    size=100
-									)}">	
-									    Next
-									    </a>
-									</div>
-								
-								
+									)}">
+										Next
+									</a>
+								</div>
+
+
 							</div>
 
 
 						</div>
 					</div>
 				</div>
+
+				<div th:if="${formmode == 'edit'}" class="card">
+
+				    <div class="card-body">
+				        <form th:object="${BRF1_3}" method="post" id="DetailForm">
+
+				            <input type="hidden" id="reportId" value="BRF1_3" />
+				            <input type="hidden" name="acctNo" th:value="${acctNo}" />
+				            <input type="hidden" name="asondate" th:value="${asondate}" />
+
+				            <div class="row formline" style="margin-top:10px;">
+				                <label class="col-sm-2">Customer ID</label>
+				                <div class="col-sm-3">
+				                    <input type="text" th:field="*{custId}" class="form-control form-control-sm" readonly />
+				                </div>
+
+				                <div class="col-sm-1"></div>
+
+				                <label class="col-sm-2">Account Number</label>
+				                <div class="col-sm-3">
+				                    <input type="text" th:field="*{acctNumber}" class="form-control form-control-sm" readonly />
+				                </div>
+				            </div>
+
+				            <div class="row formline" style="margin-top:10px;">
+				                <label class="col-sm-2">Account Name</label>
+				                <div class="col-sm-3">
+				                    <input type="text" th:field="*{acctName}" class="form-control form-control-sm" readonly />
+				                </div>
+
+				                <div class="col-sm-1"></div>
+
+				                <label class="col-sm-2">Account Balance</label>
+				                <div class="col-sm-3">
+				                    <input type="number" step="0.01" th:field="*{acctBalanceInAed}"
+				                           class="form-control form-control-sm" style="text-align:right;" />
+				                </div>
+				            </div>
+
+				            <div class="row formline" style="margin-top:10px;">
+				                <label class="col-sm-2">Row ID</label>
+				                <div class="col-sm-3">
+				                    <input type="text" th:field="*{rowId}" class="form-control form-control-sm" readonly />
+				                </div>
+
+				                <div class="col-sm-1"></div>
+
+				                <label class="col-sm-2">Column ID</label>
+				                <div class="col-sm-3">
+				                    <input type="text" th:field="*{columnId}" class="form-control form-control-sm" readonly />
+				                </div>
+				            </div>
+
+				            <div class="row formline" style="margin-top:10px;">
+				                <label class="col-sm-2">Report Date</label>
+				                <div class="col-sm-3">
+				                    <input type="date" name="reportDate" class="form-control"
+				                           th:value="${#dates.format(BRF1_3.reportDate,'yyyy-MM-dd')}" readonly />
+				                </div>
+				            </div>
+
+				            <div style="text-align:center; margin-top:20px;">
+				                <button type="button" class="custom-tab-btn"
+				                        onclick="submitBRF1_3Update()">Update</button>
+				            </div>
+
+				        </form>
+				    </div>
+				</div>
+
 
 			</div>
 
@@ -1966,26 +2214,29 @@ PURPOSE		: BRFREPORT
 	</div>
 	<!-- Custom Cellresult Modal -->
 	<div class="modal fade" id="cellresultModal">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      
-	      <!-- Custom header -->
-	      <div class="menu-title-header" style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
-	        <div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
-	          Do you want to open the report?
-	        </div>
-	      </div>
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
 
-	      <div class="modal-body" style="text-align: center; font-size: 1.1rem;">
-	        <button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal" style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
-	          Cancel
-	        </button>
-	        <button type="button" class="custom-tab-btn yes-btn" style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
-	          Yes
-	        </button>
-	      </div>
-	    </div>
-	  </div>
+				<!-- Custom header -->
+				<div class="menu-title-header"
+					style="background-color:#6c7a91; padding: 8px; border-radius:5px 5px 0 0;">
+					<div class="modal-title" id="cellresultModalLabel" style="text-align: center; color: white;">
+						Do you want to open the report?
+					</div>
+				</div>
+
+				<div class="modal-body" style="text-align: center; font-size: 1.1rem;">
+					<button type="button" class="custom-tab-btn cancel-btn" data-bs-dismiss="modal"
+						style="margin-right:10px; border:2px solid #6c7a91; background:white; color:black; border-radius:20px; padding:5px 15px;">
+						Cancel
+					</button>
+					<button type="button" class="custom-tab-btn yes-btn"
+						style="background:#6c7a91; color:white; border:none; border-radius:20px; padding:5px 20px;">
+						Yes
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </body>
@@ -2134,20 +2385,19 @@ PURPOSE		: BRFREPORT
 		display: inline-block;
 		width: auto;
 	}
-	
+
 	/* Add pointer cursor on hover */
 	.clickable-cell {
-	    cursor: pointer;
-	    background-color: transparent; /* keep normal */
+		cursor: pointer;
+		background-color: transparent;
+		/* keep normal */
 	}
 
 	/* Optional: highlight cell on hover */
 	.clickable-cell:hover {
-	    background-color: 
-		#e4e0d7
-	;  
+		background-color:
+			#e4e0d7;
 	}
-
 </style>
 
 </html>
