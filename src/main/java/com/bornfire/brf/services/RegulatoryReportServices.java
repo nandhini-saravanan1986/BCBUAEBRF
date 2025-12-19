@@ -1680,6 +1680,12 @@ public class RegulatoryReportServices {
 		                request.getParameter("formmode"));
 		        break;
 
+		    case "BRF2_3":
+		        modelAndView = cbuae_brf2_3_reportservice.getViewOrEditPage(
+		                request.getParameter("custId"),
+		                request.getParameter("acctNo"),
+		                request.getParameter("formmode"));
+		        break;
 		    default:
 				logger.warn("No detail service found for reportId: {}", reportId);
 				modelAndView = new ModelAndView("error/report_not_found");
@@ -1727,7 +1733,9 @@ public class RegulatoryReportServices {
 				case "BRF2_2":
 				    response = cbuae_brf2_2_reportservice.updateDetailEdit(request);
 				    break;
-
+				case "BRF2_3":
+				    response = cbuae_brf2_3_reportservice.updateDetailEdit(request);
+				    break;
 
 				default:
 					logger.warn("Unsupported report ID: {}", reportId);
