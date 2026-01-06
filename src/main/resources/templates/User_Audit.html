@@ -313,9 +313,116 @@
 			}
 		}
 	}
+	function downloadExcelAjax() {
+	          var selectedDate = $('#searchDate').val();
+
+	          if (!selectedDate) {
+	              $('#alertmsg').text("Please select a date first.");
+	              $('#alertModal').modal('show');
+	              return;
+	          }
+
+	          // 1. Show Loader
+	          $("#overlay").fadeIn(300);
+
+	          // 2. AJAX Request
+	          $.ajax({
+	              url: './User_Audit/DownloadExcel',
+	              type: 'GET',
+	              data: {
+	                  audit_date: selectedDate
+	              },
+	              xhrFields: {
+	                  responseType: 'blob' // Important: Expect a binary file
+	              },
+	              success: function(blob, status, xhr) {
+	                  // Check if the file is valid (not a JSON error masquerading as a blob)
+	                  if (blob.size === 0) {
+	                       $("#overlay").fadeOut(300);
+	                       $('#alertmsg').text("No records found for the selected date.");
+	                       $('#alertModal').modal('show');
+	                       return;
+	                  }
+
+	                  // 3. Create a temporary download link
+	                  var link = document.createElement('a');
+	                  var url = window.URL.createObjectURL(blob);
+	                  
+	                  link.href = url;
+	                  // Get filename from header or default
+	                  var filename = "User_Audit_" + selectedDate + ".xlsx";
+	                  var disposition = xhr.getResponseHeader('Content-Disposition');
+	                  if (disposition && disposition.indexOf('attachment') !== -1) {
+	                      var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+	                      var matches = filenameRegex.exec(disposition);
+	                      if (matches != null && matches[1]) { 
+	                          filename = matches[1].replace(/['"]/g, '');
+	                      }
+	                  }
+	                  
+	                  link.download = filename;
+	                  document.body.appendChild(link);
+	                  link.click();
+	                  
+	                  // 4. Cleanup
+	                  document.body.removeChild(link);
+	                  window.URL.revokeObjectURL(url);
+	                  
+	                  // 5. Hide Loader & Show Success
+	                  $("#overlay").fadeOut(300);
+	                  // Optional: Show success modal
+	                  // $('#alertmsg').text("Download successful!");
+	                  // $('#alertModal').modal('show');
+	              },
+	              error: function(xhr, status, error) {
+	                  $("#overlay").fadeOut(300);
+	                  $('#alertmsg').text("Error downloading file. Please try again.");
+	                  $('#alertModal').modal('show');
+	                  console.error(error);
+	              }
+	          });
+	      }
+
 </script>
 
+<style>
+        /* --- LOADER STYLES --- */
+        #overlay {
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            display: none; /* Hidden by default */
+            background: rgba(0, 0, 0, 0.5);
+        }
 
+        .cv-spinner {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #376275; /* Theme Color */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Card & Table Styles */
+        .card-header { background-color: #376275; color: white; padding: 10px 15px; }
+        .header-controls { display: flex; align-items: center; gap: 10px; }
+        .dataTables_filter { display: none; } /* Hide default search */
+    </style>
 <style>
 	.row1 {
 		padding-bottom: 10px;
@@ -426,6 +533,11 @@
 <title>BRF</title>
 
 <body>
+	<div id="overlay">
+	      <div class="cv-spinner">
+	          <div class="spinner"></div>
+	      </div>
+	  </div>
 	<div class="container-fluid">
 		<div class="row">
 			<div th:insert="HeaderMenu :: header"></div>
@@ -439,6 +551,9 @@
 								Date:</label>
 							<input type="date" id="searchDate" class="form-control form-control-sm" />
 						</div>
+						<button type="button" class="btn btn-success btn-sm" onclick="downloadExcelAjax()">
+						                              <i class="fas fa-file-excel mr-1"></i> Download
+						                          </button>
 					</div>
 
 					<form class="form-horizontal" method="post" name="CriteriaForm" id="reportform">
@@ -486,7 +601,7 @@
 
 					<div class="card-footer text-center">
 						<button type="button" class="custom-tab-btn" id="btnHome"
-							onclick="goHome();">Homes</button>
+							onclick="goHome();">Home</button>
 						<button type="button" class="custom-tab-btn" id="btnBack"
 							onclick="goBack();">Back</button>
 					</div>
@@ -502,6 +617,24 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" id="alertModal" tabindex="-1" role="dialog">
+			      <div class="modal-dialog modal-dialog-centered" role="document">
+			          <div class="modal-content">
+			              <div class="modal-header">
+			                  <h5 class="modal-title">Notification</h5>
+			                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                      <span aria-hidden="true">&times;</span>
+			                  </button>
+			              </div>
+			              <div class="modal-body text-center">
+			                  <p id="alertmsg"></p>
+			              </div>
+			              <div class="modal-footer">
+			                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			              </div>
+			          </div>
+			      </div>
+			  </div>
 		</div>
 	</div>
 </body>

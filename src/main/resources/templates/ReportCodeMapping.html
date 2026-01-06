@@ -289,33 +289,42 @@
                 }, error: () => alert('Error fetching GL Sub Heads.')
             });
         }
-
-        function fetchAccountDetails() {
-            const selectedSubHeads = $('input[name="glSubHead"]:checked').map((_, el) => el.value).get();
-            if (selectedSubHeads.length === 0) { alert('Please select at least one GL Sub Head.'); return; }
-            $('#selectAllAccounts').prop('checked', false);
-            $.ajax({
-                url: '/BRF/getAccountDetails', type: 'POST', contentType: 'application/json',
-                data: JSON.stringify(selectedSubHeads),
-                success: function(data) {
-                    const tableBody = $('#gl_accounts_table tbody').empty();
-                    if (data && data.length > 0) {
-                        $('#accountsTableContainer').show();
-                        data.forEach(item => {
-                            tableBody.append(`<tr>
-                                <td><input type="checkbox" class="account-checkbox" value="${item.accountIdBacid}"></td>
-                                <td>${item.glHead || ''}</td><td>${item.glSubHeadCode || ''}</td>
-                                <td>${item.accountIdBacid || ''}</td><td>${item.accountDescription || ''}</td>
-                                <td>${item.currency || ''}</td><td>${item.acctBalanceLc != null ? item.acctBalanceLc.toFixed(2) : '0.00'}</td>
-                            </tr>`);
-                        });
-                    } else {
-                        $('#accountsTableContainer').hide();
-                        alert('No accounts found for the selected criteria.');
-                    }
-                }, error: () => alert('Error fetching account details.')
-            });
-        }
+		function fetchAccountDetails() {
+		    const selectedSubHeads = $('input[name="glSubHead"]:checked').map((_, el) => el.value).get();
+		    if (selectedSubHeads.length === 0) { alert('Please select at least one GL Sub Head.'); return; }
+		    $('#selectAllAccounts').prop('checked', false);
+		    
+		    $.ajax({
+		        url: '/BRF/getAccountDetails', type: 'POST', contentType: 'application/json',
+		        data: JSON.stringify(selectedSubHeads),
+		        success: function(data) {
+		            const tableBody = $('#gl_accounts_table tbody').empty();
+		            if (data && data.length > 0) {
+		                $('#accountsTableContainer').show();
+		                data.forEach(item => {
+		                    tableBody.append(`<tr>
+		                        <td><input type="checkbox" class="account-checkbox" value="${item.accountIdBacid}"></td>
+		                        <td>${item.glHead || ''}</td>
+		                        <td>${item.glSubHeadCode || ''}</td>
+		                        <td>${item.accountIdBacid || ''}</td>
+		                        <td>${item.accountDescription || ''}</td>
+		                        <td>${item.currency || ''}</td>
+		                        <td>
+		                            <select class="form-control form-control-sm balance-criteria">
+		                                <option value="<0">Debit Balance</option>
+		                                <option value=">0">Credit Balance</option>
+		                                <option value="!0">Net Off Balance</option>
+		                            </select>
+		                        </td>
+		                    </tr>`);
+		                });
+		            } else {
+		                $('#accountsTableContainer').hide();
+		                alert('No accounts found for the selected criteria.');
+		            }
+		        }, error: () => alert('Error fetching account details.')
+		    });
+		}
 
         function clearMappingForm() {
             $('#bfdbitem')[0].reset();
@@ -324,31 +333,54 @@
             handleSourceChange();
         }
 
-        function submitForm() {
-            const checkedRows = $('#gl_accounts_table tbody .account-checkbox:checked');
-            if (checkedRows.length === 0) { alert('No accounts selected to map.'); return; }
-            const reportCode = $('#ReportCode').val();
-            const rowLabel = $('#rowLabel').val();
-            const columnLabel = $('#columnLabel').val();
-            if (!reportCode || !rowLabel || !columnLabel) { alert('Please ensure Report Code, Row Label, and Column Label are selected.'); return; }
-            const mappings = [];
-            checkedRows.each(function() {
-                const row = $(this).closest('tr');
-                mappings.push({
-                    reportCode: reportCode, report_desc: $('#ReportName').val(),
-                    rowLabel: rowLabel, columnLabel: columnLabel,
-                    gl_head: row.find('td:eq(1)').text(), gl_subhead_code: row.find('td:eq(2)').text(),
-                    account_id_bacid: row.find('td:eq(3)').text(), account_description: row.find('td:eq(4)').text(),
-                    currency: row.find('td:eq(5)').text(), data_type: ($("#source").val() === 'TREASURY') ? 'TREASURY' : 'GL'
-                });
-            });
-            $.ajax({
-                url: '/BRF/saveBulkMapping', type: 'POST', contentType: 'application/json',
-                data: JSON.stringify(mappings),
-                success: (response) => { alert(response); clearMappingForm(); },
-                error: (xhr) => alert('Error saving mapping: ' + xhr.responseText)
-            });
-        }
+		function submitForm() {
+		    const checkedRows = $('#gl_accounts_table tbody .account-checkbox:checked');
+		    if (checkedRows.length === 0) { alert('No accounts selected to map.'); return; }
+		    
+		    const reportCode = $('#ReportCode').val();
+		    const rowLabel = $('#rowLabel').val();
+		    const columnLabel = $('#columnLabel').val();
+		    
+		    if (!reportCode || !rowLabel || !columnLabel) { 
+		        alert('Please ensure Report Code, Row Label, and Column Label are selected.'); 
+		        return; 
+		    }
+
+		    const mappings = [];
+		    checkedRows.each(function() {
+		        const row = $(this).closest('tr');
+		        
+		        // Capture the dropdown value (<0, >0, or !0)
+		        const selectedCriteria = row.find('.balance-criteria').val();
+
+		        mappings.push({
+		            reportCode: reportCode, 
+		            report_desc: $('#ReportName').val(),
+		            rowLabel: rowLabel, 
+		            columnLabel: columnLabel,
+		            gl_head: row.find('td:eq(1)').text(), 
+		            gl_subhead_code: row.find('td:eq(2)').text(),
+		            account_id_bacid: row.find('td:eq(3)').text(), 
+		            account_description: row.find('td:eq(4)').text(),
+		            currency: row.find('td:eq(5)').text(), 
+		            data_type: ($("#source").val() === 'TREASURY') ? 'TREASURY' : 'GL',
+		            // Saving the dropdown value to the criteria field
+		            report_addl_criteria_1: selectedCriteria 
+		        });
+		    });
+
+		    $.ajax({
+		        url: '/BRF/saveBulkMapping', 
+		        type: 'POST', 
+		        contentType: 'application/json',
+		        data: JSON.stringify(mappings),
+		        success: (response) => { 
+		            alert(response); 
+		            clearMappingForm(); 
+		        },
+		        error: (xhr) => alert('Error saving mapping: ' + xhr.responseText)
+		    });
+		}
         
         function fetchRptName(rptCode) {
              $.ajax({ url: `/BRF/getRptName?rptCode=${rptCode}`, type: 'GET', success: r => $('#ReportName').val(r), error: () => $('#ReportName').val('Error') });
