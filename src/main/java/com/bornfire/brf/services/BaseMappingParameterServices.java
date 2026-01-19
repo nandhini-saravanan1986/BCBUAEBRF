@@ -16,7 +16,8 @@ public class BaseMappingParameterServices {
 	@Autowired
 	BaseMappingParameterRepository basemappingparameterrepository;
 
-	public String createOrUpdate(BaseMappingParameter dto, String formmode) { // Removed account_id_bacid as a separate param
+	public String createOrUpdate(BaseMappingParameter dto, String formmode) { // Removed account_id_bacid as a separate
+																				// param
 		try {
 			System.out.println("Service: createOrUpdate() called with formmode: " + formmode);
 
@@ -36,9 +37,11 @@ public class BaseMappingParameterServices {
 				dto.setModify_flg("N"); // New record, so not modified yet
 			} else if ("edit".equals(formmode)) {
 				// For 'edit' mode, ensure the record exists
-				Optional<BaseMappingParameter> existingOptional = basemappingparameterrepository.findById(dto.getAccount_id_bacid());
+				Optional<BaseMappingParameter> existingOptional = basemappingparameterrepository
+						.findById(dto.getAccount_id_bacid());
 				if (!existingOptional.isPresent()) {
-					return "ERROR: Record with Account ID/Bacid " + dto.getAccount_id_bacid() + " not found for update.";
+					return "ERROR: Record with Account ID/Bacid " + dto.getAccount_id_bacid()
+							+ " not found for update.";
 				}
 				BaseMappingParameter existing = existingOptional.get();
 				// Copy relevant fields from dto to existing, preserving creation metadata
@@ -60,7 +63,6 @@ public class BaseMappingParameterServices {
 		}
 	}
 
-
 	public String deleteBaseMappingParameter(String accountIdBacid) {
 		String msg = "";
 		try {
@@ -81,7 +83,8 @@ public class BaseMappingParameterServices {
 	public boolean updatebasemappingparameter(BaseMappingParameter updatedData) {
 		System.out.println("Looking for record with account_id_bacid: " + updatedData.getAccount_id_bacid());
 
-		Optional<BaseMappingParameter> existingOptional = basemappingparameterrepository.findById(updatedData.getAccount_id_bacid());
+		Optional<BaseMappingParameter> existingOptional = basemappingparameterrepository
+				.findById(updatedData.getAccount_id_bacid());
 
 		if (existingOptional.isPresent()) {
 			BaseMappingParameter existing = existingOptional.get();
@@ -92,6 +95,8 @@ public class BaseMappingParameterServices {
 			existing.setAccount_description(updatedData.getAccount_description());
 			existing.setCurrency(updatedData.getCurrency());
 			existing.setData_type(updatedData.getData_type());
+			existing.setRowId(updatedData.getRowId()); // Save Row ID
+			existing.setColumnId(updatedData.getColumnId());
 			existing.setModify_time(new Date()); // Set modify time
 			existing.setModify_flg("Y"); // Set modify flag
 

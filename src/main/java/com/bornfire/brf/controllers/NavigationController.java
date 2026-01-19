@@ -465,18 +465,20 @@ public class NavigationController {
 	        return reportCodeMappingService.getAccountDetails(glSubHeadCodes);
 	    }
 
-	    @PostMapping("/saveMapping")
+	    @PostMapping("/saveBulkMapping")
 	    @ResponseBody
-	    public ResponseEntity<String> saveMapping(@RequestBody BaseMappingParameter mapping) {
+	    // Change from BaseMappingParameter to List<BaseMappingParameter>
+	    public ResponseEntity<String> saveBulkMapping(@RequestBody List<BaseMappingParameter> mappings) {
 	        try {
-	            reportCodeMappingService.saveMapping(mapping);
-	            return ResponseEntity.ok("Mapping saved successfully!");
+	            // Call the service to process the list
+	            reportCodeMappingService.saveBulkMapping(mappings);
+	            return ResponseEntity.ok("Successfully mapped " + mappings.size() + " accounts!");
 	        } catch (Exception e) {
+	            e.printStackTrace();
 	            System.err.println("Error saving mapping: " + e.getMessage());
 	            return ResponseEntity.status(500).body("Error saving mapping: " + e.getMessage());
 	        }
 	    }
-	    
 
 	@RequestMapping(value = "Monthly-1", method = { RequestMethod.GET, RequestMethod.POST })
 	public String monthly1(Model md, HttpServletRequest req) {

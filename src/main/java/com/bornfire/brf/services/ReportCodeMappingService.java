@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,12 +99,39 @@ public class ReportCodeMappingService {
         return new BigDecimal(Math.random() * 100000).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
-    public BaseMappingParameter saveMapping(BaseMappingParameter mapping) {
-        mapping.setEntry_time(new Date());
-        mapping.setEntry_user("SYSTEM");
-        mapping.setAuth_flg("N");
-        mapping.setDel_flg("N");
-        mapping.setModify_flg("N");
-        return basemappingparameterrepository.save(mapping);
+    public void saveBulkMapping(List<BaseMappingParameter> mappings) {
+        for (BaseMappingParameter dto : mappings) {
+            // 1. Check if the account already exists in the mapping table
+            Optional<BaseMappingParameter> existing = basemappingparameterrepository.findById(dto.getAccount_id_bacid());
+
+            if (existing.isPresent()) {
+                // UPDATE EXISTING RECORD
+                BaseMappingParameter entity = existing.get();
+                
+                // Map the new fields from the UI
+                entity.setReportCode(dto.getReportCode());
+                entity.setReport_desc(dto.getReport_desc());
+                entity.setRowId(dto.getRowId());       // Row ID (e.g., R0010)
+                entity.setColumnId(dto.getColumnId()); // Column ID (e.g., 0010)
+                entity.setReport_addl_criteria_1(dto.getReport_addl_criteria_1());
+                
+                // Audit fields for modification
+                entity.setModify_flg("Y");
+                entity.setModify_time(new Date());
+                entity.setModify_user("SYSTEM");
+                
+                basemappingparameterrepository.save(entity);
+            } else {
+                // INSERT NEW RECORD (If it doesn't exist at all)
+                dto.setEntry_time(new Date());
+                dto.setEntry_user("SYSTEM");
+                dto.setAuth_flg("N");
+                dto.setDel_flg("N");
+                dto.setModify_flg("N");
+                dto.setEntity_flg("Y");
+                
+                basemappingparameterrepository.save(dto);
+            }
+        }
     }
 }
