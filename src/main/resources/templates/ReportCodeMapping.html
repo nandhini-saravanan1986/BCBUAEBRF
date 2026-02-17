@@ -351,12 +351,20 @@
 
 	<script th:inline="javascript">
 		$(document).ready(function () {
-			$('#glHead').select2({placeholder: "Select GL Head", allowClear: true});
-			$('#selectAllAccounts').on('click', function () {
-				$('#gl_accounts_table tbody tr:visible .account-checkbox').prop('checked', this.checked);
+			// Check if select2 loaded before calling
+			if ($.fn.select2) {
+				$('#glHead').select2({width: '100%', placeholder: 'Select GL'});
+			}
+
+			// --- SELECT ALL LOGIC ---
+			$(document).on('change', '#selectAllAccounts', function () {
+				$('.account-checkbox').prop('checked', $(this).prop('checked'));
 			});
-			$('#gl_accounts_table tbody').on('click', '.account-checkbox', function () {
-				if (!this.checked) {$('#selectAllAccounts').prop('checked', false);}
+
+			$(document).on('change', '.account-checkbox', function () {
+				var all = $('.account-checkbox').length;
+				var checked = $('.account-checkbox:checked').length;
+				$('#selectAllAccounts').prop('checked', all === checked);
 			});
 		});
 
@@ -431,11 +439,18 @@
 		}
 		function fetchAccountDetails() {
 			const selectedSubHeads = $('input[name="glSubHead"]:checked').map((_, el) => el.value).get();
-			if (selectedSubHeads.length === 0) {alert('Please select at least one GL Sub Head.'); return;}
+			if (selectedSubHeads.length === 0) {
+				alert('Please select at least one GL Sub Head.');
+				return;
+			}
+
+			// Reset the master checkbox when loading new data
 			$('#selectAllAccounts').prop('checked', false);
 
 			$.ajax({
-				url: '/BRF/getAccountDetails', type: 'POST', contentType: 'application/json',
+				url: '/BRF/getAccountDetails',
+				type: 'POST',
+				contentType: 'application/json',
 				data: JSON.stringify(selectedSubHeads),
 				success: function (data) {
 					const tableBody = $('#gl_accounts_table tbody').empty();
@@ -462,7 +477,8 @@
 						$('#accountsTableContainer').hide();
 						alert('No accounts found for the selected criteria.');
 					}
-				}, error: () => alert('Error fetching account details.')
+				},
+				error: () => alert('Error fetching account details.')
 			});
 		}
 
@@ -480,7 +496,7 @@
 			const reportCode = $('#ReportCode').val();
 			const rowId = $('#rowLabel').val();      // This gets the reportLabel (e.g., R0010)
 			const columnId = $('#columnLabel').val();
-			if (!reportCode || !rowId || !columnId) { 
+			if (!reportCode || !rowId || !columnId) {
 				alert('Please ensure Report Code, Row Label, and Column Label are selected.');
 				return;
 			}
